@@ -1,0 +1,67 @@
+.file-input-container {
+    position: relative;
+  }
+  
+  .custom-file-input {
+    display: none;
+  }
+  
+  .file-drop-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 2px dashed #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    text-align: center;
+    transition: border-color 0.3s;
+  }
+  
+  .file-drop-area:hover {
+    border-color: #aaa;
+  }
+  
+  .file-drop-text {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .file-preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .file-preview-wrapper {
+    position: relative;
+  }
+  
+  .file-preview-image {
+    width: 15vw; /* Viewport width units for consistent sizing */
+    height: 10vw; /* Viewport width units for consistent sizing */
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .remove-file-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: rgba(255, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 5px 8px;
+    cursor: pointer;
+    z-index: 999;
+  }
+  
+  .remove-file-button:hover {
+    background: rgba(255, 0, 0, 1);
+  }
+  

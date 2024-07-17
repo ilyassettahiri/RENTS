@@ -1,0 +1,23 @@
+<?php
+
+namespace App\Models;
+
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Tentesimg extends Model
+{
+
+
+    protected $fillable = ['tente_id','picture', 'alttext'];
+
+    public function tentesimg(): BelongsTo {
+
+        return $this->belongsTo(Tentesimg::class);
+
+    }
+
+
+}
