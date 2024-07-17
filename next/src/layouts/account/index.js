@@ -130,15 +130,10 @@ export default function AccountLayout({ children }) {
               type="file"
               accept="image/*"
               onChange={changeHandler}
-              style={{
-                display: 'none',
-              }}
+
               id="profile-image-upload"
             />
-            <label htmlFor="profile-image-upload">
-              <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
-              Change photo
-            </label>
+
           </Stack>
         </Stack>
 
