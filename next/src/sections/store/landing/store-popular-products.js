@@ -1,3 +1,6 @@
+/* eslint-disable import/no-named-as-default, class-methods-use-this */
+
+
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';

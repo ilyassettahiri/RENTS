@@ -1,5 +1,3 @@
-"use client";
-
 import { createContext, useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
@@ -27,37 +25,35 @@ const AuthContextProvider = ({ children }) => {
   }, []);
 
   const getCurrentUser = async () => {
-    if (!token) return null;
     try {
+      if (!token) return null;
       const res = await AuthService.getProfile();
       return res.data.id;
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching current user:", err);
       return null;
     }
   };
 
   const getRole = async () => {
-    const id = await getCurrentUser();
-    if (!id) return null;
     try {
+      const id = await getCurrentUser();
+      if (!id) return null;
+
       const res = await CrudService.getUser(id);
       const roleId = res.data.relationships.roles.data[0].id;
 
       if (roleId === "1") {
         return "admin";
-      }
-      if (roleId === "2") {
+      } else if (roleId === "2") {
         return "creator";
-      }
-      if (roleId === "3") {
+      } else if (roleId === "3") {
         return "member";
+      } else {
+        return res.included[0].attributes.name;
       }
-
-      return res.included[0].attributes.name;
-
     } catch (err) {
-      console.error(err);
+      console.error("Error fetching user role:", err);
       return null;
     }
   };
@@ -67,7 +63,7 @@ const AuthContextProvider = ({ children }) => {
     isAuthenticated,
     getCurrentUser,
     getRole,
-  }), [token, isAuthenticated]);
+  }), [token, isAuthenticated, getCurrentUser, getRole]); // Added getCurrentUser and getRole to dependency array
 
   return (
     <AuthContext.Provider value={contextValue}>

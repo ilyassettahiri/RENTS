@@ -1,4 +1,5 @@
 import BusinessPageView from 'src/sections/business-page/business-page-view';
+import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 

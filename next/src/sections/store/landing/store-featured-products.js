@@ -1,3 +1,6 @@
+/* eslint-disable import/no-named-as-default, class-methods-use-this */
+
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';

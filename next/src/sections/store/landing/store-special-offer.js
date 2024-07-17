@@ -1,3 +1,6 @@
+/* eslint-disable import/no-named-as-default, class-methods-use-this */
+
+
 import { add } from 'date-fns';
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
