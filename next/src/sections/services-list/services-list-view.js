@@ -5,9 +5,9 @@ import Container from '@mui/material/Container';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import CrudService from 'src/services/cruds-service';
+import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
 import ServiceList from '../components/services/list/services-list';
-import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
 // ----------------------------------------------------------------------
 

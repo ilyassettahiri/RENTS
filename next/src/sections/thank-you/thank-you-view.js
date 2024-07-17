@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';

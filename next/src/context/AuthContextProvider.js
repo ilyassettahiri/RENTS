@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState, useMemo } from "react";
+import { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
 import AuthService from "src/services/auth-service";
@@ -24,7 +24,7 @@ const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     try {
       if (!token) return null;
       const res = await AuthService.getProfile();
@@ -33,9 +33,9 @@ const AuthContextProvider = ({ children }) => {
       console.error("Error fetching current user:", err);
       return null;
     }
-  };
+  }, [token]);
 
-  const getRole = async () => {
+  const getRole = useCallback(async () => {
     try {
       const id = await getCurrentUser();
       if (!id) return null;
@@ -45,25 +45,26 @@ const AuthContextProvider = ({ children }) => {
 
       if (roleId === "1") {
         return "admin";
-      } else if (roleId === "2") {
-        return "creator";
-      } else if (roleId === "3") {
-        return "member";
-      } else {
-        return res.included[0].attributes.name;
       }
+      if (roleId === "2") {
+        return "creator";
+      }
+      if (roleId === "3") {
+        return "member";
+      }
+      return res.included[0].attributes.name;
     } catch (err) {
       console.error("Error fetching user role:", err);
       return null;
     }
-  };
+  }, [getCurrentUser]);
 
   const contextValue = useMemo(() => ({
     token,
     isAuthenticated,
     getCurrentUser,
     getRole,
-  }), [token, isAuthenticated, getCurrentUser, getRole]); // Added getCurrentUser and getRole to dependency array
+  }), [token, isAuthenticated, getCurrentUser, getRole]);
 
   return (
     <AuthContext.Provider value={contextValue}>

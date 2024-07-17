@@ -48,18 +48,7 @@ export default function StoreFeaturedBrands() {
           />
         </Grid>
 
-        <Grid xs={12} md={8}>
-          <Box
-            gap={3}
-            display="grid"
-            gridTemplateColumns={{
-              xs: 'repeat(1, 1fr)',
-              sm: 'repeat(2, 1fr)',
-            }}
-          >
 
-          </Box>
-        </Grid>
       </Grid>
     </Container>
   );

@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
+
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -64,8 +66,8 @@ export default function StoreHero({ picture, profile, name, created, average_rat
       <Card
         sx={{
           backdropFilter: `saturate(200%) blur(30px)`,
-          backgroundColor: (theme) => alpha(theme.palette.background.paper, 0.8),
-          boxShadow: (theme) => theme.shadows[3],
+          backgroundColor: (themeVar) => alpha(themeVar.palette.background.paper, 0.8), // Renamed theme to themeVar
+          boxShadow: (themeVar) => themeVar.shadows[3], // Renamed theme to themeVar
           bottom: -60, // Adjust as needed to place it correctly
           left: '50%', // Center horizontally
           transform: 'translateX(-50%)', // Center horizontally

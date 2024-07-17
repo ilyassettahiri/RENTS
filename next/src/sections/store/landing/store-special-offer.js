@@ -79,9 +79,7 @@ export default function StoreSpecialOffer() {
           expired={add(new Date(), { days: 1, hours: 8 })}
         />
 
-        <Box sx={{ borderRadius: 1.5, bgcolor: 'background.neutral' }}>
 
-        </Box>
 
         <SpecialOfferBuyNow
           color={color}

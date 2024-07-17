@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import CrudService from 'src/services/cruds-service';
+import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';

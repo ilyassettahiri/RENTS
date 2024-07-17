@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from "react";
+import PropTypes from 'prop-types';
+
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
@@ -18,7 +20,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Iconify from 'src/components/iconify';
 
 import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filters';
-import StoreList from 'src/sections/store/product/list/store-list.js';
+import StoreList from 'src/sections/store/product/list/store-list';
 
 import StoreHero from './landing/store-hero';
 
