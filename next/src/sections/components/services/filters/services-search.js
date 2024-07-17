@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -10,7 +12,6 @@ import Iconify from 'src/components/iconify';
 import SearchKeyword from './search-keyword';
 import SearchLocation from './search-location';
 import SearchCategories from './search-categories';
-import PropTypes from 'prop-types';
 
 
 // ----------------------------------------------------------------------

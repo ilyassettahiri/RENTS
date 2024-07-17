@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect } from 'react';
-
+import React, { useState, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -16,9 +16,7 @@ import { fDate } from 'src/utils/format-time';
 import { bgGradient } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
-import CarouselImg from 'src/components/carousel/carousel-img.js';
-
-// ----------------------------------------------------------------------
+import CarouselImg from 'src/components/carousel/carousel-img.jsx'; // Add .jsx extension
 
 export default function ServicesDetailsHero({ job }) {
   const theme = useTheme();

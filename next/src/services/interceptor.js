@@ -1,8 +1,8 @@
 /* eslint-disable import/no-named-as-default, class-methods-use-this */
 
+import Cookies from 'js-cookie';
 
 import HttpService from "./http.service";
-import Cookies from 'js-cookie';
 
 
 export const setupAxiosInterceptors = (onUnauthenticated) => {

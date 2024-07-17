@@ -36,15 +36,15 @@ export class HttpService {
     );
   }
 
-  get = async (url) => await this.request(this.getOptionsConfig('get', url));
+  get = async (url) =>  this.request(this.getOptionsConfig('get', url));
 
-  post = async (url, data) => await this.request(this.getOptionsConfig('post', url, data));
+  post = async (url, data) =>  this.request(this.getOptionsConfig('post', url, data));
 
-  put = async (url, data) => await this.request(this.getOptionsConfig('put', url, data));
+  put = async (url, data) =>  this.request(this.getOptionsConfig('put', url, data));
 
-  patch = async (url, data) => await this.request(this.getOptionsConfig('patch', url, data));
+  patch = async (url, data) =>  this.request(this.getOptionsConfig('patch', url, data));
 
-  delete = async (url) => await this.request(this.getOptionsConfig('delete', url));
+  delete = async (url) =>  this.request(this.getOptionsConfig('delete', url));
 
   getOptionsConfig = (method, url, data) => {
     return {

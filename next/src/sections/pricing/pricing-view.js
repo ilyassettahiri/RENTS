@@ -30,20 +30,9 @@ export default function Pricing02View() {
 
 
 
-
-  const mdUp = useResponsive('up', 'md');
-
   return (
-    <Container maxWidth={false}
-      sx={{
-        minHeight: 1,
-        pt: { xs: 13, md: 16 },
-        pb: { xs: 10, md: 15 },
-                paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
-      }}
-    >
+    <>
 
-    </Container>
+    </>
   );
 }
