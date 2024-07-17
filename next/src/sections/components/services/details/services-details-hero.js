@@ -16,7 +16,7 @@ import { fDate } from 'src/utils/format-time';
 import { bgGradient } from 'src/theme/css';
 
 import Iconify from 'src/components/iconify';
-import CarouselImg from 'src/components/carousel/carousel-img.jsx'; // Add .jsx extension
+import CarouselImg from 'src/components/carousel/carousel-img'; // Add .jsx extension
 
 export default function ServicesDetailsHero({ job }) {
   const theme = useTheme();
