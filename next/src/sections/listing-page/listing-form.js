@@ -11,7 +11,6 @@ import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 
-
 import { paths } from 'src/routes/paths';
 import { fCurrency } from 'src/utils/format-number';
 import FilterTime from 'src/sections/components/listings/filters/filter-time';
@@ -38,7 +37,7 @@ export default function ListingForm({ tour }) {
     if (Array.isArray(newValue) && newValue.length === 2) {
       setStartDate(newValue[0] ? newValue[0].toISOString() : null);
       setEndDate(newValue[1] ? newValue[1].toISOString() : null);
-      console.log(startDate, endDate); // Ensure these are logged for debugging
+      console.log(newValue[0], newValue[1]); // Ensure these are logged for debugging
     } else {
       console.error('Invalid date range value');
     }
@@ -46,24 +45,22 @@ export default function ListingForm({ tour }) {
 
   const handleIncrementGuests = useCallback(
     (guest) => {
-      if (guest === 'children') {
-        setGuests({ ...guests, children: guests.children + 1 });
-      } else {
-        setGuests({ ...guests, adults: guests.adults + 1 });
-      }
+      setGuests((prevGuests) => ({
+        ...prevGuests,
+        [guest]: prevGuests[guest] + 1
+      }));
     },
-    [guests]
+    []
   );
 
   const handleDecreaseGuests = useCallback(
     (guest) => {
-      if (guest === 'children') {
-        setGuests({ ...guests, children: guests.children - 1 });
-      } else {
-        setGuests({ ...guests, adults: guests.adults - 1 });
-      }
+      setGuests((prevGuests) => ({
+        ...prevGuests,
+        [guest]: prevGuests[guest] - 1
+      }));
     },
-    [guests]
+    []
   );
 
   return (

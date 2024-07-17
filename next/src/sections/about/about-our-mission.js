@@ -1,6 +1,7 @@
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import PropTypes from 'prop-types';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import Image from 'src/components/image';
@@ -11,7 +12,8 @@ export default function AboutOurMission({ profilePicture, third, last }) {
   const mdUp = useResponsive('up', 'md');
 
   return (
-    <Container maxWidth={false}
+    <Container
+      maxWidth={false}
       sx={{
         overflow: 'hidden',
         py: { xs: 5, md: 10 },
@@ -42,7 +44,6 @@ export default function AboutOurMission({ profilePicture, third, last }) {
             <Image
               alt="about introduce"
               src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${profilePicture}`}
-
               ratio="3/4"
               sx={{ borderRadius: 2 }}
             />
@@ -62,3 +63,9 @@ export default function AboutOurMission({ profilePicture, third, last }) {
     </Container>
   );
 }
+
+AboutOurMission.propTypes = {
+  profilePicture: PropTypes.string.isRequired,
+  third: PropTypes.string.isRequired,
+  last: PropTypes.string.isRequired,
+};

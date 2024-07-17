@@ -1,11 +1,10 @@
-/* eslint-disable react/prop-types */
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
-import CrudService from "src/services/cruds-service";
 import AuthService from "src/services/auth-service";
+import CrudService from "src/services/cruds-service";
 
 // The authentication context
 const AuthContext = createContext({
@@ -63,8 +62,15 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const contextValue = useMemo(() => ({
+    token,
+    isAuthenticated,
+    getCurrentUser,
+    getRole,
+  }), [token, isAuthenticated]);
+
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, getCurrentUser, getRole }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

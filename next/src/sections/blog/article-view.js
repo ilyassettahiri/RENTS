@@ -1,11 +1,12 @@
 'use client';
+
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 import CrudService from "src/services/cruds-service";
 
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
 
@@ -62,7 +63,7 @@ export default function ArticleView({ params }) {
   }
 
   const { attributes } = data;
-  const { title, author, tag: tags, content, category, created_at } = attributes;
+  const { title, author, tag: tags, content } = attributes;
 
   return (
     <>
@@ -113,3 +114,9 @@ export default function ArticleView({ params }) {
     </>
   );
 }
+
+ArticleView.propTypes = {
+  params: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};

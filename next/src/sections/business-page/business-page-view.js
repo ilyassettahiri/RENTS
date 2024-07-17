@@ -1,22 +1,19 @@
 'use client';
 
 import { useEffect } from 'react';
-
 import Stack from '@mui/material/Stack';
+import PropTypes from 'prop-types';
+
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-
+import { alpha } from '@mui/material/styles';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
-
-
 import Iconify from 'src/components/iconify';
 import { SplashScreen } from 'src/components/loading-screen';
-
 
 import Review from '../review/review';
 import ElearningCourseListSimilar from '../components/business/list/business-list-similar';
@@ -27,14 +24,9 @@ import ElearningCourseDetailsTeachersInfo from '../components/business/details/b
 
 // ----------------------------------------------------------------------
 
-const _mockCourse = _courses[0];
-
 export default function BusinessPageView({ params }) {
   const mdUp = useResponsive('up', 'md');
-
   const loading = useBoolean(true);
-
-  const courseSimilar = _courses.slice(-3);
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -52,12 +44,13 @@ export default function BusinessPageView({ params }) {
     <>
       <ElearningCourseDetailsHero course={_mockCourse} />
 
-      <Container maxWidth={false}
+      <Container
+        maxWidth={false}
         sx={{
           overflow: 'hidden',
           pt: { xs: 5, md: 10 },
           pb: { xs: 15, md: 10 },
-                  paddingLeft: { lg: '100px' },
+          paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
         }}
       >
@@ -75,29 +68,6 @@ export default function BusinessPageView({ params }) {
               <Typography variant="subtitle2" sx={{ mt: 0.75, mr: 1.5 }}>
                 Share:
               </Typography>
-
-              <Stack direction="row" alignItems="center" flexWrap="wrap">
-                {_socials.map((social) => (
-                  <Button
-                    key={social.value}
-                    size="small"
-                    variant="outlined"
-                    startIcon={<Iconify icon={social.icon} />}
-                    sx={{
-                      m: 0.5,
-                      flexShrink: 0,
-                      color: social.color,
-                      borderColor: social.color,
-                      '&:hover': {
-                        borderColor: social.color,
-                        bgcolor: alpha(social.color, 0.08),
-                      },
-                    }}
-                  >
-                    {social.label}
-                  </Button>
-                ))}
-              </Stack>
             </Stack>
 
             <Divider sx={{ my: 5 }} />
@@ -108,8 +78,6 @@ export default function BusinessPageView({ params }) {
           <Grid xs={12} md={5} lg={4}>
             <Stack spacing={5}>
               {mdUp && <ElearningCourseDetailsInfo course={_mockCourse} />}
-
-
             </Stack>
           </Grid>
         </Grid>
@@ -120,8 +88,12 @@ export default function BusinessPageView({ params }) {
       <Review />
 
       <ElearningCourseListSimilar courses={courseSimilar} />
-
-
     </>
   );
 }
+
+BusinessPageView.propTypes = {
+  params: PropTypes.shape({
+    // Define the expected shape of params if necessary
+  }),
+};

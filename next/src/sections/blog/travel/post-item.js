@@ -14,15 +14,15 @@ export default function PostItem({ post }) {
 
   return (
     <Stack spacing={2.5}>
-      <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`} alt={attributes.title} ratio="1/1" sx={{ borderRadius: 2 }} />
+      <Image
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`}
+        alt={attributes.title}
+        ratio="1/1"
+        sx={{ borderRadius: 2 }}
+      />
       <Stack spacing={1}>
         <PostTimeBlock createdAt={fDate(attributes.created_at)} duration="8 minutes read" />
-        <Link component={RouterLink}
-
-         href={`${paths.travel.post}/${attributes.url}`}
-
-
-        color="inherit">
+        <Link component={RouterLink} href={`${paths.travel.post}/${attributes.url}`} color="inherit">
           <TextMaxLine variant="h5" persistent>
             {attributes.title}
           </TextMaxLine>
@@ -39,12 +39,14 @@ export default function PostItem({ post }) {
 PostItem.propTypes = {
   post: PropTypes.shape({
     attributes: PropTypes.shape({
-      title: PropTypes.string,
-      thumb: PropTypes.string,
-      created_at: PropTypes.string,
-      actor: PropTypes.string,
-      actor_thumb: PropTypes.string,
-      content: PropTypes.string,
-    }),
-  }),
+      title: PropTypes.string.isRequired,
+      thumb: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+      author: PropTypes.shape({
+        picture: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
 };

@@ -20,9 +20,9 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import FormProvider from 'src/components/hook-form';
 
-import CheckOutSummary from '../checkout/check-out-summary';
-import CheckOutPaymentForm from '../checkout/check-out-payment-form';
-import CheckOutShippingForm from '../checkout/check-out-shipping-form';
+import CheckOutSummary from './check-out-summary';
+import CheckOutPaymentForm from './check-out-payment-form';
+import CheckOutShippingForm from './check-out-shipping-form';
 import CrudService from 'src/services/cruds-service';
 
 // ----------------------------------------------------------------------
@@ -103,17 +103,16 @@ export default function CheckoutView({ params }) {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit(async (formData) => {
     try {
       const payload = {
-        ...data.billingAddress,
+        ...formData.billingAddress,
         reservationstart: departureDay[0].toISOString(),
         reservationsend: departureDay[1].toISOString(),
       };
 
       // Send data to the backend using createReservationFront method
       const response = await CrudService.createReservationFront(payload, category, url);
-
 
       const checkout_id = response.data.attributes.checkout_id;
 
@@ -130,12 +129,13 @@ export default function CheckoutView({ params }) {
   }, []);
 
   return (
-    <Container maxWidth={false}
+    <Container
+      maxWidth={false}
       sx={{
         overflow: 'hidden',
         pt: 5,
         pb: { xs: 8, md: 15 },
-                paddingLeft: { lg: '100px' },
+        paddingLeft: { lg: '100px' },
         paddingRight: { lg: '100px' },
       }}
     >
@@ -175,6 +175,13 @@ export default function CheckoutView({ params }) {
     </Container>
   );
 }
+
+CheckoutView.propTypes = {
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 // ----------------------------------------------------------------------
 

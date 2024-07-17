@@ -65,13 +65,7 @@ export default function TeamItem({ member }) {
             {role}
           </Typography>
 
-          <Stack direction="row">
-            {_socials.map((social) => (
-              <IconButton key={social.value} color="primary">
-                <Iconify icon={social.icon} />
-              </IconButton>
-            ))}
-          </Stack>
+
         </Stack>
       </StyledOverlay>
 

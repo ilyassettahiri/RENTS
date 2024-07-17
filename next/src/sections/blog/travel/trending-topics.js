@@ -3,23 +3,16 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-
 import { useResponsive } from 'src/hooks/use-responsive';
-
-
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
+import PropTypes from 'prop-types';
 
 import TopicItem from './trending-topic-item';
 
 // ----------------------------------------------------------------------
 
-
-
-// ----------------------------------------------------------------------
-
 export default function TrendingTopics({ blogcategories }) {
   const theme = useTheme();
-
   const mdUp = useResponsive('up', 'md');
 
   const carousel = useCarousel({
@@ -39,7 +32,8 @@ export default function TrendingTopics({ blogcategories }) {
 
   return (
     <Box sx={{ bgcolor: 'background.neutral' }}>
-      <Container maxWidth={false}
+      <Container
+        maxWidth={false}
         sx={{
           py: { xs: 8, md: 10 },
           paddingLeft: { lg: '100px' },
@@ -54,7 +48,6 @@ export default function TrendingTopics({ blogcategories }) {
           }}
         >
           <Typography variant="h3">Trending Topics</Typography>
-
           {mdUp && <CarouselArrows onNext={carousel.onNext} onPrev={carousel.onPrev} spacing={2} />}
         </Stack>
 
@@ -77,3 +70,12 @@ export default function TrendingTopics({ blogcategories }) {
     </Box>
   );
 }
+
+TrendingTopics.propTypes = {
+  blogcategories: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      attributes: PropTypes.object.isRequired,
+    })
+  ).isRequired,
+};

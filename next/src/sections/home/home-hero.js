@@ -1,28 +1,17 @@
+'use client';
+
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-
 import { useResponsive } from 'src/hooks/use-responsive';
-
-import { fCurrency } from 'src/utils/format-number';
-
 import { bgBlur, bgGradient } from 'src/theme/css';
-
 import Image from 'src/components/image';
-import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
 import Carousel, { useCarousel, CarouselDots } from 'src/components/carousel';
-import horizontal from 'src/components/nav-section/horizontal';
-
-// ----------------------------------------------------------------------
-
-
 
 export default function HomeHero({ tours }) {
   const mdUp = useResponsive('up', 'md');
@@ -64,9 +53,6 @@ export default function HomeHero({ tours }) {
 
   return (
     <Box sx={{ minHeight: { md: '60vh' }, position: 'relative' }}>
-
-
-
       {!!tours.length && (
         <Carousel
           {...carouselLarge.carouselSettings}
@@ -76,12 +62,8 @@ export default function HomeHero({ tours }) {
           {tours.map((tour) => (
             <CarouselItem key={tour.id} tour={tour} />
           ))}
-
         </Carousel>
-
       )}
-
-
 
       {mdUp && (
         <Stack
@@ -90,22 +72,17 @@ export default function HomeHero({ tours }) {
           sx={{
             top: 0,
             height: 1,
-            mt:3,
-            width: '100%', // Set to full width
+            mt: 3,
+            width: '100%',
             position: 'absolute',
             right: { xs: 20, lg: '6%', xl: '0%' },
             paddingLeft: { lg: '100px' },
             paddingRight: { lg: '100px' },
-
-
           }}
         >
-
-          <Typography variant="h4" sx={{ mt:-15, mb:3, color: 'white', textAlign: 'center' }}>
+          <Typography variant="h4" sx={{ mt: -15, mb: 3, color: 'white', textAlign: 'center' }}>
             Find Everything at RENT.ma
           </Typography>
-
-
 
           {!!tours.length && (
             <Carousel
@@ -131,18 +108,6 @@ export default function HomeHero({ tours }) {
 HomeHero.propTypes = {
   tours: PropTypes.array,
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 // ----------------------------------------------------------------------
 
@@ -178,8 +143,6 @@ function CarouselItem({ tour }) {
         justifyContent: 'center',
       }}
     >
-
-
       <Stack
         alignItems="center"
         sx={{
@@ -187,16 +150,7 @@ function CarouselItem({ tour }) {
           py: { xs: 20, md: 0 },
           position: { md: 'absolute' },
         }}
-      >
-
-
-
-
-
-
-
-      </Stack>
-
+      />
       <Box
         sx={{
           width: 1,
@@ -207,14 +161,10 @@ function CarouselItem({ tour }) {
           },
         }}
       >
-
         {renderOverlay}
-
         <Image
           alt="hero"
           src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${tour.heroUrl}`}
-
-
           sx={{
             width: 1,
             height: { xs: 1, md: '70vh' },
@@ -227,7 +177,6 @@ function CarouselItem({ tour }) {
 
 CarouselItem.propTypes = {
   tour: PropTypes.shape({
-
     heroUrl: PropTypes.string,
     categories: PropTypes.string,
   }),
@@ -239,8 +188,6 @@ function ThumbnailItem({ tour, selected }) {
   const theme = useTheme();
 
   return (
-
-
     <Stack
       direction="row"
       alignItems="center"
@@ -259,17 +206,11 @@ function ThumbnailItem({ tour, selected }) {
         }),
       }}
     >
-
-
-
-      <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${tour.heroUrl}`}  sx={{ width: 48, height: 48 }} />
-
+      <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
       <Stack spacing={0.5}>
         <TextMaxLine variant="h6" line={1}>
           {tour.categories}
         </TextMaxLine>
-
-
       </Stack>
     </Stack>
   );

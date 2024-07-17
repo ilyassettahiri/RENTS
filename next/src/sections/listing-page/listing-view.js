@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from 'src/routes/hooks';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -17,20 +18,20 @@ import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import Review from 'src/sections/review/review';
 import TourListSimilar from '../components/listings/list/listings-list-similar';
 import ListingHeader from './listing-header';
-import ListingSummary from 'src/sections/listing-page/listing-summary';
 import ListingImage from './listing-image';
 import ListingForm from './listing-form';
+import ListingSummary from 'src/sections/listing-page/listing-summary';
 import CrudService from 'src/services/cruds-service';
-
-import PostSocialsShare from 'src/sections/blog/common/post-socials-share.js';
-
-
 import StorePopularProducts from 'src/sections/store/landing/store-popular-products';
+import ListingsCarousel from 'src/sections/home/listings-carousel';
+
+import PostSocialsShare from 'src/sections/blog/common/post-socials-share';
+
+
 
 
 import ListingList from '../components/listings/list/listings-list';
 
-import ListingsCarousel from 'src/sections/home/listings-carousel';
 
 
 

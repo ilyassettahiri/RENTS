@@ -1,3 +1,5 @@
+"use client";
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -31,7 +33,7 @@ export default function Header({ headerOnDark, onOpenNav }) {
     <>
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
         <Logo />
-        <Link href="/" target="_blank" rel="noopener"></Link>
+        <Link href="/" target="_blank" rel="noopener" />
       </Box>
       <Stack
         flexGrow={1}

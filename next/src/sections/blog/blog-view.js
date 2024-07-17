@@ -1,4 +1,6 @@
+
 'use client';
+
 import { useState, useEffect } from "react";
 import CrudService from "src/services/cruds-service";
 

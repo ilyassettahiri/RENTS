@@ -190,6 +190,15 @@ function Section({ large_picture, job, successful_hiring, partner, employee, thi
   );
 }
 
+Section.propTypes = {
+  large_picture: PropTypes.string.isRequired,
+  job: PropTypes.number.isRequired,
+  successful_hiring: PropTypes.number.isRequired,
+  partner: PropTypes.number.isRequired,
+  employee: PropTypes.number.isRequired,
+  third: PropTypes.string.isRequired,
+};
+
 function StatItem({ name, number }) {
   return (
     <Stack spacing={1}>

@@ -609,6 +609,9 @@ function renderSpecificationsByCategory(category, specifications) {
           text={value}
         />
       ));
+
+      default:
+        return null; // Ensure a return value in the default case
   }
 }
 

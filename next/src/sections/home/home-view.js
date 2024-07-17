@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from "react";
+import { useBoolean } from 'src/hooks/use-boolean';
+
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
@@ -27,7 +29,6 @@ import ListingList from '../components/listings/list/listings-list';
 
 import ListingsCarousel from './listings-carousel';
 
-import { useBoolean } from 'src/hooks/use-boolean';
 
 
 
@@ -167,9 +168,9 @@ export default function HomeView() {
     setDialogOpen(false);
   };
 
-  const applyFilters = (billiards, priceFilter) => {
-    const [minPrice, maxPrice] = priceFilter;
-    const filteredListings = billiards.filter(
+  const applyFilters = (billiardsx, priceFilterx) => {
+    const [minPrice, maxPrice] = priceFilterx;
+    const filteredListings = billiardsx.filter(
       item => item.attributes.price >= minPrice && item.attributes.price <= maxPrice
     );
 

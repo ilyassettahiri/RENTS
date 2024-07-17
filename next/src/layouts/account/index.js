@@ -3,32 +3,27 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { alpha } from '@mui/material/styles';
 import Link from '@mui/material/Link';
-
-import Typography from '@mui/material/Typography';
-import { useBoolean } from 'src/hooks/use-boolean';
-import { useResponsive } from 'src/hooks/use-responsive';
-import Iconify from 'src/components/iconify';
-import AuthService from "src/services/auth-service";
-import Nav from 'src/layouts/account/nav';
-import TextMaxLine from 'src/components/text-max-line';
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
+import Avatar from '@mui/material/Avatar';
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from 'src/context/AuthContextProvider';
+import Cookies from 'js-cookie';
+import { useBoolean } from 'src/hooks/use-boolean';
+import { useResponsive } from 'src/hooks/use-responsive';
+import Iconify from 'src/components/iconify';
+import TextMaxLine from 'src/components/text-max-line';
+import AuthService from 'src/services/auth-service';
 import CrudService from 'src/services/cruds-service';
-
 import { paths } from 'src/routes/paths';
 import { useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
-import { AuthContextProvider } from 'src/context/AuthContextProvider';
-import Avatar from '@mui/material/Avatar';
-
+import { AuthContext, AuthContextProvider } from 'src/context/AuthContextProvider';
+import Nav from 'src/layouts/account/nav';
 
 const navigations = [
   { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
@@ -46,8 +41,8 @@ export default function AccountLayout({ children }) {
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
 
-
   const [imageUrl, setImageUrl] = useState(null);
+  const [fileState, setFileState] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -72,14 +67,12 @@ export default function AccountLayout({ children }) {
       });
 
       const profileImageUrl = userData.profile_image
-      ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
-      : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
-
+        ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
+        : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
 
       setImage(profileImageUrl);
     })();
   }, []);
-
 
   const changeHandler = (e) => {
     const formData = new FormData();
@@ -109,7 +102,6 @@ export default function AccountLayout({ children }) {
     }
   };
 
-
   const renderContentFix = (
     <Stack
       sx={{
@@ -121,7 +113,7 @@ export default function AccountLayout({ children }) {
           border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.24)}`,
         }),
       }}
-      >
+    >
       <Stack spacing={2} sx={{ p: 3, pb: 2 }}>
         <Stack spacing={2} direction="row" alignItems="center">
           <Avatar src={imageUrl || image} sx={{ width: 64, height: 64 }} />
@@ -194,8 +186,6 @@ export default function AccountLayout({ children }) {
 
   return (
     <AuthContextProvider>
-
-
       <Container
         maxWidth={false}
         sx={{
@@ -220,11 +210,7 @@ export default function AccountLayout({ children }) {
         >
           <Nav open={menuOpen.value} onClose={menuOpen.onFalse} />
 
-                {mdUp ? (
-                    renderContentFix
-                ) : (
-                  <Box></Box>
-                )}
+          {mdUp ? renderContentFix : <Box />}
 
           <Box
             sx={{
@@ -244,8 +230,6 @@ export default function AccountLayout({ children }) {
 AccountLayout.propTypes = {
   children: PropTypes.node,
 };
-
-
 
 function NavItem({ item }) {
   const active = useActiveLink(item.path);

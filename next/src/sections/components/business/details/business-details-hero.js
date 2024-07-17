@@ -222,7 +222,7 @@ export default function ElearningCourseDetailsHero({ course }) {
         </Container>
       </Box>
 
-      <PlayerDialog open={videoOpen.value} onClose={videoOpen.onFalse} videoPath={_mock.video(0)} />
+      {/* <PlayerDialog open={videoOpen.value} onClose={videoOpen.onFalse} videoPath={_mock.video(0)} /> */}
     </>
   );
 }

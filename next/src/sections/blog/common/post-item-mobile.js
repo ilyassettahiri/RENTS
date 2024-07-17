@@ -4,9 +4,9 @@ import Stack from '@mui/material/Stack';
 import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import PostTimeBlock from './post-time-block';
-import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
+import { paths } from 'src/routes/paths';
+import PostTimeBlock from './post-time-block';
 
 export default function PostItemMobile({ post, onSiderbar }) {
   const { attributes } = post;
@@ -28,11 +28,11 @@ export default function PostItemMobile({ post, onSiderbar }) {
         }}
       />
       <Stack spacing={onSiderbar ? 0.5 : 1}>
-        <Link color="inherit"
+        <Link
+          color="inherit"
           component={RouterLink}
           href={`${paths.travel.post}/${attributes.url}`}
-
-          >
+        >
           <TextMaxLine variant={onSiderbar ? 'subtitle2' : 'h6'}>
             {attributes.title}
           </TextMaxLine>
@@ -50,9 +50,10 @@ PostItemMobile.propTypes = {
       title: PropTypes.string,
       thumb: PropTypes.string,
       created_at: PropTypes.string,
+      url: PropTypes.string,
       actor: PropTypes.string,
       actor_thumb: PropTypes.string,
       content: PropTypes.string,
-    }),
-  }),
+    }).isRequired,
+  }).isRequired,
 };

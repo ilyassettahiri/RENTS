@@ -10,6 +10,8 @@ import Iconify from 'src/components/iconify';
 import SearchKeyword from './search-keyword';
 import SearchLocation from './search-location';
 import SearchCategories from './search-categories';
+import PropTypes from 'prop-types';
+
 
 // ----------------------------------------------------------------------
 
@@ -109,3 +111,6 @@ export default function ServiceSearch({ onSearch }) {
     </>
   );
 }
+ServiceSearch.propTypes = {
+  onSearch: PropTypes.func.isRequired,
+};

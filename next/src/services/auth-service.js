@@ -3,37 +3,37 @@ import HttpService from "./http.service";
 class AuthService {
   login = async (payload) => {
     const loginEndpoint = "login";
-    return await HttpService.post(loginEndpoint, payload);
+    return HttpService.post(loginEndpoint, payload);
   };
 
   register = async (credentials) => {
     const registerEndpoint = "register";
-    return await HttpService.post(registerEndpoint, credentials);
+    return HttpService.post(registerEndpoint, credentials);
   };
 
   logout = async () => {
     const logoutEndpoint = "logout";
-    return await HttpService.post(logoutEndpoint);
+    return HttpService.post(logoutEndpoint);
   };
 
   forgotPassword = async (payload) => {
     const forgotPassword = "password-forgot";
-    return await HttpService.post(forgotPassword, payload);
+    return HttpService.post(forgotPassword, payload);
   };
 
   resetPassword = async (credentials) => {
     const resetPassword = "password-reset";
-    return await HttpService.post(resetPassword, credentials);
+    return HttpService.post(resetPassword, credentials);
   };
 
   getProfile = async () => {
     const getProfile = "me";
-    return await HttpService.get(getProfile);
+    return HttpService.get(getProfile);
   };
 
   updateProfile = async (newInfo) => {
     const updateProfile = "me";
-    return await HttpService.patch(updateProfile, newInfo);
+    return HttpService.patch(updateProfile, newInfo);
   };
 }
 

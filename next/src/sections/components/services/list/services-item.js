@@ -167,5 +167,8 @@ ServiceItem.propTypes = {
     picture: PropTypes.string,
     url: PropTypes.string,
     favorited: PropTypes.bool,
+    type: PropTypes.string,
+    level: PropTypes.string,
+    experience: PropTypes.string,
   }),
 };

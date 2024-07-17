@@ -8,8 +8,13 @@ import Checkbox, { checkboxClasses } from '@mui/material/Checkbox';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
-
 // ----------------------------------------------------------------------
+
+// Example JOB_BENEFIT_OPTIONS array with 2 random job benefits
+const JOB_BENEFIT_OPTIONS = [
+  { value: 'health_insurance', label: 'Health Insurance' },
+  { value: 'remote_work', label: 'Remote Work' },
+];
 
 export default function FilterBenefits({ filterBenefits, onChangeJobBenefits }) {
   const mdUp = useResponsive('up', 'md');
@@ -19,7 +24,6 @@ export default function FilterBenefits({ filterBenefits, onChangeJobBenefits }) 
       fullWidth
       hiddenLabel
       size={mdUp ? 'small' : 'medium'}
-
     >
       <Select
         multiple
@@ -53,7 +57,6 @@ export default function FilterBenefits({ filterBenefits, onChangeJobBenefits }) 
                 },
               }}
             />
-
             {option.label}
           </MenuItem>
         ))}

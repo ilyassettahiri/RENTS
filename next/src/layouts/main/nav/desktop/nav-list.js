@@ -1,3 +1,5 @@
+"use client";
+
 import PropTypes from 'prop-types';
 import { useEffect, useCallback } from 'react';
 
@@ -17,7 +19,6 @@ import { useActiveLink } from 'src/routes/hooks/use-active-link';
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import Label from 'src/components/label';
-import Image from 'src/components/image';
 
 import NavItem from './nav-item';
 
@@ -31,10 +32,6 @@ export default function NavList({ data }) {
   const active = useActiveLink(data.path, !!data.children);
 
   const mainList = data.children ? data.children.filter((list) => list.subheader !== 'Common') : [];
-
-  const commonList = data.children
-    ? data.children.find((list) => list.subheader === 'Common')
-    : null;
 
   useEffect(() => {
     if (menuOpen.value) {
@@ -105,8 +102,6 @@ export default function NavList({ data }) {
                     ))}
                   </Box>
                 </Grid>
-
-
               </Grid>
             </Paper>
           </Fade>
@@ -148,9 +143,7 @@ function NavSubList({ subheader, isNew, cover, items }) {
       </ListSubheader>
 
       {!commonList && (
-        <Link component={RouterLink} href={coverPath}>
-
-        </Link>
+        <Link component={RouterLink} href={coverPath} />
       )}
 
       <Stack spacing={1.5} alignItems="flex-start">

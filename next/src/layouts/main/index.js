@@ -1,11 +1,13 @@
+"use client";
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import { useBoolean } from 'src/hooks/use-boolean';
+import Nav from 'src/layouts/account/nav';
 import Header from './header';
 import Footer from './footer';
 import Newsletter from './newsletter';
 import { HEADER } from '../config-layout';
-import { useBoolean } from 'src/hooks/use-boolean';
-import Nav from 'src/layouts/account/nav';
 
 export default function MainLayout({ children, headerOnDark = false, disabledSpacing = false, sx, ...other }) {
   const navOpen = useBoolean();

@@ -19,26 +19,6 @@ export default function NotFoundView() {
 
 
 
-  const [data, setData] = useState(null);
-
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getAbouts();
-
-        setData(response.data);
-
-        console.log('Response data:', response.data); // Logging the response
-
-
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
-      }
-    })();
-  }, []);
-
-
 
 
 

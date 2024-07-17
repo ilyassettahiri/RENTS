@@ -1,5 +1,7 @@
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -11,7 +13,6 @@ import FilterLevel from './filter-level';
 import FilterPrice from './filter-price';
 import FilterBenefits from './filter-benefits';
 import FilterTime from './filter-time';
-import Box from '@mui/material/Box';
 
 const defaultValues = {
   filterType: [],

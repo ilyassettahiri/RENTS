@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import CrudService from 'src/services/cruds-service';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -14,11 +15,16 @@ import Review from 'src/sections/review/review';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 
+import ListingSummary from 'src/sections/listing-page/listing-summary';
+
+import ListingForm from 'src/sections/listing-page/listing-form';
+import ListingsCarouselService from 'src/sections/home/lisings-carousel-service';
+
 
 import Iconify from 'src/components/iconify';
 import { SplashScreen } from 'src/components/loading-screen';
 
-import PostSocialsShare from 'src/sections/blog/common/post-socials-share.js';
+import PostSocialsShare from 'src/sections/blog/common/post-socials-share';
 
 import CareerJobListSimilar from '../components/services/list/services-list-similar';
 import CareerJobDetailsInfo from '../components/services/details/services-details-info';
@@ -26,12 +32,6 @@ import ServicesDetailsHero from '../components/services/details/services-details
 import CareerJobDetailsSummary from '../components/services/details/services-details-summary';
 import CareerJobDetailsCompanyInfo from '../components/services/details/services-details-company-info';
 import CareerJobDetailsCompanySimilar from '../components/services/details/services-details-company-similar';
-import CrudService from 'src/services/cruds-service';
-
-import ListingSummary from 'src/sections/listing-page/listing-summary';
-
-import ListingForm from 'src/sections/listing-page/listing-form';
-import ListingsCarouselService from 'src/sections/home/lisings-carousel-service';
 
 
 // ----------------------------------------------------------------------

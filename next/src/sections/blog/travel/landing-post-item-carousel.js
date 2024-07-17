@@ -1,15 +1,12 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Fab from '@mui/material/Fab';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
-
 import { fDate } from 'src/utils/format-time';
-
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 
@@ -66,9 +63,7 @@ export default function LandingPostItemCarousel({ post }) {
       <Image
         src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${post.attributes.thumb}`}
         alt={post.attributes.title}
-        overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
-          theme.palette.common.black
-        } 75%)`}
+        overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${theme.palette.common.black} 75%)`}
         sx={{
           width: 1,
           height: { xs: 720, md: 960 },
@@ -81,11 +76,11 @@ export default function LandingPostItemCarousel({ post }) {
 LandingPostItemCarousel.propTypes = {
   post: PropTypes.shape({
     attributes: PropTypes.shape({
-      title: PropTypes.string,
-      thumb: PropTypes.string,
-      content: PropTypes.string,
-      created_at: PropTypes.string,
-      url: PropTypes.string, // Ensure the url attribute is included
+      title: PropTypes.string.isRequired,
+      thumb: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired, // Ensure the url attribute is included
     }).isRequired,
   }).isRequired,
 };

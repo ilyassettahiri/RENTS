@@ -1,7 +1,6 @@
 'use client';
 
-import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
+import { useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -12,8 +11,6 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import { alpha, useTheme } from '@mui/material/styles';
-
-import { paths } from 'src/routes/paths';
 
 import { fDate } from 'src/utils/format-time';
 import { bgGradient } from 'src/theme/css';
@@ -37,7 +34,6 @@ export default function ServicesDetailsHero({ job }) {
     title: job.attributes.title,
     coverUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${url}`, // Ensure the correct URL format
   }));
-
 
   return (
     <Box

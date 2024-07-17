@@ -18,7 +18,6 @@ export default function FeaturedPostItem({ post, largePost }) {
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
       <Image
-
         src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`}
         alt={attributes.title}
         ratio="1/1"
@@ -41,15 +40,14 @@ export default function FeaturedPostItem({ post, largePost }) {
       >
         <PostTimeBlock
           createdAt={fDate(attributes.created_at)}
-          duration='8 minutes read'
+          duration="8 minutes read"
           sx={{ color: 'inherit', opacity: 0.72 }}
         />
-        <Link component={RouterLink}
-
+        <Link
+          component={RouterLink}
           href={`${paths.travel.post}/${attributes.url}`}
           color="inherit"
-
-          >
+        >
           <TextMaxLine
             sx={{
               typography: 'h6',
@@ -86,12 +84,15 @@ FeaturedPostItem.propTypes = {
   largePost: PropTypes.bool,
   post: PropTypes.shape({
     attributes: PropTypes.shape({
-      title: PropTypes.string,
-      thumb: PropTypes.string,
-      created_at: PropTypes.string,
-      actor: PropTypes.string,
-      actor_thumb: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      thumb: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
       content: PropTypes.string,
-    }),
-  }),
+      author: PropTypes.shape({
+        picture: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
 };

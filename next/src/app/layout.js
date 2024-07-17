@@ -1,18 +1,16 @@
-/* eslint-disable perfectionist/sort-imports */
 "use client";
+
 import 'src/global.css';
 
 // ----------------------------------------------------------------------
 
 import PropTypes from 'prop-types';
-import ThemeProvider from 'src/theme';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-
-import ProgressBar from 'src/components/progress-bar';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
+import ProgressBar from 'src/components/progress-bar';
 import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
-
 import { AuthContextProvider } from 'src/context/AuthContextProvider'; // Adjust the import path
+import ThemeProvider from 'src/theme';
 
 export default function RootLayout({ children }) {
   return (

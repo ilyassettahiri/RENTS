@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect, useCallback } from "react";
+import { useBoolean } from 'src/hooks/use-boolean';
+
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
@@ -12,7 +14,6 @@ import Typography from '@mui/material/Typography';
 import ListingList from '../components/listings/list/listings-list';
 
 
-import { useBoolean } from 'src/hooks/use-boolean';
 // ----------------------------------------------------------------------
 
 export default function DashboardWishlistView() {

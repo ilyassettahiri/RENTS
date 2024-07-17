@@ -13,9 +13,7 @@ export default function FilterTime({ departureDay, onChangeDepartureDay, minDate
     if (!disabledDateRanges || disabledDateRanges.length === 0) {
       return false;
     }
-    return disabledDateRanges.some(range => {
-      return date >= range.start && date <= range.end;
-    });
+    return disabledDateRanges.some(range => date >= range.start && date <= range.end);
   };
 
   return (
