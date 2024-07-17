@@ -80,7 +80,7 @@ export default function StoreSpecialOffer() {
         />
 
         <Box sx={{ borderRadius: 1.5, bgcolor: 'background.neutral' }}>
-          <Image src={_mock.image.product(4)} />
+
         </Box>
 
         <SpecialOfferBuyNow

@@ -1,24 +1,15 @@
-/* eslint-disable import/no-named-as-default, class-methods-use-this */
-
-
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
 import { fShortenNumber } from 'src/utils/format-number';
-
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
 export default function ThankYouInfo({ tour }) {
-
-
-
   if (!tour) {
     return <div>Loading...</div>; // Add a loading state
   }
@@ -28,7 +19,7 @@ export default function ThankYouInfo({ tour }) {
     return <div>Loading...</div>; // Add a loading state if attributes is not yet available
   }
 
-  const { title, price,  } = attributes;
+  const { title, price } = attributes;
 
   const ratingNumber = 5;
   const totalReviews = 100;
@@ -55,17 +46,15 @@ export default function ThankYouInfo({ tour }) {
           )}
         </Stack>
       </Stack>
-
-
     </Stack>
   );
 }
 
 ThankYouInfo.propTypes = {
   tour: PropTypes.shape({
-    title: PropTypes.string,
-    price: PropTypes.number,
-
-
-  }),
+    attributes: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
 };

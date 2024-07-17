@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -6,7 +8,6 @@ import StoreViewListItem from '../item/store-view-list-item';
 import StoreViewGridItem from '../item/store-view-grid-item';
 import StoreViewListItemSkeleton from '../item/store-view-list-item-skeleton';
 import StoreViewGridItemSkeleton from '../item/store-view-grid-item-skeleton';
-import { useState } from 'react';
 
 export default function StoreList({ loading, viewMode, products }) {
   const [page, setPage] = useState(1);

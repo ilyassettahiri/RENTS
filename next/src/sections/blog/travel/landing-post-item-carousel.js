@@ -4,6 +4,7 @@ import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
+
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
@@ -15,7 +16,7 @@ const getFirstParagraph = (content) => {
   const match = content.match(/<p>.*?<\/p>/);
   const firstParagraph = match ? match[0] : content;
   if (firstParagraph.length > 100) {
-    return firstParagraph.substring(0, 100) + '...';
+    return `${firstParagraph.substring(0, 100)}...`;
   }
   return firstParagraph;
 };

@@ -1,9 +1,6 @@
-/* eslint-disable import/no-named-as-default, class-methods-use-this */
-
+'use client';
 
 import { useState, useCallback } from 'react';
-
-
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -12,14 +9,11 @@ import Grid from "@mui/material/Grid";
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { bgGradient } from 'src/theme/css';
-import AppBar from "@mui/material/AppBar";
 import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
-
-import Popover from '@mui/material/Popover';
-import Checkbox from '@mui/material/Checkbox';
-import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
+import Checkbox from '@mui/material/Checkbox';
+
 import { fShortenNumber } from 'src/utils/format-number';
 import Iconify from 'src/components/iconify';
 
@@ -44,10 +38,8 @@ export default function StoreHero({ picture, profile, name, created, average_rat
     setFavorite(event.target.checked);
   }, []);
 
-
   return (
     <Container
-
       sx={{
         pt: { xs: 5, md: 8 },
         position: 'relative',
@@ -82,7 +74,6 @@ export default function StoreHero({ picture, profile, name, created, average_rat
           marginRight: { lg: '50px' },
           py: 2,
           px: 2,
-
         }}
       >
         <Grid container spacing={3} alignItems="center">
@@ -96,89 +87,69 @@ export default function StoreHero({ picture, profile, name, created, average_rat
           </Grid>
           <Grid item>
             <Box height="100%" mt={0.5} lineHeight={1}>
+              <Stack spacing={0.5} direction="row" alignItems="center">
+                <Typography variant="h5" fontWeight="medium">
+                  {name}
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  verified
+                </Typography>
+                <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                  (2343 followers)
+                </Typography>
+              </Stack>
 
-
-                <Stack spacing={0.5} direction="row" alignItems="center">
-                    <Typography variant="h5" fontWeight="medium">
-                      {name}
-
-                    </Typography>
-
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      verified
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                      (2343 followers)
-                    </Typography>
-                </Stack>
-
-                <Stack spacing={0.5} direction="row" alignItems="center">
-                      <Typography variant="body2" sx={{ color: 'text.secondary' }} fontWeight="medium">
-                        Member Since: {created} 2019
-
-                      </Typography>
-
-
-
-                      <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> Marrakech
-
-
-
-
-
-
-                      <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
-                      <Box sx={{ typography: 'h6' }}>
-                        {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
-                      </Box>
-                      <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                        ({fShortenNumber(total_reviews)} reviews)
-                      </Link>
-
-                </Stack>
-
-
+              <Stack spacing={0.5} direction="row" alignItems="center">
+                <Typography variant="body2" sx={{ color: 'text.secondary' }} fontWeight="medium">
+                  Member Since: {created} 2019
+                </Typography>
+                <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> Marrakech
+                <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
+                <Box sx={{ typography: 'h6' }}>
+                  {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
+                </Box>
+                <Link variant="body2" sx={{ color: 'text.secondary' }}>
+                  ({fShortenNumber(total_reviews)} reviews)
+                </Link>
+              </Stack>
             </Box>
           </Grid>
           <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-
-
-
-                <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
-
-
-                      <Stack direction="row" spacing={3}  flexShrink={0}>
-
-                      <IconButton color="default">
-                        <Iconify icon="carbon:chat" />
-                      </IconButton>
-                      <IconButton color="default">
-                        <Iconify icon="carbon:email" />
-                      </IconButton>
-                      <IconButton color="default">
-                        <Iconify icon="carbon:phone" />
-                      </IconButton>
-                        <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
-                          <Iconify icon="carbon:share" />
-                        </IconButton>
-
-                        <Checkbox
-                          color="error"
-                          checked={favorite}
-                          onChange={handleChangeFavorite}
-                          icon={<Iconify icon="carbon:favorite" />}
-                          checkedIcon={<Iconify icon="carbon:favorite-filled" />}
-                        />
-                      </Stack>
-
-
-                  </Stack>
-
-
-
+            <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
+              <Stack direction="row" spacing={3} flexShrink={0}>
+                <IconButton color="default">
+                  <Iconify icon="carbon:chat" />
+                </IconButton>
+                <IconButton color="default">
+                  <Iconify icon="carbon:email" />
+                </IconButton>
+                <IconButton color="default">
+                  <Iconify icon="carbon:phone" />
+                </IconButton>
+                <IconButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
+                  <Iconify icon="carbon:share" />
+                </IconButton>
+                <Checkbox
+                  color="error"
+                  checked={favorite}
+                  onChange={handleChangeFavorite}
+                  icon={<Iconify icon="carbon:favorite" />}
+                  checkedIcon={<Iconify icon="carbon:favorite-filled" />}
+                />
+              </Stack>
+            </Stack>
           </Grid>
         </Grid>
       </Card>
     </Container>
   );
 }
+
+StoreHero.propTypes = {
+  picture: PropTypes.string.isRequired,
+  profile: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  average_rating: PropTypes.number.isRequired,
+  total_reviews: PropTypes.number.isRequired,
+};

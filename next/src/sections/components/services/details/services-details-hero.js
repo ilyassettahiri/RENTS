@@ -123,9 +123,9 @@ export default function ServicesDetailsHero({ job }) {
 
 ServicesDetailsHero.propTypes = {
   job: PropTypes.shape({
+    favorited: PropTypes.bool,
     attributes: PropTypes.shape({
       title: PropTypes.string,
-      favorited: PropTypes.bool,
       category: PropTypes.string,
       city: PropTypes.string,
       total_views: PropTypes.number,

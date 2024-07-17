@@ -4,13 +4,13 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import ContactInfo from './termcondition-info';
 import CrudService from "src/services/cruds-service";
 import Divider from '@mui/material/Divider';
 import Markdown from 'src/components/markdown';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import ContactInfo from './termcondition-info';
 
 
 

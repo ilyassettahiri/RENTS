@@ -15,12 +15,13 @@ import ProductRating from '../../common/product-rating';
 
 const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 
-
 export default function StoreItemBestSellers({ product, ...other }) {
   return (
-    <Link component={RouterLink}
-    href={`${paths.travel.tour}/${product.category}/${product.url}`}
-    color="inherit" underline="none"
+    <Link
+      component={RouterLink}
+      href={`${paths.travel.tour}/${product.category}/${product.url}`}
+      color="inherit"
+      underline="none"
     >
       <Stack
         spacing={2}
@@ -68,5 +69,7 @@ StoreItemBestSellers.propTypes = {
     priceSale: PropTypes.number,
     sold: PropTypes.number,
     ratingNumber: PropTypes.number,
-  }),
+    category: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
 };

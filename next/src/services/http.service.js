@@ -46,17 +46,17 @@ export class HttpService {
 
   delete = async (url) =>  this.request(this.getOptionsConfig('delete', url));
 
-  getOptionsConfig = (method, url, data) => {
-    return {
-      method,
-      url,
-      data,
-      headers: {
-        'Content-Type': 'application/vnd.api+json',
-        Accept: 'application/vnd.api+json',
-      },
-    };
-  };
+  // Simplified getOptionsConfig by removing the block statement
+  getOptionsConfig = (method, url, data) => ({
+    method,
+    url,
+    data,
+    headers: {
+      'Content-Type': 'application/vnd.api+json',
+      Accept: 'application/vnd.api+json',
+    },
+  });
+
 
   request(options) {
     return new Promise((resolve, reject) => {

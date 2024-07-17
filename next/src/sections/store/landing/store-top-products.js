@@ -37,9 +37,7 @@ export default function StoreTopProducts() {
         }}
         sx={{ mb: { xs: 3, md: 8 } }}
       >
-        {_products.slice(4, 8).map((product) => (
-          <StoreItemHot key={product.id} product={product} />
-        ))}
+
       </Box>
 
       <Box
@@ -50,7 +48,7 @@ export default function StoreTopProducts() {
           md: 'repeat(2, 1fr)',
         }}
       >
-        <StoreItemTop variant="large" product={_products[6]} />
+
 
         <Box
           gap={3}
@@ -60,8 +58,7 @@ export default function StoreTopProducts() {
             md: 'repeat(2, 1fr)',
           }}
         >
-          <StoreItemTop product={_products[4]} />
-          <StoreItemTop product={_products[10]} />
+
         </Box>
       </Box>
     </Container>

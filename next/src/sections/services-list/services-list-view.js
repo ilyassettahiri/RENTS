@@ -1,18 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from "react";
-
+import { useState, useEffect } from 'react';
 import Container from '@mui/material/Container';
 
 import { useBoolean } from 'src/hooks/use-boolean';
-
+import CrudService from 'src/services/cruds-service';
 
 import ServiceList from '../components/services/list/services-list';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
-
-import FilterDialog from 'src/sections/components/services/filters/filter-dialog';
-
-import CrudService from "src/services/cruds-service";
 
 // ----------------------------------------------------------------------
 
@@ -20,21 +15,14 @@ export default function ServicesListView() {
   const loading = useBoolean(true);
   const [favorites, setFavorites] = useState([]);
   const [services, setServices] = useState([]);
-
   const [initialListings, setInitialListings] = useState([]); // Store the initial listings fetched
-
-
-
 
   const fetchListings = async (searchs) => {
     try {
-
       const response = await CrudService.getSearchServiceListings(searchs);
       console.log('Listings fetched:', response.data);
 
-
-
-      const servicesData = response.data.map(item => ({
+      const servicesData = response.data.map((item) => ({
         id: item.id,
         title: item.attributes.title,
         price: item.attributes.price,
@@ -47,23 +35,17 @@ export default function ServicesListView() {
       }));
 
       setServices(servicesData);
-
-
-
     } catch (error) {
       console.error('Failed to fetch listings:', error);
     }
   };
-
-
-
 
   useEffect(() => {
     (async () => {
       try {
         const response = await CrudService.getSerice();
 
-        const servicesData = response.data.map(item => ({
+        const servicesData = response.data.map((item) => ({
           id: item.id,
           title: item.attributes.title,
           price: item.attributes.price,
@@ -75,17 +57,12 @@ export default function ServicesListView() {
           favorited: response.favorites.includes(item.id),
         }));
 
-
         setServices(servicesData);
       } catch (error) {
         console.error('Failed to fetch Home:', error);
       }
     })();
   }, []);
-
-
-
-
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -96,32 +73,25 @@ export default function ServicesListView() {
   }, [loading]);
 
   return (
-    <>
-      <Container
-        maxWidth={false}
+    <Container
+      maxWidth={false}
+      sx={{
+        paddingLeft: { lg: '100px' },
+        paddingRight: { lg: '100px' },
+      }}
+    >
+      <ServiceSearch
+        onSearch={fetchListings}
         sx={{
-
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
-
+          color: { md: 'common.white' },
+          bgcolor: (theme) => ({
+            xs: 'background.neutral',
+            md: theme.palette.common.white,
+          }),
         }}
-      >
+      />
 
-        <ServiceSearch
-          onSearch={fetchListings}
-          sx={{
-            color: { md: 'common.white' },
-            bgcolor: (theme) => ({
-              xs: 'background.neutral',
-              md: alpha(theme.palette.common.white, 0.08),
-            }),
-          }}
-        />
-
-        <ServiceList jobs={services} loading={loading.value} />
-      </Container>
-
-
-    </>
+      <ServiceList jobs={services} loading={loading.value} />
+    </Container>
   );
 }

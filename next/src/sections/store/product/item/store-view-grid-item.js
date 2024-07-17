@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
@@ -74,11 +75,11 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
           {product.attributes.category}
         </TextMaxLine>
 
-        <Link component={RouterLink}
-
+        <Link
+          component={RouterLink}
           href={`${paths.travel.tour}/${product.attributes.category}/${product.attributes.url}`}
-
-          color="inherit">
+          color="inherit"
+        >
           <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
             {product.attributes.title}
           </TextMaxLine>
@@ -102,7 +103,8 @@ StoreViewGridItem.propTypes = {
       category: PropTypes.string,
       price: PropTypes.number,
       status: PropTypes.string,
+      url: PropTypes.string, // Added missing prop validation
     }),
-  }),
+  }).isRequired,
   sx: PropTypes.object,
 };

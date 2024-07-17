@@ -109,6 +109,8 @@ StoreViewListItem.propTypes = {
       total_reviews: PropTypes.number,
       created_at: PropTypes.string,
       price: PropTypes.number,
+      url: PropTypes.string, // Added missing prop validation
+
     }),
   }),
 };

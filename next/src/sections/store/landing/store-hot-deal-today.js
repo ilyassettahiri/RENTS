@@ -1,19 +1,14 @@
-/* eslint-disable import/no-named-as-default, class-methods-use-this */
-
-
-import { add } from 'date-fns';
+'use client';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
-import ProductCountdownBlock from '../common/product-countdown-block';
 import StoreItemHot from '../product/item/store-item-hot';
 
 // ----------------------------------------------------------------------
@@ -58,12 +53,9 @@ export default function StoreHotDealToday({ listings }) {
         spacing={3}
         sx={{
           mb: 8,
-          mt:3,
+          mt: 3,
         }}
       >
-
-
-
         {mdUp && (
           <CarouselArrows
             onNext={carousel.onNext}
@@ -91,3 +83,12 @@ export default function StoreHotDealToday({ listings }) {
     </Container>
   );
 }
+
+StoreHotDealToday.propTypes = {
+  listings: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      // Add other properties of listing if necessary
+    })
+  ).isRequired,
+};

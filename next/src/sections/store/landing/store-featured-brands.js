@@ -57,9 +57,7 @@ export default function StoreFeaturedBrands() {
               sm: 'repeat(2, 1fr)',
             }}
           >
-            {_products.slice(4, 8).map((product) => (
-              <StoreItemFeaturedByBrand key={product.id} product={product} />
-            ))}
+
           </Box>
         </Grid>
       </Grid>

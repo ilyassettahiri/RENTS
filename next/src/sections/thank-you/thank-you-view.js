@@ -1,6 +1,3 @@
-/* eslint-disable import/no-named-as-default, class-methods-use-this */
-
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -13,18 +10,15 @@ import Typography from '@mui/material/Typography';
 import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
-
-
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+
+import CrudService from 'src/services/cruds-service';
 
 import ThankYouInfo from './thank-you-info';
 import ThankYouSummary from './thank-you-summary';
 
-import CrudService from 'src/services/cruds-service';
-
 // ----------------------------------------------------------------------
-
 
 export default function ThankYouView({ params }) {
   const { checkout_id } = params;
@@ -47,7 +41,8 @@ export default function ThankYouView({ params }) {
   const mdUp = useResponsive('up', 'md');
 
   return (
-    <Container maxWidth={false}
+    <Container
+      maxWidth={false}
       sx={{
         pt: 5,
         pb: { xs: 8, md: 15 },
@@ -55,7 +50,7 @@ export default function ThankYouView({ params }) {
         display: 'grid',
         alignItems: 'flex-start',
         gridTemplateColumns: { md: 'repeat(2, 1fr)' },
-                paddingLeft: { lg: '100px' },
+        paddingLeft: { lg: '100px' },
         paddingRight: { lg: '100px' },
       }}
     >
@@ -100,3 +95,9 @@ export default function ThankYouView({ params }) {
     </Container>
   );
 }
+
+ThankYouView.propTypes = {
+  params: PropTypes.shape({
+    checkout_id: PropTypes.string.isRequired,
+  }).isRequired,
+};
