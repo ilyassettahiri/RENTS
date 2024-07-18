@@ -228,22 +228,32 @@ class ListingController extends JsonApiController
             $imagePaths = [];
             $thumb = null;
 
-            // Handle multiple image uploads
-            if ($request->hasFile('data.attributes.images')) {
-                $files = $request->file('data.attributes.images');
 
-                foreach ($files as $index => $file) {
-                    $filePath = Storage::disk('public')->put('images', $file);
-                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+        // Handle multiple image uploads
+        if ($request->hasFile('data.attributes.images')) {
+            $files = $request->file('data.attributes.images');
+
+            foreach ($files as $index => $file) {
+                try {
+                    // Store the file in the 'storage/images' folder within the DigitalOcean Space
+                    $filePath = Storage::disk('spaces')->put('storage/images', $file);
+
+                    // Create a relative path with a leading slash
+                    $relativePath = '/' . $filePath;
                     $imagePaths[] = $relativePath;
 
                     // Save the first image path to the Billiard table
                     if ($index === 0) {
                         $thumb = $relativePath;
                     }
+
+                    // Log the file paths
+                    Log::info('Image uploaded successfully.', ['filePath' => $filePath, 'relativePath' => $relativePath]);
+                } catch (\Exception $e) {
+                    Log::error('Image upload failed.', ['error' => $e->getMessage()]);
                 }
             }
-
+        }
 
 
         $category = $request->input('data.attributes.category');
