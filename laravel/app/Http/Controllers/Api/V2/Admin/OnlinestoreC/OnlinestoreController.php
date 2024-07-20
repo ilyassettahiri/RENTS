@@ -81,6 +81,37 @@ class OnlinestoreController extends JsonApiController
             $profil_picturerelativePath = '/' . $profil_picturePath; // Prepend '/' to make it a relative path
         }
 
+
+        /* Prod
+
+
+        // Initialize variables for image paths
+        $picturerelativePath = null;
+        $profil_picturerelativePath = null;
+
+        // Handle image uploads
+        if ($request->hasFile('data.attributes.picture')) {
+            $picturefile = $request->file('data.attributes.picture');
+            $picturePath = Storage::disk('spaces')->put('storage/stores', $picturefile, 'public');
+            $picturerelativePath = str_replace('storage/', '', $picturePath);
+            $picturerelativePath = '/' . $picturerelativePath; // Ensure the path is relative
+        }
+
+        if ($request->hasFile('data.attributes.profil_picture')) {
+            $profil_picturefile = $request->file('data.attributes.profil_picture');
+            $profil_picturePath = Storage::disk('spaces')->put('storage/stores', $profil_picturefile, 'public');
+            $profil_picturerelativePath = str_replace('storage/', '', $profil_picturePath);
+            $profil_picturerelativePath = '/' . $profil_picturerelativePath; // Ensure the path is relative
+        }
+
+
+
+        */
+
+
+
+
+
         // Retrieve other input values
         $name = $request->input('data.attributes.name');
         $description = $request->input('data.attributes.description');

@@ -224,22 +224,45 @@ class ListingController extends JsonApiController
             'data.attributes.images.*' => 'sometimes|image|max:6048', // Validate images if present
         ]);
 
+
+
         // Initialize an array to hold the image paths
             $imagePaths = [];
             $thumb = null;
 
 
-        // Handle multiple image uploads
+            // Handle multiple image uploads
+            if ($request->hasFile('data.attributes.images')) {
+                $files = $request->file('data.attributes.images');
+
+                foreach ($files as $index => $file) {
+                    $filePath = Storage::disk('public')->put('images', $file);
+                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+                    $imagePaths[] = $relativePath;
+
+                    // Save the first image path to the Billiard table
+                    if ($index === 0) {
+                        $thumb = $relativePath;
+                    }
+                }
+            }
+
+
+
+        /* Prod
+
+
+
+
         if ($request->hasFile('data.attributes.images')) {
             $files = $request->file('data.attributes.images');
 
             foreach ($files as $index => $file) {
                 try {
-                    // Store the file in the 'storage/images' folder within the DigitalOcean Space
-                    $filePath = Storage::disk('spaces')->put('storage/images', $file);
+                    $filePath = Storage::disk('spaces')->put('storage/images', $file, 'public');
 
-                    // Create a relative path with a leading slash
-                    $relativePath = '/' . $filePath;
+                    $relativePath = str_replace('storage/', '', $filePath);
+                    $relativePath = '/' . $relativePath; // Ensure the path is relative
                     $imagePaths[] = $relativePath;
 
                     // Save the first image path to the Billiard table
@@ -247,13 +270,16 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
 
-                    // Log the file paths
-                    Log::info('Image uploaded successfully.', ['filePath' => $filePath, 'relativePath' => $relativePath]);
                 } catch (\Exception $e) {
                     Log::error('Image upload failed.', ['error' => $e->getMessage()]);
                 }
             }
         }
+
+
+
+        */
+
 
 
         $category = $request->input('data.attributes.category');
