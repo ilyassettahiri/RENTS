@@ -7,23 +7,23 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/immobilier/riad/amenities.svg`;
-const icon2 = `${imagePath}/categoryicons/immobilier/riad/bathrooms.svg`;
-const icon3 = `${imagePath}/categoryicons/immobilier/riad/bedrooms.svg`;
-const icon4 = `${imagePath}/categoryicons/immobilier/riad/facilities.svg`;
-const icon5 = `${imagePath}/categoryicons/immobilier/riad/floors.svg`;
-const icon6 = `${imagePath}/categoryicons/immobilier/riad/living_room.svg`;
-const icon7 = `${imagePath}/categoryicons/immobilier/riad/rooms.svg`;
-const icon8 = `${imagePath}/categoryicons/immobilier/riad/security_system.svg`;
-const icon9 = `${imagePath}/categoryicons/immobilier/riad/service.svg`;
-const icon10 = `${imagePath}/categoryicons/immobilier/riad/style_architecture.svg`;
-const icon11 = `${imagePath}/categoryicons/immobilier/riad/surface.svg`;
-const icon12 = `${imagePath}/categoryicons/immobilier/riad/view.svg`;
-const icon13 = `${imagePath}/categoryicons/immobilier/riad/year_of_construction.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/riad/amenities.svg`;
+const icon2 = `${imagePath}/categoryicons/riad/bathrooms.svg`;
+const icon3 = `${imagePath}/categoryicons/riad/bedrooms.svg`;
+const icon4 = `${imagePath}/categoryicons/riad/facilities.svg`;
+const icon5 = `${imagePath}/categoryicons/riad/floors.svg`;
+const icon6 = `${imagePath}/categoryicons/riad/living_room.svg`;
+const icon7 = `${imagePath}/categoryicons/riad/rooms.svg`;
+const icon8 = `${imagePath}/categoryicons/riad/security_system.svg`;
+const icon9 = `${imagePath}/categoryicons/riad/service.svg`;
+const icon10 = `${imagePath}/categoryicons/riad/style_architecture.svg`;
+const icon11 = `${imagePath}/categoryicons/riad/surface.svg`;
+const icon12 = `${imagePath}/categoryicons/riad/view.svg`;
+const icon13 = `${imagePath}/categoryicons/riad/year_of_construction.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

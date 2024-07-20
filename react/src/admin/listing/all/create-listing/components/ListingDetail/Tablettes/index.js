@@ -12,19 +12,19 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
  
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/tablets/camera_specifications.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/tablets/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/tablets/connectivity.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/tablets/display_size.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/tablets/operating_system.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/tablets/pressure_sensitivity.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/tablets/ram.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/tablets/storage.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/tablets/display_resolution.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/tablets/camera_specifications.svg`;
+const icon2 = `${imagePath}/categoryicons/tablets/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/tablets/connectivity.svg`;
+const icon4 = `${imagePath}/categoryicons/tablets/display_size.svg`;
+const icon5 = `${imagePath}/categoryicons/tablets/operating_system.svg`;
+const icon6 = `${imagePath}/categoryicons/tablets/pressure_sensitivity.svg`;
+const icon7 = `${imagePath}/categoryicons/tablets/ram.svg`;
+const icon8 = `${imagePath}/categoryicons/tablets/storage.svg`;
+const icon9 = `${imagePath}/categoryicons/tablets/display_resolution.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

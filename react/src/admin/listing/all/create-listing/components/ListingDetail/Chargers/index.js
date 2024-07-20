@@ -7,18 +7,18 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/chargers/amperage.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/chargers/cable_length.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/chargers/car_condition.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/chargers/compatibility.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/chargers/connector_type.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/chargers/number_of_ports.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/chargers/wattage.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/chargers/voltage.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/chargers/amperage.svg`;
+const icon2 = `${imagePath}/categoryicons/chargers/cable_length.svg`;
+const icon3 = `${imagePath}/categoryicons/chargers/car_condition.svg`;
+const icon4 = `${imagePath}/categoryicons/chargers/compatibility.svg`;
+const icon5 = `${imagePath}/categoryicons/chargers/connector_type.svg`;
+const icon6 = `${imagePath}/categoryicons/chargers/number_of_ports.svg`;
+const icon7 = `${imagePath}/categoryicons/chargers/wattage.svg`;
+const icon8 = `${imagePath}/categoryicons/chargers/voltage.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

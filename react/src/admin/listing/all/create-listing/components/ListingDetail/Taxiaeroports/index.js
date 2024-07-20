@@ -14,14 +14,14 @@ import MultSelect from "admin/components/MultSelect";
 
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/taxiaeroports/language.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/taxiaeroports/luggage.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/taxiaeroports/passengers.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/taxiaeroports/storage.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/taxiaeroports/language.svg`;
+const icon2 = `${imagePath}/categoryicons/taxiaeroports/luggage.svg`;
+const icon3 = `${imagePath}/categoryicons/taxiaeroports/passengers.svg`;
+const icon4 = `${imagePath}/categoryicons/taxiaeroports/storage.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

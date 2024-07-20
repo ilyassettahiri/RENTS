@@ -58,7 +58,7 @@ export default function StoreViewListItem({ product, ...other }) {
       </Fab>
 
       <Image
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${product.attributes.picture}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${product.attributes.picture}`}
         sx={{
           mr: 2,
           width: 160,

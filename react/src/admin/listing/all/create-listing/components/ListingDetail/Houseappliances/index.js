@@ -7,26 +7,26 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/maisonjardin/householdappliances/box_dimensions.svg`;
-const icon2 = `${imagePath}/categoryicons/maisonjardin/householdappliances/cable_length.svg`;
-const icon3 = `${imagePath}/categoryicons/maisonjardin/householdappliances/care_instructions.svg`;
-const icon4 = `${imagePath}/categoryicons/maisonjardin/householdappliances/certification.svg`;
-const icon5 = `${imagePath}/categoryicons/maisonjardin/householdappliances/control_type.svg`;
-const icon6 = `${imagePath}/categoryicons/maisonjardin/householdappliances/heat_output.svg`;
-const icon7 = `${imagePath}/categoryicons/maisonjardin/householdappliances/installation_method.svg`;
-const icon8 = `${imagePath}/categoryicons/maisonjardin/householdappliances/max_spin_speed.svg`;
-const icon9 = `${imagePath}/categoryicons/maisonjardin/householdappliances/water_consumption.svg`;
-const icon10 = `${imagePath}/categoryicons/maisonjardin/householdappliances/wattage.svg`;
-const icon11 = `${imagePath}/categoryicons/maisonjardin/householdappliances/weight.svg`;
-const icon12 = `${imagePath}/categoryicons/maisonjardin/householdappliances/acces_location.svg`;
-const icon13 = `${imagePath}/categoryicons/maisonjardin/householdappliances/components.svg`;
-const icon14 = `${imagePath}/categoryicons/maisonjardin/householdappliances/cycle_options.svg`;
-const icon15 = `${imagePath}/categoryicons/maisonjardin/householdappliances/finish_type.svg`;
-const icon16 = `${imagePath}/categoryicons/maisonjardin/householdappliances/inlet_water.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/householdappliances/box_dimensions.svg`;
+const icon2 = `${imagePath}/categoryicons/householdappliances/cable_length.svg`;
+const icon3 = `${imagePath}/categoryicons/householdappliances/care_instructions.svg`;
+const icon4 = `${imagePath}/categoryicons/householdappliances/certification.svg`;
+const icon5 = `${imagePath}/categoryicons/householdappliances/control_type.svg`;
+const icon6 = `${imagePath}/categoryicons/householdappliances/heat_output.svg`;
+const icon7 = `${imagePath}/categoryicons/householdappliances/installation_method.svg`;
+const icon8 = `${imagePath}/categoryicons/householdappliances/max_spin_speed.svg`;
+const icon9 = `${imagePath}/categoryicons/householdappliances/water_consumption.svg`;
+const icon10 = `${imagePath}/categoryicons/householdappliances/wattage.svg`;
+const icon11 = `${imagePath}/categoryicons/householdappliances/weight.svg`;
+const icon12 = `${imagePath}/categoryicons/householdappliances/acces_location.svg`;
+const icon13 = `${imagePath}/categoryicons/householdappliances/components.svg`;
+const icon14 = `${imagePath}/categoryicons/householdappliances/cycle_options.svg`;
+const icon15 = `${imagePath}/categoryicons/householdappliances/finish_type.svg`;
+const icon16 = `${imagePath}/categoryicons/householdappliances/inlet_water.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

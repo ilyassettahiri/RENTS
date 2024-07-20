@@ -7,15 +7,15 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/golfs/clubs.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/golfs/golf.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/golfs/golf_cars.svg`;
-const icon4 = `${imagePath}/categoryicons/biensport/golfs/golf_clothing.svg`;
-const icon5 = `${imagePath}/categoryicons/biensport/golfs/golf_equipment.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/golfs/clubs.svg`;
+const icon2 = `${imagePath}/categoryicons/golfs/golf.svg`;
+const icon3 = `${imagePath}/categoryicons/golfs/golf_cars.svg`;
+const icon4 = `${imagePath}/categoryicons/golfs/golf_clothing.svg`;
+const icon5 = `${imagePath}/categoryicons/golfs/golf_equipment.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

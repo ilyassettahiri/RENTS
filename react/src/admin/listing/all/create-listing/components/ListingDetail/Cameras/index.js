@@ -7,21 +7,21 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/cameras/camera_battery_life.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/cameras/camera_exposure.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/cameras/camera_image_resolution.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/cameras/camera_lens.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/cameras/camera_memory.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/cameras/connectivity.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/cameras/image_stabilization.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/cameras/photo_size.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/cameras/sensor_size.svg`;
-const icon10 = `${imagePath}/categoryicons/electronique/cameras/shutter_speed.svg`;
-const icon11 = `${imagePath}/categoryicons/electronique/cameras/condition.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/cameras/camera_battery_life.svg`;
+const icon2 = `${imagePath}/categoryicons/cameras/camera_exposure.svg`;
+const icon3 = `${imagePath}/categoryicons/cameras/camera_image_resolution.svg`;
+const icon4 = `${imagePath}/categoryicons/cameras/camera_lens.svg`;
+const icon5 = `${imagePath}/categoryicons/cameras/camera_memory.svg`;
+const icon6 = `${imagePath}/categoryicons/cameras/connectivity.svg`;
+const icon7 = `${imagePath}/categoryicons/cameras/image_stabilization.svg`;
+const icon8 = `${imagePath}/categoryicons/cameras/photo_size.svg`;
+const icon9 = `${imagePath}/categoryicons/cameras/sensor_size.svg`;
+const icon10 = `${imagePath}/categoryicons/cameras/shutter_speed.svg`;
+const icon11 = `${imagePath}/categoryicons/cameras/condition.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

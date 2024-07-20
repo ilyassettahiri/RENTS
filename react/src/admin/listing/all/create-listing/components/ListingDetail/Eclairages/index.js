@@ -7,32 +7,32 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/evenements/eclairage/brand.svg`;
-const icon2 = `${imagePath}/categoryicons/evenements/eclairage/brightness.svg`;
-const icon3 = `${imagePath}/categoryicons/evenements/eclairage/chandeliers.svg`;
-const icon4 = `${imagePath}/categoryicons/evenements/eclairage/connectivity_protocol.svg`;
-const icon5 = `${imagePath}/categoryicons/evenements/eclairage/controller_type.svg`;
-const icon6 = `${imagePath}/categoryicons/evenements/eclairage/eclairage.svg`;
-const icon7 = `${imagePath}/categoryicons/evenements/eclairage/fixture_form.svg`;
-const icon8 = `${imagePath}/categoryicons/evenements/eclairage/fixture_type.svg`;
-const icon9 = `${imagePath}/categoryicons/evenements/eclairage/lamps.svg`;
-const icon10 = `${imagePath}/categoryicons/evenements/eclairage/led_light.svg`;
-const icon11 = `${imagePath}/categoryicons/evenements/eclairage/light_color.svg`;
-const icon12 = `${imagePath}/categoryicons/evenements/eclairage/light_fixtures.svg`;
-const icon13 = `${imagePath}/categoryicons/evenements/eclairage/light_source_type.svg`;
-const icon14 = `${imagePath}/categoryicons/evenements/eclairage/lighting_method.svg`;
-const icon15 = `${imagePath}/categoryicons/evenements/eclairage/number_of_blades.svg`;
-const icon16 = `${imagePath}/categoryicons/evenements/eclairage/number_of_light_sources.svg`;
-const icon17 = `${imagePath}/categoryicons/evenements/eclairage/other_equipment.svg`;
-const icon18 = `${imagePath}/categoryicons/evenements/eclairage/plug_format.svg`;
-const icon19 = `${imagePath}/categoryicons/evenements/eclairage/power_source.svg`;
-const icon20 = `${imagePath}/categoryicons/evenements/eclairage/projectors.svg`;
-const icon21 = `${imagePath}/categoryicons/evenements/eclairage/size.svg`;
-const icon22 = `${imagePath}/categoryicons/evenements/eclairage/voltage.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/eclairage/brand.svg`;
+const icon2 = `${imagePath}/categoryicons/eclairage/brightness.svg`;
+const icon3 = `${imagePath}/categoryicons/eclairage/chandeliers.svg`;
+const icon4 = `${imagePath}/categoryicons/eclairage/connectivity_protocol.svg`;
+const icon5 = `${imagePath}/categoryicons/eclairage/controller_type.svg`;
+const icon6 = `${imagePath}/categoryicons/eclairage/eclairage.svg`;
+const icon7 = `${imagePath}/categoryicons/eclairage/fixture_form.svg`;
+const icon8 = `${imagePath}/categoryicons/eclairage/fixture_type.svg`;
+const icon9 = `${imagePath}/categoryicons/eclairage/lamps.svg`;
+const icon10 = `${imagePath}/categoryicons/eclairage/led_light.svg`;
+const icon11 = `${imagePath}/categoryicons/eclairage/light_color.svg`;
+const icon12 = `${imagePath}/categoryicons/eclairage/light_fixtures.svg`;
+const icon13 = `${imagePath}/categoryicons/eclairage/light_source_type.svg`;
+const icon14 = `${imagePath}/categoryicons/eclairage/lighting_method.svg`;
+const icon15 = `${imagePath}/categoryicons/eclairage/number_of_blades.svg`;
+const icon16 = `${imagePath}/categoryicons/eclairage/number_of_light_sources.svg`;
+const icon17 = `${imagePath}/categoryicons/eclairage/other_equipment.svg`;
+const icon18 = `${imagePath}/categoryicons/eclairage/plug_format.svg`;
+const icon19 = `${imagePath}/categoryicons/eclairage/power_source.svg`;
+const icon20 = `${imagePath}/categoryicons/eclairage/projectors.svg`;
+const icon21 = `${imagePath}/categoryicons/eclairage/size.svg`;
+const icon22 = `${imagePath}/categoryicons/eclairage/voltage.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

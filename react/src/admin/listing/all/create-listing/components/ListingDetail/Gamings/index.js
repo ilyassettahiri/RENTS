@@ -7,17 +7,17 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/gamings/condition.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/gamings/connectivity.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/gamings/controller.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/gamings/games.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/gamings/number_of_ports.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/gamings/online_services.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/gamings/storage.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/gamings/condition.svg`;
+const icon2 = `${imagePath}/categoryicons/gamings/connectivity.svg`;
+const icon3 = `${imagePath}/categoryicons/gamings/controller.svg`;
+const icon4 = `${imagePath}/categoryicons/gamings/games.svg`;
+const icon5 = `${imagePath}/categoryicons/gamings/number_of_ports.svg`;
+const icon6 = `${imagePath}/categoryicons/gamings/online_services.svg`;
+const icon7 = `${imagePath}/categoryicons/gamings/storage.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

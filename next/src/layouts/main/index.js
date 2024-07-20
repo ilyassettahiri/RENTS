@@ -24,7 +24,7 @@ export default function MainLayout({ children, headerOnDark = false, disabledSpa
     >
       <Header headerOnDark={headerOnDark} onOpenNav={navOpen.onTrue} />
 
-      <Nav open={navOpen.value} onClose={navOpen.onFalse} />
+
 
       <Box component="main" sx={{ flexGrow: 1 }}>
         {!(disabledSpacing || headerOnDark) && (

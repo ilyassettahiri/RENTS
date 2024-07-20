@@ -13,21 +13,21 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/immobilier/maisons/amenities.svg`;
-const icon2 = `${imagePath}/categoryicons/immobilier/maisons/bathrooms.svg`;
-const icon3 = `${imagePath}/categoryicons/immobilier/maisons/bedrooms.svg`;
-const icon4 = `${imagePath}/categoryicons/immobilier/maisons/facilities.svg`;
-const icon5 = `${imagePath}/categoryicons/immobilier/maisons/floors.svg`;
-const icon6 = `${imagePath}/categoryicons/immobilier/maisons/houses.svg`;
-const icon7 = `${imagePath}/categoryicons/immobilier/maisons/living_room.svg`;
-const icon8 = `${imagePath}/categoryicons/immobilier/maisons/rooms.svg`;
-const icon9 = `${imagePath}/categoryicons/immobilier/maisons/security_system.svg`;
-const icon10 = `${imagePath}/categoryicons/immobilier/maisons/surface.svg`;
-const icon11 = `${imagePath}/categoryicons/immobilier/maisons/year_of_construction.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/maisons/amenities.svg`;
+const icon2 = `${imagePath}/categoryicons/maisons/bathrooms.svg`;
+const icon3 = `${imagePath}/categoryicons/maisons/bedrooms.svg`;
+const icon4 = `${imagePath}/categoryicons/maisons/facilities.svg`;
+const icon5 = `${imagePath}/categoryicons/maisons/floors.svg`;
+const icon6 = `${imagePath}/categoryicons/maisons/houses.svg`;
+const icon7 = `${imagePath}/categoryicons/maisons/living_room.svg`;
+const icon8 = `${imagePath}/categoryicons/maisons/rooms.svg`;
+const icon9 = `${imagePath}/categoryicons/maisons/security_system.svg`;
+const icon10 = `${imagePath}/categoryicons/maisons/surface.svg`;
+const icon11 = `${imagePath}/categoryicons/maisons/year_of_construction.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

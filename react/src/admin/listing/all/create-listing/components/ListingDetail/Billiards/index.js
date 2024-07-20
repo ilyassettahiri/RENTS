@@ -7,16 +7,16 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/billliards/balls_design.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/billliards/bridge_stick.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/billliards/chalk.svg`;
-const icon4 = `${imagePath}/categoryicons/biensport/billliards/condition.svg`;
-const icon5 = `${imagePath}/categoryicons/biensport/billliards/table_details.svg`;
-const icon6 = `${imagePath}/categoryicons/biensport/billliards/other_information.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/billliards/balls_design.svg`;
+const icon2 = `${imagePath}/categoryicons/billliards/bridge_stick.svg`;
+const icon3 = `${imagePath}/categoryicons/billliards/chalk.svg`;
+const icon4 = `${imagePath}/categoryicons/billliards/condition.svg`;
+const icon5 = `${imagePath}/categoryicons/billliards/table_details.svg`;
+const icon6 = `${imagePath}/categoryicons/billliards/other_information.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

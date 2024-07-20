@@ -17,26 +17,26 @@ import MultSelect from "admin/components/MultSelect";
 
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/materiels/powertools/amperage.svg`;
-const icon2 = `${imagePath}/categoryicons/materiels/powertools/battery_life.svg`;
-const icon3 = `${imagePath}/categoryicons/materiels/powertools/blade_material.svg`;
-const icon4 = `${imagePath}/categoryicons/materiels/powertools/condition.svg`;
-const icon5 = `${imagePath}/categoryicons/materiels/powertools/dimensions.svg`;
-const icon6 = `${imagePath}/categoryicons/materiels/powertools/material.svg`;
-const icon7 = `${imagePath}/categoryicons/materiels/powertools/noise_level.svg`;
-const icon8 = `${imagePath}/categoryicons/materiels/powertools/power_source.svg`;
-const icon9 = `${imagePath}/categoryicons/materiels/powertools/rotational_speed.svg`;
-const icon10 = `${imagePath}/categoryicons/materiels/powertools/safety_lock.svg`;
-const icon11 = `${imagePath}/categoryicons/materiels/powertools/style.svg`;
-const icon12 = `${imagePath}/categoryicons/materiels/powertools/voltage.svg`;
-const icon13 = `${imagePath}/categoryicons/materiels/powertools/weight.svg`;
-const icon14 = `${imagePath}/categoryicons/materiels/powertools/surface.svg`;
-const icon15 = `${imagePath}/categoryicons/materiels/powertools/tool_type.svg`;
-const icon16 = `${imagePath}/categoryicons/materiels/powertools/grit_numbre.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/powertools/amperage.svg`;
+const icon2 = `${imagePath}/categoryicons/powertools/battery_life.svg`;
+const icon3 = `${imagePath}/categoryicons/powertools/blade_material.svg`;
+const icon4 = `${imagePath}/categoryicons/powertools/condition.svg`;
+const icon5 = `${imagePath}/categoryicons/powertools/dimensions.svg`;
+const icon6 = `${imagePath}/categoryicons/powertools/material.svg`;
+const icon7 = `${imagePath}/categoryicons/powertools/noise_level.svg`;
+const icon8 = `${imagePath}/categoryicons/powertools/power_source.svg`;
+const icon9 = `${imagePath}/categoryicons/powertools/rotational_speed.svg`;
+const icon10 = `${imagePath}/categoryicons/powertools/safety_lock.svg`;
+const icon11 = `${imagePath}/categoryicons/powertools/style.svg`;
+const icon12 = `${imagePath}/categoryicons/powertools/voltage.svg`;
+const icon13 = `${imagePath}/categoryicons/powertools/weight.svg`;
+const icon14 = `${imagePath}/categoryicons/powertools/surface.svg`;
+const icon15 = `${imagePath}/categoryicons/powertools/tool_type.svg`;
+const icon16 = `${imagePath}/categoryicons/powertools/grit_numbre.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

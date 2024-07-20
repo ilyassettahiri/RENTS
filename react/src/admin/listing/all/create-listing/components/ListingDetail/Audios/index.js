@@ -8,20 +8,20 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/audios/battery_life.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/audios/box_dimensions.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/audios/car_condition.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/audios/charging_time.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/audios/compatibility.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/audios/connectivity.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/audios/noise_cancellation.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/audios/sound_quality.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/audios/audio_type.svg`;
-const icon10 = `${imagePath}/categoryicons/electronique/audios/max_wireless_range.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/audios/battery_life.svg`;
+const icon2 = `${imagePath}/categoryicons/audios/box_dimensions.svg`;
+const icon3 = `${imagePath}/categoryicons/audios/car_condition.svg`;
+const icon4 = `${imagePath}/categoryicons/audios/charging_time.svg`;
+const icon5 = `${imagePath}/categoryicons/audios/compatibility.svg`;
+const icon6 = `${imagePath}/categoryicons/audios/connectivity.svg`;
+const icon7 = `${imagePath}/categoryicons/audios/noise_cancellation.svg`;
+const icon8 = `${imagePath}/categoryicons/audios/sound_quality.svg`;
+const icon9 = `${imagePath}/categoryicons/audios/audio_type.svg`;
+const icon10 = `${imagePath}/categoryicons/audios/max_wireless_range.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

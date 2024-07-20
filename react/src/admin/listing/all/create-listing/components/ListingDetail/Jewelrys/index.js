@@ -7,20 +7,20 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/habillement/jewelrys/chain_type.svg`;
-const icon2 = `${imagePath}/categoryicons/habillement/jewelrys/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/habillement/jewelrys/gem_type.svg`;
-const icon4 = `${imagePath}/categoryicons/habillement/jewelrys/length.svg`;
-const icon5 = `${imagePath}/categoryicons/habillement/jewelrys/occasion.svg`;
-const icon6 = `${imagePath}/categoryicons/habillement/jewelrys/weight.svg`;
-const icon7 = `${imagePath}/categoryicons/habillement/jewelrys/type.svg`;
-const icon8 = `${imagePath}/categoryicons/habillement/jewelrys/material.svg`;
-const icon10 = `${imagePath}/categoryicons/habillement/jewelrys/closure_type.svg`;
-const icon11 = `${imagePath}/categoryicons/habillement/jewelrys/color.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/jewelrys/chain_type.svg`;
+const icon2 = `${imagePath}/categoryicons/jewelrys/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/jewelrys/gem_type.svg`;
+const icon4 = `${imagePath}/categoryicons/jewelrys/length.svg`;
+const icon5 = `${imagePath}/categoryicons/jewelrys/occasion.svg`;
+const icon6 = `${imagePath}/categoryicons/jewelrys/weight.svg`;
+const icon7 = `${imagePath}/categoryicons/jewelrys/type.svg`;
+const icon8 = `${imagePath}/categoryicons/jewelrys/material.svg`;
+const icon10 = `${imagePath}/categoryicons/jewelrys/closure_type.svg`;
+const icon11 = `${imagePath}/categoryicons/jewelrys/color.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

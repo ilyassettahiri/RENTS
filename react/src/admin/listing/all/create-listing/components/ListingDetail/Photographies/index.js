@@ -7,21 +7,21 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/evenements/photography/battery.svg`;
-const icon2 = `${imagePath}/categoryicons/evenements/photography/brand.svg`;
-const icon3 = `${imagePath}/categoryicons/evenements/photography/camera.svg`;
-const icon4 = `${imagePath}/categoryicons/evenements/photography/lcd.svg`;
-const icon5 = `${imagePath}/categoryicons/evenements/photography/max_shutter_speed.svg`;
-const icon6 = `${imagePath}/categoryicons/evenements/photography/maximum_webcam_image_resolution.svg`;
-const icon7 = `${imagePath}/categoryicons/evenements/photography/other_equipment.svg`;
-const icon8 = `${imagePath}/categoryicons/evenements/photography/photography.svg`;
-const icon9 = `${imagePath}/categoryicons/evenements/photography/sensor.svg`;
-const icon10 = `${imagePath}/categoryicons/evenements/photography/size.svg`;
-const icon11 = `${imagePath}/categoryicons/evenements/photography/wide_angle.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/photography/battery.svg`;
+const icon2 = `${imagePath}/categoryicons/photography/brand.svg`;
+const icon3 = `${imagePath}/categoryicons/photography/camera.svg`;
+const icon4 = `${imagePath}/categoryicons/photography/lcd.svg`;
+const icon5 = `${imagePath}/categoryicons/photography/max_shutter_speed.svg`;
+const icon6 = `${imagePath}/categoryicons/photography/maximum_webcam_image_resolution.svg`;
+const icon7 = `${imagePath}/categoryicons/photography/other_equipment.svg`;
+const icon8 = `${imagePath}/categoryicons/photography/photography.svg`;
+const icon9 = `${imagePath}/categoryicons/photography/sensor.svg`;
+const icon10 = `${imagePath}/categoryicons/photography/size.svg`;
+const icon11 = `${imagePath}/categoryicons/photography/wide_angle.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

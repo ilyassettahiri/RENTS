@@ -61,7 +61,7 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
         </Fab>
 
         <Image
-          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${product.attributes.picture}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${product.attributes.picture}`}
           sx={{
             flexShrink: 0,
             borderRadius: 1.5,

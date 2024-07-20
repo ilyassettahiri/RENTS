@@ -7,18 +7,18 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/routers/compatibility.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/routers/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/routers/connectivity.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/routers/mbps_speed.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/routers/signal_coverage.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/routers/wireless.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/routers/antennas.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/routers/frequency.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/routers/compatibility.svg`;
+const icon2 = `${imagePath}/categoryicons/routers/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/routers/connectivity.svg`;
+const icon4 = `${imagePath}/categoryicons/routers/mbps_speed.svg`;
+const icon5 = `${imagePath}/categoryicons/routers/signal_coverage.svg`;
+const icon6 = `${imagePath}/categoryicons/routers/wireless.svg`;
+const icon7 = `${imagePath}/categoryicons/routers/antennas.svg`;
+const icon8 = `${imagePath}/categoryicons/routers/frequency.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

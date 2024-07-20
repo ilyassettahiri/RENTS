@@ -93,7 +93,7 @@ export default function ListingHeader({ tour, seller }) {
         </Stack>
 
         <Stack direction="row" alignItems="center">
-          <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`} sx={{ width: 24, height: 24 }} />
+          <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${profile_image}`} sx={{ width: 24, height: 24 }} />
 
           <Link variant="subtitle2" color="inherit" sx={{ mx: 1 }}>
             {name}

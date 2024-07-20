@@ -12,26 +12,26 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
  
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/immobilier/terrains/property_type.svg`;
-const icon2 = `${imagePath}/categoryicons/immobilier/terrains/property_subtype.svg`;
-const icon3 = `${imagePath}/categoryicons/immobilier/terrains/total_lot_size.svg`;
-const icon4 = `${imagePath}/categoryicons/immobilier/terrains/land_valuation.svg`;
-const icon5 = `${imagePath}/categoryicons/immobilier/terrains/total_rating.svg`;
-const icon6 = `${imagePath}/categoryicons/immobilier/terrains/road_access.svg`;
-const icon7 = `${imagePath}/categoryicons/immobilier/terrains/slope_description.svg`;
-const icon8 = `${imagePath}/categoryicons/immobilier/terrains/property_usage.svg`;
-const icon9 = `${imagePath}/categoryicons/immobilier/terrains/annual_taxes.svg`;
-const icon10 = `${imagePath}/categoryicons/immobilier/terrains/deeded_acres.svg`;
-const icon11 = `${imagePath}/categoryicons/immobilier/terrains/leased_acres.svg`;
-const icon12 = `${imagePath}/categoryicons/immobilier/terrains/elevation.svg`;
-const icon13 = `${imagePath}/categoryicons/immobilier/terrains/vegetation.svg`;
-const icon14 = `${imagePath}/categoryicons/immobilier/terrains/nearby_usage.svg`;
-const icon15 = `${imagePath}/categoryicons/immobilier/terrains/topography.svg`;
-const icon16 = `${imagePath}/categoryicons/immobilier/terrains/zoning.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/terrains/property_type.svg`;
+const icon2 = `${imagePath}/categoryicons/terrains/property_subtype.svg`;
+const icon3 = `${imagePath}/categoryicons/terrains/total_lot_size.svg`;
+const icon4 = `${imagePath}/categoryicons/terrains/land_valuation.svg`;
+const icon5 = `${imagePath}/categoryicons/terrains/total_rating.svg`;
+const icon6 = `${imagePath}/categoryicons/terrains/road_access.svg`;
+const icon7 = `${imagePath}/categoryicons/terrains/slope_description.svg`;
+const icon8 = `${imagePath}/categoryicons/terrains/property_usage.svg`;
+const icon9 = `${imagePath}/categoryicons/terrains/annual_taxes.svg`;
+const icon10 = `${imagePath}/categoryicons/terrains/deeded_acres.svg`;
+const icon11 = `${imagePath}/categoryicons/terrains/leased_acres.svg`;
+const icon12 = `${imagePath}/categoryicons/terrains/elevation.svg`;
+const icon13 = `${imagePath}/categoryicons/terrains/vegetation.svg`;
+const icon14 = `${imagePath}/categoryicons/terrains/nearby_usage.svg`;
+const icon15 = `${imagePath}/categoryicons/terrains/topography.svg`;
+const icon16 = `${imagePath}/categoryicons/terrains/zoning.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

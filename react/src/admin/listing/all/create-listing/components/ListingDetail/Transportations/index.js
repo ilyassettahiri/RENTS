@@ -13,22 +13,22 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/transportations/alcohol_friendly.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/transportations/bluetooth.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/transportations/car_air_conditioner.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/transportations/car_condition.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/transportations/duration.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/transportations/food_allowed.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/transportations/luggage.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/transportations/passengers.svg`;
-const icon9 = `${imagePath}/categoryicons/vehicules/transportations/transmission.svg`;
-const icon10 = `${imagePath}/categoryicons/vehicules/transportations/tv.svg`;
-const icon11 = `${imagePath}/categoryicons/vehicules/transportations/usb.svg`;
-const icon12 = `${imagePath}/categoryicons/vehicules/transportations/wheelchair_accessible.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/transportations/alcohol_friendly.svg`;
+const icon2 = `${imagePath}/categoryicons/transportations/bluetooth.svg`;
+const icon3 = `${imagePath}/categoryicons/transportations/car_air_conditioner.svg`;
+const icon4 = `${imagePath}/categoryicons/transportations/car_condition.svg`;
+const icon5 = `${imagePath}/categoryicons/transportations/duration.svg`;
+const icon6 = `${imagePath}/categoryicons/transportations/food_allowed.svg`;
+const icon7 = `${imagePath}/categoryicons/transportations/luggage.svg`;
+const icon8 = `${imagePath}/categoryicons/transportations/passengers.svg`;
+const icon9 = `${imagePath}/categoryicons/transportations/transmission.svg`;
+const icon10 = `${imagePath}/categoryicons/transportations/tv.svg`;
+const icon11 = `${imagePath}/categoryicons/transportations/usb.svg`;
+const icon12 = `${imagePath}/categoryicons/transportations/wheelchair_accessible.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

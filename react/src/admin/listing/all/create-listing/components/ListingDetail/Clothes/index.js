@@ -9,18 +9,18 @@ import MultSelect from "admin/components/MultSelect";
 
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/habillement/clothes/condition.svg`;
-const icon2 = `${imagePath}/categoryicons/habillement/clothes/heel_height.svg`;
-const icon3 = `${imagePath}/categoryicons/habillement/clothes/size.svg`;
-const icon4 = `${imagePath}/categoryicons/habillement/clothes/closure_type.svg`;
-const icon5 = `${imagePath}/categoryicons/habillement/clothes/color.svg`;
-const icon7 = `${imagePath}/categoryicons/habillement/clothes/number_of_pockets.svg`;
-const icon8 = `${imagePath}/categoryicons/habillement/clothes/strap_type.svg`;
-const icon9 = `${imagePath}/categoryicons/habillement/clothes/number_of_pieces.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/clothes/condition.svg`;
+const icon2 = `${imagePath}/categoryicons/clothes/heel_height.svg`;
+const icon3 = `${imagePath}/categoryicons/clothes/size.svg`;
+const icon4 = `${imagePath}/categoryicons/clothes/closure_type.svg`;
+const icon5 = `${imagePath}/categoryicons/clothes/color.svg`;
+const icon7 = `${imagePath}/categoryicons/clothes/number_of_pockets.svg`;
+const icon8 = `${imagePath}/categoryicons/clothes/strap_type.svg`;
+const icon9 = `${imagePath}/categoryicons/clothes/number_of_pieces.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

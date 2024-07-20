@@ -12,24 +12,24 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
  
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/immobilier/magasins/property_type.svg`;
-const icon2 = `${imagePath}/categoryicons/immobilier/magasins/surface.svg`;
-const icon3 = `${imagePath}/categoryicons/immobilier/magasins/capacity.svg`;
-const icon4 = `${imagePath}/categoryicons/immobilier/magasins/office_number.svg`;
-const icon5 = `${imagePath}/categoryicons/immobilier/magasins/individual_offices.svg`;
-const icon6 = `${imagePath}/categoryicons/immobilier/magasins/number_of_floors.svg`;
-const icon7 = `${imagePath}/categoryicons/immobilier/magasins/garage.svg`;
-const icon8 = `${imagePath}/categoryicons/immobilier/magasins/approved_uses.svg`;
-const icon9 = `${imagePath}/categoryicons/immobilier/magasins/total_facility_size.svg`;
-const icon10 = `${imagePath}/categoryicons/immobilier/magasins/operating_days.svg`;
-const icon11 = `${imagePath}/categoryicons/immobilier/magasins/lighting.svg`;
-const icon12 = `${imagePath}/categoryicons/immobilier/magasins/facilities.svg`;
-const icon13 = `${imagePath}/categoryicons/immobilier/magasins/amenities.svg`;
-const icon14 = `${imagePath}/categoryicons/immobilier/magasins/transports.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/magasins/property_type.svg`;
+const icon2 = `${imagePath}/categoryicons/magasins/surface.svg`;
+const icon3 = `${imagePath}/categoryicons/magasins/capacity.svg`;
+const icon4 = `${imagePath}/categoryicons/magasins/office_number.svg`;
+const icon5 = `${imagePath}/categoryicons/magasins/individual_offices.svg`;
+const icon6 = `${imagePath}/categoryicons/magasins/number_of_floors.svg`;
+const icon7 = `${imagePath}/categoryicons/magasins/garage.svg`;
+const icon8 = `${imagePath}/categoryicons/magasins/approved_uses.svg`;
+const icon9 = `${imagePath}/categoryicons/magasins/total_facility_size.svg`;
+const icon10 = `${imagePath}/categoryicons/magasins/operating_days.svg`;
+const icon11 = `${imagePath}/categoryicons/magasins/lighting.svg`;
+const icon12 = `${imagePath}/categoryicons/magasins/facilities.svg`;
+const icon13 = `${imagePath}/categoryicons/magasins/amenities.svg`;
+const icon14 = `${imagePath}/categoryicons/magasins/transports.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

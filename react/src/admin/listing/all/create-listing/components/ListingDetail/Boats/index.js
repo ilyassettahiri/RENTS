@@ -7,21 +7,21 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/boats/cruise_capacity.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/boats/daily_cruising_time.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/boats/kitchen_equipment.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/boats/length.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/boats/number_of_cabins.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/boats/security.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/boats/shower.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/boats/skippered_charter.svg`;
-const icon9 = `${imagePath}/categoryicons/vehicules/boats/navigation.svg`;
-const icon10 = `${imagePath}/categoryicons/vehicules/boats/berths_in_cabin.svg`;
-const icon11 = `${imagePath}/categoryicons/vehicules/boats/boats_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/boats/cruise_capacity.svg`;
+const icon2 = `${imagePath}/categoryicons/boats/daily_cruising_time.svg`;
+const icon3 = `${imagePath}/categoryicons/boats/kitchen_equipment.svg`;
+const icon4 = `${imagePath}/categoryicons/boats/length.svg`;
+const icon5 = `${imagePath}/categoryicons/boats/number_of_cabins.svg`;
+const icon6 = `${imagePath}/categoryicons/boats/security.svg`;
+const icon7 = `${imagePath}/categoryicons/boats/shower.svg`;
+const icon8 = `${imagePath}/categoryicons/boats/skippered_charter.svg`;
+const icon9 = `${imagePath}/categoryicons/boats/navigation.svg`;
+const icon10 = `${imagePath}/categoryicons/boats/berths_in_cabin.svg`;
+const icon11 = `${imagePath}/categoryicons/boats/boats_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

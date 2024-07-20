@@ -13,19 +13,19 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/lightings/color_temperature.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/lightings/compatibility.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/lightings/condition.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/lightings/connectivity.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/lightings/dimensions.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/lightings/included_accessories.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/lightings/led_light.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/lightings/self_timer.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/lightings/weight.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/lightings/color_temperature.svg`;
+const icon2 = `${imagePath}/categoryicons/lightings/compatibility.svg`;
+const icon3 = `${imagePath}/categoryicons/lightings/condition.svg`;
+const icon4 = `${imagePath}/categoryicons/lightings/connectivity.svg`;
+const icon5 = `${imagePath}/categoryicons/lightings/dimensions.svg`;
+const icon6 = `${imagePath}/categoryicons/lightings/included_accessories.svg`;
+const icon7 = `${imagePath}/categoryicons/lightings/led_light.svg`;
+const icon8 = `${imagePath}/categoryicons/lightings/self_timer.svg`;
+const icon9 = `${imagePath}/categoryicons/lightings/weight.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

@@ -10,16 +10,16 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/loisirs/musicals/dimensions.svg`;
-const icon2 = `${imagePath}/categoryicons/loisirs/musicals/finish_type.svg`;
-const icon3 = `${imagePath}/categoryicons/loisirs/musicals/material.svg`;
-const icon4 = `${imagePath}/categoryicons/loisirs/musicals/style.svg`;
-const icon5 = `${imagePath}/categoryicons/loisirs/musicals/weight.svg`;
-const icon6 = `${imagePath}/categoryicons/loisirs/musicals/music_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/musicals/dimensions.svg`;
+const icon2 = `${imagePath}/categoryicons/musicals/finish_type.svg`;
+const icon3 = `${imagePath}/categoryicons/musicals/material.svg`;
+const icon4 = `${imagePath}/categoryicons/musicals/style.svg`;
+const icon5 = `${imagePath}/categoryicons/musicals/weight.svg`;
+const icon6 = `${imagePath}/categoryicons/musicals/music_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

@@ -13,22 +13,22 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/laptops/battery_life.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/laptops/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/laptops/graphic_card.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/laptops/number_of_ports.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/laptops/operating_system.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/laptops/ram.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/laptops/screen_size.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/laptops/storage.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/laptops/touch_screen.svg`;
-const icon10 = `${imagePath}/categoryicons/electronique/laptops/weight.svg`;
-const icon11 = `${imagePath}/categoryicons/electronique/laptops/cpu.svg`;
-const icon12 = `${imagePath}/categoryicons/electronique/laptops/resolution.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/laptops/battery_life.svg`;
+const icon2 = `${imagePath}/categoryicons/laptops/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/laptops/graphic_card.svg`;
+const icon4 = `${imagePath}/categoryicons/laptops/number_of_ports.svg`;
+const icon5 = `${imagePath}/categoryicons/laptops/operating_system.svg`;
+const icon6 = `${imagePath}/categoryicons/laptops/ram.svg`;
+const icon7 = `${imagePath}/categoryicons/laptops/screen_size.svg`;
+const icon8 = `${imagePath}/categoryicons/laptops/storage.svg`;
+const icon9 = `${imagePath}/categoryicons/laptops/touch_screen.svg`;
+const icon10 = `${imagePath}/categoryicons/laptops/weight.svg`;
+const icon11 = `${imagePath}/categoryicons/laptops/cpu.svg`;
+const icon12 = `${imagePath}/categoryicons/laptops/resolution.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

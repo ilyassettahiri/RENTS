@@ -164,7 +164,7 @@ function CarouselItem({ tour }) {
         {renderOverlay}
         <Image
           alt="hero"
-          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${tour.heroUrl}`}
+          src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`}
           sx={{
             width: 1,
             height: { xs: 1, md: '70vh' },
@@ -206,7 +206,7 @@ function ThumbnailItem({ tour, selected }) {
         }),
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
       <Stack spacing={0.5}>
         <TextMaxLine variant="h6" line={1}>
           {tour.categories}

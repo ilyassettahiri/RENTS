@@ -7,17 +7,17 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/huntings/binoculars.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/huntings/clothing.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/huntings/crossbow.svg`;
-const icon4 = `${imagePath}/categoryicons/biensport/huntings/decoy.svg`;
-const icon5 = `${imagePath}/categoryicons/biensport/huntings/equipment.svg`;
-const icon6 = `${imagePath}/categoryicons/biensport/huntings/game_call.svg`;
-const icon7 = `${imagePath}/categoryicons/biensport/huntings/bow_arrow.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/huntings/binoculars.svg`;
+const icon2 = `${imagePath}/categoryicons/huntings/clothing.svg`;
+const icon3 = `${imagePath}/categoryicons/huntings/crossbow.svg`;
+const icon4 = `${imagePath}/categoryicons/huntings/decoy.svg`;
+const icon5 = `${imagePath}/categoryicons/huntings/equipment.svg`;
+const icon6 = `${imagePath}/categoryicons/huntings/game_call.svg`;
+const icon7 = `${imagePath}/categoryicons/huntings/bow_arrow.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

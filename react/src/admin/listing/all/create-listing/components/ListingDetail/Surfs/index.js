@@ -7,15 +7,15 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/surfs/surf_board_size.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/surfs/surf_board_types.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/surfs/surf_category.svg`;
-const icon4 = `${imagePath}/categoryicons/biensport/surfs/surf_equipment.svg`;
-const icon5 = `${imagePath}/categoryicons/biensport/surfs/wetsuits.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/surfs/surf_board_size.svg`;
+const icon2 = `${imagePath}/categoryicons/surfs/surf_board_types.svg`;
+const icon3 = `${imagePath}/categoryicons/surfs/surf_category.svg`;
+const icon4 = `${imagePath}/categoryicons/surfs/surf_equipment.svg`;
+const icon5 = `${imagePath}/categoryicons/surfs/wetsuits.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

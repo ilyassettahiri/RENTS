@@ -13,24 +13,24 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/materiels/ladders/assembly_required.svg`;
-const icon2 = `${imagePath}/categoryicons/materiels/ladders/battery_life.svg`;
-const icon3 = `${imagePath}/categoryicons/materiels/ladders/condition.svg`;
-const icon4 = `${imagePath}/categoryicons/materiels/ladders/dimensions.svg`;
-const icon5 = `${imagePath}/categoryicons/materiels/ladders/height.svg`;
-const icon6 = `${imagePath}/categoryicons/materiels/ladders/instructions.svg`;
-const icon7 = `${imagePath}/categoryicons/materiels/ladders/load_capacity.svg`;
-const icon8 = `${imagePath}/categoryicons/materiels/ladders/material.svg`;
-const icon9 = `${imagePath}/categoryicons/materiels/ladders/number_of_steps.svg`;
-const icon10 = `${imagePath}/categoryicons/materiels/ladders/power_source.svg`;
-const icon11 = `${imagePath}/categoryicons/materiels/ladders/style.svg`;
-const icon12 = `${imagePath}/categoryicons/materiels/ladders/weight.svg`;
-const icon13 = `${imagePath}/categoryicons/materiels/ladders/wheel_size.svg`;
-const icon14 = `${imagePath}/categoryicons/materiels/ladders/tool_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/ladders/assembly_required.svg`;
+const icon2 = `${imagePath}/categoryicons/ladders/battery_life.svg`;
+const icon3 = `${imagePath}/categoryicons/ladders/condition.svg`;
+const icon4 = `${imagePath}/categoryicons/ladders/dimensions.svg`;
+const icon5 = `${imagePath}/categoryicons/ladders/height.svg`;
+const icon6 = `${imagePath}/categoryicons/ladders/instructions.svg`;
+const icon7 = `${imagePath}/categoryicons/ladders/load_capacity.svg`;
+const icon8 = `${imagePath}/categoryicons/ladders/material.svg`;
+const icon9 = `${imagePath}/categoryicons/ladders/number_of_steps.svg`;
+const icon10 = `${imagePath}/categoryicons/ladders/power_source.svg`;
+const icon11 = `${imagePath}/categoryicons/ladders/style.svg`;
+const icon12 = `${imagePath}/categoryicons/ladders/weight.svg`;
+const icon13 = `${imagePath}/categoryicons/ladders/wheel_size.svg`;
+const icon14 = `${imagePath}/categoryicons/ladders/tool_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

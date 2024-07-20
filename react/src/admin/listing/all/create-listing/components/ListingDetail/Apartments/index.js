@@ -7,19 +7,19 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/immobilier/appartment/bathrooms.svg`;
-const icon2 = `${imagePath}/categoryicons/immobilier/appartment/bedrooms.svg`;
-const icon3 = `${imagePath}/categoryicons/immobilier/appartment/facilities.svg`;
-const icon4 = `${imagePath}/categoryicons/immobilier/appartment/floors.svg`;
-const icon5 = `${imagePath}/categoryicons/immobilier/appartment/kitchen.svg`;
-const icon6 = `${imagePath}/categoryicons/immobilier/appartment/living_room.svg`;
-const icon7 = `${imagePath}/categoryicons/immobilier/appartment/rooms.svg`;
-const icon8 = `${imagePath}/categoryicons/immobilier/appartment/security_system.svg`;
-const icon9 = `${imagePath}/categoryicons/immobilier/appartment/service.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/appartment/bathrooms.svg`;
+const icon2 = `${imagePath}/categoryicons/appartment/bedrooms.svg`;
+const icon3 = `${imagePath}/categoryicons/appartment/facilities.svg`;
+const icon4 = `${imagePath}/categoryicons/appartment/floors.svg`;
+const icon5 = `${imagePath}/categoryicons/appartment/kitchen.svg`;
+const icon6 = `${imagePath}/categoryicons/appartment/living_room.svg`;
+const icon7 = `${imagePath}/categoryicons/appartment/rooms.svg`;
+const icon8 = `${imagePath}/categoryicons/appartment/security_system.svg`;
+const icon9 = `${imagePath}/categoryicons/appartment/service.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

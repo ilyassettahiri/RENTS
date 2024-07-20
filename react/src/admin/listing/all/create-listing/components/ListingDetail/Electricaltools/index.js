@@ -17,26 +17,26 @@ import MultSelect from "admin/components/MultSelect";
 
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/materiels/electricaltools/amperage.svg`;
-const icon2 = `${imagePath}/categoryicons/materiels/electricaltools/battery_life.svg`;
-const icon3 = `${imagePath}/categoryicons/materiels/electricaltools/compatibility.svg`;
-const icon4 = `${imagePath}/categoryicons/materiels/electricaltools/condition.svg`;
-const icon5 = `${imagePath}/categoryicons/materiels/electricaltools/cord_length.svg`;
-const icon6 = `${imagePath}/categoryicons/materiels/electricaltools/detector.svg`;
-const icon7 = `${imagePath}/categoryicons/materiels/electricaltools/diode.svg`;
-const icon8 = `${imagePath}/categoryicons/materiels/electricaltools/display.svg`;
-const icon9 = `${imagePath}/categoryicons/materiels/electricaltools/frequency.svg`;
-const icon10 = `${imagePath}/categoryicons/materiels/electricaltools/included_accessories.svg`;
-const icon11 = `${imagePath}/categoryicons/materiels/electricaltools/operating_altitude.svg`;
-const icon12 = `${imagePath}/categoryicons/materiels/electricaltools/temperature.svg`;
-const icon13 = `${imagePath}/categoryicons/materiels/electricaltools/voltage_sensing_range.svg`;
-const icon14 = `${imagePath}/categoryicons/materiels/electricaltools/voltage.svg`;
-const icon15 = `${imagePath}/categoryicons/materiels/electricaltools/binding_angle.svg`;
-const icon16 = `${imagePath}/categoryicons/materiels/electricaltools/tool_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/electricaltools/amperage.svg`;
+const icon2 = `${imagePath}/categoryicons/electricaltools/battery_life.svg`;
+const icon3 = `${imagePath}/categoryicons/electricaltools/compatibility.svg`;
+const icon4 = `${imagePath}/categoryicons/electricaltools/condition.svg`;
+const icon5 = `${imagePath}/categoryicons/electricaltools/cord_length.svg`;
+const icon6 = `${imagePath}/categoryicons/electricaltools/detector.svg`;
+const icon7 = `${imagePath}/categoryicons/electricaltools/diode.svg`;
+const icon8 = `${imagePath}/categoryicons/electricaltools/display.svg`;
+const icon9 = `${imagePath}/categoryicons/electricaltools/frequency.svg`;
+const icon10 = `${imagePath}/categoryicons/electricaltools/included_accessories.svg`;
+const icon11 = `${imagePath}/categoryicons/electricaltools/operating_altitude.svg`;
+const icon12 = `${imagePath}/categoryicons/electricaltools/temperature.svg`;
+const icon13 = `${imagePath}/categoryicons/electricaltools/voltage_sensing_range.svg`;
+const icon14 = `${imagePath}/categoryicons/electricaltools/voltage.svg`;
+const icon15 = `${imagePath}/categoryicons/electricaltools/binding_angle.svg`;
+const icon16 = `${imagePath}/categoryicons/electricaltools/tool_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

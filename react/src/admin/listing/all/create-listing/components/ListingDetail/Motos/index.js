@@ -12,19 +12,19 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
  
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/motos/car_condition.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/motos/clothing.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/motos/helmet.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/motos/insurance.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/motos/intercom.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/motos/maximum_speed.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/motos/power_in_watts.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/motos/toolkit.svg`;
-const icon9 = `${imagePath}/categoryicons/vehicules/motos/transmission.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/motos/car_condition.svg`;
+const icon2 = `${imagePath}/categoryicons/motos/clothing.svg`;
+const icon3 = `${imagePath}/categoryicons/motos/helmet.svg`;
+const icon4 = `${imagePath}/categoryicons/motos/insurance.svg`;
+const icon5 = `${imagePath}/categoryicons/motos/intercom.svg`;
+const icon6 = `${imagePath}/categoryicons/motos/maximum_speed.svg`;
+const icon7 = `${imagePath}/categoryicons/motos/power_in_watts.svg`;
+const icon8 = `${imagePath}/categoryicons/motos/toolkit.svg`;
+const icon9 = `${imagePath}/categoryicons/motos/transmission.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

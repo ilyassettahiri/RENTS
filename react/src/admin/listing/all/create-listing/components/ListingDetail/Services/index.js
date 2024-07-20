@@ -8,22 +8,22 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/services/services/language.svg`;
-const icon2 = `${imagePath}/categoryicons/services/services/experience.svg`;
-const icon3 = `${imagePath}/categoryicons/services/services/response_time.svg`;
-const icon4 = `${imagePath}/categoryicons/services/services/package.svg`;
-const icon5 = `${imagePath}/categoryicons/services/services/revisions.svg`;
-const icon6 = `${imagePath}/categoryicons/services/services/level.svg`;
-const icon7 = `${imagePath}/categoryicons/services/services/orders_queue.svg`;
-const icon8 = `${imagePath}/categoryicons/services/services/jobs_completed.svg`;
-const icon9 = `${imagePath}/categoryicons/services/services/repeat_hire_rate.svg`;
-const icon10 = `${imagePath}/categoryicons/services/services/education.svg`;
-const icon11 = `${imagePath}/categoryicons/services/services/on_time.svg`;
-const icon12 = `${imagePath}/categoryicons/services/services/delivery_time.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/services/language.svg`;
+const icon2 = `${imagePath}/categoryicons/services/experience.svg`;
+const icon3 = `${imagePath}/categoryicons/services/response_time.svg`;
+const icon4 = `${imagePath}/categoryicons/services/package.svg`;
+const icon5 = `${imagePath}/categoryicons/services/revisions.svg`;
+const icon6 = `${imagePath}/categoryicons/services/level.svg`;
+const icon7 = `${imagePath}/categoryicons/services/orders_queue.svg`;
+const icon8 = `${imagePath}/categoryicons/services/jobs_completed.svg`;
+const icon9 = `${imagePath}/categoryicons/services/repeat_hire_rate.svg`;
+const icon10 = `${imagePath}/categoryicons/services/education.svg`;
+const icon11 = `${imagePath}/categoryicons/services/on_time.svg`;
+const icon12 = `${imagePath}/categoryicons/services/delivery_time.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

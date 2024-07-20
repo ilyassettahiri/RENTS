@@ -13,15 +13,15 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/loisirs/livres/duration.svg`;
-const icon2 = `${imagePath}/categoryicons/loisirs/livres/genre.svg`;
-const icon3 = `${imagePath}/categoryicons/loisirs/livres/language.svg`;
-const icon4 = `${imagePath}/categoryicons/loisirs/livres/format.svg`;
-const icon5 = `${imagePath}/categoryicons/loisirs/livres/type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/livres/duration.svg`;
+const icon2 = `${imagePath}/categoryicons/livres/genre.svg`;
+const icon3 = `${imagePath}/categoryicons/livres/language.svg`;
+const icon4 = `${imagePath}/categoryicons/livres/format.svg`;
+const icon5 = `${imagePath}/categoryicons/livres/type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

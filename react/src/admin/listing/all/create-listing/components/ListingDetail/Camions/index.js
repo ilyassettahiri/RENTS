@@ -7,20 +7,20 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/camions/box_dimensions.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/camions/c.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/camions/cargo_capacity.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/camions/fuel.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/camions/insurance.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/camions/navigation_system.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/camions/transmission.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/camions/type.svg`;
-const icon9 = `${imagePath}/categoryicons/vehicules/camions/condition.svg`;
-const icon10 = `${imagePath}/categoryicons/vehicules/camions/other_details.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/camions/box_dimensions.svg`;
+const icon2 = `${imagePath}/categoryicons/camions/c.svg`;
+const icon3 = `${imagePath}/categoryicons/camions/cargo_capacity.svg`;
+const icon4 = `${imagePath}/categoryicons/camions/fuel.svg`;
+const icon5 = `${imagePath}/categoryicons/camions/insurance.svg`;
+const icon6 = `${imagePath}/categoryicons/camions/navigation_system.svg`;
+const icon7 = `${imagePath}/categoryicons/camions/transmission.svg`;
+const icon8 = `${imagePath}/categoryicons/camions/type.svg`;
+const icon9 = `${imagePath}/categoryicons/camions/condition.svg`;
+const icon10 = `${imagePath}/categoryicons/camions/other_details.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

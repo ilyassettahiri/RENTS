@@ -12,22 +12,22 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
  
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/materiels/mechanicaltools/battery_life.svg`;
-const icon2 = `${imagePath}/categoryicons/materiels/mechanicaltools/blade_diameter.svg`;
-const icon3 = `${imagePath}/categoryicons/materiels/mechanicaltools/condition.svg`;
-const icon4 = `${imagePath}/categoryicons/materiels/mechanicaltools/dimensions.svg`;
-const icon5 = `${imagePath}/categoryicons/materiels/mechanicaltools/materiall.svg`;
-const icon6 = `${imagePath}/categoryicons/materiels/mechanicaltools/power_source.svg`;
-const icon7 = `${imagePath}/categoryicons/materiels/mechanicaltools/style.svg`;
-const icon8 = `${imagePath}/categoryicons/materiels/mechanicaltools/voltage.svg`;
-const icon9 = `${imagePath}/categoryicons/materiels/mechanicaltools/materiall.svg`;
-const icon10 = `${imagePath}/categoryicons/materiels/mechanicaltools/tool_type.svg`;
-const icon11 = `${imagePath}/categoryicons/materiels/mechanicaltools/cutting_width.svg`;
-const icon12 = `${imagePath}/categoryicons/materiels/mechanicaltools/carburetor_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/mechanicaltools/battery_life.svg`;
+const icon2 = `${imagePath}/categoryicons/mechanicaltools/blade_diameter.svg`;
+const icon3 = `${imagePath}/categoryicons/mechanicaltools/condition.svg`;
+const icon4 = `${imagePath}/categoryicons/mechanicaltools/dimensions.svg`;
+const icon5 = `${imagePath}/categoryicons/mechanicaltools/materiall.svg`;
+const icon6 = `${imagePath}/categoryicons/mechanicaltools/power_source.svg`;
+const icon7 = `${imagePath}/categoryicons/mechanicaltools/style.svg`;
+const icon8 = `${imagePath}/categoryicons/mechanicaltools/voltage.svg`;
+const icon9 = `${imagePath}/categoryicons/mechanicaltools/materiall.svg`;
+const icon10 = `${imagePath}/categoryicons/mechanicaltools/tool_type.svg`;
+const icon11 = `${imagePath}/categoryicons/mechanicaltools/cutting_width.svg`;
+const icon12 = `${imagePath}/categoryicons/mechanicaltools/carburetor_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

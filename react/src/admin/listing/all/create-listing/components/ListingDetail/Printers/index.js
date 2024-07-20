@@ -8,20 +8,20 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/printers/compatibility.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/printers/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/printers/connectivity.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/printers/dimensions.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/printers/input_sheets.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/printers/paper_size.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/printers/print_speed.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/printers/weight.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/printers/print_resolution.svg`;
-const icon10 = `${imagePath}/categoryicons/electronique/printers/print_speed.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/printers/compatibility.svg`;
+const icon2 = `${imagePath}/categoryicons/printers/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/printers/connectivity.svg`;
+const icon4 = `${imagePath}/categoryicons/printers/dimensions.svg`;
+const icon5 = `${imagePath}/categoryicons/printers/input_sheets.svg`;
+const icon6 = `${imagePath}/categoryicons/printers/paper_size.svg`;
+const icon7 = `${imagePath}/categoryicons/printers/print_speed.svg`;
+const icon8 = `${imagePath}/categoryicons/printers/weight.svg`;
+const icon9 = `${imagePath}/categoryicons/printers/print_resolution.svg`;
+const icon10 = `${imagePath}/categoryicons/printers/print_speed.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

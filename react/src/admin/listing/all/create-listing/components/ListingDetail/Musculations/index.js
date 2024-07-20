@@ -13,21 +13,21 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/musculation/abs.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/musculation/arms.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/musculation/back.svg`;
-const icon4 = `${imagePath}/categoryicons/biensport/musculation/brand.svg`;
-const icon5 = `${imagePath}/categoryicons/biensport/musculation/cardio_machines.svg`;
-const icon6 = `${imagePath}/categoryicons/biensport/musculation/chest.svg`;
-const icon7 = `${imagePath}/categoryicons/biensport/musculation/glutes.svg`;
-const icon8 = `${imagePath}/categoryicons/biensport/musculation/gym_dimensions.svg`;
-const icon9 = `${imagePath}/categoryicons/biensport/musculation/legs.svg`;
-const icon10 = `${imagePath}/categoryicons/biensport/musculation/other_equipment.svg`;
-const icon11 = `${imagePath}/categoryicons/biensport/musculation/shoulders.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/musculation/abs.svg`;
+const icon2 = `${imagePath}/categoryicons/musculation/arms.svg`;
+const icon3 = `${imagePath}/categoryicons/musculation/back.svg`;
+const icon4 = `${imagePath}/categoryicons/musculation/brand.svg`;
+const icon5 = `${imagePath}/categoryicons/musculation/cardio_machines.svg`;
+const icon6 = `${imagePath}/categoryicons/musculation/chest.svg`;
+const icon7 = `${imagePath}/categoryicons/musculation/glutes.svg`;
+const icon8 = `${imagePath}/categoryicons/musculation/gym_dimensions.svg`;
+const icon9 = `${imagePath}/categoryicons/musculation/legs.svg`;
+const icon10 = `${imagePath}/categoryicons/musculation/other_equipment.svg`;
+const icon11 = `${imagePath}/categoryicons/musculation/shoulders.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

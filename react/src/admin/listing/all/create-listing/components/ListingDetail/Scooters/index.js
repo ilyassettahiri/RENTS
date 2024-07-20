@@ -8,18 +8,18 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/scooters/battery_capacity.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/scooters/box_dimensions.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/scooters/car_condition.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/scooters/charging_time.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/scooters/electric_scooter.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/scooters/foldable.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/scooters/maximum_speed.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/scooters/weight_capacity.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/scooters/battery_capacity.svg`;
+const icon2 = `${imagePath}/categoryicons/scooters/box_dimensions.svg`;
+const icon3 = `${imagePath}/categoryicons/scooters/car_condition.svg`;
+const icon4 = `${imagePath}/categoryicons/scooters/charging_time.svg`;
+const icon5 = `${imagePath}/categoryicons/scooters/electric_scooter.svg`;
+const icon6 = `${imagePath}/categoryicons/scooters/foldable.svg`;
+const icon7 = `${imagePath}/categoryicons/scooters/maximum_speed.svg`;
+const icon8 = `${imagePath}/categoryicons/scooters/weight_capacity.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

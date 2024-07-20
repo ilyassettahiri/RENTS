@@ -7,13 +7,13 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/biensport/footballs/equipement.svg`;
-const icon2 = `${imagePath}/categoryicons/biensport/footballs/terrain_dimensions.svg`;
-const icon3 = `${imagePath}/categoryicons/biensport/footballs/type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/footballs/equipement.svg`;
+const icon2 = `${imagePath}/categoryicons/footballs/terrain_dimensions.svg`;
+const icon3 = `${imagePath}/categoryicons/footballs/type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

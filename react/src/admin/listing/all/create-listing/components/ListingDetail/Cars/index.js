@@ -7,16 +7,16 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/cars/car_air_conditioner.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/cars/car_condition.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/cars/car_fuel_type.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/cars/car_number_of_doors.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/cars/car_seat.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/cars/car_transmission.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/cars/car_air_conditioner.svg`;
+const icon2 = `${imagePath}/categoryicons/cars/car_condition.svg`;
+const icon3 = `${imagePath}/categoryicons/cars/car_fuel_type.svg`;
+const icon4 = `${imagePath}/categoryicons/cars/car_number_of_doors.svg`;
+const icon5 = `${imagePath}/categoryicons/cars/car_seat.svg`;
+const icon6 = `${imagePath}/categoryicons/cars/car_transmission.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

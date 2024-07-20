@@ -7,19 +7,19 @@ import SoftBox from "components/SoftBox";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/caravans/c.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/caravans/camera.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/caravans/fuel.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/caravans/furniture.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/caravans/gearbox.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/caravans/kitchen_equipment.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/caravans/minimum_age.svg`;
-const icon8 = `${imagePath}/categoryicons/vehicules/caravans/toilet.svg`;
-const icon9 = `${imagePath}/categoryicons/vehicules/caravans/accessories.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/caravans/c.svg`;
+const icon2 = `${imagePath}/categoryicons/caravans/camera.svg`;
+const icon3 = `${imagePath}/categoryicons/caravans/fuel.svg`;
+const icon4 = `${imagePath}/categoryicons/caravans/furniture.svg`;
+const icon5 = `${imagePath}/categoryicons/caravans/gearbox.svg`;
+const icon6 = `${imagePath}/categoryicons/caravans/kitchen_equipment.svg`;
+const icon7 = `${imagePath}/categoryicons/caravans/minimum_age.svg`;
+const icon8 = `${imagePath}/categoryicons/caravans/toilet.svg`;
+const icon9 = `${imagePath}/categoryicons/caravans/accessories.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

@@ -13,19 +13,19 @@ import MultSelect from "admin/components/MultSelect";
  
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/evenements/tentes/brand.svg`;
-const icon2 = `${imagePath}/categoryicons/evenements/tentes/fabric_type.svg`;
-const icon3 = `${imagePath}/categoryicons/evenements/tentes/material.svg`;
-const icon4 = `${imagePath}/categoryicons/evenements/tentes/other_equipment.svg`;
-const icon5 = `${imagePath}/categoryicons/evenements/tentes/shape.svg`;
-const icon6 = `${imagePath}/categoryicons/evenements/tentes/size.svg`;
-const icon7 = `${imagePath}/categoryicons/evenements/tentes/style.svg`;
-const icon8 = `${imagePath}/categoryicons/evenements/tentes/tentes_et_structures_exterieures.svg`;
-const icon9 = `${imagePath}/categoryicons/evenements/tentes/weight.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/tentes/brand.svg`;
+const icon2 = `${imagePath}/categoryicons/tentes/fabric_type.svg`;
+const icon3 = `${imagePath}/categoryicons/tentes/material.svg`;
+const icon4 = `${imagePath}/categoryicons/tentes/other_equipment.svg`;
+const icon5 = `${imagePath}/categoryicons/tentes/shape.svg`;
+const icon6 = `${imagePath}/categoryicons/tentes/size.svg`;
+const icon7 = `${imagePath}/categoryicons/tentes/style.svg`;
+const icon8 = `${imagePath}/categoryicons/tentes/tentes_et_structures_exterieures.svg`;
+const icon9 = `${imagePath}/categoryicons/tentes/weight.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

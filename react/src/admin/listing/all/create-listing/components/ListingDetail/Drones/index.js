@@ -8,23 +8,23 @@ import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/electronique/drones/battery_life.svg`;
-const icon2 = `${imagePath}/categoryicons/electronique/drones/condition.svg`;
-const icon3 = `${imagePath}/categoryicons/electronique/drones/connectivity.svg`;
-const icon4 = `${imagePath}/categoryicons/electronique/drones/flight_time.svg`;
-const icon5 = `${imagePath}/categoryicons/electronique/drones/max_distance.svg`;
-const icon6 = `${imagePath}/categoryicons/electronique/drones/memory.svg`;
-const icon7 = `${imagePath}/categoryicons/electronique/drones/weight.svg`;
-const icon8 = `${imagePath}/categoryicons/electronique/drones/included_components.svg`;
-const icon9 = `${imagePath}/categoryicons/electronique/drones/remote_control.svg`;
-const icon10 = `${imagePath}/categoryicons/electronique/drones/remote_control.svg`;
-const icon11 = `${imagePath}/categoryicons/electronique/drones/video_resolution.svg`;
-const icon12 = `${imagePath}/categoryicons/electronique/drones/battery_capacity.svg`;
-const icon13 = `${imagePath}/categoryicons/electronique/drones/image_resolution.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/drones/battery_life.svg`;
+const icon2 = `${imagePath}/categoryicons/drones/condition.svg`;
+const icon3 = `${imagePath}/categoryicons/drones/connectivity.svg`;
+const icon4 = `${imagePath}/categoryicons/drones/flight_time.svg`;
+const icon5 = `${imagePath}/categoryicons/drones/max_distance.svg`;
+const icon6 = `${imagePath}/categoryicons/drones/memory.svg`;
+const icon7 = `${imagePath}/categoryicons/drones/weight.svg`;
+const icon8 = `${imagePath}/categoryicons/drones/included_components.svg`;
+const icon9 = `${imagePath}/categoryicons/drones/remote_control.svg`;
+const icon10 = `${imagePath}/categoryicons/drones/remote_control.svg`;
+const icon11 = `${imagePath}/categoryicons/drones/video_resolution.svg`;
+const icon12 = `${imagePath}/categoryicons/drones/battery_capacity.svg`;
+const icon13 = `${imagePath}/categoryicons/drones/image_resolution.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

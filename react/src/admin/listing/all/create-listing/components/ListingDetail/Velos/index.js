@@ -14,17 +14,17 @@ import MultSelect from "admin/components/MultSelect";
 
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/vehicules/velo/condition.svg`;
-const icon2 = `${imagePath}/categoryicons/vehicules/velo/fork.svg`;
-const icon3 = `${imagePath}/categoryicons/vehicules/velo/gear.svg`;
-const icon4 = `${imagePath}/categoryicons/vehicules/velo/helmet.svg`;
-const icon5 = `${imagePath}/categoryicons/vehicules/velo/seatpost.svg`;
-const icon6 = `${imagePath}/categoryicons/vehicules/velo/storage.svg`;
-const icon7 = `${imagePath}/categoryicons/vehicules/velo/bike_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/velo/condition.svg`;
+const icon2 = `${imagePath}/categoryicons/velo/fork.svg`;
+const icon3 = `${imagePath}/categoryicons/velo/gear.svg`;
+const icon4 = `${imagePath}/categoryicons/velo/helmet.svg`;
+const icon5 = `${imagePath}/categoryicons/velo/seatpost.svg`;
+const icon6 = `${imagePath}/categoryicons/velo/storage.svg`;
+const icon7 = `${imagePath}/categoryicons/velo/bike_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,

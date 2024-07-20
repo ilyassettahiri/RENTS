@@ -13,26 +13,26 @@ import MultSelect from "admin/components/MultSelect";
 import PropTypes from "prop-types";
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/materiels/pressurewashers/condition.svg`;
-const icon2 = `${imagePath}/categoryicons/materiels/pressurewashers/connection_type.svg`;
-const icon3 = `${imagePath}/categoryicons/materiels/pressurewashers/cord_length.svg`;
-const icon4 = `${imagePath}/categoryicons/materiels/pressurewashers/dimensions.svg`;
-const icon5 = `${imagePath}/categoryicons/materiels/pressurewashers/engine_power.svg`;
-const icon6 = `${imagePath}/categoryicons/materiels/pressurewashers/hose_length.svg`;
-const icon7 = `${imagePath}/categoryicons/materiels/pressurewashers/max_working_temperature.svg`;
-const icon8 = `${imagePath}/categoryicons/materiels/pressurewashers/maximum_flow_rate.svg`;
-const icon9 = `${imagePath}/categoryicons/materiels/pressurewashers/portability.svg`;
-const icon10 = `${imagePath}/categoryicons/materiels/pressurewashers/power_source.svg`;
-const icon11 = `${imagePath}/categoryicons/materiels/pressurewashers/specification_met.svg`;
-const icon12 = `${imagePath}/categoryicons/materiels/pressurewashers/weight.svg`;
-const icon13 = `${imagePath}/categoryicons/materiels/pressurewashers/inlet_connection_type.svg`;
-const icon14 = `${imagePath}/categoryicons/materiels/pressurewashers/outlet_cnnection_size.svg`;
-const icon15 = `${imagePath}/categoryicons/materiels/pressurewashers/power_output.svg`;
-const icon16 = `${imagePath}/categoryicons/materiels/pressurewashers/tool_type.svg`;
-const icon30 = `${imagePath}/categoryicons/vehicules/cars/more_details.svg`;
+const icon1 = `${imagePath}/categoryicons/pressurewashers/condition.svg`;
+const icon2 = `${imagePath}/categoryicons/pressurewashers/connection_type.svg`;
+const icon3 = `${imagePath}/categoryicons/pressurewashers/cord_length.svg`;
+const icon4 = `${imagePath}/categoryicons/pressurewashers/dimensions.svg`;
+const icon5 = `${imagePath}/categoryicons/pressurewashers/engine_power.svg`;
+const icon6 = `${imagePath}/categoryicons/pressurewashers/hose_length.svg`;
+const icon7 = `${imagePath}/categoryicons/pressurewashers/max_working_temperature.svg`;
+const icon8 = `${imagePath}/categoryicons/pressurewashers/maximum_flow_rate.svg`;
+const icon9 = `${imagePath}/categoryicons/pressurewashers/portability.svg`;
+const icon10 = `${imagePath}/categoryicons/pressurewashers/power_source.svg`;
+const icon11 = `${imagePath}/categoryicons/pressurewashers/specification_met.svg`;
+const icon12 = `${imagePath}/categoryicons/pressurewashers/weight.svg`;
+const icon13 = `${imagePath}/categoryicons/pressurewashers/inlet_connection_type.svg`;
+const icon14 = `${imagePath}/categoryicons/pressurewashers/outlet_cnnection_size.svg`;
+const icon15 = `${imagePath}/categoryicons/pressurewashers/power_output.svg`;
+const icon16 = `${imagePath}/categoryicons/pressurewashers/tool_type.svg`;
+const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {
   icon1,
