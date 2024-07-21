@@ -22,7 +22,7 @@ export default function LatestPostItem({ post }) {
 
   return (
     <Stack spacing={2.5}>
-      <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`} alt={attributes.title} ratio="1/1" sx={{ borderRadius: 2 }} />
+      <Image src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`} alt={attributes.title} ratio="1/1" sx={{ borderRadius: 2 }} />
 
       <Stack spacing={1}>
         <PostTimeBlock createdAt={fDate(attributes.created_at)} duration="8 minutes read" />
@@ -35,7 +35,7 @@ export default function LatestPostItem({ post }) {
       </Stack>
 
       <Stack spacing={1} direction="row" alignItems="center">
-        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${author.picture}`} sx={{ width: 32, height: 32 }} />
+        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${author.picture}`} sx={{ width: 32, height: 32 }} />
         <Typography variant="body2">{author.name}</Typography>
       </Stack>
     </Stack>

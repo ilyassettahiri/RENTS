@@ -37,3 +37,13 @@ return new class extends Migration
         Schema::dropIfExists('authors');
     }
 };
+
+
+
+/* Tinker
+$author = new App\Models\Author;
+$author->name = 'Ilyass';
+$author->picture = '/images/admin.jpg';
+$author->bio = 'The CUBE Elly Cruise is a stylish and comfortable electric bike designed for effortless cruising around the city or along scenic routes.';
+$author->save();
+*/

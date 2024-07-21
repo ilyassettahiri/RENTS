@@ -29,3 +29,15 @@ return new class extends Migration
         Schema::dropIfExists('blogs');
     }
 };
+
+
+/* Tinker
+
+$blog = new App\Models\Blog;
+$blog->title = 'Random Title';
+$blog->content = 'This is some random content for the blog.';
+$blog->save();
+
+
+
+*/

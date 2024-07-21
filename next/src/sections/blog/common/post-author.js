@@ -16,7 +16,7 @@ export default function PostAuthor({ author }) {
         py: { xs: 5, md: 10 },
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${picture}`} sx={{ width: 96, height: 96 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`} sx={{ width: 96, height: 96 }} />
 
       <Stack spacing={2}>
         <Stack

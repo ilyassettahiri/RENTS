@@ -15,7 +15,7 @@ export default function PostItem({ post }) {
   return (
     <Stack spacing={2.5}>
       <Image
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`}
         alt={attributes.title}
         ratio="1/1"
         sx={{ borderRadius: 2 }}
@@ -29,7 +29,7 @@ export default function PostItem({ post }) {
         </Link>
       </Stack>
       <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.author.picture}`} sx={{ mr: 1 }} />
+        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.author.picture}`} sx={{ mr: 1 }} />
         {attributes.author.name}
       </Stack>
     </Stack>

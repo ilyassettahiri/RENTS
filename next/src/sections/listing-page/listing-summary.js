@@ -74,7 +74,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/billiards/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/billiards/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -84,7 +84,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/activities/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/activities/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -94,7 +94,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/apartments/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/apartments/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -104,7 +104,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/audios/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/audios/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -114,7 +114,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/boats/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/boats/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -124,7 +124,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/boxings/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/boxings/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -134,7 +134,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/bureauxs/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/bureauxs/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -144,7 +144,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/cameras/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/cameras/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -154,7 +154,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/camions/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/camions/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -164,7 +164,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/caravans/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/caravans/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -174,7 +174,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/cars/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/cars/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -184,7 +184,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/chargers/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/chargers/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -194,7 +194,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/clothes/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/clothes/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -204,7 +204,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/divings/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/divings/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -214,7 +214,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/drones/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/drones/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -224,7 +224,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/eclairages/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/eclairages/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -234,7 +234,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/electricaltools/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/electricaltools/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -244,7 +244,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/engins/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/engins/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -254,7 +254,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/footballs/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/footballs/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -264,7 +264,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/furnitures/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/furnitures/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -274,7 +274,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/gamings/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/gamings/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -284,7 +284,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/golfs/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/golfs/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -294,7 +294,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/houseappliances/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/houseappliances/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -304,7 +304,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/huntings/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/huntings/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -314,7 +314,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/jewelrys/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/jewelrys/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -324,7 +324,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/ladders/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/ladders/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -334,7 +334,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/laptops/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/laptops/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -344,7 +344,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/lightings/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/lightings/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -354,7 +354,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/livres/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/livres/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -364,7 +364,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/magasins/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/magasins/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -374,7 +374,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/maisons/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/maisons/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -384,7 +384,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/mechanicaltools/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/mechanicaltools/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -394,7 +394,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/mobiliers/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/mobiliers/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -404,7 +404,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/motos/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/motos/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -414,7 +414,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/musculations/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/musculations/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -424,7 +424,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/musicals/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/musicals/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -434,7 +434,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/photographies/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/photographies/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -444,7 +444,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/powertools/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/powertools/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -454,7 +454,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/pressurewashers/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/pressurewashers/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -464,7 +464,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/printers/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/printers/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -474,7 +474,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/riads/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/riads/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -484,7 +484,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/routers/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/routers/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -494,7 +494,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/scooters/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/scooters/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -504,7 +504,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/services/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/services/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -514,7 +514,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/sonorisations/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/sonorisations/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -524,7 +524,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/surfs/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/surfs/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -534,7 +534,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/tablettes/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/tablettes/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -544,7 +544,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/taxiaeroports/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/taxiaeroports/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -554,7 +554,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/tennis/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/tennis/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -564,7 +564,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/tentes/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/tentes/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -574,7 +574,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/terrains/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/terrains/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -584,7 +584,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/transportations/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/transportations/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -594,7 +594,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/velos/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/velos/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -604,7 +604,7 @@ function renderSpecificationsByCategory(category, specifications) {
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
-          icon={`${imageBaseUrl}/images/categoryicons/villas/${key}.svg`}
+          icon={`${imageBaseUrl}/categoryicons/villas/${key}.svg`}
           label={formatLabel(key)}
           text={value}
         />
@@ -620,15 +620,13 @@ function formatLabel(label) {
 }
 
 function OverviewItem({ icon, label, text = '-' }) {
-  const isSvgIcon = icon.startsWith('http://localhost:8000');
+
 
   return (
     <Stack spacing={1.5} direction="row" alignItems="flex-start">
-      {isSvgIcon ? (
+
         <img src={icon} alt={label} width={50} height={50} />
-      ) : (
-        <Iconify icon={icon} width={24} />
-      )}
+
       <Stack spacing={0.5}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
           {label}

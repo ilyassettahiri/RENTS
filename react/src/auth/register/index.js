@@ -1,21 +1,7 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-import { useState } from "react";
 
 // react-router-dom components
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 // @mui material components
@@ -33,6 +19,10 @@ import BasicLayout from "auth/components/BasicLayout";
 import Socials from "auth/components/Socials";
 import Separator from "auth/components/Separator";
 
+import { AuthContext } from "context";
+import AuthService from "services/auth-service";
+import { InputLabel } from "@mui/material";
+
 // Images
 
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -45,10 +35,103 @@ export {
 };
 
 
-function Basic() {
-  const [agreement, setAgremment] = useState(true);
+function Register() {
 
-  const handleSetAgremment = () => setAgremment(!agreement);
+
+  const authContext = useContext(AuthContext);
+
+  const [inputs, setInputs] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPass: "",
+    agree: false,
+  });
+
+  const [errors, setErrors] = useState({
+    nameError: false,
+    emailError: false,
+    passwordError: false,
+    confirmPassError: false,
+    agreeError: false,
+    emailTaken: false,
+  });
+
+  const changeHandler = (e) => {
+    setInputs({
+      ...inputs,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (inputs.name.trim().length === 0) {
+      setErrors({ ...errors, nameError: true });
+      return;
+    }
+
+    if (inputs.email.trim().length === 0 || !inputs.email.trim().match(mailFormat)) {
+      setErrors({ ...errors, emailError: true });
+      return;
+    }
+
+    if (inputs.password.trim().length < 8) {
+      setErrors({ ...errors, passwordError: true });
+      return;
+    }
+
+    if (inputs.confirmPass.trim() !== inputs.password.trim()) {
+      setErrors({ ...errors, confirmPassError: true });
+      return;
+    }
+
+    if (inputs.agree === false) {
+      setErrors({ ...errors, agreeError: true });
+      return;
+    }
+    // here will be the post action to add a user to the db
+    const newUser = { name: inputs.name, email: inputs.email, password: inputs.password };
+    const myData = {
+      data: {
+        type: "users",
+        attributes: { ...newUser, password_confirmation: newUser.password },
+      },
+    };
+
+    try {
+      const response = await AuthService.register(myData);
+      authContext.login(response.access_token);
+    } catch (err) {
+      setErrors({ ...errors, emailTaken: true });
+      console.error(err);
+      return null;
+    }
+
+    setInputs({
+      name: "",
+      email: "",
+      password: "",
+      confirmPass: "",
+      agree: false,
+    });
+
+    setErrors({
+      nameError: false,
+      emailError: false,
+      passwordError: false,
+      confirmPassError: false,
+      agreeError: false,
+      emailTaken: false,
+    });
+  };
+
+
+
+
+
+
 
   return (
     <BasicLayout
@@ -67,23 +150,114 @@ function Basic() {
         </SoftBox>
         <Separator />
         <SoftBox pt={2} pb={3} px={3}>
-          <SoftBox component="form" role="form">
+
+
+          <SoftBox component="form" role="form" method="submit" onSubmit={submitHandler}>
             <SoftBox mb={2}>
-              <SoftInput placeholder="Name" />
+              <SoftInput  placeholder="Name"
+              
+                  type="text"
+                  label="Name"
+                  variant="standard"
+                  fullWidth
+                  name="name"
+                  value={inputs.name}
+                  onChange={changeHandler}
+                  error={errors.nameError}
+                  inputProps={{
+                    autoComplete: "name",
+                    form: {
+                      autoComplete: "off",
+                    },
+                  }}
+                  
+                  />
+
+                  {errors.nameError && (
+                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                      The name can not be empty
+                    </SoftTypography>
+                  )}
             </SoftBox>
             <SoftBox mb={2}>
-              <SoftInput type="email" placeholder="Email" />
+              <SoftInput placeholder="Email"
+              
+                  type="email"
+                  label="Email"
+                  variant="standard"
+                  fullWidth
+                  name="email"
+                  value={inputs.email}
+                  onChange={changeHandler}
+                  error={errors.emailError}
+                  inputProps={{
+                    autoComplete: "email",
+                    form: {
+                      autoComplete: "off",
+                    },
+                  }}
+                />
+                {errors.emailError && (
+                  <SoftTypography variant="caption" color="error" fontWeight="light">
+                    The email must be valid
+                  </SoftTypography>
+                )}
             </SoftBox>
             <SoftBox mb={2}>
-              <SoftInput type="password" placeholder="Password" />
+              <SoftInput placeholder="Password"
+              
+              
+                  type="password"
+                  label="Password"
+                  variant="standard"
+                  fullWidth
+                  name="password"
+                  value={inputs.password}
+                  onChange={changeHandler}
+                  error={errors.passwordError}
+                />
+                {errors.passwordError && (
+                  <SoftTypography variant="caption" color="error" fontWeight="light">
+                    The password must be of at least 8 characters
+                  </SoftTypography>
+                )}
+                  
+              
             </SoftBox>
+
+
+
+
+
+            <SoftBox mb={2}>
+              <SoftInput placeholder="Confirm Password"
+                type="password"
+                label="Confirm Password"
+                variant="standard"
+                fullWidth
+                name="confirmPass"
+                value={inputs.confirmPass}
+                onChange={changeHandler}
+                error={errors.confirmPassError}
+              />
+              {errors.confirmPassError && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  The passwords must match
+                </SoftTypography>
+              )}
+            </SoftBox>
+
+
+
+
             <SoftBox display="flex" alignItems="center">
-              <Checkbox checked={agreement} onChange={handleSetAgremment} />
+              <Checkbox name="agree" id="agree"  onChange={changeHandler} />
               <SoftTypography
-                variant="button"
+                variant="standard"
                 fontWeight="regular"
-                onClick={handleSetAgremment}
-                sx={{ cursor: "pointer", userSelect: "none" }}
+                color="text"
+                sx={{  cursor: "pointer" }}
+                htmlFor="agree"
               >
                 &nbsp;&nbsp;I agree the&nbsp;
               </SoftTypography>
@@ -97,8 +271,22 @@ function Basic() {
                 Terms and Conditions
               </SoftTypography>
             </SoftBox>
+
+
+            {errors.agreeError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                You must agree to the Terms and Conditions
+              </SoftTypography>
+            )}
+            {errors.emailTaken && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                The email address has already been taken
+              </SoftTypography>
+            )}
+
+
             <SoftBox mt={4} mb={1}>
-              <SoftButton variant="gradient" color="dark" fullWidth>
+              <SoftButton variant="gradient" color="dark" fullWidth type="submit">
                 sign up
               </SoftButton>
             </SoftBox>
@@ -107,7 +295,7 @@ function Basic() {
                 Already have an account?&nbsp;
                 <SoftTypography
                   component={Link}
-                  to="/authentication/sign-in/basic"
+                  to="/auth/login"
                   variant="button"
                   color="dark"
                   fontWeight="bold"
@@ -118,10 +306,12 @@ function Basic() {
               </SoftTypography>
             </SoftBox>
           </SoftBox>
+
+
         </SoftBox>
       </Card>
     </BasicLayout>
   );
 }
 
-export default Basic;
+export default Register;

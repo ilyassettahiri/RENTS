@@ -39,7 +39,7 @@ export default function ArticleView({ params }) {
         if (articleData.attributes.content && articleData.attributes.images) {
           let contentWithImages = articleData.attributes.content;
           articleData.attributes.images.forEach((image, index) => {
-            const imgTag = `<img src="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${image.url}" alt="${image.caption}" />`;
+            const imgTag = `<img src="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${image.url}" alt="${image.caption}" />`;
             contentWithImages = contentWithImages.replace(`<!-- img ${index + 1} here -->`, imgTag);
           });
           articleData.attributes.content = contentWithImages;
@@ -99,7 +99,7 @@ export default function ArticleView({ params }) {
           <Grid xs={12} md={4}>
             <PostSidebar
               popularTags={tags}
-              author={{ name: author.name, avatarUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${author.picture}` }}
+              author={{ name: author.name, avatarUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${author.picture}` }}
               categories={blogCategories.map(category => ({
                 label: category.attributes.name.trim(),
                 path: `/category/${category.attributes.name.trim().toLowerCase()}`,

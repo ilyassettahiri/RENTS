@@ -13,6 +13,17 @@ export const paths = {
 
 
 
+   // Auth
+
+   login: '/auth/login',
+
+
+   register: '/auth/register',
+
+   forgotPassword: '/auth/forgot-password',
+   verify: '/auth/verify',
+
+
 
 
   // Travel

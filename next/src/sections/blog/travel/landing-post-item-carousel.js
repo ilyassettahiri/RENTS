@@ -62,7 +62,7 @@ export default function LandingPostItemCarousel({ post }) {
       </Stack>
 
       <Image
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${post.attributes.thumb}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${post.attributes.thumb}`}
         alt={post.attributes.title}
         overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${theme.palette.common.black} 75%)`}
         sx={{

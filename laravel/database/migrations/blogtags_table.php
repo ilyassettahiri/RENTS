@@ -29,3 +29,22 @@ return new class extends Migration
         Schema::dropIfExists('blogtags');
     }
 };
+
+
+/* Tinker
+
+
+$blogtag1 = new App\Models\Blogtag;
+$blogtag1->name = 'cars';
+$blogtag1->save();
+
+$blogtag2 = new App\Models\Blogtag;
+$blogtag2->name = 'apartment';
+$blogtag2->save();
+
+$blogtag3 = new App\Models\Blogtag;
+$blogtag3->name = 'homes';
+$blogtag3->save();
+
+
+*/

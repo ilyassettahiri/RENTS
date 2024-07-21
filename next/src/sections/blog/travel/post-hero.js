@@ -21,7 +21,7 @@ export default function PostHero({ post }) {
   const theme = useTheme();
 
   // Prepend the base URL to the thumb attribute
-  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${post.attributes.thumb}`;
+  const imageUrl = `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${post.attributes.thumb}`;
 
   return (
     <Box

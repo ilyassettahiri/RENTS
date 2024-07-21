@@ -19,7 +19,7 @@ export default function PostItemMobile({ post, onSiderbar }) {
     >
       <Image
         alt={attributes.title}
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`}
         sx={{
           width: 80,
           height: 80,

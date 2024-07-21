@@ -18,7 +18,7 @@ export default function FeaturedPostItem({ post, largePost }) {
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>
       <Image
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.thumb}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`}
         alt={attributes.title}
         ratio="1/1"
         overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
@@ -62,7 +62,7 @@ export default function FeaturedPostItem({ post, largePost }) {
         {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>{attributes.content}</TextMaxLine>}
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
           <Avatar
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${attributes.author.picture}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.author.picture}`}
             sx={{
               mr: 1,
               width: 32,

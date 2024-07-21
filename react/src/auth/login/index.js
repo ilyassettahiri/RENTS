@@ -38,6 +38,7 @@ export {
 
 
 function Login() {
+  
   const authContext = useContext(AuthContext);
   const [rememberMe, setRememberMe] = useState(false);
   const [inputs, setInputs] = useState({
@@ -187,7 +188,7 @@ function Login() {
               <SoftBox mt={1} mb={3}>
                 <SoftButton
                   component={Link}
-                  to="/authentication/sign-up/basic"
+                  to="/auth/register"
                   variant="gradient"
                   color="dark"
                   fullWidth
