@@ -34,3 +34,15 @@ return new class extends Migration
         Schema::dropIfExists('policypages');
     }
 };
+
+
+
+/* Tinker
+
+$policyPage = new App\Models\Policypage;
+$policyPage->privacy = 'This is a demo privacy policy content php artisan tinker php artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinker.';
+$policyPage->termcondition = 'These are the demo terms and conditions content php artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinkerphp artisan tinker.';
+$policyPage->save();
+
+
+*/

@@ -182,7 +182,7 @@ function Section({ large_picture, job, successful_hiring, partner, employee, thi
       <Box sx={{ position: 'absolute', width: 1, height: 1, top: 0 }}>
         <Image
           alt="career about"
-          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${large_picture}`}
+          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${large_picture}`}
           sx={{ width: 1, height: 1 }}
         />
       </Box>

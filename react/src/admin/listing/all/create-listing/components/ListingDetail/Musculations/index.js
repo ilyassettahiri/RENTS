@@ -16,17 +16,17 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/musculation/abs.svg`;
-const icon2 = `${imagePath}/categoryicons/musculation/arms.svg`;
-const icon3 = `${imagePath}/categoryicons/musculation/back.svg`;
-const icon4 = `${imagePath}/categoryicons/musculation/brand.svg`;
-const icon5 = `${imagePath}/categoryicons/musculation/cardio_machines.svg`;
-const icon6 = `${imagePath}/categoryicons/musculation/chest.svg`;
-const icon7 = `${imagePath}/categoryicons/musculation/glutes.svg`;
-const icon8 = `${imagePath}/categoryicons/musculation/gym_dimensions.svg`;
-const icon9 = `${imagePath}/categoryicons/musculation/legs.svg`;
-const icon10 = `${imagePath}/categoryicons/musculation/other_equipment.svg`;
-const icon11 = `${imagePath}/categoryicons/musculation/shoulders.svg`;
+const icon1 = `${imagePath}/categoryicons/musculations/abs.svg`;
+const icon2 = `${imagePath}/categoryicons/musculations/arms.svg`;
+const icon3 = `${imagePath}/categoryicons/musculations/back.svg`;
+const icon4 = `${imagePath}/categoryicons/musculations/brand.svg`;
+const icon5 = `${imagePath}/categoryicons/musculations/cardio_machines.svg`;
+const icon6 = `${imagePath}/categoryicons/musculations/chest.svg`;
+const icon7 = `${imagePath}/categoryicons/musculations/glutes.svg`;
+const icon8 = `${imagePath}/categoryicons/musculations/gym_dimensions.svg`;
+const icon9 = `${imagePath}/categoryicons/musculations/legs.svg`;
+const icon10 = `${imagePath}/categoryicons/musculations/other_equipment.svg`;
+const icon11 = `${imagePath}/categoryicons/musculations/shoulders.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

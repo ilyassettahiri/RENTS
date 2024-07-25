@@ -10,17 +10,17 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/photography/battery.svg`;
-const icon2 = `${imagePath}/categoryicons/photography/brand.svg`;
-const icon3 = `${imagePath}/categoryicons/photography/camera.svg`;
-const icon4 = `${imagePath}/categoryicons/photography/lcd.svg`;
-const icon5 = `${imagePath}/categoryicons/photography/max_shutter_speed.svg`;
-const icon6 = `${imagePath}/categoryicons/photography/maximum_webcam_image_resolution.svg`;
-const icon7 = `${imagePath}/categoryicons/photography/other_equipment.svg`;
-const icon8 = `${imagePath}/categoryicons/photography/photography.svg`;
-const icon9 = `${imagePath}/categoryicons/photography/sensor.svg`;
-const icon10 = `${imagePath}/categoryicons/photography/size.svg`;
-const icon11 = `${imagePath}/categoryicons/photography/wide_angle.svg`;
+const icon1 = `${imagePath}/categoryicons/photographies/battery.svg`;
+const icon2 = `${imagePath}/categoryicons/photographies/brand.svg`;
+const icon3 = `${imagePath}/categoryicons/photographies/camera.svg`;
+const icon4 = `${imagePath}/categoryicons/photographies/lcd.svg`;
+const icon5 = `${imagePath}/categoryicons/photographies/max_shutter_speed.svg`;
+const icon6 = `${imagePath}/categoryicons/photographies/maximum_webcam_image_resolution.svg`;
+const icon7 = `${imagePath}/categoryicons/photographies/other_equipment.svg`;
+const icon8 = `${imagePath}/categoryicons/photographies/photography.svg`;
+const icon9 = `${imagePath}/categoryicons/photographies/sensor.svg`;
+const icon10 = `${imagePath}/categoryicons/photographies/size.svg`;
+const icon11 = `${imagePath}/categoryicons/photographies/wide_angle.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

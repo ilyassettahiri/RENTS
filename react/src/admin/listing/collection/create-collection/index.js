@@ -65,6 +65,9 @@ const CreateCollection = () => {
       formData.append("data[attributes][picture]", picture);
     }
 
+    console.log("Form Data:", formData);
+
+
     try {
       await CrudService.createCollection(formData);
       navigate("/listing/collection", {

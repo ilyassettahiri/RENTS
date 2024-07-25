@@ -40,7 +40,7 @@ export default function FaqsView() {
         // Create topics array from fetched data
         const topicsData = faqSubjectsData.map(subject => ({
           title: subject.attributes.name,
-          icon: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${subject.attributes.picture}`,
+          icon: `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}${subject.attributes.picture}`,
           content: <SupportContent contents={faqsData.filter(faq => faq.relationships.faqsubject.data.id === subject.id)} />
         }));
 

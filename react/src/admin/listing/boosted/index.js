@@ -192,6 +192,10 @@ function ListBoosted() {
     navigate(`/listing/detail-listing/${id}`);
   };
 
+  const clickOpenHandler = (category, url) => {
+    window.open(`https://next.prinssy.com/listing-page/${category}/${url}`, '_blank');
+  };
+
   const handleRowClick = (row) => {
     clickViewHandler(row.original.id);
   };
@@ -205,6 +209,8 @@ function ListBoosted() {
       status: row.attributes.status,
       created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'), // Format the date here
       id: row.id,
+      category: row.attributes.category,
+      url: row.attributes.url,
     }));
   };
 
@@ -265,7 +271,7 @@ function ListBoosted() {
                 <Tooltip title="Preview product" placement="top">
                   
 
-                  <IconButton onClick={() => clickViewHandler(info.cell.row.original.id)}>
+                  <IconButton onClick={() => clickOpenHandler(info.cell.row.original.category, info.cell.row.original.url)}>
                     <ViewIcon color="secondary"/>
                   </IconButton>
                 </Tooltip>

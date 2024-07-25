@@ -13,6 +13,8 @@ import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button, { buttonClasses } from '@mui/material/Button';
+import { paths } from 'src/routes/paths';
+
 
 import { usePathname } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
@@ -142,17 +144,58 @@ export default function Footer() {
           sx={{ py: 3, textAlign: 'center' }}
         >
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            © 2023. All rights reserved
+            © 2024. All rights reserved
           </Typography>
 
           <Stack direction="row" spacing={3} justifyContent="center">
-            <Link variant="caption" sx={{ color: 'text.secondary' }}>
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+             href={paths.travel.privacy}
+            >
+              Privacy Policy
+            </Link>
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+            href={paths.travel.termcondition}
+            >
+              Terms of Service
+            </Link>
+
+
+
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+
+            href={paths.support}
+            >
               Help Center
             </Link>
 
-            <Link variant="caption" sx={{ color: 'text.secondary' }}>
-              Terms of Service
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+
+            href={paths.travel.posts}
+            >
+              Blog
             </Link>
+
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+
+            href={paths.travel.about}
+            >
+              About
+            </Link>
+
+
+            <Link variant="caption" sx={{ color: 'text.secondary' }}
+
+            href={paths.travel.contact}
+            >
+              Contact Us
+            </Link>
+
+
           </Stack>
         </Stack>
       </Container>

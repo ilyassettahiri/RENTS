@@ -17,13 +17,13 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/velo/condition.svg`;
-const icon2 = `${imagePath}/categoryicons/velo/fork.svg`;
-const icon3 = `${imagePath}/categoryicons/velo/gear.svg`;
-const icon4 = `${imagePath}/categoryicons/velo/helmet.svg`;
-const icon5 = `${imagePath}/categoryicons/velo/seatpost.svg`;
-const icon6 = `${imagePath}/categoryicons/velo/storage.svg`;
-const icon7 = `${imagePath}/categoryicons/velo/bike_type.svg`;
+const icon1 = `${imagePath}/categoryicons/velos/condition.svg`;
+const icon2 = `${imagePath}/categoryicons/velos/fork.svg`;
+const icon3 = `${imagePath}/categoryicons/velos/gear.svg`;
+const icon4 = `${imagePath}/categoryicons/velos/helmet.svg`;
+const icon5 = `${imagePath}/categoryicons/velos/seatpost.svg`;
+const icon6 = `${imagePath}/categoryicons/velos/storage.svg`;
+const icon7 = `${imagePath}/categoryicons/velos/bike_type.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

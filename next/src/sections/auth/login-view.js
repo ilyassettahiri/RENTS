@@ -88,9 +88,9 @@ export default function LoginView() {
       const response = await AuthService.login(myData);
       console.log('Access Token:', response.access_token); // Log the access token
       authContext.login(response.access_token, response.refresh_token);
-      window.location.href = paths.eCommerce.personal; // Redirect to home page after successful login
+      window.location.href = "/"; // Redirect to home page after successful login
     } catch (res) {
-      if (res.hasOwnProperty("message")) {
+      if (Object.prototype.hasOwnProperty.call(res, 'message')) {
         setErrors({ ...errors, credentialsErros: true, textError: res.message });
       } else {
         setErrors({ ...errors, credentialsErros: true, textError: res.errors[0].detail });

@@ -60,8 +60,8 @@ class OnlinestoreController extends JsonApiController
             'data.attributes.name' => 'required|string',
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
-            'data.attributes.profil_picture' => 'sometimes|image|max:2048', // Validate images if present
+            'data.attributes.picture' => 'sometimes|image|max:6048', // Validate images if present
+            'data.attributes.profil_picture' => 'sometimes|image|max:6048', // Validate images if present
         ]);
 
         // Initialize variables for image paths

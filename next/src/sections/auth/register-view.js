@@ -1,5 +1,10 @@
 'use client';
 
+import { useContext, useState } from "react";
+
+import { AuthContext } from 'src/context/AuthContextProvider';
+import AuthService from 'src/services/auth-service';
+
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -24,12 +29,21 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 // ----------------------------------------------------------------------
 
 export default function RegisterView() {
+  const authContext = useContext(AuthContext);
   const passwordShow = useBoolean();
+
+  const [errors, setErrors] = useState({
+    nameError: false,
+    emailError: false,
+    passwordError: false,
+    confirmPassError: false,
+    emailTaken: false,
+  });
 
   const RegisterSchema = Yup.object().shape({
     fullName: Yup.string()
       .required('Full name is required')
-      .min(6, 'Mininum 6 characters')
+      .min(6, 'Minimum 6 characters')
       .max(15, 'Maximum 15 characters'),
     email: Yup.string().required('Email is required').email('That is not an email'),
     password: Yup.string()
@@ -37,7 +51,7 @@ export default function RegisterView() {
       .min(6, 'Password should be of minimum 6 characters length'),
     confirmPassword: Yup.string()
       .required('Confirm password is required')
-      .oneOf([Yup.ref('password')], "Password's not match"),
+      .oneOf([Yup.ref('password')], "Passwords don't match"),
   });
 
   const defaultValues = {
@@ -58,15 +72,48 @@ export default function RegisterView() {
     formState: { isSubmitting },
   } = methods;
 
-  const onSubmit = handleSubmit(async (data) => {
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      reset();
-      console.log('DATA', data);
-    } catch (error) {
-      console.error(error);
+  const onSubmit = async (data) => {
+    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (data.fullName.trim().length === 0) {
+      setErrors((prev) => ({ ...prev, nameError: true }));
+      return;
     }
-  });
+
+    if (data.email.trim().length === 0 || !data.email.trim().match(mailFormat)) {
+      setErrors((prev) => ({ ...prev, emailError: true }));
+      return;
+    }
+
+    if (data.password.trim().length < 6) {
+      setErrors((prev) => ({ ...prev, passwordError: true }));
+      return;
+    }
+
+    if (data.confirmPassword.trim() !== data.password.trim()) {
+      setErrors((prev) => ({ ...prev, confirmPassError: true }));
+      return;
+    }
+
+    const newUser = { name: data.fullName, email: data.email, password: data.password };
+    const myData = {
+      data: {
+        type: "users",
+        attributes: { ...newUser, password_confirmation: newUser.password },
+      },
+    };
+
+    try {
+      const response = await AuthService.register(myData);
+      authContext.login(response.access_token);
+      window.location.href = "/"; // Redirect to home page after successful login
+    } catch (err) {
+      setErrors((prev) => ({ ...prev, emailTaken: true }));
+      console.error(err);
+    }
+
+    reset(); // Reset form fields after submission
+  };
 
   const renderHead = (
     <div>
@@ -105,7 +152,7 @@ export default function RegisterView() {
   );
 
   const renderForm = (
-    <FormProvider methods={methods} onSubmit={onSubmit}>
+    <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2.5}>
         <RHFTextField name="fullName" label="Full Name" />
 

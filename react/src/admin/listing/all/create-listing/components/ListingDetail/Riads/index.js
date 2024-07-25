@@ -10,19 +10,19 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/riad/amenities.svg`;
-const icon2 = `${imagePath}/categoryicons/riad/bathrooms.svg`;
-const icon3 = `${imagePath}/categoryicons/riad/bedrooms.svg`;
-const icon4 = `${imagePath}/categoryicons/riad/facilities.svg`;
-const icon5 = `${imagePath}/categoryicons/riad/floors.svg`;
-const icon6 = `${imagePath}/categoryicons/riad/living_room.svg`;
-const icon7 = `${imagePath}/categoryicons/riad/rooms.svg`;
-const icon8 = `${imagePath}/categoryicons/riad/security_system.svg`;
-const icon9 = `${imagePath}/categoryicons/riad/service.svg`;
-const icon10 = `${imagePath}/categoryicons/riad/style_architecture.svg`;
-const icon11 = `${imagePath}/categoryicons/riad/surface.svg`;
-const icon12 = `${imagePath}/categoryicons/riad/view.svg`;
-const icon13 = `${imagePath}/categoryicons/riad/year_of_construction.svg`;
+const icon1 = `${imagePath}/categoryicons/riads/amenities.svg`;
+const icon2 = `${imagePath}/categoryicons/riads/bathrooms.svg`;
+const icon3 = `${imagePath}/categoryicons/riads/bedrooms.svg`;
+const icon4 = `${imagePath}/categoryicons/riads/facilities.svg`;
+const icon5 = `${imagePath}/categoryicons/riads/floors.svg`;
+const icon6 = `${imagePath}/categoryicons/riads/living_room.svg`;
+const icon7 = `${imagePath}/categoryicons/riads/rooms.svg`;
+const icon8 = `${imagePath}/categoryicons/riads/security_system.svg`;
+const icon9 = `${imagePath}/categoryicons/riads/service.svg`;
+const icon10 = `${imagePath}/categoryicons/riads/style_architecture.svg`;
+const icon11 = `${imagePath}/categoryicons/riads/surface.svg`;
+const icon12 = `${imagePath}/categoryicons/riads/view.svg`;
+const icon13 = `${imagePath}/categoryicons/riads/year_of_construction.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

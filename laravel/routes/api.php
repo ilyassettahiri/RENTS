@@ -312,9 +312,15 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::post('/uploads', [UploadController::class, 'upload']);
 
+    Route::post('/uploads/collections', [UploadController::class, 'uploadcollection']);
+
+    Route::post('/uploads/listings', [UploadController::class, 'uploadlisting']);
+
+
+
     Route::get('listings/edit-listing/{id}', [EditListingController::class, 'getListing']);
 
-    Route::patch('listings/edit-listing/{id}', [EditListingController::class, 'updateListing']);
+    //Route::patch('listings/edit-listing/{id}', [EditListingController::class, 'updateListing']);
 
     Route::get('listings/detail-listing/{id}', [DetailListingController::class, 'showDetailListing']);
 

@@ -66,36 +66,59 @@ const DetailCollection = () => {
   }, [id]);
 
   const changePictureHandler = (e) => {
-    setPicture(e.target.files[0]);
+    const file = e.target.files[0];
+    if (file && file.type.startsWith("image/")) {
+      console.log("Selected file:", file);
+      setPicture(file);
+    } else {
+      console.error("Selected file is not an image.");
+    }
   };
 
   const changeNameHandler = (e) => {
     setCollection({ ...collection, name: e.target.value });
   };
 
+
   const submitHandler = async (e) => {
     e.preventDefault();
-
+  
     if (collection.name.trim().length < 1) {
       setError({ ...error, name: true, textError: "The Collection name is required" });
       return;
     }
-
+  
     let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
     if (descNoTags.trim().length < 1) {
       setError({ ...error, description: true, textError: "The Collection description is required" });
       return;
     }
-
-    const formData = new FormData();
-    formData.append("data[attributes][name]", collection.name);
-    formData.append("data[attributes][description]", description);
-    if (picture) {
-      formData.append("data[attributes][picture]", picture);
-    }
-
+  
     try {
-      await CrudService.updateCollection(id, formData);
+      let pictureUrl = collection.picture;
+  
+      console.log("Initial picture URL:", pictureUrl);
+  
+      // Upload the picture separately if present
+      if (picture) {
+        const formData = new FormData();
+        formData.append('attachment', picture);
+  
+        const pictureUploadResponse = await CrudService.imageUploadCollection(formData, collection.id);
+        console.log("Picture upload response:", pictureUploadResponse); // Log the full response
+
+        pictureUrl = pictureUploadResponse.relativePath;
+      }
+  
+      const updatedCollection = {
+        id: collection.id,
+        name: collection.name,
+        description,
+        picture: pictureUrl,
+      };
+  
+      await CrudService.updateCollection(updatedCollection, collection.id);
+  
       navigate("/listing/collection", {
         state: { value: true, text: "The Collection was successfully updated" },
       });
@@ -106,6 +129,8 @@ const DetailCollection = () => {
       console.error(err);
     }
   };
+  
+  
 
   const [menu, setMenu] = useState(null);
 
@@ -305,7 +330,7 @@ const DetailCollection = () => {
                         collection.picture && (
                           <SoftBox
                             component="img"
-                            src={`http://localhost:8000${collection.picture}`}
+                            src={`http://localhost:8000/storage${collection.picture}`}
                             alt="Product Image"
                             borderRadius="lg"
                             shadow="lg"

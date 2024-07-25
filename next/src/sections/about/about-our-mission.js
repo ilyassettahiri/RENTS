@@ -43,7 +43,7 @@ export default function AboutOurMission({ profilePicture, third, last }) {
           <Grid xs={12} md={4}>
             <Image
               alt="about introduce"
-              src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${profilePicture}`}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profilePicture}`}
               ratio="3/4"
               sx={{ borderRadius: 2 }}
             />

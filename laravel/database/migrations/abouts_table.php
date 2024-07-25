@@ -37,3 +37,20 @@ return new class extends Migration
         Schema::dropIfExists('abouts');
     }
 };
+
+
+
+/* Tinker
+
+$about = new App\Models\About;
+$about->large_picture = '/images/travel/post_01.jpg';
+$about->profile_picture = '/images/travel/post_02.jpg';
+$about->title = 'About Us';
+$about->content = 'We are a leading company in the industry with a strong commitment to excellence.';
+$about->job = 200000;
+$about->successful_hiring = 500000;
+$about->partner = 300;
+$about->employee = 2200;
+$about->save();
+
+*/

@@ -16,18 +16,18 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/mobilier/brand.svg`;
-const icon2 = `${imagePath}/categoryicons/mobilier/equipement_pour_evenements.svg`;
-const icon3 = `${imagePath}/categoryicons/mobilier/festive_decorations.svg`;
-const icon4 = `${imagePath}/categoryicons/mobilier/light_decorations.svg`;
-const icon5 = `${imagePath}/categoryicons/mobilier/material.svg`;
-const icon6 = `${imagePath}/categoryicons/mobilier/mobilier_et_decoration.svg`;
-const icon7 = `${imagePath}/categoryicons/mobilier/other_equipment.svg`;
-const icon8 = `${imagePath}/categoryicons/mobilier/plant_decorations.svg`;
-const icon9 = `${imagePath}/categoryicons/mobilier/shape.svg`;
-const icon10 = `${imagePath}/categoryicons/mobilier/size.svg`;
-const icon11 = `${imagePath}/categoryicons/mobilier/theme.svg`;
-const icon12 = `${imagePath}/categoryicons/mobilier/weight.svg`;
+const icon1 = `${imagePath}/categoryicons/mobiliers/brand.svg`;
+const icon2 = `${imagePath}/categoryicons/mobiliers/equipement_pour_evenements.svg`;
+const icon3 = `${imagePath}/categoryicons/mobiliers/festive_decorations.svg`;
+const icon4 = `${imagePath}/categoryicons/mobiliers/light_decorations.svg`;
+const icon5 = `${imagePath}/categoryicons/mobiliers/material.svg`;
+const icon6 = `${imagePath}/categoryicons/mobiliers/mobilier_et_decoration.svg`;
+const icon7 = `${imagePath}/categoryicons/mobiliers/other_equipment.svg`;
+const icon8 = `${imagePath}/categoryicons/mobiliers/plant_decorations.svg`;
+const icon9 = `${imagePath}/categoryicons/mobiliers/shape.svg`;
+const icon10 = `${imagePath}/categoryicons/mobiliers/size.svg`;
+const icon11 = `${imagePath}/categoryicons/mobiliers/theme.svg`;
+const icon12 = `${imagePath}/categoryicons/mobiliers/weight.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

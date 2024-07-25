@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
 import AuthService from "src/services/auth-service";
@@ -25,17 +25,17 @@ const AuthContextProvider = ({ children }) => {
     }
   }, [token]);
 
-  const login = (accessToken) => {
+  const login = useCallback((accessToken) => {
     Cookies.set("authToken", accessToken, { expires: 1, sameSite: 'Strict', secure: true });
     setIsAuthenticated(true);
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     Cookies.remove("authToken");
     setIsAuthenticated(false);
-  };
+  }, []);
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     try {
       const res = await AuthService.getProfile();
       return res.data.id;
@@ -43,9 +43,9 @@ const AuthContextProvider = ({ children }) => {
       console.error(err);
       return null;
     }
-  };
+  }, []);
 
-  const getRole = async () => {
+  const getRole = useCallback(async () => {
     const id = await getCurrentUser();
     try {
       const res = await CrudService.getUser(id);
@@ -64,10 +64,20 @@ const AuthContextProvider = ({ children }) => {
       console.error(err);
       return null;
     }
-  };
+  }, [getCurrentUser]);
+
+  // Memoize the context value to prevent it from changing on every render
+  const contextValue = useMemo(() => ({
+    isAuthenticated,
+    setIsAuthenticated,
+    login,
+    logout,
+    getRole,
+    getCurrentUser,
+  }), [isAuthenticated, login, logout, getRole, getCurrentUser]);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, login, logout, getRole, getCurrentUser }}>
+    <AuthContext.Provider value={contextValue}>
       {children}
     </AuthContext.Provider>
   );

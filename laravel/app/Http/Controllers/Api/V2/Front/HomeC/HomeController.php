@@ -193,7 +193,8 @@ class HomeController extends JsonApiController
         $billiards = Billiard::all();
 
 
-        //$authuser = Auth::user();
+        $authuser = Auth::user();
+
 
 
         // Fetch 5 recent articles with their authors and tags
@@ -203,7 +204,7 @@ class HomeController extends JsonApiController
 
 
 
-        $favorites = Favorite::where('user_id', 1)->get();
+        $favorites = Favorite::where('user_id', $authuser->id)->get();
 
 
 

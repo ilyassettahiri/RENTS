@@ -10,26 +10,26 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/bureaux/amenities.svg`;
-const icon2 = `${imagePath}/categoryicons/bureaux/bail_type.svg`;
-const icon3 = `${imagePath}/categoryicons/bureaux/bathrooms.svg`;
-const icon4 = `${imagePath}/categoryicons/bureaux/building_size.svg`;
-const icon5 = `${imagePath}/categoryicons/bureaux/capacity.svg`;
-const icon6 = `${imagePath}/categoryicons/bureaux/conference_room.svg`;
-const icon7 = `${imagePath}/categoryicons/bureaux/facilities.svg`;
-const icon8 = `${imagePath}/categoryicons/bureaux/floor.svg`;
-const icon9 = `${imagePath}/categoryicons/bureaux/lighting.svg`;
-const icon10 = `${imagePath}/categoryicons/bureaux/office_taxes.svg`;
-const icon11 = `${imagePath}/categoryicons/bureaux/private_offices.svg`;
-const icon12 = `${imagePath}/categoryicons/bureaux/property_type.svg`;
-const icon13 = `${imagePath}/categoryicons/bureaux/security.svg`;
-const icon14 = `${imagePath}/categoryicons/bureaux/security_deposit.svg`;
-const icon15 = `${imagePath}/categoryicons/bureaux/services.svg`;
-const icon16 = `${imagePath}/categoryicons/bureaux/soil_type.svg`;
-const icon17 = `${imagePath}/categoryicons/bureaux/surface.svg`;
-const icon18 = `${imagePath}/categoryicons/bureaux/year_built.svg`;
-const icon19 = `${imagePath}/categoryicons/bureaux/year_renovated.svg`;
-const icon20 = `${imagePath}/categoryicons/bureaux/year_renovated.svg`;
+const icon1 = `${imagePath}/categoryicons/bureauxs/amenities.svg`;
+const icon2 = `${imagePath}/categoryicons/bureauxs/bail_type.svg`;
+const icon3 = `${imagePath}/categoryicons/bureauxs/bathrooms.svg`;
+const icon4 = `${imagePath}/categoryicons/bureauxs/building_size.svg`;
+const icon5 = `${imagePath}/categoryicons/bureauxs/capacity.svg`;
+const icon6 = `${imagePath}/categoryicons/bureauxs/conference_room.svg`;
+const icon7 = `${imagePath}/categoryicons/bureauxs/facilities.svg`;
+const icon8 = `${imagePath}/categoryicons/bureauxs/floor.svg`;
+const icon9 = `${imagePath}/categoryicons/bureauxs/lighting.svg`;
+const icon10 = `${imagePath}/categoryicons/bureauxs/office_taxes.svg`;
+const icon11 = `${imagePath}/categoryicons/bureauxs/private_offices.svg`;
+const icon12 = `${imagePath}/categoryicons/bureauxs/property_type.svg`;
+const icon13 = `${imagePath}/categoryicons/bureauxs/security.svg`;
+const icon14 = `${imagePath}/categoryicons/bureauxs/security_deposit.svg`;
+const icon15 = `${imagePath}/categoryicons/bureauxs/services.svg`;
+const icon16 = `${imagePath}/categoryicons/bureauxs/soil_type.svg`;
+const icon17 = `${imagePath}/categoryicons/bureauxs/surface.svg`;
+const icon18 = `${imagePath}/categoryicons/bureauxs/year_built.svg`;
+const icon19 = `${imagePath}/categoryicons/bureauxs/year_renovated.svg`;
+const icon20 = `${imagePath}/categoryicons/bureauxs/year_renovated.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

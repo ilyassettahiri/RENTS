@@ -185,12 +185,12 @@ class SearchController extends JsonApiController
     {
 
 
-        //$authuser = Auth::user();
+        $authuser = Auth::user();
 
 
 
 
-        $favorites = Favorite::where('user_id', 1)->get();
+        $favorites = Favorite::where('user_id', $authuser->id)->get();
 
 
 

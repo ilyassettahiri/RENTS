@@ -192,14 +192,6 @@ class ListingFrontController extends JsonApiController
 {
 
 
-    protected $category;
-    protected $listingcategory;
-    protected $url;
-    protected $review;
-    protected $reservations;
-    protected $reviewslistings;
-    protected $user;
-    protected $reviewreplies;
 
 
 
@@ -211,9 +203,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-        $this->category = $category;
 
-        $this->url = $url;
 
         $authuser = Auth::user();
 
@@ -358,73 +348,73 @@ class ListingFrontController extends JsonApiController
 
 
 
-        switch ($this->category) {
+        switch ($category) {
 
 
 
             case 'billiards':
 
 
-                        $this->listingcategory = Billiard::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                        $listingcategory = Billiard::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
                                 // Fetch 10 recent listings
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'table_brand' => $this->listingcategory->table_brand,
-                                        'condition' => $this->listingcategory->condition,
-                                        'balls_design' => $this->listingcategory->balls_design,
-                                        'bridge_stick' => $this->listingcategory->bridge_stick,
-                                        'chalk' => $this->listingcategory->chalk,
-                                        'other_information' => $this->listingcategory->scoreboards,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'table_brand' => $listingcategory->table_brand,
+                                        'condition' => $listingcategory->condition,
+                                        'balls_design' => $listingcategory->balls_design,
+                                        'bridge_stick' => $listingcategory->bridge_stick,
+                                        'chalk' => $listingcategory->chalk,
+                                        'other_information' => $listingcategory->scoreboards,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -455,14 +445,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Billiardsimg::where('billiard_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Billiardsimg::where('billiard_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -786,65 +776,65 @@ class ListingFrontController extends JsonApiController
             case 'boxings':
 
 
-                        $this->listingcategory = Boxing::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                        $listingcategory = Boxing::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                    'brand_name' => $this->listingcategory->brand_name,
-                                    'ring_dimensions' => $this->listingcategory->ring_dimensions,
-                                    'padding_thickness' => $this->listingcategory->padding_thickness,
-                                    'boxing_clothing' => $this->listingcategory->boxing_clothing,
-                                    'other_equipment' => $this->listingcategory->other_equipment,
-                                    'more_details' => $this->listingcategory->more_details,
+                                    'brand_name' => $listingcategory->brand_name,
+                                    'ring_dimensions' => $listingcategory->ring_dimensions,
+                                    'padding_thickness' => $listingcategory->padding_thickness,
+                                    'boxing_clothing' => $listingcategory->boxing_clothing,
+                                    'other_equipment' => $listingcategory->other_equipment,
+                                    'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -875,14 +865,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Boxingsimg::where('boxing_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Boxingsimg::where('boxing_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -1217,63 +1207,63 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Diving::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Diving::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'brand_name' => $this->listingcategory->brand_name,
-                                        'material' => $this->listingcategory->material,
-                                        'other_equipment' => $this->listingcategory->other_equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'brand_name' => $listingcategory->brand_name,
+                                        'material' => $listingcategory->material,
+                                        'other_equipment' => $listingcategory->other_equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -1304,14 +1294,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Divingsimg::where('diving_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Divingsimg::where('diving_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -1648,60 +1638,63 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Football::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+
+                $listingcategory = Football::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
+
 
                                     'specifications' => [
-                                        'type' => $this->listingcategory->type,
-                                        'equipment' => $this->listingcategory->equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'type' => $listingcategory->type,
+                                        'equipment' => $listingcategory->equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -1726,323 +1719,20 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-
-
-                                        'favorites' => $favoriteIds,
-
-
-                                        'recentlistings' => Football::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
-                                            return [
-
-                                                'attributes' => [
-
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'footballs',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-                                                ],
-
-                                            ];
-                                        }),
-
-
-                                        'recentlistingscasablanca' => Football::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingsmarrakech' => Football::where('city', 'Marrakech')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingstanger' => Football::where('city', 'Tanger')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-
-
-
-                                        'recentlistingsrabat' => Football::where('city', 'Rabat')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingsfes' => Football::where('city', 'Fes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingsagadir' => Football::where('city', 'Agadir')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingsmeknes' => Football::where('city', 'Meknes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-                                        'recentlistingsojuda' => Football::where('city', 'Oujda')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-
-
-
-
-
-                                        'recentlistingskenitra' => Football::where('city', 'Kenitra')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingstetouan' => Football::where('city', 'Tetouan')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingssale' => Football::where('city', 'Salé')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingstemara' => Football::where('city', 'Temara')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingssafi' => Football::where('city', 'Safi')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingsmohammedia' => Football::where('city', 'Mohammedia')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingskhouribga' => Football::where('city', 'Khouribga')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentListingseljadida' => Football::where('city', 'El Jadida')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-                                        'recentlistingsbenimellal' => Football::where('city', 'Beni Mellal')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-                                            return [
-                                                'attributes' => [
-                                                    'title' => $recentlisting->title,
-                                                    'price' => $recentlisting->price,
-                                                    'city' => $recentlisting->city,
-                                                    'id' => $recentlisting->id,
-                                                    'category' => 'footballs',
-                                                    'url' => $recentlisting->url,
-                                                    'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                    'picture' => $recentlisting->picture,
-                                                ],
-                                            ];
-                                        }),
-
-
-
-
-                                        'socials' => [
-                                                'facebook' => $generaleinfo->facebook,
-                                                'twitter' => $generaleinfo->twitter, // X / Twitter
-                                                'instagram' => $generaleinfo->instagram,
-                                                'linkedin' => $generaleinfo->linkedin,
-                                                'pinterest' => $generaleinfo->pinterest,
-                                                'telegram' => $generaleinfo->telegram,
-                                                'tiktok' => $generaleinfo->tiktok,
-                                                'youtube' => $generaleinfo->youtube,
-                                        ],
-
-
-
-
-
-
-
-
-
-
                                         ];
                                     }),
 
 
 
 
-                                    'images' => Footballsimg::where('football_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Footballsimg::where('football_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -2052,9 +1742,310 @@ class ListingFrontController extends JsonApiController
 
 
 
+
+
+
+                                    'favorites' => $favoriteIds,
+
+
+                                    'recentlistings' => Football::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
+                                        return [
+
+                                            'attributes' => [
+
+                                            'title' => $recentlisting->title,
+                                            'price' => $recentlisting->price,
+                                            'city' => $recentlisting->city,
+                                            'id' => $recentlisting->id,
+                                            'category' => 'footballs',
+                                            'url' => $recentlisting->url,
+                                            'created_at' => $recentlisting->created_at->toIso8601String(),
+                                            'picture' => $recentlisting->picture,
+                                            ],
+
+                                        ];
+                                    }),
+
+
+                                    'recentlistingscasablanca' => Football::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingsmarrakech' => Football::where('city', 'Marrakech')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingstanger' => Football::where('city', 'Tanger')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+
+
+
+                                    'recentlistingsrabat' => Football::where('city', 'Rabat')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingsfes' => Football::where('city', 'Fes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingsagadir' => Football::where('city', 'Agadir')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingsmeknes' => Football::where('city', 'Meknes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+                                    'recentlistingsojuda' => Football::where('city', 'Oujda')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+
+
+
+
+
+                                    'recentlistingskenitra' => Football::where('city', 'Kenitra')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingstetouan' => Football::where('city', 'Tetouan')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingssale' => Football::where('city', 'Salé')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingstemara' => Football::where('city', 'Temara')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingssafi' => Football::where('city', 'Safi')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingsmohammedia' => Football::where('city', 'Mohammedia')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingskhouribga' => Football::where('city', 'Khouribga')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentListingseljadida' => Football::where('city', 'El Jadida')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+                                    'recentlistingsbenimellal' => Football::where('city', 'Beni Mellal')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+                                        return [
+                                            'attributes' => [
+                                                'title' => $recentlisting->title,
+                                                'price' => $recentlisting->price,
+                                                'city' => $recentlisting->city,
+                                                'id' => $recentlisting->id,
+                                                'category' => 'footballs',
+                                                'url' => $recentlisting->url,
+                                                'created_at' => $recentlisting->created_at->toIso8601String(),
+                                                'picture' => $recentlisting->picture,
+                                            ],
+                                        ];
+                                    }),
+
+
+
+
+                                    'socials' => [
+                                            'facebook' => $generaleinfo->facebook,
+                                            'twitter' => $generaleinfo->twitter, // X / Twitter
+                                            'instagram' => $generaleinfo->instagram,
+                                            'linkedin' => $generaleinfo->linkedin,
+                                            'pinterest' => $generaleinfo->pinterest,
+                                            'telegram' => $generaleinfo->telegram,
+                                            'tiktok' => $generaleinfo->tiktok,
+                                            'youtube' => $generaleinfo->youtube,
+                                    ],
+
+
+
+
+
+
+
                                 ],
                             ],
                         ]);
+
 
 
 
@@ -2074,62 +2065,62 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Golf::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Golf::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'clothing' => $this->listingcategory->clothing,
-                                        'golf_cars' => $this->listingcategory->golf_cars,
-                                        'other_equipment' => $this->listingcategory->other_equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'clothing' => $listingcategory->clothing,
+                                        'golf_cars' => $listingcategory->golf_cars,
+                                        'other_equipment' => $listingcategory->other_equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -2160,14 +2151,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Golfsimg::where('golf_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Golfsimg::where('golf_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -2506,67 +2497,67 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Hunting::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Hunting::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'bow_arrow' => $this->listingcategory->bow_arrow,
-                                        'crossbow' => $this->listingcategory->crossbow,
-                                        'decoy' => $this->listingcategory->decoy,
-                                        'game_call' => $this->listingcategory->game_call,
-                                        'binoculars' => $this->listingcategory->binoculars,
-                                        'clothing' => $this->listingcategory->clothing,
-                                        'equipment' => $this->listingcategory->equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'bow_arrow' => $listingcategory->bow_arrow,
+                                        'crossbow' => $listingcategory->crossbow,
+                                        'decoy' => $listingcategory->decoy,
+                                        'game_call' => $listingcategory->game_call,
+                                        'binoculars' => $listingcategory->binoculars,
+                                        'clothing' => $listingcategory->clothing,
+                                        'equipment' => $listingcategory->equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -2597,14 +2588,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Huntingsimg::where('hunting_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Huntingsimg::where('hunting_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -2941,70 +2932,70 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Musculation::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Musculation::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'brand_name' => $this->listingcategory->brand_name,
-                                        'arms' => $this->listingcategory->arms,
-                                        'back' => $this->listingcategory->back,
-                                        'shoulders' => $this->listingcategory->shoulders,
-                                        'glutes' => $this->listingcategory->glutes,
-                                        'legs' => $this->listingcategory->legs,
-                                        'chest' => $this->listingcategory->chest,
-                                        'abs' => $this->listingcategory->abs,
-                                        'cardio_machines' => $this->listingcategory->cardio_machines,
-                                        'dumbbells' => $this->listingcategory->dumbbells,
+                                        'brand_name' => $listingcategory->brand_name,
+                                        'arms' => $listingcategory->arms,
+                                        'back' => $listingcategory->back,
+                                        'shoulders' => $listingcategory->shoulders,
+                                        'glutes' => $listingcategory->glutes,
+                                        'legs' => $listingcategory->legs,
+                                        'chest' => $listingcategory->chest,
+                                        'abs' => $listingcategory->abs,
+                                        'cardio_machines' => $listingcategory->cardio_machines,
+                                        'dumbbells' => $listingcategory->dumbbells,
 
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -3035,14 +3026,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Musculationsimg::where('musculation_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Musculationsimg::where('musculation_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -3380,65 +3371,65 @@ class ListingFrontController extends JsonApiController
             case 'surfs':
 
 
-                $this->listingcategory = Surf::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Surf::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'surf_category' => $this->listingcategory->surf_category,
-                                        'board_types' => $this->listingcategory->board_types,
-                                        'board_size' => $this->listingcategory->board_size,
-                                        'wetsuits' => $this->listingcategory->wetsuits,
-                                        'surf_other' => $this->listingcategory->surf_other,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'surf_category' => $listingcategory->surf_category,
+                                        'board_types' => $listingcategory->board_types,
+                                        'board_size' => $listingcategory->board_size,
+                                        'wetsuits' => $listingcategory->wetsuits,
+                                        'surf_other' => $listingcategory->surf_other,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -3469,14 +3460,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Surfsimg::where('surf_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Surfsimg::where('surf_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -3813,62 +3804,62 @@ class ListingFrontController extends JsonApiController
             case 'tennis':
 
 
-                $this->listingcategory = Tennis::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Tennis::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'terrain_dimensions' => $this->listingcategory->terrain_dimensions,
-                                        'brand' => $this->listingcategory->brand,
-                                        'clothing' => $this->listingcategory->clothing,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'terrain_dimensions' => $listingcategory->terrain_dimensions,
+                                        'brand' => $listingcategory->brand,
+                                        'clothing' => $listingcategory->clothing,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -3899,14 +3890,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Tennisimg::where('tennis_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Tennisimg::where('tennis_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -4242,67 +4233,67 @@ class ListingFrontController extends JsonApiController
             case 'audios':
 
 
-                $this->listingcategory = Audio::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Audio::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'audio_type' => $this->listingcategory->audio_type,
-                                        'sound_quality' => $this->listingcategory->sound_quality,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'max_wireless_range' => $this->listingcategory->max_wireless_range,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'charging_time' => $this->listingcategory->charging_time,
-                                        'condition' => $this->listingcategory->condition,
-                                        'compatibility' => $this->listingcategory->compatibility,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'audio_type' => $listingcategory->audio_type,
+                                        'sound_quality' => $listingcategory->sound_quality,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'max_wireless_range' => $listingcategory->max_wireless_range,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'charging_time' => $listingcategory->charging_time,
+                                        'condition' => $listingcategory->condition,
+                                        'compatibility' => $listingcategory->compatibility,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -4333,14 +4324,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Audiosimg::where('audio_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Audiosimg::where('audio_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -4677,69 +4668,69 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Camera::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Camera::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'photo_size' => $this->listingcategory->photo_size,
-                                        'sensor_size' => $this->listingcategory->sensor_size,
-                                        'image_stabilization' => $this->listingcategory->image_stabilization,
-                                        'shutter_speed' => $this->listingcategory->shutter_speed,
-                                        'exposure_control' => $this->listingcategory->exposure_control,
-                                        'image_resolution' => $this->listingcategory->image_resolution,
-                                        'condition' => $this->listingcategory->condition,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'memory' => $this->listingcategory->memory,
-                                        'lens' => $this->listingcategory->lens,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'photo_size' => $listingcategory->photo_size,
+                                        'sensor_size' => $listingcategory->sensor_size,
+                                        'image_stabilization' => $listingcategory->image_stabilization,
+                                        'shutter_speed' => $listingcategory->shutter_speed,
+                                        'exposure_control' => $listingcategory->exposure_control,
+                                        'image_resolution' => $listingcategory->image_resolution,
+                                        'condition' => $listingcategory->condition,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'memory' => $listingcategory->memory,
+                                        'lens' => $listingcategory->lens,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -4770,14 +4761,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Camerasimg::where('camera_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Camerasimg::where('camera_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -5111,68 +5102,68 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Charger::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Charger::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'compatibility' => $this->listingcategory->compatibility,
-                                        'number_of_ports' => $this->listingcategory->number_of_ports,
-                                        'length' => $this->listingcategory->length,
-                                        'input_voltage' => $this->listingcategory->input_voltage,
-                                        'wattage' => $this->listingcategory->wattage,
-                                        'condition' => $this->listingcategory->condition,
-                                        'connector_type' => $this->listingcategory->connector_type,
-                                        'amperage' => $this->listingcategory->amperage,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'compatibility' => $listingcategory->compatibility,
+                                        'number_of_ports' => $listingcategory->number_of_ports,
+                                        'length' => $listingcategory->length,
+                                        'input_voltage' => $listingcategory->input_voltage,
+                                        'wattage' => $listingcategory->wattage,
+                                        'condition' => $listingcategory->condition,
+                                        'connector_type' => $listingcategory->connector_type,
+                                        'amperage' => $listingcategory->amperage,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -5203,14 +5194,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Chargersimg::where('charger_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Chargersimg::where('charger_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -5545,70 +5536,70 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Drone::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Drone::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'flight_time' => $this->listingcategory->flight_time,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'condition' => $this->listingcategory->condition,
-                                        'video_resolution' => $this->listingcategory->video_resolution,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'battery_capacity' => $this->listingcategory->battery_capacity,
-                                        'memory' => $this->listingcategory->memory,
-                                        'image_resolution' => $this->listingcategory->image_resolution,
-                                        'included_components' => $this->listingcategory->included_components,
-                                        'remote_control' => $this->listingcategory->remote_control,
-                                        'max_distance' => $this->listingcategory->max_distance,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'flight_time' => $listingcategory->flight_time,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'condition' => $listingcategory->condition,
+                                        'video_resolution' => $listingcategory->video_resolution,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'battery_capacity' => $listingcategory->battery_capacity,
+                                        'memory' => $listingcategory->memory,
+                                        'image_resolution' => $listingcategory->image_resolution,
+                                        'included_components' => $listingcategory->included_components,
+                                        'remote_control' => $listingcategory->remote_control,
+                                        'max_distance' => $listingcategory->max_distance,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -5639,14 +5630,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Dronesimg::where('drone_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Dronesimg::where('drone_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -5983,66 +5974,66 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Gaming::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Gaming::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'storage' => $this->listingcategory->storage,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'ports' => $this->listingcategory->ports,
-                                        'online_services' => $this->listingcategory->online_services,
-                                        'condition' => $this->listingcategory->condition,
-                                        'games' => $this->listingcategory->games,
-                                        'controllers' => $this->listingcategory->controllers,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'storage' => $listingcategory->storage,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'ports' => $listingcategory->ports,
+                                        'online_services' => $listingcategory->online_services,
+                                        'condition' => $listingcategory->condition,
+                                        'games' => $listingcategory->games,
+                                        'controllers' => $listingcategory->controllers,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -6073,14 +6064,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Gamingsimg::where('gaming_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Gamingsimg::where('gaming_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -6413,70 +6404,74 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Laptop::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+
+
+                $listingcategory = Laptop::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
+
 
                                     'specifications' => [
-                                        'ram' => $this->listingcategory->ram,
-                                        'graphics_card' => $this->listingcategory->graphics_card,
-                                        'operating_system' => $this->listingcategory->operating_system,
-                                        'number_ports' => $this->listingcategory->number_ports,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'drive_storage' => $this->listingcategory->drive_storage,
-                                        'resolution' => $this->listingcategory->resolution,
-                                        'weight' => $this->listingcategory->weight,
-                                        'screen_size' => $this->listingcategory->screen_size,
-                                        'cpu' => $this->listingcategory->cpu,
-                                        'condition' => $this->listingcategory->condition,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'ram' => $listingcategory->ram,
+                                        'graphics_card' => $listingcategory->graphics_card,
+                                        'operating_system' => $listingcategory->operating_system,
+                                        'number_ports' => $listingcategory->number_ports,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'drive_storage' => $listingcategory->drive_storage,
+                                        'resolution' => $listingcategory->resolution,
+                                        'weight' => $listingcategory->weight,
+                                        'screen_size' => $listingcategory->screen_size,
+                                        'cpu' => $listingcategory->cpu,
+                                        'condition' => $listingcategory->condition,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -6507,21 +6502,20 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Laptopsimg::where('laptop_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Laptopsimg::where('laptop_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
 
                                     'total_reviews' => $totalReviews,
                                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
-
 
 
 
@@ -6825,11 +6819,17 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-
                                 ],
                             ],
                         ]);
+
+
+
+
+
+
+
+
 
 
 
@@ -6847,64 +6847,64 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Lighting::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Lighting::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'included_accessories' => $this->listingcategory->included_accessories,
-                                        'condition' => $this->listingcategory->condition,
-                                        'color_temperature' => $this->listingcategory->color_temperature,
-                                        'compatibility' => $this->listingcategory->compatibility,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'included_accessories' => $listingcategory->included_accessories,
+                                        'condition' => $listingcategory->condition,
+                                        'color_temperature' => $listingcategory->color_temperature,
+                                        'compatibility' => $listingcategory->compatibility,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -6935,14 +6935,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Lightingsimg::where('lighting_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Lightingsimg::where('lighting_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -7275,67 +7275,67 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Printer::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Printer::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'print_speed' => $this->listingcategory->print_speed,
-                                        'print_resolution' => $this->listingcategory->print_resolution,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'paper_size' => $this->listingcategory->paper_size,
-                                        'compatible' => $this->listingcategory->compatible,
-                                        'condition' => $this->listingcategory->condition,
-                                        'input_sheets' => $this->listingcategory->input_sheets,
-                                        'print_media' => $this->listingcategory->print_media,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'print_speed' => $listingcategory->print_speed,
+                                        'print_resolution' => $listingcategory->print_resolution,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'paper_size' => $listingcategory->paper_size,
+                                        'compatible' => $listingcategory->compatible,
+                                        'condition' => $listingcategory->condition,
+                                        'input_sheets' => $listingcategory->input_sheets,
+                                        'print_media' => $listingcategory->print_media,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -7366,14 +7366,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Printersimg::where('printer_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Printersimg::where('printer_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -7705,68 +7705,68 @@ class ListingFrontController extends JsonApiController
             case 'routers':
 
 
-                $this->listingcategory = Router::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Router::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'gbps_speed' => $this->listingcategory->gbps_speed,
-                                        'wireless' => $this->listingcategory->wireless,
-                                        'frequency' => $this->listingcategory->frequency,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'antennas' => $this->listingcategory->antennas,
-                                        'condition' => $this->listingcategory->condition,
-                                        'compatible' => $this->listingcategory->compatible,
-                                        'signal_coverage' => $this->listingcategory->signal_coverage,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'gbps_speed' => $listingcategory->gbps_speed,
+                                        'wireless' => $listingcategory->wireless,
+                                        'frequency' => $listingcategory->frequency,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'antennas' => $listingcategory->antennas,
+                                        'condition' => $listingcategory->condition,
+                                        'compatible' => $listingcategory->compatible,
+                                        'signal_coverage' => $listingcategory->signal_coverage,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -7797,14 +7797,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Routersimg::where('router_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Routersimg::where('router_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -8136,67 +8136,67 @@ class ListingFrontController extends JsonApiController
             case 'tablettes':
 
 
-                $this->listingcategory = Tablette::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Tablette::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'operating_system' => $this->listingcategory->operating_system,
-                                        'ram' => $this->listingcategory->ram,
-                                        'storage' => $this->listingcategory->storage,
-                                        'display_size' => $this->listingcategory->display_size,
-                                        'display_resolution' => $this->listingcategory->display_resolution,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'condition' => $this->listingcategory->condition,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'operating_system' => $listingcategory->operating_system,
+                                        'ram' => $listingcategory->ram,
+                                        'storage' => $listingcategory->storage,
+                                        'display_size' => $listingcategory->display_size,
+                                        'display_resolution' => $listingcategory->display_resolution,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'condition' => $listingcategory->condition,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -8227,14 +8227,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Tablettesimg::where('tablette_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Tablettesimg::where('tablette_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -8567,73 +8567,73 @@ class ListingFrontController extends JsonApiController
             case 'eclairages':
 
 
-                $this->listingcategory = Eclairage::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Eclairage::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'brand_name' => $this->listingcategory->brand_name,
-                                        'size' => $this->listingcategory->size,
-                                        'voltage' => $this->listingcategory->voltage,
-                                        'chandeliers' => $this->listingcategory->chandeliers,
-                                        'lamps' => $this->listingcategory->lamps,
-                                        'light_fixtures' => $this->listingcategory->light_fixtures,
-                                        'projectors' => $this->listingcategory->projectors,
-                                        'leds' => $this->listingcategory->leds,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'light_source' => $this->listingcategory->light_source,
-                                        'light_color' => $this->listingcategory->light_color,
-                                        'lighting_method' => $this->listingcategory->lighting_method,
-                                        'controller' => $this->listingcategory->controller,
-                                        'other' => $this->listingcategory->other,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'brand_name' => $listingcategory->brand_name,
+                                        'size' => $listingcategory->size,
+                                        'voltage' => $listingcategory->voltage,
+                                        'chandeliers' => $listingcategory->chandeliers,
+                                        'lamps' => $listingcategory->lamps,
+                                        'light_fixtures' => $listingcategory->light_fixtures,
+                                        'projectors' => $listingcategory->projectors,
+                                        'leds' => $listingcategory->leds,
+                                        'power_source' => $listingcategory->power_source,
+                                        'light_source' => $listingcategory->light_source,
+                                        'light_color' => $listingcategory->light_color,
+                                        'lighting_method' => $listingcategory->lighting_method,
+                                        'controller' => $listingcategory->controller,
+                                        'other' => $listingcategory->other,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -8664,14 +8664,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Eclairagesimg::where('eclairage_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Eclairagesimg::where('eclairage_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -9004,66 +9004,66 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Mobilier::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Mobilier::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'material' => $this->listingcategory->material,
-                                        'theme' => $this->listingcategory->theme,
-                                        'plant_decorations' => $this->listingcategory->plant_decorations,
-                                        'light_decorations' => $this->listingcategory->light_decorations,
-                                        'festive_decorations' => $this->listingcategory->festive_decorations,
-                                        'others' => $this->listingcategory->others,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'material' => $listingcategory->material,
+                                        'theme' => $listingcategory->theme,
+                                        'plant_decorations' => $listingcategory->plant_decorations,
+                                        'light_decorations' => $listingcategory->light_decorations,
+                                        'festive_decorations' => $listingcategory->festive_decorations,
+                                        'others' => $listingcategory->others,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -9094,14 +9094,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Mobiliersimg::where('mobilier_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Mobiliersimg::where('mobilier_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -9432,68 +9432,68 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Photographie::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Photographie::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'size' => $this->listingcategory->size,
-                                        'battery' => $this->listingcategory->battery,
-                                        'brand_name' => $this->listingcategory->brand_name,
-                                        'camera' => $this->listingcategory->camera,
-                                        'sensor' => $this->listingcategory->sensor,
-                                        'angle' => $this->listingcategory->angle,
-                                        'lcd' => $this->listingcategory->lcd,
-                                        'other_equipment' => $this->listingcategory->other_equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'size' => $listingcategory->size,
+                                        'battery' => $listingcategory->battery,
+                                        'brand_name' => $listingcategory->brand_name,
+                                        'camera' => $listingcategory->camera,
+                                        'sensor' => $listingcategory->sensor,
+                                        'angle' => $listingcategory->angle,
+                                        'lcd' => $listingcategory->lcd,
+                                        'other_equipment' => $listingcategory->other_equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -9524,14 +9524,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Photographiesimg::where('photographie_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Photographiesimg::where('photographie_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -9860,76 +9860,76 @@ class ListingFrontController extends JsonApiController
             case 'sonorisations':
 
 
-                $this->listingcategory = Sonorisation::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Sonorisation::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'brand_name' => $this->listingcategory->brand_name,
-                                        'size' => $this->listingcategory->size,
-                                        'connectivity' => $this->listingcategory->connectivity,
-                                        'fastener_type' => $this->listingcategory->fastener_type,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'output_power' => $this->listingcategory->output_power,
-                                        'number_of_channels' => $this->listingcategory->number_of_channels,
-                                        'compatibility' => $this->listingcategory->compatibility,
-                                        'power_watts' => $this->listingcategory->power_watts,
-                                        'power_type' => $this->listingcategory->power_type,
-                                        'battery' => $this->listingcategory->battery,
-                                        'weight' => $this->listingcategory->weight,
-                                        'microphone' => $this->listingcategory->microphone,
-                                        'mixage_table' => $this->listingcategory->mixage_table,
-                                        'amplifier' => $this->listingcategory->amplifier,
-                                        'cables_connectors' => $this->listingcategory->cables_connectors,
-                                        'speaker' => $this->listingcategory->speaker,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'brand_name' => $listingcategory->brand_name,
+                                        'size' => $listingcategory->size,
+                                        'connectivity' => $listingcategory->connectivity,
+                                        'fastener_type' => $listingcategory->fastener_type,
+                                        'power_source' => $listingcategory->power_source,
+                                        'output_power' => $listingcategory->output_power,
+                                        'number_of_channels' => $listingcategory->number_of_channels,
+                                        'compatibility' => $listingcategory->compatibility,
+                                        'power_watts' => $listingcategory->power_watts,
+                                        'power_type' => $listingcategory->power_type,
+                                        'battery' => $listingcategory->battery,
+                                        'weight' => $listingcategory->weight,
+                                        'microphone' => $listingcategory->microphone,
+                                        'mixage_table' => $listingcategory->mixage_table,
+                                        'amplifier' => $listingcategory->amplifier,
+                                        'cables_connectors' => $listingcategory->cables_connectors,
+                                        'speaker' => $listingcategory->speaker,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -9960,14 +9960,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Sonorisationsimg::where('sonorisation_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Sonorisationsimg::where('sonorisation_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -10300,64 +10300,64 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Tente::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Tente::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'material' => $this->listingcategory->material,
-                                        'style' => $this->listingcategory->style,
-                                        'fabric_type' => $this->listingcategory->fabric_type,
-                                        'other_equipment' => $this->listingcategory->other_equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'material' => $listingcategory->material,
+                                        'style' => $listingcategory->style,
+                                        'fabric_type' => $listingcategory->fabric_type,
+                                        'other_equipment' => $listingcategory->other_equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -10388,14 +10388,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Tentesimg::where('tente_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Tentesimg::where('tente_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -10726,66 +10726,66 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Clothes::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Clothes::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'number_of_pieces' => $this->listingcategory->number_of_pieces,
-                                        'closure_type' => $this->listingcategory->closure_type,
-                                        'strap_type' => $this->listingcategory->strap_type,
-                                        'number_of_pockets' => $this->listingcategory->number_of_pockets,
-                                        'heel_height' => $this->listingcategory->heel_height,
-                                        'condition' => $this->listingcategory->condition,
-                                        'color' => $this->listingcategory->color,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'number_of_pieces' => $listingcategory->number_of_pieces,
+                                        'closure_type' => $listingcategory->closure_type,
+                                        'strap_type' => $listingcategory->strap_type,
+                                        'number_of_pockets' => $listingcategory->number_of_pockets,
+                                        'heel_height' => $listingcategory->heel_height,
+                                        'condition' => $listingcategory->condition,
+                                        'color' => $listingcategory->color,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -10816,14 +10816,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Clothesimg::where('clothes_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Clothesimg::where('clothes_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -11153,67 +11153,67 @@ class ListingFrontController extends JsonApiController
             case 'jewelrys':
 
 
-                $this->listingcategory = Jewelry::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Jewelry::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'type' => $this->listingcategory->type,
-                                        'materials' => $this->listingcategory->materials,
-                                        'occasion' => $this->listingcategory->occasion,
-                                        'chain_type' => $this->listingcategory->chain_type,
-                                        'gem_type' => $this->listingcategory->gem_type,
-                                        'color' => $this->listingcategory->color,
-                                        'closure_type' => $this->listingcategory->closure_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'type' => $listingcategory->type,
+                                        'materials' => $listingcategory->materials,
+                                        'occasion' => $listingcategory->occasion,
+                                        'chain_type' => $listingcategory->chain_type,
+                                        'gem_type' => $listingcategory->gem_type,
+                                        'color' => $listingcategory->color,
+                                        'closure_type' => $listingcategory->closure_type,
+                                        'condition' => $listingcategory->condition,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -11244,14 +11244,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Jewelrysimg::where('jewelry_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Jewelrysimg::where('jewelry_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -11582,67 +11582,67 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Apartment::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Apartment::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'rooms' => $this->listingcategory->rooms,
-                                        'living_rooms' => $this->listingcategory->living_rooms,
-                                        'bathrooms' => $this->listingcategory->bathrooms,
-                                        'bedrooms' => $this->listingcategory->bedrooms,
-                                        'security_system' => $this->listingcategory->security_system,
-                                        'equipped_kitchen' => $this->listingcategory->equipped_kitchen,
-                                        'service' => $this->listingcategory->service,
-                                        'facilities' => $this->listingcategory->facilities,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'rooms' => $listingcategory->rooms,
+                                        'living_rooms' => $listingcategory->living_rooms,
+                                        'bathrooms' => $listingcategory->bathrooms,
+                                        'bedrooms' => $listingcategory->bedrooms,
+                                        'security_system' => $listingcategory->security_system,
+                                        'equipped_kitchen' => $listingcategory->equipped_kitchen,
+                                        'service' => $listingcategory->service,
+                                        'facilities' => $listingcategory->facilities,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -11673,14 +11673,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Apartmentsimg::where('apartment_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Apartmentsimg::where('apartment_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -12012,75 +12012,75 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Bureaux::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Bureaux::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'property_type' => $this->listingcategory->property_type,
-                                        'security' => $this->listingcategory->security,
-                                        'soil_type' => $this->listingcategory->soil_type,
-                                        'parking' => $this->listingcategory->parking,
-                                        'bathrooms' => $this->listingcategory->bathrooms,
-                                        'conference_room' => $this->listingcategory->conference_room,
-                                        'building_size' => $this->listingcategory->building_size,
-                                        'lighting' => $this->listingcategory->lighting,
-                                        'capacity' => $this->listingcategory->capacity,
-                                        'bail_type' => $this->listingcategory->bail_type,
-                                        'security_deposit' => $this->listingcategory->security_deposit,
-                                        'office_taxes' => $this->listingcategory->office_taxes,
-                                        'facilities' => $this->listingcategory->facilities,
-                                        'amenities' => $this->listingcategory->amenities,
-                                        'services' => $this->listingcategory->services,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'property_type' => $listingcategory->property_type,
+                                        'security' => $listingcategory->security,
+                                        'soil_type' => $listingcategory->soil_type,
+                                        'parking' => $listingcategory->parking,
+                                        'bathrooms' => $listingcategory->bathrooms,
+                                        'conference_room' => $listingcategory->conference_room,
+                                        'building_size' => $listingcategory->building_size,
+                                        'lighting' => $listingcategory->lighting,
+                                        'capacity' => $listingcategory->capacity,
+                                        'bail_type' => $listingcategory->bail_type,
+                                        'security_deposit' => $listingcategory->security_deposit,
+                                        'office_taxes' => $listingcategory->office_taxes,
+                                        'facilities' => $listingcategory->facilities,
+                                        'amenities' => $listingcategory->amenities,
+                                        'services' => $listingcategory->services,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -12111,14 +12111,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Bureauxsimg::where('bureaux_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Bureauxsimg::where('bureaux_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -12448,74 +12448,74 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Magasin::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Magasin::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'property_type' => $this->listingcategory->property_type,
-                                        'surface_area' => $this->listingcategory->surface_area,
-                                        'capacity' => $this->listingcategory->capacity,
-                                        'offices_number' => $this->listingcategory->offices_number,
-                                        'individual_offices' => $this->listingcategory->individual_offices,
-                                        'floors' => $this->listingcategory->floors,
-                                        'garage' => $this->listingcategory->garage,
-                                        'approved_uses' => $this->listingcategory->approved_uses,
-                                        'facility_size' => $this->listingcategory->facility_size,
-                                        'operating_days' => $this->listingcategory->operating_days,
-                                        'lighting' => $this->listingcategory->lighting,
-                                        'transports' => $this->listingcategory->transports,
-                                        'facilities' => $this->listingcategory->facilities,
-                                        'amenities' => $this->listingcategory->amenities,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'property_type' => $listingcategory->property_type,
+                                        'surface_area' => $listingcategory->surface_area,
+                                        'capacity' => $listingcategory->capacity,
+                                        'offices_number' => $listingcategory->offices_number,
+                                        'individual_offices' => $listingcategory->individual_offices,
+                                        'floors' => $listingcategory->floors,
+                                        'garage' => $listingcategory->garage,
+                                        'approved_uses' => $listingcategory->approved_uses,
+                                        'facility_size' => $listingcategory->facility_size,
+                                        'operating_days' => $listingcategory->operating_days,
+                                        'lighting' => $listingcategory->lighting,
+                                        'transports' => $listingcategory->transports,
+                                        'facilities' => $listingcategory->facilities,
+                                        'amenities' => $listingcategory->amenities,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -12546,14 +12546,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Magasinsimg::where('magasin_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Magasinsimg::where('magasin_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -12883,67 +12883,67 @@ class ListingFrontController extends JsonApiController
             case 'maisons':
 
 
-                $this->listingcategory = Maison::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Maison::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'security_system' => $this->listingcategory->security_system,
-                                        'rooms' => $this->listingcategory->rooms,
-                                        'living_rooms' => $this->listingcategory->living_rooms,
-                                        'bedrooms' => $this->listingcategory->bedrooms,
-                                        'bathrooms' => $this->listingcategory->bathrooms,
-                                        'floors' => $this->listingcategory->floors,
-                                        'amenities' => $this->listingcategory->amenities,
-                                        'facilities' => $this->listingcategory->facilities,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'security_system' => $listingcategory->security_system,
+                                        'rooms' => $listingcategory->rooms,
+                                        'living_rooms' => $listingcategory->living_rooms,
+                                        'bedrooms' => $listingcategory->bedrooms,
+                                        'bathrooms' => $listingcategory->bathrooms,
+                                        'floors' => $listingcategory->floors,
+                                        'amenities' => $listingcategory->amenities,
+                                        'facilities' => $listingcategory->facilities,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -12974,14 +12974,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Maisonsimg::where('maison_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Maisonsimg::where('maison_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -13312,85 +13312,85 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Riad::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Riad::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
 
                                     'specifications' => [
-                                        'entire_home' => $this->listingcategory->entire_home,
-                                        'doorkeeper' => $this->listingcategory->doorkeeper,
-                                        'security_system' => $this->listingcategory->security_system,
-                                        'equipped_kitchen' => $this->listingcategory->equipped_kitchen,
-                                        'wifi' => $this->listingcategory->wifi,
-                                        'tv' => $this->listingcategory->tv,
-                                        'heating' => $this->listingcategory->heating,
-                                        'furniture' => $this->listingcategory->furniture,
-                                        'balcony' => $this->listingcategory->balcony,
-                                        'air_conditioner' => $this->listingcategory->air_conditioner,
-                                        'washing_machine' => $this->listingcategory->washing_machine,
-                                        'pool' => $this->listingcategory->pool,
-                                        'rooms' => $this->listingcategory->rooms,
-                                        'living_rooms' => $this->listingcategory->living_rooms,
-                                        'surface' => $this->listingcategory->surface,
-                                        'floors' => $this->listingcategory->floors,
-                                        'year_construction' => $this->listingcategory->year_construction,
-                                        'bedrooms' => $this->listingcategory->bedrooms,
-                                        'bathrooms' => $this->listingcategory->bathrooms,
-                                        'garden' => $this->listingcategory->garden,
-                                        'terrace' => $this->listingcategory->terrace,
-                                        'housekeeping' => $this->listingcategory->housekeeping,
-                                        'dishwasher' => $this->listingcategory->dishwasher,
-                                        'barbecue' => $this->listingcategory->barbecue,
-                                        'refrigerator' => $this->listingcategory->refrigerator,
-                                        'microwave' => $this->listingcategory->microwave,
-                                        'outdoor_furniture' => $this->listingcategory->outdoor_furniture,
-                                        'private_entrance' => $this->listingcategory->private_entrance,
-                                        'hammam' => $this->listingcategory->hammam,
-                                        'jacuzzi' => $this->listingcategory->jacuzzi,
-                                        'gym' => $this->listingcategory->gym,
-                                        'architecture' => $this->listingcategory->architecture,
-                                        'view' => $this->listingcategory->view,
-                                        'restaurant' => $this->listingcategory->restaurant,
-                                        'spa' => $this->listingcategory->spa,
-                                        'airport' => $this->listingcategory->airport,
-                                        'smoking_rooms' => $this->listingcategory->smoking_rooms,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'entire_home' => $listingcategory->entire_home,
+                                        'doorkeeper' => $listingcategory->doorkeeper,
+                                        'security_system' => $listingcategory->security_system,
+                                        'equipped_kitchen' => $listingcategory->equipped_kitchen,
+                                        'wifi' => $listingcategory->wifi,
+                                        'tv' => $listingcategory->tv,
+                                        'heating' => $listingcategory->heating,
+                                        'furniture' => $listingcategory->furniture,
+                                        'balcony' => $listingcategory->balcony,
+                                        'air_conditioner' => $listingcategory->air_conditioner,
+                                        'washing_machine' => $listingcategory->washing_machine,
+                                        'pool' => $listingcategory->pool,
+                                        'rooms' => $listingcategory->rooms,
+                                        'living_rooms' => $listingcategory->living_rooms,
+                                        'surface' => $listingcategory->surface,
+                                        'floors' => $listingcategory->floors,
+                                        'year_construction' => $listingcategory->year_construction,
+                                        'bedrooms' => $listingcategory->bedrooms,
+                                        'bathrooms' => $listingcategory->bathrooms,
+                                        'garden' => $listingcategory->garden,
+                                        'terrace' => $listingcategory->terrace,
+                                        'housekeeping' => $listingcategory->housekeeping,
+                                        'dishwasher' => $listingcategory->dishwasher,
+                                        'barbecue' => $listingcategory->barbecue,
+                                        'refrigerator' => $listingcategory->refrigerator,
+                                        'microwave' => $listingcategory->microwave,
+                                        'outdoor_furniture' => $listingcategory->outdoor_furniture,
+                                        'private_entrance' => $listingcategory->private_entrance,
+                                        'hammam' => $listingcategory->hammam,
+                                        'jacuzzi' => $listingcategory->jacuzzi,
+                                        'gym' => $listingcategory->gym,
+                                        'architecture' => $listingcategory->architecture,
+                                        'view' => $listingcategory->view,
+                                        'restaurant' => $listingcategory->restaurant,
+                                        'spa' => $listingcategory->spa,
+                                        'airport' => $listingcategory->airport,
+                                        'smoking_rooms' => $listingcategory->smoking_rooms,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
@@ -13398,15 +13398,15 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -13437,14 +13437,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Riadsimg::where('riad_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Riadsimg::where('riad_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -13774,75 +13774,75 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Terrain::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Terrain::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'property_type' => $this->listingcategory->property_type,
-                                        'property_subtype' => $this->listingcategory->property_subtype,
-                                        'total_lot_size' => $this->listingcategory->total_lot_size,
-                                        'land_valuation' => $this->listingcategory->land_valuation,
-                                        'total_rating' => $this->listingcategory->total_rating,
-                                        'road_access' => $this->listingcategory->road_access,
-                                        'slope_description' => $this->listingcategory->slope_description,
-                                        'property_usage' => $this->listingcategory->property_usage,
-                                        'annual_taxes' => $this->listingcategory->annual_taxes,
-                                        'deeded_acres' => $this->listingcategory->deeded_acres,
-                                        'leased_acres' => $this->listingcategory->leased_acres,
-                                        'elevation' => $this->listingcategory->elevation,
-                                        'vegetation' => $this->listingcategory->vegetation,
-                                        'nearby_usage' => $this->listingcategory->nearby_usage,
-                                        'topography' => $this->listingcategory->topography,
-                                        'zoning' => $this->listingcategory->zoning,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'property_type' => $listingcategory->property_type,
+                                        'property_subtype' => $listingcategory->property_subtype,
+                                        'total_lot_size' => $listingcategory->total_lot_size,
+                                        'land_valuation' => $listingcategory->land_valuation,
+                                        'total_rating' => $listingcategory->total_rating,
+                                        'road_access' => $listingcategory->road_access,
+                                        'slope_description' => $listingcategory->slope_description,
+                                        'property_usage' => $listingcategory->property_usage,
+                                        'annual_taxes' => $listingcategory->annual_taxes,
+                                        'deeded_acres' => $listingcategory->deeded_acres,
+                                        'leased_acres' => $listingcategory->leased_acres,
+                                        'elevation' => $listingcategory->elevation,
+                                        'vegetation' => $listingcategory->vegetation,
+                                        'nearby_usage' => $listingcategory->nearby_usage,
+                                        'topography' => $listingcategory->topography,
+                                        'zoning' => $listingcategory->zoning,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -13873,14 +13873,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Terrainsimg::where('terrain_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Terrainsimg::where('terrain_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -14210,68 +14210,68 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Villa::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Villa::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'rooms' => $this->listingcategory->rooms,
-                                        'living_rooms' => $this->listingcategory->living_rooms,
-                                        'bedrooms' => $this->listingcategory->bedrooms,
-                                        'bathrooms' => $this->listingcategory->bathrooms,
-                                        'view' => $this->listingcategory->view,
-                                        'security_system' => $this->listingcategory->security_system,
-                                        'facilities' => $this->listingcategory->facilities,
-                                        'amenities' => $this->listingcategory->amenities,
-                                        'services' => $this->listingcategory->services,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'rooms' => $listingcategory->rooms,
+                                        'living_rooms' => $listingcategory->living_rooms,
+                                        'bedrooms' => $listingcategory->bedrooms,
+                                        'bathrooms' => $listingcategory->bathrooms,
+                                        'view' => $listingcategory->view,
+                                        'security_system' => $listingcategory->security_system,
+                                        'facilities' => $listingcategory->facilities,
+                                        'amenities' => $listingcategory->amenities,
+                                        'services' => $listingcategory->services,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -14302,14 +14302,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Villasimg::where('villa_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Villasimg::where('villa_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -14639,67 +14639,67 @@ class ListingFrontController extends JsonApiController
             case 'activities':
 
 
-                $this->listingcategory = Activity::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Activity::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'type' => $this->listingcategory->type,
-                                        'equipment' => $this->listingcategory->equipment,
-                                        'age_requirement' => $this->listingcategory->age_requirement,
-                                        'duration' => $this->listingcategory->duration,
-                                        'language' => $this->listingcategory->language,
-                                        'cancellation' => $this->listingcategory->cancellation,
-                                        'safety_equipment' => $this->listingcategory->safety_equipment,
-                                        'monitor' => $this->listingcategory->monitor,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'type' => $listingcategory->type,
+                                        'equipment' => $listingcategory->equipment,
+                                        'age_requirement' => $listingcategory->age_requirement,
+                                        'duration' => $listingcategory->duration,
+                                        'language' => $listingcategory->language,
+                                        'cancellation' => $listingcategory->cancellation,
+                                        'safety_equipment' => $listingcategory->safety_equipment,
+                                        'monitor' => $listingcategory->monitor,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -14730,14 +14730,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Activitiesimg::where('activity_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Activitiesimg::where('activity_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -15068,65 +15068,65 @@ class ListingFrontController extends JsonApiController
             case 'livres':
 
 
-                $this->listingcategory = Livre::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Livre::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'genre' => $this->listingcategory->genre,
-                                        'type' => $this->listingcategory->type,
-                                        'language' => $this->listingcategory->language,
-                                        'format' => $this->listingcategory->format,
-                                        'duration' => $this->listingcategory->duration,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'genre' => $listingcategory->genre,
+                                        'type' => $listingcategory->type,
+                                        'language' => $listingcategory->language,
+                                        'format' => $listingcategory->format,
+                                        'duration' => $listingcategory->duration,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -15157,14 +15157,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Livresimg::where('livre_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Livresimg::where('livre_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -15496,63 +15496,63 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Musical::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Musical::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'music_type' => $this->listingcategory->music_type,
-                                        'material' => $this->listingcategory->material,
-                                        'style' => $this->listingcategory->style,
-                                        'finish_type' => $this->listingcategory->finish_type,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'music_type' => $listingcategory->music_type,
+                                        'material' => $listingcategory->material,
+                                        'style' => $listingcategory->style,
+                                        'finish_type' => $listingcategory->finish_type,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -15583,14 +15583,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Musicalsimg::where('musical_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Musicalsimg::where('musical_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -15918,68 +15918,68 @@ class ListingFrontController extends JsonApiController
             case 'furnitures':
 
 
-                $this->listingcategory = Furniture::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Furniture::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'furniture_type' => $this->listingcategory->furniture_type,
-                                        'material' => $this->listingcategory->material,
-                                        'shape' => $this->listingcategory->shape,
-                                        'cushion_thickness' => $this->listingcategory->cushion_thickness,
-                                        'capacity' => $this->listingcategory->capacity,
-                                        'fill_material' => $this->listingcategory->fill_material,
-                                        'condition' => $this->listingcategory->condition,
-                                        'color' => $this->listingcategory->color,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'furniture_type' => $listingcategory->furniture_type,
+                                        'material' => $listingcategory->material,
+                                        'shape' => $listingcategory->shape,
+                                        'cushion_thickness' => $listingcategory->cushion_thickness,
+                                        'capacity' => $listingcategory->capacity,
+                                        'fill_material' => $listingcategory->fill_material,
+                                        'condition' => $listingcategory->condition,
+                                        'color' => $listingcategory->color,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -16010,14 +16010,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Furnituresimg::where('furniture_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Furnituresimg::where('furniture_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -16346,67 +16346,67 @@ class ListingFrontController extends JsonApiController
 
             case 'houseappliances':
 
-                $this->listingcategory = Houseappliance::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Houseappliance::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'access_location' => $this->listingcategory->access_location,
-                                        'finish_type' => $this->listingcategory->finish_type,
-                                        'cycle_options' => $this->listingcategory->cycle_options,
-                                        'inlet_water' => $this->listingcategory->inlet_water,
-                                        'installation_method' => $this->listingcategory->installation_method,
-                                        'components' => $this->listingcategory->components,
-                                        'control_type' => $this->listingcategory->control_type,
-                                        'certification' => $this->listingcategory->certification,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'access_location' => $listingcategory->access_location,
+                                        'finish_type' => $listingcategory->finish_type,
+                                        'cycle_options' => $listingcategory->cycle_options,
+                                        'inlet_water' => $listingcategory->inlet_water,
+                                        'installation_method' => $listingcategory->installation_method,
+                                        'components' => $listingcategory->components,
+                                        'control_type' => $listingcategory->control_type,
+                                        'certification' => $listingcategory->certification,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -16437,14 +16437,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Houseappliancesimg::where('houseappliance_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Houseappliancesimg::where('houseappliance_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -16774,75 +16774,75 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Electricaltool::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Electricaltool::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'tool_type' => $this->listingcategory->tool_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'voltage' => $this->listingcategory->voltage,
-                                        'amperage' => $this->listingcategory->amperage,
-                                        'cord_length' => $this->listingcategory->cord_length,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'display' => $this->listingcategory->display,
-                                        'frequency' => $this->listingcategory->frequency,
-                                        'temperature' => $this->listingcategory->temperature,
-                                        'voltage_sensing_ranges' => $this->listingcategory->voltage_sensing_ranges,
-                                        'detector' => $this->listingcategory->detector,
-                                        'operating_altitude' => $this->listingcategory->operating_altitude,
-                                        'compatible' => $this->listingcategory->compatible,
-                                        'bending_angle' => $this->listingcategory->bending_angle,
-                                        'accessories' => $this->listingcategory->accessories,
-                                        'style' => $this->listingcategory->style,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'tool_type' => $listingcategory->tool_type,
+                                        'condition' => $listingcategory->condition,
+                                        'voltage' => $listingcategory->voltage,
+                                        'amperage' => $listingcategory->amperage,
+                                        'cord_length' => $listingcategory->cord_length,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'display' => $listingcategory->display,
+                                        'frequency' => $listingcategory->frequency,
+                                        'temperature' => $listingcategory->temperature,
+                                        'voltage_sensing_ranges' => $listingcategory->voltage_sensing_ranges,
+                                        'detector' => $listingcategory->detector,
+                                        'operating_altitude' => $listingcategory->operating_altitude,
+                                        'compatible' => $listingcategory->compatible,
+                                        'bending_angle' => $listingcategory->bending_angle,
+                                        'accessories' => $listingcategory->accessories,
+                                        'style' => $listingcategory->style,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -16873,14 +16873,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Electricaltoolsimg::where('Electricaltool_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Electricaltoolsimg::where('Electricaltool_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -17211,71 +17211,71 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Ladder::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Ladder::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'tool_type' => $this->listingcategory->tool_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'material' => $this->listingcategory->material,
-                                        'height' => $this->listingcategory->height,
-                                        'weight' => $this->listingcategory->weight,
-                                        'number_of_steps' => $this->listingcategory->number_of_steps,
-                                        'load_capacity' => $this->listingcategory->load_capacity,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'style' => $this->listingcategory->style,
-                                        'wheel_size' => $this->listingcategory->wheel_size,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'tool_type' => $listingcategory->tool_type,
+                                        'condition' => $listingcategory->condition,
+                                        'power_source' => $listingcategory->power_source,
+                                        'material' => $listingcategory->material,
+                                        'height' => $listingcategory->height,
+                                        'weight' => $listingcategory->weight,
+                                        'number_of_steps' => $listingcategory->number_of_steps,
+                                        'load_capacity' => $listingcategory->load_capacity,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'style' => $listingcategory->style,
+                                        'wheel_size' => $listingcategory->wheel_size,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -17306,14 +17306,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Laddersimg::where('ladder_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Laddersimg::where('ladder_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -17642,69 +17642,69 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Mechanicaltool::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Mechanicaltool::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'tool_type' => $this->listingcategory->tool_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'voltage' => $this->listingcategory->voltage,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'blade_diameter' => $this->listingcategory->blade_diameter,
-                                        'material' => $this->listingcategory->material,
-                                        'style' => $this->listingcategory->style,
-                                        'cutting_width' => $this->listingcategory->cutting_width,
-                                        'carburetor_type' => $this->listingcategory->carburetor_type,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'tool_type' => $listingcategory->tool_type,
+                                        'condition' => $listingcategory->condition,
+                                        'power_source' => $listingcategory->power_source,
+                                        'voltage' => $listingcategory->voltage,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'blade_diameter' => $listingcategory->blade_diameter,
+                                        'material' => $listingcategory->material,
+                                        'style' => $listingcategory->style,
+                                        'cutting_width' => $listingcategory->cutting_width,
+                                        'carburetor_type' => $listingcategory->carburetor_type,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -17735,14 +17735,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Mechanicaltoolsimg::where('mechanicaltool_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Mechanicaltoolsimg::where('mechanicaltool_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -18071,73 +18071,73 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Powertool::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Powertool::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'tool_type' => $this->listingcategory->tool_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'voltage' => $this->listingcategory->voltage,
-                                        'battery_life' => $this->listingcategory->battery_life,
-                                        'material' => $this->listingcategory->material,
-                                        'noise_level' => $this->listingcategory->noise_level,
-                                        'grit_number' => $this->listingcategory->grit_number,
-                                        'rotational_speed' => $this->listingcategory->rotational_speed,
-                                        'blade_material' => $this->listingcategory->blade_material,
-                                        'surface' => $this->listingcategory->surface,
-                                        'style' => $this->listingcategory->style,
-                                        'amperage' => $this->listingcategory->amperage,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'tool_type' => $listingcategory->tool_type,
+                                        'condition' => $listingcategory->condition,
+                                        'power_source' => $listingcategory->power_source,
+                                        'voltage' => $listingcategory->voltage,
+                                        'battery_life' => $listingcategory->battery_life,
+                                        'material' => $listingcategory->material,
+                                        'noise_level' => $listingcategory->noise_level,
+                                        'grit_number' => $listingcategory->grit_number,
+                                        'rotational_speed' => $listingcategory->rotational_speed,
+                                        'blade_material' => $listingcategory->blade_material,
+                                        'surface' => $listingcategory->surface,
+                                        'style' => $listingcategory->style,
+                                        'amperage' => $listingcategory->amperage,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -18168,14 +18168,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Powertoolsimg::where('powertool_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Powertoolsimg::where('powertool_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -18504,74 +18504,74 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Pressurewasher::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Pressurewasher::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'tool_type' => $this->listingcategory->tool_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'power_source' => $this->listingcategory->power_source,
-                                        'power_output' => $this->listingcategory->power_output,
-                                        'engine_power' => $this->listingcategory->engine_power,
-                                        'hose_length' => $this->listingcategory->hose_length,
-                                        'cord_length' => $this->listingcategory->cord_length,
-                                        'weight' => $this->listingcategory->weight,
-                                        'maximum_flow_rate' => $this->listingcategory->maximum_flow_rate,
-                                        'specification_met' => $this->listingcategory->specification_met,
-                                        'inlet_connection_type' => $this->listingcategory->inlet_connection_type,
-                                        'outlet_connection_size' => $this->listingcategory->outlet_connection_size,
-                                        'max_working_temperature' => $this->listingcategory->max_working_temperature,
-                                        'connection_type' => $this->listingcategory->connection_type,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'tool_type' => $listingcategory->tool_type,
+                                        'condition' => $listingcategory->condition,
+                                        'power_source' => $listingcategory->power_source,
+                                        'power_output' => $listingcategory->power_output,
+                                        'engine_power' => $listingcategory->engine_power,
+                                        'hose_length' => $listingcategory->hose_length,
+                                        'cord_length' => $listingcategory->cord_length,
+                                        'weight' => $listingcategory->weight,
+                                        'maximum_flow_rate' => $listingcategory->maximum_flow_rate,
+                                        'specification_met' => $listingcategory->specification_met,
+                                        'inlet_connection_type' => $listingcategory->inlet_connection_type,
+                                        'outlet_connection_size' => $listingcategory->outlet_connection_size,
+                                        'max_working_temperature' => $listingcategory->max_working_temperature,
+                                        'connection_type' => $listingcategory->connection_type,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -18602,14 +18602,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Pressurewashersimg::where('pressurewasher_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Pressurewashersimg::where('pressurewasher_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -18938,72 +18938,72 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Service::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Service::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'languages' => $this->listingcategory->languages,
-                                        'experience' => $this->listingcategory->experience,
-                                        'response_time' => $this->listingcategory->response_time,
-                                        'package' => $this->listingcategory->package,
-                                        'revisions' => $this->listingcategory->revisions,
-                                        'level' => $this->listingcategory->level,
-                                        'orders_queue' => $this->listingcategory->orders_queue,
-                                        'jobs_completed' => $this->listingcategory->jobs_completed,
-                                        'repeat_hire_rate' => $this->listingcategory->repeat_hire_rate,
-                                        'education' => $this->listingcategory->education,
-                                        'on_time' => $this->listingcategory->on_time,
-                                        'delivery_time' => $this->listingcategory->delivery_time,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'languages' => $listingcategory->languages,
+                                        'experience' => $listingcategory->experience,
+                                        'response_time' => $listingcategory->response_time,
+                                        'package' => $listingcategory->package,
+                                        'revisions' => $listingcategory->revisions,
+                                        'level' => $listingcategory->level,
+                                        'orders_queue' => $listingcategory->orders_queue,
+                                        'jobs_completed' => $listingcategory->jobs_completed,
+                                        'repeat_hire_rate' => $listingcategory->repeat_hire_rate,
+                                        'education' => $listingcategory->education,
+                                        'on_time' => $listingcategory->on_time,
+                                        'delivery_time' => $listingcategory->delivery_time,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -19034,14 +19034,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Servicesimg::where('service_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Servicesimg::where('service_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -19371,69 +19371,69 @@ class ListingFrontController extends JsonApiController
             case 'boats':
 
 
-                $this->listingcategory = Boat::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Boat::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'boat_type' => $this->listingcategory->boat_type,
-                                        'capacity' => $this->listingcategory->capacity,
-                                        'cabins' => $this->listingcategory->cabins,
-                                        'berths_in_cabin' => $this->listingcategory->berths_in_cabin,
-                                        'cruising_time' => $this->listingcategory->cruising_time,
-                                        'length' => $this->listingcategory->length,
-                                        'security' => $this->listingcategory->security,
-                                        'navigation' => $this->listingcategory->navigation,
-                                        'kitchen_equipment' => $this->listingcategory->kitchen_equipment,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'boat_type' => $listingcategory->boat_type,
+                                        'capacity' => $listingcategory->capacity,
+                                        'cabins' => $listingcategory->cabins,
+                                        'berths_in_cabin' => $listingcategory->berths_in_cabin,
+                                        'cruising_time' => $listingcategory->cruising_time,
+                                        'length' => $listingcategory->length,
+                                        'security' => $listingcategory->security,
+                                        'navigation' => $listingcategory->navigation,
+                                        'kitchen_equipment' => $listingcategory->kitchen_equipment,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -19464,14 +19464,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Boatsimg::where('boat_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Boatsimg::where('boat_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -19799,67 +19799,67 @@ class ListingFrontController extends JsonApiController
             case 'camions':
 
 
-                $this->listingcategory = Camion::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Camion::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'type' => $this->listingcategory->type,
-                                        'fuel_type' => $this->listingcategory->fuel_type,
-                                        'condition' => $this->listingcategory->condition,
-                                        'transmission' => $this->listingcategory->transmission,
-                                        'insurance' => $this->listingcategory->insurance,
-                                        'navigation_system' => $this->listingcategory->navigation_system,
+                                        'type' => $listingcategory->type,
+                                        'fuel_type' => $listingcategory->fuel_type,
+                                        'condition' => $listingcategory->condition,
+                                        'transmission' => $listingcategory->transmission,
+                                        'insurance' => $listingcategory->insurance,
+                                        'navigation_system' => $listingcategory->navigation_system,
 
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'more_details' => $listingcategory->more_details,
 
                                         // Add more specifications as needed
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -19890,14 +19890,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Camionsimg::where('camion_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Camionsimg::where('camion_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -20226,66 +20226,66 @@ class ListingFrontController extends JsonApiController
             case 'caravans':
 
 
-                $this->listingcategory = Caravan::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Caravan::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'gearbox' => $this->listingcategory->gearbox,
-                                        'fuel_type' => $this->listingcategory->fuel_type,
-                                        'kitchen_equipment' => $this->listingcategory->kitchen_equipment,
-                                        'toilet' => $this->listingcategory->toilet,
-                                        'furniture' => $this->listingcategory->furniture,
-                                        'accessories' => $this->listingcategory->accessories,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'gearbox' => $listingcategory->gearbox,
+                                        'fuel_type' => $listingcategory->fuel_type,
+                                        'kitchen_equipment' => $listingcategory->kitchen_equipment,
+                                        'toilet' => $listingcategory->toilet,
+                                        'furniture' => $listingcategory->furniture,
+                                        'accessories' => $listingcategory->accessories,
+                                        'more_details' => $listingcategory->more_details,
 
                                         // Add more specifications as needed
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -20316,14 +20316,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Caravansimg::where('caravan_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Caravansimg::where('caravan_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -20650,68 +20650,68 @@ class ListingFrontController extends JsonApiController
             case 'cars':
 
 
-                $this->listingcategory = Car::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Car::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'transmission' => $this->listingcategory->transmission,
-                                        'fuel_type' => $this->listingcategory->fuel_type,
-                                        'number_of_doors' => $this->listingcategory->number_of_doors,
-                                        'condition' => $this->listingcategory->condition,
-                                        'more_details' => $this->listingcategory->more_details,
-                                        'seats' => $this->listingcategory->seats,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'transmission' => $listingcategory->transmission,
+                                        'fuel_type' => $listingcategory->fuel_type,
+                                        'number_of_doors' => $listingcategory->number_of_doors,
+                                        'condition' => $listingcategory->condition,
+                                        'more_details' => $listingcategory->more_details,
+                                        'seats' => $listingcategory->seats,
+                                        'more_details' => $listingcategory->more_details,
 
 
                                         // Add more specifications as needed
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -20742,14 +20742,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Carsimg::where('car_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Carsimg::where('car_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -21079,69 +21079,69 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Engin::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Engin::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
 
                                     'specifications' => [
-                                        'type' => $this->listingcategory->type,
-                                        'mechanical_condition' => $this->listingcategory->mechanical_condition,
-                                        'transmission' => $this->listingcategory->transmission,
-                                        'cab' => $this->listingcategory->cab,
-                                        'cab_condition' => $this->listingcategory->cab_condition,
-                                        'coupler' => $this->listingcategory->coupler,
-                                        'hydraulics' => $this->listingcategory->hydraulics,
-                                        'seats' => $this->listingcategory->seats,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'type' => $listingcategory->type,
+                                        'mechanical_condition' => $listingcategory->mechanical_condition,
+                                        'transmission' => $listingcategory->transmission,
+                                        'cab' => $listingcategory->cab,
+                                        'cab_condition' => $listingcategory->cab_condition,
+                                        'coupler' => $listingcategory->coupler,
+                                        'hydraulics' => $listingcategory->hydraulics,
+                                        'seats' => $listingcategory->seats,
+                                        'more_details' => $listingcategory->more_details,
 
                                         // Add more specifications as needed
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -21172,14 +21172,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Enginsimg::where('engin_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Enginsimg::where('engin_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -21508,68 +21508,68 @@ class ListingFrontController extends JsonApiController
             case 'motos':
 
 
-                $this->listingcategory = Moto::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Moto::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'condition' => $this->listingcategory->condition,
-                                        'gearbox' => $this->listingcategory->gearbox,
-                                        'insurance' => $this->listingcategory->insurance,
-                                        'power' => $this->listingcategory->power,
-                                        'speed' => $this->listingcategory->speed,
-                                        'toolkit' => $this->listingcategory->toolkit,
-                                        'intercom' => $this->listingcategory->intercom,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'condition' => $listingcategory->condition,
+                                        'gearbox' => $listingcategory->gearbox,
+                                        'insurance' => $listingcategory->insurance,
+                                        'power' => $listingcategory->power,
+                                        'speed' => $listingcategory->speed,
+                                        'toolkit' => $listingcategory->toolkit,
+                                        'intercom' => $listingcategory->intercom,
+                                        'more_details' => $listingcategory->more_details,
 
 
                                         // Add more specifications as needed
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -21600,14 +21600,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Motosimg::where('moto_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Motosimg::where('moto_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -21935,61 +21935,61 @@ class ListingFrontController extends JsonApiController
             case 'scooters':
 
 
-                $this->listingcategory = Scooter::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Scooter::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'condition' => $this->listingcategory->condition,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'condition' => $listingcategory->condition,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -22020,14 +22020,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Scootersimg::where('scooter_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Scootersimg::where('scooter_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -22357,62 +22357,62 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Taxiaeroport::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Taxiaeroport::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'passengers' => $this->listingcategory->passengers,
-                                        'luggage' => $this->listingcategory->luggage,
-                                        'storage' => $this->listingcategory->storage,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'passengers' => $listingcategory->passengers,
+                                        'luggage' => $listingcategory->luggage,
+                                        'storage' => $listingcategory->storage,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -22443,14 +22443,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Taxiaeroportsimg::where('taxiaeroport_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Taxiaeroportsimg::where('taxiaeroport_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -22781,64 +22781,64 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Transportation::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Transportation::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'passengers' => $this->listingcategory->passengers,
-                                        'luggage' => $this->listingcategory->luggage,
-                                        'condition' => $this->listingcategory->condition,
-                                        'duration' => $this->listingcategory->duration,
-                                        'gearbox' => $this->listingcategory->gearbox,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'passengers' => $listingcategory->passengers,
+                                        'luggage' => $listingcategory->luggage,
+                                        'condition' => $listingcategory->condition,
+                                        'duration' => $listingcategory->duration,
+                                        'gearbox' => $listingcategory->gearbox,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -22869,14 +22869,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Transportationsimg::where('transportation_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Transportationsimg::where('transportation_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -23206,65 +23206,65 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $this->listingcategory = Velo::where('url', $url)->first();
-                        $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $this->reviewslistings = $this->listingcategory->review()->orderBy('created_at')->get();
-                        $this->user = User::where('id', $this->listingcategory->user_id)->first();
+                $listingcategory = Velo::where('url', $url)->first();
+                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
+                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
+                        $user = User::where('id', $listingcategory->user_id)->first();
 
 
 
                         // Calculate total reviews and average rating
-                        $totalReviews = $this->reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $this->reviewslistings->avg('rating') : 0;
+                        $totalReviews = $reviewslistings->count();
+                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
 
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
-                                'id' => $this->listingcategory->id,
+                                'type' => $category,
+                                'id' => $listingcategory->id,
                                 'attributes' => [
-                                    'title' => $this->listingcategory->title,
-                                    'price' => $this->listingcategory->price,
-                                    'description' => $this->listingcategory->description,
-                                    'startdate' => $this->listingcategory->startdate,
-                                    'enddate' => $this->listingcategory->enddate,
-                                    'address' => $this->listingcategory->address,
-                                    'city' => $this->listingcategory->city,
+                                    'title' => $listingcategory->title,
+                                    'price' => $listingcategory->price,
+                                    'description' => $listingcategory->description,
+                                    'startdate' => $listingcategory->startdate,
+                                    'enddate' => $listingcategory->enddate,
+                                    'address' => $listingcategory->address,
+                                    'city' => $listingcategory->city,
 
 
-                                    'picture' => $this->listingcategory->picture,
+                                    'picture' => $listingcategory->picture,
 
 
 
 
 
-                                    'country' => $this->listingcategory->country,
-                                    'zip' => $this->listingcategory->zip,
-                                    'category' => $this->category,
-                                    'url' => $this->url,
+                                    'country' => $listingcategory->country,
+                                    'zip' => $listingcategory->zip,
+                                    'category' => $category,
+                                    'url' => $url,
 
                                     'specifications' => [
-                                        'bike_type' => $this->listingcategory->bike_type,
-                                        'seatpost' => $this->listingcategory->seatpost,
-                                        'condition' => $this->listingcategory->condition,
-                                        'storage' => $this->listingcategory->storage,
-                                        'fork' => $this->listingcategory->fork,
-                                        'gear' => $this->listingcategory->gear,
-                                        'more_details' => $this->listingcategory->more_details,
+                                        'bike_type' => $listingcategory->bike_type,
+                                        'seatpost' => $listingcategory->seatpost,
+                                        'condition' => $listingcategory->condition,
+                                        'storage' => $listingcategory->storage,
+                                        'fork' => $listingcategory->fork,
+                                        'gear' => $listingcategory->gear,
+                                        'more_details' => $listingcategory->more_details,
 
                                     ],
 
 
-                                    'created_ad' => $this->listingcategory->created_ad,
-                                    'reservations' => $this->reservations->map(function ($reservation) {
+                                    'created_ad' => $listingcategory->created_ad,
+                                    'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
                                             'end' => $reservation->reservationsend,
                                         ];
                                     }),
 
-                                    'reviewslistings' => $this->reviewslistings->map(function ($review) {
+                                    'reviewslistings' => $reviewslistings->map(function ($review) {
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
@@ -23295,14 +23295,14 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'images' => Velosimg::where('velo_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                    'images' => Velosimg::where('velo_id', $listingcategory->id)->get()->map(function ($image) {
                                         return $image->picture;
                                     }),
 
                                     'seller' => [
-                                        'name' => $this->user->name,
-                                        'profile_image' => $this->user->profile_image,
-                                        'created_at' => $this->user->created_at->toIso8601String(),
+                                        'name' => $user->name,
+                                        'profile_image' => $user->profile_image,
+                                        'created_at' => $user->created_at->toIso8601String(),
 
                                     ],
 
@@ -23661,9 +23661,6 @@ class ListingFrontController extends JsonApiController
 
                 ]);
 
-                $this->category = $category;
-
-                $this->url = $url;
 
 
 
@@ -23674,60 +23671,60 @@ class ListingFrontController extends JsonApiController
 
 
 
-        switch ($this->category) {
+            switch ($category) {
 
 
 
-                    case 'billiards':
+                        case 'billiards':
 
 
 
-                        $this->listingcategory = Billiard::where('url', $url)->first();
+                            $listingcategory = Billiard::where('url', $url)->first();
 
 
 
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
+                                $review = Review::create([
+                                    'name' => $validatedData['name'],
+                                    'rating' => $validatedData['rating'],
+                                    'email' => $validatedData['email'],
+                                    'url' =>$url ,
+                                    'category' =>$category ,
+                                    'listings_thumb' =>$listingcategory->picture ,
+                                    'listings_title' =>$listingcategory->title ,
+                                    'listings_price' =>$listingcategory->price ,
+
+                                    'description' =>$validatedData['description'],
 
 
 
-                    'billiard_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
+                                    'billiard_id' =>$listingcategory->id,
+                                    'user_id'=> $listingcategory->user_id,
 
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
+                                    'onlinestore_id'=> $listingcategory->user_id,
 
 
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
+                                ]);
 
 
 
 
+                                return response()->json([
+                                    'data' => [
+                                        'type' => $category,
+                                        'id' => $review->id,
+                                        'attributes' => [
+                                            'name' => $review->name,
+                                            'rating' => $review->rating,
+                                            'description' => $review->description,
+                                            'created_at' => $review->created_at->toIso8601String(),
 
-                        ],
-                    ],
-                ]);
+
+
+
+
+                                        ],
+                                    ],
+                                ]);
 
 
 
@@ -23739,56 +23736,3111 @@ class ListingFrontController extends JsonApiController
 
 
 
-                    case 'boxings':
+                        case 'boxings':
 
 
 
-                        $this->listingcategory = Boxing::where('url', $url)->first();
+                            $listingcategory = Boxing::where('url', $url)->first();
 
 
 
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
 
 
 
-                    'boxing_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
+                                'boxing_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
 
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
+                                'onlinestore_id'=> $listingcategory->user_id,
 
 
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
+                            ]);
 
 
 
 
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
 
-                        ],
-                    ],
-                ]);
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'divings':
+
+
+
+                            $listingcategory = Diving::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'diving_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'footballs':
+
+
+
+                            $listingcategory = Football::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'football_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'golfs':
+
+
+
+                            $listingcategory = Golf::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'golf_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+                        case 'huntings':
+
+
+
+                            $listingcategory = Hunting::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'hunting_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'musculations':
+
+
+
+                            $listingcategory = Musculation::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'musculation_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+                        case 'surfs':
+
+
+
+                            $listingcategory = Surf::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'surf_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'tennis':
+
+
+
+                            $listingcategory = Tennis::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'tennis_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'audios':
+
+
+
+                            $listingcategory = Audio::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'audio_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'cameras':
+
+
+
+                            $listingcategory = Camera::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'camera_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'chargers':
+
+
+
+                            $listingcategory = Charger::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'charger_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'drones':
+
+
+
+                            $listingcategory = Drone::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'drone_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+
+                        case 'gamings':
+
+
+
+                            $listingcategory = Gaming::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'gaming_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'laptops':
+
+
+
+                            $listingcategory = Laptop::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'laptop_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+                        case 'lightings':
+
+
+
+                            $listingcategory = Lighting::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'lighting_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+
+                        case 'printers':
+
+
+
+                            $listingcategory = Printer::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'printer_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'routers':
+
+
+
+                            $listingcategory = Router::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'router_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'tablettes':
+
+
+
+                            $listingcategory = Tablette::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'tablette_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'eclairages':
+
+
+
+                            $listingcategory = Eclairage::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'eclairage_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'mobiliers':
+
+
+
+                            $listingcategory = Mobilier::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'mobilier_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'photographies':
+
+
+
+                            $listingcategory = Photographie::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'photographie_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'sonorisations':
+
+
+
+                            $listingcategory = Sonorisation::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'sonorisation_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'tentes':
+
+
+
+                            $listingcategory = Tente::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'tente_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'clothes':
+
+
+
+                            $listingcategory = Clothes::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'clothes_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'jewelrys':
+
+
+
+                            $listingcategory = Jewelry::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'jewelry_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'apartments':
+
+
+
+                            $listingcategory = Apartment::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'apartment_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'bureauxs':
+
+
+
+                            $listingcategory = Bureaux::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'bureaux_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'magasins':
+
+
+
+                            $listingcategory = Magasin::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'magasin_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'maisons':
+
+
+
+                            $listingcategory = Maison::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'maison_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'riads':
+
+
+
+                            $listingcategory = Riad::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'riad_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+                        case 'terrains':
+
+
+
+                            $listingcategory = Terrain::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'terrain_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+
+                        case 'villas':
+
+
+
+                            $listingcategory = Villa::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'villa_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'activities':
+
+
+
+                            $listingcategory = Activity::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'activity_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'livres':
+
+
+
+                            $listingcategory = Livre::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'livre_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'musicals':
+
+
+
+                            $listingcategory = Musical::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'musical_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'furnitures':
+
+
+
+                            $listingcategory = Furniture::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'furniture_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'houseappliances':
+
+
+
+                            $listingcategory = Houseappliance::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'houseappliance_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'electricaltools':
+
+
+
+                            $listingcategory = Electricaltool::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'electricaltool_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'ladders':
+
+
+
+                            $listingcategory = Ladder::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'ladder_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'mechanicaltools':
+
+
+
+                            $listingcategory = Mechanicaltool::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'mechanicaltool_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+                        case 'powertools':
+
+
+
+                            $listingcategory = Powertool::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'powertool_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'pressurewashers':
+
+
+
+                            $listingcategory = Pressurewasher::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'pressurewasher_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'services':
+
+
+
+                            $listingcategory = Service::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'service_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'boats':
+
+
+
+                            $listingcategory = Boat::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'boat_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+
+                        case 'camions':
+
+
+
+                            $listingcategory = Camion::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'camion_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+                        case 'caravans':
+
+
+
+                            $listingcategory = Caravan::where('url', $url)->first();
+
+
+
+                            $review = Review::create([
+                                'name' => $validatedData['name'],
+                                'rating' => $validatedData['rating'],
+                                'email' => $validatedData['email'],
+                                'url' =>$url ,
+                                'category' =>$category ,
+                                'listings_thumb' =>$listingcategory->picture ,
+                                'listings_title' =>$listingcategory->title ,
+                                'listings_price' =>$listingcategory->price ,
+
+                                'description' =>$validatedData['description'],
+
+
+
+                                'caravan_id' =>$listingcategory->id,
+                                'user_id'=> $listingcategory->user_id,
+
+                                'onlinestore_id'=> $listingcategory->user_id,
+
+
+                            ]);
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $review->id,
+                                    'attributes' => [
+                                        'name' => $review->name,
+                                        'rating' => $review->rating,
+                                        'description' => $review->description,
+                                        'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+                            break;
+
+
+
+
+
+                        case 'cars':
+
+
+
+                        $listingcategory = Car::where('url', $url)->first();
+
+
+
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
+
+
+
+                            'car_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
+
+                            'onlinestore_id'=> $listingcategory->user_id,
+
+
+                        ]);
+
+
+
+
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
+
+
+
+
+
+                        break;
+
+
+
+
+
+                    case 'engins':
+
+
+
+                        $listingcategory = Engin::where('url', $url)->first();
+
+
+
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
+
+
+
+                            'engin_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
+
+                            'onlinestore_id'=> $listingcategory->user_id,
+
+
+                        ]);
+
+
+
+
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
+
+
+
+
+
+
+                        break;
+
+
+
+
+
+                    case 'motos':
+
+
+
+                        $listingcategory = Moto::where('url', $url)->first();
+
+
+
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
+
+
+
+                            'moto_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
+
+                            'onlinestore_id'=> $listingcategory->user_id,
+
+
+                        ]);
+
+
+
+
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
+
+
+
+
+
+                        break;
+
+
+
+
+
+                    case 'scooters':
+
+
+
+                        $listingcategory = Scooter::where('url', $url)->first();
+
+
+
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
+
+
+
+                            'scooter_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
+
+                            'onlinestore_id'=> $listingcategory->user_id,
+
+
+                        ]);
+
+
+
+
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
+
 
 
 
@@ -23800,56 +26852,117 @@ class ListingFrontController extends JsonApiController
 
 
 
-                    case 'divings':
+                    case 'taxiaeroports':
 
 
 
-                        $this->listingcategory = Diving::where('url', $url)->first();
+                        $listingcategory = Taxiaeroport::where('url', $url)->first();
 
 
 
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
 
 
 
-                    'diving_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
+                            'taxiaeroport_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
 
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
+                            'onlinestore_id'=> $listingcategory->user_id,
 
 
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
+                        ]);
 
 
 
 
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
 
-                        ],
-                    ],
-                ]);
+
+
+
+
+                                ],
+                            ],
+                        ]);
+
+
+
+
+
+                        break;
+
+
+
+
+
+                    case 'transportations':
+
+
+
+                        $listingcategory = Transportation::where('url', $url)->first();
+
+
+
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
+
+
+
+                            'transportation_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
+
+                            'onlinestore_id'=> $listingcategory->user_id,
+
+
+                        ]);
+
+
+
+
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
 
 
 
@@ -23863,119 +26976,56 @@ class ListingFrontController extends JsonApiController
 
 
 
-                    case 'footballs':
+                    case 'velos':
 
 
 
-                        $this->listingcategory = Football::where('url', $url)->first();
+                        $listingcategory = Velo::where('url', $url)->first();
 
 
 
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
+                        $review = Review::create([
+                            'name' => $validatedData['name'],
+                            'rating' => $validatedData['rating'],
+                            'email' => $validatedData['email'],
+                            'url' =>$url ,
+                            'category' =>$category ,
+                            'listings_thumb' =>$listingcategory->picture ,
+                            'listings_title' =>$listingcategory->title ,
+                            'listings_price' =>$listingcategory->price ,
+
+                            'description' =>$validatedData['description'],
 
 
 
-                    'football_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
+                            'velo_id' =>$listingcategory->id,
+                            'user_id'=> $listingcategory->user_id,
 
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
+                            'onlinestore_id'=> $listingcategory->user_id,
 
 
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
+                        ]);
 
 
 
 
-
-                        ],
-                    ],
-                ]);
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $review->id,
+                                'attributes' => [
+                                    'name' => $review->name,
+                                    'rating' => $review->rating,
+                                    'description' => $review->description,
+                                    'created_at' => $review->created_at->toIso8601String(),
 
 
 
 
 
-                        break;
-
-
-
-
-
-
-
-                    case 'golfs':
-
-
-
-                        $this->listingcategory = Golf::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'golf_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
+                                ],
+                            ],
+                        ]);
 
 
 
@@ -23988,3063 +27038,10 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-
-                    case 'huntings':
-
-
-
-                        $this->listingcategory = Hunting::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'hunting_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
+                    default:
+                        // Default code
                         break;
-
-
-
-
-
-
-
-                    case 'musculations':
-
-
-
-                        $this->listingcategory = Musculation::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'musculation_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-
-                    case 'surfs':
-
-
-
-                        $this->listingcategory = Surf::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'surf_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'tennis':
-
-
-
-                        $this->listingcategory = Tennis::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'tennis_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'audios':
-
-
-
-                        $this->listingcategory = Audio::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'audio_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'cameras':
-
-
-
-                        $this->listingcategory = Camera::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'camera_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'chargers':
-
-
-
-                        $this->listingcategory = Charger::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'charger_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'drones':
-
-
-
-                        $this->listingcategory = Drone::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'drone_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-
-
-                    case 'gamings':
-
-
-
-                        $this->listingcategory = Gaming::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'gaming_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'laptops':
-
-
-
-                        $this->listingcategory = Laptop::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'laptop_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-
-                    case 'lightings':
-
-
-
-                        $this->listingcategory = Lighting::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'lighting_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-
-                    case 'printers':
-
-
-
-                        $this->listingcategory = Printer::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'printer_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'routers':
-
-
-
-                        $this->listingcategory = Router::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'router_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'tablettes':
-
-
-
-                        $this->listingcategory = Tablette::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'tablette_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'eclairages':
-
-
-
-                        $this->listingcategory = Eclairage::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'eclairage_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'mobiliers':
-
-
-
-                        $this->listingcategory = Mobilier::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'mobilier_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'photographies':
-
-
-
-                        $this->listingcategory = Photographie::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'photographie_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'sonorisations':
-
-
-
-                        $this->listingcategory = Sonorisation::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'sonorisation_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'tentes':
-
-
-
-                        $this->listingcategory = Tente::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'tente_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'clothes':
-
-
-
-                        $this->listingcategory = Clothes::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'clothes_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'jewelrys':
-
-
-
-                        $this->listingcategory = Jewelry::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'jewelry_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'apartments':
-
-
-
-                        $this->listingcategory = Apartment::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'apartment_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'bureauxs':
-
-
-
-                        $this->listingcategory = Bureaux::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'bureaux_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'magasins':
-
-
-
-                        $this->listingcategory = Magasin::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'magasin_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'maisons':
-
-
-
-                        $this->listingcategory = Maison::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'maison_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'riads':
-
-
-
-                        $this->listingcategory = Riad::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'riad_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'terrains':
-
-
-
-                        $this->listingcategory = Terrain::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'terrain_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'villas':
-
-
-
-                        $this->listingcategory = Villa::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'villa_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'activities':
-
-
-
-                        $this->listingcategory = Activity::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'activity_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'livres':
-
-
-
-                        $this->listingcategory = Livre::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'livre_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'musicals':
-
-
-
-                        $this->listingcategory = Musical::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'musical_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'furnitures':
-
-
-
-                        $this->listingcategory = Furniture::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'furniture_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'houseappliances':
-
-
-
-                        $this->listingcategory = Houseappliance::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'houseappliance_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'electricaltools':
-
-
-
-                        $this->listingcategory = Electricaltool::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'electricaltool_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'ladders':
-
-
-
-                        $this->listingcategory = Ladder::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'ladder_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'mechanicaltools':
-
-
-
-                        $this->listingcategory = Mechanicaltool::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'mechanicaltool_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'powertools':
-
-
-
-                        $this->listingcategory = Powertool::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'powertool_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'pressurewashers':
-
-
-
-                        $this->listingcategory = Pressurewasher::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'pressurewasher_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'services':
-
-
-
-                        $this->listingcategory = Service::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'service_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'boats':
-
-
-
-                        $this->listingcategory = Boat::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'boat_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'camions':
-
-
-
-                        $this->listingcategory = Camion::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'camion_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'caravans':
-
-
-
-                        $this->listingcategory = Caravan::where('url', $url)->first();
-
-
-
-                $this->review = Review::create([
-                    'name' => $validatedData['name'],
-                    'rating' => $validatedData['rating'],
-                    'email' => $validatedData['email'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
-                    'description' =>$validatedData['description'],
-
-
-
-                    'caravan_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                ]);
-
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $this->category,
-                        'id' => $this->review->id,
-                        'attributes' => [
-                            'name' => $this->review->name,
-                            'rating' => $this->review->rating,
-                            'description' => $this->review->description,
-                            'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                        ],
-                    ],
-                ]);
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'cars':
-
-
-
-                    $this->listingcategory = Car::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'car_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-                case 'engins':
-
-
-
-                    $this->listingcategory = Engin::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'engin_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-
-                    break;
-
-
-
-
-
-                case 'motos':
-
-
-
-                    $this->listingcategory = Moto::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'moto_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-                case 'scooters':
-
-
-
-                    $this->listingcategory = Scooter::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'scooter_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-
-                case 'taxiaeroports':
-
-
-
-                    $this->listingcategory = Taxiaeroport::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'taxiaeroport_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-                case 'transportations':
-
-
-
-                    $this->listingcategory = Transportation::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'transportation_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-
-
-                case 'velos':
-
-
-
-                    $this->listingcategory = Velo::where('url', $url)->first();
-
-
-
-            $this->review = Review::create([
-                'name' => $validatedData['name'],
-                'rating' => $validatedData['rating'],
-                'email' => $validatedData['email'],
-                'url' =>$this->url ,
-                'category' =>$this->category ,
-                'listings_thumb' =>$this->listingcategory->picture ,
-                'listings_title' =>$this->listingcategory->title ,
-                'listings_price' =>$this->listingcategory->price ,
-                'listings_description' =>$this->listingcategory->description ,
-                'description' =>$validatedData['description'],
-
-
-
-                'velo_id' =>$this->listingcategory->id,
-                'user_id'=> $this->listingcategory->user_id,
-
-                'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-            ]);
-
-
-
-
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->review->id,
-                    'attributes' => [
-                        'name' => $this->review->name,
-                        'rating' => $this->review->rating,
-                        'description' => $this->review->description,
-                        'created_at' => $this->review->created_at->toIso8601String(),
-
-
-
-
-
-                    ],
-                ],
-            ]);
-
-
-
-
-
-                    break;
-
-
-
-
-
-
-                default:
-                    // Default code
-                    break;
-        }
+            }
 
 
 
@@ -27112,7 +27109,7 @@ class ListingFrontController extends JsonApiController
 
                         return response()->json([
                             'data' => [
-                                'type' => $this->category,
+                                'type' => $category,
                                 'id' => $Reviewreply->id,
                                 'attributes' => [
                                     'name' => $review->name,

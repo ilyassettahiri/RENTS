@@ -7,6 +7,21 @@ class CrudService {
     return await HttpService.post(imageUpdate, formData);
   };
 
+  imageUploadCollection = async (formData, id) => {
+    formData.append('collection_id', id); // Add collection_id to FormData
+    const imageUpdateCollection = `uploads/collections`;
+    return await HttpService.post(imageUpdateCollection, formData);
+  };
+  
+
+  imageUploadListing = async (formData) => {
+    //formData.append('listing_id', listingid); // Add collection_id to FormData
+    const imageUploadListing = `uploads/listings`;
+    return await HttpService.post(imageUploadListing, formData);
+  };
+  
+
+
 
   // listings requests
   getListings = async () => {
@@ -41,7 +56,7 @@ class CrudService {
 
 
   updateListing = async (payload, id) => {
-    const listingsEndpoint = `listings/edit-listing/${id}`;
+    const listingsEndpoint = `listings/${id}`;
     return await HttpService.patch(listingsEndpoint, payload);
   };
 

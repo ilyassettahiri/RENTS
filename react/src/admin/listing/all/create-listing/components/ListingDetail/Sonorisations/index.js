@@ -11,25 +11,25 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/sonorization/amplifier.svg`;
-const icon2 = `${imagePath}/categoryicons/sonorization/battery.svg`;
-const icon3 = `${imagePath}/categoryicons/sonorization/brand.svg`;
-const icon4 = `${imagePath}/categoryicons/sonorization/cabless_connectors.svg`;
-const icon5 = `${imagePath}/categoryicons/sonorization/connectivity_technology.svg`;
-const icon6 = `${imagePath}/categoryicons/sonorization/device_compatibility.svg`;
-const icon7 = `${imagePath}/categoryicons/sonorization/fastener_type.svg`;
-const icon8 = `${imagePath}/categoryicons/sonorization/microphone.svg`;
-const icon9 = `${imagePath}/categoryicons/sonorization/mixage_table.svg`;
-const icon10 = `${imagePath}/categoryicons/sonorization/number_of_channels.svg`;
-const icon11 = `${imagePath}/categoryicons/sonorization/output_power.svg`;
-const icon12 = `${imagePath}/categoryicons/sonorization/power_in_watts.svg`;
-const icon13 = `${imagePath}/categoryicons/sonorization/power_source.svg`;
-const icon14 = `${imagePath}/categoryicons/sonorization/power_type.svg`;
-const icon15 = `${imagePath}/categoryicons/sonorization/size.svg`;
-const icon16 = `${imagePath}/categoryicons/sonorization/sonorisation.svg`;
-const icon17 = `${imagePath}/categoryicons/sonorization/speaker.svg`;
-const icon18 = `${imagePath}/categoryicons/sonorization/watt.svg`;
-const icon19 = `${imagePath}/categoryicons/sonorization/weight.svg`;
+const icon1 = `${imagePath}/categoryicons/sonorisations/amplifier.svg`;
+const icon2 = `${imagePath}/categoryicons/sonorisations/battery.svg`;
+const icon3 = `${imagePath}/categoryicons/sonorisations/brand.svg`;
+const icon4 = `${imagePath}/categoryicons/sonorisations/cabless_connectors.svg`;
+const icon5 = `${imagePath}/categoryicons/sonorisations/connectivity_technology.svg`;
+const icon6 = `${imagePath}/categoryicons/sonorisations/device_compatibility.svg`;
+const icon7 = `${imagePath}/categoryicons/sonorisations/fastener_type.svg`;
+const icon8 = `${imagePath}/categoryicons/sonorisations/microphone.svg`;
+const icon9 = `${imagePath}/categoryicons/sonorisations/mixage_table.svg`;
+const icon10 = `${imagePath}/categoryicons/sonorisations/number_of_channels.svg`;
+const icon11 = `${imagePath}/categoryicons/sonorisations/output_power.svg`;
+const icon12 = `${imagePath}/categoryicons/sonorisations/power_in_watts.svg`;
+const icon13 = `${imagePath}/categoryicons/sonorisations/power_source.svg`;
+const icon14 = `${imagePath}/categoryicons/sonorisations/power_type.svg`;
+const icon15 = `${imagePath}/categoryicons/sonorisations/size.svg`;
+const icon16 = `${imagePath}/categoryicons/sonorisations/sonorisation.svg`;
+const icon17 = `${imagePath}/categoryicons/sonorisations/speaker.svg`;
+const icon18 = `${imagePath}/categoryicons/sonorisations/watt.svg`;
+const icon19 = `${imagePath}/categoryicons/sonorisations/weight.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

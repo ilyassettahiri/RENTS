@@ -88,5 +88,5 @@ export const paths = {
   pages: '/pages',
 
 
-  createlisting: 'http://localhost:3000/listing/create-listing',
+  createlisting: 'https://react.prinssy.com',
 };

@@ -10,15 +10,15 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/furniture/assembly_required.svg`;
-const icon2 = `${imagePath}/categoryicons/furniture/cruise_capacity.svg`;
-const icon3 = `${imagePath}/categoryicons/furniture/color.svg`;
-const icon4 = `${imagePath}/categoryicons/furniture/cushion_thickness.svg`;
-const icon5 = `${imagePath}/categoryicons/furniture/fill_material.svg`;
-const icon6 = `${imagePath}/categoryicons/furniture/material.svg`;
-const icon7 = `${imagePath}/categoryicons/furniture/type.svg`;
-const icon8 = `${imagePath}/categoryicons/furniture/shape.svg`;
-const icon9 = `${imagePath}/categoryicons/furniture/condition.svg`;
+const icon1 = `${imagePath}/categoryicons/furnitures/assembly_required.svg`;
+const icon2 = `${imagePath}/categoryicons/furnitures/cruise_capacity.svg`;
+const icon3 = `${imagePath}/categoryicons/furnitures/color.svg`;
+const icon4 = `${imagePath}/categoryicons/furnitures/cushion_thickness.svg`;
+const icon5 = `${imagePath}/categoryicons/furnitures/fill_material.svg`;
+const icon6 = `${imagePath}/categoryicons/furnitures/material.svg`;
+const icon7 = `${imagePath}/categoryicons/furnitures/type.svg`;
+const icon8 = `${imagePath}/categoryicons/furnitures/shape.svg`;
+const icon9 = `${imagePath}/categoryicons/furnitures/condition.svg`;
 const icon30 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

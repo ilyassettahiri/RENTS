@@ -1,16 +1,34 @@
 "use client";
 
+
+
+import { useContext } from 'react';
+import { AuthContext } from 'src/context/AuthContextProvider';
+import { paths } from 'src/routes/paths';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import { useBoolean } from 'src/hooks/use-boolean';
 import Nav from 'src/layouts/account/nav';
-import Header from './header';
-import Footer from './footer';
-import Newsletter from './newsletter';
+
 import { HEADER } from '../config-layout';
+import Header from './header';
+
+import Newsletter from './newsletter';
+import Footer from './footer';
+
 
 export default function MainLayout({ children, headerOnDark = false, disabledSpacing = false, sx, ...other }) {
   const navOpen = useBoolean();
+  const { isAuthenticated } = useContext(AuthContext);
+
+  const handleOpenNav = () => {
+    if (isAuthenticated) {
+      navOpen.onTrue();
+    } else {
+      window.location.href = paths.login;
+    }
+  };
 
   return (
     <Box
@@ -22,9 +40,9 @@ export default function MainLayout({ children, headerOnDark = false, disabledSpa
       }}
       {...other}
     >
-      <Header headerOnDark={headerOnDark} onOpenNav={navOpen.onTrue} />
+      <Header headerOnDark={headerOnDark} onOpenNav={handleOpenNav} />
 
-
+      {isAuthenticated && <Nav open={navOpen.value} onClose={navOpen.onFalse} />}
 
       <Box component="main" sx={{ flexGrow: 1 }}>
         {!(disabledSpacing || headerOnDark) && (

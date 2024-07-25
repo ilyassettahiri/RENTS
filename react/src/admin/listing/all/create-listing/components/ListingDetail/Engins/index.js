@@ -20,16 +20,16 @@ import MultSelect from "admin/components/MultSelect";
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
 
 // Define the dynamic paths for each image
-const icon1 = `${imagePath}/categoryicons/engines/car_transmission.svg`;
-const icon2 = `${imagePath}/categoryicons/engines/horsepower.svg`;
-const icon3 = `${imagePath}/categoryicons/engines/mechanical_condition.svg`;
-const icon4 = `${imagePath}/categoryicons/engines/seat_condition.svg`;
-const icon5 = `${imagePath}/categoryicons/engines/tire_size.svg`;
-const icon6 = `${imagePath}/categoryicons/engines/type.svg`;
-const icon7 = `${imagePath}/categoryicons/engines/cab_type.svg`;
-const icon8 = `${imagePath}/categoryicons/engines/cab_condition.svg`;
-const icon9 = `${imagePath}/categoryicons/engines/coupler_type.svg`;
-const icon10 = `${imagePath}/categoryicons/engines/hydraulics_type.svg`;
+const icon1 = `${imagePath}/categoryicons/engins/car_transmission.svg`;
+const icon2 = `${imagePath}/categoryicons/engins/horsepower.svg`;
+const icon3 = `${imagePath}/categoryicons/engins/mechanical_condition.svg`;
+const icon4 = `${imagePath}/categoryicons/engins/seat_condition.svg`;
+const icon5 = `${imagePath}/categoryicons/engins/tire_size.svg`;
+const icon6 = `${imagePath}/categoryicons/engins/type.svg`;
+const icon7 = `${imagePath}/categoryicons/engins/cab_type.svg`;
+const icon8 = `${imagePath}/categoryicons/engins/cab_condition.svg`;
+const icon9 = `${imagePath}/categoryicons/engins/coupler_type.svg`;
+const icon10 = `${imagePath}/categoryicons/engins/hydraulics_type.svg`;
 const icon11 = `${imagePath}/categoryicons/cars/more_details.svg`;
 
 export {

@@ -84,7 +84,7 @@ export default function Header({ headerOnDark, onOpenNav }) {
               </IconButton>
             </Badge>
             <IconButton
-              onClick={onOpenNav} // This will open the Nav drawer
+              onClick={onOpenNav} // This will open the Nav drawer or redirect to login
               size="small"
               color="inherit"
               sx={{ p: 0 }}

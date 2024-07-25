@@ -13,6 +13,8 @@ use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+
 
 
 
@@ -46,6 +48,8 @@ class CollectionController extends JsonApiController
                     'attributes' => [
                         'name' => $collection->name,
                         'picture' => $collection->picture,
+                        'description' => $collection->description,
+
                         'created_at' => $collection->created_at,
                     ],
                     'relationships' => [
@@ -67,6 +71,10 @@ class CollectionController extends JsonApiController
     {
         $user = Auth::user();
         $request = app('request'); // Retrieve the current request
+
+        // Log the raw request body
+        Log::info('Raw request body:', ['body' => $request->all()]);
+
 
         // Validate the request
         $request->validate([
@@ -130,37 +138,31 @@ class CollectionController extends JsonApiController
 
 
 
-
-
-
     public function update(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
         $request = app('request'); // Retrieve the current request
+
+        // Get the ID from the route parameters
+        $id = $route->resourceId();
+
 
         // Validate the request
         $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
+            'name' => 'required|string',
+            'description' => 'required|string',
+            'picture' => 'sometimes|string', // Picture is now just a string
         ]);
 
-        $collection = Collection::findOrFail($route->resourceId());
+        $collection = Collection::findOrFail($id);
 
-        // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
-            // Delete the old picture if exists
-            if ($collection->picture) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $collection->picture));
-            }
-            $pictureFile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('public')->put('images', $pictureFile);
-            $collection->picture = '/' . $picturePath; // Prepend '/' to make it a relative path
-        }
+        // Store picture variable without handling image uploads
+        $collection->name = $request->input('name');
+        $collection->description = $request->input('description');
+        $collection->picture = $request->input('picture'); // Store picture URL directly
 
-        $collection->name = $request->input('data.attributes.name');
-        $collection->description = $request->input('data.attributes.description');
         $collection->save();
+
+
 
         // Return a JSON:API compliant response
         return response()->json([
@@ -172,17 +174,14 @@ class CollectionController extends JsonApiController
                     'picture' => $collection->picture,
                     'created_at' => $collection->created_at,
                 ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
             ]
         ], 200); // 200 OK status code
     }
+
+
+
+
+
 
     public function show(JsonApiRoute $route, Store $store)
     {

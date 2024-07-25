@@ -2833,7 +2833,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -2850,7 +2850,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -2910,7 +2910,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -2927,7 +2927,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -2987,7 +2987,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3004,7 +3004,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3066,7 +3066,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3083,7 +3083,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3145,7 +3145,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3162,7 +3162,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3225,7 +3225,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3242,7 +3242,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3304,7 +3304,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3321,7 +3321,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3384,7 +3384,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3401,7 +3401,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3463,7 +3463,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3480,7 +3480,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3542,7 +3542,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3559,7 +3559,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3621,7 +3621,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3638,7 +3638,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3698,7 +3698,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3715,7 +3715,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3777,7 +3777,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3794,7 +3794,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3858,7 +3858,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3875,7 +3875,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -3937,7 +3937,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -3954,7 +3954,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4017,7 +4017,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4034,7 +4034,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4097,7 +4097,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4114,7 +4114,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4175,7 +4175,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4192,7 +4192,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4255,7 +4255,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4272,7 +4272,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4335,7 +4335,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4352,7 +4352,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4414,7 +4414,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4431,7 +4431,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4493,7 +4493,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4510,7 +4510,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4571,7 +4571,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4588,7 +4588,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4651,7 +4651,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4668,7 +4668,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4729,7 +4729,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4746,7 +4746,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4808,7 +4808,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4825,7 +4825,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4886,7 +4886,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4903,7 +4903,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -4965,7 +4965,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -4982,7 +4982,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5044,7 +5044,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5061,7 +5061,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5122,7 +5122,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5139,7 +5139,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5199,7 +5199,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5216,7 +5216,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5276,7 +5276,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5293,7 +5293,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5355,7 +5355,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5372,7 +5372,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5433,7 +5433,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5450,7 +5450,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5511,7 +5511,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5528,7 +5528,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5588,7 +5588,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5605,7 +5605,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5666,7 +5666,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5683,7 +5683,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5744,7 +5744,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5761,7 +5761,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5822,7 +5822,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5839,7 +5839,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5901,7 +5901,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5918,7 +5918,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -5978,7 +5978,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -5995,7 +5995,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6055,7 +6055,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6072,7 +6072,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6132,7 +6132,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6149,7 +6149,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6209,7 +6209,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6226,7 +6226,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6287,7 +6287,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6304,7 +6304,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6364,7 +6364,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6381,7 +6381,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6440,7 +6440,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6457,7 +6457,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6516,7 +6516,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6533,7 +6533,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6593,7 +6593,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6610,7 +6610,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6671,7 +6671,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6688,7 +6688,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6748,7 +6748,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6765,7 +6765,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6826,7 +6826,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6843,7 +6843,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6903,7 +6903,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6920,7 +6920,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 
@@ -6982,7 +6982,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
                     'reservationstart' => $reservationStart,
                     'reservationsend' => $reservationEnd,
 
@@ -6999,7 +6999,7 @@ class ReservationFrontController extends JsonApiController
                     'listings_thumb' =>$this->listingcategory->picture ,
                     'listings_title' =>$this->listingcategory->title ,
                     'listings_price' =>$this->listingcategory->price ,
-                    'listings_description' =>$this->listingcategory->description ,
+
 
                 ]);
 

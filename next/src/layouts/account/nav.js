@@ -29,6 +29,8 @@ const navigations = [
 ];
 
 export default function Nav({ open, onClose }) {
+  const authContext = useContext(AuthContext);
+
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
   const [image, setImage] = useState('/images/member.jpg');
@@ -58,10 +60,8 @@ export default function Nav({ open, onClose }) {
       });
 
       const profileImageUrl = userData.profile_image
-      ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
-      : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
-
-
+        ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
+        : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
 
       setImage(profileImageUrl);
     })();
@@ -97,6 +97,17 @@ export default function Nav({ open, onClose }) {
     }
   };
 
+  const handleLogOut = async () => {
+    try {
+      await AuthService.logout();
+      authContext.logout();
+      window.location.href = "/"; // Redirect to home page after successful logout
+    } catch (err) {
+      console.error(err);
+    }
+    return undefined;
+  };
+
   const renderContent = (
     <Stack
       sx={{
@@ -108,7 +119,7 @@ export default function Nav({ open, onClose }) {
           border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.24)}`,
         }),
       }}
-      >
+    >
       <Stack spacing={2} sx={{ p: 3, pb: 2 }}>
         <Stack spacing={2} direction="row" alignItems="center">
           <Avatar src={imageUrl || image} sx={{ width: 64, height: 64 }} />
@@ -130,7 +141,6 @@ export default function Nav({ open, onClose }) {
               }}
               id="profile-image-upload"
             />
-
           </Stack>
         </Stack>
 
@@ -162,10 +172,11 @@ export default function Nav({ open, onClose }) {
             borderRadius: 1,
           }}
         >
-          <ListItemIcon>
+          <ListItemIcon onClick={handleLogOut}>
             <Iconify icon="carbon:logout" />
           </ListItemIcon>
           <ListItemText
+            onClick={handleLogOut}
             primary="Logout"
             primaryTypographyProps={{
               typography: 'body2',
@@ -176,26 +187,19 @@ export default function Nav({ open, onClose }) {
     </Stack>
   );
 
-
-
   return (
-    <>
-
-        <Drawer
-          anchor="right"
-
-          open={open}
-          onClose={onClose}
-          PaperProps={{
-            sx: {
-              width: 280,
-            },
-          }}
-        >
-          {renderContent}
-        </Drawer>
-
-    </>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={onClose}
+      PaperProps={{
+        sx: {
+          width: 280,
+        },
+      }}
+    >
+      {renderContent}
+    </Drawer>
   );
 }
 

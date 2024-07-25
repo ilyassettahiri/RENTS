@@ -19,7 +19,7 @@ export default function SupportHero() {
       sx={{
         ...bgGradient({
           color: alpha(theme.palette.grey[900], 0.8),
-          imgUrl: `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/assets/background/overlay_2.jpg`,
+          imgUrl: `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/illustrations/illustration_courses_hero.svg`,
         }),
         py: 15,
         px: 2.5,
