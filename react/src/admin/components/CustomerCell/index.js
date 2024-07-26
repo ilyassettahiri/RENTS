@@ -22,7 +22,7 @@ function CustomerCell({ image, name, color, linkPath }) {
 
 // settings default value for the props of CustomerCell
 CustomerCell.defaultProps = {
-  image: "",
+  image: "/member.jpg",
   color: "dark",
 };
 

@@ -185,12 +185,18 @@ class UploadController extends Controller
             ], 401);
         }
 
-        // Store the image in a single folder
-        $path = "images";
-        $filePath = Storage::disk('public')->put($path, $request->file('attachment'));
-        $relativePath = '/' . $filePath; // Prepend '/' to make it a relative URL
+        $file = $request->file('attachment');
 
-        // Update the user's profile image URL in the database
+
+
+        $filePath = Storage::disk('spaces')->put('storage/userimages', $file, 'public');
+
+        $relativePath = str_replace('storage/', '', $filePath);
+        $relativePath = '/' . $relativePath;
+
+
+
+
         $user->profile_image = $relativePath;
         $user->save();
 
@@ -209,14 +215,19 @@ class UploadController extends Controller
             ]);
 
 
-            // Store the image in a single folder
-            $path = "images";
+
             $file = $request->file('attachment');
 
 
 
-            $filePath = Storage::disk('public')->put($path, $file);
-            $relativePath = '/' . $filePath; // Prepend '/' to make it a relative URL
+
+
+
+                $filePath = Storage::disk('spaces')->put('storage/userimages', $file, 'public');
+
+                $relativePath = str_replace('storage/', '', $filePath);
+                $relativePath = '/' . $relativePath;
+
 
 
 
@@ -248,15 +259,18 @@ class UploadController extends Controller
 
 
             foreach ($files as $index => $file) {
-                // Store each file in the 'images' directory
-                $filePath = Storage::disk('public')->put('images', $file);
-                $relativePath = '/' . $filePath; // Create a relative path for the file
+
+                $filePath = Storage::disk('spaces')->put('storage/images', $file, 'public');
+                $relativePath = str_replace('storage/', '', $filePath);
+                $relativePath = '/' . $relativePath; // Ensure the path is relative
+
                 $imagePaths[] = $relativePath;
 
                 // Set the first uploaded image as the thumbnail
                 if ($index === 0) {
                     $thumb = $relativePath;
                 }
+
             }
         }
 

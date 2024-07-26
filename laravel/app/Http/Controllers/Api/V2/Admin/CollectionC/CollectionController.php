@@ -89,8 +89,12 @@ class CollectionController extends JsonApiController
                 // Handle image uploads
                 if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
-                    $picturePath = Storage::disk('public')->put('images', $picturefile);
-                    $picturerelativePath = '/' . $picturePath; // Prepend '/' to make it a relative path
+                    $filePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
+
+                    $relativePath = str_replace('storage/', '', $filePath);
+                    $picturerelativePath = '/' . $relativePath;
+
+
                 }
 
 

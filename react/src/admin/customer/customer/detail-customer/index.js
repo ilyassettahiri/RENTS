@@ -26,6 +26,8 @@ import SoftTypography from "components/SoftTypography";
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
+import OrdersOverview from "admin/components/OrdersOverview";
+import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
 
 
@@ -183,8 +185,50 @@ function DetailCustomer() {
         <Grid container spacing={3}>
 
 
+
+
           <Grid item xs={12} lg={8}>
-            Hii
+
+
+            <Grid item mb={3}>
+              <Grid container spacing={3}>
+                <Grid item xs={12} md={6}>
+                  <ComplexStatisticsCard
+                    icon="account_circle"
+                    count={{ number: 1600, label: "users active" }}
+                    percentage="+55%"
+                    
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <ComplexStatisticsCard
+                    icon="touch_app"
+                    count={{ number: 357, label: "click events" }}
+                    percentage="+124%"
+                   
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <ComplexStatisticsCard
+                    icon="shopping_cart"
+                    count={{ number: 2300, label: "purchases" }}
+                    percentage="+55%"
+                    
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <ComplexStatisticsCard
+                    icon="thumb_up"
+                    count={{ number: 940, label: "likes" }}
+                    percentage="+90%"
+                   
+                  />
+                </Grid>
+              </Grid>
+            </Grid>
+
+
+            <OrdersOverview />
           </Grid>
 
 

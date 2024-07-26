@@ -105,13 +105,13 @@ const CreateDiscount = () => {
   const collectionOptions = collectionsData.map((collection) => ({
     value: collection.id,
     label: collection.attributes.name,
-    icon: collection.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}/${collection.attributes.picture}` : null,
+    icon: collection.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${collection.attributes.picture}` : null,
   }));
   
   const listingOptions = listingsData.map((listing) => ({
     value: listing.id,
     label: listing.attributes.title,
-    icon: listing.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}/${listing.attributes.picture}` : null,
+    icon: listing.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${listing.attributes.picture}` : null,
   }));
   
 
@@ -127,7 +127,7 @@ const CreateDiscount = () => {
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                       <SoftBox>
-                        <FormField
+                        <FormField placeholder ="discount code"
                           type="text"
                           label="Code"
                           name="code"
@@ -145,7 +145,7 @@ const CreateDiscount = () => {
 
                     <Grid item xs={12} sm={6}>
                       <SoftBox>
-                        <FormField
+                        <FormField placeholder ="percentage"
                           type="text"
                           label="Discount Value"
                           name="discountvalue"

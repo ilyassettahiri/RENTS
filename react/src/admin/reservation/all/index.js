@@ -49,11 +49,8 @@ import HTMLReactParser from "html-react-parser";
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
 
 // Define the dynamic path for the image
-const team1 = `${imagePath}/team-1.jpg`;
+const team1 = "/member.jpg";
 
-export {
-  team1
-};
 
 
 // Data

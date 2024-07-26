@@ -42,7 +42,7 @@ export default function DashboardPersonalView() {
     confirmNewPassword: '',
   });
   const [userId, setUserId] = useState(null);
-  const [isDemo, setIsDemo] = useState(false);
+
 
   useEffect(() => {
     (async () => {

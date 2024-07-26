@@ -330,7 +330,7 @@ const DetailCollection = () => {
                         collection.picture && (
                           <SoftBox
                             component="img"
-                            src={`http://localhost:8000/storage${collection.picture}`}
+                            src={`${process.env.REACT_APP_IMAGE_BASE_URL}${collection.picture}`}
                             alt="Product Image"
                             borderRadius="lg"
                             shadow="lg"

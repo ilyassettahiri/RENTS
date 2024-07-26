@@ -61,6 +61,7 @@ function Header({ user, isDemo }) {
     formData.append("attachment", e.target.files[0]);
     setFileState(formData);
     setImageUrl(URL.createObjectURL(e.target.files[0])); // Display selected image immediately
+    console.log("File selected:", URL.createObjectURL(e.target.files[0]));
   };
 
   const submitHandler = async (e) => {
@@ -108,12 +109,7 @@ function Header({ user, isDemo }) {
             <SoftInput type="file" onChange={changeHandler} id="avatar" name="attachment" accept="image/*" sx={{ display: "none", cursor: "pointer" }} />
             <Grid item style={{ paddingTop: "0" }}>
               <SoftBox height="100%" mt={0.5} lineHeight={1}>
-                <SoftTypography variant="h5" fontWeight="medium">
-                  {user.name ?? "Alex Thompson"}
-                </SoftTypography>
-                <SoftTypography variant="button" color="text" fontWeight="medium">
-                  {role}
-                </SoftTypography>
+
               </SoftBox>
             </Grid>
             <SoftBox sx={{ ml: "auto" }} display="flex" flexDirection="column">

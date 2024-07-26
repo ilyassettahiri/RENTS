@@ -28,16 +28,25 @@ import DeleteAccount from "admin/settings/account/components/DeleteAccount";
 import AuthService from "services/auth-service";
 
 function Account() {
-  const [isDemo, setIsDemo] = useState(false);
+  
   const [user, setUser] = useState({
-    id: "",
-    name: "",
-    email: "",
-    password: "",
-    newPassword: "",
-    currentPassword: "",
-    confirmPassword: "",
-    profile_image: "",
+    id: '',
+    name: '',
+    firstName: '',
+    lastName: '',
+    emailAddress: '',
+    phoneNumber: '',
+    
+    birthday: '',
+    gender: '',
+    streetAddress: '',
+    zipCode: '',
+    city: '',
+    country: '',
+    oldPassword: '',
+    newPassword: '',
+    confirmNewPassword: '',
+    profile_image: '',
   });
 
   useEffect(() => {
@@ -48,11 +57,22 @@ function Account() {
         ...prevUser,
         id: response.data.id,
         name: response.data.attributes.name,
-        email: response.data.attributes.email,
+        
         profile_image: response.data.attributes.profile_image,
-        currentPassword: "",
+        firstName: response.data.attributes.first_name,
+        lastName: response.data.attributes.last_name,
+        emailAddress: response.data.attributes.email,
+        
+        phoneNumber: response.data.attributes.phone_number,
+        birthday: response.data.attributes.birthday ? new Date(response.data.attributes.birthday) : null,
+        gender: response.data.attributes.gender,
+        streetAddress: response.data.attributes.address,
+        zipCode: response.data.attributes.zip,
+        city: response.data.attributes.city,
+        country: response.data.attributes.country,
+        oldPassword: "",
         newPassword: "",
-        confirmPassword: "",
+        confirmNewPassword: "",
       }));
     })();
   }, []);
@@ -69,14 +89,14 @@ function Account() {
             <SoftBox mb={3}>
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Header user={user} isDemo={isDemo} />
+                  <Header user={user}  />
                 </Grid>
                 
                 <Grid item xs={12}>
-                  <BasicInfo user={user} isDemo={isDemo} />
+                  <BasicInfo user={user}  />
                 </Grid>
                 <Grid item xs={12}>
-                  <ChangePassword user={user} isDemo={isDemo} />
+                  <ChangePassword user={user}  />
                 </Grid>
                 <Grid item xs={12}>
                   <Authentication />
