@@ -31,7 +31,7 @@ export function useGetProducts() {
       productsValidating: isValidating,
       productsEmpty: !isLoading && !products.length,
     };
-  }, [data?.data?.products, error, isLoading, isValidating]);
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }

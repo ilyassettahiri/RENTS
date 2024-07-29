@@ -22,10 +22,10 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { toast } from 'src/components/snackbar';
 import { Form, Field, schemaHelper } from 'src/components/hook-form';
+import { createPost, getPostData } from 'src/actions/blog-ssr'; // Import the createPost function
 
 import { PostDetailsPreview } from './post-details-preview';
 
-import { createPost, getPostData } from 'src/actions/blog-ssr'; // Import the createPost function
 
 // ----------------------------------------------------------------------
 

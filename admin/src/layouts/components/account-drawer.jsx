@@ -178,9 +178,7 @@ export function AccountDrawer({ data = [], sx, ...other }) {
             })}
           </Stack>
 
-          <Box sx={{ px: 2.5, py: 3 }}>
 
-          </Box>
         </Scrollbar>
 
         <Box sx={{ p: 2.5 }}>

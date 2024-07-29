@@ -21,17 +21,17 @@ export function useGetUsers() {
   const memoizedValue = useMemo(() => {
     const users = data?.data?.map(user => user.attributes) || [];
 
-    // Log the posts data
+    // Log the users data
     console.log('Users Data:', users);
 
     return {
       users,
-      postsLoading: isLoading,
-      postsError: error,
-      postsValidating: isValidating,
-      postsEmpty: !isLoading && !users.length,
+      usersLoading: isLoading,
+      usersError: error,
+      usersValidating: isValidating,
+      usersEmpty: !isLoading && !users.length,
     };
-  }, [data?.data?.users, error, isLoading, isValidating]);
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }

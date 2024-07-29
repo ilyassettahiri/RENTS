@@ -40,12 +40,12 @@ import {
   TableSelectedAction,
   TablePaginationCustom,
 } from 'src/components/table';
+import { useGetUsers, useSearchUsers } from 'src/actions/user';
 
 import { UserTableRow } from '../user-table-row';
 import { UserTableToolbar } from '../user-table-toolbar';
 import { UserTableFiltersResult } from '../user-table-filters-result';
 
-import { useGetUsers, useSearchUsers } from 'src/actions/user';
 
 
 // ----------------------------------------------------------------------
