@@ -241,6 +241,9 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     $server->resource('blogs', BlogController::class);
 
+
+
+
     $server->resource('businesslists', BusinessController::class);
 
     $server->resource('cancelleds', CancelledController::class);
@@ -389,6 +392,20 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
     // Thank You
     Route::get('thank-you/{checkout_id}', [ThankYouController::class, 'getThankYou']);
 
+
+
+
+    // Blog Front
+    Route::post('blogs/category', [DetailBlogController::class, 'createBlogCategory']);
+    Route::post('blogs/tag', [DetailBlogController::class, 'createBlogTag']);
+    Route::post('blogs/author', [DetailBlogController::class, 'createBlogAuthor']);
+    Route::post('blogs/policypage', [DetailBlogController::class, 'createPolicyPage']);
+    Route::post('blogs/generaleinfo', [DetailBlogController::class, 'createGeneraleInfo']);
+
+    Route::post('blogs/about', [DetailBlogController::class, 'createAbout']);
+
+
+    Route::get('blogsdata', [DetailBlogController::class, 'index']);
 
 
 

@@ -14,10 +14,20 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
+use App\Models\Blogcategory;
+use App\Models\Blogtag;
+use App\Models\Author;
 
+use App\Models\Policypage;
+
+
+use App\Models\Generaleinfo;
 
 use App\Models\Listing;
 use App\Models\Collection;
+
+use App\Models\About;
+
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -32,185 +42,298 @@ class DetailBlogController extends JsonApiController
 {
 
 
+
+
+
+
     public function index(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
-
-
-        return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
-                return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
-                    'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
-                    ],
-                    'relationships' => [
-                        'user' => [
-                            'data' => [
-                                'type' => 'users',
-                                'id' => $user->id,
-                            ],
-                        ],
-                    ],
-                ];
-            }),
-        ]);
-    }
 
 
 
-    public function store(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $request = app('request'); // Retrieve the current request
+        $authors = Author::all();
+        $tags = Blogtag::all();
+        $blogCategories = Blogcategory::all();
 
-        // Validate the request
-        $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
-        ]);
-
-        // Initialize an array to hold the image paths
-        $picturerelativePath = null;
-
-                // Handle image uploads
-                if ($request->hasFile('data.attributes.picture')) {
-                    $picturefile = $request->file('data.attributes.picture');
-                    $picturePath = Storage::disk('public')->put('images', $picturefile);
-                    $picturerelativePath = '/' . $picturePath; // Prepend '/' to make it a relative path
-                }
-
-
-        $name = $request->input('data.attributes.name');
-        $description = $request->input('data.attributes.description');
-
-
-
-        $collection = new Collection();
-        $collection->description = $description;
-        $collection->name = $name;
-
-        $collection->picture = $picturerelativePath;
-
-        $collection->user_id = $user->id;
-        $collection->save();
-
-
-
-
-
-        // Return a JSON:API compliant response
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
+                'authors' => $authors->map(function ($author) {
+                    return [
+                        'type' => 'authors',
+                        'id' => $author->id,
+                        'attributes' => [
 
-                    'created_at' => $collection->created_at,
+                            'id' => $author->id,
 
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
+                            'name' => $author->name,
+                            'picture' => $author->picture,
+                            'bio' => $author->bio,
+                            'created_at' => $author->created_at,
                         ],
-                    ],
-                ],
-            ]
-        ], 201); // 201 Created status code
+                    ];
+                }),
+                'tags' => $tags->map(function ($tag) {
+                    return [
+                        'type' => 'tags',
+                        'id' => $tag->id,
+                        'attributes' => [
+                            'id' => $tag->id,
+
+                            'name' => $tag->name,
+                            'created_at' => $tag->created_at,
+                        ],
+                    ];
+                }),
+                'blogCategories' => $blogCategories->map(function ($category) {
+                    return [
+                        'type' => 'blogCategories',
+                        'id' => $category->id,
+                        'attributes' => [
+                            'id' => $category->id,
+
+                            'name' => $category->name,
+                            'thumb' => $category->thumb,
+                            'created_at' => $category->created_at,
+                        ],
+                    ];
+                }),
+            ],
+        ]);
+
+
+    }
+
+
+
+    public function createBlogCategory(Request $request)
+    {
+
+
+
+
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'thumb' => 'image|max:6048', // Validate image if present
+            ]);
+
+
+
+
+
+
+            $imagePaths ;
+
+
+
+            // Handle multiple image uploads
+            if ($request->hasFile('thumb')) {
+                $file = $request->file('thumb');
+
+
+                    $filePath = Storage::disk('public')->put('images', $file);
+                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+                    $imagePaths = $relativePath;
+
+
+
+            }
+
+            $blogCategory = new Blogcategory();
+
+            $blogCategory->name = $validatedData['name'];
+            $blogCategory->thumb = $imagePaths;
+
+            $blogCategory->save();
+
+        return response()->json(['data' => $blogCategory], 201);
     }
 
 
 
 
 
-
-    public function update(JsonApiRoute $route, Store $store)
+    public function createBlogTag(Request $request)
     {
-        $user = Auth::user();
-        $request = app('request'); // Retrieve the current request
-
-        // Validate the request
-        $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
+        // Validate the request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
         ]);
 
-        $collection = Collection::findOrFail($route->resourceId());
+        // Create a new blog tag
+        $blogTag = new Blogtag();
+        $blogTag->name = $validatedData['name'];
+        $blogTag->save();
 
-        // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
-            // Delete the old picture if exists
-            if ($collection->picture) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $collection->picture));
-            }
-            $pictureFile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('public')->put('images', $pictureFile);
-            $collection->picture = '/' . $picturePath; // Prepend '/' to make it a relative path
+        return response()->json(['data' => $blogTag], 201);
+    }
+
+
+
+
+
+    public function createBlogAuthor(Request $request)
+    {
+
+
+        Log::info('Request Data:', $request->all());
+
+
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'thumb' => 'image|max:6048', // Validate image if present
+        ]);
+
+
+
+
+
+
+        $imagePaths ;
+
+
+
+        // Handle multiple image uploads
+        if ($request->hasFile('thumb')) {
+            $file = $request->file('thumb');
+
+
+                $filePath = Storage::disk('public')->put('images', $file);
+                $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+                $imagePaths = $relativePath;
+
+
+
         }
 
-        $collection->name = $request->input('data.attributes.name');
-        $collection->description = $request->input('data.attributes.description');
-        $collection->save();
+        $blogCategory = new Author();
 
-        // Return a JSON:API compliant response
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
-        ], 200); // 200 OK status code
+        $blogCategory->name = $validatedData['name'];
+        $blogCategory->picture = $imagePaths;
+
+        $blogCategory->save();
+
+        return response()->json(['data' => $blogCategory], 201);
+
+
+
+
     }
 
-    public function show(JsonApiRoute $route, Store $store)
+
+
+
+    public function createPolicyPage(Request $request)
     {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
 
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
+
+
+
+        $validatedData = $request->validate([
+            'privacy' => 'required|string',
+            'termcondition' => 'required|string',
+
+
         ]);
+
+
+
+
+
+
+        $blogCategory = new Policypage();
+
+        $blogCategory->privacy = $validatedData['privacy'];
+        $blogCategory->termcondition = $validatedData['termcondition'];
+
+        $blogCategory->save();
+
+        return response()->json(['data' => $blogCategory], 201);
+
+
+
+
     }
 
 
+
+
+
+
+    public function createGeneraleInfo(Request $request)
+    {
+
+
+
+            // Validate the request
+            $validated = $request->validate([
+                'name' => 'string|nullable',
+                'address' => 'string|nullable',
+                'city' => 'string|nullable',
+                'state' => 'string|nullable',
+                'country' => 'string|nullable',
+                'zip' => 'string|nullable',
+                'phone' => 'string|nullable',
+                'email' => 'string|nullable|email',
+                'website' => 'string|nullable|url',
+                'facebook' => 'string|nullable|url',
+                'twitter' => 'string|nullable|url',
+                'instagram' => 'string|nullable|url',
+                'linkedin' => 'string|nullable|url',
+                'pinterest' => 'string|nullable|url',
+                'telegram' => 'string|nullable|url',
+                'tiktok' => 'string|nullable|url',
+                'youtube' => 'string|nullable|url',
+                'picture1' => 'string|nullable',
+                'picture2' => 'string|nullable',
+                'picture3' => 'string|nullable',
+                'picture4' => 'string|nullable',
+                'description' => 'string|nullable|min:100',
+            ]);
+
+            // Create the generale info
+            $generaleInfo = GeneraleInfo::create($validated);
+
+            return response()->json([
+                'data' => [
+                    'type' => 'generaleinfos',
+                    'id' => $generaleInfo->id,
+                    'attributes' => $generaleInfo->toArray(),
+                ]
+            ]);
+
+
+
+
+    }
+
+
+    public function createAbout(Request $request)
+    {
+
+            // Validate the request
+            $validated = $request->validate([
+                'large_picture' => 'string|nullable',
+                'profile_picture' => 'string|nullable',
+                'title' => 'string|nullable',
+                'content' => 'string|nullable|min:100',
+                'job' => 'integer|nullable',
+                'successful_hiring' => 'integer|nullable',
+                'partner' => 'integer|nullable',
+                'employee' => 'integer|nullable',
+            ]);
+
+            // Create the about
+            $about = About::create($validated);
+
+            return response()->json([
+                'data' => [
+                    'type' => 'abouts',
+                    'id' => $about->id,
+                    'attributes' => $about->toArray(),
+                ]
+            ]);
+
+
+    }
 
 }

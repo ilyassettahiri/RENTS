@@ -189,7 +189,7 @@ class ListingController extends JsonApiController
                     'attributes' => [
                         'category' => $listing->category,
                         'url' => $listing->url,
-
+                        'id' => $listing->id,
                         'title' => $listing->title,
                         'price' => $listing->price,
                         'status' => $listing->status,

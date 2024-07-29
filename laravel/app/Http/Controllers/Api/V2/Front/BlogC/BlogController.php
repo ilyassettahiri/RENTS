@@ -13,6 +13,7 @@ use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -100,67 +101,79 @@ class BlogController extends JsonApiController
 
     public function store(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
+
+
+
         $request = app('request'); // Retrieve the current request
 
         // Validate the request
-        $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
+        $validated = $request->validate([
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'thumb.path' => 'required|string', // Validate the thumb path if present
+            'blogcategory' => 'required|string',
+            'tags' => 'required|array|min:1',
+            'tags.*' => 'string',
+            'author' => 'required|string',
         ]);
 
-        // Initialize an array to hold the image paths
-        $picturerelativePath = null;
+        // Extract data from the request
+        $title = $request->input('title');
+        $content = $request->input('content');
+        $thumb = $request->input('thumb.path');
+        $blogcategoryName = $request->input('blogcategory');
+        $tagNames = $request->input('tags');
+        $authorName = $request->input('author');
 
-                // Handle image uploads
-                if ($request->hasFile('data.attributes.picture')) {
-                    $picturefile = $request->file('data.attributes.picture');
-                    $picturePath = Storage::disk('public')->put('images', $picturefile);
-                    $picturerelativePath = '/' . $picturePath; // Prepend '/' to make it a relative path
-                }
+        // Fetch the IDs for blogcategory, tags, and author
+        $blogcategory = Blogcategory::where('name', $blogcategoryName)->firstOrFail();
+        $tags = Blogtag::whereIn('name', $tagNames)->get();
+        $author = Author::where('name', $authorName)->firstOrFail();
 
+        Log::info('Title:', ['title' => $title]);
 
-        $name = $request->input('data.attributes.name');
-        $description = $request->input('data.attributes.description');
+        // Generate URL from title
+        $url = preg_replace('/[^A-Za-z0-9\- ]/', '', $validated['title']); // Remove special characters
+        $url = str_replace(' ', '-', $url); // Replace spaces with hyphens
+        $url = strtolower($url); // Convert to lowercase
 
+        // Create the article
+        $article = Article::create([
+            'title' => $title,
+            'content' => $content,
+            'thumb' => $thumb,
+            'url' => $url,
+            'blogcategory_id' => $blogcategory->id,
+            'author_id' => $author->id,
+            'blog_id' => 1,
+        ]);
 
+        // Insert into the article_tag table
+        foreach ($tags as $tag) {
+            DB::table('article_tag')->insert([
+                'article_id' => $article->id,
+                'blogtag_id' => $tag->id,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
 
-        $collection = new Collection();
-        $collection->description = $description;
-        $collection->name = $name;
-
-        $collection->picture = $picturerelativePath;
-
-        $collection->user_id = $user->id;
-        $collection->save();
-
-
-
-
-
-        // Return a JSON:API compliant response
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'type' => 'articles',
+                'id' => $article->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-
-                    'created_at' => $collection->created_at,
-
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
+                    'title' => $article->title,
+                    'content' => $article->content,
+                    'thumb' => $article->thumb,
+                    'url' => $article->url,
+                    'created_at' => $article->created_at,
+                ]
             ]
-        ], 201); // 201 Created status code
+        ]);
+
+
+
     }
 
 
