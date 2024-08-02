@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import TeamProfileCard from "examples/Cards/TeamCards/TeamProfileCard";
+import Post from "admin/customer/review/detail-review/components/Post";
 
 
 import SoftButton from "components/SoftButton";
@@ -168,7 +169,8 @@ function DetailReview() {
 
                 <Card>
                     
-                    Hii 
+                  <Post />
+
                 </Card>
 
 

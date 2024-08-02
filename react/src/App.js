@@ -13,7 +13,10 @@ import { setupAxiosInterceptors } from "services/interceptor";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import Configurator from "examples/Configurator";
 
+import SoftBox from "components/SoftBox";
+import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React example components
 import Sidenav from "examples/Sidenav";
@@ -32,7 +35,7 @@ import routes from "routes";
 
 
 // Soft UI Dashboard PRO React contexts
-import { useSoftUIController,setMiniSidenav, AuthContext } from "context";
+import { useSoftUIController,setMiniSidenav, AuthContext, setOpenConfigurator } from "context";
 
 
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -62,7 +65,7 @@ import AuthService from "services/auth-service";
 
 export default function App({ ability }) {
   const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav, direction, layout, sidenavColor } = controller;
+  const { miniSidenav, direction, layout, sidenavColor,openConfigurator } = controller;
   
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
@@ -94,9 +97,10 @@ export default function App({ ability }) {
 
   
   
+  // Change the openConfigurator state
+  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
-
-  
+    
   // settings the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
@@ -153,7 +157,29 @@ export default function App({ ability }) {
 
 
    
-
+    const configsButton = (
+      <SoftBox
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        width="3.5rem"
+        height="3.5rem"
+        bgColor="white"
+        shadow="sm"
+        borderRadius="50%"
+        position="fixed"
+        right="2rem"
+        bottom="2rem"
+        zIndex={99}
+        color="dark"
+        sx={{ cursor: "pointer" }}
+        onClick={handleConfiguratorOpen}
+      >
+        <Icon fontSize="default" color="inherit">
+          settings
+        </Icon>
+      </SoftBox>
+    );
 
 
 
@@ -173,7 +199,8 @@ export default function App({ ability }) {
               routes={routes}
              
             />
-            
+                        <Configurator />
+                        {configsButton}
             
           </>
         )}
@@ -197,7 +224,8 @@ export default function App({ ability }) {
             routes={routes}
             
           />
-          
+                    <Configurator />
+                    {configsButton}
           
         </>
       )}

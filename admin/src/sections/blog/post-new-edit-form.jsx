@@ -22,12 +22,9 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { toast } from 'src/components/snackbar';
 import { Form, Field, schemaHelper } from 'src/components/hook-form';
-import { createPost, getPostData } from 'src/actions/blog-ssr'; // Import the createPost function
+import { createPost, getPostData } from 'src/actions/blog-ssr'; // Make sure getPostData is imported here
 
 import { PostDetailsPreview } from './post-details-preview';
-
-
-// ----------------------------------------------------------------------
 
 export const NewPostSchema = zod.object({
   title: zod.string().min(1, { message: 'Title is required!' }),
@@ -36,14 +33,11 @@ export const NewPostSchema = zod.object({
   thumb: schemaHelper.file({ message: { required_error: 'Cover is required!' } }),
   tags: zod.string().array().min(2, { message: 'Must have at least 2 items!' }),
   metaKeywords: zod.string().array().nonempty({ message: 'Meta keywords is required!' }),
-  // Not required
   metaTitle: zod.string(),
   blogcategory: zod.string().min(1, { message: 'Must have at least 1 item!' }),
   author: zod.string().min(1, { message: 'Must have at least 1 item!' }),
   metaDescription: zod.string(),
 });
-
-// ----------------------------------------------------------------------
 
 export function PostNewEditForm({ currentPost }) {
   const router = useRouter();
@@ -90,17 +84,21 @@ export function PostNewEditForm({ currentPost }) {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getPostData();
-      setPostData(data.data);
-      console.log('Fetched Data:', data.data);
+      try {
+        const data = await getPostData();
+        setPostData(data.data);
+        console.log('Fetched Data:', data.data);
+      } catch (error) {
+        console.error('Error fetching post data:', error);
+      }
     }
     fetchData();
   }, []);
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+      // Create a new post or update an existing post
       if (!currentPost) {
-        // Create a new post
         await createPost(data);
         toast.success('Create success!');
       } else {
@@ -109,7 +107,8 @@ export function PostNewEditForm({ currentPost }) {
       }
       reset();
       preview.onFalse();
-      router.push(paths.dashboard.post.root);
+      router.push('/dashboard/');
+
       console.info('DATA', data);
     } catch (error) {
       console.error(error);

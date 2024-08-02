@@ -130,9 +130,13 @@ class DetailBlogController extends JsonApiController
                 $file = $request->file('thumb');
 
 
-                    $filePath = Storage::disk('public')->put('images', $file);
-                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
-                    $imagePaths = $relativePath;
+
+
+                    $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+
+                    $relativePath = str_replace('storage/', '', $filePath);
+                    $imagePaths = '/' . $relativePath;
+
 
 
 
@@ -197,9 +201,14 @@ class DetailBlogController extends JsonApiController
             $file = $request->file('thumb');
 
 
-                $filePath = Storage::disk('public')->put('images', $file);
-                $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
-                $imagePaths = $relativePath;
+
+
+            $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+
+            $relativePath = str_replace('storage/', '', $filePath);
+            $imagePaths = '/' . $relativePath;
+
+
 
 
 

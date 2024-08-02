@@ -1,28 +1,22 @@
-
-
 import { useMemo, useEffect, useState } from "react";
-
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
-
-// react-table components
 import { useTable, usePagination, useGlobalFilter, useAsyncDebounce, useSortBy } from "react-table";
-
-// @mui material components
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
-import Icon from "@mui/material/Icon";
+import Checkbox from "@mui/material/Checkbox";
+import SoftSelect from "components/SoftSelect";
+import Grid from "@mui/material/Grid";
 
-// Soft UI Dashboard PRO React components
+import IconButton from "@mui/material/IconButton";
+import Icon from "@mui/material/Icon";
+import DeleteIcon from "@mui/icons-material/Delete";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
-import SoftSelect from "components/SoftSelect";
 import SoftInput from "components/SoftInput";
+import SoftButton from "components/SoftButton";
 import SoftPagination from "components/SoftPagination";
-
-// Soft UI Dashboard PRO React example components
 import DataTableHeadCell from "examples/Tables/DataTable/DataTableHeadCell";
 import DataTableBodyCell from "examples/Tables/DataTable/DataTableBodyCell";
 
@@ -40,8 +34,15 @@ function DataTable({
   const columns = useMemo(() => table.columns, [table]);
   const data = useMemo(() => table.rows, [table]);
 
+  const [filteredData, setFilteredData] = useState(data);
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
+
   const tableInstance = useTable(
-    { columns, data, initialState: { pageIndex: 0 } },
+    { columns, data: filteredData, initialState: { pageIndex: 0 } },
     useGlobalFilter,
     useSortBy,
     usePagination
@@ -64,6 +65,10 @@ function DataTable({
     setGlobalFilter,
     state: { pageIndex, pageSize, globalFilter },
   } = tableInstance;
+
+  const [selectedColumn, setSelectedColumn] = useState("");
+  const [selectedOperator, setSelectedOperator] = useState("");
+  const [filterValue, setFilterValue] = useState("");
 
   // Set the default value for the entries per page when component mounts
   useEffect(() => setPageSize(defaultValue || 10), [defaultValue]);
@@ -130,37 +135,145 @@ function DataTable({
     entriesEnd = pageSize * (pageIndex + 1);
   }
 
+  const applyFilter = () => {
+    let newData = data;
+
+    if (selectedColumn && selectedOperator && filterValue) {
+      newData = data.filter((row) => {
+        const rowValue = row[selectedColumn]?.toString().toLowerCase();
+        const filterVal = filterValue.toLowerCase();
+
+        switch (selectedOperator) {
+          case "contains":
+            return rowValue.includes(filterVal);
+          case "equals":
+            return rowValue === filterVal;
+          case "startsWith":
+            return rowValue.startsWith(filterVal);
+          case "endsWith":
+            return rowValue.endsWith(filterVal);
+          default:
+            return true;
+        }
+      });
+    }
+
+    setFilteredData(newData);
+  };
+
+  const resetFilter = () => {
+    setFilteredData(data);
+    setSelectedColumn("");
+    setSelectedOperator("");
+    setFilterValue("");
+  };
+
+  const toggleRowSelected = (rowId) => {
+    setSelectedRows((prevSelected) =>
+      prevSelected.includes(rowId)
+        ? prevSelected.filter((id) => id !== rowId)
+        : [...prevSelected, rowId]
+    );
+  };
+
+  const deleteSelectedRows = () => {
+    const newData = filteredData.filter((row) => !selectedRows.includes(row.id));
+    setFilteredData(newData);
+    setSelectedRows([]);
+  };
+
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
-      {entriesPerPage || canSearch ? (
-        <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-          {entriesPerPage && (
-            <SoftBox display="flex" alignItems="center">
-              <SoftSelect
-                defaultValue={{ value: defaultValue, label: defaultValue }}
-                options={entries.map((entry) => ({ value: entry, label: entry }))}
-                onChange={setEntriesPerPage}
-                size="small"
-              />
-              <SoftTypography variant="caption" color="secondary">
-                &nbsp;&nbsp;entries per page
-              </SoftTypography>
-            </SoftBox>
-          )}
-          {canSearch && (
-            <SoftBox width="12rem" ml="auto">
-              <SoftInput
-                placeholder="Search..."
-                value={search}
-                onChange={({ currentTarget }) => {
-                  setSearch(search);
-                  onSearchChange(currentTarget.value);
-                }}
-              />
-            </SoftBox>
-          )}
-        </SoftBox>
+      {canSearch ? (
+      <SoftBox p={3}>
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} sm={4}>
+            <SoftInput
+              placeholder="Search..."
+              value={search}
+              onChange={({ currentTarget }) => {
+                setSearch(currentTarget.value);
+                onSearchChange(currentTarget.value);
+              }}
+            />
+          </Grid>
+          
+
+            <Grid item xs={12} sm={2}>
+              <SoftBox display="flex" alignItems="center" >
+                 
+                  <SoftSelect
+                    value={selectedColumn ? { value: selectedColumn, label: selectedColumn } : null}
+                    onChange={(option) => setSelectedColumn(option.value)}
+                    options={columns.map((column) => ({ value: column.accessor, label: column.Header }))}
+                    placeholder="Select column"
+                  />
+              </SoftBox>
+            </Grid>
+
+            <Grid item xs={12} sm={2}>
+              <SoftBox display="flex" alignItems="center" >
+                 
+                  <SoftSelect
+                    value={selectedOperator ? { value: selectedOperator, label: selectedOperator } : null}
+                    onChange={(option) => setSelectedOperator(option.value)}
+                    options={[
+                      { value: "contains", label: "contains" },
+                      { value: "equals", label: "equals" },
+                      { value: "startsWith", label: "starts with" },
+                      { value: "endsWith", label: "ends with" },
+                    ]}
+                    placeholder="Select operator"
+                  />
+              </SoftBox>
+            </Grid>
+
+            
+
+
+            <Grid item xs={12} sm={2}>
+              <SoftBox display="flex" alignItems="center" >
+                  <SoftInput
+                    placeholder="Enter value"
+                    
+                    value={filterValue}
+                    onChange={({ currentTarget }) => setFilterValue(currentTarget.value)}
+                  />
+                  
+              </SoftBox>
+            </Grid>
+
+            <Grid item xs={12} sm={2}>
+              <SoftBox display="flex" alignItems="center" >
+                 
+                  <SoftButton onClick={applyFilter} size="large">
+                    Apply
+                  </SoftButton>
+              </SoftBox>
+            </Grid>
+        </Grid>
+      </SoftBox>
       ) : null}
+
+      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+        {selectedRows.length > 0 && (
+          <SoftButton onClick={deleteSelectedRows} color="error">
+            Delete Selected ({selectedRows.length})
+          </SoftButton>
+        )}
+
+        {selectedColumn && selectedOperator && filterValue && (
+          <SoftBox display="flex" alignItems="center">
+            <SoftTypography variant="body2" color="secondary">
+              Filter Applied: {selectedColumn} {selectedOperator} {filterValue}
+            </SoftTypography>
+            <IconButton onClick={resetFilter} size="small" color="error">
+              <DeleteIcon />
+            </IconButton>
+          </SoftBox>
+        )}
+      </SoftBox>
+
       <Table {...getTableProps()}>
         <SoftBox component="thead">
           {headerGroups.map((headerGroup, key) => (
@@ -173,7 +286,26 @@ function DataTable({
                   align={column.align ? column.align : "left"}
                   sorted={setSortedValue(column)}
                 >
-                  {column.render("Header")}
+                  
+                  
+                        <SoftBox display="flex" alignItems="center">
+                                  {key === 0 && (
+                                    <Checkbox 
+                                      indeterminate={selectedRows.length > 0 && selectedRows.length < rows.length}
+                                      checked={selectedRows.length === rows.length}
+                                      onChange={(e) => {
+                                        if (e.target.checked) {
+                                          setSelectedRows(rows.map((row) => row.id));
+                                        } else {
+                                          setSelectedRows([]);
+                                        }
+                                      }}
+                                    />
+                                  )}
+                          <SoftBox ml={2}>
+                             {column.render("Header")}
+                          </SoftBox>
+                        </SoftBox>
                 </DataTableHeadCell>
               ))}
             </TableRow>
@@ -182,26 +314,40 @@ function DataTable({
         <TableBody {...getTableBodyProps()}>
           {page.map((row, key) => {
             prepareRow(row);
+            const isSelected = selectedRows.includes(row.id);
             return (
-              <TableRow key={key} {...row.getRowProps()}
+              <TableRow
+                key={key}
+                {...row.getRowProps()}
                 sx={{
                   cursor: "pointer",
+                  backgroundColor: isSelected ? "#f8d7da" : "inherit",
                   "&:hover": {
-                    backgroundColor: "#f5f5f5", // Very light grey color
+                    backgroundColor: isSelected ? "#f8d7da" : "#f5f5f5",
                   },
                 }}
-              
               >
-                {row.cells.map((cell, key) => (
+                {row.cells.map((cell, cellKey) => (
                   <DataTableBodyCell
-                    key={key}
+                    key={cellKey}
                     noBorder={noEndBorder && rows.length - 1 === key}
                     align={cell.column.align ? cell.column.align : "left"}
                     {...cell.getCellProps()}
+                  >
+                        <SoftBox display="flex" alignItems="center">
+                                {cellKey === 0 && (
+                                  <Checkbox
+                                    checked={isSelected}
+                                    onChange={() => toggleRowSelected(row.id)}
+                                  />
+                                )}
+                          <SoftBox ml={1}>
+                             {cell.render("Cell")}
+                          </SoftBox>
+                        </SoftBox>
+
 
                     
-                  >
-                    {cell.render("Cell")}
                   </DataTableBodyCell>
                 ))}
               </TableRow>
@@ -217,10 +363,23 @@ function DataTable({
         alignItems={{ xs: "flex-start", sm: "center" }}
         p={!showTotalEntries && pageOptions.length === 1 ? 0 : 3}
       >
+        {entriesPerPage && (
+          <SoftBox display="flex" alignItems="center">
+            <SoftSelect
+              defaultValue={{ value: defaultValue, label: defaultValue }}
+              options={entries.map((entry) => ({ value: entry, label: entry }))}
+              onChange={setEntriesPerPage}
+            />
+            <SoftTypography variant="caption" color="secondary">
+              &nbsp;&nbsp; per page
+            </SoftTypography>
+          </SoftBox>
+        )}
+
         {showTotalEntries && (
           <SoftBox mb={{ xs: 3, sm: 0 }}>
             <SoftTypography variant="button" color="secondary" fontWeight="regular">
-              Showing {entriesStart} to {entriesEnd} of {rows.length} entries
+              Showing {entriesStart} - {entriesEnd} of {rows.length}
             </SoftTypography>
           </SoftBox>
         )}

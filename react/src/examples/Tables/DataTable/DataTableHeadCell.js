@@ -20,8 +20,8 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
       component="th"
       width={width}
       borderBottom={`${borderWidth[1]} solid ${light.main}`}
-      py={1.5}
-      px={3}
+      py={2.5}
+      px={1}
     >
       <SoftBox
         {...rest}

@@ -51,6 +51,8 @@ import {
   AuthContext,
   useSoftUIController,
   setTransparentNavbar,
+  setOpenConfigurator,
+
 } from "context";
 
 import AuthService from "services/auth-service";
@@ -65,7 +67,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav, transparentNavbar, fixedNavbar } = controller;
+  const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator  } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
 
@@ -107,6 +109,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   };
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
+  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
@@ -158,8 +161,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
         <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          {/* <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} /> */}
-          
+          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} /> 
+          <Icon fontSize="medium" sx={navbarDesktopMenu} onClick={handleMiniSidenav}>
+            {miniSidenav ? "menu_open" : "menu"}
+          </Icon>
         </SoftBox>
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
@@ -188,7 +193,24 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   </SoftTypography>
                 </IconButton>
               
-              
+              <IconButton
+                size="small"
+                color="inherit"
+                sx={navbarMobileMenu}
+                onClick={handleMiniSidenav}
+              >
+                <Icon className={light ? "text-white" : "text-dark"}>
+                  {miniSidenav ? "menu_open" : "menu"}
+                </Icon>
+              </IconButton>
+              <IconButton
+                size="small"
+                color="inherit"
+                sx={navbarIconButton}
+                onClick={handleConfiguratorOpen}
+              >
+                <Icon>settings</Icon>
+              </IconButton>
               
               <IconButton
                 size="small"
@@ -206,6 +228,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
           </SoftBox>
         )}
       </Toolbar>
+
+      
     </AppBar>
   );
 }

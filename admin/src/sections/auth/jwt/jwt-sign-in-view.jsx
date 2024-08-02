@@ -1,7 +1,7 @@
 'use client';
 
 import { z as zod } from 'zod';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -64,8 +64,15 @@ export function JwtSignInView() {
     formState: { isSubmitting },
   } = methods;
 
+
+  useEffect(() => {
+    console.log('API URL:', process.env.NEXT_PUBLIC_SERVER_URL);
+  }, []);
+
   const onSubmit = handleSubmit(async (data) => {
     try {
+
+
       await signInWithPassword({ email: data.email, password: data.password });
       await checkUserSession?.();
 

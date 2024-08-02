@@ -40,7 +40,11 @@ export async function getLatestPosts(title) {
 // New function to create a post
 export async function createPost(postData) {
   try {
-    const res = await axios.post(endpoints.post.list, postData);
+    const res = await axios.post(endpoints.post.list, postData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
     return res.data;
   } catch (error) {
     console.error('Failed to create post:', error);

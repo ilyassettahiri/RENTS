@@ -7,7 +7,7 @@ import SoftTypography from "components/SoftTypography";
 function ProductCell({ image, name, checked, linkPath }) {
   return (
     <SoftBox display="flex" alignItems="center">
-      <Checkbox defaultChecked={checked} />
+      
       <SoftBox mx={2} width="3.75rem" component={NavLink}  to={linkPath}>
         <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_BASE_URL}${image}`} alt={name} width="100%" />
       </SoftBox>

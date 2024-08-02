@@ -106,21 +106,34 @@ class BlogController extends JsonApiController
 
         $request = app('request'); // Retrieve the current request
 
+
         // Validate the request
         $validated = $request->validate([
             'title' => 'required|string',
             'content' => 'required|string',
-            'thumb.path' => 'required|string', // Validate the thumb path if present
+            'thumb' => 'required|file', // Validate the thumb as a file
             'blogcategory' => 'required|string',
             'tags' => 'required|array|min:1',
             'tags.*' => 'string',
             'author' => 'required|string',
         ]);
 
+        $file = $request->file('thumb');
+
+
+
+        $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+
+        $relativePath = str_replace('storage/', '', $filePath);
+        $relativePath = '/' . $relativePath;
+
+
+
+
         // Extract data from the request
         $title = $request->input('title');
         $content = $request->input('content');
-        $thumb = $request->input('thumb.path');
+        $thumb =  $relativePath;
         $blogcategoryName = $request->input('blogcategory');
         $tagNames = $request->input('tags');
         $authorName = $request->input('author');

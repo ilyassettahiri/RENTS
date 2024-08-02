@@ -1,4 +1,3 @@
-
 /* eslint-disable react/prop-types */
 
 
@@ -261,7 +260,7 @@ function ListListing() {
         disableSortBy: true,
         accessor: "",
         Cell: (info) => (
-          <SoftBox display="flex" alignItems="center">
+          <SoftBox display="flex" alignItems="left">
 
               <SoftTypography variant="body1" color="secondary" sx={{ cursor: "pointer", lineHeight: 0 }}>
                 <Tooltip title="Preview product" placement="top">
