@@ -3,7 +3,6 @@ import { checkboxClasses } from '@mui/material/Checkbox';
 import { menuItemClasses } from '@mui/material/MenuItem';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
 
-import { CONFIG } from 'src/config-global';
 
 import { remToPx, varAlpha, mediaQueries } from './utils';
 
@@ -176,7 +175,7 @@ export function paper({ theme, color, dropdown }) {
       color: color ?? varAlpha(theme.vars.palette.background.paperChannel, 0.9),
       blur: 20,
     }),
-    backgroundImage: `url(${CONFIG.site.basePath}/assets/cyan-blur.png), url(${CONFIG.site.basePath}/assets/red-blur.png)`,
+    backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/assets/cyan-blur.png), url(${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/assets/red-blur.png)`,
     backgroundRepeat: 'no-repeat, no-repeat',
     backgroundPosition: 'top right, left bottom',
     backgroundSize: '50%, 50%',

@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
+import PropTypes from 'prop-types';
 
 import { varAlpha } from 'src/theme/styles';
 
@@ -27,7 +27,6 @@ export function EmptyContent({
         height: 1,
         ...(filled && {
           borderRadius: 2,
-
         }),
         ...sx,
       }}
@@ -36,9 +35,7 @@ export function EmptyContent({
       <Box
         component="img"
         alt="empty content"
-
-        src={imgUrl ?? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/assets/icons/empty/ic-content.svg`}
-
+        src={imgUrl ?? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/icons/empty/ic-content.svg`}
         sx={{ width: 1, maxWidth: 160, ...slotProps?.img }}
       />
 
@@ -75,3 +72,17 @@ export function EmptyContent({
     </Stack>
   );
 }
+
+EmptyContent.propTypes = {
+  sx: PropTypes.object,
+  imgUrl: PropTypes.string,
+  action: PropTypes.node,
+  filled: PropTypes.bool,
+  slotProps: PropTypes.shape({
+    img: PropTypes.object,
+    title: PropTypes.object,
+    description: PropTypes.object,
+  }),
+  description: PropTypes.string,
+  title: PropTypes.string,
+};

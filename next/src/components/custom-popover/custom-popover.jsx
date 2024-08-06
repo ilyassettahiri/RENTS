@@ -1,4 +1,5 @@
 import Popover from '@mui/material/Popover';
+import PropTypes from 'prop-types';
 import { listClasses } from '@mui/material/List';
 import { menuItemClasses } from '@mui/material/MenuItem';
 
@@ -51,3 +52,25 @@ export function CustomPopover({ open, onClose, children, anchorEl, slotProps, ..
     </Popover>
   );
 }
+
+CustomPopover.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  anchorEl: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.func,
+  ]),
+  slotProps: PropTypes.shape({
+    arrow: PropTypes.shape({
+      placement: PropTypes.string,
+      size: PropTypes.number,
+      offset: PropTypes.number,
+      hide: PropTypes.bool,
+      sx: PropTypes.object,
+    }),
+    paper: PropTypes.shape({
+      sx: PropTypes.object,
+    }),
+  }),
+};

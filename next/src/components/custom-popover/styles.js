@@ -1,6 +1,5 @@
 import { styled } from '@mui/material/styles';
 
-import { CONFIG } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 

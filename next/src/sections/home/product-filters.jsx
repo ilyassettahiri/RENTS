@@ -1,5 +1,4 @@
 import { useCallback } from 'react';
-
 import Box from '@mui/material/Box';
 import Radio from '@mui/material/Radio';
 import Stack from '@mui/material/Stack';
@@ -15,11 +14,11 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
+import PropTypes from 'prop-types';
 
 import { varAlpha } from 'src/theme/styles';
-
 import Iconify from 'src/components/iconify';
-import  Scrollbar  from 'src/components/scrollbar';
+import Scrollbar from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
@@ -49,7 +48,6 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     },
     [filters]
   );
-
 
   const handleFilterPriceRange = useCallback(
     (event, newValue) => {
@@ -130,8 +128,6 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     </Box>
   );
 
-
-
   const renderPrice = (
     <Box display="flex" flexDirection="column">
       <Typography variant="subtitle2">Price</Typography>
@@ -193,7 +189,6 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
         disableRipple
         color="inherit"
         variant="contained"
-
         endIcon={
           <Badge color="error" variant="dot" invisible={!canReset}>
             <Iconify icon="ic:round-filter-list" />
@@ -203,8 +198,6 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
       >
         Filters
       </Button>
-
-
 
       <Drawer
         anchor="right"
@@ -219,7 +212,6 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
           <Stack spacing={3}>
             {renderGender}
             {renderCategory}
-
             {renderPrice}
             {renderRating}
           </Stack>
@@ -229,11 +221,35 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
   );
 }
 
-// ----------------------------------------------------------------------
+ProductFilters.propTypes = {
+  open: PropTypes.bool.isRequired,
+  onOpen: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
+  canReset: PropTypes.bool.isRequired,
+  filters: PropTypes.shape({
+    state: PropTypes.shape({
+      gender: PropTypes.arrayOf(PropTypes.string).isRequired,
+      category: PropTypes.string.isRequired,
+      priceRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+      rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    }).isRequired,
+    setState: PropTypes.func.isRequired,
+    onResetState: PropTypes.func.isRequired,
+  }).isRequired,
+  options: PropTypes.shape({
+    genders: PropTypes.arrayOf(
+      PropTypes.shape({
+        value: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+    categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+    ratings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  }).isRequired,
+};
 
 function InputRange({ type, value, onFilters }) {
   const min = value[0];
-
   const max = value[1];
 
   const handleBlurInputRange = useCallback(() => {
@@ -284,7 +300,6 @@ function InputRange({ type, value, onFilters }) {
         sx={{
           maxWidth: 48,
           borderRadius: 0.75,
-
           [`& .${inputBaseClasses.input}`]: {
             pr: 1,
             py: 0.75,
@@ -296,3 +311,9 @@ function InputRange({ type, value, onFilters }) {
     </Stack>
   );
 }
+
+InputRange.propTypes = {
+  type: PropTypes.string.isRequired,
+  value: PropTypes.arrayOf(PropTypes.number).isRequired,
+  onFilters: PropTypes.func.isRequired,
+};

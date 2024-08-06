@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 
 import { varAlpha } from 'src/theme/styles';
@@ -45,3 +45,9 @@ export const ColorPreview = forwardRef(({ colors, limit = 3, sx, ...other }, ref
     </Box>
   );
 });
+
+ColorPreview.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  limit: PropTypes.number,
+  sx: PropTypes.object,
+};

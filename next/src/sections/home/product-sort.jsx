@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
+import PropTypes from 'prop-types';
 
 import Iconify from 'src/components/iconify';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
@@ -51,3 +52,14 @@ export function ProductSort({ sort, onSort, sortOptions }) {
     </>
   );
 }
+
+ProductSort.propTypes = {
+  sort: PropTypes.string.isRequired,
+  onSort: PropTypes.func.isRequired,
+  sortOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

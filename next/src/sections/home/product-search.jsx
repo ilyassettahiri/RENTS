@@ -1,5 +1,6 @@
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
+import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -11,7 +12,7 @@ import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
-import { Iconify } from 'src/components/iconify';
+import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +42,6 @@ export function ProductSearch({ query, results, onSearch, loading }) {
       options={results}
       onInputChange={(event, newValue) => onSearch(newValue)}
       getOptionLabel={(option) => option.name}
-
       isOptionEqualToValue={(option, value) => option.id === value.id}
       slotProps={{
         popper: { placement: 'bottom-start', sx: { minWidth: 320 } },
@@ -109,3 +109,16 @@ export function ProductSearch({ query, results, onSearch, loading }) {
     />
   );
 }
+
+ProductSearch.propTypes = {
+  query: PropTypes.string.isRequired,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      coverUrl: PropTypes.string,
+    })
+  ).isRequired,
+  onSearch: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+};

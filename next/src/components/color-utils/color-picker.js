@@ -1,13 +1,12 @@
 import { forwardRef, useCallback } from 'react';
-
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import ButtonBase from '@mui/material/ButtonBase';
 import { alpha as hexAlpha } from '@mui/material/styles';
 
 import { varAlpha } from 'src/theme/styles';
-
-import { Iconify } from '../iconify';
+import Iconify from './iconify';
 
 // ----------------------------------------------------------------------
 
@@ -104,3 +103,17 @@ export const ColorPicker = forwardRef(
     );
   }
 );
+
+ColorPicker.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selected: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
+  onSelectColor: PropTypes.func.isRequired,
+  limit: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  sx: PropTypes.object,
+  slotProps: PropTypes.shape({
+    button: PropTypes.object,
+  }),
+};

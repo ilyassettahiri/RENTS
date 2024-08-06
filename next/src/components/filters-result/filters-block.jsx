@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 
@@ -36,3 +37,10 @@ export function FiltersBlock({ label, children, isShow, sx }) {
     </Box>
   );
 }
+
+FiltersBlock.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  isShow: PropTypes.bool.isRequired,
+  sx: PropTypes.object,
+};

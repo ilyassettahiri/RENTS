@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
-import  Iconify  from 'src/components/iconify';
+import PropTypes from 'prop-types';
+import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
@@ -34,3 +34,10 @@ export function FiltersResult({ totalResults, onReset, sx, children }) {
     </Box>
   );
 }
+
+FiltersResult.propTypes = {
+  totalResults: PropTypes.number.isRequired,
+  onReset: PropTypes.func.isRequired,
+  sx: PropTypes.object,
+  children: PropTypes.node.isRequired,
+};
