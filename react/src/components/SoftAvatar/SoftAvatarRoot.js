@@ -23,15 +23,15 @@ export default styled(Avatar)(({ theme, ownerState }) => {
   switch (size) {
     case "xs":
       sizeValue = {
-        width: pxToRem(24),
-        height: pxToRem(24),
+        width: pxToRem(38),
+        height: pxToRem(38),
         fontSize: fontSize.xs,
       };
       break;
     case "sm":
       sizeValue = {
-        width: pxToRem(36),
-        height: pxToRem(36),
+        width: pxToRem(40),
+        height: pxToRem(40),
         fontSize: fontSize.sm,
       };
       break;

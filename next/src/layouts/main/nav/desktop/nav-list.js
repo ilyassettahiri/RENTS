@@ -1,7 +1,8 @@
 "use client";
 
 import PropTypes from 'prop-types';
-import { useEffect, useCallback } from 'react';
+import { useEffect, useCallback, useContext  } from 'react';
+import { AuthContext } from 'src/context/AuthContextProvider';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -119,6 +120,7 @@ NavList.propTypes = {
 
 function NavSubList({ subheader, isNew, cover, items }) {
   const pathname = usePathname();
+  const { handleCategoryClick } = useContext(AuthContext);
 
   const coverPath = items.length ? items[0].path : '';
 
@@ -151,7 +153,10 @@ function NavSubList({ subheader, isNew, cover, items }) {
           const active = pathname === item.path || pathname === `${item.path}/`;
 
           return (
-            <NavItem key={item.title} title={item.title} path={item.path} active={active} subItem />
+            <NavItem key={item.title} title={item.title} path={item.path} active={active} subItem disableLink
+            onClick={() => handleCategoryClick(item.title)} // Call handleCategoryClick here
+
+            />
           );
         })}
       </Stack>

@@ -27,6 +27,7 @@
     "@mui/system": "^5.14.20",
     "@mui/x-date-pickers": "^7.7.0",
     "@mui/x-date-pickers-pro": "^7.7.0",
+    "autosuggest-highlight": "^3.3.4",
     "axios": "^1.7.2",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.11",

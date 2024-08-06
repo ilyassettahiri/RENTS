@@ -43,6 +43,8 @@ export default function ListingView({ params }) {
         setData(response.data);
         setRecentListingsElJadida(response.data.attributes.recentListingsElJadida);
         setSpecifications(response.data.attributes.specifications);
+        console.log('data :', response.data.attributes);
+
       } catch (error) {
         console.error('Failed to fetch listing:', error);
       }

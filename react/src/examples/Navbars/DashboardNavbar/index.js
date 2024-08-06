@@ -14,6 +14,8 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
+import SoftAvatar from "components/SoftAvatar";
+
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -55,7 +57,6 @@ import {
 
 } from "context";
 
-import AuthService from "services/auth-service";
 
 // Images
  
@@ -70,6 +71,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator  } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
+
+ 
+  
+
 
   useEffect(() => {
     // settings the navbar type
@@ -98,15 +103,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   }, [dispatch, fixedNavbar]);
 
 
-  const handleLogOut = async () => {
-    try {
-      await AuthService.logout();
-      authContext.logout();
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  };
+  
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
@@ -160,12 +157,13 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme)}>
-        <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-          <Breadcrumbs icon="home" title={route[route.length - 1]} route={route} light={light} /> 
-          <Icon fontSize="medium" sx={navbarDesktopMenu} onClick={handleMiniSidenav}>
-            {miniSidenav ? "menu_open" : "menu"}
-          </Icon>
-        </SoftBox>
+
+
+          <SoftBox color="inherit" mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
+            <Breadcrumbs  icon="home" title={route[route.length - 1]} route={route} light={light} /> 
+            
+          </SoftBox>
+          
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
             <SoftBox pr={1}>
@@ -176,25 +174,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
             </SoftBox>
             <SoftBox color={light ? "white" : "inherit"}>
               
-                <IconButton sx={navbarIconButton} size="small" onClick={handleLogOut}>
-                  <Icon
-                    sx={({ palette: { dark, white } }) => ({
-                      color: light ? white.main : dark.main,
-                    })}
-                  >
-                    account_circle
-                  </Icon>
-                  <SoftTypography
-                    variant="button"
-                    fontWeight="medium"
-                    color={light ? "white" : "dark"}
-                  >
-                    Sign Out
-                  </SoftTypography>
-                </IconButton>
+                
               
               <IconButton
-                size="small"
+                size="large"
                 color="inherit"
                 sx={navbarMobileMenu}
                 onClick={handleMiniSidenav}
@@ -203,17 +186,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   {miniSidenav ? "menu_open" : "menu"}
                 </Icon>
               </IconButton>
-              <IconButton
-                size="small"
-                color="inherit"
-                sx={navbarIconButton}
-                onClick={handleConfiguratorOpen}
-              >
-                <Icon>settings</Icon>
-              </IconButton>
+
               
               <IconButton
-                size="small"
+                size="large"
                 color="inherit"
                 sx={navbarIconButton}
                 aria-controls="notification-menu"
@@ -223,6 +199,18 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
               </IconButton>
+
+              <IconButton
+                size="large"
+                color="inherit"
+                sx={navbarIconButton}
+                onClick={handleConfiguratorOpen}
+              >
+                              <SoftAvatar src={"/team-1.jpg"} alt="profile-image" size="xs" shadow="sm" />
+
+              </IconButton>
+
+
               {renderMenu()}
             </SoftBox>
           </SoftBox>

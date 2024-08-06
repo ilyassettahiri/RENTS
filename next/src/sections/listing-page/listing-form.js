@@ -69,7 +69,7 @@ export default function ListingForm({ tour }) {
         <Stack spacing={1} direction="row" alignItems="center" sx={{ typography: 'h4' }}>
           {fCurrency(price)}
           <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}>
-            /Tour
+            /Day
           </Typography>
         </Stack>
 
@@ -103,29 +103,19 @@ export default function ListingForm({ tour }) {
           </Box>
         </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-            Service charge
-          </Typography>
-        </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-            Discount
-          </Typography>
-          <Typography variant="body2"> - </Typography>
-        </Stack>
+
+
       </Stack>
 
       <Divider sx={{ borderStyle: 'dashed' }} />
 
       <Stack spacing={3} sx={{ p: 3 }}>
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Total</Typography>
-        </Stack>
 
-        <Link href={`${paths.travel.checkout}/${category}/${url}`}>
+
+
           <Button
+            href={`${paths.travel.checkout}/${category}/${url}`}
             size="large"
             variant="contained"
             color="inherit"
@@ -136,7 +126,7 @@ export default function ListingForm({ tour }) {
           >
             Reserve
           </Button>
-        </Link>
+
       </Stack>
     </Card>
   );

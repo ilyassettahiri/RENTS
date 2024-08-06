@@ -28,7 +28,7 @@ export default function ListingsCarousel({ tours }) {
 
   const carousel = useCarousel({
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 3,
     ...CarouselDots(),
     responsive: [
       {

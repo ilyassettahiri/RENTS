@@ -6,6 +6,8 @@ import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import { alpha } from '@mui/material/styles';
 import Link from '@mui/material/Link';
+import LoadingButton from '@mui/lab/LoadingButton';
+
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
@@ -114,27 +116,40 @@ export default function AccountLayout({ children }) {
         }),
       }}
     >
-      <Stack spacing={2} sx={{ p: 3, pb: 2 }}>
+      <Stack spacing={2} sx={{ p: 3, pb: 2 }} >
         <Stack spacing={2} direction="row" alignItems="center">
           <Avatar src={imageUrl || image} sx={{ width: 64, height: 64 }} />
-          <Stack
-            direction="row"
-            alignItems="center"
-            sx={{
-              typography: 'caption',
-              cursor: 'pointer',
-              '&:hover': { opacity: 0.72 },
-            }}
-          >
+
+          <Stack direction="row" alignItems="center" spacing={1}>
             <input
               type="file"
               accept="image/*"
               onChange={changeHandler}
-
               id="profile-image-upload"
+              style={{ display: 'none' }}
             />
 
+              <LoadingButton
+                color="inherit"
+                size="small"
+                type="submit"
+                variant="contained"
+                onClick={() => document.getElementById('profile-image-upload').click()}
+              >
+                Edit
+              </LoadingButton>
+              <LoadingButton
+                  color="inherit"
+                  size="small"
+                  type="submit"
+                  variant="contained"
+                  onClick={submitHandler}
+                >
+                  Save
+              </LoadingButton>
+
           </Stack>
+
         </Stack>
 
         <Stack spacing={0.5}>

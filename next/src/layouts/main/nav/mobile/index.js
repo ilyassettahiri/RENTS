@@ -58,18 +58,7 @@ export default function NavMobile({ data }) {
             ))}
           </List>
 
-          <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="inherit"
-              href={paths.createlisting}
-              target="_blank"
-              rel="noopener"
-            >
-              Buy Now
-            </Button>
-          </Stack>
+
         </Scrollbar>
       </Drawer>
     </>

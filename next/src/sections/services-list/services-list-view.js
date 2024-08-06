@@ -81,6 +81,7 @@ export default function ServicesListView() {
       }}
     >
       <ServiceSearch
+        colorr="black"
         onSearch={fetchListings}
         sx={{
           color: { md: 'common.white' },

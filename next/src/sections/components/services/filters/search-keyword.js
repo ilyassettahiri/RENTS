@@ -7,7 +7,7 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx }) {
+export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx , colorr }) {
   const [inputValue, setInputValue] = useState('');
   const [open, setOpen] = useState(false);
   const autocompleteRef = useRef(null);
@@ -47,6 +47,7 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx }) {
       onInputChange={handleInputChange}
       onChange={handleChange}
       open={open}
+
       renderInput={(params) => (
         <TextField
           {...params}
@@ -57,11 +58,11 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx }) {
             autoComplete: 'search',
             startAdornment: (
               <InputAdornment position="start">
-                <Iconify width={24} icon="carbon:search" sx={{ color: 'text.disabled', mr: 1 }} />
+                <Iconify width={24} icon="carbon:search" sx={{ color: colorr, mr: 1 }} />
               </InputAdornment>
             ),
             endAdornment: null, // Remove the end adornment (down arrow icon)
-            sx: { pb: 1, ...sx },
+            sx: { pb: 1, ...sx ,color: colorr},
           }}
         />
       )}
@@ -78,6 +79,8 @@ SearchKeyword.propTypes = {
   searchKeyword: PropTypes.string,
   onChangeKeyword: PropTypes.func,
   sx: PropTypes.object,
+  colorr: PropTypes.string,
+
 };
 
 

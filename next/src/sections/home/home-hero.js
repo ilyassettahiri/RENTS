@@ -1,6 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from 'src/context/AuthContextProvider';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -11,16 +13,18 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { bgBlur, bgGradient } from 'src/theme/css';
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import Carousel, { useCarousel, CarouselDots } from 'src/components/carousel';
+import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
 export default function HomeHero({ tours }) {
   const mdUp = useResponsive('up', 'md');
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const { handleCategoryClick } = useContext(AuthContext);
 
   const carouselLarge = useCarousel({
     speed: 500,
     slidesToShow: 1,
-    draggable: false,
-    slidesToScroll: 1,
+    draggable: true,
+    slidesToScroll: 5,
     adaptiveHeight: true,
     ...CarouselDots({
       rounded: true,
@@ -38,12 +42,14 @@ export default function HomeHero({ tours }) {
   const carouselThumb = useCarousel({
     horizontal: true,
     slidesToShow: 5,
-    centerMode: true,
-    slidesToScroll: 1,
+    centerMode: false,
+    slidesToScroll: 5,
     swipeToSlide: true,
+    draggable: true,
     focusOnSelect: true,
     centerPadding: '0px',
     horizontalSwiping: true,
+
   });
 
   useEffect(() => {
@@ -51,56 +57,59 @@ export default function HomeHero({ tours }) {
     carouselThumb.onSetNav();
   }, [carouselLarge, carouselThumb]);
 
+  const handleThumbnailClick = (index, category) => {
+    setSelectedIndex(index);
+    if (carouselLarge.carouselRef.current) {
+      carouselLarge.carouselRef.current.slickGoTo(index);
+    }
+    handleCategoryClick(category);
+  };
+
   return (
     <Box sx={{ minHeight: { md: '60vh' }, position: 'relative' }}>
       {!!tours.length && (
-        <Carousel
-          {...carouselLarge.carouselSettings}
-          asNavFor={carouselThumb.nav}
-          ref={carouselLarge.carouselRef}
-        >
-          {tours.map((tour) => (
+        <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
+          {tours.map((tour, index) => (
             <CarouselItem key={tour.id} tour={tour} />
           ))}
         </Carousel>
       )}
 
-      {mdUp && (
-        <Stack
-          spacing={2}
-          justifyContent="center"
-          sx={{
-            top: 0,
-            height: 1,
-            mt: 3,
-            width: '100%',
-            position: 'absolute',
-            right: { xs: 20, lg: '6%', xl: '0%' },
-            paddingLeft: { lg: '100px' },
-            paddingRight: { lg: '100px' },
-          }}
-        >
-          <Typography variant="h4" sx={{ mt: -15, mb: 3, color: 'white', textAlign: 'center' }}>
-            Find Everything at RENT.ma
-          </Typography>
+      <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext} onPrev={carouselThumb.onPrev}>
+        {mdUp && (
+          <Stack
+            spacing={2}
+            justifyContent="center"
+            sx={{
+              top: 0,
+              height: 1,
+              mt: 3,
+              width: '100%',
+              position: 'absolute',
+              right: { xs: 20, lg: '6%', xl: '0%' },
+              paddingLeft: { lg: '100px' },
+              paddingRight: { lg: '100px' },
+            }}
+          >
+            <Typography variant="h4" sx={{ mt: -15, mb: 3, color: 'white', textAlign: 'center' }}>
+              Find Everything at RENT.ma
+            </Typography>
 
-          {!!tours.length && (
-            <Carousel
-              {...carouselThumb.carouselSettings}
-              asNavFor={carouselLarge.nav}
-              ref={carouselThumb.carouselRef}
-            >
-              {tours.map((tour, index) => (
-                <ThumbnailItem
-                  key={tour.id}
-                  tour={tour}
-                  selected={carouselLarge.currentIndex === index}
-                />
-              ))}
-            </Carousel>
-          )}
-        </Stack>
-      )}
+            {!!tours.length && (
+              <Carousel {...carouselThumb.carouselSettings} ref={carouselThumb.carouselRef}>
+                {tours.map((tour, index) => (
+                  <ThumbnailItem
+                    key={tour.id}
+                    tour={tour}
+                    selected={selectedIndex === index}
+                    onClick={() => handleThumbnailClick(index,tour.categories)}
+                  />
+                ))}
+              </Carousel>
+            )}
+          </Stack>
+        )}
+      </CarouselArrows>
     </Box>
   );
 }
@@ -184,14 +193,17 @@ CarouselItem.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function ThumbnailItem({ tour, selected }) {
+function ThumbnailItem({ tour, selected, onClick }) {
   const theme = useTheme();
+
+
 
   return (
     <Stack
       direction="row"
       alignItems="center"
       spacing={2.5}
+      onClick={onClick}
       sx={{
         px: 2,
         py: 1.5,
@@ -207,7 +219,7 @@ function ThumbnailItem({ tour, selected }) {
       }}
     >
       <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
-      <Stack spacing={0.5}>
+      <Stack spacing={0.5}   >
         <TextMaxLine variant="h6" line={1}>
           {tour.categories}
         </TextMaxLine>
@@ -219,4 +231,5 @@ function ThumbnailItem({ tour, selected }) {
 ThumbnailItem.propTypes = {
   tour: PropTypes.object,
   selected: PropTypes.bool,
+  onClick: PropTypes.func,
 };

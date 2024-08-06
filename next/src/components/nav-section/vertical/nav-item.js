@@ -1,13 +1,13 @@
-import PropTypes from 'prop-types';
-import { forwardRef } from 'react';
-
+import { forwardRef, useContext } from 'react';
+import { AuthContext } from 'src/context/AuthContextProvider';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
 import { alpha, styled } from '@mui/material/styles';
 import ListItemButton from '@mui/material/ListItemButton';
-
 import { RouterLink } from 'src/routes/components';
+import PropTypes from 'prop-types';
+import Typography from '@mui/material/Typography';
 
 import Iconify from '../../iconify';
 
@@ -30,11 +30,18 @@ const NavItem = forwardRef(
       hasChild,
       externalLink,
       currentRole = 'admin',
+      onClick,
       ...other
     },
     ref
   ) => {
     const subItem = depth !== 1;
+    const { handleCategoryClick } = useContext(AuthContext);
+
+    const handleClick = (category) => {
+      handleCategoryClick(category);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     const renderContent = (
       <StyledNavItem
@@ -44,6 +51,7 @@ const NavItem = forwardRef(
         depth={depth}
         active={active}
         disabled={disabled}
+        onClick={onClick}
         {...other}
       >
         {!subItem && icon && (
@@ -120,9 +128,8 @@ const NavItem = forwardRef(
       );
 
     return (
-      <Link
-        component={RouterLink}
-        href={path}
+      <Typography
+        onClick={() => handleClick(title)}
         color="inherit"
         underline="none"
         sx={{
@@ -132,7 +139,7 @@ const NavItem = forwardRef(
         }}
       >
         {renderContent}
-      </Link>
+      </Typography>
     );
   }
 );
@@ -151,6 +158,7 @@ NavItem.propTypes = {
   externalLink: PropTypes.bool,
   currentRole: PropTypes.string,
   roles: PropTypes.arrayOf(PropTypes.string),
+  onClick: PropTypes.func, // New prop
 };
 
 export default NavItem;

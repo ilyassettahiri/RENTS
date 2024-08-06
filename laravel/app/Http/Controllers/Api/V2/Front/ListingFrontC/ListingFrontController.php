@@ -406,7 +406,7 @@ class ListingFrontController extends JsonApiController
 
                                     ],
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -826,7 +826,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -1255,7 +1255,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -1686,7 +1686,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -2112,7 +2112,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -2549,7 +2549,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -2987,7 +2987,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -3421,7 +3421,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -3851,7 +3851,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -4285,7 +4285,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -4722,7 +4722,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -5155,7 +5155,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -5591,7 +5591,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -6025,7 +6025,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -6463,7 +6463,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -6896,7 +6896,7 @@ class ListingFrontController extends JsonApiController
 
                                     ],
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -7327,7 +7327,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -7758,7 +7758,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -8188,7 +8188,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -8625,7 +8625,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -9055,7 +9055,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -9485,7 +9485,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -9921,7 +9921,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -10349,7 +10349,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -10777,7 +10777,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -11205,7 +11205,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -11634,7 +11634,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -12072,7 +12072,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -12507,7 +12507,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -12935,7 +12935,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -13398,7 +13398,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -13834,7 +13834,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -14263,7 +14263,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -14691,7 +14691,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -15118,7 +15118,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -15544,7 +15544,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -15971,7 +15971,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -16398,7 +16398,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -16834,7 +16834,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -17267,7 +17267,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -17696,7 +17696,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -18129,7 +18129,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -18563,7 +18563,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -18995,7 +18995,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -19425,7 +19425,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -19851,7 +19851,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -20277,7 +20277,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -20703,7 +20703,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -21133,7 +21133,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -21561,7 +21561,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -21981,7 +21981,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -22404,7 +22404,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -22830,7 +22830,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,
@@ -23256,7 +23256,7 @@ class ListingFrontController extends JsonApiController
                                     ],
 
 
-                                    'created_ad' => $listingcategory->created_ad,
+                                    'created_at' => $listingcategory->created_at,
                                     'reservations' => $reservations->map(function ($reservation) {
                                         return [
                                             'start' => $reservation->reservationstart,

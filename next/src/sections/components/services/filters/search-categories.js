@@ -10,65 +10,10 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 
-const categories = [
-  'Billiards',
-  'Activities',
-  'Apartments',
-  'Audios',
-  'Boats',
-  'Boxings',
-  'Bureauxs',
-  'Cameras',
-  'Camions',
-  'Caravans',
-  'Cars',
-  'Chargers',
-  'Clothes',
-  'Divings',
-  'Drones',
-  'Eclairages',
-  'Electricaltools',
-  'Engins',
-  'Footballs',
-  'Furnitures',
-  'Gamings',
-  'Golfs',
-  'Houseappliances',
-  'Huntings',
-  'Jewelrys',
-  'Ladders',
-  'Laptops',
-  'Lightings',
-  'Livres',
-  'Magasins',
-  'Maisons',
-  'Mechanicaltools',
-  'Mobiliers',
-  'Motos',
-  'Musculations',
-  'Musicals',
-  'Photographies',
-  'Powertools',
-  'Pressurewashers',
-  'Printers',
-  'Riads',
-  'Routers',
-  'Scooters',
-  'Services',
-  'Sonorisations',
-  'Surfs',
-  'Tablettes',
-  'Taxiaeroports',
-  'Tennis',
-  'Tentes',
-  'Terrains',
-  'Transportations',
-  'Velos',
-  'Villas'
-];
 
 
-export default function SearchCategories({ searchCategories, onChangeCategory }) {
+
+export default function SearchCategories({ searchCategories, onChangeCategory, colorr,categories, placeholder, icon }) {
   return (
     <Autocomplete
       sx={{ width: 1 }}
@@ -80,7 +25,7 @@ export default function SearchCategories({ searchCategories, onChangeCategory })
         <TextField
           {...params}
           hiddenLabel
-          placeholder="Categories"
+          placeholder={placeholder}
           InputProps={{
             ...params.InputProps,
             autoComplete: 'search',
@@ -88,12 +33,13 @@ export default function SearchCategories({ searchCategories, onChangeCategory })
               <InputAdornment position="start">
                 <Iconify
                   width={24}
-                  icon="carbon:inventory-management"
-                  sx={{ color: 'text.disabled', mr: 1 }}
+                  icon={icon}
+
+                  sx={{ color: colorr, mr: 1 }}
                 />
               </InputAdornment>
             ),
-            sx: { pb: 1 },
+            sx: { pb: 1, color: colorr, },
           }}
         />
       )}
@@ -109,4 +55,13 @@ export default function SearchCategories({ searchCategories, onChangeCategory })
 SearchCategories.propTypes = {
   searchCategories: PropTypes.string,
   onChangeCategory: PropTypes.func,
+  colorr: PropTypes.string,
+  placeholder: PropTypes.string,
+
+  categories: PropTypes.array,
+
+
+  icon: PropTypes.string,
+
+
 };

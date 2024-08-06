@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 
 import { useState, useEffect } from "react";
 
@@ -10,6 +11,7 @@ import Switch from "@mui/material/Switch";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
 import Icon from "@mui/material/Icon";
+import SoftAvatar from "components/SoftAvatar";
 
 // @mui icons
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -22,20 +24,57 @@ import SoftButton from "components/SoftButton";
 
 // Custom styles for the Configurator
 import ConfiguratorRoot from "examples/Configurator/ConfiguratorRoot";
+import AuthService from "services/auth-service";
+
 
 // Soft UI Dashboard PRO React context
 import {
   useSoftUIController,
   setOpenConfigurator,
   
-  setMiniSidenav,
  
  
 } from "context";
 
-function Configurator() {
+function Configurator({user}) {
+
+
+  const [info, setInfo] = useState({
+    
+    name: '',
+    
+    email: '',
+
+    profile_image: '',
+   
+  });
+
+  useEffect(() => {
+    setInfo({
+      
+      name: user.name,
+      
+      email: user.email,
+      profile_image: user.profile_image,
+      
+    });
+    
+  }, [user]);
+
+
+  const handleLogOut = async () => {
+    try {
+      await AuthService.logout();
+      authContext.logout();
+    } catch (err) {
+      console.error(err);
+      return null;
+    }
+  };
+
+
   const [controller, dispatch] = useSoftUIController();
-  const { openConfigurator, transparentSidenav, miniSidenav, fixedNavbar, sidenavColor } =
+  const { openConfigurator, transparentSidenav, fixedNavbar, sidenavColor } =
     controller;
   const [disabled, setDisabled] = useState(false);
   const sidenavColors = ["primary", "dark", "info", "success", "warning", "error"];
@@ -59,7 +98,6 @@ function Configurator() {
 
   const handleCloseConfigurator = () => setOpenConfigurator(dispatch, false);
   
-  const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
 
   // sidenav type buttons styles
   const sidenavTypeButtonsStyles = ({
@@ -84,19 +122,14 @@ function Configurator() {
         pb={0.8}
         px={3}
       >
-        <SoftBox>
-          <SoftTypography variant="h5">Soft UI Configurator</SoftTypography>
-          <SoftTypography variant="body2" color="text">
-            See our dashboard options.
-          </SoftTypography>
-        </SoftBox>
+        
 
         <Icon
           sx={({ typography: { size, fontWeightBold }, palette: { dark } }) => ({
             fontSize: `${size.md} !important`,
             fontWeight: `${fontWeightBold} !important`,
             stroke: dark.main,
-            strokeWidth: "2px",
+            strokeWidth: "4px",
             cursor: "pointer",
             mt: 2,
           })}
@@ -106,118 +139,53 @@ function Configurator() {
         </Icon>
       </SoftBox>
 
-      <Divider />
+      
 
       <SoftBox pt={1.25} pb={3} px={3}>
-        <SoftBox>
-          <SoftTypography variant="h6">Sidenav Colors</SoftTypography>
+        <SoftBox >
+          
+          
 
-          <SoftBox mb={0.5}>
+          <SoftBox mb={0.5} display="flex" justifyContent="center">
+            {info.profile_image &&  <SoftAvatar src={info.profile_image} alt="profile-image" size="xl" shadow="sm" /> } 
+
+
             
           </SoftBox>
+
+            <SoftTypography variant="h6" color="text" fontWeight="regular" display="flex" justifyContent="center">
+                {info.name} 
+            </SoftTypography>
+            <SoftTypography variant="button" color="text" fontWeight="regular" display="flex" justifyContent="center">
+              {info.email} 
+            </SoftTypography>
+
         </SoftBox>
 
-        <SoftBox mt={3} lineHeight={1}>
-          <SoftTypography variant="h6">Sidenav Type</SoftTypography>
-          <SoftTypography variant="button" color="text" fontWeight="regular">
-            Choose between 2 different sidenav types.
-          </SoftTypography>
+       
 
-          
-        </SoftBox>
         
 
         <Divider />
 
-        <SoftBox mt={2} mb={3} lineHeight={1}>
-          <SoftTypography variant="h6">Sidenav Mini</SoftTypography>
-
-          <Switch checked={miniSidenav} onChange={handleMiniSidenav} />
-        </SoftBox>
+        
 
         <Divider />
 
         <SoftBox mt={3} mb={2}>
           <SoftBox mb={2}>
             <SoftButton
-              component={Link}
-              href="https://www.creative-tim.com/product/soft-ui-dashboard-pro-react"
-              target="_blank"
-              rel="noreferrer"
+              onClick={handleLogOut}
               color="info"
               variant="gradient"
               fullWidth
             >
-              buy now
+              Sign Out
             </SoftButton>
           </SoftBox>
-          <SoftBox mb={2}>
-            <SoftButton
-              component={Link}
-              href="https://www.creative-tim.com/product/soft-ui-dashboard-react"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-              variant="gradient"
-              fullWidth
-            >
-              free download
-            </SoftButton>
-          </SoftBox>
-          <SoftButton
-            component={Link}
-            href="https://www.creative-tim.com/learning-lab/react/quick-start/soft-ui-dashboard/"
-            target="_blank"
-            rel="noreferrer"
-            color="dark"
-            variant="outlined"
-            fullWidth
-          >
-            view documentation
-          </SoftButton>
+          
         </SoftBox>
-        <SoftBox display="flex" justifyContent="center">
-          <a
-            className="github-button"
-            href="https://github.com/creativetimofficial/ct-soft-ui-dashboard-pro-react"
-            data-icon="octicon-star"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star creativetimofficial/ct-soft-ui-dashboard-pro-react on GitHub"
-          >
-            Star
-          </a>
-        </SoftBox>
-        <SoftBox mt={3} textAlign="center">
-          <SoftBox mb={0.5}>
-            <SoftTypography variant="h6">Thank you for sharing!</SoftTypography>
-          </SoftBox>
-
-          <SoftBox display="flex" justifyContent="center">
-            <SoftBox mr={1.5}>
-              <SoftButton
-                component={Link}
-                href="//twitter.com/intent/tweet?text=Check%20Soft%20UI%20Dashboard%20PRO%20React%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23react%20%mui&url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fsoft-ui-dashboard-pro-react"
-                target="_blank"
-                rel="noreferrer"
-                color="dark"
-              >
-                <TwitterIcon />
-                &nbsp; Tweet
-              </SoftButton>
-            </SoftBox>
-            <SoftButton
-              component={Link}
-              href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/soft-ui-dashboard-pro-react"
-              target="_blank"
-              rel="noreferrer"
-              color="dark"
-            >
-              <FacebookIcon />
-              &nbsp; Share
-            </SoftButton>
-          </SoftBox>
-        </SoftBox>
+        
       </SoftBox>
     </ConfiguratorRoot>
   );

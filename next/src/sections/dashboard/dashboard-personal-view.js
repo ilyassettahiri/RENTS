@@ -43,15 +43,10 @@ export default function DashboardPersonalView() {
   });
   const [userId, setUserId] = useState(null);
 
-
   useEffect(() => {
     (async () => {
       const response = await AuthService.getProfile();
-
-      console.log('data:', response.data);
-
       setUserId(response.data.id);
-
       setUser((prevUser) => ({
         ...prevUser,
         firstName: response.data.attributes.first_name,
@@ -74,7 +69,7 @@ export default function DashboardPersonalView() {
 
   const passwordShow = useBoolean();
 
-  const EcommerceAccountPersonalSchema = Yup.object().shape({
+  const personalInfoSchema = Yup.object().shape({
     firstName: Yup.string().required('First name is required'),
     lastName: Yup.string().required('Last name is required'),
     emailAddress: Yup.string().required('Email address is required'),
@@ -86,53 +81,53 @@ export default function DashboardPersonalView() {
     zipCode: Yup.string().required('Zip code is required'),
   });
 
-  const methods = useForm({
-    resolver: yupResolver(EcommerceAccountPersonalSchema),
+  const passwordSchema = Yup.object().shape({
+    oldPassword: Yup.string().required('Old password is required'),
+    newPassword: Yup.string().required('New password is required'),
+    confirmNewPassword: Yup.string()
+      .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
+      .required('Confirm new password is required'),
+  });
+
+  const personalInfoMethods = useForm({
+    resolver: yupResolver(personalInfoSchema),
+    defaultValues: user,
+  });
+
+  const passwordMethods = useForm({
+    resolver: yupResolver(passwordSchema),
     defaultValues: user,
   });
 
   useEffect(() => {
-    methods.reset(user);
-  }, [user, methods]);
+    personalInfoMethods.reset(user);
+    passwordMethods.reset(user);
+  }, [user, personalInfoMethods, passwordMethods]);
 
-  const {
-    reset,
-    handleSubmit,
-    formState: { isSubmitting },
-  } = methods;
-
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmitPersonalInfo = personalInfoMethods.handleSubmit(async (data) => {
     try {
-      // Format the birthday to 'Y-m-d' before sending
       if (data.birthday) {
         data.birthday = format(data.birthday, 'yyyy-MM-dd');
       }
-
       await CrudService.updateUser(data, userId);
-
-      // Fetch the updated user data
       const response = await AuthService.getProfile();
-
       setUser((prevUser) => ({
         ...prevUser,
-        firstName: response.data.attributes.first_name,
-        lastName: response.data.attributes.last_name,
-        emailAddress: response.data.attributes.email,
-        profile_image: response.data.attributes.profile_image,
-        phoneNumber: response.data.attributes.phone_number,
+        ...response.data.attributes,
         birthday: response.data.attributes.birthday ? new Date(response.data.attributes.birthday) : null,
-        gender: response.data.attributes.gender,
-        streetAddress: response.data.attributes.address,
-        zipCode: response.data.attributes.zip,
-        city: response.data.attributes.city,
-        country: response.data.attributes.country,
-        oldPassword: "",
-        newPassword: "",
-        confirmNewPassword: "",
       }));
+      personalInfoMethods.reset();
+      console.log('Personal Info Data:', data);
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
-      reset();
-      console.log('DATA', data);
+  const onSubmitPassword = passwordMethods.handleSubmit(async (data) => {
+    try {
+      // Implement password update logic here
+      console.log('Password Data:', data);
+      passwordMethods.reset();
     } catch (error) {
       console.error(error);
     }
@@ -140,7 +135,7 @@ export default function DashboardPersonalView() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <FormProvider methods={methods} onSubmit={onSubmit}>
+      <FormProvider methods={personalInfoMethods} onSubmit={onSubmitPersonalInfo}>
         <Typography variant="h5" sx={{ mb: 3 }}>
           Personal
         </Typography>
@@ -194,7 +189,19 @@ export default function DashboardPersonalView() {
             getOptionLabel={(option) => option}
           />
         </Box>
+        <LoadingButton
+          sx={{ mt: 5 }}
+          color="inherit"
+          size="large"
+          type="submit"
+          variant="contained"
+          loading={personalInfoMethods.formState.isSubmitting}
+        >
+          Save Changes
+        </LoadingButton>
+      </FormProvider>
 
+      <FormProvider methods={passwordMethods} onSubmit={onSubmitPassword}>
         <Stack spacing={3} sx={{ my: 5 }}>
           <Typography variant="h5"> Change Password </Typography>
 
@@ -244,16 +251,17 @@ export default function DashboardPersonalView() {
               }}
             />
           </Stack>
+
         </Stack>
-        <LoadingButton
-          color="inherit"
-          size="large"
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-        >
-          Save Changes
-        </LoadingButton>
+          <LoadingButton
+            color="inherit"
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={passwordMethods.formState.isSubmitting}
+          >
+            Change Password
+          </LoadingButton>
       </FormProvider>
     </LocalizationProvider>
   );

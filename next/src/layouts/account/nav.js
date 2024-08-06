@@ -45,6 +45,8 @@ export default function Nav({ open, onClose }) {
 
       setUser({
         firstName: userData.firstName || '',
+        name: userData.name || '',
+
         lastName: userData.lastName || '',
         emailAddress: userData.email || '',
         phoneNumber: userData.phoneNumber || '',
@@ -120,7 +122,7 @@ export default function Nav({ open, onClose }) {
         }),
       }}
     >
-      <Stack spacing={2} sx={{ p: 3, pb: 2 }}>
+      <Stack spacing={2} sx={{ p: 3, pb: 2 }} alignItems="center">
         <Stack spacing={2} direction="row" alignItems="center">
           <Avatar src={imageUrl || image} sx={{ width: 64, height: 64 }} />
           <Stack
@@ -144,9 +146,9 @@ export default function Nav({ open, onClose }) {
           </Stack>
         </Stack>
 
-        <Stack spacing={0.5}>
+        <Stack spacing={0.5} alignItems="center">
           <TextMaxLine variant="subtitle1" line={1}>
-            {user ? `${user.firstName} ${user.lastName}` : 'Loading...'}
+            {user ? `${user.name} ` : 'Loading...'}
           </TextMaxLine>
           <TextMaxLine variant="body2" line={1} sx={{ color: 'text.secondary' }}>
             {user ? user.emailAddress : 'Loading...'}

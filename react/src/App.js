@@ -121,7 +121,9 @@ export default function App({ ability }) {
       const response = await AuthService.getProfile();
       setUserDetails({
         name: response.data.attributes.name,
-        image: response.data.attributes.profile_image,
+        email: response.data.attributes.email,
+
+        profile_image: response.data.attributes.profile_image,
       });
       const rules = await getPermissions(id);
       ability.update(rules);
@@ -199,7 +201,7 @@ export default function App({ ability }) {
               routes={routes}
              
             />
-                        <Configurator />
+                        <Configurator user={userDetails} />
                         {configsButton}
             
           </>
@@ -224,7 +226,7 @@ export default function App({ ability }) {
             routes={routes}
             
           />
-                    <Configurator />
+                    <Configurator user={userDetails}/>
                     {configsButton}
           
         </>

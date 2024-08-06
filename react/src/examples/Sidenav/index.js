@@ -210,7 +210,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     <SidenavRoot {...rest} variant="permanent" ownerState={{ transparentSidenav, miniSidenav }}>
       <SoftBox pt={3} pb={1} px={4} textAlign="center" >
         
-        <SoftBox component={NavLink} to="http://localhost:3002/" display="flex" alignItems="center">
+        <SoftBox component={NavLink} to="https://next.prinssy.com/" display="flex" alignItems="center">
           {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="6rem" />}
           
         </SoftBox>

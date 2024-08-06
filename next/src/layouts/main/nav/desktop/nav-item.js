@@ -12,7 +12,7 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 const NavItem = forwardRef(
-  ({ title, path, open, active, subItem, hasChild, externalLink, ...other }, ref) => {
+  ({ title, path, open, active, subItem, hasChild, externalLink, disableLink, onClick, ...other }, ref) => {
     const renderContent = (
       <StyledNavItem
         disableRipple
@@ -21,6 +21,8 @@ const NavItem = forwardRef(
         open={open}
         active={active}
         subItem={subItem}
+        onClick={onClick}
+
         {...other}
       >
         {title}
@@ -30,6 +32,10 @@ const NavItem = forwardRef(
     );
 
     if (hasChild) {
+      return renderContent;
+    }
+
+    if (disableLink) {
       return renderContent;
     }
 
@@ -57,6 +63,10 @@ NavItem.propTypes = {
   title: PropTypes.string,
   hasChild: PropTypes.bool,
   externalLink: PropTypes.bool,
+  disableLink: PropTypes.bool, // New prop
+  onClick: PropTypes.func, // New prop
+
+
 };
 
 export default NavItem;

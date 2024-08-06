@@ -12,10 +12,13 @@ export const AuthContext = createContext({
   logout: () => {},
   getCurrentUser: () => {},
   getRole: () => {},
+  selectedCategory: null,
+  handleCategoryClick: () => {},
 });
 
 const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const token = Cookies.get("authToken");
 
@@ -66,6 +69,12 @@ const AuthContextProvider = ({ children }) => {
     }
   }, [getCurrentUser]);
 
+
+  const handleCategoryClick = useCallback((category) => {
+    console.log("Category clicked:", category);
+    setSelectedCategory(category);
+  }, []);
+
   // Memoize the context value to prevent it from changing on every render
   const contextValue = useMemo(() => ({
     isAuthenticated,
@@ -74,7 +83,9 @@ const AuthContextProvider = ({ children }) => {
     logout,
     getRole,
     getCurrentUser,
-  }), [isAuthenticated, login, logout, getRole, getCurrentUser]);
+    selectedCategory,
+    handleCategoryClick,
+  }), [isAuthenticated, login, logout, getRole, getCurrentUser, selectedCategory, handleCategoryClick]);
 
   return (
     <AuthContext.Provider value={contextValue}>

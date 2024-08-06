@@ -1,6 +1,8 @@
 import { alpha } from '@mui/material/styles';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { autocompleteClasses } from '@mui/material/Autocomplete';
+import { inputBaseClasses } from '@mui/material/InputBase';
+import { filledInputClasses } from '@mui/material/FilledInput';
 
 import { paper, menuItem } from '../../css';
 
@@ -11,6 +13,10 @@ export function autocomplete(theme) {
     MuiAutocomplete: {
       styleOverrides: {
         root: {
+          [`& .${inputBaseClasses.root}.${filledInputClasses.root}`]: {
+            paddingTop: theme.spacing(1), // Add padding top
+            paddingBottom: theme.spacing(1), // Add padding bottom
+          },
           [`& span.${autocompleteClasses.tag}`]: {
             ...theme.typography.subtitle2,
             height: 24,

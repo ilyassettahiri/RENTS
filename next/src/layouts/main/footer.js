@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+
+import { AuthContext } from 'src/context/AuthContextProvider';
 
 import Link from '@mui/material/Link';
 import Masonry from '@mui/lab/Masonry';
@@ -45,6 +48,7 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
 
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
+  const { handleCategoryClick } = useContext(AuthContext);
 
   const pathname = usePathname();
 
@@ -206,41 +210,44 @@ export default function Footer() {
 }
 
 // ----------------------------------------------------------------------
-
 export function ListDesktop({ list }) {
-  const pathname = usePathname();
+  const { handleCategoryClick } = useContext(AuthContext);
+
+  const handleClick = (category) => {
+    handleCategoryClick(category);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <Stack spacing={1.5} alignItems="flex-start">
       <Typography variant="subtitle2">{list.subheader}</Typography>
-
-      {list.items?.map((link) => {
-        const active = pathname === link.path || pathname === `${link.path}/`;
-
-        return (
-          <Link
-            component={RouterLink}
-            key={link.title}
-            href={link.path}
-            variant="caption"
-            sx={{
-              color: 'text.secondary',
-              '&:hover': {
-                color: 'text.primary',
-              },
-              ...(active && {
-                color: 'text.primary',
-                fontWeight: 'fontWeightSemiBold',
-              }),
-            }}
-          >
-            {link.title}
-          </Link>
-        );
-      })}
+      {list.items?.map((link) => (
+        <Typography
+          key={link.title}
+          variant="caption"
+          onClick={() => handleClick(link.title)}
+          sx={{
+            color: 'text.secondary',
+            cursor: 'pointer',
+            '&:hover': {
+              color: 'text.primary',
+            },
+          }}
+        >
+          {link.title}
+        </Typography>
+      ))}
     </Stack>
   );
 }
+
+ListDesktop.propTypes = {
+  list: PropTypes.shape({
+    items: PropTypes.array,
+    subheader: PropTypes.string,
+  }).isRequired,
+};
+
 
 ListDesktop.propTypes = {
   list: PropTypes.shape({
