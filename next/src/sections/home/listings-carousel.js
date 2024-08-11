@@ -39,8 +39,7 @@ export default function ListingsCarousel({ tours }) {
 
   const carousel = useCarousel({
     containScroll: true,
-    slidesToShow: 4.1,
-    slidesToScroll: 3,
+
     slideSpacing: '20px',
 
     slidesToShow: { xs: 1.1, md: 4.1 },

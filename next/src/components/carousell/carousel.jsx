@@ -1,4 +1,5 @@
 import { Children, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
@@ -83,3 +84,22 @@ export function Carousel({ carousel, children, sx, slotProps }) {
     </StyledRoot>
   );
 }
+
+
+Carousel.propTypes = {
+  carousel: PropTypes.shape({
+    mainRef: PropTypes.object.isRequired,
+    options: PropTypes.shape({
+      axis: PropTypes.string,
+      slideSpacing: PropTypes.string,
+      direction: PropTypes.string,
+      pluginNames: PropTypes.arrayOf(PropTypes.string),
+    }).isRequired,
+  }).isRequired,
+  children: PropTypes.node,
+  sx: PropTypes.object,
+  slotProps: PropTypes.shape({
+    slide: PropTypes.object,
+    container: PropTypes.object,
+  }),
+};

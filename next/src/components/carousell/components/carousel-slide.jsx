@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
+import PropTypes from 'prop-types';
 
 import { carouselClasses } from '../classes';
 
@@ -51,6 +52,21 @@ export function CarouselSlide({ sx, options, children, ...other }) {
     </StyledRoot>
   );
 }
+
+CarouselSlide.propTypes = {
+  sx: PropTypes.object,
+  options: PropTypes.shape({
+    axis: PropTypes.oneOf(['x', 'y']),
+    slideSpacing: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    slidesToShow: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+      PropTypes.objectOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    ]),
+    parallax: PropTypes.bool,
+  }),
+  children: PropTypes.node.isRequired,
+};
 
 function getSize(slidesToShow) {
   if (slidesToShow && typeof slidesToShow === 'object') {

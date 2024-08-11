@@ -3,9 +3,9 @@ import Stack from '@mui/material/Stack';
 import SvgIcon from '@mui/material/SvgIcon';
 import { useTheme } from '@mui/material/styles';
 import ButtonBase, { buttonBaseClasses } from '@mui/material/ButtonBase';
+import PropTypes from 'prop-types';
 
 import { varAlpha, stylesMode } from 'src/theme/styles';
-
 import { carouselClasses } from '../classes';
 
 // ----------------------------------------------------------------------
@@ -15,10 +15,7 @@ export function CarouselArrowBasicButtons({
   slotProps,
   totalSlides,
   selectedIndex,
-
-  //
   onClickPrev,
-
   onClickNext,
   disablePrev,
   disableNext,
@@ -48,7 +45,6 @@ export function CarouselArrowBasicButtons({
         svgSize={slotProps?.prevBtn?.svgSize}
         sx={slotProps?.prevBtn?.sx}
       />
-
       <ArrowButton
         variant="next"
         options={options}
@@ -62,6 +58,30 @@ export function CarouselArrowBasicButtons({
   );
 }
 
+// Define PropTypes for CarouselArrowBasicButtons
+CarouselArrowBasicButtons.propTypes = {
+  options: PropTypes.object.isRequired,
+  slotProps: PropTypes.shape({
+    prevBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+    nextBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+  }),
+  totalSlides: PropTypes.number,
+  selectedIndex: PropTypes.number,
+  onClickPrev: PropTypes.func.isRequired,
+  onClickNext: PropTypes.func.isRequired,
+  disablePrev: PropTypes.bool.isRequired,
+  disableNext: PropTypes.bool.isRequired,
+  sx: PropTypes.object,
+};
+
 // ----------------------------------------------------------------------
 
 export function CarouselArrowNumberButtons({
@@ -69,10 +89,7 @@ export function CarouselArrowNumberButtons({
   slotProps,
   totalSlides,
   selectedIndex,
-
-  //
   onClickPrev,
-
   onClickNext,
   disablePrev,
   disableNext,
@@ -107,7 +124,6 @@ export function CarouselArrowNumberButtons({
         svgIcon={slotProps?.prevBtn?.svgIcon}
         svgSize={slotProps?.prevBtn?.svgSize ?? 16}
       />
-
       <Box
         component="span"
         className={carouselClasses.arrowsLabel}
@@ -115,7 +131,6 @@ export function CarouselArrowNumberButtons({
       >
         {selectedIndex}/{totalSlides}
       </Box>
-
       <ArrowButton
         variant="next"
         options={options}
@@ -128,6 +143,30 @@ export function CarouselArrowNumberButtons({
     </Stack>
   );
 }
+
+// Define PropTypes for CarouselArrowNumberButtons
+CarouselArrowNumberButtons.propTypes = {
+  options: PropTypes.object.isRequired,
+  slotProps: PropTypes.shape({
+    prevBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+    nextBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+  }),
+  totalSlides: PropTypes.number.isRequired,
+  selectedIndex: PropTypes.number.isRequired,
+  onClickPrev: PropTypes.func.isRequired,
+  onClickNext: PropTypes.func.isRequired,
+  disablePrev: PropTypes.bool.isRequired,
+  disableNext: PropTypes.bool.isRequired,
+  sx: PropTypes.object,
+};
 
 // ----------------------------------------------------------------------
 
@@ -162,7 +201,6 @@ export function CarouselArrowFloatButtons({
         svgSize={slotProps?.prevBtn?.svgSize}
         sx={{ left: -16, ...baseStyles, ...slotProps?.prevBtn?.sx }}
       />
-
       <ArrowButton
         variant="next"
         options={options}
@@ -175,6 +213,27 @@ export function CarouselArrowFloatButtons({
     </>
   );
 }
+
+// Define PropTypes for CarouselArrowFloatButtons
+CarouselArrowFloatButtons.propTypes = {
+  options: PropTypes.object.isRequired,
+  slotProps: PropTypes.shape({
+    prevBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+    nextBtn: PropTypes.shape({
+      svgIcon: PropTypes.node,
+      svgSize: PropTypes.number,
+      sx: PropTypes.object,
+    }),
+  }),
+  onClickPrev: PropTypes.func.isRequired,
+  onClickNext: PropTypes.func.isRequired,
+  disablePrev: PropTypes.bool.isRequired,
+  disableNext: PropTypes.bool.isRequired,
+};
 
 // ----------------------------------------------------------------------
 
@@ -238,3 +297,15 @@ export function ArrowButton({ sx, svgIcon, svgSize, options, variant, ...other }
     </ButtonBase>
   );
 }
+
+// Define PropTypes for ArrowButton
+ArrowButton.propTypes = {
+  sx: PropTypes.object,
+  svgIcon: PropTypes.node,
+  svgSize: PropTypes.number,
+  options: PropTypes.shape({
+    direction: PropTypes.string,
+    axis: PropTypes.string,
+  }),
+  variant: PropTypes.oneOf(['prev', 'next']).isRequired,
+};

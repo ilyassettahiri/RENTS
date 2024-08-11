@@ -2,9 +2,9 @@ import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
 import { useTheme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
+import PropTypes from 'prop-types';
 
 import { varAlpha, stylesMode } from 'src/theme/styles';
-
 import { carouselClasses } from '../classes';
 
 // ----------------------------------------------------------------------
@@ -144,3 +144,22 @@ export function CarouselDotButtons({
     </NoSsr>
   );
 }
+
+// Define PropTypes for CarouselDotButtons
+CarouselDotButtons.propTypes = {
+  sx: PropTypes.object,
+  gap: PropTypes.number,
+  slotProps: PropTypes.shape({
+    dot: PropTypes.shape({
+      size: PropTypes.number,
+      selected: PropTypes.object,
+      sx: PropTypes.object,
+    }),
+  }),
+  onClickDot: PropTypes.func.isRequired,
+  scrollSnaps: PropTypes.arrayOf(PropTypes.number).isRequired,
+  selectedIndex: PropTypes.number.isRequired,
+  fallbackCount: PropTypes.number,
+  variant: PropTypes.oneOf(['circular', 'rounded', 'number']),
+  fallback: PropTypes.bool,
+};

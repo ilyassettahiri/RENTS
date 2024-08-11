@@ -1,4 +1,5 @@
 import { Children, forwardRef, isValidElement } from 'react';
+import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
@@ -14,9 +15,7 @@ import { StyledRoot, StyledContainer } from '../carousel';
 
 export const CarouselThumbs = forwardRef(({ children, slotProps, options, sx, ...other }, ref) => {
   const axis = options?.axis ?? 'x';
-
   const slideSpacing = options?.slideSpacing ?? '12px';
-
   const maskStyles = useMaskStyle(axis);
 
   const renderChildren = Children.map(children, (child) => {
@@ -65,6 +64,20 @@ export const CarouselThumbs = forwardRef(({ children, slotProps, options, sx, ..
   );
 });
 
+CarouselThumbs.propTypes = {
+  children: PropTypes.node.isRequired,
+  slotProps: PropTypes.shape({
+    slide: PropTypes.object,
+    disableMask: PropTypes.bool,
+    container: PropTypes.object,
+  }),
+  options: PropTypes.shape({
+    axis: PropTypes.oneOf(['x', 'y']),
+    slideSpacing: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }),
+  sx: PropTypes.object,
+};
+
 // ----------------------------------------------------------------------
 
 export function CarouselThumb({ sx, src, index, selected, ...other }) {
@@ -106,6 +119,13 @@ export function CarouselThumb({ sx, src, index, selected, ...other }) {
     </ButtonBase>
   );
 }
+
+CarouselThumb.propTypes = {
+  sx: PropTypes.object,
+  src: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  selected: PropTypes.bool,
+};
 
 // ----------------------------------------------------------------------
 

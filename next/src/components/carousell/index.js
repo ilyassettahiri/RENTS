@@ -12,6 +12,5 @@ export * from './components/carousel-thumbs';
 
 export * from './components/carousel-dot-buttons';
 
-export * from './components/carousel-progress-bar';
 
 export * from './components/carousel-arrow-buttons';
