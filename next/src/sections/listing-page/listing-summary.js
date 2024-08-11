@@ -30,7 +30,7 @@ export default function ListingSummary({ specifications, description, category }
             columnGap: 3,
             display: 'grid',
             gridTemplateColumns: {
-              xs: 'repeat(1, 1fr)',
+              xs: 'repeat(2, 1fr)',
               sm: 'repeat(2, 1fr)',
             },
           }}

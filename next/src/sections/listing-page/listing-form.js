@@ -63,6 +63,9 @@ export default function ListingForm({ tour }) {
     []
   );
 
+  const totalDays = startDate && endDate ? (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) : 0;
+  const totalPrice = totalDays * price;
+
   return (
     <Card>
       <Stack spacing={3} sx={{ p: 3 }}>
@@ -102,31 +105,62 @@ export default function ListingForm({ tour }) {
             />
           </Box>
         </Stack>
-
-
-
-
       </Stack>
 
       <Divider sx={{ borderStyle: 'dashed' }} />
 
       <Stack spacing={3} sx={{ p: 3 }}>
+        {startDate && endDate && (
+          <>
+            <Box display="flex">
+              <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
+                Total Days
+              </Typography>
 
+              <Box sx={{ textAlign: 'right' }}>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  sx={{ display: 'block', color: 'error.main' }}
+                >
+                  {totalDays} days
+                </Typography>
+              </Box>
+            </Box>
 
+            <Box display="flex">
+              <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
+                Total
+              </Typography>
 
-          <Button
-            href={`${paths.travel.checkout}/${category}/${url}`}
-            size="large"
-            variant="contained"
-            color="inherit"
-            onClick={() => {
-              sessionStorage.setItem('startDate', startDate);
-              sessionStorage.setItem('endDate', endDate);
-            }}
-          >
-            Reserve
-          </Button>
+              <Box sx={{ textAlign: 'right' }}>
+                <Typography
+                  component="span"
+                  variant="subtitle1"
+                  sx={{ display: 'block', color: 'error.main' }}
+                >
+                  {fCurrency(totalPrice)}
+                </Typography>
+                <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
+                  (VAT included if applicable)
+                </Typography>
+              </Box>
+            </Box>
+          </>
+        )}
 
+        <Button
+          href={`${paths.travel.checkout}/${category}/${url}`}
+          size="large"
+          variant="contained"
+          color="inherit"
+          onClick={() => {
+            sessionStorage.setItem('startDate', startDate);
+            sessionStorage.setItem('endDate', endDate);
+          }}
+        >
+          Reserve
+        </Button>
       </Stack>
     </Card>
   );

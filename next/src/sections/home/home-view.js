@@ -6,6 +6,7 @@ import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
@@ -17,6 +18,7 @@ import Iconify from 'src/components/iconify';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import { EmptyContent } from 'src/components/empty-content';
+import ListingsCarousel from 'src/sections/home/listings-carousel';
 
 import HomeHero from './home-hero';
 import HomeIntroduce from './home-introduce';
@@ -36,37 +38,62 @@ import { ProductFiltersResult } from './product-filters-result';
 
 import OurClients from '../components/listings/our-clients';
 import ListingList from '../components/listings/list/listings-list';
-import ListingsCarousel from './listings-carousel';
 
 // ----------------------------------------------------------------------
-
 const heroUrl = [
-  'images/categoriescover/activities.jpg', 'images/categoriescover/apartments.jpg',
-  'images/categoriescover/audios.jpg', 'images/categoriescover/boats.jpg',
-  'images/categoriescover/boxings.jpg', 'images/categoriescover/bureauxs.jpg',
-  'images/categoriescover/cameras.jpg', 'images/categoriescover/camions.jpg',
-  'images/categoriescover/caravans.jpg', 'images/categoriescover/cars.jpg',
-  'images/categoriescover/chargers.jpg', 'images/categoriescover/clothes.jpg',
-  'images/categoriescover/divings.jpg', 'images/categoriescover/drones.jpg',
-  'images/categoriescover/eclairages.jpg', 'images/categoriescover/electricaltools.jpg',
-  'images/categoriescover/engins.jpg', 'images/categoriescover/footballs.jpg',
-  'images/categoriescover/furnitures.jpg', 'images/categoriescover/gamings.jpg',
-  'images/categoriescover/golfs.jpg', 'images/categoriescover/houseappliances.jpg',
-  'images/categoriescover/huntings.jpg', 'images/categoriescover/jewelrys.jpg',
-  'images/categoriescover/ladders.jpg', 'images/categoriescover/laptops.jpg',
-  'images/categoriescover/lightings.jpg', 'images/categoriescover/livres.jpg',
-  'images/categoriescover/magasins.jpg', 'images/categoriescover/maisons.jpg',
-  'images/categoriescover/mechanicaltools.jpg', 'images/categoriescover/mobiliers.jpg',
-  'images/categoriescover/motos.jpg', 'images/categoriescover/musculations.jpg',
-  'images/categoriescover/musicals.jpg', 'images/categoriescover/photographies.jpg',
-  'images/categoriescover/powertools.jpg', 'images/categoriescover/pressurewashers.jpg',
-  'images/categoriescover/printers.jpg', 'images/categoriescover/riads.jpg',
-  'images/categoriescover/routers.jpg', 'images/categoriescover/scooters.jpg',
-  'images/categoriescover/services.jpg', 'images/categoriescover/sonorisations.jpg',
-  'images/categoriescover/surfs.jpg', 'images/categoriescover/tablettes.jpg',
-  'images/categoriescover/taxiaeroports.jpg', 'images/categoriescover/tennis.jpg',
-  'images/categoriescover/tentes.jpg', 'images/categoriescover/terrains.jpg',
-  'images/categoriescover/transportations.jpg', 'images/categoriescover/velos.jpg',
+  'images/categoriescover/billiards.jpg',
+  'images/categoriescover/activities.jpg',
+  'images/categoriescover/apartments.jpg',
+  'images/categoriescover/audios.jpg',
+  'images/categoriescover/boats.jpg',
+  'images/categoriescover/boxings.jpg',
+  'images/categoriescover/bureauxs.jpg',
+  'images/categoriescover/cameras.jpg',
+  'images/categoriescover/camions.jpg',
+  'images/categoriescover/caravans.jpg',
+  'images/categoriescover/cars.jpg',
+  'images/categoriescover/chargers.jpg',
+  'images/categoriescover/clothes.jpg',
+  'images/categoriescover/divings.jpg',
+  'images/categoriescover/drones.jpg',
+  'images/categoriescover/eclairages.jpg',
+  'images/categoriescover/electricaltools.jpg',
+  'images/categoriescover/engins.jpg',
+  'images/categoriescover/footballs.jpg',
+  'images/categoriescover/furnitures.jpg',
+  'images/categoriescover/gamings.jpg',
+  'images/categoriescover/golfs.jpg',
+  'images/categoriescover/houseappliances.jpg',
+  'images/categoriescover/huntings.jpg',
+  'images/categoriescover/jewelrys.jpg',
+  'images/categoriescover/ladders.jpg',
+  'images/categoriescover/laptops.jpg',
+  'images/categoriescover/lightings.jpg',
+  'images/categoriescover/livres.jpg',
+  'images/categoriescover/magasins.jpg',
+  'images/categoriescover/maisons.jpg',
+  'images/categoriescover/mechanicaltools.jpg',
+  'images/categoriescover/mobiliers.jpg',
+  'images/categoriescover/motos.jpg',
+  'images/categoriescover/musculations.jpg',
+  'images/categoriescover/musicals.jpg',
+  'images/categoriescover/photographies.jpg',
+  'images/categoriescover/powertools.jpg',
+  'images/categoriescover/pressurewashers.jpg',
+  'images/categoriescover/printers.jpg',
+  'images/categoriescover/riads.jpg',
+  'images/categoriescover/routers.jpg',
+  'images/categoriescover/scooters.jpg',
+  'images/categoriescover/services.jpg',
+  'images/categoriescover/sonorisations.jpg',
+  'images/categoriescover/surfs.jpg',
+  'images/categoriescover/tablettes.jpg',
+  'images/categoriescover/taxiaeroports.jpg',
+  'images/categoriescover/tennis.jpg',
+  'images/categoriescover/tentes.jpg',
+  'images/categoriescover/terrains.jpg',
+  'images/categoriescover/transportations.jpg',
+  'images/categoriescover/velos.jpg',
   'images/categoriescover/villas.jpg'
 ];
 
@@ -127,6 +154,7 @@ const categories = [
   'Villas'
 ];
 
+
 const PRODUCT_SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
@@ -155,6 +183,7 @@ const tours = heroUrl.map((url, index) => ({
 export default function HomeView() {
 
 
+  const mdUp = useResponsive('up', 'md');
 
   const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
 
@@ -179,7 +208,7 @@ export default function HomeView() {
         const ourclientsData = response.ourclients;
         const recentarticlesData = response.recentarticles;
 
-        console.log('Mapped recentarticlesData :', recentarticlesData);
+        console.log('billiardsData :', billiardsData);
         console.log('Our clients:', ourclientsData);
 
         setBilliards(billiardsData);
@@ -273,6 +302,7 @@ export default function HomeView() {
   });
 
   // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
+  const dataFiltered = applyFilter({ inputData: initialListings, filters: filters.state, sortBy });
 
 
   const canReset =
@@ -295,34 +325,7 @@ export default function HomeView() {
 
   const productsEmpty = !initialListings.length;
 
-  const renderFilters = (
-    <Stack
-      spacing={3}
-      justifyContent="space-between"
-      alignItems={{ xs: 'flex-end', sm: 'center' }}
-      direction={{ xs: 'column', sm: 'row' }}
-    >
 
-
-      <Stack direction="row" spacing={1} flexShrink={0}>
-        <ProductFilters
-          filters={filters}
-          canReset={canReset}
-          open={openFilters.value}
-          onOpen={openFilters.onTrue}
-          onClose={openFilters.onFalse}
-          options={{
-
-            ratings: PRODUCT_RATING_OPTIONS,
-            genders: PRODUCT_GENDER_OPTIONS,
-            categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
-          }}
-        />
-
-        <ProductSort sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
-      </Stack>
-    </Stack>
-  );
 
   const renderResults = (
     <ProductFiltersResult filters={filters} totalResults={initialListings.length} />
@@ -343,6 +346,7 @@ export default function HomeView() {
     <>
 
       <Box sx={{ position: 'relative' }}>
+
         <HomeHero tours={tours} />
 
         <Container
@@ -352,7 +356,8 @@ export default function HomeView() {
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-            pt: { xs: 3, md: 0 },
+
+
             position: { md: 'absolute' },
           }}
         >
@@ -377,33 +382,53 @@ export default function HomeView() {
           position: 'relative',
           zIndex: 1,
           borderRadius: '20px',
-          marginTop: '-50px',
+
+          mt: { xs: -5, md: -7 },
+
           paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
           backgroundColor: 'white',
         }}
       >
 
-        <Stack alignItems="flex-end" sx={{ mr: 3 }}>
-          <Button
-            sx={{ my: 4, }}
-            color="inherit"
-            variant="contained"
-            startIcon={<Iconify icon="carbon:filter" width={18} />}
 
-          >
-            Filters
-          </Button>
+        <Stack direction="row" justifyContent="space-between" sx={{ mr: 3 }}>
+          <Stack spacing={2.5} sx={{ my: 4, mb: { xs: 3, md: 5 } }}>
+
+              <ProductFilters
+                filters={filters}
+                canReset={canReset}
+                open={openFilters.value}
+                onOpen={openFilters.onTrue}
+                onClose={openFilters.onFalse}
+                options={{
+
+                  ratings: PRODUCT_RATING_OPTIONS,
+                  genders: PRODUCT_GENDER_OPTIONS,
+                  categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
+                }}
+              />
+
+          </Stack>
+
+          <Stack alignItems="flex-end" spacing={2.5} sx={{ my: 4, mb: { xs: 3, md: 5 } }}>
+            <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
+
+          </Stack>
+        </Stack>
+
+        <Stack direction="row" justifyContent="space-between" sx={{ mr: 3 }}>
+          <Stack spacing={2.5} sx={{ mb: 4 }}>
+            {canReset && renderResults}
+          </Stack>
+
+
         </Stack>
 
 
 
 
-          <Stack spacing={2.5} sx={{ mb: { xs: 3, md: 5 } }}>
-            {renderFilters}
 
-            {canReset && renderResults}
-          </Stack>
 
           {(notFound || productsEmpty) && renderNotFound}
 
@@ -412,9 +437,9 @@ export default function HomeView() {
 
 
 
-        <ListingList tours={initialListings} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
-        <ListingsCarousel tours={billiards} title="Billiards" />
-        <ListingsCarousel tours={boxings} title="Boxings" />
+        <ListingList tours={dataFiltered} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        {billiards &&<ListingsCarousel tours={billiards} title="Billiards" />}
+        {boxings &&<ListingsCarousel tours={boxings} title="Boxings" />}
 
       </Container>
       <OurClients brands={ourclients} />
@@ -463,7 +488,7 @@ function applyFilter({ inputData, filters, sortBy }) {
 
 
   if (min !== 0 || max !== 200) {
-    inputData = inputData.filter((product) => product.price >= min && product.price <= max);
+    inputData = inputData.filter((product) => product.attributes.price >= min && product.attributes.price <= max);
   }
 
   if (rating) {

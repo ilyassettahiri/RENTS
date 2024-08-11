@@ -43,7 +43,7 @@ export default function ListingView({ params }) {
         setData(response.data);
         setRecentListingsElJadida(response.data.attributes.recentListingsElJadida);
         setSpecifications(response.data.attributes.specifications);
-        console.log('data :', response.data.attributes);
+        console.log('recentlistings :', response.data.attributes.recentlistings);
 
       } catch (error) {
         console.error('Failed to fetch listing:', error);
@@ -81,9 +81,9 @@ export default function ListingView({ params }) {
         sx={{ mt: 3, mb: 5 }}
       />
 
-      {data && <ListingImage images={data.attributes.images} />}
+      {data && <ListingImage images={data.attributes.images}  />}
 
-      <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
+      <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 2, }, }}>
         <Grid xs={12} md={5} lg={4}>
           {data && <ListingForm tour={data} />}
         </Grid>

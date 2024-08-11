@@ -10,7 +10,12 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 
 
-import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
+import {
+  Carousel,
+  useCarousel,
+  CarouselDotButtons,
+  CarouselArrowBasicButtons,
+} from 'src/components/carousell';
 
 
 import { paths } from 'src/routes/paths';
@@ -20,72 +25,55 @@ import ListingItem from 'src/sections/components/listings/list/listing-item';
 
 // ----------------------------------------------------------------------
 
+
+
+
+
+
 export default function ListingsCarousel({ tours }) {
 
   const theme = useTheme();
 
   const mdUp = useResponsive('up', 'md');
 
+
   const carousel = useCarousel({
-    slidesToShow: 4,
+    containScroll: true,
+    slidesToShow: 4.1,
     slidesToScroll: 3,
-    ...CarouselDots(),
-    responsive: [
-      {
-        breakpoint: theme.breakpoints.values.md,
-        settings: { slidesToShow: 2 },
-      },
-      {
-        breakpoint: theme.breakpoints.values.sm,
-        settings: { slidesToShow: 1 },
-      },
-    ],
+    slideSpacing: '20px',
+
+    slidesToShow: { xs: 1.1, md: 4.1 },
+    slidesToScroll: { xs: 1, md: 3 },
+
+
+
+
   });
 
-
   return (
-    <Container maxWidth={false}
-      sx={{
-        py: { xs: 5, md: 10 },
+    <>
+      <Carousel carousel={carousel}>
+        {tours.map((tour) => (
+          <ListingItem tour={tour} />
+        ))}
+      </Carousel>
 
-      }}
-    >
+      <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mt: 3 }}>
 
+        <CarouselDotButtons
+          scrollSnaps={carousel.dots.scrollSnaps}
+          selectedIndex={carousel.dots.selectedIndex}
+          onClickDot={carousel.dots.onClickDot}
+        />
+        <CarouselArrowBasicButtons {...carousel.arrows} options={carousel.options} />
 
-
-
-      <Box sx={{ position: 'relative' }}>
-        <CarouselArrows
-          onNext={carousel.onNext}
-          onPrev={carousel.onPrev}
-          leftButtonProps={{ sx: { left: { xs: 0, md: -40 } } }}
-          rightButtonProps={{ sx: { right: { xs: 0, md: -40 } } }}
-        >
-          <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
-            {tours.map((tour) => (
-              <Box
-                key={tour.id}
-                sx={{
-                  px: 2,
-                  py: { xs: 8, md: 10 },
-                }}
-              >
-                <ListingItem tour={tour} />
-              </Box>
-            ))}
-          </Carousel>
-        </CarouselArrows>
       </Box>
-
-
-
-
-
-
-
-    </Container>
+    </>
   );
 }
+
+
 
 ListingsCarousel.propTypes = {
   tours: PropTypes.array,

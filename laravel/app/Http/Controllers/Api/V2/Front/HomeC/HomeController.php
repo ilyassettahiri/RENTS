@@ -354,7 +354,9 @@ class HomeController extends JsonApiController
                     'created_at' => $billiard->created_at,
                     'picture' => $billiard->picture,
 
-
+                    'images' => Billiardsimg::where('billiard_id', $billiard->id)->get()->map(function ($image) {
+                        return $image->picture;
+                    }),
 
                 ],
             ];
@@ -370,7 +372,9 @@ class HomeController extends JsonApiController
                     'city' => $listing->city,
                     'id' => $listing->id,
 
-
+                    'images' => Velosimg::where('velo_id', $listing->id)->get()->map(function ($image) {
+                        return $image->picture;
+                    }),
 
                     'category' => 'velos',
                     'url' => $listing->url,

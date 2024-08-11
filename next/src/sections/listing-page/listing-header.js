@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import { useResponsive } from 'src/hooks/use-responsive';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -31,6 +32,8 @@ export default function ListingHeader({ tour, seller }) {
   const { name, profile_image } = seller;
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
 
+  const mdUp = useResponsive('up', 'md');
+
   const favorited = false;
 
   const [favorite, setFavorite] = useState(favorited);
@@ -52,7 +55,7 @@ export default function ListingHeader({ tour, seller }) {
     <>
       <Stack
         spacing={3}
-        direction={{ xs: 'column', md: 'row' }}
+        direction={{ xs: 'row', md: 'row' }}
         sx={{
           mb: 3,
         }}
@@ -76,25 +79,27 @@ export default function ListingHeader({ tour, seller }) {
         </Stack>
       </Stack>
 
-      <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
+      <Stack spacing={3} direction={{ xs: 'row', md: 'row' }}>
 
-        <Stack direction="row" alignItems="center">
-          <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`} sx={{ width: 24, height: 24 }} />
+        {mdUp && (
+          <Stack direction="row" alignItems="center">
+            <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`} sx={{ width: 24, height: 24 }} />
 
-          <Link variant="subtitle2" color="inherit" sx={{ mx: 1 }}>
-            {name}
-          </Link>
-          <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-            verified
-          </Typography>
+            <Link variant="subtitle2" color="inherit" sx={{ mx: 1 }}>
+              {name}
+            </Link>
+            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+              verified
+            </Typography>
+          </Stack>
+        )}
+
+        <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+          <Iconify icon="carbon:location" sx={{ mr: 0.4 }} /> {city}
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:location" sx={{ mr: 0.5 }} /> {city}
-        </Stack>
-
-        <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:time" sx={{ mr: 0.5 }} /> Il y a {formattedDuration}
+          <Iconify icon="carbon:time" sx={{ mr: 0.4 }} /> {formattedDuration}
 
         </Stack>
 

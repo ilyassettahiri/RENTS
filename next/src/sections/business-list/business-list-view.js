@@ -74,6 +74,8 @@ export default function BusinessListView() {
     <Container
       maxWidth={false}
       sx={{
+        mt: { xs: 15, md: 0 },
+
         paddingLeft: { lg: '100px' },
         paddingRight: { lg: '100px' },
       }}

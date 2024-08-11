@@ -20,12 +20,13 @@ export function ProductSort({ sort, onSort, sortOptions }) {
         disableRipple
         color="inherit"
         onClick={popover.onOpen}
+
         endIcon={
           <Iconify
             icon={popover.open ? 'eva:arrow-ios-upward-fill' : 'eva:arrow-ios-downward-fill'}
           />
         }
-        sx={{ fontWeight: 'fontWeightSemiBold' }}
+        sx={{ fontWeight: 'fontWeightSemiBold',borderColor: 'transparent' }}
       >
         Sort by:
         <Box component="span" sx={{ ml: 0.5, fontWeight: 'fontWeightBold' }}>

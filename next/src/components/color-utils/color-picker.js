@@ -6,7 +6,7 @@ import ButtonBase from '@mui/material/ButtonBase';
 import { alpha as hexAlpha } from '@mui/material/styles';
 
 import { varAlpha } from 'src/theme/styles';
-import Iconify from './iconify';
+import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 

@@ -31,6 +31,8 @@ export default function Header({ headerOnDark, onOpenNav }) {
 
   const renderContent = (
     <>
+      {!mdUp && <NavMobile data={navConfig} />}
+
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
         <Logo />
         <Link href="/" target="_blank" rel="noopener" />
@@ -94,7 +96,6 @@ export default function Header({ headerOnDark, onOpenNav }) {
           </Stack>
         </Stack>
       </Stack>
-      {!mdUp && <NavMobile data={navConfig} />}
     </>
   );
 

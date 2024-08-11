@@ -72,6 +72,7 @@ export default function ServiceSearch({ onSearch, colorr }) {
           <Grid item xs={12} md={1}>
             <Button size="large" variant="contained" color="primary" onClick={onSubmit} sx={{ minWidth: { md: 48 },py: 4, px:4 }}>
               <Iconify icon="carbon:search" width={28} />
+
             </Button>
           </Grid>
         )}
@@ -95,11 +96,12 @@ export default function ServiceSearch({ onSearch, colorr }) {
 
   return (
     <>
-      <Stack alignItems="flex-end" sx={{ py: 3 }}>
-        <Button color="primary" variant="contained" startIcon={<Iconify icon="carbon:search" width={18} />} onClick={mobileOpen.onTrue}>
+      <Box  sx={{ py: 3, px: 5,  mt: { xs: -15}, mb: { xs: 5},  }}>
+        <Button sx={{ py: 1.5, }} fullWidth color="primary" variant="contained" startIcon={<Iconify icon="carbon:search" width={20} />} onClick={mobileOpen.onTrue}>
           Search
         </Button>
-      </Stack>
+
+      </Box>
       <Drawer
         anchor="right"
         open={mobileOpen.value}

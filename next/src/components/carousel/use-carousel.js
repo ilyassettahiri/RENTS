@@ -1,24 +1,23 @@
 import { useRef, useState, useCallback } from 'react';
-
 import { useTheme } from '@mui/material/styles';
-
-// ----------------------------------------------------------------------
 
 export default function useCarousel(props) {
   const theme = useTheme();
-
   const carouselRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(props?.initialSlide || 0);
-
   const [nav, setNav] = useState(undefined);
 
   const rtl = theme.direction === 'rtl';
+  const isLoopEnabled = props?.loop !== false;
+
+  const totalSlides = props?.totalSlides || 0;
 
   const carouselSettings = {
     arrows: false,
     dots: !!props?.customPaging,
     rtl,
+    infinite: isLoopEnabled,  // Enable infinite loop by default; disable if loop is false
     beforeChange: (current, next) => setCurrentIndex(next),
     ...props,
     fade: !!(props?.fade && !rtl),
@@ -31,16 +30,16 @@ export default function useCarousel(props) {
   }, []);
 
   const onPrev = useCallback(() => {
-    if (carouselRef.current) {
+    if (carouselRef.current && (isLoopEnabled || currentIndex > 0)) {
       carouselRef.current.slickPrev();
     }
-  }, []);
+  }, [currentIndex, isLoopEnabled]);
 
   const onNext = useCallback(() => {
-    if (carouselRef.current) {
+    if (carouselRef.current && (isLoopEnabled || currentIndex < totalSlides - props.slidesToShow)) {
       carouselRef.current.slickNext();
     }
-  }, []);
+  }, [currentIndex, totalSlides, props.slidesToShow, isLoopEnabled]);
 
   const onTogo = useCallback((index) => {
     if (carouselRef.current) {
@@ -53,13 +52,13 @@ export default function useCarousel(props) {
     carouselRef,
     currentIndex,
     carouselSettings,
-    //
     onPrev,
     onNext,
     onTogo,
     onSetNav,
-    //
     setNav,
     setCurrentIndex,
+    isPrevDisabled: !isLoopEnabled && currentIndex === 0, // Disable "Prev" button if at the first slide and loop is false
+    isNextDisabled: !isLoopEnabled && currentIndex >= totalSlides - props.slidesToShow, // Disable "Next" button if at the last slide and loop is false
   };
 }

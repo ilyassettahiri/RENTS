@@ -24,7 +24,7 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
     <>
       <Box
         sx={{
-          columnGap: 3,
+          columnGap: { xs: 2, md: 3 },
           display: 'grid',
           rowGap: { xs: 4, md: 5 },
           gridTemplateColumns: {

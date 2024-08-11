@@ -16,7 +16,6 @@ import Iconify from 'src/components/iconify';
 
 import CrudService from 'src/services/cruds-service';
 
-import ThankYouInfo from './thank-you-info';
 import ThankYouSummary from './thank-you-summary';
 
 // ----------------------------------------------------------------------
@@ -47,52 +46,60 @@ export default function ThankYouView({ params }) {
       sx={{
         pt: 5,
         pb: { xs: 8, md: 15 },
-        gap: 10,
-        display: 'grid',
-        alignItems: 'flex-start',
-        gridTemplateColumns: { md: 'repeat(2, 1fr)' },
+
+        alignItems: 'center',
+        justifyContent: 'center',
         paddingLeft: { lg: '100px' },
         paddingRight: { lg: '100px' },
       }}
     >
-      {mdUp && data && data.attributes && (
+      {/* {mdUp && data && data.attributes && (
         <Image
           alt="cover"
           src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${data.attributes.picture}`}
           ratio="3/4"
           sx={{ borderRadius: 2 }}
         />
-      )}
+      )} */}
 
-      <Stack spacing={5}>
-        <Typography variant="h2">Completed 🎉</Typography>
 
-        <ThankYouInfo tour={data} />
+        <Stack spacing={5} sx={{
 
-        <ThankYouSummary />
+        paddingLeft: { lg: '100px' },
+        paddingRight: { lg: '100px' },
 
-        <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center">
-          <Button
-            component={RouterLink}
-            href="/"
-            variant="outlined"
-            size="large"
-            color="inherit"
-            startIcon={<Iconify icon="carbon:chevron-left" />}
-          >
-            Back Home
-          </Button>
 
-          <Button
-            variant="contained"
-            size="large"
-            color="inherit"
-            startIcon={<Iconify icon="carbon:package" />}
-          >
-            Download Invoice
-          </Button>
+          }}>
+          <Typography variant="h2" alignItems="center" textAlign="center">Completed 🎉</Typography>
+
+          <Typography variant="h5"  alignItems="center" textAlign="center">Booking Details</Typography>
+
+          <ThankYouSummary tour={data} />
+
+          <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center">
+            <Button
+              component={RouterLink}
+              href="/"
+              variant="outlined"
+              size="large"
+              color="inherit"
+              startIcon={<Iconify icon="carbon:chevron-left" />}
+            >
+              Back Home
+            </Button>
+
+            <Button
+              variant="contained"
+              size="large"
+              color="inherit"
+              startIcon={<Iconify icon="carbon:package" />}
+            >
+              Download Invoice
+            </Button>
+          </Stack>
         </Stack>
-      </Stack>
+
+
     </Container>
   );
 }

@@ -139,8 +139,8 @@ export default function CheckoutView({ params }) {
         paddingRight: { lg: '100px' },
       }}
     >
-      <Typography variant="h2" sx={{ mb: 5 }}>
-        Confirm and Pay
+      <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
+        Checkout
       </Typography>
 
       <FormProvider methods={methods} onSubmit={onSubmit}>
@@ -165,6 +165,8 @@ export default function CheckoutView({ params }) {
           <Grid xs={12} md={5}>
             <CheckOutSummary
               tour={data}
+              discount={5}
+              onApplyDiscount
               departureDay={departureDay}
               isSubmitting={isSubmitting}
               onChangeDepartureDay={handleChangeDepartureDay}

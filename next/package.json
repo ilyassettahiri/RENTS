@@ -31,6 +31,8 @@
     "axios": "^1.7.2",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.11",
+    "embla-carousel": "^8.1.8",
+    "embla-carousel-react": "^8.1.8",
     "framer-motion": "^10.16.16",
     "google-map-react": "^2.2.1",
     "js-cookie": "^3.0.5",

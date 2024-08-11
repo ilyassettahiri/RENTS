@@ -13,7 +13,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { bgBlur, bgGradient } from 'src/theme/css';
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
-import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
+import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
 export default function HomeHero({ tours }) {
   const mdUp = useResponsive('up', 'md');
@@ -26,17 +26,9 @@ export default function HomeHero({ tours }) {
     draggable: true,
     slidesToScroll: 5,
     adaptiveHeight: true,
-    ...CarouselDots({
-      rounded: true,
-      sx: {
-        left: 0,
-        right: 0,
-        zIndex: 9,
-        bottom: 64,
-        position: 'absolute',
-        display: { md: 'none' },
-      },
-    }),
+    loop: false,
+    totalSlides: tours.length, // Pass the length of tours to useCarousel
+
   });
 
   const carouselThumb = useCarousel({
@@ -49,6 +41,9 @@ export default function HomeHero({ tours }) {
     focusOnSelect: true,
     centerPadding: '0px',
     horizontalSwiping: true,
+    loop: false,
+    totalSlides: tours.length, // Pass the length of tours to useCarousel
+
 
   });
 
@@ -76,7 +71,7 @@ export default function HomeHero({ tours }) {
       )}
 
       <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext} onPrev={carouselThumb.onPrev}>
-        {mdUp && (
+
           <Stack
             spacing={2}
             justifyContent="center"
@@ -91,7 +86,7 @@ export default function HomeHero({ tours }) {
               paddingRight: { lg: '100px' },
             }}
           >
-            <Typography variant="h4" sx={{ mt: -15, mb: 3, color: 'white', textAlign: 'center' }}>
+            <Typography variant="h4" sx={{ mt: { xs: -13, md: -15 } , mb: 1, color: 'white', textAlign: 'center' }}>
               Find Everything at RENT.ma
             </Typography>
 
@@ -108,7 +103,7 @@ export default function HomeHero({ tours }) {
               </Carousel>
             )}
           </Stack>
-        )}
+
       </CarouselArrows>
     </Box>
   );
@@ -195,6 +190,7 @@ CarouselItem.propTypes = {
 
 function ThumbnailItem({ tour, selected, onClick }) {
   const theme = useTheme();
+  const mdUp = useResponsive('up', 'md');
 
 
 
@@ -219,11 +215,16 @@ function ThumbnailItem({ tour, selected, onClick }) {
       }}
     >
       <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
-      <Stack spacing={0.5}   >
-        <TextMaxLine variant="h6" line={1}>
-          {tour.categories}
-        </TextMaxLine>
-      </Stack>
+      {mdUp && (
+
+        <Stack spacing={0.5}   >
+          <TextMaxLine variant="h6" line={1}>
+
+            {tour.categories}
+          </TextMaxLine>
+
+        </Stack>
+      )}
     </Stack>
   );
 }

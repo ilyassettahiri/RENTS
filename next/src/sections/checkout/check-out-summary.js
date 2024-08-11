@@ -9,7 +9,10 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { inputBaseClasses } from '@mui/material/InputBase';
-import { inputAdornmentClasses } from '@mui/material/InputAdornment';
+import InputAdornment, { inputAdornmentClasses } from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
+
+import TextField from '@mui/material/TextField';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -25,9 +28,11 @@ import FilterTime from 'src/sections/components/listings/filters/filter-time';
 
 export default function TravelCheckOutSummary({
   tour,
+  discount,
   departureDay,
   isSubmitting,
   onChangeDepartureDay,
+  onApplyDiscount
 }) {
   const smUp = useResponsive('up', 'sm');
 
@@ -63,31 +68,48 @@ export default function TravelCheckOutSummary({
           },
         }}
       >
-        <Image alt={title} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`} ratio="1/1" sx={{ borderRadius: 2 }} />
 
-        <Stack>
-          <TextMaxLine variant="h5" sx={{ mb: 2 }}>
-            {title}
-          </TextMaxLine>
 
-          <Stack spacing={0.5} direction="row" alignItems="center">
-            <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
 
-            <Box sx={{ typography: 'h6' }}>
-              {Number.isInteger(ratingNumber) ? `${ratingNumber}.0` : ratingNumber}
-            </Box>
+        <Stack spacing={2} direction="row" alignItems="center">
+          <Avatar
+            variant="rounded"
+            alt={title}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`}
+            sx={{ width: 80, height: 80 }}
+          />
 
-            {totalReviews && (
-              <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                ({fShortenNumber(totalReviews)} reviews)
-              </Link>
-            )}
+          <Stack spacing={0.5}>
+            <Typography noWrap variant="h5" sx={{ maxWidth: 240 }}>
+              {title}
+
+            </Typography>
+
+            <Stack
+              direction="row"
+              alignItems="center"
+              sx={{ typography: 'body2', color: 'text.secondary' }}
+            >
+                  <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
+
+                  <Box sx={{ typography: 'h6' }}>
+                    {Number.isInteger(ratingNumber) ? `${ratingNumber}.0` : ratingNumber}
+                  </Box>
+
+                  {totalReviews && (
+                    <Link variant="body2" sx={{ color: 'text.secondary' }}>
+                      ({fShortenNumber(totalReviews)} reviews)
+                    </Link>
+                  )}
+
+
+            </Stack>
           </Stack>
 
-          <Divider sx={{ borderStyle: 'dashed', my: 2.5 }} />
         </Stack>
-      </Box>
 
+      </Box>
+      <Divider sx={{ borderStyle: 'dashed', mt: 2.5 }} />
       <Stack sx={{ p: 4, pb: 3 }}>
         <Stack
           spacing={2.5}
@@ -131,34 +153,88 @@ export default function TravelCheckOutSummary({
           </Stack>
         </Stack>
 
-        <Stack
-          spacing={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ mt: 3, mb: 2 }}
-        >
-          <Typography variant="body2" sx={{ color: 'text.disabled' }}>
-            Service charge
-          </Typography>
-          <Typography variant="body2">{fCurrency(price)}</Typography>
-        </Stack>
 
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="body2" sx={{ color: 'text.disabled' }}>
+
+
+        <Stack spacing={2} sx={{ pt: 3 }}>
+        <Box display="flex">
+          <Typography
+            component="span"
+            variant="body2"
+            sx={{ flexGrow: 1, color: 'text.secondary' }}
+          >
+            Sub total
+          </Typography>
+          <Typography component="span" variant="subtitle2">
+            {fCurrency(price)}
+          </Typography>
+        </Box>
+
+        <Box display="flex">
+          <Typography
+            component="span"
+            variant="body2"
+            sx={{ flexGrow: 1, color: 'text.secondary' }}
+          >
             Discount
           </Typography>
-          <Typography variant="body2">-</Typography>
+          <Typography component="span" variant="subtitle2">
+            {discount ? fCurrency(-discount) : '-'}
+          </Typography>
+        </Box>
+
+
+
+        <Divider sx={{ borderStyle: 'dashed' }} />
+
+        <Box display="flex">
+          <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
+            Total
+          </Typography>
+
+          <Box sx={{ textAlign: 'right' }}>
+            <Typography
+              component="span"
+              variant="subtitle1"
+              sx={{ display: 'block', color: 'error.main' }}
+            >
+              {fCurrency(price - discount)}
+            </Typography>
+            <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
+              (VAT included if applicable)
+            </Typography>
+          </Box>
+        </Box>
+
+        {onApplyDiscount && (
+          <TextField
+            fullWidth
+            placeholder="Discount codes / Gifts"
+            value="DISCOUNT5"
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <Button color="primary" onClick={() => onApplyDiscount(5)} sx={{ mr: -0.5 }}>
+                    Apply
+                  </Button>
+                </InputAdornment>
+              ),
+            }}
+          />
+        )}
         </Stack>
+
+
+
+
+
+
+
       </Stack>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
 
       <Stack spacing={3} sx={{ p: 3 }}>
-        <Stack spacing={1} direction="row" alignItems="center" justifyContent="space-between">
-          <Typography variant="h5">Total</Typography>
-          <Typography variant="h5">{fCurrency(price)}</Typography>
-        </Stack>
+
 
         <LoadingButton
           type="submit"
@@ -177,6 +253,9 @@ export default function TravelCheckOutSummary({
 TravelCheckOutSummary.propTypes = {
   isSubmitting: PropTypes.bool,
   onChangeDepartureDay: PropTypes.func,
+  onApplyDiscount: PropTypes.func,
+  discount: PropTypes.number.isRequired,
+
   departureDay: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   tour: PropTypes.shape({
     attributes: PropTypes.shape({

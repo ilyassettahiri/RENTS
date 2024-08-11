@@ -8,10 +8,11 @@ import { fDate } from 'src/utils/format-time';
 import { fCurrency } from 'src/utils/format-number';
 
 import Iconify from 'src/components/iconify';
+import ThankYouInfo from './thank-you-info';
 
 // ----------------------------------------------------------------------
 
-export default function ThankYouSummary() {
+export default function ThankYouSummary({ tour }) {
   return (
     <Stack
       spacing={3}
@@ -21,7 +22,10 @@ export default function ThankYouSummary() {
         border: (theme) => `dashed 1px ${theme.palette.divider}`,
       }}
     >
-      <Typography variant="h5">Booking Details</Typography>
+
+      <ThankYouInfo tour={tour} />
+
+      <Divider sx={{ borderStyle: 'dashed' }} />
 
       <LineItem icon="carbon:calendar" label="Departure day" value={fDate(new Date())} />
 
@@ -40,6 +44,14 @@ export default function ThankYouSummary() {
   );
 }
 
+ThankYouSummary.propTypes = {
+  tour: PropTypes.shape({
+    attributes: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    }).isRequired,
+  }).isRequired,
+};
 // ----------------------------------------------------------------------
 
 function LineItem({ icon, label, value }) {

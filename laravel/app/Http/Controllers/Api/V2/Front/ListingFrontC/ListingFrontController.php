@@ -477,6 +477,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Billiardsimg::where('billiard_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -902,6 +907,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Boxingsimg::where('boxing_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -1331,6 +1341,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Divingsimg::where('diving_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -1761,6 +1776,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Footballsimg::where('football_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -2189,6 +2209,10 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Golfsimg::where('golf_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
                                             ],
 
                                         ];
@@ -2625,6 +2649,10 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Huntingsimg::where('hunting_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
                                             ],
 
                                         ];
@@ -3062,6 +3090,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Musculationsimg::where('musculation_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -3498,6 +3532,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Surfsimg::where('surf_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -3928,6 +3967,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Tennisimg::where('tennis_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -4362,6 +4407,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Audiosimg::where('audio_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -4798,6 +4848,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Camerasimg::where('camera_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -5231,6 +5286,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Chargersimg::where('charger_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -5666,6 +5726,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Dronesimg::where('drone_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -6101,6 +6166,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Gamingsimg::where('gaming_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -6538,6 +6608,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Laptopsimg::where('laptop_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -6972,6 +7048,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Lightingsimg::where('lighting_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -7404,6 +7485,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Printersimg::where('printer_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -7834,6 +7921,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Routersimg::where('router_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -8265,6 +8358,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Tablettesimg::where('tablette_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -8701,6 +8800,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Eclairagesimg::where('eclairage_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -9131,6 +9236,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Mobiliersimg::where('mobilier_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -9561,6 +9672,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Photographiesimg::where('photographie_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -9996,6 +10113,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Sonorisationsimg::where('sonorisation_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -10425,6 +10548,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Tentesimg::where('tente_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -10852,6 +10981,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Clothesimg::where('clothes_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -11280,6 +11415,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Jewelrysimg::where('jewelry_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -11709,6 +11850,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Apartmentsimg::where('apartment_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -12148,6 +12295,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Bureauxsimg::where('bureaux_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -12583,6 +12736,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Magasinsimg::where('magasin_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -13011,6 +13170,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Maisonsimg::where('maison_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -13474,6 +13639,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Riadsimg::where('riad_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -13909,6 +14080,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Terrainsimg::where('terrain_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -14340,6 +14517,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Villasimg::where('villa_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -14766,6 +14949,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Activitiesimg::where('activity_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -15194,6 +15383,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Livresimg::where('livre_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -15619,6 +15814,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Musicalsimg::where('musical_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -16046,6 +16247,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Furnituresimg::where('furniture_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -16475,6 +16682,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Houseappliancesimg::where('houseappliance_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -16910,6 +17123,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Electricaltoolsimg::where('electricaltool_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -17342,6 +17561,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Laddersimg::where('ladder_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -17771,6 +17995,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Mechanicaltoolsimg::where('mechanicaltool_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -18204,6 +18434,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Powertoolsimg::where('powertool_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -18638,6 +18874,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Pressurewashersimg::where('pressurewasher_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -19071,6 +19313,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Servicesimg::where('rervice_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -19500,6 +19747,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Boatsimg::where('boat_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -19927,6 +20180,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Camionsimg::where('camion_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -20352,6 +20611,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Caravansimg::where('caravan_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -20779,6 +21044,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Carsimg::where('car_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -21208,6 +21479,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Enginsimg::where('engin_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -21636,6 +21913,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Motosimg::where('moto_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -22056,6 +22339,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Scootersimg::where('scooter_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -22480,6 +22769,12 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Taxiaeroportsimg::where('taxiaeroport_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
+
                                             ],
 
                                         ];
@@ -22904,6 +23199,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Transportationsimg::where('transportation_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
@@ -23331,6 +23631,11 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+
+                                            'images' => Velosimg::where('velo_id', $recentlisting->id)->get()->map(function ($image) {
+                                                return $image->picture;
+                                            }),
+
                                             ],
 
                                         ];
