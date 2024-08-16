@@ -15,9 +15,8 @@ import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
 // Authentication layout components
-import BasicLayout from "auth/components/BasicLayout";
+import CoverLayout from "auth/components/CoverLayout";
 import Socials from "auth/components/Socials";
-import Separator from "auth/components/Separator";
 
 import { AuthContext } from "context";
 import AuthService from "services/auth-service";
@@ -134,7 +133,7 @@ function Register() {
 
 
   return (
-    <BasicLayout
+    <CoverLayout
       title="Welcome!"
       description="Use these awesome forms to login or create new account in your project for free."
       image={curved6}
@@ -148,7 +147,7 @@ function Register() {
         <SoftBox mb={2}>
           <Socials />
         </SoftBox>
-        <Separator />
+        
         <SoftBox pt={2} pb={3} px={3}>
 
 
@@ -310,7 +309,7 @@ function Register() {
 
         </SoftBox>
       </Card>
-    </BasicLayout>
+    </CoverLayout>
   );
 }
 

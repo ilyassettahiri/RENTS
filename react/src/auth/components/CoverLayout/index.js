@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
@@ -23,113 +10,113 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
-// Soft UI Dashboard PRO React example components
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-// Authentication layout components
-import Footer from "auth/components/Footer";
 
-// Soft UI Dashboard PRO React page layout routes
-import pageRoutes from "page.routes";
 
-function CoverLayout({ color, header, title, description, image, top, children }) {
+// Images
+
+function CoverLayout({ image, color, header, title, description, illustration, children }) {
   return (
     <PageLayout background="white">
-      <DefaultNavbar
-        routes={pageRoutes}
-        action={{
-          type: "external",
-          route: "https://creative-tim.com/product/soft-ui-dashboard-pro-react",
-          label: "buy now",
-        }}
-      />
-      <Grid
-        container
-        justifyContent="center"
-        sx={{
-          minHeight: "75vh",
-          margin: 0,
-        }}
-      >
-        <Grid item xs={11} sm={8} md={5} xl={3}>
-          <SoftBox mt={top}>
-            <SoftBox pt={3} px={3}>
-              {!header ? (
-                <>
-                  <SoftBox mb={1}>
-                    <SoftTypography variant="h3" fontWeight="bold" color={color} textGradient>
-                      {title}
-                    </SoftTypography>
-                  </SoftBox>
-                  <SoftTypography variant="body2" fontWeight="regular" color="text">
-                    {description}
-                  </SoftTypography>
-                </>
-              ) : (
-                header
-              )}
-            </SoftBox>
-            <SoftBox p={3}>{children}</SoftBox>
-          </SoftBox>
-        </Grid>
-        <Grid item xs={12} md={5}>
+      
+      <Grid container>
+
+
+        
+        <Grid item xs={12} lg={6}>
           <SoftBox
-            height="100%"
-            display={{ xs: "none", md: "block" }}
+            display={{ xs: "none", lg: "flex" }}
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            width="calc(100% - 2rem)"
+            height="calc(100vh - 2rem)"
             position="relative"
-            right={{ md: "-12rem", xl: "-16rem" }}
-            mr={-16}
-            sx={{
-              transform: "skewX(-10deg)",
-              overflow: "hidden",
-              borderBottomLeftRadius: ({ borders: { borderRadius } }) => borderRadius.lg,
-            }}
+            borderRadius="lg"
+            textAlign="center"
+            bgColor={color}
+            variant="gradient"
+            m={2}
+            px={13}
+            sx={{ overflow: "hidden" }}
           >
             <SoftBox
-              ml={-8}
-              height="100%"
-              sx={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: "cover",
-                transform: "skewX(10deg)",
-              }}
+              component="img"
+              src={image}
+              alt="pattern-lines"
+              width="120rem"
+              position="absolute"
+              topl={0}
+              left={0}
+              opacity={0.4}
             />
+            {illustration.image && (
+              <SoftBox
+                component="img"
+                src={illustration.image}
+                alt="chat-illustration"
+                width="100%"
+                maxWidth="31.25rem"
+              />
+            )}
+            {illustration.title && (
+              <SoftBox mt={6} mb={1}>
+                <SoftTypography variant="h4" color="white" fontWeight="bold">
+                  {illustration.title}
+                </SoftTypography>
+              </SoftBox>
+            )}
+            {illustration.description && (
+              <SoftBox mb={1}>
+                <SoftTypography variant="body2" color="white">
+                  {illustration.description}
+                </SoftTypography>
+              </SoftBox>
+            )}
           </SoftBox>
         </Grid>
+
+
+
+        <Grid item xs={11} sm={8} md={6} lg={5} xl={4} sx={{ mx: "auto" }}>
+          <SoftBox display="flex" flexDirection="column" justifyContent="center" height="100vh">
+            
+            <SoftBox >{children}</SoftBox>
+          </SoftBox>
+        </Grid>
+
+
+
+
       </Grid>
-      <Footer />
     </PageLayout>
   );
 }
 
-// Setting default values for the props of CoverLayout
+// Setting default values for the props of IllustrationLayout
 CoverLayout.defaultProps = {
+  color: "info",
   header: "",
   title: "",
   description: "",
-  color: "info",
-  top: 20,
+  illustration: {},
 };
 
-// Typechecking props for the CoverLayout
+// Typechecking props for the IllustrationLayout
 CoverLayout.propTypes = {
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "info",
-    "success",
-    "warning",
-    "error",
-    "dark",
-    "light",
-  ]),
+  color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
   header: PropTypes.node,
   title: PropTypes.string,
-  description: PropTypes.string,
   image: PropTypes.string.isRequired,
-  top: PropTypes.number,
+
+  description: PropTypes.string,
   children: PropTypes.node.isRequired,
+  illustration: PropTypes.shape({
+    image: PropTypes.string,
+    title: PropTypes.string,
+    description: PropTypes.string,
+  }),
 };
 
 export default CoverLayout;

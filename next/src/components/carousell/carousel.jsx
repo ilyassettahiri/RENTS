@@ -1,5 +1,5 @@
-import { Children, isValidElement } from 'react';
 import PropTypes from 'prop-types';
+import { Children, isValidElement } from 'react';
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
@@ -42,9 +42,7 @@ export function Carousel({ carousel, children, sx, slotProps }) {
   const { mainRef, options } = carousel;
 
   const axis = options?.axis ?? 'x';
-
   const slideSpacing = options?.slideSpacing ?? '0px';
-
   const direction = options?.direction ?? 'ltr';
 
   const renderChildren = Children.map(children, (child) => {
@@ -85,7 +83,6 @@ export function Carousel({ carousel, children, sx, slotProps }) {
   );
 }
 
-
 Carousel.propTypes = {
   carousel: PropTypes.shape({
     mainRef: PropTypes.object.isRequired,
@@ -95,6 +92,7 @@ Carousel.propTypes = {
       direction: PropTypes.string,
       pluginNames: PropTypes.arrayOf(PropTypes.string),
     }).isRequired,
+    pluginNames: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   children: PropTypes.node,
   sx: PropTypes.object,

@@ -7,20 +7,90 @@ import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
-
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 
 import Typography from '@mui/material/Typography';
 
-import ListingList from '../components/listings/list/listings-list';
+import ListingList from 'src/sections/components/listings/list/listings-list';
 
 
 // ----------------------------------------------------------------------
+const categories = [
+
+  'All categories',
+  'Billiards',
+  'Activities',
+  'Apartments',
+  'Audios',
+  'Boats',
+  'Boxings',
+  'Bureauxs',
+  'Cameras',
+  'Camions',
+  'Caravans',
+  'Cars',
+  'Chargers',
+  'Clothes',
+  'Divings',
+  'Drones',
+  'Eclairages',
+  'Electricaltools',
+  'Engins',
+  'Footballs',
+  'Furnitures',
+  'Gamings',
+  'Golfs',
+  'Houseappliances',
+  'Huntings',
+  'Jewelrys',
+  'Ladders',
+  'Laptops',
+  'Lightings',
+  'Livres',
+  'Magasins',
+  'Maisons',
+  'Mechanicaltools',
+  'Mobiliers',
+  'Motos',
+  'Musculations',
+  'Musicals',
+  'Photographies',
+  'Powertools',
+  'Pressurewashers',
+  'Printers',
+  'Riads',
+  'Routers',
+  'Scooters',
+  'Services',
+  'Sonorisations',
+  'Surfs',
+  'Tablettes',
+  'Taxiaeroports',
+  'Tennis',
+  'Tentes',
+  'Terrains',
+  'Transportations',
+  'Velos',
+  'Villas'
+];
+
+
 
 export default function DashboardWishlistView() {
 
   const [favoritelistings, setFavoritelistings] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const loading = useBoolean(true);
+
+
+
+  const [tab, setTab] = useState('All Vouchers');
+
+  const handleChangeTab = useCallback((event, newValue) => {
+    setTab(newValue);
+  }, []);
+
 
 
   useEffect(() => {
@@ -74,11 +144,26 @@ export default function DashboardWishlistView() {
         Wishlist
       </Typography>
 
+
+      <Tabs
+        value={tab}
+        scrollButtons="auto"
+        variant="scrollable"
+        allowScrollButtonsMobile
+        onChange={handleChangeTab}
+        sx={{ mb: 3 }}
+      >
+        {categories.map((category) => (
+          <Tab key={category} value={category} label={category} />
+        ))}
+      </Tabs>
+
       <ListingList
         tours={favoritelistings}
         loading={loading.value}
         favorites={favorites}
         onFavoriteToggle={handleFavoriteToggle}
+        columns={3}
       />
 
     </>

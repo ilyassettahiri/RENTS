@@ -24,7 +24,6 @@ import HomeHero from './home-hero';
 import HomeIntroduce from './home-introduce';
 import HomeToursByCity from './home-tours-by-city';
 import BlogHomeLatestPosts from '../blog/travel/home-posts';
-import HomeFavoriteDestinations from './home-favorite-destinations';
 
 
 
@@ -392,8 +391,8 @@ export default function HomeView() {
       >
 
 
-        <Stack direction="row" justifyContent="space-between" sx={{ mr: 3 }}>
-          <Stack spacing={2.5} sx={{ my: 4, mb: { xs: 3, md: 5 } }}>
+        <Stack direction="row" justifyContent="space-between" sx={{ py: 5,  }}>
+          <Stack spacing={2.5} >
 
               <ProductFilters
                 filters={filters}
@@ -411,14 +410,14 @@ export default function HomeView() {
 
           </Stack>
 
-          <Stack alignItems="flex-end" spacing={2.5} sx={{ my: 4, mb: { xs: 3, md: 5 } }}>
+          <Stack alignItems="flex-end" spacing={2.5} >
             <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
 
           </Stack>
         </Stack>
 
-        <Stack direction="row" justifyContent="space-between" sx={{ mr: 3 }}>
-          <Stack spacing={2.5} sx={{ mb: 4 }}>
+        <Stack direction="row" justifyContent="space-between" >
+          <Stack spacing={2.5} sx={{ mb: 2 }}>
             {canReset && renderResults}
           </Stack>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useContext  } from 'react';
 import CrudService from 'src/services/cruds-service';
 import PropTypes from 'prop-types';
 
@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import Typography from '@mui/material/Typography';
 
 import Review from 'src/sections/review/review';
 
@@ -17,6 +18,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import ListingSummary from 'src/sections/listing-page/listing-summary';
 import ListingForm from 'src/sections/listing-page/listing-form';
 import ListingsCarouselService from 'src/sections/home/lisings-carousel-service';
+import Map from 'src/components/map';
 
 import { SplashScreen } from 'src/components/loading-screen';
 import PostSocialsShare from 'src/sections/blog/common/post-socials-share';
@@ -32,6 +34,9 @@ export default function ServicePageView({ params }) {
   const [socials, setSocials] = useState(null);
   const [recentlistings, setRecentlistings] = useState(null);
 
+  const [favorites, setFavorites] = useState([]);
+
+
   const { url } = params;
 
   const [data, setData] = useState(null);
@@ -40,13 +45,15 @@ export default function ServicePageView({ params }) {
     (async () => {
       try {
         const response = await CrudService.getService(url);
+        const favoritesData = response.favorites;
 
         setData(response.data);
         setSocials(response.data.attributes.socials);
         setSpecifications(response.data.attributes.specifications);
         setRecentlistings(response.data.attributes.recentlistings);
+        setFavorites(favoritesData);
 
-        console.log('Response data:', response.data); // Logging the response
+
       } catch (error) {
         console.error('Failed to fetch listing:', error);
       }
@@ -63,13 +70,22 @@ export default function ServicePageView({ params }) {
     fakeLoading();
   }, [loading]);
 
+
+  const handleFavoriteToggle = useCallback((id, isFavorite) => {
+    setFavorites(prevFavorites =>
+      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
+    );
+  }, []);
+
+
+
   if (loading.value) {
     return <SplashScreen />;
   }
 
   return (
     <>
-      <ServicesDetailsHero job={data} />
+      {data &&<ServicesDetailsHero job={data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>}
 
       <Container
         maxWidth={false}
@@ -95,11 +111,16 @@ export default function ServicePageView({ params }) {
               />
             )}
 
-            <Stack direction="row" flexWrap="wrap" sx={{ mt: 5 }}>
-              <PostSocialsShare />
-            </Stack>
+
           </Grid>
         </Grid>
+
+
+        <Stack spacing={3} sx={{ my: 10 }}>
+          <Typography variant="h5">Location</Typography>
+
+          {data &&<Map offices={data} sx={{ borderRadius: 2 }} />}
+        </Stack>
 
         <Divider sx={{ my: 10 }} />
 

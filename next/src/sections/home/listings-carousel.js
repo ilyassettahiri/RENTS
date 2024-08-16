@@ -60,11 +60,7 @@ export default function ListingsCarousel({ tours }) {
 
       <Box display="flex" alignItems="center" justifyContent="space-between" sx={{ mt: 3 }}>
 
-        <CarouselDotButtons
-          scrollSnaps={carousel.dots.scrollSnaps}
-          selectedIndex={carousel.dots.selectedIndex}
-          onClickDot={carousel.dots.onClickDot}
-        />
+        <Box/>
         <CarouselArrowBasicButtons {...carousel.arrows} options={carousel.options} />
 
       </Box>

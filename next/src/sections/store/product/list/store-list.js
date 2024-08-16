@@ -11,7 +11,7 @@ import StoreViewGridItemSkeleton from '../item/store-view-grid-item-skeleton';
 
 export default function StoreList({ loading, viewMode, products }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 16;
+  const itemsPerPage = 15;
 
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -28,9 +28,9 @@ export default function StoreList({ loading, viewMode, products }) {
           columnGap={3}
           display="grid"
           gridTemplateColumns={{
-            xs: 'repeat(2, 1fr)',
+            xs: 'repeat(1, 1fr)',
             sm: 'repeat(3, 1fr)',
-            md: 'repeat(4, 1fr)',
+            md: 'repeat(3, 1fr)',
           }}
         >
           {(loading ? [...Array(itemsPerPage)] : paginatedProducts).map((product, index) =>

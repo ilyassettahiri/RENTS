@@ -11,14 +11,16 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
 import { alpha, useTheme } from '@mui/material/styles';
+import Image from 'src/components/image';
 
 import { fDate } from 'src/utils/format-time';
 import { bgGradient } from 'src/theme/css';
+import ListingHeader from 'src/sections/listing-page/listing-header';
 
 import Iconify from 'src/components/iconify';
-import CarouselImg from 'src/components/carousel/carousel-img'; // Add .jsx extension
+import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
-export default function ServicesDetailsHero({ job }) {
+export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, }) {
   const theme = useTheme();
 
   const [favorite, setFavorite] = useState(job.favorited);
@@ -34,17 +36,12 @@ export default function ServicesDetailsHero({ job }) {
   }));
 
   return (
-    <Box
-      sx={{
-        ...bgGradient({
-          color: alpha(theme.palette.grey[900], 0.8),
-          imgUrl: `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/assets/background/overlay_2.jpg`,
-        }),
-        pt: 5,
-        pb: 10,
-      }}
-    >
-      <Container sx={{ my: 2 }}>
+
+      <Container maxWidth={false}
+      sx={{ mt:2,
+      paddingLeft: { lg: '100px' },
+      paddingRight: { lg: '100px' }, }}
+      >
         <Box
           gap={3}
           display="grid"
@@ -53,71 +50,22 @@ export default function ServicesDetailsHero({ job }) {
             md: 'repeat(2, 1fr)',
           }}
           sx={{
-            mb: 3,
+
             alignItems: 'flex-start',
           }}
         >
+
+            <CarouselBasic3 data={images} />
+
           <Container>
-            <Stack spacing={{ xs: 3, md: 2 }} sx={{ color: 'common.white' }}>
-              <Typography variant="h3" component="h1">
-                {job.attributes.title}
-              </Typography>
+           {job && <ListingHeader tour={job} seller={job.attributes.seller} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>}
 
-              <Stack spacing={3} direction={{ xs: 'column', md: 'row' }} sx={{ opacity: 0.48 }}>
-                <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                  <Iconify icon="carbon:baggage-claim" sx={{ mr: 1 }} />
-                  <Link color="inherit" underline="always">
-                    {job.attributes.category}
-                  </Link>
-                </Stack>
-
-                <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                  <Iconify icon="carbon:view" sx={{ mr: 1 }} /> {`${job.attributes.total_views} views`}
-                </Stack>
-
-                <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                  <Iconify icon="carbon:location" sx={{ mr: 1 }} /> {job.attributes.city}
-                </Stack>
-              </Stack>
-            </Stack>
-
-            <Stack
-              spacing={2}
-              direction="row"
-              alignItems="flex-start"
-              sx={{ my: 20 }}
-            >
-              <Stack spacing={2} alignItems="center" sx={{ width: 1 }}>
-                <Button fullWidth variant="contained" size="large" color="primary">
-                  Apply Now
-                </Button>
-
-                <Typography variant="body2" sx={{ color: 'common.white' }}>
-                  {`Expiration date: `}
-                  <Box component="span" sx={{ color: 'primary.main' }}>
-                    {fDate(job.attributes.deadline)}
-                  </Box>
-                </Typography>
-              </Stack>
-
-              <Box sx={{ pt: 0.75 }}>
-                <Checkbox
-                  color="error"
-                  checked={favorite}
-                  onChange={handleChangeFavorite}
-                  icon={<Iconify icon="carbon:favorite" width={24} />}
-                  checkedIcon={<Iconify icon="carbon:favorite-filled" width={24} />}
-                />
-              </Box>
-            </Stack>
           </Container>
 
-          <Card>
-            <CarouselImg data={images} />
-          </Card>
+
         </Box>
       </Container>
-    </Box>
+
   );
 }
 
@@ -131,6 +79,60 @@ ServicesDetailsHero.propTypes = {
       total_views: PropTypes.number,
       deadline: PropTypes.string,
       images: PropTypes.arrayOf(PropTypes.string).isRequired,
+      seller: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        profile_image: PropTypes.string,
+      }).isRequired, // Added PropTypes validation for seller
     }).isRequired,
   }).isRequired,
+
+  favorites: PropTypes.array.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
+
+
+
+
+function CarouselBasic3({ data }) {
+  const theme = useTheme();
+
+  const carousel = useCarousel({
+    autoplay: false,
+    ...CarouselDots({
+      rounded: true,
+      sx: { mt: -3 },
+    }),
+  });
+
+  return (
+    <Card
+      sx={{
+        position: 'relative',
+        '& .slick-list': {
+          borderRadius: 2,
+          boxShadow: theme.customShadows.z16,
+        },
+      }}
+    >
+      <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
+        <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+          {data.map((item) => (
+
+            <Image alt={item.title} src={item.coverUrl} ratio="4/3" />
+          ))}
+        </Carousel>
+      </CarouselArrows>
+    </Card>
+  );
+}
+
+
+CarouselBasic3.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      coverUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };

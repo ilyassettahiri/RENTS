@@ -23,8 +23,13 @@ export default function HomeHero({ tours }) {
   const carouselLarge = useCarousel({
     speed: 500,
     slidesToShow: 1,
-    draggable: true,
+    centerMode: true,
+
     slidesToScroll: 5,
+    draggable: false,
+    swipeToSlide: false,
+    centerPadding: '0px',
+
     adaptiveHeight: true,
     loop: false,
     totalSlides: tours.length, // Pass the length of tours to useCarousel

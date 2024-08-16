@@ -19,6 +19,9 @@ use App\Models\Servicesimg;
 
 use App\Models\Listing;
 
+use App\Models\User;
+
+
 use App\Models\Favorite;
 
 
@@ -49,18 +52,19 @@ class ServiceController extends JsonApiController
         $authuser = Auth::user();
 
 
+        if ($authuser) {
 
 
-        $favorites = Favorite::where('user_id', $authuser->id)->get();
-
-
-
-
-
-        $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
+            $favorites = Favorite::where('user_id', $authuser->id)->get();
 
 
 
+
+
+            $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
+
+
+        }
 
 
 
@@ -72,6 +76,8 @@ class ServiceController extends JsonApiController
 
 
         $servicesData = $services->map(function ($service) {
+            $user = User::where('id', $service->user_id)->first();
+
             return [
                 'type' => 'services',
                 'id' => $service->id,
@@ -79,6 +85,8 @@ class ServiceController extends JsonApiController
                     'title' => $service->title,
                     'price' => $service->price,
                     'city' => $service->city,
+                    'phone' => $service->phone,
+
                     'id' => $service->id,
 
 
@@ -88,7 +96,16 @@ class ServiceController extends JsonApiController
                     'created_at' => $service->created_at,
                     'picture' => $service->picture,
 
+                    'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
+                        return $image->picture;
+                    }),
 
+                    'seller' => [
+                        'name' => $user->name,
+                        'profile_image' => $user->profile_image,
+                        'created_at' => $user->created_at->toIso8601String(),
+
+                    ],
 
                 ],
             ];
@@ -97,15 +114,20 @@ class ServiceController extends JsonApiController
 
 
 
+
+
+
         // Ensure JSON:API compliance
-        return response()->json([
+        $responseData = [
             'data' => $servicesData,
-            'favorites' => $favoriteIds,
+        ];
 
-        ]);
+        // Conditionally add 'favorites' key if user is authenticated
+        if (isset($favoriteIds)) {
+            $responseData['favorites'] = $favoriteIds;
+        }
 
-
-
+        return response()->json($responseData);
 
 
 

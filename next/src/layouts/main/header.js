@@ -1,5 +1,9 @@
 "use client";
 
+
+import { useCallback} from 'react';
+
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -14,20 +18,34 @@ import IconButton from '@mui/material/IconButton';
 import { RouterLink } from 'src/routes/components';
 import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
+import useAuthDialog from 'src/hooks/use-authdialog';
+
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
+import LoginDialog from 'src/sections/auth/login-dialog';
+
 import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';
 import { HEADER } from '../config-layout';
 import { navConfig } from './config-navigation';
 import HeaderShadow from './header-shadow';
 
+
+
 export default function Header({ headerOnDark, onOpenNav }) {
   const theme = useTheme();
   const offset = useOffSetTop();
   const mdUp = useResponsive('up', 'md');
+
+  const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
+  const handleFavoriteClick = useCallback(() => {
+    requireAuth(() => {
+      window.location.href = paths.eCommerce.wishlist;
+    });
+  }, [requireAuth]);
 
   const renderContent = (
     <>
@@ -65,8 +83,9 @@ export default function Header({ headerOnDark, onOpenNav }) {
           <Stack spacing={3} direction="row" alignItems="center" flexGrow={1} justifyContent="flex-end">
             <Badge badgeContent={2} color="info">
               <IconButton
-                component={RouterLink}
-                href={paths.eCommerce.wishlist}
+                onClick={handleFavoriteClick}
+
+
                 size="small"
                 color="inherit"
                 sx={{ p: 0 }}
@@ -96,6 +115,10 @@ export default function Header({ headerOnDark, onOpenNav }) {
           </Stack>
         </Stack>
       </Stack>
+
+      <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
+
+
     </>
   );
 

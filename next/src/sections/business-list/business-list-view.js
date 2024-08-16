@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback  } from "react";
 import CrudService from "src/services/cruds-service";
 
 import Box from '@mui/material/Box';
@@ -10,32 +10,43 @@ import Container from '@mui/material/Container';
 import { useBoolean } from 'src/hooks/use-boolean';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import Iconify from 'src/components/iconify';
-import BusinessFilters from '../components/business/filters/business-filters';
+
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
+
+import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filters';
 import BusinessList from '../components/business/list/business-list';
 
 // ----------------------------------------------------------------------
+
+const VIEW_OPTIONS = [
+  { value: 'list', icon: <Iconify icon="carbon:list-boxes" /> },
+  { value: 'grid', icon: <Iconify icon="carbon:grid" /> },
+];
+
+const SORT_OPTIONS = [
+  { value: 'latest', label: 'Latest' },
+  { value: 'oldest', label: 'Oldest' },
+  { value: 'popular', label: 'Popular' },
+];
+
 
 export default function BusinessListView() {
   const mobileOpen = useBoolean();
   const loading = useBoolean(true);
   const [business, setBusiness] = useState([]);
+  const [sort, setSort] = useState('latest');
 
   const fetchListings = async (search) => {
     try {
       const response = await CrudService.getSearchBusinessListings(search);
       console.log('Listings fetched:', response.data);
 
-      const businessData = response.data.map(item => ({
-        id: item.id,
-        name: item.attributes.name,
-        description: item.attributes.description,
-        city: item.attributes.city,
-        createdAt: item.attributes.created_at,
-        picture: item.attributes.picture,
-        url: item.attributes.url || '#', // Ensure URL is always defined
-      }));
 
-      setBusiness(businessData);
+
+      setBusiness(response.data);
     } catch (error) {
       console.error('Failed to fetch listings:', error);
     }
@@ -45,17 +56,10 @@ export default function BusinessListView() {
     (async () => {
       try {
         const response = await CrudService.getBusiness();
-        const businessData = response.data.map(item => ({
-          id: item.id,
-          name: item.attributes.name,
-          description: item.attributes.description,
-          city: item.attributes.city,
-          createdAt: item.attributes.created_at,
-          picture: item.attributes.picture,
-          url: item.attributes.url || '#', // Ensure URL is always defined
-        }));
-        console.log('business:', businessData);
-        setBusiness(businessData);
+
+        console.log('Listings fetched:', response.data);
+
+        setBusiness(response.data);
       } catch (error) {
         console.error('Failed to fetch Home:', error);
       }
@@ -70,6 +74,13 @@ export default function BusinessListView() {
     fakeLoading();
   }, [loading]);
 
+
+
+  const handleChangeSort = useCallback((event) => {
+    setSort(event.target.value);
+  }, []);
+
+
   return (
     <Container
       maxWidth={false}
@@ -81,7 +92,7 @@ export default function BusinessListView() {
       }}
     >
       <ServiceSearch
-              colorr="black"
+        colorr="black"
 
         onSearch={fetchListings}
         sx={{
@@ -97,7 +108,9 @@ export default function BusinessListView() {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ py: 5 }}
+
+        sx={{ pb: 4 , }}
+
       >
         <Button
           color="inherit"
@@ -108,10 +121,39 @@ export default function BusinessListView() {
         >
           Filters
         </Button>
+
+        <Stack/>
+
+        <Stack
+          direction={{
+            xs: 'column-reverse',
+            md: 'row',
+          }}
+
+        >
+
+
+
+            <Stack direction="row" alignItems="center" justifyContent="space-between" >
+
+
+              <FormControl size="small" hiddenLabel sx={{ width: 120 }}>
+                <Select value={sort} onChange={handleChangeSort}>
+                  {SORT_OPTIONS.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Stack>
+
+
+        </Stack>
       </Stack>
 
       <Stack direction={{ xs: 'column', md: 'row' }}>
-        <BusinessFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
+        <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
         <Box
           sx={{
             flexGrow: 1,

@@ -199,7 +199,7 @@ export default function AccountLayout({ children }) {
       <Container
         maxWidth={false}
         sx={{
-          marginTop: '80px',
+          marginTop: '30px',
           paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
         }}

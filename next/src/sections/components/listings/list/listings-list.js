@@ -7,7 +7,7 @@ import ListingsItemSkeleton from './listings-item-skeleton';
 
 const ITEMS_PER_PAGE = 12;
 
-export default function ListingsList({ tours, loading, favorites, onFavoriteToggle }) {
+export default function ListingsList({ tours, loading, favorites, onFavoriteToggle, columns = 4 }) {
   const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -30,7 +30,7 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
           gridTemplateColumns: {
             xs: 'repeat(1, 1fr)',
             sm: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
+            md: `repeat(${columns}, 1fr)`,
           },
         }}
       >
@@ -64,4 +64,6 @@ ListingsList.propTypes = {
   loading: PropTypes.bool.isRequired,
   favorites: PropTypes.array.isRequired,
   onFavoriteToggle: PropTypes.func.isRequired,
+  columns: PropTypes.number, // New prop for columns
+
 };

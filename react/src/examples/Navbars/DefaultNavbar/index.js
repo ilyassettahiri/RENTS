@@ -1,24 +1,15 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useState, useEffect } from "react";
 
 // react-router components
 import { Link } from "react-router-dom";
 import { useLocation, NavLink } from "react-router-dom";
+import Stack from '@mui/material/Stack';
+import IconButton from '@mui/material/IconButton';
 
+import Iconify from 'components/iconify';
+import Badge from '@mui/material/Badge';
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
@@ -41,10 +32,6 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 // DefaultNavbar dropdown menus
 import PagesMenu from "examples/Navbars/DefaultNavbar/Menus/PagesMenu";
-import AuthenticationMenu from "examples/Navbars/DefaultNavbar/Menus/AuthenticationMenu";
-import EcommerceMenu from "examples/Navbars/DefaultNavbar/Menus/EcommerceMenu";
-import ApplicationsMenu from "examples/Navbars/DefaultNavbar/Menus/ApplicationsMenu";
-import DocsMenu from "examples/Navbars/DefaultNavbar/Menus/DocsMenu";
 
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
 
@@ -58,23 +45,13 @@ export {
 
 function DefaultNavbar({ routes, transparent, light, action }) {
   const [pagesMenu, setPagesMenu] = useState(false);
-  const [authenticationMenu, setAuthenticationMenu] = useState(false);
-  const [ecommerceMenu, setEcommerceMenu] = useState(false);
-  const [applicationsMenu, setApplicationsMenu] = useState(false);
-  const [docsMenu, setDocsMenu] = useState(false);
+  
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
   const openPagesMenu = ({ currentTarget }) => setPagesMenu(currentTarget);
   const closePagesMenu = () => setPagesMenu(false);
-  const openAuthenticationMenu = ({ currentTarget }) => setAuthenticationMenu(currentTarget);
-  const closeAuthenticationMenu = () => setAuthenticationMenu(false);
-  const openEcommerceMenu = ({ currentTarget }) => setEcommerceMenu(currentTarget);
-  const closeEcommerceMenu = () => setEcommerceMenu(false);
-  const openApplicationsMenu = ({ currentTarget }) => setApplicationsMenu(currentTarget);
-  const closeApplicationsMenu = () => setApplicationsMenu(false);
-  const openDocsMenu = ({ currentTarget }) => setDocsMenu(currentTarget);
-  const closeDocsMenu = () => setDocsMenu(false);
+
   const openMobileNavbar = ({ currentTarget }) => setMobileNavbar(currentTarget.parentNode);
   const closeMobileNavbar = () => setMobileNavbar(false);
 
@@ -126,46 +103,70 @@ function DefaultNavbar({ routes, transparent, light, action }) {
         })}
       >
         <SoftBox component={Link} to="/" py={transparent ? 1.5 : 0.75} lineHeight={1}>
-          {/* <SoftTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            Soft UI Dashboard PRO
-          </SoftTypography> */}
+          
           <SoftBox component={NavLink} to="/home" display="flex" alignItems="center">
-          {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="8rem" />}
+          {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="4rem" />}
           
           </SoftBox> 
         </SoftBox>
         <SoftBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
+
+
+          
+            <SoftBox
+              
+              mx={1}
+              p={1.3}
+              gap={4}
+              display="flex"
+              alignItems="baseline"
+              color={light ? "white" : "dark"}
+              sx={{ cursor: "pointer", userSelect: "none" }}
+            >
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                textTransform="capitalize"
+                color="inherit"
+                sx={{ fontWeight: "100%" }}
+              >
+                Home
+              </SoftTypography>
+
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                textTransform="capitalize"
+                color="inherit"
+                sx={{ fontWeight: "100%" }}
+              >
+                Services
+              </SoftTypography>
+
+              <SoftTypography
+                variant="button"
+                fontWeight="regular"
+                textTransform="capitalize"
+                color="inherit"
+                sx={{ fontWeight: "100%" }}
+              >
+                Business
+              </SoftTypography>
+
+             
+              
+            </SoftBox>
+
+
+
+
           <DefaultNavbarLink
-            name="Faq"
+            name="Categories"
             openHandler={openPagesMenu}
             closeHandler={closePagesMenu}
             light={light}
           />
-          <DefaultNavbarLink
-            name="Blog"
-            openHandler={openAuthenticationMenu}
-            closeHandler={closeAuthenticationMenu}
-            light={light}
-          />
-
-          <DefaultNavbarLink
-            name="About"
-            openHandler={openApplicationsMenu}
-            closeHandler={closeApplicationsMenu}
-            light={light}
-          />
-          <DefaultNavbarLink
-            name="Contact"
-            openHandler={openEcommerceMenu}
-            closeHandler={closeEcommerceMenu}
-            light={light}
-          />
-          <DefaultNavbarLink
-            name="Language"
-            openHandler={openDocsMenu}
-            closeHandler={closeDocsMenu}
-            light={light}
-          />
+         
         </SoftBox>
         {action &&
           (action.type === "internal" ? (
@@ -183,18 +184,38 @@ function DefaultNavbar({ routes, transparent, light, action }) {
             </SoftBox>
           ) : (
             <SoftBox display={{ xs: "none", lg: "inline-block" }}>
-              <SoftButton
-                component="a"
-                href={action.route}
-                target="_blank"
-                rel="noreferrer"
-                variant="gradient"
-                color={action.color ? action.color : "info"}
-                size="small"
-                circular
-              >
-                {action.label}
-              </SoftButton>
+
+
+                    <Stack spacing={3} direction="row" alignItems="center" flexGrow={1} justifyContent="flex-end">
+                      <Badge badgeContent={2} color="info">
+
+                        <IconButton
+                         
+
+
+                          size="small"
+                          color="inherit"
+                          sx={{ p: 0 }}
+                        >
+                          <Iconify icon="carbon:favorite" width={24} />
+                        </IconButton>
+                      
+                      </Badge>
+
+                      <IconButton
+                        
+                        size="small"
+                        color="inherit"
+                        sx={{ p: 0 }}
+                      >
+                        <Iconify icon="carbon:user" width={24} />
+                      </IconButton>
+                    </Stack>
+
+
+
+
+
             </SoftBox>
           ))}
         <SoftBox
@@ -214,20 +235,8 @@ function DefaultNavbar({ routes, transparent, light, action }) {
       <PagesMenu routes={routes} open={pagesMenu} close={closePagesMenu} />
 
 
-      <AuthenticationMenu
-        routes={routes}
-        open={authenticationMenu}
-        close={closeAuthenticationMenu}
-      />
+      
 
-
-      <EcommerceMenu routes={routes} open={ecommerceMenu} close={closeEcommerceMenu} />
-
-
-      <ApplicationsMenu routes={routes} open={applicationsMenu} close={closeApplicationsMenu} />
-
-
-      <DocsMenu routes={routes} open={docsMenu} close={closeDocsMenu} />
 
       
       {mobileView && (

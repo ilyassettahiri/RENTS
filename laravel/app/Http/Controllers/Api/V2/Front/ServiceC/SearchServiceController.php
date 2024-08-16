@@ -26,6 +26,7 @@ use App\Models\Listing;
 use App\Models\Favorite;
 
 
+use App\Models\User;
 
 
 use App\Models\Billiard;
@@ -192,15 +193,19 @@ class SearchServiceController extends JsonApiController
 
 
 
-        $favorites = Favorite::where('user_id', $authuser->id)->get();
+        if ($authuser) {
+
+
+            $favorites = Favorite::where('user_id', $authuser->id)->get();
 
 
 
 
 
-        $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
+            $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
 
 
+        }
 
 
 
@@ -234,6 +239,8 @@ class SearchServiceController extends JsonApiController
 
 
             $servicesData = $services->map(function ($service) {
+                $user = User::where('id', $service->user_id)->first();
+
                 return [
                     'type' => 'services',
                     'id' => $service->id,
@@ -243,12 +250,24 @@ class SearchServiceController extends JsonApiController
                         'city' => $service->city,
                         'id' => $service->id,
 
+                        'phone' => $service->phone,
 
 
                         'category' => 'services',
                         'url' => $service->url,
                         'created_at' => $service->created_at,
                         'picture' => $service->picture,
+
+                        'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
+                            return $image->picture;
+                        }),
+
+                        'seller' => [
+                            'name' => $user->name,
+                            'profile_image' => $user->profile_image,
+                            'created_at' => $user->created_at->toIso8601String(),
+
+                        ],
 
 
 
@@ -260,11 +279,16 @@ class SearchServiceController extends JsonApiController
 
 
             // Ensure JSON:API compliance
-            return response()->json([
+            $responseData = [
                 'data' => $servicesData,
-                'favorites' => $favoriteIds,
+            ];
 
-            ]);
+            // Conditionally add 'favorites' key if user is authenticated
+            if (isset($favoriteIds)) {
+                $responseData['favorites'] = $favoriteIds;
+            }
+
+            return response()->json($responseData);
 
 
 
@@ -288,6 +312,9 @@ class SearchServiceController extends JsonApiController
 
 
             $servicesData = $services->map(function ($service) {
+
+                $user = User::where('id', $service->user_id)->first();
+
                 return [
                     'type' => 'services',
                     'id' => $service->id,
@@ -297,6 +324,7 @@ class SearchServiceController extends JsonApiController
                         'city' => $service->city,
                         'id' => $service->id,
 
+                        'phone' => $service->phone,
 
 
                         'category' => 'services',
@@ -304,7 +332,16 @@ class SearchServiceController extends JsonApiController
                         'created_at' => $service->created_at,
                         'picture' => $service->picture,
 
+                        'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
+                            return $image->picture;
+                        }),
 
+                        'seller' => [
+                            'name' => $user->name,
+                            'profile_image' => $user->profile_image,
+                            'created_at' => $user->created_at->toIso8601String(),
+
+                        ],
 
                     ],
                 ];
@@ -314,11 +351,18 @@ class SearchServiceController extends JsonApiController
 
 
             // Ensure JSON:API compliance
-            return response()->json([
+            $responseData = [
                 'data' => $servicesData,
-                'favorites' => $favoriteIds,
+            ];
 
-            ]);
+            // Conditionally add 'favorites' key if user is authenticated
+            if (isset($favoriteIds)) {
+                $responseData['favorites'] = $favoriteIds;
+            }
+
+            return response()->json($responseData);
+
+
 
 
 

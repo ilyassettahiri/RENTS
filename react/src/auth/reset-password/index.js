@@ -16,9 +16,8 @@ import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
 
 // Authentication layout components
-import BasicLayout from "auth/components/BasicLayout";
+import CoverLayout from "auth/components/CoverLayout";
 import Socials from "auth/components/Socials";
-import Separator from "auth/components/Separator";
 
 // Images
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -37,7 +36,7 @@ function PasswordReset() {
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
-    <BasicLayout
+    <CoverLayout
       title="Welcome!"
       description="Use these awesome forms to login or create new account in your project for free."
       image={curved9}
@@ -75,7 +74,7 @@ function PasswordReset() {
                 sign in
               </SoftButton>
             </SoftBox>
-            <Separator />
+            
             <SoftBox mt={1} mb={3}>
               <SoftButton
                 component={Link}
@@ -90,7 +89,7 @@ function PasswordReset() {
           </SoftBox>
         </SoftBox>
       </Card>
-    </BasicLayout>
+    </CoverLayout>
   );
 }
 

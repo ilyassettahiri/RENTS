@@ -196,6 +196,148 @@ class FavoriteController extends JsonApiController
 
 
         $favoritelistingsData = $favorites->map(function ($favorite) {
+
+            $user = User::where('id', $favorite->user_id)->first();
+
+
+                    // Define a helper function to get the images based on the category
+                    $getImages = function ($favorite) {
+                        Log::info('Processing category: ' . $favorite->category);
+
+                        switch ($favorite->category) {
+                            case 'billiards':
+                                return Billiardsimg::where('billiard_id', $favorite->billiard_id)->get()->pluck('picture');
+                            case 'boxings':
+                                return Boxingsimg::where('boxing_id', $favorite->boxing_id)->get()->pluck('picture');
+                            case 'divings':
+                                return Divingsimg::where('diving_id', $favorite->diving_id)->get()->pluck('picture');
+                            case 'footballs':
+                                return Footballsimg::where('football_id', $favorite->football_id)->get()->pluck('picture');
+                            case 'golfs':
+                                return Golfsimg::where('golf_id', $favorite->golf_id)->get()->pluck('picture');
+                            case 'huntings':
+                                return Huntingsimg::where('hunting_id', $favorite->hunting_id)->get()->pluck('picture');
+                            case 'musculations':
+                                return Musculationsimg::where('musculation_id', $favorite->musculation_id)->get()->pluck('picture');
+                            case 'surfs':
+                                return Surfsimg::where('surf_id', $favorite->surf_id)->get()->pluck('picture');
+                            case 'tennis':
+                                return Tennisimg::where('tennis_id', $favorite->tennis_id)->get()->pluck('picture');
+
+                            // Electronique
+                            case 'audios':
+                                return Audiosimg::where('audio_id', $favorite->audio_id)->get()->pluck('picture');
+                            case 'cameras':
+                                return Camerasimg::where('camera_id', $favorite->camera_id)->get()->pluck('picture');
+                            case 'chargers':
+                                return Chargersimg::where('charger_id', $favorite->charger_id)->get()->pluck('picture');
+                            case 'drones':
+                                return Dronesimg::where('drone_id', $favorite->drone_id)->get()->pluck('picture');
+                            case 'gamings':
+                                return Gamingsimg::where('gaming_id', $favorite->gaming_id)->get()->pluck('picture');
+                            case 'laptops':
+                                return Laptopsimg::where('laptop_id', $favorite->laptop_id)->get()->pluck('picture');
+                            case 'lightings':
+                                return Lightingsimg::where('lighting_id', $favorite->lighting_id)->get()->pluck('picture');
+                            case 'printers':
+                                return Printersimg::where('printer_id', $favorite->printer_id)->get()->pluck('picture');
+                            case 'routers':
+                                return Routersimg::where('router_id', $favorite->router_id)->get()->pluck('picture');
+                            case 'tablettes':
+                                return Tablettesimg::where('tablette_id', $favorite->tablette_id)->get()->pluck('picture');
+
+                            // Evenement
+                            case 'eclairages':
+                                return Eclairagesimg::where('eclairage_id', $favorite->eclairage_id)->get()->pluck('picture');
+                            case 'mobiliers':
+                                return Mobiliersimg::where('mobilier_id', $favorite->mobilier_id)->get()->pluck('picture');
+                            case 'photographies':
+                                return Photographiesimg::where('photographie_id', $favorite->photographie_id)->get()->pluck('picture');
+                            case 'sonorisations':
+                                return Sonorisationsimg::where('sonorisation_id', $favorite->sonorisation_id)->get()->pluck('picture');
+                            case 'tentes':
+                                return Tentesimg::where('tente_id', $favorite->tente_id)->get()->pluck('picture');
+
+                            // Habillement
+                            case 'clothes':
+                                return Clothesimg::where('clothes_id', $favorite->clothes_id)->get()->pluck('picture');
+                            case 'jewelrys':
+                                return Jewelrysimg::where('jewelry_id', $favorite->jewelry_id)->get()->pluck('picture');
+
+                            // Immobilier
+                            case 'apartments':
+                                return Apartmentsimg::where('apartment_id', $favorite->apartment_id)->get()->pluck('picture');
+                            case 'bureauxs':
+                                return Bureauxsimg::where('bureaux_id', $favorite->bureaux_id)->get()->pluck('picture');
+                            case 'magasins':
+                                return Magasinsimg::where('magasin_id', $favorite->magasin_id)->get()->pluck('picture');
+                            case 'maisons':
+                                return Maisonsimg::where('maison_id', $favorite->maison_id)->get()->pluck('picture');
+                            case 'riads':
+                                return Riadsimg::where('riad_id', $favorite->riad_id)->get()->pluck('picture');
+                            case 'terrains':
+                                return Terrainsimg::where('terrain_id', $favorite->terrain_id)->get()->pluck('picture');
+                            case 'villas':
+                                return Villasimg::where('villa_id', $favorite->villa_id)->get()->pluck('picture');
+
+                            // Loisirs
+                            case 'activities':
+                                return Activitiesimg::where('activity_id', $favorite->activity_id)->get()->pluck('picture');
+                            case 'livres':
+                                return Livresimg::where('livre_id', $favorite->livre_id)->get()->pluck('picture');
+                            case 'musicals':
+                                return Musicalsimg::where('musical_id', $favorite->musical_id)->get()->pluck('picture');
+
+                            // Maison et Jardin
+                            case 'furnitures':
+                                return Furnituresimg::where('furniture_id', $favorite->furniture_id)->get()->pluck('picture');
+                            case 'houseappliances':
+                                return Houseappliancesimg::where('houseappliance_id', $favorite->houseappliance_id)->get()->pluck('picture');
+
+                            // Materiels
+                            case 'electricaltools':
+                                return Electricaltoolsimg::where('electricaltool_id', $favorite->electricaltool_id)->get()->pluck('picture');
+                            case 'ladders':
+                                return Laddersimg::where('ladder_id', $favorite->ladder_id)->get()->pluck('picture');
+                            case 'mechanicaltools':
+                                return Mechanicaltoolsimg::where('mechanicaltool_id', $favorite->mechanicaltool_id)->get()->pluck('picture');
+                            case 'powertools':
+                                return Powertoolsimg::where('powertool_id', $favorite->powertool_id)->get()->pluck('picture');
+                            case 'pressurewashers':
+                                return Pressurewashersimg::where('pressurewasher_id', $favorite->pressurewasher_id)->get()->pluck('picture');
+
+                            // Services
+                            case 'services':
+                                return Servicesimg::where('service_id', $favorite->service_id)->get()->pluck('picture');
+
+                            // Vehicules
+                            case 'boats':
+                                return Boatsimg::where('boat_id', $favorite->boat_id)->get()->pluck('picture');
+                            case 'camions':
+                                return Camionsimg::where('camion_id', $favorite->camion_id)->get()->pluck('picture');
+                            case 'caravans':
+                                return Caravansimg::where('caravan_id', $favorite->caravan_id)->get()->pluck('picture');
+                            case 'cars':
+                                return Carsimg::where('car_id', $favorite->car_id)->get()->pluck('picture');
+                            case 'engins':
+                                return Enginsimg::where('engin_id', $favorite->engin_id)->get()->pluck('picture');
+                            case 'motos':
+                                return Motosimg::where('moto_id', $favorite->moto_id)->get()->pluck('picture');
+                            case 'scooters':
+                                return Scootersimg::where('scooter_id', $favorite->scooter_id)->get()->pluck('picture');
+                            case 'taxiaeroports':
+                                return Taxiaeroportsimg::where('taxiaeroport_id', $favorite->taxiaeroport_id)->get()->pluck('picture');
+                            case 'transportations':
+                                return Transportationsimg::where('transportation_id', $favorite->transportation_id)->get()->pluck('picture');
+                            case 'velos':
+                                return Velosimg::where('velo_id', $favorite->velo_id)->get()->pluck('picture');
+
+                            default:
+                                return collect(); // Return an empty collection if no match
+                        }
+                    };
+
+
             return [
                 'type' => 'favorites',
                 'id' => $favorite->id,
@@ -205,13 +347,19 @@ class FavoriteController extends JsonApiController
                     'city' => $favorite->city,
                     'id' => $favorite->id,
 
+                    'images' => $getImages($favorite), // Fetch images based on the category
 
                     'category' => $favorite->category,
                     'url' => $favorite->url,
                     'created_at' => $favorite->listing_old,
                     'picture' => $favorite->picture,
 
+                    'seller' => [
+                        'name' => $user->name,
+                        'profile_image' => $user->profile_image,
+                        'created_at' => $user->created_at->toIso8601String(),
 
+                    ],
 
                 ],
             ];

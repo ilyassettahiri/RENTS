@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import { formatDistanceToNow } from 'date-fns';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -14,6 +15,9 @@ import ProductPrice from '../../common/product-price';
 import ProductRating from '../../common/product-rating';
 
 export default function StoreViewGridItem({ product, sx, ...other }) {
+
+  const formattedDuration = formatDistanceToNow(new Date(product.attributes.created_at), { addSuffix: true });
+
   return (
     <Stack
       sx={{
@@ -25,17 +29,15 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
       }}
       {...other}
     >
-      {product.attributes.status === 'new' && (
-        <Label color="info" sx={{ position: 'absolute', m: 1, top: 0, right: 0, zIndex: 9 }}>
-          NEW
-        </Label>
-      )}
 
-      {product.attributes.status === 'sale' && (
-        <Label color="error" sx={{ position: 'absolute', m: 1, top: 0, right: 0, zIndex: 9 }}>
-          SALE
+        <Label color="error" sx={{ position: 'absolute', m: 1, top: 0, left: 0, zIndex: 9 }}>
+          <ProductPrice price={product.attributes.price} sx={{ typography: 'body2' }} />
+
+
         </Label>
-      )}
+
+
+
 
       <Box sx={{ position: 'relative', mb: 2 }}>
         <Fab
@@ -62,6 +64,7 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
 
         <Image
           src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${product.attributes.picture}`}
+          ratio="6/4"
           sx={{
             flexShrink: 0,
             borderRadius: 1.5,
@@ -71,9 +74,26 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
       </Box>
 
       <Stack spacing={0.5}>
-        <TextMaxLine variant="caption" line={1} sx={{ color: 'text.disabled' }}>
-          {product.attributes.category}
-        </TextMaxLine>
+
+
+                <Stack
+                  direction="row"
+                  alignItems="center"
+                  sx={{ typography: 'body2', color: 'text.secondary' }}
+                >
+                    <Iconify icon="carbon:time" width={13} sx={{ mr: 0.5 }} />
+
+
+                      <Box sx={{ typography: 'body2' }}>
+                       {formattedDuration}
+                      </Box>
+
+
+
+
+                </Stack>
+
+
 
         <Link
           component={RouterLink}
@@ -85,7 +105,6 @@ export default function StoreViewGridItem({ product, sx, ...other }) {
           </TextMaxLine>
         </Link>
 
-        <ProductPrice price={product.attributes.price} />
 
         <ProductRating ratingNumber={product.attributes.average_rating} label={`${product.attributes.total_reviews} reviews`} />
       </Stack>
@@ -101,6 +120,8 @@ StoreViewGridItem.propTypes = {
       total_reviews: PropTypes.number,
       picture: PropTypes.string,
       category: PropTypes.string,
+      created_at: PropTypes.string,
+
       price: PropTypes.number,
       status: PropTypes.string,
       url: PropTypes.string, // Added missing prop validation

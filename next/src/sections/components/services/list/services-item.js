@@ -1,10 +1,20 @@
 import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
+import { formatDistanceToNow } from 'date-fns';
+
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
+import Avatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
+import CardActionArea from '@mui/material/CardActionArea';
+import Popover from '@mui/material/Popover';
+import useAuthDialog from 'src/hooks/use-authdialog';
+import CrudService from 'src/services/cruds-service';
+
 import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -14,161 +24,419 @@ import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
 import Grid from '@mui/material/Unstable_Grid2';
+import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+import LoginDialog from 'src/sections/auth/login-dialog';
+
 
 // ----------------------------------------------------------------------
 
-export default function ServiceItem({ job }) {
 
-  const {
-    title,
-    price,
-    type = 'Full Time',
-    level = 'Manager',
-    experience = '1',
-    city,
-    category,
-    createdAt,
-    picture,
-    url,
-    favorited,
-  } = job;
+const StyledButton = styled((props) => (
+  <CardActionArea >
+    <Stack direction="row" alignItems="center" spacing={2} {...props} />
+  </CardActionArea>
+))(({ theme }) => ({
+  ...theme.typography.subtitle2,
+  padding: `${theme.spacing(0)} ${theme.spacing(0)}`,
 
 
-  const [favorite, setFavorite] = useState(favorited);
+}));
 
-  const handleChangeFavorite = useCallback((event) => {
-    setFavorite(event.target.checked);
+
+export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
+
+  const { attributes } = job;
+
+  const { title, city,phone, price,seller, created_at, category, url, id, images } = attributes;
+
+
+
+  const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+
+
+  const [opencall, setOpencall] = useState(null);
+
+  const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
+
+  const handleOpenCall = useCallback((event) => {
+    setOpencall(event.currentTarget);
   }, []);
 
+  const handleCloseCall = useCallback(() => {
+    setOpencall(null);
+  }, []);
+
+
+
+  const isFavorite = favorites.includes(id);
+  const [favorite, setFavorite] = useState(isFavorite);
+
+
+  const handleChangeFavorite = useCallback(() => {
+    requireAuth(async () => {
+      try {
+        const response = await CrudService.createFavorite(category, url, id);
+        setFavorite(response.favorite);
+        onFavoriteToggle(id, response.favorite);
+      } catch (error) {
+        console.error('Failed to update favorite:', error);
+      }
+    });
+  }, [requireAuth, category, url, id, onFavoriteToggle]);
+
+
+  const handleChatClick = () => {
+    requireAuth(() => {
+      // Add the code to open the chat or navigate to the chat page
+      console.log("Chat button clicked. User authenticated.");
+    });
+  };
+
+
+  useEffect(() => {
+    setFavorite(isFavorite); // Ensure state is updated when favorites prop changes
+  }, [isFavorite]);
+
   return (
-    <Card
-      sx={{
-        '&:hover': {
-          boxShadow: (theme) => theme.customShadows.z24,
-        },
-      }}
-    >
-      <Checkbox
-        color="error"
-        checked={favorite}
-        onChange={handleChangeFavorite}
-        icon={<Iconify icon="carbon:favorite" />}
-        checkedIcon={<Iconify icon="carbon:favorite-filled" />}
-        sx={{ position: 'absolute', right: 16, top: 16 }}
-      />
 
-      <Stack sx={{ p: 3, pb: 0 }}>
-        <Stack direction="row" alignItems="center" spacing={2.5}>
-          <Image
-            alt={title}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`}
+    <>
+        <Card
+          sx={{
+            '&:hover': {
+              boxShadow: (theme) => theme.customShadows.z24,
+            },
+          }}
+        >
+          {/* Carousel of Images */}
 
-            sx={{ width: 48, height: 48, borderRadius: 1 }}
-          />
-        </Stack>
 
-        <Stack spacing={0.5} sx={{ mt: 3, mb: 2 }}>
-          <Link component={RouterLink}
+          <Box sx={{ position: 'relative' }}>
+            <CarouselBasic1 data={images} />
 
-          href={`${paths.career.job}/${url}`}
+            {/* Price and Favorite at the Top */}
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{
+                pt: 1.5,
+                pl: 2,
+                pr: 1.5,
+                top: 0,
+                width: 1,
+                zIndex: 9,
+                position: 'absolute',
+              }}
+            >
 
-          color="inherit"
+
+              <Stack/>
+
+              <Checkbox
+                color="error"
+                checked={favorite}
+                onChange={handleChangeFavorite}
+                icon={<Iconify icon="carbon:favorite" />}
+                checkedIcon={<Iconify icon="carbon:favorite-filled" />}
+                sx={{ color: 'common.white' }}
+              />
+            </Stack>
+
+
+            {/* Duration at the Bottom */}
+            <Stack
+              direction="row"
+              alignItems="center"
+              justifyContent="space-between"
+              sx={{
+                pb: 1.5,
+                pl: 2,
+                pr: 1.5,
+                bottom: 0,
+                width: 1,
+                zIndex: 9,
+                position: 'absolute',
+              }}
+            >
+              <Stack
+                spacing={0.5}
+                direction="row"
+                sx={{
+                  px: 1,
+                  borderRadius: 0.75,
+                  typography: 'subtitle2',
+                  bgcolor: 'text.primary',
+                  color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
+                }}
+              >
+                <Iconify icon="carbon:location" sx={{ mr: 0.2, mt: 0.4 }} width={16} />
+                {city}
+
+              </Stack>
+            </Stack>
+
+
+          </Box>
+
+          <Stack sx={{ px: 2, pb: 0 }}>
+
+
+            <Stack spacing={0.5} sx={{ mt: 0, mb: 0 }}>
+
+
+
+
+              <Stack spacing={4} direction={{ xs: 'row', md: 'row' }} sx={{ py: 1,  }}>
+
+
+
+
+                  <Box
+                    sx={{
+                      flexGrow:  1,
+                      gap: 1,
+                      display: 'grid',
+                      gridTemplateColumns: {
+                        xs: 'repeat(1, 1fr)',
+                        sm: 'repeat(1, 1fr)',
+                        md: 'repeat(1, 1fr)',
+                        lg: 'repeat(1, 1fr)',
+                      },
+                    }}
+                  >
+
+
+
+                    <Stack spacing={1} direction="row" alignItems="center">
+                      <Avatar
+                        variant="rounded"
+                        alt={NamedNodeMap}
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${seller.profile_image}`}
+                        sx={{ width: 30, height: 30 }}
+                      />
+
+                      <Stack spacing={0}>
+                          <Link variant="subtitle2" color="inherit" >
+                          {seller.name}
+                          </Link>
+
+
+                      </Stack>
+
+                    </Stack>
+
+                  </Box>
+
+
+
+
+                  <Stack spacing={2} direction="row" alignItems="center" flexShrink={0}>
+
+                    <StyledButton>
+
+                      <Iconify icon="carbon:phone" width={21} onClick={handleOpenCall} color={opencall ? 'primary' : 'default'}/>
+                    </StyledButton>
+
+
+                    <StyledButton>
+
+                      <Iconify icon="carbon:email" width={21}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                    </StyledButton>
+
+
+
+                    <StyledButton>
+
+                      <Iconify icon="carbon:chat" width={21} onClick={handleChatClick}/>
+
+                    </StyledButton>
+
+
+
+
+
+
+
+
+
+                  </Stack>
+
+
+
+
+
+
+
+              </Stack>
+
+              <Link component={RouterLink}
+
+              href={`${paths.career.job}/${url}`}
+
+              color="inherit"
+              >
+                <TextMaxLine variant="h6" line={1}>
+                  {title}
+                </TextMaxLine>
+              </Link>
+
+            </Stack>
+
+
+          </Stack>
+
+          <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
+
+
+
+          <Grid
+            container
+            spacing={1.5}
+            sx={{
+              p: 2,
+              pt: 0,
+              typography: 'body2',
+              color: 'text.secondary',
+              textTransform: 'capitalize',
+            }}
           >
-            <TextMaxLine variant="h6" line={1}>
-              {title}
-            </TextMaxLine>
-          </Link>
+            <Grid xs={6}>
+              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+                <Iconify icon="carbon:increase-level" sx={{ mr: 1 }} />
+                1 year exp
+              </Stack>
+            </Grid>
 
-          <Typography variant="body2" sx={{ color: 'info.main' }}>
-            {category}
-          </Typography>
+            <Grid xs={6}>
+              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+                <Iconify icon="carbon:time" sx={{ mr: 1 }} />
+                Full Time
+              </Stack>
+            </Grid>
 
-          <Stack
-            direction="row"
-            alignItems="center"
-            sx={{ typography: 'body2', color: 'text.secondary' }}
+            <Grid xs={6}>
+              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+                <Iconify icon="carbon:money" sx={{ mr: 1 }} />
+                {typeof price === 'number' ? fCurrency(price) : price}
+              </Stack>
+            </Grid>
+
+            <Grid xs={6}>
+              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+                <Iconify icon="carbon:user" sx={{ mr: 1 }} />
+                Manager
+              </Stack>
+            </Grid>
+          </Grid>
+
+
+
+          <Popover
+            open={!!opencall}
+            onClose={handleCloseCall}
+            anchorEl={opencall}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+            slotProps={{
+              paper: {
+                sx: { width: 300,p: 2  },
+              },
+            }}
           >
-            <Iconify icon="carbon:location" width={18} sx={{ mr: 0.5 }} />
-            {city}
-          </Stack>
-        </Stack>
+                <Typography variant="subtitle2" >
 
-        <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-          Posted on: {fDate(createdAt)}
-        </Typography>
-      </Stack>
+                  Don&apos;t forget to mention the property reference when you call.
 
-      <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
+                </Typography>
 
-      {/* <Stack
-        direction="row"
-        alignItems="center"
-        spacing={1.5}
-        sx={{ p: 3, pt: 0, typography: 'body2', color: 'text.secondary' }}
-      >
-        <Iconify icon="carbon:money" sx={{ mr: 1 }} />
-        {typeof price === 'number' ? fCurrency(price) : price}
-      </Stack> */}
+              <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
-      <Grid
-        container
-        spacing={1.5}
-        sx={{
-          p: 3,
-          pt: 0,
-          typography: 'body2',
-          color: 'text.secondary',
-          textTransform: 'capitalize',
-        }}
-      >
-        <Grid xs={6}>
-          <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-            <Iconify icon="carbon:increase-level" sx={{ mr: 1 }} />
-            {`${experience} year exp`}
-          </Stack>
-        </Grid>
+              <StyledButton>
 
-        <Grid xs={6}>
-          <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-            <Iconify icon="carbon:time" sx={{ mr: 1 }} />
-            {type}
-          </Stack>
-        </Grid>
+                <Iconify icon="carbon:phone" width={24} />
+                <Typography variant="subtitle2">
 
-        <Grid xs={6}>
-          <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-            <Iconify icon="carbon:money" sx={{ mr: 1 }} />
-            {typeof price === 'number' ? fCurrency(price) : price}
-          </Stack>
-        </Grid>
+                  <Box component="span" sx={{ color: 'primary.main' }}>
 
-        <Grid xs={6}>
-          <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-            <Iconify icon="carbon:user" sx={{ mr: 1 }} />
-            {level}
-          </Stack>
-        </Grid>
-      </Grid>
+                    {phone}
+                  </Box>
+                </Typography>
+              </StyledButton>
+
+          </Popover>
 
 
 
-    </Card>
+        </Card>
+
+        <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
+
+    </>
+
   );
 }
 
 ServiceItem.propTypes = {
   job: PropTypes.shape({
-    id: PropTypes.number,
-    title: PropTypes.string,
-    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    city: PropTypes.string,
-    category: PropTypes.string,
-    createdAt: PropTypes.string,
-    picture: PropTypes.string,
-    url: PropTypes.string,
-    favorited: PropTypes.bool,
-    type: PropTypes.string,
-    level: PropTypes.string,
-    experience: PropTypes.string,
-  }),
+    attributes: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      city: PropTypes.string.isRequired,
+      phone: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+
+      images: PropTypes.array.isRequired,
+      seller: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        profile_image: PropTypes.string.isRequired,
+      }).isRequired,
+      created_at: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+
+  favorites: PropTypes.array,
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
+
+ServiceItem.defaultProps = {
+  favorites: [],
+};
+
+// CarouselBasic1 Component
+
+function CarouselBasic1({ data }) {
+  const carousel = useCarousel({
+    autoplay: false,
+  });
+
+  return (
+    <>
+      <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+        {data.map((item, index) => (
+          <Image
+            key={index}
+            alt={`Image ${index + 1}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+            ratio="6/4"
+          />
+        ))}
+      </Carousel>
+
+      <Box sx={{ position: 'relative', zIndex: 999 }}>  {/* Added z-index 999 here */}
+        <CarouselArrowIndex
+          index={carousel.currentIndex}
+          total={data.length}
+          onNext={carousel.onNext}
+          onPrev={carousel.onPrev}
+        />
+      </Box>
+    </>
+  );
+}
+
+CarouselBasic1.propTypes = {
+  data: PropTypes.array.isRequired,
 };

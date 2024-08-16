@@ -7,7 +7,7 @@ import ServiceItemSkeleton from './services-item-skeleton';
 
 // ----------------------------------------------------------------------
 
-export default function ServiceList({ jobs, loading }) {
+export default function ServiceList({ jobs, loading, favorites, onFavoriteToggle }) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 9;
 
@@ -28,12 +28,12 @@ export default function ServiceList({ jobs, loading }) {
           gridTemplateColumns: {
             xs: 'repeat(1, 1fr)',
             sm: 'repeat(2, 1fr)',
-            md: 'repeat(3, 1fr)',
+            md: 'repeat(4, 1fr)',
           },
         }}
       >
         {(loading ? [...Array(itemsPerPage)] : paginatedJobs).map((job, index) =>
-          job ? <ServiceItem key={job.id} job={job} /> : <ServiceItemSkeleton key={index} />
+          job ? <ServiceItem key={job.id} job={job} /> : <ServiceItemSkeleton key={index} favorites={favorites} onFavoriteToggle={onFavoriteToggle} />
         )}
       </Box>
 
@@ -56,4 +56,6 @@ export default function ServiceList({ jobs, loading }) {
 ServiceList.propTypes = {
   jobs: PropTypes.array,
   loading: PropTypes.bool,
+  favorites: PropTypes.array.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
 };

@@ -227,7 +227,9 @@ class SearchBusinessController extends JsonApiController
 
                         'url' => $business->url,
                         'created_at' => $business->created_at,
-                        'picture' => $business->profile_picture,
+                        'picture' => $business->picture,
+
+                        'profile' => $business->profile_picture,
 
 
 
@@ -276,11 +278,12 @@ class SearchBusinessController extends JsonApiController
                         'city' => $business->city,
                         'id' => $business->id,
 
+                        'picture' => $business->picture,
 
+                        'profile' => $business->profile_picture,
 
                         'url' => $business->url,
                         'created_at' => $business->created_at,
-                        'picture' => $business->profile_picture,
 
 
 

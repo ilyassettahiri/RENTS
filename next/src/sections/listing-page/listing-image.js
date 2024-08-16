@@ -82,7 +82,7 @@ export default function ListingImage({ images }) {
               xs: 'repeat(1, 1fr)',
               md: 'repeat(2, 1fr)',
             },
-            mb: { xs: 5, md: 10 },
+            mb: { xs: 5, md: 5 },
           }}
         >
           <PhotoItem photo={slides[0].src} onOpenLightbox={() => lightbox.onOpen(slides[0].src)} />

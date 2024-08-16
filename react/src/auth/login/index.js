@@ -22,9 +22,8 @@ import { AuthContext } from "context";
 
 
 // Authentication layout components
-import BasicLayout from "auth/components/BasicLayout";
+import CoverLayout from "auth/components/CoverLayout";
 import Socials from "auth/components/Socials";
-import Separator from "auth/components/Separator";
 
 // Images
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -117,14 +116,12 @@ function Login() {
 
 
   return (
-    <BasicLayout
-      title="Welcome!"
-      description="Use these awesome forms to login or create new account in your project for free."
+    <CoverLayout
       image={curved9}
     >
 
 
-        <Card>
+        <Card sx={{ boxShadow: 3 }}>
           <SoftBox p={3} mb={1} textAlign="center">
             <SoftTypography variant="h5" fontWeight="medium">
               Sign in
@@ -184,7 +181,7 @@ function Login() {
                   sign in
                 </SoftButton>
               </SoftBox>
-              <Separator />
+              
               <SoftBox mt={1} mb={3}>
                 <SoftButton
                   component={Link}
@@ -205,7 +202,7 @@ function Login() {
 
       
 
-    </BasicLayout>
+    </CoverLayout>
   );
 }
 

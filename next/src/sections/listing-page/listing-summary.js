@@ -6,17 +6,8 @@ import Typography from '@mui/material/Typography';
 import Markdown from 'src/components/markdown';
 import Iconify from 'src/components/iconify';
 
-import ContactMap from 'src/components/map';
 
 
-const locationMap = [
-  {
-    address: 'marrakech',
-    phoneNumber: 666666666,
-    email: 'aa@gmail.com',
-    latlng: [33, 65],
-  },
-];
 
 
 export default function ListingSummary({ specifications, description, category }) {
@@ -47,11 +38,7 @@ export default function ListingSummary({ specifications, description, category }
       </Stack>
 
 
-      <Stack spacing={3}>
-        <Typography variant="h5">Location</Typography>
 
-        <ContactMap offices={locationMap} sx={{ borderRadius: 2 }} />
-      </Stack>
 
 
     </Stack>

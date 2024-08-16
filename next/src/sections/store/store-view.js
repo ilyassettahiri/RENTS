@@ -105,12 +105,8 @@ export default function StoreView({ params }) {
       >
         {data && (
           <StoreHero
-            picture={data.attributes.picture}
-            profile={data.attributes.profile}
-            name={data.attributes.name}
-            created={data.attributes.created_ad}
-            total_reviews={data.attributes.total_reviews}
-            average_rating={data.attributes.average_rating}
+            StoreData={data}
+
           />
         )}
 
@@ -119,8 +115,8 @@ export default function StoreView({ params }) {
           alignItems="center"
           justifyContent="space-between"
           sx={{
-            py: 5,
-            mt: 10,
+            py: 6,
+            mt: 5,
           }}
         >
           <Button
@@ -130,6 +126,7 @@ export default function StoreView({ params }) {
             onClick={mobileOpen.onTrue}
             sx={{
               display: { md: 'none' },
+              mb: { xs: -3 },
             }}
           >
             Filters

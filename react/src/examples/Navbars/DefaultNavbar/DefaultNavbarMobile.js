@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useState } from "react";
 
@@ -30,10 +17,7 @@ import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink"
 
 // DefaultNavbar dropdown menus
 import PagesMenu from "examples/Navbars/DefaultNavbar/Menus/PagesMenu";
-import AuthenticationMenu from "examples/Navbars/DefaultNavbar/Menus/AuthenticationMenu";
-import ApplicationsMenu from "examples/Navbars/DefaultNavbar/Menus/ApplicationsMenu";
-import EcommerceMenu from "examples/Navbars/DefaultNavbar/Menus/EcommerceMenu";
-import DocsMenu from "examples/Navbars/DefaultNavbar/Menus/DocsMenu";
+
 
 function DefaultNavbarMobile({ routes, open, close }) {
   const { width } = open && open.getBoundingClientRect();
@@ -67,42 +51,7 @@ function DefaultNavbarMobile({ routes, open, close }) {
             <PagesMenu routes={routes} mobileMenu />
           </SoftBox>
         </DefaultNavbarLink>
-        <DefaultNavbarLink
-          name="authentication"
-          collapseStatus={openCollapse === "authentication"}
-          onClick={() => handleSepOpenCollapse("authentication")}
-        >
-          <SoftBox maxHeight="16rem" overflow="auto">
-            <AuthenticationMenu routes={routes} mobileMenu />
-          </SoftBox>
-        </DefaultNavbarLink>
-        <DefaultNavbarLink
-          name="applications"
-          collapseStatus={openCollapse === "applications"}
-          onClick={() => handleSepOpenCollapse("applications")}
-        >
-          <SoftBox maxHeight="16rem" overflow="auto">
-            <ApplicationsMenu routes={routes} mobileMenu />
-          </SoftBox>
-        </DefaultNavbarLink>
-        <DefaultNavbarLink
-          name="ecommerce"
-          collapseStatus={openCollapse === "ecommerce"}
-          onClick={() => handleSepOpenCollapse("ecommerce")}
-        >
-          <SoftBox maxHeight="16rem" overflow="auto">
-            <EcommerceMenu routes={routes} mobileMenu />
-          </SoftBox>
-        </DefaultNavbarLink>
-        <DefaultNavbarLink
-          name="docs"
-          collapseStatus={openCollapse === "docs"}
-          onClick={() => handleSepOpenCollapse("docs")}
-        >
-          <SoftBox maxHeight="16rem" overflow="auto">
-            <DocsMenu routes={routes} mobileMenu />
-          </SoftBox>
-        </DefaultNavbarLink>
+       
       </SoftBox>
     </Menu>
   );

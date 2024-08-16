@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PropTypes from 'prop-types';
 import { useRouter } from 'src/routes/hooks';
+import { useResponsive } from 'src/hooks/use-responsive';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
@@ -20,12 +22,14 @@ import ListingSummary from 'src/sections/listing-page/listing-summary';
 import CrudService from 'src/services/cruds-service';
 import StorePopularProducts from 'src/sections/store/landing/store-popular-products';
 import ListingsCarousel from 'src/sections/home/listings-carousel';
-import PostSocialsShare from 'src/sections/blog/common/post-socials-share';
+import Map from 'src/components/map';
+
 import ListingHeader from './listing-header';
 import ListingImage from './listing-image';
 import ListingForm from './listing-form';
 import TourListSimilar from '../components/listings/list/listings-list-similar';
 import ListingList from '../components/listings/list/listings-list';
+
 
 export default function ListingView({ params }) {
   const router = useRouter();
@@ -36,13 +40,23 @@ export default function ListingView({ params }) {
   const [recentListingsElJadida, setRecentListingsElJadida] = useState(null);
   const [specifications, setSpecifications] = useState(null);
 
+  const mdUp = useResponsive('up', 'md');
+
+  const [favorites, setFavorites] = useState([]);
+
+
   useEffect(() => {
     (async () => {
       try {
         const response = await CrudService.getListingsFront(category, url);
+
+        const favoritesData = response.favorites;
+
         setData(response.data);
         setRecentListingsElJadida(response.data.attributes.recentListingsElJadida);
         setSpecifications(response.data.attributes.specifications);
+        setFavorites(favoritesData);
+
         console.log('recentlistings :', response.data.attributes.recentlistings);
 
       } catch (error) {
@@ -59,6 +73,16 @@ export default function ListingView({ params }) {
     fakeLoading();
   }, [loading]);
 
+
+
+  const handleFavoriteToggle = useCallback((id, isFavorite) => {
+    setFavorites(prevFavorites =>
+      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
+    );
+  }, []);
+
+
+
   if (loading.value) {
     return <SplashScreen />;
   }
@@ -72,24 +96,28 @@ export default function ListingView({ params }) {
         paddingRight: { lg: '100px' },
       }}
     >
-      <CustomBreadcrumbs
-        links={[
-          { name: 'Home', href: '/' },
-          { name: params.category, href: paths.travel.tour },
-          { name: params.url },
-        ]}
-        sx={{ mt: 3, mb: 5 }}
-      />
+      {mdUp && (
+
+          <CustomBreadcrumbs
+            links={[
+              { name: 'Home', href: '/' },
+              { name: params.category, href: paths.travel.tour },
+              { name: params.url },
+            ]}
+            sx={{ mt: 1, mb: 3 }}
+          />
+      )}
+
 
       {data && <ListingImage images={data.attributes.images}  />}
 
-      <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 2, }, }}>
+      <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, }, }}>
         <Grid xs={12} md={5} lg={4}>
           {data && <ListingForm tour={data} />}
         </Grid>
 
         <Grid xs={12} md={7} lg={8}>
-          {data && <ListingHeader tour={data} seller={data.attributes.seller} />}
+          {data && <ListingHeader tour={data} seller={data.attributes.seller} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>}
           <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
           {data && <ListingSummary
@@ -98,12 +126,19 @@ export default function ListingView({ params }) {
             category={data.attributes.category}
           />}
 
-          <Stack direction="row" flexWrap="wrap" sx={{ mt: 5 }}>
-            <PostSocialsShare />
-          </Stack>
+
         </Grid>
       </Grid>
+
+
+      <Stack spacing={3} sx={{ my: 10 }}>
+        <Typography variant="h5">Location</Typography>
+
+        {data &&<Map offices={data} sx={{ borderRadius: 2 }} />}
+      </Stack>
+
       <Divider sx={{ my: 10 }} />
+
 
       {data && <Review
         category={category}

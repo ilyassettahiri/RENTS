@@ -67,8 +67,9 @@ class BusinessController extends JsonApiController
 
                     'url' => $business->url,
                     'created_at' => $business->created_at,
-                    'picture' => $business->profile_picture,
+                    'picture' => $business->picture,
 
+                    'profile' => $business->profile_picture,
 
 
                 ],

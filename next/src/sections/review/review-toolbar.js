@@ -1,11 +1,18 @@
+
+
+import { useState, useCallback, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
+import useAuthDialog from 'src/hooks/use-authdialog';
+
 import FormControl from '@mui/material/FormControl';
 import Select, { selectClasses } from '@mui/material/Select';
+import LoginDialog from 'src/sections/auth/login-dialog';
 
 // ----------------------------------------------------------------------
 
@@ -18,40 +25,55 @@ const SORT_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function ReviewToolbar({ sort, totalReviews, onOpenReview, onChangeSort }) {
+
+  const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
+  const handleWriteReviewClick = () => {
+    requireAuth(onOpenReview); // This ensures authentication is required before opening the review form
+  };
+
   return (
-    <Stack
-      spacing={5}
-      alignItems={{ md: 'center' }}
-      direction={{ xs: 'column', md: 'row' }}
-      sx={{ mb: 5 }}
-    >
-      <Typography variant="h4" sx={{ width: 1 }}>
-        {totalReviews} Reviews
-      </Typography>
 
-      <Stack direction="row" spacing={2} flexShrink={0} alignItems="center">
-        <FormControl
-          hiddenLabel
-          sx={{
-            [`& .${selectClasses.select}`]: {
-              py: 1.75,
-            },
-          }}
+      <>
+
+        <Stack
+          spacing={5}
+          alignItems={{ md: 'center' }}
+          direction={{ xs: 'column', md: 'row' }}
+          sx={{ mb: 5 }}
         >
-          <Select value={sort} onChange={onChangeSort}>
-            {SORT_OPTIONS.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          <Typography variant="h4" sx={{ width: 1 }}>
+            {totalReviews} Reviews
+          </Typography>
 
-        <Button size="large" variant="contained" color="inherit" onClick={onOpenReview}>
-          Write a Review
-        </Button>
-      </Stack>
-    </Stack>
+          <Stack direction="row" spacing={2} flexShrink={0} alignItems="center">
+            <FormControl
+              hiddenLabel
+              sx={{
+                [`& .${selectClasses.select}`]: {
+                  py: 1.75,
+                },
+              }}
+            >
+              <Select value={sort} onChange={onChangeSort}>
+                {SORT_OPTIONS.map((option) => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            <Button size="large" variant="contained" color="inherit" onClick={handleWriteReviewClick}>
+              Write a Review
+            </Button>
+          </Stack>
+        </Stack>
+        <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
+
+      </>
+
+
   );
 }
 
