@@ -252,7 +252,7 @@ function Register() {
             <SoftBox display="flex" alignItems="center">
               <Checkbox name="agree" id="agree"  onChange={changeHandler} />
               <SoftTypography
-                variant="standard"
+                variant="button"
                 fontWeight="regular"
                 color="text"
                 sx={{  cursor: "pointer" }}
