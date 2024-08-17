@@ -24,6 +24,7 @@ import { AuthContext } from "context";
 // Authentication layout components
 import CoverLayout from "auth/components/CoverLayout";
 import Socials from "auth/components/Socials";
+import Separator from "auth/components/Separator";
 
 // Images
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -181,6 +182,9 @@ function Login() {
                   sign in
                 </SoftButton>
               </SoftBox>
+
+              <Separator />
+
               
               <SoftBox mt={1} mb={3}>
                 <SoftButton

@@ -86,8 +86,8 @@ function DefaultNavbar({ routes, transparent, light, action }) {
         py={1}
         px={{ xs: transparent ? 4 : 5, sm: transparent ? 2 : 5, lg: transparent ? 0 : 5 }}
         my={2}
-        mx={3}
-        width="calc(100% - 48px)"
+        
+        width="calc(100%)"
         borderRadius="section"
         shadow={transparent ? "none" : "md"}
         color={light ? "white" : "dark"}
@@ -105,7 +105,7 @@ function DefaultNavbar({ routes, transparent, light, action }) {
         <SoftBox component={Link} to="/" py={transparent ? 1.5 : 0.75} lineHeight={1}>
           
           <SoftBox component={NavLink} to="/home" display="flex" alignItems="center">
-          {brand && <SoftBox component="img" src={brand} alt="Soft UI Logo" width="4rem" />}
+          {brand && <SoftBox component="img" src={brand} alt="Rents" width="4rem" />}
           
           </SoftBox> 
         </SoftBox>

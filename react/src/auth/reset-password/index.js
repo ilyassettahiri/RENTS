@@ -41,7 +41,7 @@ function PasswordReset() {
       description="Use these awesome forms to login or create new account in your project for free."
       image={curved9}
     >
-      <Card>
+      <Card sx={{ boxShadow: 3 }}>
         <SoftBox p={3} mb={1} textAlign="center">
           <SoftTypography variant="h5" fontWeight="medium">
             Sign in
