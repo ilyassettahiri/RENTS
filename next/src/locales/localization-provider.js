@@ -7,6 +7,7 @@ import 'dayjs/locale/fr';
 import 'dayjs/locale/ar-sa';
 
 import dayjs from 'dayjs';
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
 
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider as Provider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -26,3 +27,8 @@ export function LocalizationProvider({ children }) {
     </Provider>
   );
 }
+
+// PropTypes validation
+LocalizationProvider.propTypes = {
+  children: PropTypes.node.isRequired, // 'children' can be any renderable content and is required
+};

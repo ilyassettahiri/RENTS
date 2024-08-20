@@ -2,7 +2,7 @@
 
 import Portal from '@mui/material/Portal';
 
-import { Iconify } from '../iconify';
+import { Iconify } from 'src/components/iconifyy';
 import { StyledToaster } from './styles';
 import { toasterClasses } from './classes';
 

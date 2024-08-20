@@ -2,6 +2,8 @@
 
 import i18next from 'i18next';
 import { useMemo } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
+
 import resourcesToBackend from 'i18next-resources-to-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next, I18nextProvider as Provider } from 'react-i18next';
@@ -47,3 +49,9 @@ export function I18nProvider({ lang, children }) {
 
   return <Provider i18n={i18next}>{children}</Provider>;
 }
+
+// PropTypes validation
+I18nProvider.propTypes = {
+  lang: PropTypes.string, // 'lang' should be a string
+  children: PropTypes.node.isRequired, // 'children' can be any renderable content and is required
+};

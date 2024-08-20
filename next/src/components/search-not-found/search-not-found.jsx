@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
@@ -25,3 +26,9 @@ export function SearchNotFound({ query, sx, ...other }) {
     </Box>
   );
 }
+
+// PropTypes validation
+SearchNotFound.propTypes = {
+  query: PropTypes.string, // 'query' should be a string
+  sx: PropTypes.object,    // 'sx' should be an object
+};

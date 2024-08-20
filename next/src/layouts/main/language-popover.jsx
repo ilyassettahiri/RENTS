@@ -1,5 +1,9 @@
 'use client';
 
+
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
+
+
 import { m } from 'framer-motion';
 import { useCallback } from 'react';
 
@@ -65,3 +69,14 @@ export function LanguagePopover({ data = [], sx, ...other }) {
     </>
   );
 }
+
+
+// PropTypes validation
+LanguagePopover.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    countryCode: PropTypes.string.isRequired,
+  })), // 'data' should be an array of objects with specific properties
+  sx: PropTypes.object,    // 'sx' should be an object
+};

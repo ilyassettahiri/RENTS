@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
 
 import SvgIcon from '@mui/material/SvgIcon';
 
@@ -129,3 +130,10 @@ const instagramSVG = (
     </defs>
   </>
 );
+
+// PropTypes validation
+SocialIcon.propTypes = {
+  icon: PropTypes.string.isRequired, // 'icon' should be a string and is required
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // 'width' can be a string or a number
+  sx: PropTypes.object, // 'sx' should be an object
+};

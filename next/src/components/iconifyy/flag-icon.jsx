@@ -1,9 +1,7 @@
 import { forwardRef } from 'react';
-
+import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
-
-import { CONFIG } from 'src/config-global';
 
 // ----------------------------------------------------------------------
 
@@ -37,3 +35,9 @@ export const FlagIcon = forwardRef(({ code, sx, ...other }, ref) => {
     </NoSsr>
   );
 });
+
+// PropTypes validation
+FlagIcon.propTypes = {
+  code: PropTypes.string.isRequired,  // 'code' should be a string and is required
+  sx: PropTypes.object,  // 'sx' should be an object (MUI's sx prop is an object)
+};

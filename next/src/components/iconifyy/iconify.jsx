@@ -1,6 +1,7 @@
 'use client';
 
 import { forwardRef } from 'react';
+import PropTypes from 'prop-types'; // Import PropTypes for type checking
 import { Icon, disableCache } from '@iconify/react';
 
 import Box from '@mui/material/Box';
@@ -38,6 +39,13 @@ export const Iconify = forwardRef(({ className, width = 20, sx, ...other }, ref)
     </NoSsr>
   );
 });
+
+// PropTypes validation
+Iconify.propTypes = {
+  className: PropTypes.string, // 'className' should be a string
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]), // 'width' can be a string or a number
+  sx: PropTypes.object, // 'sx' should be an object
+};
 
 // https://iconify.design/docs/iconify-icon/disable-cache.html
 disableCache('local');
