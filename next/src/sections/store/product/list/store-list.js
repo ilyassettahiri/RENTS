@@ -9,7 +9,7 @@ import StoreViewGridItem from '../item/store-view-grid-item';
 import StoreViewListItemSkeleton from '../item/store-view-list-item-skeleton';
 import StoreViewGridItemSkeleton from '../item/store-view-grid-item-skeleton';
 
-export default function StoreList({ loading, viewMode, products }) {
+export default function StoreList({ loading, viewMode, products , favorites, onFavoriteToggle,}) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 15;
 
@@ -74,4 +74,6 @@ StoreList.propTypes = {
   loading: PropTypes.bool,
   products: PropTypes.array,
   viewMode: PropTypes.string,
+  favorites: PropTypes.array.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
 };

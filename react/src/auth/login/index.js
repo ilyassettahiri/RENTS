@@ -123,16 +123,16 @@ function Login() {
 
 
         <Card sx={{ boxShadow: 3 }}>
-          <SoftBox p={3} mb={1} textAlign="center">
-            <SoftTypography variant="h5" fontWeight="medium">
-              Sign in
+          <SoftBox p={3}  display="flex" justifyContent="space-between" alignItems="center">
+            <SoftTypography variant="h5" fontWeight="medium" textAlign="center">
+              Sign in with:
             </SoftTypography>
-          </SoftBox>
-          <SoftBox mb={2}>
-            <Socials />
+            <SoftBox >
+              <Socials />
+            </SoftBox>
           </SoftBox>
 
-
+          <Separator />
 
 
           <SoftBox p={3}>
@@ -142,7 +142,7 @@ function Login() {
                   label="Email"
                   fullWidth
                   name="email"
-                  value={inputs.email}
+                  placeholder="example@domain.com"
                   onChange={changeHandler}
                   error={errors.emailError} />
               </SoftBox>
@@ -152,7 +152,7 @@ function Login() {
                 label="Password"
                 fullWidth
                 name="password"
-                value={inputs.password}
+                placeholder="Password"
                 onChange={changeHandler}
                 error={errors.passwordError}
                  />
@@ -166,7 +166,7 @@ function Login() {
                   onClick={handleSetRememberMe}
                   sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
                 >
-                  &nbsp;&nbsp;Remember me
+                  &nbsp;&nbsp;  Remember me
                 </SoftTypography>
               </SoftBox>
 

@@ -11,6 +11,9 @@ import CardActionArea from '@mui/material/CardActionArea';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
 
+import { capitalizeFirstLetter } from 'src/utils/format-time';
+
+
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
@@ -39,7 +42,7 @@ const StyledButton = styled((props) => (
   </CardActionArea>
 ))(({ theme }) => ({
   ...theme.typography.subtitle2,
-  padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
+  padding: `${theme.spacing(0.4)} ${theme.spacing(0.8)}`,
   borderRadius: theme.shape.borderRadius,
   border: `solid 1px ${theme.palette.divider}`,
 }));
@@ -120,7 +123,8 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
         }}
       >
         <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
-          {title}
+
+          {capitalizeFirstLetter(title)}
         </Typography>
 
         <Stack direction="row" alignItems="center" flexShrink={0}>
@@ -143,7 +147,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:location" sx={{ mr: 0.4 }} /> {city}
+          <Iconify icon="carbon:location" sx={{ mr: 0.4 }} /> {capitalizeFirstLetter(city)}
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
@@ -154,7 +158,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
 
 
-          <Stack spacing={0.5} direction="row" alignItems="center">
+          {mdUp &&<Stack spacing={0.5} direction="row" alignItems="center">
             <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
 
             <Box sx={{ typography: 'h6' }}>
@@ -164,7 +168,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
             <Link variant="body2" sx={{ color: 'text.secondary' }}>
               ({fShortenNumber(total_reviews)} reviews)
             </Link>
-          </Stack>
+          </Stack>}
 
 
 
@@ -173,7 +177,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
       </Stack>
 
 
-      <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
+      <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
       <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
 
@@ -206,7 +210,8 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
               <Stack spacing={0.5}>
                   <Link variant="subtitle1" color="inherit" >
-                   {name}
+
+                   {capitalizeFirstLetter(name)}
                   </Link>
 
                 <Stack
@@ -235,19 +240,20 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
         <Stack direction="row" alignItems="center" flexShrink={0}>
 
           <StyledButton onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}>
-            <Iconify icon="carbon:email" width={28} />
-            <Typography variant="subtitle2">WhatsApp</Typography>
+            <Iconify icon="mdi:whatsapp" width={26} />
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Whatsapp</Typography>
+
           </StyledButton>
 
           <StyledButton onClick={handleChatClick}>
-            <Iconify icon="carbon:chat" width={28} />
-            <Typography variant="subtitle2">Chat</Typography>
+            <Iconify icon="carbon:chat" width={26} />
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Chat</Typography>
 
           </StyledButton>
 
           <StyledButton onClick={handleOpenCall} color={opencall ? 'primary' : 'default'}>
-            <Iconify icon="carbon:phone" width={28} />
-            <Typography variant="subtitle2">Call</Typography>
+            <Iconify icon="carbon:phone" width={26} />
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Call</Typography>
 
           </StyledButton>
 

@@ -20,11 +20,16 @@ import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
 import useAuthDialog from 'src/hooks/use-authdialog';
 
+import { LanguagePopover } from 'src/layouts/main/language-popover';
+
+import { allLangs } from 'src/locales';
+
 import { useOffSetTop } from 'src/hooks/use-off-set-top';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { bgBlur } from 'src/theme/css';
 import Logo from 'src/components/logo';
 import LoginDialog from 'src/sections/auth/login-dialog';
+
 
 import NavMobile from './nav/mobile';
 import NavDesktop from './nav/desktop';
@@ -34,10 +39,12 @@ import HeaderShadow from './header-shadow';
 
 
 
-export default function Header({ headerOnDark, onOpenNav }) {
+export default function Header({ headerOnDark, onOpenNav}) {
   const theme = useTheme();
   const offset = useOffSetTop();
   const mdUp = useResponsive('up', 'md');
+
+
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
@@ -49,12 +56,15 @@ export default function Header({ headerOnDark, onOpenNav }) {
 
   const renderContent = (
     <>
+
       {!mdUp && <NavMobile data={navConfig} />}
 
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
-        <Logo />
+        <Logo/>
         <Link href="/" target="_blank" rel="noopener" />
       </Box>
+
+
       <Stack
         flexGrow={1}
         alignItems="center"
@@ -81,6 +91,9 @@ export default function Header({ headerOnDark, onOpenNav }) {
             Create Listing
           </Button>
           <Stack spacing={3} direction="row" alignItems="center" flexGrow={1} justifyContent="flex-end">
+
+          <LanguagePopover data-slot="localization" data={allLangs} />
+
             <Badge badgeContent={2} color="info">
               <IconButton
                 onClick={handleFavoriteClick}
@@ -90,18 +103,18 @@ export default function Header({ headerOnDark, onOpenNav }) {
                 color="inherit"
                 sx={{ p: 0 }}
               >
-                <Iconify icon="carbon:favorite" width={24} />
+                <Iconify icon="carbon:notification" width={24} />
               </IconButton>
             </Badge>
             <Badge badgeContent={4} color="error">
               <IconButton
                 component={RouterLink}
-                href={paths.eCommerce.cart}
+                href={paths.eCommerce.vouchers}
                 size="small"
                 color="inherit"
                 sx={{ p: 0 }}
               >
-                <Iconify icon="carbon:shopping-cart" width={24} />
+                <Iconify icon="carbon:chat" width={24} />
               </IconButton>
             </Badge>
             <IconButton

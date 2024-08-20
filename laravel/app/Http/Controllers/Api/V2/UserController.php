@@ -23,6 +23,9 @@ use App\Models\User;
 
 use App\Models\Role;
 
+use App\Models\Onlinestore;
+
+
 
 
 
@@ -115,6 +118,8 @@ class UserController extends JsonApiController
             return response()->json(['error' => 'User not found'], 404);
         }
 
+            // Check if the user has an associated store
+        $hasStore = $user->onlinestore()->exists();
 
         // Prepare the roles data for inclusion
         $rolesIncluded = $user->roles->map(function ($role) {
@@ -151,6 +156,7 @@ class UserController extends JsonApiController
                     'email_verified_at' => $user->email_verified_at,
                     'created_at' => $user->created_at,
                     'updated_at' => $user->updated_at,
+                    'has_store' => $hasStore,
                 ],
                 'relationships' => [
                     'roles' => [

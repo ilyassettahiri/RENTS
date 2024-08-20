@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
@@ -49,7 +50,8 @@ export default function StoreItemBestSellers({ product, ...other }) {
 
         <Stack spacing={0.5}>
           <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
-            {product.title}
+
+            {capitalizeFirstLetter(product.title)}
           </TextMaxLine>
 
           <ProductRating ratingNumber={product.ratingNumber} label={`${product.sold} sold`} />

@@ -9,7 +9,7 @@ import BusinessItemSkeleton from './business-item-skeleton';
 
 // ----------------------------------------------------------------------
 
-export default function BusinessList({ businesses, loading }) {
+export default function BusinessList({ businesses, loading, favorites, onFavoriteToggle }) {
   const [page, setPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -22,10 +22,12 @@ export default function BusinessList({ businesses, loading }) {
 
   return (
     <>
+
+
       <Stack spacing={4}>
         {(loading ? [...Array(itemsPerPage)] : paginatedBusinesses).map((business, index) =>
           business ? (
-            <BusinessItem key={business.id} business={business} />
+            <BusinessItem key={business.id} business={business} favorites={favorites} onFavoriteToggle={onFavoriteToggle} />
           ) : (
             <BusinessItemSkeleton key={index} />
           )
@@ -44,6 +46,8 @@ export default function BusinessList({ businesses, loading }) {
           },
         }}
       />
+
+
     </>
   );
 }
@@ -51,4 +55,6 @@ export default function BusinessList({ businesses, loading }) {
 BusinessList.propTypes = {
   businesses: PropTypes.array,
   loading: PropTypes.bool,
+  favorites: PropTypes.array.isRequired,
+  onFavoriteToggle: PropTypes.func.isRequired,
 };

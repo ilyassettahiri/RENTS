@@ -68,7 +68,7 @@ export default function ListingForm({ tour }) {
 
   return (
     <Card>
-      <Stack spacing={3} sx={{ p: 3 }}>
+      <Stack spacing={3} sx={{ p: 2 }}>
         <Stack spacing={1} direction="row" alignItems="center" sx={{ typography: 'h4' }}>
           {fCurrency(price)}
           <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}>
@@ -107,9 +107,9 @@ export default function ListingForm({ tour }) {
         </Stack>
       </Stack>
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+      <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
-      <Stack spacing={3} sx={{ p: 3 }}>
+      <Stack spacing={3} sx={{ p: 2,  }}>
         {startDate && endDate && (
           <>
             <Box display="flex">

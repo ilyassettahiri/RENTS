@@ -12,6 +12,7 @@ import Popover from '@mui/material/Popover';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import CardActionArea from '@mui/material/CardActionArea';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import Grid from "@mui/material/Grid";
 import Avatar from '@mui/material/Avatar';
@@ -143,7 +144,7 @@ export default function StoreHero({ StoreData }) {
           transform: 'translateX(-50%)', // Center horizontally
           position: "relative",
           mt: -12,
-          marginRight: { lg: '50px' },
+          marginRight: { xs: -5, lg: '50px' },
           py: 2,
           px: 2,
         }}
@@ -189,7 +190,8 @@ export default function StoreHero({ StoreData }) {
                         sx={{ typography: 'body2', color: 'text.main' }}
                       >
                           <Link variant="h5" color="inherit" >
-                          {name}
+
+                          {capitalizeFirstLetter(name)}
                           </Link>
                           <Iconify icon="carbon:star-filled" sx={{ ml:1, color: 'warning.main' }} />
                           <Box sx={{ typography: 'h6' }}>
@@ -220,7 +222,8 @@ export default function StoreHero({ StoreData }) {
 
                           <Box sx={{ typography: 'body2' }}>
 
-                            {city}
+
+                            {capitalizeFirstLetter(city)}
                           </Box>
 
 
@@ -243,7 +246,7 @@ export default function StoreHero({ StoreData }) {
 
                 <StyledButton>
 
-                  <Iconify icon="carbon:email" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                  <Iconify icon="mdi:whatsapp" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
                 </StyledButton>
 
 

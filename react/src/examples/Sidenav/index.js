@@ -30,7 +30,10 @@ import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 // Soft UI Dashboard PRO React context
 import { useSoftUIController,setMiniSidenav } from "context";
 
-function Sidenav({ color, brand, brandName, routes, ...rest }) {
+function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
+
+  console.log("Sidenav - hasStore:", hasStore); // Log hasStore on every render
+
   const [openCollapse, setOpenCollapse] = useState(false);
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false);
   const [controller, dispatch] = useSoftUIController();
@@ -60,6 +63,22 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
   
+
+    // Filter the routes based on the hasStore prop
+    const filteredRoutes = routes.map((route) => {
+      if (route.key === "store" && route.collapse) {
+        // Replace the store routes based on hasStore
+        return {
+          ...route,
+          collapse: route.collapse.filter((r) => {
+            if (r.key === "create-store" && hasStore) return false;
+            if (r.key === "detail-store" && !hasStore) return false;
+            return true;
+          }),
+        };
+      }
+      return route;
+    });
 
   // Render all the nested collapse items from the routes.js
   const renderNestedCollapse = (collapse) => {
@@ -126,7 +145,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     });
 
   // Render all the routes from the routes.js (All the visible items on the Sidenav)
-  const renderRoutes = routes.map(
+  const renderRoutes = filteredRoutes.map(
     ({ type, name, icon, title, collapse, noCollapse, key, href, route }) => {
       let returnValue;
 
@@ -235,6 +254,8 @@ Sidenav.propTypes = {
   brand: PropTypes.string,
   brandName: PropTypes.string.isRequired,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hasStore: PropTypes.bool.isRequired, // Add hasStore as a required prop
+
 };
 
 export default Sidenav;

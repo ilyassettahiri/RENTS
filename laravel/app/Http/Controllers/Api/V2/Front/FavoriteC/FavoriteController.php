@@ -414,6 +414,7 @@ class FavoriteController extends JsonApiController
 
 
 
+
             switch ($category) {
 
 

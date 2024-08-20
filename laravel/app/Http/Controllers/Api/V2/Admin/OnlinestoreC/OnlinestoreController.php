@@ -12,7 +12,8 @@ use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
-
+use App\Models\Listing;
+use App\Models\User;
 
 
 
@@ -134,6 +135,10 @@ class OnlinestoreController extends JsonApiController
         $onlinestore->zip = $zip;
         $onlinestore->user_id = $user->id;
         $onlinestore->save();
+
+        // Update all listings of the user to have the onlinestore_id set to the newly created store's ID
+        Listing::where('user_id', $user->id)->update(['onlinestore_id' => $onlinestore->id]);
+
 
         // Return a JSON:API compliant response
         return response()->json([

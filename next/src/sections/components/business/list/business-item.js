@@ -12,9 +12,13 @@ import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { formatDistanceToNow } from 'date-fns';
+import { format } from 'date-fns';
+import Checkbox from '@mui/material/Checkbox';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
+
 
 import useAuthDialog from 'src/hooks/use-authdialog';
+import CrudService from 'src/services/cruds-service';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -47,21 +51,23 @@ const StyledButton = styled((props) => (
 
 
 
-export default function BusinessItem({ business, vertical }) {
+export default function BusinessItem({ business, vertical, favorites = [], onFavoriteToggle }) {
 
 
 
   const { attributes } = business;
-  const { name,description,profile, city,phone,picture, created_at, category, url, } = attributes;
+  const { name,description,profile,id, city,phone,picture, created_at, category, url, } = attributes;
 
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
+  const isFavorite = favorites.includes(id);
+  const [favorite, setFavorite] = useState(isFavorite);
 
   const [opencall, setOpencall] = useState(null);
 
 
-  const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+  const year = format(new Date(created_at), 'yyyy');
 
   const handleOpenCall = useCallback((event) => {
     setOpencall(event.currentTarget);
@@ -72,6 +78,21 @@ export default function BusinessItem({ business, vertical }) {
   }, []);
 
 
+  const handleChangeFavorite = useCallback(() => {
+    requireAuth(async () => {
+      try {
+        const response = await CrudService.createFavorite(category, url, id);
+        setFavorite(response.favorite);
+        onFavoriteToggle(id, response.favorite);
+      } catch (error) {
+        console.error('Failed to update favorite:', error);
+      }
+    });
+  }, [requireAuth, category, url, id, onFavoriteToggle]);
+
+
+
+
 
   const handleChatClick = () => {
     requireAuth(() => {
@@ -79,6 +100,12 @@ export default function BusinessItem({ business, vertical }) {
       console.log("Chat button clicked. User authenticated.");
     });
   };
+
+
+
+  useEffect(() => {
+    setFavorite(isFavorite); // Ensure state is updated when favorites prop changes
+  }, [isFavorite]);
 
 
   return (
@@ -115,22 +142,22 @@ export default function BusinessItem({ business, vertical }) {
           </Box>
 
 
-            <Label
-              color="warning"
-              variant="filled"
-              sx={{
-                top: 12,
-                left: 12,
-                position: 'absolute',
-                textTransform: 'lowerpercase',
-              }}
-            >
-              <Iconify icon="carbon:location"  />
 
 
 
-              {city}
-            </Label>
+              <Checkbox
+                color="error"
+                checked={favorite}
+                onChange={handleChangeFavorite}
+                icon={<Iconify icon="carbon:favorite" />}
+                checkedIcon={<Iconify icon="carbon:favorite-filled" />}
+                sx={{ color: 'common.white',
+                  top: 12,
+                  left: 12,
+                  position: 'absolute',
+                  textTransform: 'lowerpercase',
+                }}
+              />
 
 
           <Stack spacing={3} sx={{ p: 2 }}>
@@ -148,7 +175,8 @@ export default function BusinessItem({ business, vertical }) {
                     href={`${paths.eCommerce.stores}/${url}`}
                   >
                   <TextMaxLine variant="h6" line={1}>
-                    {name}
+
+                    {capitalizeFirstLetter(name)}
                   </TextMaxLine>
                 </Link>
 
@@ -177,7 +205,7 @@ export default function BusinessItem({ business, vertical }) {
               </Stack>
 
               <Stack direction="row" sx={{ typography: 'subtitle2' }}>
-                Member since {formattedDuration}
+                Member since {year}
 
               </Stack>
             </Stack>
@@ -216,9 +244,24 @@ export default function BusinessItem({ business, vertical }) {
 
                     <Stack spacing={0}>
                         <Link variant="subtitle2" color="inherit" >
-                        {name}
-                        </Link>
 
+                        {capitalizeFirstLetter(name)}
+                        </Link>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        sx={{ typography: 'body2', color: 'text.secondary' }}
+                      >
+                          <Iconify icon="carbon:location" width={13} sx={{ mr: 0.3 }} />
+
+
+                            <Box sx={{ typography: 'caption' }}>
+                            {capitalizeFirstLetter(city)}
+                            </Box>
+
+
+
+                      </Stack>
 
                     </Stack>
 
@@ -237,7 +280,7 @@ export default function BusinessItem({ business, vertical }) {
 
                   <StyledButton>
 
-                    <Iconify icon="carbon:email" width={24}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                    <Iconify icon="mdi:whatsapp" width={24}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
                   </StyledButton>
 
 
@@ -286,7 +329,9 @@ export default function BusinessItem({ business, vertical }) {
               sx={{ color: 'text.disabled', '& > *:not(:last-child)': { mr: 2.5 } }}
             >
               <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                <Iconify icon="carbon:time" sx={{ mr: 1 }} /> 8 hours
+
+                <Iconify icon="carbon:location"  sx={{ mr: 0.4 }}/> {capitalizeFirstLetter(city)}
+
               </Stack>
 
               <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
@@ -351,10 +396,20 @@ BusinessItem.propTypes = {
       phone: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
 
+      id: PropTypes.number.isRequired,
+
+
       picture: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
   vertical: PropTypes.bool,
+
+  favorites: PropTypes.array,
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
+
+BusinessItem.defaultProps = {
+  favorites: [],
 };

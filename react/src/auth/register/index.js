@@ -17,6 +17,7 @@ import SoftButton from "components/SoftButton";
 // Authentication layout components
 import CoverLayout from "auth/components/CoverLayout";
 import Socials from "auth/components/Socials";
+import Separator from "auth/components/Separator";
 
 import { AuthContext } from "context";
 import AuthService from "services/auth-service";
@@ -139,14 +140,22 @@ function Register() {
       image={curved6}
     >
       <Card sx={{ boxShadow: 3 }}>
-        <SoftBox p={3} mb={1} textAlign="center">
-          <SoftTypography variant="h5" fontWeight="medium">
-            Register with
-          </SoftTypography>
-        </SoftBox>
-        <SoftBox mb={2}>
-          <Socials />
-        </SoftBox>
+
+          <SoftBox p={3}  display="flex" justifyContent="space-between" alignItems="center">
+
+            <SoftBox  textAlign="center">
+              <SoftTypography variant="h5" fontWeight="medium">
+                Register with:
+              </SoftTypography>
+            </SoftBox>
+            <SoftBox >
+              <Socials />
+            </SoftBox>
+
+          </SoftBox>
+          
+          <Separator />
+
         
         <SoftBox pt={2} pb={3} px={3}>
 

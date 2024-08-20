@@ -93,8 +93,8 @@ export default function ServicePageView({ params }) {
           overflow: 'hidden',
           pt: { xs: 5, md: 10 },
           pb: 10,
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '80px' },
+          paddingRight: { lg: '80px' },
         }}
       >
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">

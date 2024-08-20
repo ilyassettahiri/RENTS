@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useBoolean } from 'src/hooks/use-boolean';
+import Label from 'src/components/label';
 
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
@@ -14,11 +15,12 @@ import Typography from '@mui/material/Typography';
 
 import ListingList from 'src/sections/components/listings/list/listings-list';
 
+import ServiceList from 'src/sections/components/services/list/services-list';
 
 // ----------------------------------------------------------------------
 const categories = [
-
   'All categories',
+  'Services',
   'Billiards',
   'Activities',
   'Apartments',
@@ -62,7 +64,6 @@ const categories = [
   'Riads',
   'Routers',
   'Scooters',
-  'Services',
   'Sonorisations',
   'Surfs',
   'Tablettes',
@@ -75,23 +76,18 @@ const categories = [
   'Villas'
 ];
 
-
-
 export default function DashboardWishlistView() {
-
   const [favoritelistings, setFavoritelistings] = useState([]);
+  const [filteredlistings, setFilteredlistings] = useState([]);
   const [favorites, setFavorites] = useState([]);
+  const [categoryCounts, setCategoryCounts] = useState({});
   const loading = useBoolean(true);
 
-
-
-  const [tab, setTab] = useState('All Vouchers');
+  const [tab, setTab] = useState('All categories');
 
   const handleChangeTab = useCallback((event, newValue) => {
     setTab(newValue);
   }, []);
-
-
 
   useEffect(() => {
     (async () => {
@@ -109,18 +105,38 @@ export default function DashboardWishlistView() {
         console.log('Mapped favoritelistings data:', favoritelistingsData);
 
         const favoritesData = response.favorites;
-
-
         setFavorites(favoritesData);
-
         setFavoritelistings(favoritelistingsData);
+
+        // Calculate the count of items in each category
+        const counts = favoritelistingsData.reduce((acc, listing) => {
+          const category = listing.attributes.category.toLowerCase();
+          if (!acc[category]) acc[category] = 0;
+          acc[category] += 1;
+          return acc;
+        }, {});
+
+        // Exclude services from "All categories"
+        counts['all categories'] = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services').length;
+        setCategoryCounts(counts);
       } catch (error) {
         console.error('Failed to fetch Home:', error);
       }
     })();
   }, []);
 
+  useEffect(() => {
+    const filterListings = () => {
+      if (tab === 'All categories') {
+        setFilteredlistings(favoritelistings.filter(listing => listing.attributes.category.toLowerCase() !== 'services'));
+      } else {
+        const filtered = favoritelistings.filter(listing => listing.attributes.category === tab.toLowerCase());
+        setFilteredlistings(filtered);
+      }
+    };
 
+    filterListings();
+  }, [tab, favoritelistings]);
 
   useEffect(() => {
     const fakeLoading = async () => {
@@ -136,14 +152,11 @@ export default function DashboardWishlistView() {
     );
   }, []);
 
-
-
   return (
     <>
       <Typography variant="h5" sx={{ mb: 3 }}>
         Wishlist
       </Typography>
-
 
       <Tabs
         value={tab}
@@ -154,18 +167,32 @@ export default function DashboardWishlistView() {
         sx={{ mb: 3 }}
       >
         {categories.map((category) => (
-          <Tab key={category} value={category} label={category} />
+          <Tab
+            key={category}
+            value={category}
+            label={`${category} (${categoryCounts[category.toLowerCase()] || 0})`}
+          />
         ))}
       </Tabs>
 
-      <ListingList
-        tours={favoritelistings}
-        loading={loading.value}
-        favorites={favorites}
-        onFavoriteToggle={handleFavoriteToggle}
-        columns={3}
-      />
+      {tab === 'Services' ? (
+        <ServiceList
+          jobs={filteredlistings}
+          loading={loading.value}
+          favorites={favorites}
+          onFavoriteToggle={handleFavoriteToggle}
+          columns={3}
 
+        />
+      ) : (
+        <ListingList
+          tours={filteredlistings}
+          loading={loading.value}
+          favorites={favorites}
+          onFavoriteToggle={handleFavoriteToggle}
+          columns={3}
+        />
+      )}
     </>
   );
 }

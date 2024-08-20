@@ -53,13 +53,10 @@ export default function StoreView({ params }) {
         const response = await CrudService.getStore(url);
         setData(response.data);
 
-        const listingsData = response.data.attributes.listings.map(item => ({
-          type: item.type,
-          id: item.id,
-          attributes: {
-            ...item.attributes
-          }
-        }));
+        const listingsData = response.data.attributes.listings;
+
+        console.log('Listings Data:', listingsData);
+
 
         const favoritesData = response.data.attributes.favorites;
         setFavorites(favoritesData);
@@ -78,11 +75,7 @@ export default function StoreView({ params }) {
     fakeLoading();
   }, [loading]);
 
-  const handleFavoriteToggle = useCallback((id, isFavorite) => {
-    setFavorites(prevFavorites =>
-      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
-    );
-  }, []);
+
 
   const handleChangeViewMode = useCallback((event, newAlignment) => {
     if (newAlignment !== null) {
@@ -93,6 +86,14 @@ export default function StoreView({ params }) {
   const handleChangeSort = useCallback((event) => {
     setSort(event.target.value);
   }, []);
+
+  const handleFavoriteToggle = useCallback((id, isFavorite) => {
+    setFavorites(prevFavorites =>
+      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
+    );
+  }, []);
+
+
 
   return (
     <>
@@ -181,6 +182,7 @@ export default function StoreView({ params }) {
               loading={loading.value}
               viewMode={viewMode}
               products={listings}
+              favorites={favorites} onFavoriteToggle={handleFavoriteToggle}
             />
           </Box>
         </Stack>

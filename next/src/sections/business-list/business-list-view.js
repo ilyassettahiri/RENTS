@@ -39,14 +39,20 @@ export default function BusinessListView() {
   const [business, setBusiness] = useState([]);
   const [sort, setSort] = useState('latest');
 
+  const [favorites, setFavorites] = useState([]);
+
+
   const fetchListings = async (search) => {
     try {
       const response = await CrudService.getSearchBusinessListings(search);
       console.log('Listings fetched:', response.data);
 
+      const favoritesData = response.favorites;
 
 
       setBusiness(response.data);
+      setFavorites(favoritesData);
+
     } catch (error) {
       console.error('Failed to fetch listings:', error);
     }
@@ -58,8 +64,13 @@ export default function BusinessListView() {
         const response = await CrudService.getBusiness();
 
         console.log('Listings fetched:', response.data);
+        const favoritesData = response.favorites;
+
 
         setBusiness(response.data);
+
+        setFavorites(favoritesData);
+
       } catch (error) {
         console.error('Failed to fetch Home:', error);
       }
@@ -73,6 +84,14 @@ export default function BusinessListView() {
     };
     fakeLoading();
   }, [loading]);
+
+
+
+  const handleFavoriteToggle = useCallback((id, isFavorite) => {
+    setFavorites(prevFavorites =>
+      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
+    );
+  }, []);
 
 
 
@@ -161,7 +180,7 @@ export default function BusinessListView() {
             width: { md: `calc(100% - ${280}px)` },
           }}
         >
-          <BusinessList businesses={business} loading={loading.value} />
+          <BusinessList businesses={business} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
         </Box>
       </Stack>
     </Container>

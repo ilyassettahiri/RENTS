@@ -17,11 +17,10 @@ import { useMockedUser } from 'src/auth/hooks';
 
 import { Layout } from '../layout';
 import { ChatNav } from '../chat-nav';
-import { ChatRoom } from '../chat-room';
+
 import { ChatMessageList } from '../chat-message-list';
 import { ChatMessageInput } from '../chat-message-input';
 import { ChatHeaderDetail } from '../chat-header-detail';
-import { ChatHeaderCompose } from '../chat-header-compose';
 import { useCollapseNav } from '../hooks/use-collapse-nav';
 
 // ----------------------------------------------------------------------
@@ -88,9 +87,8 @@ export function ChatView() {
               participants={participants}
               loading={conversationLoading}
             />
-          ) : (
-            <ChatHeaderCompose contacts={contacts} onAddRecipients={handleAddRecipients} />
-          ),
+          ) : null,
+
           nav: (
             <ChatNav
               contacts={contacts}
@@ -124,14 +122,7 @@ export function ChatView() {
               />
             </>
           ),
-          details: selectedConversationId && (
-            <ChatRoom
-              collapseNav={roomNav}
-              participants={participants}
-              loading={conversationLoading}
-              messages={conversation?.messages ?? []}
-            />
-          ),
+
         }}
       />
     </DashboardContent>

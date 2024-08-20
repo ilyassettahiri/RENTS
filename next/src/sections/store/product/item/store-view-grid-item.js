@@ -1,114 +1,151 @@
+import { useState, useCallback, useEffect } from 'react';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import { formatDistanceToNow } from 'date-fns';
+import Card from '@mui/material/Card';
+import Checkbox from '@mui/material/Checkbox';
+import CrudService from 'src/services/cruds-service';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+import useAuthDialog from 'src/hooks/use-authdialog';
+import LoginDialog from 'src/sections/auth/login-dialog';
+
 import TextMaxLine from 'src/components/text-max-line';
 import ProductPrice from '../../common/product-price';
 import ProductRating from '../../common/product-rating';
 
-export default function StoreViewGridItem({ product, sx, ...other }) {
+
+export default function StoreViewGridItem({ product, sx, favorites = [], onFavoriteToggle, ...other }) {
 
   const formattedDuration = formatDistanceToNow(new Date(product.attributes.created_at), { addSuffix: true });
 
+
+  const isFavorite = favorites.includes(product.attributes.id);
+  const [favorite, setFavorite] = useState(isFavorite);
+
+  const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
+  const handleChangeFavorite = useCallback(() => {
+    requireAuth(async () => {
+      try {
+        const response = await CrudService.createFavorite(product.attributes.category, product.attributes.url, product.attributes.id);
+        setFavorite(response.favorite);
+        onFavoriteToggle(product.attributes.id, response.favorite);
+      } catch (error) {
+        console.error('Failed to update favorite:', error);
+      }
+    });
+  }, [requireAuth, product.attributes.category, product.attributes.url, product.attributes.id, onFavoriteToggle]);
+
+  useEffect(() => {
+    setFavorite(isFavorite); // Ensure state is updated when favorites prop changes
+  }, [isFavorite]);
+
   return (
-    <Stack
-      sx={{
-        position: 'relative',
-        '&:hover .add-to-cart': {
-          opacity: 1,
-        },
-        ...sx,
-      }}
-      {...other}
-    >
 
-        <Label color="error" sx={{ position: 'absolute', m: 1, top: 0, left: 0, zIndex: 9 }}>
-          <ProductPrice price={product.attributes.price} sx={{ typography: 'body2' }} />
+    <>
+        <Card sx={{ position: 'relative', }}>
 
+            <Label color="error" sx={{ position: 'absolute',
+              m: 1, top: 0, left: 0, zIndex: 9 ,
+              typography: 'body2',
+              bgcolor: 'text.primary',
+              color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
+            }}
 
-        </Label>
+            >
+              <ProductPrice price={product.attributes.price} sx={{ typography: 'body2' }} />
 
 
+            </Label>
+
+                  <Checkbox
+                    color="error"
+                    checked={favorite}
+                    onChange={handleChangeFavorite}
+                    icon={<Iconify icon="carbon:favorite" />}
+                    checkedIcon={<Iconify icon="carbon:favorite-filled" />}
+                    sx={{ color: 'common.white', position: 'absolute', m: 1, top: 0, right: 0, zIndex: 9  }}
+                  />
 
 
-      <Box sx={{ position: 'relative', mb: 2 }}>
-        <Fab
-          component={RouterLink}
-          href={paths.eCommerce.product}
-          className="add-to-cart"
-          color="primary"
-          size="small"
-          sx={{
-            right: 8,
-            zIndex: 9,
-            bottom: 8,
-            opacity: 0,
-            position: 'absolute',
-            transition: (theme) =>
-              theme.transitions.create('opacity', {
-                easing: theme.transitions.easing.easeIn,
-                duration: theme.transitions.duration.shortest,
-              }),
-          }}
-        >
-          <Iconify icon="carbon:shopping-cart-plus" />
-        </Fab>
+          <Box sx={{ position: 'relative',  }}>
+            <Fab
+              component={RouterLink}
+              href={paths.eCommerce.product}
+              className="add-to-cart"
+              color="primary"
+              size="small"
+              sx={{
+                right: 8,
+                zIndex: 9,
+                bottom: 8,
+                opacity: 0,
+                position: 'absolute',
+                transition: (theme) =>
+                  theme.transitions.create('opacity', {
+                    easing: theme.transitions.easing.easeIn,
+                    duration: theme.transitions.duration.shortest,
+                  }),
+              }}
+            >
+              <Iconify icon="carbon:shopping-cart-plus" />
+            </Fab>
 
-        <Image
-          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${product.attributes.picture}`}
-          ratio="6/4"
-          sx={{
-            flexShrink: 0,
-            borderRadius: 1.5,
-            bgcolor: 'background.neutral',
-          }}
-        />
-      </Box>
+            <CarouselBasic1 data={product.attributes.images} />
 
-      <Stack spacing={0.5}>
+          </Box>
+
+          <Stack spacing={0.5} sx={{ p: 2 }}>
 
 
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  sx={{ typography: 'body2', color: 'text.secondary' }}
-                >
-                    <Iconify icon="carbon:time" width={13} sx={{ mr: 0.5 }} />
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      sx={{ typography: 'body2', color: 'text.secondary' }}
+                    >
+                        <Iconify icon="carbon:time" width={13} sx={{ mr: 0.5 }} />
 
 
-                      <Box sx={{ typography: 'body2' }}>
-                       {formattedDuration}
-                      </Box>
-
-
-
-
-                </Stack>
+                          <Box sx={{ typography: 'body2' }}>
+                          {formattedDuration}
+                          </Box>
 
 
 
-        <Link
-          component={RouterLink}
-          href={`${paths.travel.tour}/${product.attributes.category}/${product.attributes.url}`}
-          color="inherit"
-        >
-          <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
-            {product.attributes.title}
-          </TextMaxLine>
-        </Link>
+
+                    </Stack>
 
 
-        <ProductRating ratingNumber={product.attributes.average_rating} label={`${product.attributes.total_reviews} reviews`} />
-      </Stack>
-    </Stack>
+
+            <Link
+              component={RouterLink}
+              href={`${paths.travel.tour}/${product.attributes.category}/${product.attributes.url}`}
+              color="inherit"
+            >
+              <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
+
+                {capitalizeFirstLetter(product.attributes.title)}
+              </TextMaxLine>
+            </Link>
+
+
+            <ProductRating ratingNumber={product.attributes.average_rating} label={`${product.attributes.total_reviews} reviews`} />
+          </Stack>
+        </Card>
+        <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
+
+    </>
   );
 }
 
@@ -121,6 +158,9 @@ StoreViewGridItem.propTypes = {
       picture: PropTypes.string,
       category: PropTypes.string,
       created_at: PropTypes.string,
+      images: PropTypes.array.isRequired,
+      id: PropTypes.number,
+
 
       price: PropTypes.number,
       status: PropTypes.string,
@@ -128,4 +168,48 @@ StoreViewGridItem.propTypes = {
     }),
   }).isRequired,
   sx: PropTypes.object,
+
+  favorites: PropTypes.array,
+  onFavoriteToggle: PropTypes.func.isRequired,
 };
+
+
+
+StoreViewGridItem.defaultProps = {
+  favorites: [],
+};
+
+function CarouselBasic1({ data }) {
+  const carousel = useCarousel({
+    autoplay: false,
+  });
+
+  return (
+    <>
+      <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+        {data.map((item, index) => (
+          <Image
+            key={index}
+            alt={`Image ${index + 1}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+            ratio="4/3"
+          />
+        ))}
+      </Carousel>
+
+      <Box sx={{ position: 'relative', zIndex: 999 }}>  {/* Added z-index 999 here */}
+        <CarouselArrowIndex
+          index={carousel.currentIndex}
+          total={data.length}
+          onNext={carousel.onNext}
+          onPrev={carousel.onPrev}
+        />
+      </Box>
+    </>
+  );
+}
+
+CarouselBasic1.propTypes = {
+  data: PropTypes.array.isRequired,
+};
+

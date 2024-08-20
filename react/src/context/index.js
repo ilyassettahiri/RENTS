@@ -22,6 +22,8 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  const [hasStore, setHasStore] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -53,6 +55,12 @@ const AuthContextProvider = ({ children }) => {
   const getCurrentUser = async () => {
     try {
       const res = await AuthService.getProfile();
+          
+      const hasStore = res.data.attributes.has_store;
+      
+      setHasStore(hasStore); // Set the hasStore value in the context
+
+
       return res.data.id;
     } catch (err) {
       console.error(err);

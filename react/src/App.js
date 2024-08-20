@@ -67,7 +67,7 @@ export default function App({ ability }) {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, direction, layout, sidenavColor,openConfigurator } = controller;
   
-  const [rtlCache, setRtlCache] = useState(null);
+  const [rtlCache, setRtlCache] = useState(false);
   const { pathname } = useLocation();
 
 
@@ -75,6 +75,7 @@ export default function App({ ability }) {
   const authContext = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState({ name: "", image: "" });
 
+  const [hasStore, setHasStore] = useState(undefined); // Initialize hasStore state
 
 
   const navigate = useNavigate();
@@ -125,6 +126,14 @@ export default function App({ ability }) {
 
         profile_image: response.data.attributes.profile_image,
       });
+
+      // Set hasStore state based on user profile
+      const userHasStore = response.data.attributes.has_store;
+      setHasStore(userHasStore);
+
+      
+
+
       const rules = await getPermissions(id);
       ability.update(rules);
     })();
@@ -132,6 +141,7 @@ export default function App({ ability }) {
 
 
 
+ 
 
   const getRoutes = (allRoutes) =>
     allRoutes.map((route) => {
@@ -199,10 +209,12 @@ export default function App({ ability }) {
               brand={brand}
               brandName=""
               routes={routes}
+              hasStore={hasStore}  // Make sure hasStore is being passed correctly
+
              
             />
-                        <Configurator user={userDetails} />
-                        {configsButton}
+            <Configurator user={userDetails} />
+            {configsButton}
             
           </>
         )}
@@ -224,10 +236,11 @@ export default function App({ ability }) {
             brand={brand}
             brandName="Soft UI Dashboard PRO"
             routes={routes}
-            
+            hasStore={hasStore}  // Make sure hasStore is being passed correctly
+
           />
-                    <Configurator user={userDetails}/>
-                    {configsButton}
+          <Configurator user={userDetails}/>
+          {configsButton}
           
         </>
       )}

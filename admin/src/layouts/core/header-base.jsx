@@ -128,7 +128,7 @@ export function HeaderBase({
               {searchbar && <Searchbar data-slot="searchbar" data={data?.nav} />}
 
               {/* -- Language popover -- */}
-              {localization && <LanguagePopover data-slot="localization" data={data?.langs} />}
+              {localization && <LanguagePopover  data={data?.langs} />}
 
               {/* -- Notifications popover -- */}
               {notifications && (

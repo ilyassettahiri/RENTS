@@ -7,6 +7,7 @@ import Divider from '@mui/material/Divider';
 import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
 
@@ -150,31 +151,42 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                 position: 'absolute',
               }}
             >
-              <Stack
+
+            <Stack
                 spacing={0.5}
                 direction="row"
                 sx={{
                   px: 1,
                   borderRadius: 0.75,
-                  typography: 'subtitle2',
+
+                  typography: 'body2',
                   bgcolor: 'text.primary',
                   color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
+
                 }}
               >
-                <Iconify icon="carbon:location" sx={{ mr: 0.2, mt: 0.3 }} width={16} /> {city}
-              </Stack>
+                <Iconify icon="carbon:time" sx={{ mr: 0.2, mt: 0.5 }} width={14} /> {formattedDuration}
+            </Stack>
+
             </Stack>
           </Box>
 
+
+
+
           {/* Title */}
-          <Stack spacing={0.5} sx={{ pt: 4, px: 1 }}>
+          <Stack spacing={0.5} sx={{ px: 1,mt:2 }}>
+
+
+
             <Link
               component={RouterLink}
               href={`${paths.travel.tour}/${category}/${url}`}
               color="inherit"
             >
               <TextMaxLine variant="h6" persistent>
-                {title}
+
+                {capitalizeFirstLetter(title)}
               </TextMaxLine>
             </Link>
           </Stack>
@@ -223,7 +235,10 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
                   <Stack spacing={0}>
                       <Link variant="subtitle2" color="inherit" >
-                      {seller.name}
+
+
+                      {capitalizeFirstLetter(seller.name)}
+
                       </Link>
 
                     <Stack
@@ -231,13 +246,12 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                       alignItems="center"
                       sx={{ typography: 'body2', color: 'text.secondary' }}
                     >
-                        <Iconify icon="carbon:time" width={13} sx={{ mr: 0.3 }} />
+                        <Iconify icon="carbon:location" width={13} sx={{ mr: 0.3 }} />
 
 
-                          <Box sx={{ typography: 'body2' }}>
-                          {formattedDuration}
+                          <Box sx={{ typography: 'caption' }}>
+                          {capitalizeFirstLetter(city)}
                           </Box>
-
 
 
 
@@ -259,7 +273,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
                 <StyledButton>
 
-                  <Iconify icon="carbon:email" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                  <Iconify icon="mdi:whatsapp" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
                 </StyledButton>
 
 

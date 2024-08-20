@@ -92,8 +92,8 @@ export default function ListingView({ params }) {
       maxWidth={false}
       sx={{
         overflow: 'hidden',
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
       }}
     >
       {mdUp && (

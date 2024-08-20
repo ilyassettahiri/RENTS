@@ -122,7 +122,7 @@ export default function DashboardVouchersView() {
   return (
     <>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Vouchers
+        Messages
       </Typography>
 
       <TextField

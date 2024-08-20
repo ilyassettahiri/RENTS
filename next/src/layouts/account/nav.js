@@ -23,7 +23,7 @@ import { Box } from '@mui/system';
 const navigations = [
   { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
   { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
-  { title: 'Vouchers', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:cut-out" /> },
+  { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
   { title: 'Orders', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
   { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
 ];

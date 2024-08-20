@@ -18,7 +18,7 @@ import CrudService from 'src/services/cruds-service';
 import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
-import { fDate } from 'src/utils/format-time';
+import { fDate,capitalizeFirstLetter } from 'src/utils/format-time';
 import { fCurrency } from 'src/utils/format-number';
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
@@ -165,13 +165,15 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                 sx={{
                   px: 1,
                   borderRadius: 0.75,
-                  typography: 'subtitle2',
+                  typography: 'body2',
                   bgcolor: 'text.primary',
                   color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
                 }}
               >
-                <Iconify icon="carbon:location" sx={{ mr: 0.2, mt: 0.4 }} width={16} />
-                {city}
+                <Iconify icon="carbon:time" sx={{ mr: 0.2, mt: 0.4 }} width={14} />
+
+
+                {formattedDuration}
 
               </Stack>
             </Stack>
@@ -213,13 +215,32 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                         variant="rounded"
                         alt={NamedNodeMap}
                         src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${seller.profile_image}`}
-                        sx={{ width: 30, height: 30 }}
+                        sx={{ width: 35, height: 35 }}
                       />
 
                       <Stack spacing={0}>
                           <Link variant="subtitle2" color="inherit" >
-                          {seller.name}
+
+                          {capitalizeFirstLetter(seller.name)}
                           </Link>
+
+
+
+                            <Stack
+                              direction="row"
+                              alignItems="center"
+                              sx={{ typography: 'body2', color: 'text.secondary' }}
+                            >
+                                <Iconify icon="carbon:location" width={13} sx={{ mr: 0.3 }} />
+
+
+                                  <Box sx={{ typography: 'caption' }}>
+                                  {capitalizeFirstLetter(city)}
+                                  </Box>
+
+
+
+                            </Stack>
 
 
                       </Stack>
@@ -241,7 +262,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
                     <StyledButton>
 
-                      <Iconify icon="carbon:email" width={21}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                      <Iconify icon="mdi:whatsapp" width={21}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
                     </StyledButton>
 
 
@@ -277,7 +298,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
               color="inherit"
               >
                 <TextMaxLine variant="h6" line={1}>
-                  {title}
+                {capitalizeFirstLetter(title)}
                 </TextMaxLine>
               </Link>
 
