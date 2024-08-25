@@ -69,7 +69,8 @@ export const paths = {
     cart: '/dashboard/cart',
     personal: `/dashboard/personal`,
     wishlist: `/dashboard/wishlist`,
-    vouchers: `/dashboard/vouchers`,
+    vouchers: `/dashboard/chat`,
+    chat: `/dashboard/chat`,
     orders: `/dashboard/orders`,
     payment: `/dashboard/payment`,
 

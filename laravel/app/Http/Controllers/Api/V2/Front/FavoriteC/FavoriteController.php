@@ -23,6 +23,11 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 use App\Models\Reservation;
 
 
+use App\Models\Onlinestore;
+use App\Models\Favoritestore;
+
+
+
 use App\Models\Review;
 
 use App\Models\Reviewreply;
@@ -2714,6 +2719,125 @@ class FavoriteController extends JsonApiController
     }
 
 
+
+    public function getFavoritestore(JsonApiRoute $route, Store $store )
+    {
+        $authuser = Auth::user();
+
+        $favorites = Favoritestore::where('user_id', $authuser->id)->get();
+
+        $favoriteIds = array_filter($favorites->pluck('id')->toArray());
+
+
+
+        $favoritelistingsData = $favorites->map(function ($favorite) {
+
+            $user = User::where('id', $favorite->user_id)->first();
+
+
+
+
+            return [
+                'type' => 'favorites',
+                'id' => $favorite->id,
+                'attributes' => [
+
+                    'name' => $favorite->name,
+
+
+
+                    'city' => $favorite->city,
+                    'id' => $favorite->id,
+
+                    'profile' => $favorite->profile_picture,
+
+
+                    'url' => $favorite->url,
+                    'created_at' => $favorite->listing_old,
+                    'picture' => $favorite->picture,
+
+
+
+                ],
+            ];
+        });
+
+
+               // Ensure JSON:API compliance
+            return response()->json([
+                'data' => $favoritelistingsData,
+                'favorites' => $favoriteIds,
+
+            ]);
+
+
+    }
+
+
+    public function createFavoriteStore( $url, $id )
+    {
+
+
+        $authuser = Auth::user();
+
+
+
+
+        $existingFavorite = Favoritestore::where('user_id', $authuser->id)
+            ->where('url', $url)
+            ->first();
+
+
+
+        if ($existingFavorite) {
+
+
+
+            $existingFavorite->delete();
+
+            return response()->json(['favorite' => false]);
+
+
+
+
+
+
+        } else {
+
+
+
+            $listingcategory = Onlinestore::find($id);
+
+
+
+            $favorite = Favoritestore::create([
+                'user_id' => $authuser->id,
+                'seller_id' => $listingcategory->user_id,
+
+
+
+                'name' => $listingcategory->name,
+                'profile_picture' => $listingcategory->profile_picture,
+
+
+                'city' => $listingcategory->city,
+                'listing_old' => $listingcategory->created_at,
+
+
+                'url' => $url,
+                'onlinestore_id' => $id,
+                'picture' => $listingcategory->picture,
+
+                'status' => 'active',
+
+            ]);
+
+
+
+        }
+
+
+    }
 
 
 }

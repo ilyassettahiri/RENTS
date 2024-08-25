@@ -18,13 +18,13 @@ class CrudService {
   };
 
   deleteListing = async (id) => {
-    const endpoint = `listings/${id}`;
-    return HttpService.delete(endpoint);
+    const listingsendpoint = `listings/${id}`;
+    return HttpService.delete(listingsendpoint);
   };
 
   createListing = async (payload) => {
-    const endpoint = "listings";
-    return HttpService.post(endpoint, payload, {
+    const listingsendpoint = "listings";
+    return HttpService.post(listingsendpoint, payload, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -222,9 +222,86 @@ class CrudService {
     };
 
 
+
+    // Listing Favorite
+    createFavoriteStore = async ( url, id) => {
+      const endpoint = `stores/${url}/${id}`;
+      return HttpService.post(endpoint);
+    };
+
+
         // Listing Favorite
     getFavorites = async () => {
       const favoritesEndpoint = "favorites";
+      return HttpService.get(favoritesEndpoint);
+    };
+
+
+
+
+    // Chat
+
+
+    getConversations = async () => {
+      const chatEndpoint = "chat/conversations";
+      return HttpService.get(chatEndpoint);
+    };
+
+
+
+
+
+
+    checkConversation = async (userID) => {
+      const chatEndpoint = `chat/check?userID=${userID}`;
+      return HttpService.get(chatEndpoint);
+    };
+
+    getConversation = async (id) => {
+      const chatEndpoint = `chat/conversation?id=${id}`;
+      return HttpService.get(chatEndpoint);
+    };
+
+
+    clickConversation = async (id) => {
+      const chatEndpoint = `chat/clickconversation?id=${id}`;
+      return HttpService.get(chatEndpoint);
+    };
+
+
+    createConversation = async (payload, userID) => {
+      const chatendpoint = `chat/createconversation?userID=${userID}`;
+      return HttpService.post(chatendpoint, payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    };
+
+
+    sendMessage = async (payload, id) => {
+      const chatendpoint = `chat/sendmessage?id=${id}`;
+      return HttpService.post(chatendpoint, payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+    };
+
+
+    deleteConversation = async (id) => {
+      const chatendpoint = `chat/${id}`;
+      return HttpService.delete(chatendpoint);
+    };
+
+
+
+
+
+
+            // Store Favorite
+    getFavoritestore = async () => {
+      const favoritesEndpoint = "favoritestores";
       return HttpService.get(favoritesEndpoint);
     };
 

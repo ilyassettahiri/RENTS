@@ -67,7 +67,17 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
   const [opencall, setOpencall] = useState(null);
 
 
+
+
   const year = format(new Date(created_at), 'yyyy');
+
+
+  const handleChatClick = useCallback(() => {
+    requireAuth(() => {
+      window.location.href = paths.eCommerce.vouchers;
+    });
+  }, [requireAuth]);
+
 
   const handleOpenCall = useCallback((event) => {
     setOpencall(event.currentTarget);
@@ -81,25 +91,20 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
   const handleChangeFavorite = useCallback(() => {
     requireAuth(async () => {
       try {
-        const response = await CrudService.createFavorite(category, url, id);
+        const response = await CrudService.createFavoriteStore( url, id);
         setFavorite(response.favorite);
         onFavoriteToggle(id, response.favorite);
       } catch (error) {
         console.error('Failed to update favorite:', error);
       }
     });
-  }, [requireAuth, category, url, id, onFavoriteToggle]);
+  }, [requireAuth, url, id, onFavoriteToggle]);
 
 
 
 
 
-  const handleChatClick = () => {
-    requireAuth(() => {
-      // Add the code to open the chat or navigate to the chat page
-      console.log("Chat button clicked. User authenticated.");
-    });
-  };
+
 
 
 

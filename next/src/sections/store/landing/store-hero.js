@@ -13,6 +13,11 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import CardActionArea from '@mui/material/CardActionArea';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
+import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
+
+import useAuthDialog from 'src/hooks/use-authdialog';
+import CrudService from 'src/services/cruds-service';
 
 import Grid from "@mui/material/Grid";
 import Avatar from '@mui/material/Avatar';
@@ -25,6 +30,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 import { fShortenNumber } from 'src/utils/format-number';
 import Iconify from 'src/components/iconify';
+import LoginDialog from 'src/sections/auth/login-dialog';
 
 // ----------------------------------------------------------------------
 
@@ -62,6 +68,8 @@ export default function StoreHero({ StoreData }) {
 
   const [opencall, setOpencall] = useState(null);
 
+  const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
 
   const handleOpenCall = useCallback((event) => {
     setOpencall(event.currentTarget);
@@ -82,6 +90,14 @@ export default function StoreHero({ StoreData }) {
   const handleCloseMap = useCallback(() => {
     setOpenmap(null);
   }, []);
+
+
+  const handleChatClick = useCallback(() => {
+    requireAuth(() => {
+      window.location.href = paths.eCommerce.vouchers;
+    });
+  }, [requireAuth]);
+
 
 
   const theme = useTheme();
@@ -105,290 +121,297 @@ export default function StoreHero({ StoreData }) {
   }, []);
 
   return (
-    <Container
+    <>
 
-      maxWidth={false}
+          <Container
 
-      sx={{
-        pt: { xs: 5, md: 3 },
-        mb: {  md: -4 },
+            maxWidth={false}
 
-        position: 'relative',
+            sx={{
+              pt: { xs: 5, md: 3 },
+              mb: {  md: -4 },
 
-      }}
-    >
-      <Box
-        sx={{
-          ...bgGradient({
-            color: alpha(theme.palette.background.default, 0),
-            imgUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`,
-          }),
-          borderRadius: 3,
-          overflow: 'hidden',
-          height: '400px',
-          display: { xs: 'none', sm: 'flex' }, // Hide on xs, show on sm and larger
+              position: 'relative',
 
-          alignItems: "center",
-          justifyContent: "center", // Center the card horizontally
-          position: "relative",
-        }}
-      />
+            }}
+          >
+            <Box
+              sx={{
+                ...bgGradient({
+                  color: alpha(theme.palette.background.default, 0),
+                  imgUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`,
+                }),
+                borderRadius: 3,
+                overflow: 'hidden',
+                height: '400px',
+                display: { xs: 'none', sm: 'flex' }, // Hide on xs, show on sm and larger
 
-      <Card
-        sx={{
-          backdropFilter: `saturate(200%) blur(30px)`,
-          backgroundColor: (themeVar) => alpha(themeVar.palette.background.paper, 0.8), // Renamed theme to themeVar
-          boxShadow: (themeVar) => themeVar.shadows[3], // Renamed theme to themeVar
-          bottom: -60, // Adjust as needed to place it correctly
-          left: '50%', // Center horizontally
-          transform: 'translateX(-50%)', // Center horizontally
-          position: "relative",
-          mt: -12,
-          marginRight: { xs: -5, lg: '50px' },
-          py: 2,
-          px: 2,
-        }}
-      >
+                alignItems: "center",
+                justifyContent: "center", // Center the card horizontally
+                position: "relative",
+              }}
+            />
 
-
-
-          <Stack spacing={4} direction={{ xs: 'column', md: 'row' }} >
+            <Card
+              sx={{
+                backdropFilter: `saturate(200%) blur(30px)`,
+                backgroundColor: (themeVar) => alpha(themeVar.palette.background.paper, 0.8), // Renamed theme to themeVar
+                boxShadow: (themeVar) => themeVar.shadows[3], // Renamed theme to themeVar
+                bottom: -60, // Adjust as needed to place it correctly
+                left: '50%', // Center horizontally
+                transform: 'translateX(-50%)', // Center horizontally
+                position: "relative",
+                mt: -12,
+                marginRight: { xs: -5, lg: '50px' },
+                py: 2,
+                px: 2,
+              }}
+            >
 
 
 
-
-              <Box
-                sx={{
-                  flexGrow:  1,
-                  gap: 1,
-                  display: 'grid',
-                  gridTemplateColumns: {
-                    xs: 'repeat(1, 1fr)',
-                    sm: 'repeat(1, 1fr)',
-                    md: 'repeat(1, 1fr)',
-                    lg: 'repeat(1, 1fr)',
-                  },
-                }}
-              >
+                <Stack spacing={4} direction={{ xs: 'column', md: 'row' }} >
 
 
 
-                <Stack spacing={1} direction="row" alignItems="center">
-                    <Avatar
-                      src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile}`}
-                      alt="profile-image"
-                      variant="rounded"
-                      sx={{ width: 64, height: 64, boxShadow: 1 }}
-                    />
 
-                  <Stack spacing={0.8}>
-
-                      <Stack
-                        spacing={0.5}
-                        direction="row"
-                        alignItems="center"
-                        sx={{ typography: 'body2', color: 'text.main' }}
-                      >
-                          <Link variant="h5" color="inherit" >
-
-                          {capitalizeFirstLetter(name)}
-                          </Link>
-                          <Iconify icon="carbon:star-filled" sx={{ ml:1, color: 'warning.main' }} />
-                          <Box sx={{ typography: 'h6' }}>
-                            {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
-                          </Box>
-                          <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                            ({fShortenNumber(total_reviews)} reviews)
-                          </Link>
-
-                      </Stack>
-
-
-                    <Stack
-                      spacing={0.5}
-                      direction="row"
-                      alignItems="center"
-                      sx={{ typography: 'body2', color: 'text.secondary' }}
+                    <Box
+                      sx={{
+                        flexGrow:  1,
+                        gap: 1,
+                        display: 'grid',
+                        gridTemplateColumns: {
+                          xs: 'repeat(1, 1fr)',
+                          sm: 'repeat(1, 1fr)',
+                          md: 'repeat(1, 1fr)',
+                          lg: 'repeat(1, 1fr)',
+                        },
+                      }}
                     >
 
 
 
-                          <Box sx={{ typography: 'body2' }}>
-                            Member since {year}
+                      <Stack spacing={1} direction="row" alignItems="center">
+                          <Avatar
+                            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile}`}
+                            alt="profile-image"
+                            variant="rounded"
+                            sx={{ width: 64, height: 64, boxShadow: 1 }}
+                          />
 
-                          </Box>
+                        <Stack spacing={0.8}>
 
-                          <Iconify icon="carbon:location" sx={{  ml:1 }}/>
+                            <Stack
+                              spacing={0.5}
+                              direction="row"
+                              alignItems="center"
+                              sx={{ typography: 'body2', color: 'text.main' }}
+                            >
+                                <Link variant="h5" color="inherit" >
 
-                          <Box sx={{ typography: 'body2' }}>
+                                {capitalizeFirstLetter(name)}
+                                </Link>
+                                <Iconify icon="carbon:star-filled" sx={{ ml:1, color: 'warning.main' }} />
+                                <Box sx={{ typography: 'h6' }}>
+                                  {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
+                                </Box>
+                                <Link variant="body2" sx={{ color: 'text.secondary' }}>
+                                  ({fShortenNumber(total_reviews)} reviews)
+                                </Link>
+
+                            </Stack>
 
 
-                            {capitalizeFirstLetter(city)}
-                          </Box>
+                          <Stack
+                            spacing={0.5}
+                            direction="row"
+                            alignItems="center"
+                            sx={{ typography: 'body2', color: 'text.secondary' }}
+                          >
+
+
+
+                                <Box sx={{ typography: 'body2' }}>
+                                  Member since {year}
+
+                                </Box>
+
+                                <Iconify icon="carbon:location" sx={{  ml:1 }}/>
+
+                                <Box sx={{ typography: 'body2' }}>
+
+
+                                  {capitalizeFirstLetter(city)}
+                                </Box>
+
+
+
+                          </Stack>
+                        </Stack>
+
+                      </Stack>
+
+                    </Box>
+
+
+                    <Stack spacing={3} direction="row" alignItems="center" flexShrink={0}>
+
+                      <StyledButton>
+
+                        <Iconify icon="carbon:phone" width={22} onClick={handleOpenCall} color={opencall ? 'primary' : 'default'}/>
+                      </StyledButton>
+
+
+                      <StyledButton>
+
+                        <Iconify icon="mdi:whatsapp" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
+                      </StyledButton>
+
+
+
+                      <StyledButton>
+
+                        <Iconify icon="carbon:chat" width={22} onClick={handleChatClick}/>
+
+                      </StyledButton>
+
+
+                      <StyledButton>
+
+                        <Iconify icon="carbon:map" width={22} onClick={handleOpenMap} color={openmap ? 'primary' : 'default'}/>
+
+                      </StyledButton>
+
+
+
+                      <StyledButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
+                        <Iconify icon="carbon:share" width={22}/>
+                      </StyledButton>
+
+                      <Checkbox
+                        color="error"
+                        checked={favorite}
+                        onChange={handleChangeFavorite}
+                        icon={<Iconify icon="carbon:favorite" />}
+                        checkedIcon={<Iconify icon="carbon:favorite-filled" />}
+                      />
+
+
 
 
 
                     </Stack>
-                  </Stack>
+
+
+
+
+
+
 
                 </Stack>
 
-              </Box>
 
 
-              <Stack spacing={3} direction="row" alignItems="center" flexShrink={0}>
 
-                <StyledButton>
+            </Card>
 
-                  <Iconify icon="carbon:phone" width={22} onClick={handleOpenCall} color={opencall ? 'primary' : 'default'}/>
-                </StyledButton>
 
+            <Popover
+              open={!!opencall}
+              onClose={handleCloseCall}
+              anchorEl={opencall}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              slotProps={{
+                paper: {
+                  sx: { width: 300,p: 2  },
+                },
+              }}
+            >
+                  <Typography variant="subtitle2" >
 
-                <StyledButton>
+                    Don&apos;t forget to mention the property reference when you call.
 
-                  <Iconify icon="mdi:whatsapp" width={22}  onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}/>
-                </StyledButton>
+                  </Typography>
 
+                <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
 
-                <StyledButton>
+                  <Iconify icon="carbon:phone" width={24} />
+                  <Typography variant="subtitle2">
 
-                  <Iconify icon="carbon:chat" width={22} />
+                    <Box component="span" sx={{ color: 'primary.main' }}>
 
-                </StyledButton>
+                      {phone}
+                    </Box>
+                  </Typography>
 
+            </Popover>
 
-                <StyledButton>
 
-                  <Iconify icon="carbon:map" width={22} onClick={handleOpenMap} color={openmap ? 'primary' : 'default'}/>
 
-                </StyledButton>
 
+            <Popover
+              open={!!openmap}
+              onClose={handleCloseMap}
+              anchorEl={openmap}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              slotProps={{
+                paper: {
+                  sx: { width: 300,p: 2  },
+                },
+              }}
+            >
+                  <Typography variant="subtitle2" >
 
+                    Seller Address.
 
-                <StyledButton onClick={handleOpen} color={open ? 'primary' : 'default'}>
-                  <Iconify icon="carbon:share" width={22}/>
-                </StyledButton>
+                  </Typography>
 
-                <Checkbox
-                  color="error"
-                  checked={favorite}
-                  onChange={handleChangeFavorite}
-                  icon={<Iconify icon="carbon:favorite" />}
-                  checkedIcon={<Iconify icon="carbon:favorite-filled" />}
-                />
+                <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
 
 
+                  <Typography variant="subtitle2"> { address} </Typography>
 
+                  <Typography variant="subtitle2"> { city} </Typography>
 
-              </Stack>
+                  <Typography variant="subtitle2"> { zip} </Typography>
 
 
 
+            </Popover>
 
 
 
+            <Popover
+              open={!!open}
+              onClose={handleClose}
+              anchorEl={open}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              slotProps={{
+                paper: {
+                  sx: { width: 220 },
+                },
+              }}
+            >
+              {socialMediaIcons.map((social) => (
+                <MenuItem key={social.label} onClick={handleClose}>
+                  <Iconify icon={social.icon} width={24} sx={{ mr: 1, color: social.color }} />
+                  Share via {social.label}
+                </MenuItem>
+              ))}
+            </Popover>
 
-          </Stack>
 
+          </Container>
 
+          <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
 
+    </>
 
-      </Card>
-
-
-      <Popover
-        open={!!opencall}
-        onClose={handleCloseCall}
-        anchorEl={opencall}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        slotProps={{
-          paper: {
-            sx: { width: 300,p: 2  },
-          },
-        }}
-      >
-            <Typography variant="subtitle2" >
-
-              Don&apos;t forget to mention the property reference when you call.
-
-            </Typography>
-
-          <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
-
-
-            <Iconify icon="carbon:phone" width={24} />
-            <Typography variant="subtitle2">
-
-              <Box component="span" sx={{ color: 'primary.main' }}>
-
-                {phone}
-              </Box>
-            </Typography>
-
-      </Popover>
-
-
-
-
-      <Popover
-        open={!!openmap}
-        onClose={handleCloseMap}
-        anchorEl={openmap}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        slotProps={{
-          paper: {
-            sx: { width: 300,p: 2  },
-          },
-        }}
-      >
-            <Typography variant="subtitle2" >
-
-              Seller Address.
-
-            </Typography>
-
-          <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
-
-
-
-            <Typography variant="subtitle2"> { address} </Typography>
-
-            <Typography variant="subtitle2"> { city} </Typography>
-
-            <Typography variant="subtitle2"> { zip} </Typography>
-
-
-
-      </Popover>
-
-
-
-      <Popover
-        open={!!open}
-        onClose={handleClose}
-        anchorEl={open}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        transformOrigin={{ vertical: 'top', horizontal: 'center' }}
-        slotProps={{
-          paper: {
-            sx: { width: 220 },
-          },
-        }}
-      >
-        {socialMediaIcons.map((social) => (
-          <MenuItem key={social.label} onClick={handleClose}>
-            <Iconify icon={social.icon} width={24} sx={{ mr: 1, color: social.color }} />
-            Share via {social.label}
-          </MenuItem>
-        ))}
-      </Popover>
-
-
-    </Container>
   );
 }
 

@@ -366,7 +366,31 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
     // Favorite
     Route::post('listings/{category}/{url}/{id}', [FavoriteController::class, 'createFavorite']);
 
+    Route::post('stores/{url}/{id}', [FavoriteController::class, 'createFavoriteStore']);
+
+
     Route::get('/favorites', [FavoriteController::class, 'getFavorites']);
+
+    Route::get('/favoritestores', [FavoriteController::class, 'getFavoritestore']);
+
+
+
+
+
+    // Messages
+
+    Route::get('chat/conversations', [MessageFrontController::class, 'getConversations']);
+    Route::get('chat/check', [MessageFrontController::class, 'checkConversation']);
+    Route::get('chat/conversation', [MessageFrontController::class, 'getConversation']);
+    Route::get('chat/clickconversation', [MessageFrontController::class, 'clickConversation']);
+
+    Route::post('chat/sendmessage', [MessageFrontController::class, 'sendMessage']);
+    Route::post('chat/createconversation', [MessageFrontController::class, 'createConversation']);
+
+
+
+
+
 
 
 

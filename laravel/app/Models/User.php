@@ -23,6 +23,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Onlinestore;
 use App\Models\Listing;
 use App\Models\Favorite;
+use App\Models\Favoritestore;
+
 
 use App\Models\Reservation;
 use App\Models\Customer;
@@ -134,6 +136,14 @@ class User extends Authenticatable
 
 
 
+    public function conversations()
+    {
+
+        return $this->hasMany(Conversation::class,'sender_id')->orWhere('receiver_id',$this->id)->whereNotDeleted();
+    }
+
+
+
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
@@ -164,6 +174,12 @@ class User extends Authenticatable
 
 
         return $this->hasMany(Favorite::class);
+    }
+
+    public function favoritestore(): HasMany {
+
+
+        return $this->hasMany(Favoritestore::class);
     }
 
 

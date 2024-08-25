@@ -22,6 +22,9 @@ use LaravelJsonApi\Core\Server\Server as BaseServer;
 use App\JsonApi\V2\Reviews\ReviewSchema;
 
 use App\JsonApi\V2\Favorites\FavoriteSchema;
+use App\JsonApi\V2\Favoritestores\FavoritestoreSchema;
+
+use App\JsonApi\V2\Conversations\ConversationSchema;
 
 
 use App\JsonApi\V2\Reviewreplys\ReviewreplySchema;
@@ -248,6 +251,9 @@ class Server extends BaseServer
             ReviewreplySchema::class,
 
             FavoriteSchema::class,
+            FavoritestoreSchema::class,
+
+            ConversationSchema::class,
 
             OnlinestoreSchema::class,
 

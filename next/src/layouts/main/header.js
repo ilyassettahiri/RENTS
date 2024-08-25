@@ -54,6 +54,17 @@ export default function Header({ headerOnDark, onOpenNav}) {
     });
   }, [requireAuth]);
 
+
+
+  const handleChatClick = useCallback(() => {
+    requireAuth(() => {
+      window.location.href = paths.eCommerce.vouchers;
+    });
+  }, [requireAuth]);
+
+
+
+
   const renderContent = (
     <>
 
@@ -106,10 +117,11 @@ export default function Header({ headerOnDark, onOpenNav}) {
                 <Iconify icon="carbon:notification" width={24} />
               </IconButton>
             </Badge>
-            <Badge badgeContent={4} color="error">
+            <Badge badgeContent={4} color="error" >
               <IconButton
-                component={RouterLink}
-                href={paths.eCommerce.vouchers}
+
+                onClick={handleChatClick}
+
                 size="small"
                 color="inherit"
                 sx={{ p: 0 }}

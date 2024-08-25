@@ -340,6 +340,9 @@ class StoreController extends JsonApiController
             $storereviews = $store->review()->orderBy('created_at')->get();
             $listings = $store->listing()->get();
 
+            $seller = User::where('id', $store->user_id)->first();
+
+
             //Log::info('Listings:', $listings->toArray());
 
 
@@ -368,6 +371,14 @@ class StoreController extends JsonApiController
                         'profile' => $store->profile_picture,
 
 
+                        'seller' => [
+                            'name' => $seller->name,
+                            'id' => $seller->id,
+
+                            'profile_image' => $seller->profile_image,
+                            'created_at' => $seller->created_at->toIso8601String(),
+
+                        ],
 
 
 

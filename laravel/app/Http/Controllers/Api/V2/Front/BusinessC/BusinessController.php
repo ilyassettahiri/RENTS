@@ -19,7 +19,10 @@ use App\Models\Servicesimg;
 
 use App\Models\Onlinestore;
 
-use App\Models\Favorite;
+use App\Models\Favoritestore;
+
+use App\Models\User;
+
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -49,11 +52,24 @@ class BusinessController extends JsonApiController
         $authuser = Auth::user();
 
 
+        $favoriteIds = [];
+
+        if ($authuser) {
+            $favorites = Favoritestore::where('user_id', $authuser->id)->get();
+            $favoriteIds = $favorites->pluck('onlinestore_id')->toArray();
+
+            Log::info('Favorite IDs:', $favoriteIds);
+
+        }
+
+
 
 
 
 
         $businessData = $businesslist->map(function ($business) {
+            $user = User::where('id', $business->user_id)->first();
+
             return [
                 'type' => 'business',
                 'id' => $business->id,
@@ -71,6 +87,15 @@ class BusinessController extends JsonApiController
 
                     'profile' => $business->profile_picture,
 
+                    'seller' => [
+                        'name' => $user->name,
+                        'id' => $user->id,
+
+                        'profile_image' => $user->profile_image,
+                        'created_at' => $user->created_at->toIso8601String(),
+
+                    ],
+
 
                 ],
             ];
@@ -85,6 +110,13 @@ class BusinessController extends JsonApiController
 
         ]);
 
+
+        // Conditionally add 'favorites' key if user is authenticated
+        if (isset($favoriteIds)) {
+            $responseData['favorites'] = $favoriteIds;
+        }
+
+        return response()->json($responseData);
 
 
 

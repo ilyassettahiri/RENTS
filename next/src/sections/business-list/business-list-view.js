@@ -88,6 +88,7 @@ export default function BusinessListView() {
 
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
+
     setFavorites(prevFavorites =>
       isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
     );

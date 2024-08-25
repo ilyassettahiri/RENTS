@@ -16,7 +16,12 @@ use App\Enums\ItemStatus;
 
 
 
-use App\Models\Listing;
+use App\Models\Conversation;
+use App\Models\Message;
+
+use App\Models\User;
+
+
 use App\Models\Collection;
 
 
@@ -32,183 +37,454 @@ class MessageFrontController extends JsonApiController
 {
 
 
-    public function index(JsonApiRoute $route, Store $store)
+
+
+
+
+
+    public function getConversations(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
+        $authuser = Auth::user();
 
+        Log::info('Conversation list:', ['user_id' => $authuser->id]);
 
-        return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
-                return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
-                    'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
-                    ],
-                    'relationships' => [
-                        'user' => [
-                            'data' => [
-                                'type' => 'users',
-                                'id' => $user->id,
-                            ],
-                        ],
-                    ],
-                ];
-            }),
-        ]);
-    }
+        // Eager load messages with each conversation
+        $conversations = Conversation::where('sender_id', $authuser->id)
+            ->with('messages')
+            ->get();
 
+        $conversationsData = $conversations->map(function ($conversation) use ($authuser) {
+            $receiver = $conversation->getReceiver();
 
+            $sender = $authuser; // The sender is the authenticated user
 
-    public function store(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $request = app('request'); // Retrieve the current request
-
-        // Validate the request
-        $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
-        ]);
-
-        // Initialize an array to hold the image paths
-        $picturerelativePath = null;
-
-                // Handle image uploads
-                if ($request->hasFile('data.attributes.picture')) {
-                    $picturefile = $request->file('data.attributes.picture');
-                    $picturePath = Storage::disk('public')->put('images', $picturefile);
-                    $picturerelativePath = '/' . $picturePath; // Prepend '/' to make it a relative path
-                }
-
-
-        $name = $request->input('data.attributes.name');
-        $description = $request->input('data.attributes.description');
-
-
-
-        $collection = new Collection();
-        $collection->description = $description;
-        $collection->name = $name;
-
-        $collection->picture = $picturerelativePath;
-
-        $collection->user_id = $user->id;
-        $collection->save();
-
-
-
-
-
-        // Return a JSON:API compliant response
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+            return [
+                'type' => 'conversations',
+                'id' => $conversation->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-
-                    'created_at' => $collection->created_at,
-
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
+                    'id' => $conversation->id,
+                    'created_at' => $conversation->created_at,
+                    'messages' => $conversation->messages->map(function ($message) {
+                        return [
+                            'id' => $message->id,
+                            'body' => $message->body,
+                            'sender_id' => $message->sender_id,
+                            'receiver_id' => $message->receiver_id,
+                            'created_at' => $message->created_at,
+                            'read_at' => $message->read_at,
+                        ];
+                    }),
+                    'receiver' => [
+                        'id' => $receiver->id,
+                        'role' => 'admin', // Assuming role is a field in the users table
+                        'email' => $receiver->email,
+                        'address' => $receiver->address,
+                        'name' => $receiver->name,
+                        'lastActivity' => $receiver->updated_at->toIso8601String(),
+                        'avatarUrl' => $receiver->profile_image,
+                        'phoneNumber' => $receiver->phone_number, // Assuming you have a phone_number field
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $receiver->created_at->toIso8601String(),
+                    ],
+                    'sender' => [
+                        'id' => $sender->id,
+                        'role' => $sender->role,
+                        'email' => $sender->email,
+                        'address' => $sender->address,
+                        'name' => $sender->name,
+                        'lastActivity' => $sender->updated_at->toIso8601String(),
+                        'avatarUrl' => $sender->profile_image,
+                        'phoneNumber' => $sender->phone_number,
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $sender->created_at->toIso8601String(),
                     ],
                 ],
-            ]
-        ], 201); // 201 Created status code
+            ];
+        });
+
+        // Ensure JSON:API compliance
+        return response()->json([
+            'data' => $conversationsData,
+        ]);
     }
 
 
-
-
-
-
-    public function update(JsonApiRoute $route, Store $store)
+    public function checkConversation(Request $request)
     {
-        $user = Auth::user();
-        $request = app('request'); // Retrieve the current request
+        $authuser = Auth::user();
+        $userId = $request->query('userID');
 
-        // Validate the request
-        $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
-        ]);
+        // Retrieve the conversation where the authenticated user is either the sender or receiver
+        $conversation = Conversation::where(function ($query) use ($authuser, $userId) {
+            $query->where('sender_id', $authuser->id)
+                  ->where('receiver_id', $userId)
+                  ->orWhere(function ($query) use ($authuser, $userId) {
+                      $query->where('sender_id', $userId)
+                            ->where('receiver_id', $authuser->id);
+                  });
+        })->with('messages')  // Eager load messages
+          ->first();
 
-        $collection = Collection::findOrFail($route->resourceId());
+        // If the conversation does not exist, return the user information
+        if (!$conversation) {
+            $receiver = User::find($userId);
 
-        // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
-            // Delete the old picture if exists
-            if ($collection->picture) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $collection->picture));
+            if (!$receiver) {
+                return response()->json(['error' => 'User not found.'], 404);
             }
-            $pictureFile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('public')->put('images', $pictureFile);
-            $collection->picture = '/' . $picturePath; // Prepend '/' to make it a relative path
+
+            return response()->json([
+                'data' => [
+                    'type' => 'user',
+
+                    'attributes' => [
+                        'id' => $receiver->id,
+                        'role' => $receiver->role,
+                        'email' => $receiver->email,
+                        'address' => $receiver->address,
+                        'name' => $receiver->name,
+                        'lastActivity' => $receiver->updated_at->toIso8601String(),
+                        'avatarUrl' => $receiver->profile_image,
+                        'phoneNumber' => $receiver->phone_number, // Assuming you have a phone_number field
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $receiver->created_at->toIso8601String(),
+                    ],
+                ],
+            ], 200); // HTTP 200 OK
         }
 
-        $collection->name = $request->input('data.attributes.name');
-        $collection->description = $request->input('data.attributes.description');
-        $collection->save();
+        // Get the receiver using the method defined in the Conversation model
+        $receiver = $conversation->getReceiver();
 
-        // Return a JSON:API compliant response
+        // Map the conversation data along with its messages and receiver information
+        $conversationData = [
+            'type' => 'conversations',
+            'id' => $conversation->id,
+            'attributes' => [
+                'id' => $conversation->id,
+                'created_at' => $conversation->created_at,
+                'messages' => $conversation->messages->map(function ($message) {
+                    return [
+                        'id' => $message->id,
+                        'body' => $message->body,
+                        'sender_id' => $message->sender_id,
+                        'receiver_id' => $message->receiver_id,
+                        'created_at' => $message->created_at,
+                        'read_at' => $message->read_at,
+                    ];
+                }),
+                'receiver' => [
+                    'id' => $receiver->id,
+                    'role' => $receiver->role,
+                    'email' => $receiver->email,
+                    'address' => $receiver->address,
+                    'name' => $receiver->name,
+                    'lastActivity' => $receiver->updated_at->toIso8601String(),
+                    'avatarUrl' => $receiver->profile_image,
+                    'phoneNumber' => $receiver->phone_number, // Assuming you have a phone_number field
+                    'status' => 'online', // Assuming you determine the user's status
+                    'created_at' => $receiver->created_at->toIso8601String(),
+                ],
+            ],
+        ];
+
+        // Return the conversation data as a JSON:API compliant response
         return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
-        ], 200); // 200 OK status code
+            'data' => $conversationData,
+        ]);
     }
 
-    public function show(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
 
+
+
+
+    public function getConversation(Request $request)
+    {
+        $authuser = Auth::user();
+        $id = $request->query('id'); // Retrieve the conversation ID from the query parameter
+
+        // Retrieve the conversation where the authenticated user is either the sender or receiver
+        $conversation = Conversation::where(function ($query) use ($authuser) {
+            $query->where('sender_id', $authuser->id)
+                  ->orWhere('receiver_id', $authuser->id);
+        })->where('id', $id)
+          ->with('messages')  // Eager load messages
+          ->first();
+
+        // If the conversation does not exist or the user is not part of it, return a 404
+        if (!$conversation) {
+            return response()->json(['error' => 'Conversation not found or unauthorized.'], 404);
+        }
+
+        // Get the receiver and sender using the methods defined in the Conversation model
+        $receiver = $conversation->getReceiver();
+        $sender = $conversation->getSender();
+
+        // Map the conversation data along with its messages and receiver/sender information
+        $conversationData = [
+            'type' => 'conversations',
+            'id' => $conversation->id,
+            'attributes' => [
+                'id' => $conversation->id,
+                'created_at' => $conversation->created_at,
+                'messages' => $conversation->messages->map(function ($message) {
+                    return [
+                        'id' => $message->id,
+                        'body' => $message->body,
+                        'sender_id' => $message->sender_id,
+                        'receiver_id' => $message->receiver_id,
+                        'created_at' => $message->created_at,
+                        'read_at' => $message->read_at,
+                    ];
+                }),
+
+                    'sender' => [
+                        'id' => $sender->id,
+                        'role' => $sender->role,
+                        'email' => $sender->email,
+                        'address' => $sender->address,
+                        'name' => $sender->name,
+                        'lastActivity' => $sender->updated_at->toIso8601String(),
+                        'avatarUrl' => $sender->profile_image,
+                        'phoneNumber' => $sender->phone_number,
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $sender->created_at->toIso8601String(),
+                    ],
+                    'receiver' => [
+                        'id' => $receiver->id,
+                        'role' => $receiver->role,
+                        'email' => $receiver->email,
+                        'address' => $receiver->address,
+                        'name' => $receiver->name,
+                        'lastActivity' => $receiver->updated_at->toIso8601String(),
+                        'avatarUrl' => $receiver->profile_image,
+                        'phoneNumber' => $receiver->phone_number,
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $receiver->created_at->toIso8601String(),
+                    ],
+
+            ],
+        ];
+
+        // Return the conversation data as a JSON:API compliant response
+        return response()->json([
+            'data' => $conversationData,
+        ]);
+    }
+
+
+
+
+
+
+    public function clickConversation(Request $request)
+    {
+        $authuser = Auth::user();
+        $id = $request->query('id'); // Retrieve the conversation ID from the query parameter
+
+        // Retrieve the conversation where the authenticated user is either the sender or receiver
+        $conversation = Conversation::where(function ($query) use ($authuser) {
+            $query->where('sender_id', $authuser->id)
+                  ->orWhere('receiver_id', $authuser->id);
+        })->where('id', $id)
+          ->with('messages')  // Eager load messages
+          ->first();
+
+        // If the conversation does not exist or the user is not part of it, return a 404
+        if (!$conversation) {
+            return response()->json(['error' => 'Conversation not found or unauthorized.'], 404);
+        }
+
+        // Get the receiver using the method defined in the Conversation model
+        $receiver = $conversation->getReceiver();
+
+        // Map the conversation data along with its messages and receiver information
+        $conversationData = [
+            'type' => 'conversations',
+            'id' => $conversation->id,
+            'attributes' => [
+                'id' => $conversation->id,
+                'created_at' => $conversation->created_at,
+                'messages' => $conversation->messages->map(function ($message) {
+                    return [
+                        'id' => $message->id,
+                        'body' => $message->body,
+                        'sender_id' => $message->sender_id,
+                        'receiver_id' => $message->receiver_id,
+                        'created_at' => $message->created_at,
+                        'read_at' => $message->read_at,
+                    ];
+                }),
+                'receiver' => [
+                    'id' => $receiver->id,
+                    'role' => 'admin', // Assuming role is a field in the users table
+                    'email' => $receiver->email,
+                    'address' => $receiver->address,
+                    'name' => $receiver->name,
+                    'lastActivity' => $receiver->updated_at->toIso8601String(),
+                    'avatarUrl' => $receiver->profile_image,
+                    'phoneNumber' => $receiver->phone_number, // Assuming you have a phone_number field
+                    'status' => 'online', // Assuming you determine the user's status
+                    'created_at' => $receiver->created_at->toIso8601String(),
+                ],
+            ],
+        ];
+
+        // Return the conversation data as a JSON:API compliant response
+        return response()->json([
+            'data' => $conversationData,
+        ]);
+    }
+
+
+    public function sendMessage(Request $request)
+    {
+        $authUser = Auth::user();
+        $conversationId = $request->query('id'); // Extract conversation ID from the query string
+
+        Log::info('sendMessage list:', ['user_id' => $authUser->id]);
+
+        // Validate the request data
+        $validatedData = $request->validate([
+            'body' => 'required|string|max:5000',
+            'attachment' => 'nullable|file|mimes:jpeg,png,jpg,gif,svg|max:2048', // Adjust as needed
+        ]);
+
+        // Retrieve the conversation by its ID
+        $conversation = Conversation::where(function ($query) use ($authUser) {
+            $query->where('sender_id', $authUser->id)
+                  ->orWhere('receiver_id', $authUser->id);
+        })->where('id', $conversationId)
+          ->first();
+
+        // If the conversation does not exist or the user is not part of it, return a 404
+        if (!$conversation) {
+            return response()->json(['error' => 'Conversation not found or unauthorized.'], 404);
+        }
+
+        // Determine the receiver of the message
+        $userId = $conversation->sender_id === $authUser->id ? $conversation->receiver_id : $conversation->sender_id;
+
+        // Create the message
+        $message = new Message();
+        $message->body = $validatedData['body'];
+        $message->sender_id = $authUser->id;
+        $message->receiver_id = $userId;
+        $message->conversation_id = $conversation->id;
+
+        // Handle attachment if any
+        if ($request->hasFile('attachment')) {
+            $file = $request->file('attachment');
+            $filePath = $file->store('attachments', 'public'); // Save the file in the public disk
+            $message->attachment_url = $filePath; // Save the file path in the database
+        }
+
+        // Save the message
+        $message->save();
+
+        // Optionally, you can broadcast an event here for real-time updates
+
+        // Return the newly created message as a JSON:API compliant response
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'type' => 'messages',
+                'id' => $message->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
+                    'body' => $message->body,
+                    'sender_id' => $message->sender_id,
+                    'receiver_id' => $message->receiver_id,
+                    'conversation_id' => $message->conversation_id,
+                    'attachment_url' => $message->attachment_url ?? null,
+                    'created_at' => $message->created_at->toIso8601String(),
                 ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
+            ],
+        ], 201); // HTTP 201 Created
+    }
+
+
+
+
+    public function createConversation(Request $request)
+    {
+        $authuser = Auth::user();
+        $userId = $request->query('userID');
+
+        // Log the incoming conversation data for debugging
+        Log::info('Received conversation data:', $request->all());
+
+        // Extract the first message from the conversation data
+        $messageData = $request->input('messages.0'); // Assuming there's only one message in the request
+
+        // If no conversation exists, create a new one
+        $conversation = new Conversation();
+        $conversation->sender_id = $authuser->id;
+        $conversation->receiver_id = $userId;
+        $conversation->save();
+
+        // Now, create a new message associated with this conversation
+        $message = new Message();
+        $message->conversation_id = $conversation->id;
+        $message->sender_id = $authuser->id;
+        $message->receiver_id = $userId;
+        $message->body = $messageData['body']; // Use the extracted body from the message data
+        $message->created_at = now(); // Use the current time for created_at
+        $message->save();
+
+        $receiver = $conversation->getReceiver();
+        $sender = $conversation->getSender();
+
+        // Return the newly created conversation and the message
+        return response()->json([
+            'data' => [
+                'type' => 'conversations',
+                'id' => $conversation->id,
+                'attributes' => [
+                    'id' => $conversation->id,
+                    'created_at' => $conversation->created_at,
+                    'messages' => [
+                        [
+                            'id' => $message->id,
+                            'body' => $message->body,
+                            'sender_id' => $message->sender_id,
+                            'receiver_id' => $message->receiver_id,
+                            'created_at' => $message->created_at,
                         ],
                     ],
+
+
+
+                    'sender' => [
+                        'id' => $sender->id,
+                        'role' => $sender->role,
+                        'email' => $sender->email,
+                        'address' => $sender->address,
+                        'name' => $sender->name,
+                        'lastActivity' => $sender->updated_at->toIso8601String(),
+                        'avatarUrl' => $sender->profile_image,
+                        'phoneNumber' => $sender->phone_number,
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $sender->created_at->toIso8601String(),
+                    ],
+                    'receiver' => [
+                        'id' => $receiver->id,
+                        'role' => $receiver->role,
+                        'email' => $receiver->email,
+                        'address' => $receiver->address,
+                        'name' => $receiver->name,
+                        'lastActivity' => $receiver->updated_at->toIso8601String(),
+                        'avatarUrl' => $receiver->profile_image,
+                        'phoneNumber' => $receiver->phone_number,
+                        'status' => 'online', // Assuming you determine the user's status
+                        'created_at' => $receiver->created_at->toIso8601String(),
+                    ],
+
+
+
+
+
                 ],
-            ]
-        ]);
+            ],
+        ], 201); // 201 Created status
     }
 
 

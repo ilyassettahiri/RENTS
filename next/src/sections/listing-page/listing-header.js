@@ -13,6 +13,8 @@ import CrudService from 'src/services/cruds-service';
 
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
+import { paths } from 'src/routes/paths';
+import { RouterLink } from 'src/routes/components';
 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -42,7 +44,7 @@ const StyledButton = styled((props) => (
   </CardActionArea>
 ))(({ theme }) => ({
   ...theme.typography.subtitle2,
-  padding: `${theme.spacing(0.4)} ${theme.spacing(0.8)}`,
+  padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
   borderRadius: theme.shape.borderRadius,
   border: `solid 1px ${theme.palette.divider}`,
 }));
@@ -98,12 +100,12 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   }, [requireAuth, category, url, id, onFavoriteToggle]);
 
 
-  const handleChatClick = () => {
+  const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      // Add the code to open the chat or navigate to the chat page
-      console.log("Chat button clicked. User authenticated.");
+      window.location.href = paths.eCommerce.vouchers;
     });
-  };
+  }, [requireAuth]);
+
 
 
 
@@ -179,7 +181,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
       <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
-      <Stack spacing={3} direction={{ xs: 'column', md: 'row' }}>
+      <Stack spacing={{ xs: 3, lg: 0 }} direction={{ xs: 'column', md: 'row' }}>
 
 
 
@@ -200,16 +202,16 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
 
 
-            <Stack spacing={1.5} direction="row" alignItems="center">
+            <Stack spacing={1} direction="row" alignItems="center">
               <Avatar
                 variant="rounded"
                 alt={NamedNodeMap}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`}
-                sx={{ width: 50, height: 50 }}
+                sx={{ width: 45, height: 45 }}
               />
 
-              <Stack spacing={0.5}>
-                  <Link variant="subtitle1" color="inherit" >
+              <Stack spacing={0.2}>
+                  <Link variant="subtitle2" color="inherit" >
 
                    {capitalizeFirstLetter(name)}
                   </Link>
@@ -219,7 +221,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
                   alignItems="center"
                   sx={{ typography: 'body2', color: 'text.secondary' }}
                 >
-                    <Iconify icon="carbon:store"  sx={{ mr: 0.5 }}/>
+                    <Iconify icon="carbon:store"  sx={{ mr: 0.3 }}/>
                     <Link variant="body2" sx={{ color: 'text.secondary' }}>
 
                       <Box sx={{ typography: 'body2' }}>

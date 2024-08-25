@@ -86,12 +86,12 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
   }, [requireAuth, category, url, id, onFavoriteToggle]);
 
 
-  const handleChatClick = () => {
+  const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      // Add the code to open the chat or navigate to the chat page
-      console.log("Chat button clicked. User authenticated.");
+      window.location.href = paths.eCommerce.vouchers;
     });
-  };
+  }, [requireAuth]);
+
 
 
   useEffect(() => {

@@ -102,6 +102,8 @@ class ServiceController extends JsonApiController
 
                     'seller' => [
                         'name' => $user->name,
+                        'id' => $user->id,
+
                         'profile_image' => $user->profile_image,
                         'created_at' => $user->created_at->toIso8601String(),
 

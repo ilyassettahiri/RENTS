@@ -78,12 +78,16 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
 
 
-  const handleChatClick = () => {
+
+
+  const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      // Add the code to open the chat or navigate to the chat page
-      console.log("Chat button clicked. User authenticated.");
+      // Redirect to the chat page with the seller's ID as a query parameter
+      window.location.href = `${paths.eCommerce.chat}?userID=${seller.id}`;
+      //router.push(`${paths.dashboard.chat}?id=${result.id}`);
     });
-  };
+  }, [requireAuth, seller.id]);
+
 
 
   useEffect(() => {

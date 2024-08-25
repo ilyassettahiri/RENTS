@@ -3,23 +3,21 @@
 import { useState, useEffect, useCallback } from "react";
 import { useBoolean } from 'src/hooks/use-boolean';
 import Label from 'src/components/label';
-
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-
 import Typography from '@mui/material/Typography';
-
 import ListingList from 'src/sections/components/listings/list/listings-list';
-
 import ServiceList from 'src/sections/components/services/list/services-list';
+import BusinessList from 'src/sections/components/business/list/business-list';
 
 // ----------------------------------------------------------------------
 const categories = [
   'All categories',
+  'Business',
   'Services',
   'Billiards',
   'Activities',
@@ -82,7 +80,7 @@ export default function DashboardWishlistView() {
   const [favorites, setFavorites] = useState([]);
   const [categoryCounts, setCategoryCounts] = useState({});
   const loading = useBoolean(true);
-
+  const [business, setBusiness] = useState([]);
   const [tab, setTab] = useState('All categories');
 
   const handleChangeTab = useCallback((event, newValue) => {
@@ -126,10 +124,30 @@ export default function DashboardWishlistView() {
   }, []);
 
   useEffect(() => {
+    if (tab === 'Business' || tab === 'All categories') {
+      (async () => {
+        try {
+          const response = await CrudService.getFavoritestore();
+          setBusiness(response.data);
+
+          // Update business count
+          setCategoryCounts(prevCounts => ({
+            ...prevCounts,
+            business: response.data.length,
+            'all categories': (prevCounts['all categories'] || 0) + response.data.length,
+          }));
+        } catch (error) {
+          console.error('Failed to fetch favorite stores:', error);
+        }
+      })();
+    }
+  }, [tab]);
+
+  useEffect(() => {
     const filterListings = () => {
       if (tab === 'All categories') {
         setFilteredlistings(favoritelistings.filter(listing => listing.attributes.category.toLowerCase() !== 'services'));
-      } else {
+      } else if (tab !== 'Business') {
         const filtered = favoritelistings.filter(listing => listing.attributes.category === tab.toLowerCase());
         setFilteredlistings(filtered);
       }
@@ -175,24 +193,41 @@ export default function DashboardWishlistView() {
         ))}
       </Tabs>
 
-      {tab === 'Services' ? (
-        <ServiceList
-          jobs={filteredlistings}
-          loading={loading.value}
-          favorites={favorites}
-          onFavoriteToggle={handleFavoriteToggle}
-          columns={3}
+      {(() => {
+        if (tab === 'Services') {
+          return (
+            <ServiceList
+              jobs={filteredlistings}
+              loading={loading.value}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+              columns={3}
+            />
+          );
+        }
 
-        />
-      ) : (
-        <ListingList
-          tours={filteredlistings}
-          loading={loading.value}
-          favorites={favorites}
-          onFavoriteToggle={handleFavoriteToggle}
-          columns={3}
-        />
-      )}
+        if (tab === 'Business') {
+          return (
+            <BusinessList
+              businesses={business}
+              loading={loading.value}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+            />
+          );
+        }
+
+        return (
+          <ListingList
+            tours={filteredlistings}
+            loading={loading.value}
+            favorites={favorites}
+            onFavoriteToggle={handleFavoriteToggle}
+            columns={3}
+          />
+        );
+      })()}
     </>
   );
+
 }
