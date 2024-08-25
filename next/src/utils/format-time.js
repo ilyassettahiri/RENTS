@@ -1,26 +1,26 @@
-import { format, getTime, formatDistanceToNow } from 'date-fns';
 import dayjs from 'dayjs';
 import duration from 'dayjs/plugin/duration';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { format as dateFnsFormat, getTime, formatDistanceToNow } from 'date-fns';
 
 // ----------------------------------------------------------------------
 
 export function fDate(date, newFormat) {
-  const fm = newFormat || 'dd MMM yyyy';
+  const formatStr = newFormat || 'dd MMM yyyy';
 
-  return date ? format(new Date(date), fm) : '';
+  return date ? dateFnsFormat(new Date(date), formatStr) : '';
 }
 
 export function fTime(date, newFormat) {
-  const fm = newFormat || 'p';
+  const formatStr = newFormat || 'p';
 
-  return date ? format(new Date(date), fm) : '';
+  return date ? dateFnsFormat(new Date(date), formatStr) : '';
 }
 
 export function fDateTime(date, newFormat) {
-  const fm = newFormat || 'dd MMM yyyy p';
+  const formatStr = newFormat || 'dd MMM yyyy p';
 
-  return date ? format(new Date(date), fm) : '';
+  return date ? dateFnsFormat(new Date(date), formatStr) : '';
 }
 
 export function fTimestamp(date) {
@@ -45,7 +45,7 @@ export function isBetween(inputDate, startDate, endDate) {
   return results;
 }
 
-export function isAfter(startDate, endDate) {
+export function isAfterDate(startDate, endDate) {  // Renamed to avoid shadowing
   const results =
     startDate && endDate ? new Date(startDate).getTime() > new Date(endDate).getTime() : false;
 
@@ -56,10 +56,6 @@ export function capitalizeFirstLetter(string) {
   if (!string) return '';
   return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 }
-
-
-
-
 
 dayjs.extend(duration);
 dayjs.extend(relativeTime);
@@ -92,16 +88,7 @@ export function today(format) {
 
 // ----------------------------------------------------------------------
 
-
 // ----------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------
-
-// ----------------------------------------------------------------------
-
-
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-
+import PropTypes from 'prop-types'; // Import PropTypes
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Select from '@mui/material/Select';
@@ -17,13 +17,11 @@ import Badge, { badgeClasses } from '@mui/material/Badge';
 import { Iconify } from 'src/components/iconifyy';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
-
 // ----------------------------------------------------------------------
 
-export function ChatNavAccount({sender}) {
+export function ChatNavAccount({ sender }) {
 
   console.log('ChatNavAccount - sender:', sender);
-
 
   const popover = usePopover();
 
@@ -122,3 +120,12 @@ export function ChatNavAccount({sender}) {
     </>
   );
 }
+
+// Define prop types
+ChatNavAccount.propTypes = {
+  sender: PropTypes.shape({
+    avatarUrl: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
+};

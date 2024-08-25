@@ -1,6 +1,7 @@
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 import CircularProgress from '@mui/material/CircularProgress';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 // ----------------------------------------------------------------------
 
@@ -24,6 +25,11 @@ export function ChatNavItemSkeleton({ sx, amount = 6, ...other }) {
   ));
 }
 
+ChatNavItemSkeleton.propTypes = {
+  sx: PropTypes.object,  // Validate sx prop
+  amount: PropTypes.number,
+};
+
 // ----------------------------------------------------------------------
 
 export function ChatHeaderSkeleton({ sx, ...other }) {
@@ -41,6 +47,10 @@ export function ChatHeaderSkeleton({ sx, ...other }) {
   );
 }
 
+ChatHeaderSkeleton.propTypes = {
+  sx: PropTypes.object,  // Validate sx prop
+};
+
 // ----------------------------------------------------------------------
 
 export function ChatRoomSkeleton({ sx, ...other }) {
@@ -55,3 +65,7 @@ export function ChatRoomSkeleton({ sx, ...other }) {
     </Stack>
   );
 }
+
+ChatRoomSkeleton.propTypes = {
+  sx: PropTypes.object,  // Validate sx prop
+};

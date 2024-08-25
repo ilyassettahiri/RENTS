@@ -10,6 +10,7 @@ import Popover from '@mui/material/Popover';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
+import { useRouter } from 'src/routes/hooks';
 
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -52,6 +53,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const [favorite, setFavorite] = useState(isFavorite);
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+  const router = useRouter();
 
 
   const handleOpenCall = useCallback((event) => {
@@ -82,9 +84,9 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      // Redirect to the chat page with the seller's ID as a query parameter
-      window.location.href = `${paths.eCommerce.chat}?userID=${seller.id}`;
-      //router.push(`${paths.dashboard.chat}?id=${result.id}`);
+
+
+      router.push(`${paths.eCommerce.chat}?userID=${seller.id}`);
     });
   }, [requireAuth, seller.id]);
 

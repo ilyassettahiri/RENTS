@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useState, useCallback, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
@@ -108,3 +109,15 @@ export function ChatHeaderCompose({ contacts, onAddRecipients }) {
     </>
   );
 }
+
+// Define prop types
+ChatHeaderCompose.propTypes = {
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string,
+    })
+  ).isRequired,
+  onAddRecipients: PropTypes.func.isRequired,
+};

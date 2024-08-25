@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 // ----------------------------------------------------------------------
 
@@ -46,3 +47,19 @@ export function Layout({ slots, sx, ...other }) {
     </Stack>
   );
 }
+
+// Define prop types
+Layout.propTypes = {
+  slots: PropTypes.shape({
+    nav: PropTypes.node,
+    header: PropTypes.node,
+    main: PropTypes.node,
+    details: PropTypes.node,
+  }).isRequired,
+  sx: PropTypes.object,
+};
+
+// Define default props (if needed)
+Layout.defaultProps = {
+  sx: {},
+};

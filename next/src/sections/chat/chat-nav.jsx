@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-
+import PropTypes from 'prop-types'; // Import PropTypes
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
@@ -15,7 +15,7 @@ import { useRouter } from 'src/routes/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import { Iconify } from 'src/components/iconifyy';
-import  Scrollbar  from 'src/components/scrollbar';
+import Scrollbar from 'src/components/scrollbar';
 
 import { ToggleButton } from './styles';
 import { ChatNavItem } from './chat-nav-item';
@@ -26,16 +26,21 @@ import { ChatNavSearchResults } from './chat-nav-search-results';
 // ----------------------------------------------------------------------
 
 const NAV_WIDTH = 320;
-
 const NAV_COLLAPSE_WIDTH = 96;
 
 // ----------------------------------------------------------------------
 
-export function ChatNav({ loading, contacts, conversations, collapseNav, selectedConversationId,sender, onConversationClick }) {
+export function ChatNav({
+  loading,
+  contacts,
+  conversations,
+  collapseNav,
+  selectedConversationId,
+  sender,
+  onConversationClick,
+}) {
   const theme = useTheme();
-
   const router = useRouter();
-
   const mdUp = useResponsive('up', 'md');
 
   const {
@@ -92,7 +97,6 @@ export function ChatNav({ loading, contacts, conversations, collapseNav, selecte
   const handleClickResult = useCallback(
     (result) => {
       handleClickAwaySearch();
-
       router.push(`${paths.eCommerce.chat}?id=${result.id}`);
     },
     [handleClickAwaySearch, router]
@@ -102,23 +106,18 @@ export function ChatNav({ loading, contacts, conversations, collapseNav, selecte
 
   const renderList = (
     <nav>
-      <Box component="ul"sx={{
-
-          px: 0,
-      }}>
-        {conversations && conversations.map((conversation) => (
-          <ChatNavItem
-
-
-            key={conversation.id}
-            collapse={collapseDesktop}
-            conversation={conversation}
-            selected={conversation.id === selectedConversationId}
-            onCloseMobile={onCloseMobile}
-            onConversationClick={onConversationClick}
-
-          />
-        ))}
+      <Box component="ul" sx={{ px: 0 }}>
+        {conversations &&
+          conversations.map((conversation) => (
+            <ChatNavItem
+              key={conversation.id}
+              collapse={collapseDesktop}
+              conversation={conversation}
+              selected={conversation.id === selectedConversationId}
+              onCloseMobile={onCloseMobile}
+              onConversationClick={onConversationClick}
+            />
+          ))}
       </Box>
     </nav>
   );
@@ -155,7 +154,7 @@ export function ChatNav({ loading, contacts, conversations, collapseNav, selecte
       <Stack direction="row" alignItems="center" justifyContent="center" sx={{ p: 2.5, pb: 0 }}>
         {!collapseDesktop && (
           <>
-            <ChatNavAccount sender={sender}/>
+            <ChatNavAccount sender={sender} />
             <Box sx={{ flexGrow: 1 }} />
           </>
         )}
@@ -218,3 +217,35 @@ export function ChatNav({ loading, contacts, conversations, collapseNav, selecte
     </>
   );
 }
+
+// Define prop types
+ChatNav.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  conversations: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  collapseNav: PropTypes.shape({
+    openMobile: PropTypes.func.isRequired,
+    onOpenMobile: PropTypes.func.isRequired,
+    onCloseMobile: PropTypes.func.isRequired,
+    onCloseDesktop: PropTypes.func.isRequired,
+    collapseDesktop: PropTypes.bool.isRequired,
+    onCollapseDesktop: PropTypes.func.isRequired,
+  }).isRequired,
+  selectedConversationId: PropTypes.number,
+  sender: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+  }).isRequired,
+  onConversationClick: PropTypes.func.isRequired,
+};

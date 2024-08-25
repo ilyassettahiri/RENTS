@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
+import PropTypes from 'prop-types';
 
 import { fileThumbnailClasses } from './classes';
 import { fileData, fileThumb, fileFormat } from './utils';
@@ -99,3 +100,21 @@ export function FileThumbnail({
 
   return renderContent;
 }
+
+FileThumbnail.propTypes = {
+  sx: PropTypes.object,
+  file: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.instanceOf(File),
+  ]).isRequired,
+  tooltip: PropTypes.bool,
+  onRemove: PropTypes.func,
+  imageView: PropTypes.bool,
+  slotProps: PropTypes.shape({
+    img: PropTypes.object,
+    icon: PropTypes.object,
+    removeBtn: PropTypes.object,
+    downloadBtn: PropTypes.object,
+  }),
+  onDownload: PropTypes.func,
+};

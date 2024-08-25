@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import { Iconify } from 'src/components/iconify';
+import { Iconify } from 'src/components/iconifyy';
 
 // ----------------------------------------------------------------------
 

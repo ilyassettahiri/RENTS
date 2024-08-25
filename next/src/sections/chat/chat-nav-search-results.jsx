@@ -2,6 +2,7 @@ import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
+import PropTypes from 'prop-types'; // Import PropTypes
 
 import { SearchNotFound } from 'src/components/search-not-found';
 
@@ -52,3 +53,16 @@ export function ChatNavSearchResults({ query, results, onClickResult }) {
     </>
   );
 }
+
+// Define prop types
+ChatNavSearchResults.propTypes = {
+  query: PropTypes.string.isRequired,
+  results: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  onClickResult: PropTypes.func.isRequired,
+};

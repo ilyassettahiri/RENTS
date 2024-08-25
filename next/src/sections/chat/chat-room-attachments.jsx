@@ -1,10 +1,11 @@
 import Stack from '@mui/material/Stack';
 import Collapse from '@mui/material/Collapse';
 import ListItemText from '@mui/material/ListItemText';
-import Button from '@mui/material/Button';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useBoolean } from 'src/hooks/use-boolean';
 import { fDateTime } from 'src/utils/format-time';
 import { FileThumbnail } from 'src/components/file-thumbnail';
+import { CollapseButton } from './styles';
 
 export function ChatRoomAttachments({ attachments }) {
   const collapse = useBoolean(true);
@@ -12,15 +13,13 @@ export function ChatRoomAttachments({ attachments }) {
 
   const renderList = attachments.map((attachment, index) => (
     <Stack key={attachment.name + index} spacing={1.5} direction="row" alignItems="center">
-      {attachment.preview && (
-        <FileThumbnail
-          imageView
-
-          onDownload={() => console.info('DOWNLOAD')}
-          slotProps={{ icon: { width: 24, height: 24 } }}
-          sx={{ width: 40, height: 40, bgcolor: 'background.neutral' }}
-        />
-      )}
+      <FileThumbnail
+        imageView
+        file={attachment.preview}
+        onDownload={() => console.info('DOWNLOAD')}
+        slotProps={{ icon: { width: 24, height: 24 } }}
+        sx={{ width: 40, height: 40, bgcolor: 'background.neutral' }}
+      />
       <ListItemText
         primary={attachment.name}
         secondary={fDateTime(attachment.createdAt)}
@@ -38,13 +37,13 @@ export function ChatRoomAttachments({ attachments }) {
 
   return (
     <>
-      <Button
-        onClick={collapse.onToggle}
-        variant="text"
+      <CollapseButton
+        selected={collapse.value}
         disabled={!totalAttachments}
+        onClick={collapse.onToggle}
       >
         {`Attachments (${totalAttachments})`}
-      </Button>
+      </CollapseButton>
 
       {!!totalAttachments && (
         <Collapse in={collapse.value}>
@@ -56,3 +55,14 @@ export function ChatRoomAttachments({ attachments }) {
     </>
   );
 }
+
+// Define prop types
+ChatRoomAttachments.propTypes = {
+  attachments: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      preview: PropTypes.string.isRequired,
+      createdAt: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};

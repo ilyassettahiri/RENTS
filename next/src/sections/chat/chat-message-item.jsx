@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'; // Import PropTypes
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -16,11 +17,8 @@ export function ChatMessageItem({ message, participants, sender, onOpenLightbox 
   const currentUser = sender;
   const otherParticipant = participants[0]; // Since participants only contains the receiver
 
-
-  // Determine if the message is from the current user
   const isMessageFromCurrentUser = message.sender_id === currentUser.id;
 
-  // Explicitly handle cases where senderDetails may be undefined
   const firstName = isMessageFromCurrentUser ? currentUser.name : otherParticipant?.name;
   const avatarUrl = isMessageFromCurrentUser ? currentUser.avatarUrl : otherParticipant?.avatarUrl;
 
@@ -28,7 +26,6 @@ export function ChatMessageItem({ message, participants, sender, onOpenLightbox 
   const body = message?.body || '';
   const createdAt = message?.createdAt || message?.created_at || new Date().toISOString(); // Fallback to current time if createdAt is empty
 
-  console.log('ChatMessageItem - createdAt:', createdAt);
 
   const renderInfo = (
     <Typography
@@ -124,3 +121,27 @@ export function ChatMessageItem({ message, participants, sender, onOpenLightbox 
     </Stack>
   );
 }
+
+// Define prop types
+ChatMessageItem.propTypes = {
+  message: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    body: PropTypes.string.isRequired,
+    sender_id: PropTypes.number.isRequired,
+    createdAt: PropTypes.string,
+    created_at: PropTypes.string,
+  }).isRequired,
+  participants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string,
+    })
+  ).isRequired,
+  sender: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
+  }).isRequired,
+  onOpenLightbox: PropTypes.func.isRequired,
+};

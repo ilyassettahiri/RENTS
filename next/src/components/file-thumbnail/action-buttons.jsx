@@ -1,10 +1,12 @@
+
+import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 import IconButton from '@mui/material/IconButton';
 
 import { bgBlur, varAlpha } from 'src/theme/styles';
 
-import { Iconify } from '../iconify';
+import { Iconify } from '../iconifyy';
 
 // ----------------------------------------------------------------------
 
@@ -60,3 +62,8 @@ export function RemoveButton({ sx, ...other }) {
     </IconButton>
   );
 }
+
+
+RemoveButton.propTypes = {
+  sx: PropTypes.object,
+};

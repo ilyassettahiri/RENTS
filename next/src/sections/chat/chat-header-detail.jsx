@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useCallback } from 'react';
-
 import Stack from '@mui/material/Stack';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
@@ -11,25 +11,18 @@ import ListItemText from '@mui/material/ListItemText';
 import AvatarGroup, { avatarGroupClasses } from '@mui/material/AvatarGroup';
 
 import { useResponsive } from 'src/hooks/use-responsive';
-
 import { fToNow } from 'src/utils/format-time';
-
 import { Iconify } from 'src/components/iconifyy';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
-
 import { ChatHeaderSkeleton } from './chat-skeleton';
 
 // ----------------------------------------------------------------------
 
 export function ChatHeaderDetail({ collapseNav, participants, loading }) {
   const popover = usePopover();
-
   const lgUp = useResponsive('up', 'lg');
-
   const group = participants.length > 1;
-
   const singleParticipant = participants[0];
-
   const { collapseDesktop, onCollapseDesktop, onOpenMobile } = collapseNav;
 
   const handleToggleNav = useCallback(() => {
@@ -38,8 +31,7 @@ export function ChatHeaderDetail({ collapseNav, participants, loading }) {
     } else {
       onOpenMobile();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lgUp]);
+  }, [lgUp, onCollapseDesktop, onOpenMobile]);
 
   const renderGroup = (
     <AvatarGroup max={3} sx={{ [`& .${avatarGroupClasses.avatar}`]: { width: 32, height: 32 } }}>
@@ -101,41 +93,24 @@ export function ChatHeaderDetail({ collapseNav, participants, loading }) {
 
       <CustomPopover open={popover.open} anchorEl={popover.anchorEl} onClose={popover.onClose}>
         <MenuList>
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
+          <MenuItem onClick={popover.onClose}>
             <Iconify icon="solar:bell-off-bold" />
             Hide notifications
           </MenuItem>
 
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
+          <MenuItem onClick={popover.onClose}>
             <Iconify icon="solar:forbidden-circle-bold" />
             Block
           </MenuItem>
 
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-          >
+          <MenuItem onClick={popover.onClose}>
             <Iconify icon="solar:danger-triangle-bold" />
             Report
           </MenuItem>
 
           <Divider sx={{ borderStyle: 'dashed' }} />
 
-          <MenuItem
-            onClick={() => {
-              popover.onClose();
-            }}
-            sx={{ color: 'error.main' }}
-          >
+          <MenuItem onClick={popover.onClose} sx={{ color: 'error.main' }}>
             <Iconify icon="solar:trash-bin-trash-bold" />
             Delete
           </MenuItem>
@@ -144,3 +119,22 @@ export function ChatHeaderDetail({ collapseNav, participants, loading }) {
     </>
   );
 }
+
+// Define prop types
+ChatHeaderDetail.propTypes = {
+  collapseNav: PropTypes.shape({
+    collapseDesktop: PropTypes.bool.isRequired,
+    onCollapseDesktop: PropTypes.func.isRequired,
+    onOpenMobile: PropTypes.func.isRequired,
+  }).isRequired,
+  participants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+      lastActivity: PropTypes.string,
+    })
+  ).isRequired,
+  loading: PropTypes.bool.isRequired,
+};

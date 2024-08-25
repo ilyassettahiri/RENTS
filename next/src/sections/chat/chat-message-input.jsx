@@ -1,13 +1,13 @@
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useRef, useMemo, useState, useCallback } from 'react';
 import Stack from '@mui/material/Stack';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
-import { formatISO } from 'date-fns'; // Format the date to ISO format
+import { formatISO } from 'date-fns';
 
 import { uuidv4 } from 'src/utils/uuidv4';
-import { fSub } from 'src/utils/format-time';
 import { Iconify } from 'src/components/iconifyy';
 import CrudService from 'src/services/cruds-service';
 
@@ -28,8 +28,8 @@ export function ChatMessageInput({
       attachments: [],
       body: message,
       contentType: 'text',
-      createdAt: formatISO(new Date()),  // Set the current time in ISO format
-      sender_id: sender.id,  // Include sender_id
+      createdAt: formatISO(new Date()), // Set the current time in ISO format
+      sender_id: sender.id, // Include sender_id
     }),
     [message, sender.id]
   );
@@ -55,9 +55,6 @@ export function ChatMessageInput({
     setMessage(event.target.value);
   }, []);
 
-
-
-
   const handleSendMessage = useCallback(
     async (event) => {
       if (event.key === 'Enter') {
@@ -73,7 +70,6 @@ export function ChatMessageInput({
             } else {
               response = await CrudService.createConversation(conversationData, recipients[0].id);
               const newConversationId = response.data.id;
-
 
               if (onMessageSent) {
                 onMessageSent(response.data.attributes.messages[0]); // Send the first message of the new conversation to the parent
@@ -91,8 +87,6 @@ export function ChatMessageInput({
     },
     [conversationData, message, messageData, onMessageSent, recipients, router, selectedConversationId]
   );
-
-
 
   return (
     <>
@@ -134,3 +128,18 @@ export function ChatMessageInput({
     </>
   );
 }
+
+// Define prop types
+ChatMessageInput.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+  recipients: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  sender: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+  selectedConversationId: PropTypes.string,
+  onMessageSent: PropTypes.func.isRequired,
+};

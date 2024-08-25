@@ -1,22 +1,19 @@
+import PropTypes from 'prop-types'; // Import PropTypes
 import Stack from '@mui/material/Stack';
 import LinearProgress from '@mui/material/LinearProgress';
-
-import  Scrollbar  from 'src/components/scrollbar';
+import Scrollbar from 'src/components/scrollbar';
 import { Lightbox, useLightBox } from 'src/components/lightboxx';
-
 import { ChatMessageItem } from './chat-message-item';
 import { useMessagesScroll } from './hooks/use-messages-scroll';
 
 // ----------------------------------------------------------------------
 
-export function ChatMessageList({ messages = [], participants,sender, loading }) {
+export function ChatMessageList({ messages = [], participants, sender, loading }) {
   const { messagesEndRef } = useMessagesScroll(messages);
 
   const slides = messages
     .filter((message) => message.contentType === 'image')
     .map((message) => ({ src: message.body }));
-
-
 
   const lightbox = useLightBox(slides);
 
@@ -61,3 +58,25 @@ export function ChatMessageList({ messages = [], participants,sender, loading })
     </>
   );
 }
+
+// Define prop types
+ChatMessageList.propTypes = {
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      body: PropTypes.string.isRequired,
+      contentType: PropTypes.string,
+    })
+  ).isRequired,
+  participants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  sender: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+  }).isRequired,
+  loading: PropTypes.bool.isRequired,
+};

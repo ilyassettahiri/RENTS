@@ -1,16 +1,15 @@
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import { useTheme } from '@mui/material/styles';
+import PropTypes from 'prop-types'; // Import PropTypes
 import Scrollbar from 'src/components/scrollbar';
-import { ChatRoomSingle } from './chat-room-single'; // Keep only the single participant import
+import { ChatRoomSingle } from './chat-room-single';
 import { ChatRoomAttachments } from './chat-room-attachments';
 
 const NAV_WIDTH = 280;
 const NAV_DRAWER_WIDTH = 320;
 
 export function ChatRoom({ collapseNav, participants, messages }) {
-
-
   const theme = useTheme();
   const { collapseDesktop, openMobile, onCloseMobile } = collapseNav;
   const attachments = messages.map((msg) => msg.attachments).flat() || [];
@@ -54,3 +53,23 @@ export function ChatRoom({ collapseNav, participants, messages }) {
     </>
   );
 }
+
+// Define prop types for the component
+ChatRoom.propTypes = {
+  collapseNav: PropTypes.shape({
+    collapseDesktop: PropTypes.bool.isRequired,
+    openMobile: PropTypes.bool.isRequired,
+    onCloseMobile: PropTypes.func.isRequired,
+  }).isRequired,
+  participants: PropTypes.object.isRequired,  // Assuming participants is an object
+  messages: PropTypes.arrayOf(
+    PropTypes.shape({
+      attachments: PropTypes.array,
+    })
+  ).isRequired,
+};
+
+ChatRoom.defaultProps = {
+  participants: {},
+  messages: [],
+};

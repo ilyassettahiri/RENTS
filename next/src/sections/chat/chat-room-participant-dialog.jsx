@@ -4,9 +4,8 @@ import Dialog from '@mui/material/Dialog';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DialogContent from '@mui/material/DialogContent';
-
+import PropTypes from 'prop-types'; // Import PropTypes
 import { varAlpha } from 'src/theme/styles';
-
 import { Iconify } from 'src/components/iconifyy';
 
 // ----------------------------------------------------------------------
@@ -103,3 +102,15 @@ export function ChatRoomParticipantDialog({ participant, open, onClose }) {
     </Dialog>
   );
 }
+
+// Define prop types for the component
+ChatRoomParticipantDialog.propTypes = {
+  participant: PropTypes.shape({
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    role: PropTypes.string,
+    address: PropTypes.string,
+  }).isRequired,
+  open: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+};

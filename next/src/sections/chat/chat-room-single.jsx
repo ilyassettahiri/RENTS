@@ -2,14 +2,13 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { useBoolean } from 'src/hooks/use-boolean';
 import { Iconify } from 'src/components/iconifyy';
+import { CollapseButton } from './styles';
 
 export function ChatRoomSingle({ participant }) {
   const collapse = useBoolean(true);
-
-
 
   const renderInfo = (
     <Stack alignItems="center" sx={{ py: 5 }}>
@@ -20,7 +19,7 @@ export function ChatRoomSingle({ participant }) {
       />
       <Typography variant="subtitle1">{participant?.name}</Typography>
       <Typography variant="body2" sx={{ color: 'text.secondary', mt: 0.5 }}>
-        {participant?.role || 'No role specified'}
+        {participant?.role}
       </Typography>
     </Stack>
   );
@@ -28,9 +27,9 @@ export function ChatRoomSingle({ participant }) {
   const renderContact = (
     <Stack spacing={2} sx={{ px: 2, py: 2.5 }}>
       {[
-        { icon: 'mingcute:location-fill', label: 'Address', value: participant?.address || 'No address provided' },
-        { icon: 'solar:phone-bold', label: 'Phone', value: participant?.phoneNumber || 'No phone number provided' },
-        { icon: 'fluent:mail-24-filled', label: 'Email', value: participant?.email || 'No email provided' },
+        { icon: 'mingcute:location-fill', value: participant?.address },
+        { icon: 'solar:phone-bold', value: participant?.phoneNumber },
+        { icon: 'fluent:mail-24-filled', value: participant?.email },
       ].map((item) => (
         <Stack
           key={item.icon}
@@ -39,9 +38,7 @@ export function ChatRoomSingle({ participant }) {
           sx={{ typography: 'body2', wordBreak: 'break-all' }}
         >
           <Iconify icon={item.icon} sx={{ flexShrink: 0, color: 'text.disabled' }} />
-          <Typography variant="body2" sx={{ color: 'text.primary', ml: 1 }}>
-            <strong>{item.label}: </strong>{item.value}
-          </Typography>
+          {item.value}
         </Stack>
       ))}
     </Stack>
@@ -51,11 +48,23 @@ export function ChatRoomSingle({ participant }) {
     <>
       {renderInfo}
 
-      <Button onClick={collapse.onToggle} variant="text">
+      <CollapseButton selected={collapse.value} onClick={collapse.onToggle}>
         Information
-      </Button>
+      </CollapseButton>
 
       <Collapse in={collapse.value}>{renderContact}</Collapse>
     </>
   );
 }
+
+// Define prop types for the participant prop
+ChatRoomSingle.propTypes = {
+  participant: PropTypes.shape({
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+    role: PropTypes.string,
+    address: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    email: PropTypes.string,
+  }).isRequired,
+};

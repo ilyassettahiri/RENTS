@@ -6,6 +6,7 @@ import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
+import PropTypes from 'prop-types'; // Import PropTypes
 import { paths } from 'src/routes/paths';
 
 import { useRouter } from 'src/routes/hooks';
@@ -17,7 +18,6 @@ import CrudService from 'src/services/cruds-service';
 
 export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, onConversationClick }) {
 
-  console.log('ChatNavItem - conversation:', conversation);
 
   const router = useRouter();
   const mdUp = useResponsive('up', 'md');
@@ -36,7 +36,6 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
       const conversationData = response.data.attributes;
 
       onConversationClick(conversationData);
-      console.log('getConversation :', conversationData);
 
       router.push(`${paths.eCommerce.chat}?id=${conversation.id}`);
     } catch (error) {
@@ -114,3 +113,30 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
     </Box>
   );
 }
+
+// Define prop types
+ChatNavItem.propTypes = {
+  selected: PropTypes.bool.isRequired,
+  collapse: PropTypes.bool.isRequired,
+  conversation: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    receiver: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      avatarUrl: PropTypes.string.isRequired,
+      status: PropTypes.string.isRequired,
+    }).isRequired,
+    sender: PropTypes.shape({
+      id: PropTypes.number.isRequired,
+    }).isRequired,
+    unreadCount: PropTypes.number.isRequired,
+    messages: PropTypes.arrayOf(
+      PropTypes.shape({
+        sender_id: PropTypes.number.isRequired,
+        body: PropTypes.string.isRequired,
+        created_at: PropTypes.string.isRequired,
+      })
+    ).isRequired,
+  }).isRequired,
+  onCloseMobile: PropTypes.func.isRequired,
+  onConversationClick: PropTypes.func.isRequired,
+};

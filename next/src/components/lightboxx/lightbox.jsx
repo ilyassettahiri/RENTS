@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import Zoom from 'yet-another-react-lightbox/plugins/zoom';
 import Video from 'yet-another-react-lightbox/plugins/video';
 import Captions from 'yet-another-react-lightbox/plugins/captions';
@@ -8,7 +9,7 @@ import ReactLightbox, { useLightboxState } from 'yet-another-react-lightbox';
 
 import Box from '@mui/material/Box';
 
-import { Iconify } from '../iconify';
+import { Iconify } from '../iconifyy'; // Ensure this path is correct
 import { lightboxClasses } from './classes';
 
 // ----------------------------------------------------------------------
@@ -71,39 +72,21 @@ export function Lightbox({
   );
 }
 
-// ----------------------------------------------------------------------
-
-export function getPlugins({
-  disableZoom,
-  disableVideo,
-  disableCaptions,
-  disableSlideshow,
-  disableThumbnails,
-  disableFullscreen,
-}) {
-  let plugins = [Captions, Fullscreen, Slideshow, Thumbnails, Video, Zoom];
-
-  if (disableThumbnails) {
-    plugins = plugins.filter((plugin) => plugin !== Thumbnails);
-  }
-  if (disableCaptions) {
-    plugins = plugins.filter((plugin) => plugin !== Captions);
-  }
-  if (disableFullscreen) {
-    plugins = plugins.filter((plugin) => plugin !== Fullscreen);
-  }
-  if (disableSlideshow) {
-    plugins = plugins.filter((plugin) => plugin !== Slideshow);
-  }
-  if (disableZoom) {
-    plugins = plugins.filter((plugin) => plugin !== Zoom);
-  }
-  if (disableVideo) {
-    plugins = plugins.filter((plugin) => plugin !== Video);
-  }
-
-  return plugins;
-}
+Lightbox.propTypes = {
+  slides: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  disableZoom: PropTypes.bool,
+  disableVideo: PropTypes.bool,
+  disableTotal: PropTypes.bool,
+  disableCaptions: PropTypes.bool,
+  disableSlideshow: PropTypes.bool,
+  disableThumbnails: PropTypes.bool,
+  disableFullscreen: PropTypes.bool,
+  onGetCurrentIndex: PropTypes.func,
+};
 
 // ----------------------------------------------------------------------
 
@@ -129,3 +112,8 @@ export function DisplayTotal({ totalItems, disableTotal }) {
     </Box>
   );
 }
+
+DisplayTotal.propTypes = {
+  totalItems: PropTypes.number.isRequired,
+  disableTotal: PropTypes.bool,
+};
