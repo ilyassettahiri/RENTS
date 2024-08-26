@@ -15,6 +15,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
+import { useRouter } from 'src/routes/hooks';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
@@ -61,10 +62,11 @@ export default function StoreHero({ StoreData }) {
 
 
   const { attributes } = StoreData;
-  const { name, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;
+  const { name,seller, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;
 
   const year = format(new Date(created_at), 'yyyy');
 
+  const router = useRouter();
 
   const [opencall, setOpencall] = useState(null);
 
@@ -92,11 +94,14 @@ export default function StoreHero({ StoreData }) {
   }, []);
 
 
+
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      window.location.href = paths.eCommerce.vouchers;
+      router.push(`${paths.eCommerce.chat}?userID=${seller.id}`);
     });
-  }, [requireAuth]);
+  }, [requireAuth, seller.id, router]);
+
+
 
 
 
@@ -428,6 +433,9 @@ StoreHero.propTypes = {
       profile: PropTypes.string.isRequired,
       address: PropTypes.string.isRequired,
       zip: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+
+      seller: PropTypes.array.isRequired,
 
       category: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,

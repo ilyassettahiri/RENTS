@@ -88,6 +88,39 @@ Lightbox.propTypes = {
   onGetCurrentIndex: PropTypes.func,
 };
 
+
+export function getPlugins({
+  disabledZoom,
+  disabledVideo,
+  disabledCaptions,
+  disabledSlideshow,
+  disabledThumbnails,
+  disabledFullscreen,
+}) {
+  let plugins = [Captions, Fullscreen, Slideshow, Thumbnails, Video, Zoom];
+
+  if (disabledThumbnails) {
+    plugins = plugins.filter((plugin) => plugin !== Thumbnails);
+  }
+  if (disabledCaptions) {
+    plugins = plugins.filter((plugin) => plugin !== Captions);
+  }
+  if (disabledFullscreen) {
+    plugins = plugins.filter((plugin) => plugin !== Fullscreen);
+  }
+  if (disabledSlideshow) {
+    plugins = plugins.filter((plugin) => plugin !== Slideshow);
+  }
+  if (disabledZoom) {
+    plugins = plugins.filter((plugin) => plugin !== Zoom);
+  }
+  if (disabledVideo) {
+    plugins = plugins.filter((plugin) => plugin !== Video);
+  }
+
+  return plugins;
+}
+
 // ----------------------------------------------------------------------
 
 export function DisplayTotal({ totalItems, disableTotal }) {

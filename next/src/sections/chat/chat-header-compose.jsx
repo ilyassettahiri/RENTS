@@ -67,7 +67,7 @@ export function ChatHeaderCompose({ contacts, onAddRecipients }) {
                 position: 'relative',
               }}
             >
-              <Avatar alt={recipient.name} src={recipient.avatarUrl} sx={{ width: 1, height: 1 }} />
+              <Avatar alt={recipient.name} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${recipient.avatarUrl}`}  sx={{ width: 1, height: 1 }} />
               <Stack
                 alignItems="center"
                 justifyContent="center"
@@ -99,7 +99,7 @@ export function ChatHeaderCompose({ contacts, onAddRecipients }) {
               {...getTagProps({ index })}
               key={recipient.id}
               label={recipient.name}
-              avatar={<Avatar alt={recipient.name} src={recipient.avatarUrl} />}
+              avatar={<Avatar alt={recipient.name} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${recipient.avatarUrl}`}  />}
               size="small"
               variant="soft"
             />

@@ -1,4 +1,4 @@
-import ChatView from 'src/sections/chat/view/chat-view';
+import DashboardChatView from 'src/sections/dashboard/dashboard-chat-view';
 
 // ----------------------------------------------------------------------
 
@@ -6,6 +6,6 @@ export const metadata = {
   title: 'E-commerce: Account Orders',
 };
 
-export default function ChatPage() {
-  return <ChatView />;
+export default function DashboardChatPage() {
+  return <DashboardChatView />;
 }

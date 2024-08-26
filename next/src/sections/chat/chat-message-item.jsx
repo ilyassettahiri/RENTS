@@ -104,7 +104,7 @@ export function ChatMessageItem({ message, participants, sender, onOpenLightbox 
 
   return (
     <Stack direction="row" justifyContent={isMessageFromCurrentUser ? 'flex-end' : 'unset'} sx={{ mb: 5 }}>
-      {!isMessageFromCurrentUser && <Avatar alt={firstName} src={avatarUrl} sx={{ width: 32, height: 32, mr: 2 }} />}
+      {!isMessageFromCurrentUser && <Avatar alt={firstName} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${avatarUrl}`} sx={{ width: 32, height: 32, mr: 2 }} />}
 
       <Stack alignItems={isMessageFromCurrentUser ? 'flex-end' : 'flex-start'}>
         {renderInfo}

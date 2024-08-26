@@ -15,6 +15,7 @@ import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
+import { useRouter } from 'src/routes/hooks';
 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
@@ -53,7 +54,7 @@ const StyledButton = styled((props) => (
 export default function ListingHeader({ tour, seller, favorites = [], onFavoriteToggle }) {
   const { attributes } = tour;
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
-  const { name, profile_image } = seller;
+  const { name, profile_image, id: sellerId  } = seller;
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
 
   const mdUp = useResponsive('up', 'md');
@@ -62,6 +63,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
   const isFavorite = favorites.includes(id);
   const [favorite, setFavorite] = useState(isFavorite);
+  const router = useRouter();
 
 
   const [open, setOpen] = useState(null);
@@ -102,9 +104,9 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      window.location.href = paths.eCommerce.vouchers;
+      router.push(`${paths.eCommerce.chat}?userID=${sellerId}`);
     });
-  }, [requireAuth]);
+  }, [requireAuth, sellerId, router]);
 
 
 
@@ -352,6 +354,10 @@ ListingHeader.propTypes = {
   seller: PropTypes.shape({
     profile_image: PropTypes.string,
     name: PropTypes.string,
+    id: PropTypes.number,
+    sellerId: PropTypes.number,
+
+
   }).isRequired,
 };
 

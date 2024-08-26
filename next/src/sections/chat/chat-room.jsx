@@ -4,7 +4,6 @@ import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types'; // Import PropTypes
 import Scrollbar from 'src/components/scrollbar';
 import { ChatRoomSingle } from './chat-room-single';
-import { ChatRoomAttachments } from './chat-room-attachments';
 
 const NAV_WIDTH = 280;
 const NAV_DRAWER_WIDTH = 320;
@@ -18,7 +17,6 @@ export function ChatRoom({ collapseNav, participants, messages }) {
     <Scrollbar>
       <div>
         <ChatRoomSingle participant={participants} />
-
       </div>
     </Scrollbar>
   );
@@ -67,9 +65,4 @@ ChatRoom.propTypes = {
       attachments: PropTypes.array,
     })
   ).isRequired,
-};
-
-ChatRoom.defaultProps = {
-  participants: {},
-  messages: [],
 };

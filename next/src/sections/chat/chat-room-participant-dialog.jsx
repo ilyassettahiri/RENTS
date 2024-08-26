@@ -20,7 +20,8 @@ export function ChatRoomParticipantDialog({ participant, open, onClose }) {
       <DialogContent sx={{ py: 5, px: 3, display: 'flex' }}>
         <Avatar
           alt={participant.name}
-          src={participant.avatarUrl}
+
+          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${participant.avatarUrl}`}
           sx={{ width: 96, height: 96, mr: 3 }}
         />
 

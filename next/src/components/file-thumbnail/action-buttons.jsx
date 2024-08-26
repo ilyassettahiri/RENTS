@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -40,6 +39,10 @@ export function DownloadButton({ sx, ...other }) {
   );
 }
 
+DownloadButton.propTypes = {
+  sx: PropTypes.object,
+};
+
 // ----------------------------------------------------------------------
 
 export function RemoveButton({ sx, ...other }) {
@@ -62,7 +65,6 @@ export function RemoveButton({ sx, ...other }) {
     </IconButton>
   );
 }
-
 
 RemoveButton.propTypes = {
   sx: PropTypes.object,

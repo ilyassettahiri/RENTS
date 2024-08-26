@@ -82,13 +82,13 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
 
 
+
+
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-
-
       router.push(`${paths.eCommerce.chat}?userID=${seller.id}`);
     });
-  }, [requireAuth, seller.id]);
+  }, [requireAuth, seller.id, router]);
 
 
 

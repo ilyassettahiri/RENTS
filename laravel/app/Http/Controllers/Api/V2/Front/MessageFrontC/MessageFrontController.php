@@ -53,6 +53,32 @@ class MessageFrontController extends JsonApiController
             ->with('messages')
             ->get();
 
+        // If no conversations found, still return the sender's information
+        if ($conversations->isEmpty()) {
+            return response()->json([
+                'data' => [
+                    'type' => 'conversations',
+                    'id' => null,
+                    'attributes' => [
+                        'messages' => [],
+                        'receiver' => null,
+                        'sender' => [
+                            'id' => $authuser->id,
+                            'role' => $authuser->role,
+                            'email' => $authuser->email,
+                            'address' => $authuser->address,
+                            'name' => $authuser->name,
+                            'lastActivity' => $authuser->updated_at->toIso8601String(),
+                            'avatarUrl' => $authuser->profile_image,
+                            'phoneNumber' => $authuser->phone_number,
+                            'status' => 'online', // Assuming you determine the user's status
+                            'created_at' => $authuser->created_at->toIso8601String(),
+                        ],
+                    ],
+                ],
+            ]);
+        }
+
         $conversationsData = $conversations->map(function ($conversation) use ($authuser) {
             $receiver = $conversation->getReceiver();
 
@@ -107,6 +133,7 @@ class MessageFrontController extends JsonApiController
             'data' => $conversationsData,
         ]);
     }
+
 
 
     public function checkConversation(Request $request)

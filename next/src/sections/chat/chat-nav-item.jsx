@@ -23,7 +23,11 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
   const mdUp = useResponsive('up', 'md');
 
   const { receiver, sender, unreadCount } = conversation;
-  const lastMessage = conversation.messages[conversation.messages.length - 1];
+
+  const lastMessage = conversation.messages && conversation.messages.length > 0
+  ? conversation.messages[conversation.messages.length - 1]
+  : null;
+
   const { name, avatarUrl, status } = receiver;
 
   const handleClickConversation = useCallback(async () => {
@@ -45,7 +49,7 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
 
   const renderSingle = (
     <Badge key={status} variant={status} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>
-      <Avatar alt={name} src={avatarUrl} sx={{ width: 48, height: 48 }} />
+      <Avatar alt={name} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${avatarUrl}`}sx={{ width: 48, height: 48 }} />
     </Badge>
   );
 

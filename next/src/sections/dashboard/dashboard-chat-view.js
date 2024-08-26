@@ -10,17 +10,17 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { EmptyContent } from 'src/components/empty-content';
 import { useCollapseNav } from 'src/sections/chat/hooks/use-collapse-nav';
 
-import { Layout } from '../layout';
-import { ChatNav } from '../chat-nav';
-import { ChatRoom } from '../chat-room';
-import { ChatHeaderCompose } from '../chat-header-compose';
-import { ChatMessageList } from '../chat-message-list';
-import { ChatMessageInput } from '../chat-message-input';
-import { ChatHeaderDetail } from '../chat-header-detail';
+import { Layout } from 'src/sections/chat/layout';
+import { ChatNav } from 'src/sections/chat/chat-nav';
+import { ChatRoom } from 'src/sections/chat/chat-room';
+import { ChatHeaderCompose } from 'src/sections/chat/chat-header-compose';
+import { ChatMessageList } from 'src/sections/chat/chat-message-list';
+import { ChatMessageInput } from 'src/sections/chat/chat-message-input';
+import { ChatHeaderDetail } from 'src/sections/chat/chat-header-detail';
 
 // ----------------------------------------------------------------------
 
-export default function ChatView() {
+export default function DashboardChatPage() {
   const loading = useBoolean(true);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -41,6 +41,9 @@ export default function ChatView() {
     (async () => {
       try {
         const response = await CrudService.getConversations();
+
+
+
         const conversations = response.data.map((conversation) => conversation.attributes);
         setConversationList(conversations);
 
@@ -50,6 +53,9 @@ export default function ChatView() {
 
         // Extracting sender from the first conversation (since the sender is the same across all conversations)
         const sender = conversations[0]?.sender;
+
+
+
         setCurrentSender(sender);
       } catch (error) {
         console.error('Failed to fetch listing:', error);
@@ -116,16 +122,59 @@ export default function ChatView() {
     setRecipients(selected);
   }, []);
 
+
+
+
   const handleMessageSent = (newMessage) => {
+    setConversationList((prevConversations) => {
+      let updatedConversations;
+
+      if (selectedConversationId) {
+        // Update the existing conversation
+        updatedConversations = prevConversations.map((conv) => {
+          if (conv.id === selectedConversationId) {
+            return {
+              ...conv,
+              messages: [...conv.messages, newMessage],
+            };
+          }
+          return conv;
+        });
+      } else {
+        // Create a new conversation
+        const newConversation = {
+          id: newMessage.id,
+          messages: [newMessage],
+          participants: recipients,
+          unreadCount: 0,
+          receiver: recipients[0], // Assuming there's only one recipient for simplicity
+          sender: currentSender,
+        };
+
+        updatedConversations = [newConversation, ...prevConversations];
+      }
+
+      // Reorder conversations by the latest message's timestamp
+      updatedConversations.sort((a, b) => {
+        const lastMessageA = a.messages[a.messages.length - 1];
+        const lastMessageB = b.messages[b.messages.length - 1];
+        return new Date(b.messages[b.messages.length - 1].created_at) - new Date(a.messages[a.messages.length - 1].created_at);
+      });
+
+      return updatedConversations;
+    });
+
     if (selectedConversationId) {
+      // Update the current conversation's messages in the state
       setCurrentConversation((prevConversation) => ({
         ...prevConversation,
         messages: [...(prevConversation?.messages || []), newMessage],
       }));
-    } else {
-      setConversationList((prevConversations) => [...prevConversations, newMessage]);
     }
   };
+
+
+
 
   return (
     <>
@@ -185,7 +234,7 @@ export default function ChatView() {
                 />
               ) : (
                 <EmptyContent
-                  imgUrl={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/assets/icons/empty/ic-chat-active.svg`}
+                  imgUrl={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/empty/ic-chat-active.svg`}
                   title="Good morning!"
                   description="Write something awesome..."
                 />

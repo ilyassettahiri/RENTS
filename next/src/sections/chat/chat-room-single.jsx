@@ -14,7 +14,8 @@ export function ChatRoomSingle({ participant }) {
     <Stack alignItems="center" sx={{ py: 5 }}>
       <Avatar
         alt={participant?.name}
-        src={participant?.avatarUrl}
+
+        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${participant?.avatarUrl}`}
         sx={{ width: 96, height: 96, mb: 2 }}
       />
       <Typography variant="subtitle1">{participant?.name}</Typography>

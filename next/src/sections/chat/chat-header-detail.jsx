@@ -36,7 +36,7 @@ export function ChatHeaderDetail({ collapseNav, participants, loading }) {
   const renderGroup = (
     <AvatarGroup max={3} sx={{ [`& .${avatarGroupClasses.avatar}`]: { width: 32, height: 32 } }}>
       {participants.map((participant) => (
-        <Avatar key={participant.id} alt={participant.name} src={participant.avatarUrl} />
+        <Avatar key={participant.id} alt={participant.name} src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${participant.avatarUrl}`} />
       ))}
     </AvatarGroup>
   );
@@ -47,7 +47,7 @@ export function ChatHeaderDetail({ collapseNav, participants, loading }) {
         variant={singleParticipant?.status}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       >
-        <Avatar src={singleParticipant?.avatarUrl} alt={singleParticipant?.name} />
+        <Avatar src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${singleParticipant?.avatarUrl}`}   alt={singleParticipant?.name} />
       </Badge>
 
       <ListItemText

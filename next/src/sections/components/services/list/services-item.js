@@ -14,6 +14,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 import Popover from '@mui/material/Popover';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
+import { useRouter } from 'src/routes/hooks';
 
 import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
@@ -49,6 +50,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const { title, city,phone, price,seller, created_at, category, url, id, images } = attributes;
 
+  const router = useRouter();
 
 
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
@@ -88,9 +90,10 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      window.location.href = paths.eCommerce.vouchers;
+      router.push(`${paths.eCommerce.chat}?userID=${seller.id}`);
     });
-  }, [requireAuth]);
+  }, [requireAuth, seller.id, router]);
+
 
 
 
@@ -411,6 +414,8 @@ ServiceItem.propTypes = {
       images: PropTypes.array.isRequired,
       seller: PropTypes.shape({
         name: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+
         profile_image: PropTypes.string.isRequired,
       }).isRequired,
       created_at: PropTypes.string.isRequired,

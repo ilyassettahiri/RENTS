@@ -15,6 +15,7 @@ import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
 import Checkbox from '@mui/material/Checkbox';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
+import { useRouter } from 'src/routes/hooks';
 
 
 import useAuthDialog from 'src/hooks/use-authdialog';
@@ -58,6 +59,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
   const { attributes } = business;
   const { name,description,profile,id, city,phone,picture, created_at, category, url, } = attributes;
 
+  const router = useRouter();
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
@@ -72,11 +74,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
   const year = format(new Date(created_at), 'yyyy');
 
 
-  const handleChatClick = useCallback(() => {
-    requireAuth(() => {
-      window.location.href = paths.eCommerce.vouchers;
-    });
-  }, [requireAuth]);
+
 
 
   const handleOpenCall = useCallback((event) => {
@@ -102,6 +100,12 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
 
 
 
+
+  const handleChatClick = useCallback(() => {
+    requireAuth(() => {
+      router.push(`${paths.eCommerce.chat}?userID=${id}`);
+    });
+  }, [requireAuth, id, router]);
 
 
 
