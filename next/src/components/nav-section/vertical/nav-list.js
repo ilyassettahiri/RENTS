@@ -10,7 +10,7 @@ import NavItem from './nav-item';
 
 // ----------------------------------------------------------------------
 
-export default function NavList({ data, depth, slotProps }) {
+export default function NavList({ data, depth, slotProps, onItemClick }) {
   const pathname = usePathname();
 
   const active = useActiveLink(data.path, !!data.children);
@@ -52,6 +52,7 @@ export default function NavList({ data, depth, slotProps }) {
         hasChild={!!data.children}
         externalLink={data.path.includes('http')}
         currentRole={slotProps?.currentRole}
+
         //
         active={active}
         className={active ? 'active' : ''}
@@ -59,11 +60,18 @@ export default function NavList({ data, depth, slotProps }) {
           mb: `${slotProps?.gap}px`,
           ...(depth === 1 ? slotProps?.rootItem : slotProps?.subItem),
         }}
+
+        onItemClick={onItemClick}  // Pass down to NavItem
+
       />
 
       {!!data.children && (
         <Collapse in={openMenu} unmountOnExit>
-          <NavSubList data={data.children} depth={depth} slotProps={slotProps} />
+          <NavSubList data={data.children} depth={depth} slotProps={slotProps}
+
+          onItemClick={onItemClick}  // Pass down to NavSubList
+
+          />
         </Collapse>
       )}
     </>
@@ -74,15 +82,21 @@ NavList.propTypes = {
   data: PropTypes.object,
   depth: PropTypes.number,
   slotProps: PropTypes.object,
+  onItemClick: PropTypes.func,  // Add prop types for onItemClick
+
 };
 
 // ----------------------------------------------------------------------
 
-function NavSubList({ data, depth, slotProps }) {
+function NavSubList({ data, depth, slotProps, onItemClick  }) {
   return (
     <>
       {data.map((list) => (
-        <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps} />
+        <NavList key={list.title} data={list} depth={depth + 1} slotProps={slotProps}
+
+        onItemClick={onItemClick}  // Pass onItemClick to each NavList
+
+        />
       ))}
     </>
   );
@@ -92,4 +106,6 @@ NavSubList.propTypes = {
   data: PropTypes.array,
   depth: PropTypes.number,
   slotProps: PropTypes.object,
+  onItemClick: PropTypes.func,  // Add prop types for onItemClick
+
 };

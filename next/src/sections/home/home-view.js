@@ -7,6 +7,7 @@ import { useSetState } from 'src/hooks/use-set-state';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useRouter, useSearchParams } from 'src/routes/hooks';
 
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
@@ -182,6 +183,15 @@ const tours = heroUrl.map((url, index) => ({
 export default function HomeView() {
 
 
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+
+
+
+
+
   const mdUp = useResponsive('up', 'md');
 
   const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
@@ -224,11 +234,9 @@ export default function HomeView() {
   }, []);
 
   const fetchListings = useCallback(async (searchs) => {
-    console.log('Search parameters:', searchs); // Log search parameters
 
     try {
       const response = await CrudService.getSearchListings(searchs);
-      console.log('Listings fetched:', response.data);
 
       const listingsData = response.data.map(item => ({
         type: item.type,
@@ -237,7 +245,6 @@ export default function HomeView() {
           ...item.attributes
         }
       }));
-      console.log('Parsed listings data:', listingsData); // Log parsed listings data
 
       const favoritesData = response.favorites;
 
@@ -271,7 +278,6 @@ export default function HomeView() {
 
   useEffect(() => {
     if (selectedCategory) {
-      console.log("Selected category in HomeView:", selectedCategory);
       fetchListings({ searchCategories: selectedCategory });
     }
   }, [selectedCategory, fetchListings]);
@@ -437,8 +443,21 @@ export default function HomeView() {
 
 
         <ListingList tours={dataFiltered} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
-        {billiards &&<ListingsCarousel tours={billiards} title="Billiards" />}
-        {boxings &&<ListingsCarousel tours={boxings} title="Boxings" />}
+
+
+        <Stack sx={{ my: 5 }} >
+            {billiards &&<ListingsCarousel tours={billiards} title="Billiards" />}
+
+        </Stack>
+
+
+        <Stack sx={{ my: 5 }} >
+            {boxings &&<ListingsCarousel tours={boxings} title="Boxings" />}
+
+        </Stack>
+
+
+
 
       </Container>
       <OurClients brands={ourclients} />

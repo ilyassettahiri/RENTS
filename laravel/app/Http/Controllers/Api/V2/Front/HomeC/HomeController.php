@@ -189,9 +189,10 @@ class HomeController extends JsonApiController
     {
 
 
-        $listings = Velo::all();
+        $listings = Velo::orderBy('created_at', 'desc')->get();
 
-        $billiards = Billiard::all();
+        $billiards = Billiard::orderBy('created_at', 'desc')->get();
+
 
 
 

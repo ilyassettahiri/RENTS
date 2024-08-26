@@ -202,14 +202,14 @@ class SearchBusinessController extends JsonApiController
 
             // Apply location search if present
             if ($request->has('searchLocation') && $request->input('searchLocation') !== '' && $request->input('searchLocation') !== 'null') {
-                Log::info('Applying searchLocation:', ['location' => $request->input('searchLocation')]);
 
                 $query->where('city', 'like', '%' . $request->input('searchLocation') . '%');
             }
 
+            $query->orderBy('created_at', 'desc');
+
             $businesslist = $query->get();
 
-            Log::info('Query results:', ['listings' => $listings]);
 
 
 
@@ -264,6 +264,8 @@ class SearchBusinessController extends JsonApiController
             } else {
                 $query->where('name', 'like', '%' . $request->input('searchKeyword') . '%');
             }
+
+            $query->orderBy('created_at', 'desc');
 
             $businesslist = $query->get();
 

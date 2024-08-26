@@ -31,6 +31,8 @@ const NavItem = forwardRef(
       externalLink,
       currentRole = 'admin',
       onClick,
+      onItemClick, // Accept onItemClick as a prop
+
       ...other
     },
     ref
@@ -40,6 +42,12 @@ const NavItem = forwardRef(
 
     const handleClick = (category) => {
       handleCategoryClick(category);
+
+            // Trigger onItemClick to close the drawer
+            if (onItemClick) {
+              onItemClick();
+            }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
@@ -159,6 +167,8 @@ NavItem.propTypes = {
   currentRole: PropTypes.string,
   roles: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func, // New prop
+  onItemClick: PropTypes.func, // Add prop type for onItemClick
+
 };
 
 export default NavItem;

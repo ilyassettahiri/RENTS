@@ -449,14 +449,15 @@ class SearchController extends JsonApiController
 
                 // Apply location search if present
                 if ($request->has('searchLocation') && $request->input('searchLocation') !== '' && $request->input('searchLocation') !== 'null') {
-                    Log::info('Applying searchLocation:', ['location' => $request->input('searchLocation')]);
 
                     $query->where('city', 'like', '%' . $request->input('searchLocation') . '%');
                 }
 
+                $query->orderBy('created_at', 'desc');
+
+
                 $listings = $query->get();
 
-                Log::info('Query results:', ['listings' => $listings]);
 
 
                 $listingsData = $listings->map(function ($listing) use ($category) {
@@ -581,6 +582,7 @@ class SearchController extends JsonApiController
             } else {
 
 
+
                 $query = Listing::query();
 
                 if ($request->has('searchLocation') && $request->input('searchLocation') !== '' && $request->input('searchLocation') !== 'null') {
@@ -591,6 +593,9 @@ class SearchController extends JsonApiController
                 } else {
                     $query->where('title', 'like', '%' . $request->input('searchKeyword') . '%');
                 }
+
+                $query->orderBy('created_at', 'desc');
+
 
                 $listings = $query->get();
 

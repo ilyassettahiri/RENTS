@@ -99,6 +99,8 @@ export default function NavList({ data }) {
                         cover={list.cover}
                         items={list.items}
                         isNew={list.isNew}
+                        menuOpen={menuOpen}  // Pass menuOpen here
+
                       />
                     ))}
                   </Box>
@@ -118,13 +120,18 @@ NavList.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function NavSubList({ subheader, isNew, cover, items }) {
+function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
   const pathname = usePathname();
   const { handleCategoryClick } = useContext(AuthContext);
 
   const coverPath = items.length ? items[0].path : '';
 
   const commonList = subheader === 'Common';
+
+  const handleClick = (title) => {
+    handleCategoryClick(title);
+    menuOpen.onFalse(); // Close the tab when a category is clicked
+  };
 
   return (
     <Stack spacing={2}>
@@ -154,7 +161,7 @@ function NavSubList({ subheader, isNew, cover, items }) {
 
           return (
             <NavItem key={item.title} title={item.title} path={item.path} active={active} subItem disableLink
-            onClick={() => handleCategoryClick(item.title)} // Call handleCategoryClick here
+            onClick={() => handleClick(item.title)} // Handle click to close the tab
 
             />
           );
@@ -168,5 +175,7 @@ NavSubList.propTypes = {
   cover: PropTypes.string,
   isNew: PropTypes.bool,
   items: PropTypes.array,
+  menuOpen: PropTypes.bool,
+
   subheader: PropTypes.string,
 };

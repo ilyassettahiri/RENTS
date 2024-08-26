@@ -54,7 +54,7 @@ export default function NavMobile({ data }) {
 
           <List component="nav" disablePadding>
             {data.map((list) => (
-              <NavList key={list.title} data={list} />
+              <NavList key={list.title} data={list} onItemClick={mobileOpen.onFalse}/>
             ))}
           </List>
 

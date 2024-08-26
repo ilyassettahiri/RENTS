@@ -233,6 +233,10 @@ class SearchServiceController extends JsonApiController
                 $query->where('city', 'like', '%' . $request->input('searchLocation') . '%');
             }
 
+
+            $query->orderBy('created_at', 'desc');
+
+
             $services = $query->get();
 
 
@@ -307,6 +311,9 @@ class SearchServiceController extends JsonApiController
             } else {
                 $query->where('title', 'like', '%' . $request->input('searchKeyword') . '%');
             }
+
+
+            $query->orderBy('created_at', 'desc');
 
             $services = $query->get();
 

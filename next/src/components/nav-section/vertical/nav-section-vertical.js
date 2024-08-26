@@ -9,7 +9,7 @@ import NavList from './nav-list';
 
 // ----------------------------------------------------------------------
 
-function NavSectionVertical({ data, slotProps, ...other }) {
+function NavSectionVertical({ data, slotProps, onItemClick, ...other }) {
   return (
     <Stack component="nav" id="nav-section-vertical" {...other}>
       {data.map((group, index) => (
@@ -18,6 +18,8 @@ function NavSectionVertical({ data, slotProps, ...other }) {
           subheader={group.subheader}
           items={group.items}
           slotProps={slotProps}
+          onItemClick={onItemClick}  // Pass down to NavSectionVertical
+
         />
       ))}
     </Stack>
@@ -27,13 +29,15 @@ function NavSectionVertical({ data, slotProps, ...other }) {
 NavSectionVertical.propTypes = {
   data: PropTypes.array,
   slotProps: PropTypes.object,
+  onItemClick: PropTypes.func,  // Add prop types for onItemClick
+
 };
 
 export default memo(NavSectionVertical);
 
 // ----------------------------------------------------------------------
 
-function Group({ subheader, items, slotProps }) {
+function Group({ subheader, items, slotProps, onItemClick  }) {
   const [open, setOpen] = useState(true);
 
   const handleToggle = useCallback(() => {
@@ -41,7 +45,11 @@ function Group({ subheader, items, slotProps }) {
   }, []);
 
   const renderContent = items.map((list) => (
-    <NavList key={list.title} data={list} depth={1} slotProps={slotProps} />
+    <NavList key={list.title} data={list} depth={1} slotProps={slotProps}
+
+    onItemClick={onItemClick}  // Pass onItemClick to NavList
+
+    />
   ));
 
   return (
@@ -86,4 +94,6 @@ Group.propTypes = {
   items: PropTypes.array,
   subheader: PropTypes.string,
   slotProps: PropTypes.object,
+  onItemClick: PropTypes.func,  // Add prop types for onItemClick
+
 };

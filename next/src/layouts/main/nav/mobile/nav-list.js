@@ -12,7 +12,7 @@ import NavItem from './nav-item';
 
 // ----------------------------------------------------------------------
 
-export default function NavList({ data }) {
+export default function NavList({ data, onItemClick }) {
   const active = useActiveLink(data.path, !!data.children);
 
   const menuOpen = useBoolean();
@@ -29,12 +29,16 @@ export default function NavList({ data }) {
         active={active}
         hasChild={!!data.children}
         externalLink={data.path.includes('http')}
+
+
       />
 
       {!!data.children && (
         <Collapse in={menuOpen.value} unmountOnExit>
           <NavSectionVertical
             data={data.children}
+            onItemClick={onItemClick}  // Pass down to NavSectionVertical
+
             slotProps={{
               rootItem: {
                 pl: 1,
@@ -53,4 +57,6 @@ export default function NavList({ data }) {
 
 NavList.propTypes = {
   data: PropTypes.object,
+  onItemClick: PropTypes.func,  // Prop type for onItemClick
+
 };

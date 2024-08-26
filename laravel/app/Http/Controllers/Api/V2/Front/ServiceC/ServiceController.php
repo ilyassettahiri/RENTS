@@ -46,7 +46,7 @@ class ServiceController extends JsonApiController
 
 
 
-        $services = Service::all();
+        $services = Service::orderBy('created_at', 'desc')->get();
 
 
         $authuser = Auth::user();

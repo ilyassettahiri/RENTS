@@ -46,7 +46,7 @@ class BusinessController extends JsonApiController
 
 
 
-        $businesslist = Onlinestore::all();
+        $businesslist = Onlinestore::orderBy('created_at', 'desc')->get();
 
 
         $authuser = Auth::user();
