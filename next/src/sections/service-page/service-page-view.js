@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useContext  } from 'react';
+import { useState, useEffect, useCallback, useMemo  } from 'react';
 import CrudService from 'src/services/cruds-service';
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,7 @@ import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { useQuery } from '@tanstack/react-query';
 
 import Review from 'src/sections/review/review';
 
@@ -20,55 +21,54 @@ import ListingForm from 'src/sections/listing-page/listing-form';
 import ListingsCarouselService from 'src/sections/home/lisings-carousel-service';
 import Map from 'src/components/map';
 
-import { SplashScreen } from 'src/components/loading-screen';
-import PostSocialsShare from 'src/sections/blog/common/post-socials-share';
 
 import ServicesDetailsHero from '../components/services/details/services-details-hero';
+import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton.js';
+import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
+import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 
 // ----------------------------------------------------------------------
 
 export default function ServicePageView({ params }) {
   const mdUp = useResponsive('up', 'md');
 
-  const [specifications, setSpecifications] = useState(null);
-  const [socials, setSocials] = useState(null);
-  const [recentlistings, setRecentlistings] = useState(null);
 
   const [favorites, setFavorites] = useState([]);
 
 
   const { url } = params;
 
-  const [data, setData] = useState(null);
+
+
+  const { data: serviceData, isLoading: isServiceLoading, error: serviceError } = useQuery({
+    queryKey: ['service', url],
+    queryFn: () => CrudService.getService(url),
+    onError: (error) => {
+      console.error('Failed to fetch service:', error);
+    },
+  });
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getService(url);
-        const favoritesData = response.favorites;
+    if (serviceData?.favorites) {
+      setFavorites(serviceData.favorites);
+    }
+  }, [serviceData]);
 
-        setData(response.data);
-        setSocials(response.data.attributes.socials);
-        setSpecifications(response.data.attributes.specifications);
-        setRecentlistings(response.data.attributes.recentlistings);
-        setFavorites(favoritesData);
+  const memoizedServiceData = useMemo(() => {
+    const specifications = serviceData?.data?.attributes?.specifications || [];
+    const recentListings = serviceData?.data?.attributes?.recentlistings || [];
+    const serviceEmpty = !isServiceLoading && !recentListings.length;
 
-
-      } catch (error) {
-        console.error('Failed to fetch listing:', error);
-      }
-    })();
-  }, [url]);
-
-  const loading = useBoolean(true);
-
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
+    return {
+      specifications,
+      recentListings,
+      favorites: serviceData?.favorites || [],
+      serviceLoading: isServiceLoading,
+      serviceError,
+      serviceEmpty,
     };
-    fakeLoading();
-  }, [loading]);
+  }, [serviceData, isServiceLoading, serviceError]);
+
 
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
@@ -79,13 +79,26 @@ export default function ServicePageView({ params }) {
 
 
 
-  if (loading.value) {
-    return <SplashScreen />;
-  }
+
 
   return (
-    <>
-      {data &&<ServicesDetailsHero job={data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>}
+    <Container
+      maxWidth={false}
+      sx={{
+        overflow: 'hidden',
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
+      }}
+    >
+
+
+      {isServiceLoading ? (
+        <ListingImageSkeleton />
+      ) : (
+        <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+      )}
+
+
 
       <Container
         maxWidth={false}
@@ -99,14 +112,23 @@ export default function ServicePageView({ params }) {
       >
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
           <Grid xs={12} md={5} lg={4}>
-            {data && <ListingForm tour={data} />}
+
+
+
+
+            {isServiceLoading ? (
+              <ListingFormSkeleton />
+            ) : (
+              <ListingForm tour={serviceData.data} />
+            )}
+
           </Grid>
 
           <Grid xs={12} md={7} lg={8}>
-            {data && (
+            {serviceData && (
               <ListingSummary
-                specifications={specifications}
-                description={data.attributes.description}
+                specifications={memoizedServiceData.specifications}
+                description={serviceData?.data?.attributes?.description}
                 category="services"
               />
             )}
@@ -119,23 +141,25 @@ export default function ServicePageView({ params }) {
         <Stack spacing={3} sx={{ my: 10 }}>
           <Typography variant="h5">Location</Typography>
 
-          {data &&<Map offices={data} sx={{ borderRadius: 2 }} />}
+          {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
         </Stack>
 
         <Divider sx={{ my: 10 }} />
 
-        {data && (
+        {serviceData && (
           <Review
             category="services"
             url={url}
-            reviews={data.attributes.reviewslistings}
-            seller={data.attributes.seller}
+            reviews={serviceData.data.attributes.reviewslistings}
+            seller={serviceData.data.attributes.seller}
           />
         )}
 
-        {data && <ListingsCarouselService tours={recentlistings} title="Billiards" />}
+
+        {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Billiards" />}
+
       </Container>
-    </>
+    </Container>
   );
 }
 

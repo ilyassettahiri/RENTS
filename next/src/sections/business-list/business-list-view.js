@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback  } from "react";
+import { useState, useEffect, useCallback, useMemo  } from "react";
 import CrudService from "src/services/cruds-service";
 
 import Box from '@mui/material/Box';
@@ -8,6 +8,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import { useBoolean } from 'src/hooks/use-boolean';
+import { useDebounce } from 'src/hooks/use-debounce';
+
+import { useQuery } from '@tanstack/react-query';
+
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import Iconify from 'src/components/iconify';
 
@@ -35,55 +39,83 @@ const SORT_OPTIONS = [
 
 export default function BusinessListView() {
   const mobileOpen = useBoolean();
-  const loading = useBoolean(true);
-  const [business, setBusiness] = useState([]);
+
+
+
   const [sort, setSort] = useState('latest');
 
   const [favorites, setFavorites] = useState([]);
 
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const fetchListings = async (search) => {
-    try {
-      const response = await CrudService.getSearchBusinessListings(search);
-      console.log('Listings fetched:', response.data);
-
-      const favoritesData = response.favorites;
+  const debouncedQuery = useDebounce(searchQuery);
 
 
-      setBusiness(response.data);
-      setFavorites(favoritesData);
 
-    } catch (error) {
-      console.error('Failed to fetch listings:', error);
-    }
-  };
 
+  // Query for initial services
+  const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
+    queryKey: ['business'],
+    queryFn: () => CrudService.getBusiness(),
+    onError: (error) => {
+      console.error('Failed to fetch initial business:', error);
+    },
+  });
+
+
+
+  // Query for search results
+  const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
+    queryKey: ['business', debouncedQuery],
+    queryFn: () => CrudService.getSearchBusinessListings(debouncedQuery),
+    enabled: !!debouncedQuery,
+    onError: (error) => {
+      console.error('Failed to fetch search results:', error);
+    },
+  });
+
+
+
+  // Effect to update favorites from initialData
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getBusiness();
+    if (initialData?.favorites) {
+      setFavorites(initialData.favorites);
+    }
+  }, [initialData]);
 
-        console.log('Listings fetched:', response.data);
-        const favoritesData = response.favorites;
+  // Effect to update favorites from searchData
+  useEffect(() => {
+    if (searchData?.favorites) {
+      setFavorites(searchData.favorites);
+    }
+  }, [searchData]);
 
 
-        setBusiness(response.data);
+  const business = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);
+  const isLoading = isInitialLoading || isSearching;
 
-        setFavorites(favoritesData);
 
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
-      }
-    })();
+  const memoizedValue = useMemo(() => ({
+    business,
+    favorites,
+    businessLoading: isSearchLoading || isInitialLoading,
+    businessError: searchError || initialError,
+    businessFetching: isLoading,
+    businessEmpty: !isSearchLoading && !(business.length),
+  }), [ searchError, isLoading, isInitialLoading, initialError, business, favorites, isSearchLoading]);
+
+
+
+
+
+
+  const handleSearch = useCallback((inputValue) => {
+    setSearchQuery(inputValue);
   }, []);
 
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
-    };
-    fakeLoading();
-  }, [loading]);
+
+
+
 
 
 
@@ -114,7 +146,7 @@ export default function BusinessListView() {
       <ServiceSearch
         colorr="black"
 
-        onSearch={fetchListings}
+        onSearch={handleSearch}
         sx={{
           color: { md: 'common.white' },
           bgcolor: (theme) => ({
@@ -181,7 +213,7 @@ export default function BusinessListView() {
             width: { md: `calc(100% - ${280}px)` },
           }}
         >
-          <BusinessList businesses={business} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
+          <BusinessList businesses={business} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
         </Box>
       </Stack>
     </Container>

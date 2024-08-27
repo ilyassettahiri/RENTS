@@ -11,7 +11,7 @@ import StoreViewGridItemSkeleton from '../item/store-view-grid-item-skeleton';
 
 export default function StoreList({ loading, viewMode, products , favorites, onFavoriteToggle,}) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 15;
+  const itemsPerPage = 30;
 
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -35,7 +35,7 @@ export default function StoreList({ loading, viewMode, products , favorites, onF
         >
           {(loading ? [...Array(itemsPerPage)] : paginatedProducts).map((product, index) =>
             product ? (
-              <StoreViewGridItem key={product.id} product={product} />
+              <StoreViewGridItem key={product.id} product={product} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>
             ) : (
               <StoreViewGridItemSkeleton key={index} />
             )
@@ -45,7 +45,7 @@ export default function StoreList({ loading, viewMode, products , favorites, onF
         <Stack spacing={4}>
           {(loading ? [...Array(itemsPerPage)] : paginatedProducts).map((product, index) =>
             product ? (
-              <StoreViewListItem key={product.id} product={product} />
+              <StoreViewListItem key={product.id} product={product} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>
             ) : (
               <StoreViewListItemSkeleton key={index} />
             )

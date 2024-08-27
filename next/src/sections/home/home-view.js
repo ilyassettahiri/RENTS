@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useContext } from "react";
+import { useState, useEffect, useCallback, useContext, useMemo } from "react";
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';
@@ -8,6 +8,7 @@ import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
 import { alpha } from '@mui/material/styles';
@@ -18,12 +19,14 @@ import Button from '@mui/material/Button';
 import Iconify from 'src/components/iconify';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
+
 import { EmptyContent } from 'src/components/empty-content';
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 
 import HomeHero from './home-hero';
-import HomeIntroduce from './home-introduce';
-import HomeToursByCity from './home-tours-by-city';
+
+
+
 import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 
@@ -188,7 +191,10 @@ export default function HomeView() {
   const searchParams = useSearchParams();
 
 
+  const [searchQuery, setSearchQuery] = useState('');
 
+  const debouncedQuery = useDebounce(searchQuery);
+  const [favorites, setFavorites] = useState([]);
 
 
 
@@ -196,76 +202,73 @@ export default function HomeView() {
 
   const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
 
-  const [billiards, setBilliards] = useState([]);
-  const [boxings, setBoxings] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-  const [ourclients, setOurclients] = useState([]);
-  const [recentarticles, setRecentarticles] = useState([]);
-  const [initialListings, setInitialListings] = useState([]); // Store the initial listings fetched
-
-  const loading = useBoolean(true);
 
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getHome();
 
-        const billiardsData = response.data.filter(item => item.type === 'billiards');
-        const boxingsData = response.data.filter(item => item.type === 'listings');
-        const favoritesData = response.favorites;
-        const ourclientsData = response.ourclients;
-        const recentarticlesData = response.recentarticles;
 
-        console.log('billiardsData :', billiardsData);
-        console.log('Our clients:', ourclientsData);
 
-        setBilliards(billiardsData);
-        setInitialListings(billiardsData);
-
-        setBoxings(boxingsData);
-        setFavorites(favoritesData);
-        setRecentarticles(recentarticlesData);
-        setOurclients(ourclientsData);
-      } catch (error) {
+    // Query for initial home data
+    const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
+      queryKey: ['home'],
+      queryFn: CrudService.getHome,
+      onError: (error) => {
         console.error('Failed to fetch Home:', error);
+      },
+    });
+
+    // Query for search results based on selected category
+    const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
+      queryKey: ['home', selectedCategory],
+      queryFn: () => CrudService.getSearchListings({ searchCategories: selectedCategory }),
+      enabled: !!selectedCategory, // Only run query if a category is selected
+      onError: (error) => {
+        console.error('Failed to fetch listings:', error);
+      },
+    });
+
+    // Set favorites from home data
+    useEffect(() => {
+      if (homeData?.favorites) {
+        setFavorites(homeData.favorites);
       }
-    })();
-  }, []);
+    }, [homeData]);
 
-  const fetchListings = useCallback(async (searchs) => {
+    // Set favorites from search data
+    useEffect(() => {
+      if (searchData?.favorites) {
+        setFavorites(searchData.favorites);
+      }
+    }, [searchData]);
 
-    try {
-      const response = await CrudService.getSearchListings(searchs);
+    const listings = useMemo(() => searchData?.data || homeData?.data || [], [searchData, homeData]);
+    const isLoading = isHomeLoading || isSearching;
 
-      const listingsData = response.data.map(item => ({
-        type: item.type,
-        id: item.id,
-        attributes: {
-          ...item.attributes
-        }
-      }));
+    const memoizedHomeData = useMemo(() => {
+      const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
+      const boxings = homeData?.data.filter(item => item.type === 'listings') || [];
+      const recentarticles = homeData?.recentarticles || [];
+      const ourclients = homeData?.ourclients || [];
+      const listingsEmpty = !isLoading && !listings.length;
 
-      const favoritesData = response.favorites;
+      return {
+        listings,
+        billiards,
+        boxings,
+        recentarticles,
+        ourclients,
+        favorites: homeData?.favorites || [],
+        homeLoading: isLoading,
+        homeError,
+        listingsEmpty,
+      };
+    }, [homeData, searchData, isLoading, homeError]);
 
-      setFavorites(favoritesData);
-      setInitialListings(listingsData); // Store the fetched listings
-
-
-    } catch (error) {
-      console.error('Failed to fetch listings:', error);
-    }
-  }, []);
 
 
 
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
-    };
-    fakeLoading();
-  }, [loading]);
+
+
+
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
     setFavorites(prevFavorites =>
@@ -275,12 +278,6 @@ export default function HomeView() {
 
 
 
-
-  useEffect(() => {
-    if (selectedCategory) {
-      fetchListings({ searchCategories: selectedCategory });
-    }
-  }, [selectedCategory, fetchListings]);
 
 
 
@@ -294,9 +291,7 @@ export default function HomeView() {
 
   const [sortBy, setSortBy] = useState('featured');
 
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const debouncedQuery = useDebounce(searchQuery);
 
   const filters = useSetState({
     gender: [],
@@ -307,7 +302,7 @@ export default function HomeView() {
   });
 
   // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
-  const dataFiltered = applyFilter({ inputData: initialListings, filters: filters.state, sortBy });
+  const dataFiltered = applyFilter({ inputData: memoizedHomeData.listings, filters: filters.state, sortBy });
 
 
   const canReset =
@@ -318,7 +313,7 @@ export default function HomeView() {
     filters.state.priceRange[0] !== 0 ||
     filters.state.priceRange[1] !== 200;
 
-  const notFound = !initialListings.length && canReset;
+    const notFound = !memoizedHomeData.listings.length && canReset;
 
   const handleSortBy = useCallback((newValue) => {
     setSortBy(newValue);
@@ -328,12 +323,12 @@ export default function HomeView() {
     setSearchQuery(inputValue);
   }, []);
 
-  const productsEmpty = !initialListings.length;
+  const productsEmpty = !memoizedHomeData.listings.length;
 
 
 
   const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={initialListings.length} />
+    <ProductFiltersResult filters={filters} totalResults={memoizedHomeData.listings.length} />
   );
 
   const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
@@ -352,7 +347,14 @@ export default function HomeView() {
 
       <Box sx={{ position: 'relative' }}>
 
-        <HomeHero tours={tours} />
+
+
+            <HomeHero tours={tours} />
+
+
+
+
+
 
         <Container
           sx={{
@@ -366,18 +368,27 @@ export default function HomeView() {
             position: { md: 'absolute' },
           }}
         >
-          <ServiceSearch
+
+
+
+
+            <ServiceSearch
             colorr="white"
             onCategoryClick={handleCategoryClick}
-            onSearch={fetchListings}
+            onSearch={handleSearch}
             sx={{
               color: { md: 'common.white' },
               bgcolor: (theme) => ({
                 xs: 'background.neutral',
                 md: alpha(theme.palette.common.white, 0.08),
               }),
-            }}
-          />
+              }}
+            />
+
+
+
+
+
         </Container>
       </Box>
 
@@ -435,24 +446,24 @@ export default function HomeView() {
 
 
 
-          {(notFound || productsEmpty) && renderNotFound}
+        {(memoizedHomeData.listingsEmpty || productsEmpty) && renderNotFound}
 
 
 
 
 
 
-        <ListingList tours={dataFiltered} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={memoizedHomeData.listings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
         <Stack sx={{ my: 5 }} >
-            {billiards &&<ListingsCarousel tours={billiards} title="Billiards" />}
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title="Billiards" />}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-            {boxings &&<ListingsCarousel tours={boxings} title="Boxings" />}
+        {memoizedHomeData.boxings && <ListingsCarousel tours={memoizedHomeData.boxings} title="Boxings" />}
 
         </Stack>
 
@@ -460,8 +471,8 @@ export default function HomeView() {
 
 
       </Container>
-      <OurClients brands={ourclients} />
-      <BlogHomeLatestPosts posts={recentarticles.slice(2, 6)} />
+      <OurClients brands={memoizedHomeData.ourclients} />
+      <BlogHomeLatestPosts posts={memoizedHomeData.recentarticles.slice(2, 6)} />
     </>
   );
 }

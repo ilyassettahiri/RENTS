@@ -1,12 +1,15 @@
 'use client';
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo  } from "react";
 import PropTypes from 'prop-types';
 
 import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import { useBoolean } from 'src/hooks/use-boolean';
+
+import { useQuery } from '@tanstack/react-query';
+
 import CrudService from 'src/services/cruds-service';
 
 import Select from '@mui/material/Select';
@@ -23,6 +26,9 @@ import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filte
 import StoreList from 'src/sections/store/product/list/store-list';
 
 import StoreHero from './landing/store-hero';
+import StoreHeroSkeleton from 'src/sections/store/landing/store-hero-skeleton';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -41,39 +47,46 @@ export default function StoreView({ params }) {
   const mobileOpen = useBoolean();
   const [sort, setSort] = useState('latest');
   const { url } = params;
-  const [data, setData] = useState(null);
-  const [listings, setListings] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
-  const loading = useBoolean(true);
 
+
+
+  const { data: storeData, isLoading: isStoreLoading, error: storeError } = useQuery({
+    queryKey: ['store', url],
+    queryFn: () => CrudService.getStore(url),
+    onError: (error) => {
+      console.error('Failed to fetch store data:', error);
+    },
+  });
+
+  // Update favorites from storeData
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getStore(url);
-        setData(response.data);
+    if (storeData?.data?.attributes?.favorites) {
+      setFavorites(storeData.data.attributes.favorites);
+    }
+  }, [storeData]);
 
-        const listingsData = response.data.attributes.listings;
+  // Extract listings from storeData using useMemo
+  const listings = useMemo(() => storeData?.data?.attributes?.listings || [], [storeData]);
 
-        console.log('Listings Data:', listingsData);
 
+  // Memoize listings and other store data values
+  const memoizedStoreData = useMemo(() => {
+    const listings = storeData?.data?.attributes?.listings || [];
+    const favoritesData = storeData?.data?.attributes?.favorites || [];
+    const storeEmpty = !isStoreLoading && !listings.length;
 
-        const favoritesData = response.data.attributes.favorites;
-        setFavorites(favoritesData);
-        setListings(listingsData);
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
-      }
-    })();
-  }, [url]);
-
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
+    return {
+      listings,
+      favorites: favoritesData,
+      storeLoading: isStoreLoading,
+      storeError,
+      storeFetching: false, // Assuming there's no need for fetching state
+      storeEmpty,
     };
-    fakeLoading();
-  }, [loading]);
+  }, [storeData, isStoreLoading, storeError]);
+
 
 
 
@@ -104,12 +117,13 @@ export default function StoreView({ params }) {
           paddingRight: { lg: '100px' },
         }}
       >
-        {data && (
-          <StoreHero
-            StoreData={data}
 
-          />
+        {memoizedStoreData.storeLoading ? (
+          <StoreHeroSkeleton />
+        ) : (
+          <StoreHero StoreData={storeData?.data} />
         )}
+
 
         <Stack
           direction="row"
@@ -179,7 +193,7 @@ export default function StoreView({ params }) {
             </Stack>
 
             <StoreList
-              loading={loading.value}
+              loading={memoizedStoreData.storeLoading}
               viewMode={viewMode}
               products={listings}
               favorites={favorites} onFavoriteToggle={handleFavoriteToggle}

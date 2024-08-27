@@ -5,7 +5,7 @@ import Pagination, { paginationClasses } from '@mui/material/Pagination';
 import ListingItem from 'src/sections/components/listings/list/listing-item';
 import ListingsItemSkeleton from './listings-item-skeleton';
 
-const ITEMS_PER_PAGE = 12;
+const ITEMS_PER_PAGE = 32;
 
 export default function ListingsList({ tours, loading, favorites, onFavoriteToggle, columns = 4 }) {
   const [currentPage, setCurrentPage] = useState(1);

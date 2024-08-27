@@ -36,6 +36,7 @@ import routes from "routes";
 
 // Soft UI Dashboard PRO React contexts
 import { useSoftUIController,setMiniSidenav, AuthContext, setOpenConfigurator } from "context";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Import QueryClient and QueryClientProvider
 
 
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -84,6 +85,9 @@ export default function App({ ability }) {
     navigate("/auth/login");
   });
 
+
+    // Create a QueryClient instance
+    const queryClient = useMemo(() => new QueryClient(), []);
 
 
   // Cache for the rtl
@@ -198,62 +202,71 @@ export default function App({ ability }) {
 
   
 
-  return direction === "rtl" ? (
-    <CacheProvider value={rtlCache}>
-      <ThemeProvider theme={themeRTL}>
-        <CssBaseline />
-        {layout === "dashboard" && (
-          <>
-            <Sidenav
-              color={sidenavColor}
-              brand={brand}
-              brandName=""
-              routes={routes}
-              hasStore={hasStore}  // Make sure hasStore is being passed correctly
+  return (
+        <QueryClientProvider client={queryClient}> 
 
-             
-            />
-            <Configurator user={userDetails} />
-            {configsButton}
-            
-          </>
-        )}
-        {layout === "vr" }
-        <Routes>
-          <Route path="/auth/login" element={<Login />} />
-                {getRoutes(routes)}
-                <Route path="*" element={<Navigate to="/dashboard" />} />
-          </Routes>
-      </ThemeProvider>
-    </CacheProvider>
-  ) : (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {layout === "dashboard" && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brand}
-            brandName="Soft UI Dashboard PRO"
-            routes={routes}
-            hasStore={hasStore}  // Make sure hasStore is being passed correctly
+        
+            direction === "rtl" ? (
+              <CacheProvider value={rtlCache}>
+                <ThemeProvider theme={themeRTL}>
+                  <CssBaseline />
+                  {layout === "dashboard" && (
+                    <>
+                      <Sidenav
+                        color={sidenavColor}
+                        brand={brand}
+                        brandName=""
+                        routes={routes}
+                        hasStore={hasStore}  // Make sure hasStore is being passed correctly
 
-          />
-          <Configurator user={userDetails}/>
-          {configsButton}
-          
-        </>
-      )}
-      {layout === "vr" }
-      <Routes>
-        <Route path="/auth/login" element={<Login />} />
-              <Route path="/auth/register" element={<Register />} />
-              <Route path="/auth/forgot-password" element={<ForgotPassword />} />
-              <Route path="/auth/reset-password" element={<ResetPassword />} />
-              {getRoutes(routes)}
-            
-              <Route path="*" element={<Navigate to="/dashboard" />} />
-        </Routes>
-    </ThemeProvider>
-  );
+                      
+                      />
+                      <Configurator user={userDetails} />
+                      {configsButton}
+                      
+                    </>
+                  )}
+                  {layout === "vr" }
+                  <Routes>
+                    <Route path="/auth/login" element={<Login />} />
+                          {getRoutes(routes)}
+                          <Route path="*" element={<Navigate to="/dashboard" />} />
+                    </Routes>
+                </ThemeProvider>
+              </CacheProvider>
+            ) : (
+              <ThemeProvider theme={theme}>
+                <CssBaseline />
+                {layout === "dashboard" && (
+                  <>
+                    <Sidenav
+                      color={sidenavColor}
+                      brand={brand}
+                      brandName="Soft UI Dashboard PRO"
+                      routes={routes}
+                      hasStore={hasStore}  // Make sure hasStore is being passed correctly
+
+                    />
+                    <Configurator user={userDetails}/>
+                    {configsButton}
+                    
+                  </>
+                )}
+                {layout === "vr" }
+                <Routes>
+                  <Route path="/auth/login" element={<Login />} />
+                        <Route path="/auth/register" element={<Register />} />
+                        <Route path="/auth/forgot-password" element={<ForgotPassword />} />
+                        <Route path="/auth/reset-password" element={<ResetPassword />} />
+                        {getRoutes(routes)}
+                      
+                        <Route path="*" element={<Navigate to="/dashboard" />} />
+                  </Routes>
+              </ThemeProvider>
+            );
+
+        </QueryClientProvider>
+
+      );
+
 }

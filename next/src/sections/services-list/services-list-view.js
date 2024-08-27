@@ -1,12 +1,16 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo  } from 'react';
 import Container from '@mui/material/Container';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';
 import { orderBy } from 'src/utils/helper';
 
 import { useBoolean } from 'src/hooks/use-boolean';
+
+import { useQuery } from '@tanstack/react-query';
+
+
 import CrudService from 'src/services/cruds-service';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import Stack from '@mui/material/Stack';
@@ -49,55 +53,67 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 export default function ServicesListView() {
-  const loading = useBoolean(true);
+
+
   const [favorites, setFavorites] = useState([]);
-  const [services, setServices] = useState([]);
-  const [initialListings, setInitialListings] = useState([]); // Store the initial listings fetched
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const debouncedQuery = useDebounce(searchQuery);
 
 
+  // Query for initial services
+  const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
+    queryKey: ['services'],
+    queryFn: () => CrudService.getSerice(),
+    onError: (error) => {
+      console.error('Failed to fetch initial services:', error);
+    },
+  });
+
+
+
+  // Query for search results
+  const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
+    queryKey: ['services', debouncedQuery],
+    queryFn: () => CrudService.getSearchServiceListings(debouncedQuery),
+    enabled: !!debouncedQuery, // Only run query if debouncedQuery is not empty
+    onError: (error) => {
+      console.error('Failed to fetch search results:', error);
+    },
+  });
+
+
+
+  // Effect to update favorites from initialData
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getSerice();
-
-        const favoritesData = response.favorites;
-
-
-        setServices(response.data);
-        setFavorites(favoritesData);
-
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
-      }
-    })();
-  }, []);
-
-
-  const fetchListings = async (searchs) => {
-    try {
-      const response = await CrudService.getSearchServiceListings(searchs);
-      console.log('Listings fetched:', response.data);
-
-      const favoritesData = response.favorites;
-
-
-      setServices(response.data);
-
-      setFavorites(favoritesData);
-
-    } catch (error) {
-      console.error('Failed to fetch listings:', error);
+    if (initialData?.favorites) {
+      setFavorites(initialData.favorites);
     }
-  };
+  }, [initialData]);
 
-
+  // Effect to update favorites from searchData
   useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
-    };
-    fakeLoading();
-  }, [loading]);
+    if (searchData?.favorites) {
+      setFavorites(searchData.favorites);
+    }
+  }, [searchData]);
+
+
+  const services = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);
+  const isLoading = isInitialLoading || isSearching;
+
+
+  const memoizedValue = useMemo(() => ({
+    services,
+    favorites,
+    servicesLoading: isSearchLoading || isInitialLoading,
+    servicesError: searchError || initialError,
+    servicesFetching: isLoading,
+    servicesEmpty: !isSearchLoading && !(services.length),
+  }), [ searchError, isLoading, isInitialLoading, initialError, services, favorites, isSearchLoading]);
+
+
 
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
@@ -120,9 +136,7 @@ export default function ServicesListView() {
 
   const [sortBy, setSortBy] = useState('featured');
 
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const debouncedQuery = useDebounce(searchQuery);
 
   const filters = useSetState({
     gender: [],
@@ -186,7 +200,7 @@ export default function ServicesListView() {
 
       <ServiceSearch
         colorr="black"
-        onSearch={fetchListings}
+        onSearch={handleSearch}
         sx={{
           color: { md: 'common.white' },
           bgcolor: (theme) => ({
@@ -237,14 +251,13 @@ export default function ServicesListView() {
 
 
 
-          {(notFound || productsEmpty) && renderNotFound}
 
 
 
 
 
 
-      <ServiceList jobs={services} loading={loading.value} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
+      <ServiceList jobs={services} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
     </Container>
   );
 }

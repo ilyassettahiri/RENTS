@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo  } from "react";
 import PropTypes from 'prop-types';
 import { useRouter } from 'src/routes/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
+
+import { useQuery } from '@tanstack/react-query';
+
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -15,7 +18,6 @@ import Typography from '@mui/material/Typography';
 import { paths } from 'src/routes/paths';
 import { useBoolean } from 'src/hooks/use-boolean';
 import Iconify from 'src/components/iconify';
-import { SplashScreen } from 'src/components/loading-screen';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import Review from 'src/sections/review/review';
 import ListingSummary from 'src/sections/listing-page/listing-summary';
@@ -25,53 +27,68 @@ import ListingsCarousel from 'src/sections/home/listings-carousel';
 import Map from 'src/components/map';
 
 import ListingHeader from './listing-header';
+
+import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton.js';
+
+
 import ListingImage from './listing-image';
+import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
+
 import ListingForm from './listing-form';
-import TourListSimilar from '../components/listings/list/listings-list-similar';
-import ListingList from '../components/listings/list/listings-list';
+import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 
 
 export default function ListingView({ params }) {
   const router = useRouter();
   const { category, url } = params;
-  const loading = useBoolean(true);
 
-  const [data, setData] = useState(null);
-  const [recentListingsElJadida, setRecentListingsElJadida] = useState(null);
-  const [specifications, setSpecifications] = useState(null);
+
 
   const mdUp = useResponsive('up', 'md');
 
   const [favorites, setFavorites] = useState([]);
 
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getListingsFront(category, url);
 
-        const favoritesData = response.favorites;
 
-        setData(response.data);
-        setRecentListingsElJadida(response.data.attributes.recentListingsElJadida);
-        setSpecifications(response.data.attributes.specifications);
-        setFavorites(favoritesData);
+  const { data: listingData, isLoading: isListingLoading, error: listingError } = useQuery({
+    queryKey: ['listing', category, url],
+    queryFn: () => CrudService.getListingsFront(category, url),
+    onError: (error) => {
+      console.error('Failed to fetch listing:', error);
+    },
+  });
 
-        console.log('recentlistings :', response.data.attributes.recentlistings);
 
-      } catch (error) {
-        console.error('Failed to fetch listing:', error);
-      }
-    })();
-  }, [category, url]);
+
 
   useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
+    if (listingData?.favorites) {
+      setFavorites(listingData.favorites);
+    }
+  }, [listingData]);
+
+
+
+  const memoizedListingData = useMemo(() => {
+    const listings = listingData?.data?.attributes?.recentListingsElJadida || [];
+    const specifications = listingData?.data?.attributes?.specifications || [];
+    const listingEmpty = !isListingLoading && !listings.length;
+
+    return {
+      listings,
+      specifications,
+      favorites: listingData?.favorites || [],
+      listingLoading: isListingLoading,
+      listingError,
+      listingFetching: false, // Assuming there's no need for fetching state
+      listingEmpty,
     };
-    fakeLoading();
-  }, [loading]);
+  }, [listingData, isListingLoading, listingError]);
+
+
+
+
 
 
 
@@ -83,9 +100,7 @@ export default function ListingView({ params }) {
 
 
 
-  if (loading.value) {
-    return <SplashScreen />;
-  }
+
 
   return (
     <Container
@@ -109,24 +124,55 @@ export default function ListingView({ params }) {
       )}
 
 
-      {data && <ListingImage images={data.attributes.images}  />}
+      {isListingLoading ? (
+        <ListingImageSkeleton />
+      ) : (
+        <ListingImage images={listingData?.data?.attributes?.images || []} />
+      )}
+
 
       <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, }, }}>
         <Grid xs={12} md={5} lg={4}>
-          {data && <ListingForm tour={data} />}
+
+
+            {isListingLoading ? (
+              <ListingFormSkeleton />
+            ) : (
+              <ListingForm tour={listingData?.data} />
+            )}
         </Grid>
 
         <Grid xs={12} md={7} lg={8}>
-          {data && <ListingHeader tour={data} seller={data.attributes.seller} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>}
+
+
+
+
+            {isListingLoading ? (
+              <ListingHeaderSkeleton />
+            ) : (
+
+              <ListingHeader
+              tour={listingData?.data}
+              seller={listingData?.data?.attributes?.seller}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+            />
+
+
+            )}
+
+
           <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-          {data && <ListingSummary
-            specifications={specifications}
-            description={data.attributes.description}
-            category={data.attributes.category}
-          />}
+          {listingData && (
 
+              <ListingSummary
+                specifications={memoizedListingData.specifications}
+                description={listingData?.data?.attributes?.description}
+                category={listingData?.data?.attributes?.category}
+              />
 
+          )}
         </Grid>
       </Grid>
 
@@ -134,43 +180,49 @@ export default function ListingView({ params }) {
       <Stack spacing={3} sx={{ my: 10 }}>
         <Typography variant="h5">Location</Typography>
 
-        {data &&<Map offices={data} sx={{ borderRadius: 2 }} />}
+        {listingData && ( <Map offices={listingData?.data} sx={{ borderRadius: 2 }} />)}
       </Stack>
 
       <Divider sx={{ my: 10 }} />
 
-
-      {data && <Review
-        category={category}
-        url={url}
-        reviews={data.attributes.reviewslistings}
-        seller={data.attributes.seller}
-      />}
+            {listingData && (
+              <Review
+                category={category}
+                url={url}
+                reviews={listingData?.data?.attributes?.reviewslistings}
+                seller={listingData?.data?.attributes?.seller}
+              />
+            )}
 
       <Divider sx={{ my: 10 }} />
 
-      {data && <ListingsCarousel tours={data.attributes.recentlistings} title="Billiards" />}
+            {listingData && (
 
-      {data && <StorePopularProducts
-        recentListingsCasablanca={data.attributes.recentlistingscasablanca}
-        recentListingsMarrakech={data.attributes.recentlistingsmarrakech}
-        recentListingsTanger={data.attributes.recentlistingstanger}
-        recentListingsRabat={data.attributes.recentlistingsrabat}
-        recentListingsFes={data.attributes.recentlistingsfes}
-        recentListingsAgadir={data.attributes.recentlistingsagadir}
-        recentListingsMeknes={data.attributes.recentlistingsmeknes}
-        recentListingsOujda={data.attributes.recentlistingsojuda}
-        recentListingsKenitra={data.attributes.recentlistingskenitra}
-        recentListingsTetouan={data.attributes.recentlistingstetouan}
-        recentListingsSale={data.attributes.recentlistingssale}
-        recentListingsTemara={data.attributes.recentlistingstemara}
-        recentListingsSafi={data.attributes.recentlistingssafi}
-        recentListingsMohammedia={data.attributes.recentlistingsmohammedia}
-        recentListingsKhouribga={data.attributes.recentlistingskhouribga}
-        recentListingsElJadida={recentListingsElJadida}
-        recentListingsBeniMellal={data.attributes.recentlistingsbenimellal}
-      />}
+              <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title="Billiards" />
 
+            )}
+
+            {listingData && (
+              <StorePopularProducts
+                recentListingsCasablanca={listingData?.data?.attributes?.recentlistingscasablanca}
+                recentListingsMarrakech={listingData?.data?.attributes?.recentlistingsmarrakech}
+                recentListingsTanger={listingData?.data?.attributes?.recentlistingstanger}
+                recentListingsRabat={listingData?.data?.attributes?.recentlistingsrabat}
+                recentListingsFes={listingData?.data?.attributes?.recentlistingsfes}
+                recentListingsAgadir={listingData?.data?.attributes?.recentlistingsagadir}
+                recentListingsMeknes={listingData?.data?.attributes?.recentlistingsmeknes}
+                recentListingsOujda={listingData?.data?.attributes?.recentlistingsojuda}
+                recentListingsKenitra={listingData?.data?.attributes?.recentlistingskenitra}
+                recentListingsTetouan={listingData?.data?.attributes?.recentlistingstetouan}
+                recentListingsSale={listingData?.data?.attributes?.recentlistingssale}
+                recentListingsTemara={listingData?.data?.attributes?.recentlistingstemara}
+                recentListingsSafi={listingData?.data?.attributes?.recentlistingssafi}
+                recentListingsMohammedia={listingData?.data?.attributes?.recentlistingsmohammedia}
+                recentListingsKhouribga={listingData?.data?.attributes?.recentlistingskhouribga}
+                recentListingsElJadida={memoizedListingData.recentListingsElJadida}
+                recentListingsBeniMellal={listingData?.data?.attributes?.recentlistingsbenimellal}
+              />
+            )}
     </Container>
   );
 }

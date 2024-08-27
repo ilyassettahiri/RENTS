@@ -11,7 +11,7 @@ import BusinessItemSkeleton from './business-item-skeleton';
 
 export default function BusinessList({ businesses, loading, favorites, onFavoriteToggle }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 32;
 
   const handleChangePage = (event, value) => {
     setPage(value);

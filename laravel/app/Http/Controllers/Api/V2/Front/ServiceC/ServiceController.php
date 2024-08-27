@@ -50,20 +50,12 @@ class ServiceController extends JsonApiController
 
 
         $authuser = Auth::user();
+        $favoriteIds = [];
 
 
         if ($authuser) {
-
-
             $favorites = Favorite::where('user_id', $authuser->id)->get();
-
-
-
-
-
-            $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
-
-
+            $favoriteIds = $favorites->pluck('service_id')->toArray();
         }
 
 

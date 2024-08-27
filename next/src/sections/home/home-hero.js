@@ -203,10 +203,10 @@ function ThumbnailItem({ tour, selected, onClick }) {
     <Stack
       direction="row"
       alignItems="center"
-      spacing={2.5}
+      spacing={2}
       onClick={onClick}
       sx={{
-        px: 2,
+        px: 1,
         py: 1.5,
         cursor: 'pointer',
         color: 'common.white',

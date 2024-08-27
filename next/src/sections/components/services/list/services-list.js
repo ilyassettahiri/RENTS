@@ -9,7 +9,7 @@ import ServiceItemSkeleton from './services-item-skeleton';
 
 export default function ServiceList({ jobs, loading, favorites, onFavoriteToggle, columns = 4 }) {
   const [page, setPage] = useState(1);
-  const itemsPerPage = 9;
+  const itemsPerPage = 32;
 
   const handleChangePage = (event, value) => {
     setPage(value);
@@ -33,7 +33,14 @@ export default function ServiceList({ jobs, loading, favorites, onFavoriteToggle
         }}
       >
         {(loading ? [...Array(itemsPerPage)] : paginatedJobs).map((job, index) =>
-          job ? <ServiceItem key={job.id} job={job} /> : <ServiceItemSkeleton key={index} favorites={favorites} onFavoriteToggle={onFavoriteToggle} />
+          job ? (
+
+          <ServiceItem key={job.id} job={job} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>
+          )
+          : (
+
+          <ServiceItemSkeleton key={index}  />
+          )
         )}
       </Box>
 
