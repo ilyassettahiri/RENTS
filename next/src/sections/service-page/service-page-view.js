@@ -22,10 +22,10 @@ import ListingsCarouselService from 'src/sections/home/lisings-carousel-service'
 import Map from 'src/components/map';
 
 
-import ServicesDetailsHero from '../components/services/details/services-details-hero';
-import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton.js';
+import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
 import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
 import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
+import ServicesDetailsHero from '../components/services/details/services-details-hero';
 
 // ----------------------------------------------------------------------
 
@@ -125,11 +125,15 @@ export default function ServicePageView({ params }) {
           </Grid>
 
           <Grid xs={12} md={7} lg={8}>
-            {serviceData && (
+
+
+            {isServiceLoading ? (
+              <ListingHeaderSkeleton />
+            ) : (
               <ListingSummary
-                specifications={memoizedServiceData.specifications}
-                description={serviceData?.data?.attributes?.description}
-                category="services"
+              specifications={memoizedServiceData.specifications}
+              description={serviceData?.data?.attributes?.description}
+              category="services"
               />
             )}
 

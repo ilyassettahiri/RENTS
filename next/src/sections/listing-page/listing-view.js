@@ -26,16 +26,18 @@ import StorePopularProducts from 'src/sections/store/landing/store-popular-produ
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 import Map from 'src/components/map';
 
+import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
+
+
 import ListingHeader from './listing-header';
 
-import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton.js';
 
-
-import ListingImage from './listing-image';
 import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
 
-import ListingForm from './listing-form';
+import ListingImage from './listing-image';
 import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
+
+import ListingForm from './listing-form';
 
 
 export default function ListingView({ params }) {

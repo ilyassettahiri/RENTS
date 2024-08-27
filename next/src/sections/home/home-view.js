@@ -261,7 +261,7 @@ export default function HomeView() {
         homeError,
         listingsEmpty,
       };
-    }, [homeData, searchData, isLoading, homeError]);
+    }, [homeData, searchData, isLoading, homeError, listings]);
 
 
 

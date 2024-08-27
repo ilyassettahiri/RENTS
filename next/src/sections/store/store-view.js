@@ -24,9 +24,9 @@ import Iconify from 'src/components/iconify';
 
 import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filters';
 import StoreList from 'src/sections/store/product/list/store-list';
+import StoreHeroSkeleton from 'src/sections/store/landing/store-hero-skeleton';
 
 import StoreHero from './landing/store-hero';
-import StoreHeroSkeleton from 'src/sections/store/landing/store-hero-skeleton';
 
 
 
@@ -68,7 +68,7 @@ export default function StoreView({ params }) {
   }, [storeData]);
 
   // Extract listings from storeData using useMemo
-  const listings = useMemo(() => storeData?.data?.attributes?.listings || [], [storeData]);
+  const extractedListings = useMemo(() => storeData?.data?.attributes?.listings || [], [storeData]);
 
 
   // Memoize listings and other store data values
@@ -195,7 +195,7 @@ export default function StoreView({ params }) {
             <StoreList
               loading={memoizedStoreData.storeLoading}
               viewMode={viewMode}
-              products={listings}
+              products={extractedListings}
               favorites={favorites} onFavoriteToggle={handleFavoriteToggle}
             />
           </Box>
