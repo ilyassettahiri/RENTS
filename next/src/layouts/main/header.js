@@ -19,6 +19,9 @@ import { RouterLink } from 'src/routes/components';
 import Iconify from 'src/components/iconify';
 import { paths } from 'src/routes/paths';
 import useAuthDialog from 'src/hooks/use-authdialog';
+import { AnimateBorder } from 'src/components/animate/animate-border';
+
+import { alpha } from '@mui/material/styles';
 
 import { LanguagePopover } from 'src/layouts/main/language-popover';
 
@@ -89,18 +92,46 @@ export default function Header({ headerOnDark, onOpenNav}) {
       <Box sx={{ flexGrow: { xs: 1, md: 'unset' } }} />
       <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
         <Stack spacing={1} direction="row" alignItems="center">
-          <Button
-            variant="contained"
-            color="inherit"
-            href={paths.createlisting}
-            target="_blank"
-            rel="noopener"
-            sx={{
-              display: { xs: 'none', md: 'inline-flex' },
-            }}
-          >
-            Create Listing
-          </Button>
+
+
+
+
+
+
+                <Box
+                  sx={{
+                    borderRadius: 1,
+                    position: 'relative',
+                    bgcolor: 'text.primary',
+                    color: 'background.paper',
+                    display: { xs: 'none', md: 'inline-flex' },
+
+                  }}
+                >
+                  <AnimateBorder
+                    animate={{
+                      duration: 12,
+                      distance: 40,
+                      color: ['#1976D2', '#D32F2F'],
+                      outline: `135deg, ${alpha('#1976D2', 0.04)}, ${alpha('#D32F2F', 0.04)}`, // Use alpha from MUI
+                    }}
+                    sx={{ width: 1, height: 1, minHeight: 'auto', position: 'absolute' }}
+                  />
+
+                  <Button
+                    variant="text"
+                    rel="noopener"
+                    target="_blank"
+                    href={paths.createlisting}
+                    sx={{ px: 2 }}
+                  >
+                    Create Listing
+                  </Button>
+                </Box>
+
+
+
+
           <Stack spacing={3} direction="row" alignItems="center" flexGrow={1} justifyContent="flex-end">
 
           <LanguagePopover data-slot="localization" data={allLangs} />

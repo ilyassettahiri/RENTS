@@ -41,9 +41,9 @@ export default function CheckoutView({ params }) {
   useEffect(() => {
     (async () => {
       try {
-        console.log('Fetching data for:', category, url); // Logging before fetching
+
         const response = await CrudService.getReservationFront(category, url);
-        console.log('Response data:', response.data); // Logging the response
+
         setData(response.data);
       } catch (error) {
         console.error('Failed to fetch listing:', error);
@@ -111,12 +111,12 @@ export default function CheckoutView({ params }) {
         reservationsend: departureDay[1].toISOString(),
       };
 
-      // Send data to the backend using createReservationFront method
+
       const response = await CrudService.createReservationFront(payload, category, url);
 
       const checkout_id = response.data.attributes.checkout_id;
 
-      // Reset the form and navigate to the order completed page
+
       reset();
       router.push(`${paths.travel.orderCompleted}/${checkout_id}`);
     } catch (error) {

@@ -34,8 +34,7 @@ export default function FaqsView() {
         setFaqSubjects(faqSubjectsData);
         setFaqs(faqsData);
 
-        console.log('FAQ Subjects:', faqSubjectsData); // Log FAQ subjects
-        console.log('FAQs:', faqsData); // Log FAQs
+
 
         // Create topics array from fetched data
         const topicsData = faqSubjectsData.map(subject => ({

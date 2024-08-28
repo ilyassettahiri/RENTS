@@ -37,11 +37,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, 
 
   return (
 
-      <Container maxWidth={false}
-      sx={{ mt:2,
-      paddingLeft: { lg: '100px' },
-      paddingRight: { lg: '100px' }, }}
-      >
+
         <Box
           gap={3}
           display="grid"
@@ -64,7 +60,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, 
 
 
         </Box>
-      </Container>
+
 
   );
 }

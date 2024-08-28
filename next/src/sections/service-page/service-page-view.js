@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo  } from 'react';
 import CrudService from 'src/services/cruds-service';
 import PropTypes from 'prop-types';
+import Box from '@mui/material/Box';
 
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -23,7 +24,7 @@ import Map from 'src/components/map';
 
 
 import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
-import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
+import ServicesDetailsHeroSkeleton from 'src/sections/components/services/details/services-details-hero-skeleton';
 import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 import ServicesDetailsHero from '../components/services/details/services-details-hero';
 
@@ -88,26 +89,26 @@ export default function ServicePageView({ params }) {
         overflow: 'hidden',
         paddingLeft: { lg: '80px' },
         paddingRight: { lg: '80px' },
+        pt: { xs: 2, md: 4 },
       }}
     >
 
 
       {isServiceLoading ? (
-        <ListingImageSkeleton />
+        <ServicesDetailsHeroSkeleton />
       ) : (
         <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
       )}
 
 
 
-      <Container
-        maxWidth={false}
+      <Box
+
         sx={{
           overflow: 'hidden',
-          pt: { xs: 5, md: 10 },
+          pt: { xs: 5, md: 7 },
           pb: 10,
-          paddingLeft: { lg: '80px' },
-          paddingRight: { lg: '80px' },
+
         }}
       >
         <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
@@ -162,7 +163,7 @@ export default function ServicePageView({ params }) {
 
         {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Billiards" />}
 
-      </Container>
+      </Box>
     </Container>
   );
 }

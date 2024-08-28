@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
+import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
 
 import Team from '../components/listings/team/team';
@@ -13,30 +14,19 @@ import LatestPosts from '../blog/travel/latest-posts';
 // ----------------------------------------------------------------------
 
 export default function AboutView() {
-  const [data, setData] = useState(null);
-  const [recentArticles, setRecentArticles] = useState([]);
-  const [ourclients, setOurclients] = useState([]);
-  const [about, setAbout] = useState([]);
+  // Use React Query to fetch data
+  const { data: aboutData, isLoading, error } = useQuery({
+    queryKey: ['about'],
+    queryFn: CrudService.getAbouts,
+    onError: (error) => {
+      console.error('Failed to fetch data:', error);
+    },
+  });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getAbouts();
-        const recentArticlesData = response.data.recentarticles;
-        const ourclientsData = response.data.ourclients;
-        const aboutData = response.data.about;
-
-        console.log('about:', aboutData); // Logging the about data
-        console.log('Our clients:', ourclientsData); // Logging the our clients
-
-        setAbout(aboutData);
-        setRecentArticles(recentArticlesData);
-        setOurclients(ourclientsData);
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-    })();
-  }, []);
+  // Memoize extracted data
+  const recentArticles = useMemo(() => aboutData?.data?.recentarticles || [], [aboutData]);
+  const ourclients = useMemo(() => aboutData?.data?.ourclients || [], [aboutData]);
+  const about = useMemo(() => aboutData?.data?.about || {}, [aboutData]);
 
   // Function to extract the first three paragraphs from the content
   const getFirstThreeParagraphs = (content) => {
@@ -46,30 +36,21 @@ export default function AboutView() {
         firstThree: paragraphs.slice(0, 1).join(''),
         secondThree: paragraphs.slice(1, 2).join(''),
         third: paragraphs.slice(2, 3).join(''),
-
         last: paragraphs.slice(3, 4).join(''),
-
       };
     }
     return {
       firstThree: content,
-
       secondThree: '',
-
       third: '',
-
       last: '',
     };
   };
 
   // Extract the first three paragraphs from the about content
-  const aboutContent = getFirstThreeParagraphs(about.attributes?.content || '');
+  const aboutContent = useMemo(() => getFirstThreeParagraphs(about.attributes?.content || ''), [about]);
 
-  console.log('First three paragraphs:', aboutContent.firstThree); // Log first three paragraphs
-  console.log('Third paragraph:', aboutContent.third); // Log third paragraph
-  console.log('last paragraph:', aboutContent.last); // Log third paragraph
 
-  console.log('Second three paragraphs:', aboutContent.secondThree); // Log second three paragraphs
 
   return (
     <>

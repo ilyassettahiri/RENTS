@@ -28,14 +28,14 @@ import Map from 'src/components/map';
 
 import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
 
+import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
+import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 
 import ListingHeader from './listing-header';
 
 
-import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
 
 import ListingImage from './listing-image';
-import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 
 import ListingForm from './listing-form';
 

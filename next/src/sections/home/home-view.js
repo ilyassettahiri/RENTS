@@ -44,9 +44,10 @@ import ListingList from '../components/listings/list/listings-list';
 
 // ----------------------------------------------------------------------
 const heroUrl = [
+  'images/categoriescover/apartments.jpg',
+
   'images/categoriescover/billiards.jpg',
   'images/categoriescover/activities.jpg',
-  'images/categoriescover/apartments.jpg',
   'images/categoriescover/audios.jpg',
   'images/categoriescover/boats.jpg',
   'images/categoriescover/boxings.jpg',
@@ -101,9 +102,10 @@ const heroUrl = [
 ];
 
 const categories = [
+  'Apartments',
+
   'Billiards',
   'Activities',
-  'Apartments',
   'Audios',
   'Boats',
   'Boxings',
@@ -191,9 +193,13 @@ export default function HomeView() {
   const searchParams = useSearchParams();
 
 
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const debouncedQuery = useDebounce(searchQuery);
+
+
+  const [searchParamsState, setSearchParamsState] = useState({});
+  const debouncedQuery = useDebounce(searchParamsState, 300);  // Use debounce hook
+
+
   const [favorites, setFavorites] = useState([]);
 
 
@@ -201,8 +207,6 @@ export default function HomeView() {
   const mdUp = useResponsive('up', 'md');
 
   const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
-
-
 
 
 
@@ -216,44 +220,72 @@ export default function HomeView() {
       },
     });
 
-    // Query for search results based on selected category
-    const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
-      queryKey: ['home', selectedCategory],
-      queryFn: () => CrudService.getSearchListings({ searchCategories: selectedCategory }),
-      enabled: !!selectedCategory, // Only run query if a category is selected
-      onError: (error) => {
-        console.error('Failed to fetch listings:', error);
+
+
+
+  const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
+    queryKey: ['search', debouncedQuery],
+    queryFn: () => {
+      console.log('Executing query with search params:', debouncedQuery);  // Log here to check value each time query runs
+      return CrudService.getSearchListings(debouncedQuery);
+    },
+    enabled: !!debouncedQuery.searchKeyword || !!debouncedQuery.searchCategories,  // Enabled if either search keyword or category is set
+    onError: (error) => {
+      console.error('Failed to fetch search results:', error);
+    },
+  });
+
+
+  useEffect(() => {
+    if (selectedCategory) {
+      setSearchParamsState({ searchKeyword: '', searchCategories: selectedCategory,  searchLocation: '' });
+    }
+  }, [selectedCategory]);
+
+
+  // Set favorites from home data
+  useEffect(() => {
+    if (homeData?.favorites) {
+      setFavorites(homeData.favorites);
+    }
+  }, [homeData]);
+
+  // Set favorites from search results data
+  useEffect(() => {
+    if (searchResultsData?.favorites) {
+      setFavorites(searchResultsData.favorites);
+    }
+  }, [searchResultsData]);
+
+  // Combine search results or category data
+  const InitialListings = useMemo(() => {
+    return searchResultsData?.data.map(item => ({
+      type: item.type,
+      id: item.id,
+      attributes: {
+        ...item.attributes,
       },
-    });
+    })) || homeData?.data.filter(item => item.type === 'apartments') || [];
+  }, [searchResultsData, homeData]);
 
-    // Set favorites from home data
-    useEffect(() => {
-      if (homeData?.favorites) {
-        setFavorites(homeData.favorites);
-      }
-    }, [homeData]);
+  const isLoading = isHomeLoading || isSearchLoading;
 
-    // Set favorites from search data
-    useEffect(() => {
-      if (searchData?.favorites) {
-        setFavorites(searchData.favorites);
-      }
-    }, [searchData]);
 
-    const listings = useMemo(() => searchData?.data || homeData?.data || [], [searchData, homeData]);
-    const isLoading = isHomeLoading || isSearching;
 
     const memoizedHomeData = useMemo(() => {
       const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
-      const boxings = homeData?.data.filter(item => item.type === 'listings') || [];
+      const velos = homeData?.data.filter(item => item.type === 'velos') || [];
+      const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
+
       const recentarticles = homeData?.recentarticles || [];
       const ourclients = homeData?.ourclients || [];
-      const listingsEmpty = !isLoading && !listings.length;
+      const listingsEmpty = !isLoading && !InitialListings.length;
 
       return {
-        listings,
+
         billiards,
-        boxings,
+        velos,
+        apartments,
         recentarticles,
         ourclients,
         favorites: homeData?.favorites || [],
@@ -261,7 +293,7 @@ export default function HomeView() {
         homeError,
         listingsEmpty,
       };
-    }, [homeData, searchData, isLoading, homeError, listings]);
+    }, [homeData, isLoading, homeError, InitialListings]);
 
 
 
@@ -302,7 +334,7 @@ export default function HomeView() {
   });
 
   // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
-  const dataFiltered = applyFilter({ inputData: memoizedHomeData.listings, filters: filters.state, sortBy });
+  const dataFiltered = applyFilter({ inputData: InitialListings, filters: filters.state, sortBy });
 
 
   const canReset =
@@ -313,22 +345,22 @@ export default function HomeView() {
     filters.state.priceRange[0] !== 0 ||
     filters.state.priceRange[1] !== 200;
 
-    const notFound = !memoizedHomeData.listings.length && canReset;
+    const notFound = !InitialListings.length && canReset;
 
   const handleSortBy = useCallback((newValue) => {
     setSortBy(newValue);
   }, []);
 
-  const handleSearch = useCallback((inputValue) => {
-    setSearchQuery(inputValue);
+  const handleSearch = useCallback((params) => {
+    setSearchParamsState(params);
   }, []);
 
-  const productsEmpty = !memoizedHomeData.listings.length;
+  const productsEmpty = !InitialListings.length;
 
 
 
   const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={memoizedHomeData.listings.length} />
+    <ProductFiltersResult filters={filters} totalResults={InitialListings.length} />
   );
 
   const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
@@ -446,14 +478,20 @@ export default function HomeView() {
 
 
 
-        {(memoizedHomeData.listingsEmpty || productsEmpty) && renderNotFound}
+        {(InitialListings.listingsEmpty || productsEmpty) && renderNotFound}
 
 
 
 
 
 
-        <ListingList tours={memoizedHomeData.listings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={InitialListings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+
+
+        <Stack sx={{ my: 5 }} >
+          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title="apartments" />}
+
+        </Stack>
 
 
         <Stack sx={{ my: 5 }} >
@@ -463,7 +501,7 @@ export default function HomeView() {
 
 
         <Stack sx={{ my: 5 }} >
-        {memoizedHomeData.boxings && <ListingsCarousel tours={memoizedHomeData.boxings} title="Boxings" />}
+        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title="velos" />}
 
         </Stack>
 

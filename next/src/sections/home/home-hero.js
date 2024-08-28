@@ -66,7 +66,7 @@ export default function HomeHero({ tours }) {
   };
 
   return (
-    <Box sx={{ minHeight: { md: '60vh' }, position: 'relative' }}>
+    <Box sx={{ minHeight: { md: '55vh' }, position: 'relative' }}>
       {!!tours.length && (
         <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
           {tours.map((tour, index) => (
@@ -75,7 +75,7 @@ export default function HomeHero({ tours }) {
         </Carousel>
       )}
 
-      <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext} onPrev={carouselThumb.onPrev}>
+
 
           <Stack
             spacing={2}
@@ -83,33 +83,38 @@ export default function HomeHero({ tours }) {
             sx={{
               top: 0,
               height: 1,
-              mt: 3,
+
               width: '100%',
               position: 'absolute',
-              right: { xs: 20, lg: '6%', xl: '0%' },
+
               paddingLeft: { lg: '100px' },
               paddingRight: { lg: '100px' },
+              mt: { xs: -4, md: -8 } ,
             }}
           >
-            <Typography variant="h4" sx={{ mt: { xs: -13, md: -15 } , mb: 1, color: 'white', textAlign: 'center' }}>
-              Find Everything at RENT.ma
-            </Typography>
 
-            {!!tours.length && (
-              <Carousel {...carouselThumb.carouselSettings} ref={carouselThumb.carouselRef}>
-                {tours.map((tour, index) => (
-                  <ThumbnailItem
-                    key={tour.id}
-                    tour={tour}
-                    selected={selectedIndex === index}
-                    onClick={() => handleThumbnailClick(index,tour.categories)}
-                  />
-                ))}
-              </Carousel>
-            )}
+
+            <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext} onPrev={carouselThumb.onPrev}>
+
+
+                  {!!tours.length && (
+                    <Carousel {...carouselThumb.carouselSettings} ref={carouselThumb.carouselRef}>
+                      {tours.map((tour, index) => (
+                        <ThumbnailItem
+                          key={tour.id}
+                          tour={tour}
+                          selected={selectedIndex === index}
+                          onClick={() => handleThumbnailClick(index,tour.categories)}
+                        />
+                      ))}
+                    </Carousel>
+                  )}
+
+
+            </CarouselArrows>
           </Stack>
 
-      </CarouselArrows>
+
     </Box>
   );
 }
@@ -176,7 +181,7 @@ function CarouselItem({ tour }) {
           src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`}
           sx={{
             width: 1,
-            height: { xs: 1, md: '70vh' },
+            height: { xs: 1, md: '55vh' },
           }}
         />
       </Box>

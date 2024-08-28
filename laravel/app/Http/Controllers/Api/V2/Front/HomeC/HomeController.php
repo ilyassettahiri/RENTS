@@ -189,7 +189,10 @@ class HomeController extends JsonApiController
     {
 
 
-        $listings = Velo::orderBy('created_at', 'desc')->get();
+        $velos = Velo::orderBy('created_at', 'desc')->get();
+
+        $apartments = Apartment::orderBy('created_at', 'desc')->get();
+
 
         $billiards = Billiard::orderBy('created_at', 'desc')->get();
 
@@ -343,6 +346,46 @@ class HomeController extends JsonApiController
 
 
 
+        $apartmentsData = $apartments->map(function ($apartment) {
+
+            $user = User::where('id', $apartment->user_id)->first();
+
+            return [
+                'type' => 'apartments',
+                'id' => $apartment->id,
+                'attributes' => [
+                    'title' => $apartment->title,
+                    'price' => $apartment->price,
+                    'city' => $apartment->city,
+                    'id' => $apartment->id,
+
+                    'phone' => $apartment->phone,
+
+
+
+
+                    'category' => 'apartments',
+                    'url' => $apartment->url,
+                    'created_at' => $apartment->created_at,
+                    'picture' => $apartment->picture,
+
+                    'images' => Apartmentsimg::where('apartment_id', $apartment->id)->get()->map(function ($image) {
+                        return $image->picture;
+                    }),
+
+                    'seller' => [
+                        'name' => $user->name,
+                        'id' => $user->id,
+                        'profile_image' => $user->profile_image,
+                        'created_at' => $user->created_at->toIso8601String(),
+
+                    ],
+
+
+                ],
+            ];
+        });
+
 
         $billiardsData = $billiards->map(function ($billiard) {
 
@@ -384,29 +427,29 @@ class HomeController extends JsonApiController
             ];
         });
 
-        $listingsData = $listings->map(function ($listing) {
+        $velosData = $velos->map(function ($velo) {
 
-            $user = User::where('id', $listing->user_id)->first();
+            $user = User::where('id', $velo->user_id)->first();
 
             return [
-                'type' => 'listings',
-                'id' => $listing->id,
+                'type' => 'velos',
+                'id' => $velo->id,
                 'attributes' => [
-                    'title' => $listing->title,
-                    'price' => $listing->price,
-                    'city' => $listing->city,
-                    'id' => $listing->id,
-                    'phone' => $listing->phone,
+                    'title' => $velo->title,
+                    'price' => $velo->price,
+                    'city' => $velo->city,
+                    'id' => $velo->id,
+                    'phone' => $velo->phone,
 
 
-                    'images' => Velosimg::where('velo_id', $listing->id)->get()->map(function ($image) {
+                    'images' => Velosimg::where('velo_id', $velo->id)->get()->map(function ($image) {
                         return $image->picture;
                     }),
 
                     'category' => 'velos',
-                    'url' => $listing->url,
-                    'created_at' => $listing->created_at,
-                    'picture' => $listing->picture,
+                    'url' => $velo->url,
+                    'created_at' => $velo->created_at,
+                    'picture' => $velo->picture,
 
                     'seller' => [
                         'name' => $user->name,
@@ -435,35 +478,35 @@ class HomeController extends JsonApiController
             });
 
 
-        // Format recent articles data
-        $recentarticlesData = $recentarticles->map(function ($recentarticle) {
-            return [
-                'type' => 'articles',
-                'id' => $recentarticle->id,
-                'attributes' => [
+            // Format recent articles data
+            $recentarticlesData = $recentarticles->map(function ($recentarticle) {
+                return [
+                    'type' => 'articles',
+                    'id' => $recentarticle->id,
+                    'attributes' => [
 
-                    'title' => $recentarticle->title,
-                    'actor' => $recentarticle->actor,
-                    'category' => $recentarticle->category,
-                    'tag' => $recentarticle->blogtags->pluck('name'), // Assuming you have a name attribute in the Tag model
-                    'thumb' => $recentarticle->thumb,
-                    'content' => $recentarticle->content,
-                    'created_at' => $recentarticle->created_at,
-                    'updated_at' => $recentarticle->updated_at,
-                    'blogcategory_id' => $recentarticle->blogcategory_id,
-                    'url' => $recentarticle->url,
-                    'author' => [
-                        'name' => $recentarticle->author->name,
-                        'bio' => $recentarticle->author->bio,
-                        'picture' => $recentarticle->author->picture, // Assuming you have a profile_picture attribute in the Author model
+                        'title' => $recentarticle->title,
+                        'actor' => $recentarticle->actor,
+                        'category' => $recentarticle->category,
+                        'tag' => $recentarticle->blogtags->pluck('name'), // Assuming you have a name attribute in the Tag model
+                        'thumb' => $recentarticle->thumb,
+                        'content' => $recentarticle->content,
+                        'created_at' => $recentarticle->created_at,
+                        'updated_at' => $recentarticle->updated_at,
+                        'blogcategory_id' => $recentarticle->blogcategory_id,
+                        'url' => $recentarticle->url,
+                        'author' => [
+                            'name' => $recentarticle->author->name,
+                            'bio' => $recentarticle->author->bio,
+                            'picture' => $recentarticle->author->picture, // Assuming you have a profile_picture attribute in the Author model
+                        ],
                     ],
-                ],
-            ];
-        });
+                ];
+            });
 
 
 
-        $mergedData = $billiardsData->merge($listingsData);
+        $mergedData = $billiardsData->merge($velosData)->merge($apartmentsData);
 
 
 
