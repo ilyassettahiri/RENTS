@@ -258,15 +258,18 @@ export default function HomeView() {
   }, [searchResultsData]);
 
   // Combine search results or category data
-  const InitialListings = useMemo(() => {
-    return searchResultsData?.data.map(item => ({
-      type: item.type,
-      id: item.id,
-      attributes: {
-        ...item.attributes,
-      },
-    })) || homeData?.data.filter(item => item.type === 'apartments') || [];
-  }, [searchResultsData, homeData]);
+  const InitialListings = useMemo(
+    () =>
+      searchResultsData?.data.map(item => ({
+        type: item.type,
+        id: item.id,
+        attributes: {
+          ...item.attributes,
+        },
+      })) || homeData?.data.filter(item => item.type === 'apartments') || [],
+    [searchResultsData, homeData]
+  );
+
 
   const isLoading = isHomeLoading || isSearchLoading;
 

@@ -15,7 +15,7 @@ import LatestPosts from '../blog/travel/latest-posts';
 
 export default function AboutView() {
   // Use React Query to fetch data
-  const { data: aboutData, isLoading, error } = useQuery({
+  const { data: aboutData, isLoading, error: aboutError } = useQuery({
     queryKey: ['about'],
     queryFn: CrudService.getAbouts,
     onError: (error) => {

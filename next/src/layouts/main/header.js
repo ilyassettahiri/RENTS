@@ -12,7 +12,7 @@ import Button from '@mui/material/Button';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
-import { useTheme } from '@mui/material/styles';
+import { alpha, useTheme } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { RouterLink } from 'src/routes/components';
@@ -21,7 +21,6 @@ import { paths } from 'src/routes/paths';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import { AnimateBorder } from 'src/components/animate/animate-border';
 
-import { alpha } from '@mui/material/styles';
 
 import { LanguagePopover } from 'src/layouts/main/language-popover';
 

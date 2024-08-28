@@ -2,20 +2,18 @@
 
 import { m } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';  // Import PropTypes
 
 import Box from '@mui/material/Box';
-
 import { borderGradient } from 'src/theme/styles';
 
 // ----------------------------------------------------------------------
 
 export function AnimateBorder({ animate, sx }) {
   const rootRef = useRef(null);
-
   const animateRef = useRef(null);
 
   const [aspectRatio, setAspectRatio] = useState(1);
-
   const [animateStyle, setAnimateStyle] = useState(null);
 
   const values = {
@@ -38,7 +36,6 @@ export function AnimateBorder({ animate, sx }) {
     if (!values.disable) {
       if (rootRef.current) {
         const { width, height } = rootRef.current.getBoundingClientRect();
-
         setAspectRatio(width / height);
       }
 
@@ -145,3 +142,23 @@ export function AnimateBorder({ animate, sx }) {
     </Box>
   );
 }
+
+// Define PropTypes for AnimateBorder component
+AnimateBorder.propTypes = {
+  animate: PropTypes.shape({
+    disable: PropTypes.bool,
+    delay: PropTypes.number,
+    loop: PropTypes.bool,
+    angle: PropTypes.number,
+    length: PropTypes.number,
+    width: PropTypes.string,
+    color: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+    ease: PropTypes.string,
+    duration: PropTypes.number,
+    distance: PropTypes.number,
+    repeatType: PropTypes.string,
+    disableDoubleline: PropTypes.bool,
+    outline: PropTypes.string,
+  }),
+  sx: PropTypes.object,  // Define the prop type for sx
+};

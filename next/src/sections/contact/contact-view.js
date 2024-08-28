@@ -11,13 +11,14 @@ import ContactForm from './contact-form';
 
 export default function ContactView() {
   // Fetch contacts data using React Query
-  const { data: contactData, isLoading, error } = useQuery({
+  const { data: contactData, isLoading, error: contactError } = useQuery({
     queryKey: ['contacts'],
     queryFn: CrudService.getContacts,
     onError: (error) => {
       console.error('Failed to fetch contacts:', error);
     },
   });
+
 
   const contactInfo = useMemo(() => contactData?.data || {}, [contactData]);
 

@@ -7,8 +7,7 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import Skeleton from '@mui/material/Skeleton';
 import { useTheme } from '@mui/material/styles';
-import Carousel from 'src/components/carousel'; // Ensure this component is available
-import { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
+import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
 
 // ----------------------------------------------------------------------
 
