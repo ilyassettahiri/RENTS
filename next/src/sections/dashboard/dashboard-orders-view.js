@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback,useMemo   } from 'react';
 import CrudService from "src/services/cruds-service";
+import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -41,7 +42,7 @@ export const TABLE_HEAD = [
 ];
 
 export default function DashboardOrdersPage() {
-  const [data, setData] = useState([]);
+
   const [tab, setTab] = useState('All Orders');
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('id');
@@ -50,12 +51,23 @@ export default function DashboardOrdersPage() {
   const [dense, setDense] = useState(false);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getReservations();
-      console.log(response.data);
 
-      const formattedData = response.data.map((item) => ({
+
+    // Fetch data using useQuery
+    const { data: rawOrdersData, isLoading: isOrdersLoading, error: ordersError } = useQuery({
+      queryKey: ['orders'],
+      queryFn: () => CrudService.getReservations(),
+      onError: (error) => {
+        console.error('Failed to fetch listing:', error);
+      },
+    });
+
+    // Memorize and format the data using useMemo
+    const ordersData = useMemo(() => {
+      if (!rawOrdersData) return []; // Return an empty array if no data
+
+      // Format the data
+      return rawOrdersData.data.map((item) => ({
         id: item.id,
         title: item.attributes.title,
         price: item.attributes.price,
@@ -63,9 +75,7 @@ export default function DashboardOrdersPage() {
         reservationsend: item.attributes.reservationsend,
         created_at: item.attributes.created_at,
       }));
-      setData(formattedData);
-    })();
-  }, []);
+    }, [rawOrdersData]);
 
   const handleChangeTab = useCallback((event, newValue) => {
     setTab(newValue);
@@ -89,7 +99,7 @@ export default function DashboardOrdersPage() {
       return;
     }
     setSelected([]);
-  }, [data]);
+  }, [ordersData]);
 
   const handleSelectRow = useCallback(
     (id) => {
@@ -179,7 +189,7 @@ export default function DashboardOrdersPage() {
         }}
       >
         <EcommerceAccountOrdersTableToolbar
-          rowCount={data.length}
+          rowCount={ordersData.length}
           numSelected={selected.length}
           onSelectAllRows={handleSelectAllRows}
         />
@@ -196,13 +206,13 @@ export default function DashboardOrdersPage() {
               orderBy={orderBy}
               onSort={handleSort}
               headCells={TABLE_HEAD}
-              rowCount={data.length}
+              rowCount={ordersData.length}
               numSelected={selected.length}
               onSelectAllRows={handleSelectAllRows}
             />
 
             <TableBody>
-              {stableSort(data, getComparator(order, orderBy))
+              {stableSort(ordersData, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <EcommerceAccountOrdersTableRow
@@ -231,7 +241,7 @@ export default function DashboardOrdersPage() {
         <TablePagination
           page={page}
           component="div"
-          count={data.length}
+          count={ordersData.length}
           rowsPerPage={rowsPerPage}
           onPageChange={handleChangePage}
           rowsPerPageOptions={[5, 10, 25]}

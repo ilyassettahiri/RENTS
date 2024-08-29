@@ -197,7 +197,6 @@ export default function HomeView() {
 
 
   const [searchParamsState, setSearchParamsState] = useState({});
-  const debouncedQuery = useDebounce(searchParamsState, 300);  // Use debounce hook
 
 
   const [favorites, setFavorites] = useState([]);
@@ -222,18 +221,16 @@ export default function HomeView() {
 
 
 
-
+  // Search results query
   const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
-    queryKey: ['search', debouncedQuery],
-    queryFn: () => {
-      console.log('Executing query with search params:', debouncedQuery);  // Log here to check value each time query runs
-      return CrudService.getSearchListings(debouncedQuery);
-    },
-    enabled: !!debouncedQuery.searchKeyword || !!debouncedQuery.searchCategories,  // Enabled if either search keyword or category is set
+    queryKey: ['search', searchParamsState],
+    queryFn: () => CrudService.getSearchListings(searchParamsState),
+    enabled: !!searchParamsState.searchKeyword || !!searchParamsState.searchCategories,
     onError: (error) => {
       console.error('Failed to fetch search results:', error);
     },
   });
+
 
 
   useEffect(() => {
@@ -481,7 +478,7 @@ export default function HomeView() {
 
 
 
-        {(InitialListings.listingsEmpty || productsEmpty) && renderNotFound}
+        {/* {(InitialListings.listingsEmpty || productsEmpty) && renderNotFound} */}
 
 
 

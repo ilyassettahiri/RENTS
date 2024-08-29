@@ -21,7 +21,7 @@ export default function HomeHero({ tours }) {
   const { handleCategoryClick } = useContext(AuthContext);
 
   const carouselLarge = useCarousel({
-    speed: 500,
+    speed: 0,
     slidesToShow: 1,
     centerMode: true,
 
@@ -94,7 +94,11 @@ export default function HomeHero({ tours }) {
           >
 
 
-            <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext} onPrev={carouselThumb.onPrev}>
+            <CarouselArrows filled shape="rounded" onNext={carouselThumb.onNext}
+              onPrev={carouselThumb.onPrev}
+              isPrevDisabled={carouselThumb.isPrevDisabled}
+              isNextDisabled={carouselThumb.isNextDisabled}
+            >
 
 
                   {!!tours.length && (

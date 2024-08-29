@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import FeaturedPostItemSkeleton from 'src/sections/blog/travel/featured-post-item-skeleton';
+
 import PostItem from './featured-post-item';
 
-export default function FeaturedPosts({ posts }) {
+export default function FeaturedPosts({ posts, Loading }) {
   const featuredPost = posts[0];
 
   return (
@@ -26,7 +28,13 @@ export default function FeaturedPosts({ posts }) {
           },
         }}
       >
-        <PostItem post={featuredPost} largePost />
+        {/* Render Skeleton or PostItem based on Loading state */}
+        {Loading ? (
+          <FeaturedPostItemSkeleton largePost />
+        ) : (
+          <PostItem post={featuredPost} largePost />
+        )}
+
         <Box
           sx={{
             gap: 3,
@@ -37,9 +45,13 @@ export default function FeaturedPosts({ posts }) {
             },
           }}
         >
-          {posts.slice(1, 5).map((post) => (
-            <PostItem key={post.id} post={post} />
-          ))}
+          {(Loading ? [...Array(4)] : posts.slice(1, 5)).map((post, index) =>
+            Loading ? (
+              <FeaturedPostItemSkeleton key={index} />
+            ) : (
+              <PostItem key={post.id} post={post} />
+            )
+          )}
         </Box>
       </Box>
     </Container>
@@ -48,4 +60,5 @@ export default function FeaturedPosts({ posts }) {
 
 FeaturedPosts.propTypes = {
   posts: PropTypes.array.isRequired,
+  Loading: PropTypes.bool.isRequired,
 };

@@ -300,7 +300,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
               color="inherit"
               >
-                <TextMaxLine variant="h6" line={1}>
+                <TextMaxLine variant="h6" line={2}>
                 {capitalizeFirstLetter(title)}
                 </TextMaxLine>
               </Link>

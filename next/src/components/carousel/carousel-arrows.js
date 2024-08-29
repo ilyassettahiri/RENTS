@@ -1,9 +1,7 @@
 import PropTypes from 'prop-types';
-
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 import { alpha, styled, useTheme } from '@mui/material/styles';
-//
 
 import { LeftIcon, RightIcon } from './arrow-icons';
 
@@ -49,6 +47,8 @@ export default function CarouselArrows({
   icon,
   onNext,
   onPrev,
+  isPrevDisabled,
+  isNextDisabled,
   children,
   leftButtonProps,
   rightButtonProps,
@@ -56,15 +56,13 @@ export default function CarouselArrows({
   ...other
 }) {
   const theme = useTheme();
-
   const isRTL = theme.direction === 'rtl';
-
   const hasChild = !!children;
 
   if (hasChild) {
     return (
       <Stack sx={sx} {...other}>
-        {onNext && (
+        {onPrev && (
           <StyledIconButton
             filled={filled}
             shape={shape}
@@ -74,6 +72,7 @@ export default function CarouselArrows({
             sx={{
               left: 16,
               ...leftButtonProps?.sx,
+              ...(isPrevDisabled && { display: 'none' }),  // Hide the button if disabled
             }}
           >
             <LeftIcon icon={icon} isRTL={isRTL} />
@@ -82,7 +81,7 @@ export default function CarouselArrows({
 
         {children}
 
-        {onPrev && (
+        {onNext && (
           <StyledIconButton
             filled={filled}
             shape={shape}
@@ -92,6 +91,7 @@ export default function CarouselArrows({
             sx={{
               right: 16,
               ...rightButtonProps?.sx,
+              ...(isNextDisabled && { display: 'none' }),  // Hide the button if disabled
             }}
           >
             <RightIcon icon={icon} isRTL={isRTL} />
@@ -103,11 +103,25 @@ export default function CarouselArrows({
 
   return (
     <Stack direction="row" alignItems="center" display="inline-flex" sx={sx} {...other}>
-      <StyledIconButton filled={filled} shape={shape} onClick={onPrev} {...leftButtonProps}>
+      {/* Hide Prev button if isPrevDisabled is true */}
+      <StyledIconButton
+        filled={filled}
+        shape={shape}
+        onClick={onPrev}
+        {...leftButtonProps}
+        sx={{ ...(isPrevDisabled && { display: 'none' }), ...leftButtonProps?.sx }}
+      >
         <LeftIcon icon={icon} isRTL={isRTL} />
       </StyledIconButton>
 
-      <StyledIconButton filled={filled} shape={shape} onClick={onNext} {...rightButtonProps}>
+      {/* Hide Next button if isNextDisabled is true */}
+      <StyledIconButton
+        filled={filled}
+        shape={shape}
+        onClick={onNext}
+        {...rightButtonProps}
+        sx={{ ...(isNextDisabled && { display: 'none' }), ...rightButtonProps?.sx }}
+      >
         <RightIcon icon={icon} isRTL={isRTL} />
       </StyledIconButton>
     </Stack>
@@ -124,4 +138,6 @@ CarouselArrows.propTypes = {
   rightButtonProps: PropTypes.object,
   shape: PropTypes.oneOf(['circular', 'rounded']),
   sx: PropTypes.object,
+  isPrevDisabled: PropTypes.bool,
+  isNextDisabled: PropTypes.bool,
 };

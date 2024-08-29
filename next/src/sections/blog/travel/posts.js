@@ -2,16 +2,21 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
+import PostItemSkeleton from 'src/sections/blog/travel/post-item-skeleton.js';
+
 import PostItem from './post-item';
 
-export default function Posts({ posts }) {
+export default function Posts({ posts, Loading }) {
   const [page, setPage] = useState(1);
   const postsPerPage = 8;
   const handleChange = (event, value) => {
     setPage(value);
   };
 
-  const paginatedPosts = posts.slice((page - 1) * postsPerPage, page * postsPerPage);
+  // Paginated posts or skeletons based on loading state
+  const paginatedPosts = Loading
+    ? Array.from({ length: postsPerPage }) // Create an array with empty elements to match the skeleton count
+    : posts.slice((page - 1) * postsPerPage, page * postsPerPage);
 
   return (
     <>
@@ -26,9 +31,13 @@ export default function Posts({ posts }) {
           },
         }}
       >
-        {paginatedPosts.map((post) => (
-          <PostItem key={post.id} post={post} />
-        ))}
+        {Loading
+          ? paginatedPosts.map((_, index) => (
+              <PostItemSkeleton key={index} />
+            ))
+          : paginatedPosts.map((post) => (
+              <PostItem key={post.id} post={post} />
+            ))}
       </Box>
       <Pagination
         count={Math.ceil(posts.length / postsPerPage)}
@@ -48,4 +57,5 @@ export default function Posts({ posts }) {
 
 Posts.propTypes = {
   posts: PropTypes.array.isRequired,
+  Loading: PropTypes.bool.isRequired,
 };

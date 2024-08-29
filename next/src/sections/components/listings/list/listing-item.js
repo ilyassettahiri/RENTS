@@ -181,7 +181,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
 
           {/* Title */}
-          <Stack spacing={0.5} sx={{ px: 1,mt:2 }}>
+          <Stack  sx={{ px: 1,my:3 }}>
 
 
 
@@ -190,7 +190,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
               href={`${paths.travel.tour}/${category}/${url}`}
               color="inherit"
             >
-              <TextMaxLine variant="h6" persistent>
+              <TextMaxLine variant="h6" line={2}>
 
                 {capitalizeFirstLetter(title)}
               </TextMaxLine>

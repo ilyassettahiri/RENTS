@@ -89,5 +89,5 @@ export const paths = {
   pages: '/pages',
 
 
-  createlisting: 'https://react.prinssy.com',
+  createlisting: 'https://accounts.rents.ma',
 };

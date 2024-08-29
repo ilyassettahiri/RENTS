@@ -1,70 +1,59 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useMemo } from "react";
+import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
 import Divider from '@mui/material/Divider';
+
+
+import MarkdownSkeleton from 'src/components/markdown/markdown-skeleton';
+
 import Markdown from 'src/components/markdown';
-
-
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 
+
 import ContactInfo from './privacy-info';
 
-
-
+// ----------------------------------------------------------------------
 
 export default function PrivacyView() {
+  // Fetch term data using react-query
+  const { data: termData, isLoading, error } = useQuery({
+    queryKey: ['termconditions'],
+    queryFn: () => CrudService.getTermconditions(),
+    onError: (error) => {
+      console.error('Failed to fetch terms and conditions:', error);
+    },
+  });
 
+  // Memorize the data transformation
+  const formattedData = useMemo(() => {
+    if (!termData) return null;
 
-
-
-
-  const [termdata, setTermdata] = useState(null);
-
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getTermconditions();
-
-
-
-        setTermdata(response.data.policypage);
-
-        console.log('Response data:', response.data.policypage); // Logging the response
-
-
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
-      }
-    })();
-  }, []);
-
-
-
+    // Extract policy page data from the response
+    return termData.data.policypage;
+  }, [termData]);
 
   return (
     <>
-
-
-    <Container maxWidth={false}
+      <Container
+        maxWidth={false}
         sx={{
           mt: { xs: 4, md: 10 },
           paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
-        }}>
+        }}
+      >
+        {isLoading ? (
+          <MarkdownSkeleton /> // Placeholder while loading
+        ) : (
+          formattedData && <Markdown content={formattedData.attributes.privacy} firstLetter />
+        )}
+      </Container>
 
-      {termdata && <Markdown content={termdata.attributes.privacy} firstLetter />}
-
-
-    </Container>
-
-
-      <ContactInfo />
-
-
+      {/* <ContactInfo /> */}
     </>
   );
 }

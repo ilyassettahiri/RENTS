@@ -1,11 +1,12 @@
 
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import CrudService from "src/services/cruds-service";
 
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useQuery } from '@tanstack/react-query';
 
 import PostSidebar from './common/post-sidebar';
 import Posts from './travel/posts';
@@ -14,29 +15,18 @@ import FeaturedPosts from './travel/featured-posts';
 import TrendingTopics from './travel/trending-topics';
 
 export default function BlogView() {
-  const [articles, setArticles] = useState(null);
-  const [blogCategories, setBlogCategories] = useState([]);
 
 
+  const { data: blogData, isLoading, error } = useQuery({
+    queryKey: ['blogs'],
+    queryFn: () => CrudService.getBlogs(),
+    onError: (error) => {
+      console.error('Failed to fetch data:', error);
+    },
+  });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getBlogs();
-
-        const blogCategoriesData = response.data.blogcategories;
-
-        setArticles(response.data.articles);
-        setBlogCategories(blogCategoriesData);
-
-
-        console.log('Blog categories:', blogCategoriesData); // Logging the blog categories
-
-      } catch (error) {
-        console.error('Failed to fetch data:', error);
-      }
-    })();
-  }, []);
+  const articles = useMemo(() => blogData?.data?.articles || [], [blogData]);
+  const blogCategories = useMemo(() => blogData?.data?.blogcategories || [], [blogData]);
 
 
   const extractUniqueTags = (posts) => {
@@ -50,7 +40,7 @@ export default function BlogView() {
     <>
       <PostSearchMobile />
 
-      {articles && <FeaturedPosts posts={articles.slice(-5)} />}
+      <FeaturedPosts posts={articles.slice(-5)} Loading={isLoading} />
 
       <TrendingTopics blogcategories={blogCategories} />
 
@@ -63,7 +53,7 @@ export default function BlogView() {
       >
         <Grid container spacing={{ md: 8 }}>
           <Grid xs={12} md={8}>
-            {articles && <Posts posts={articles} />}
+            <Posts posts={articles} Loading={isLoading} />
           </Grid>
 
           <Grid xs={12} md={4}>
