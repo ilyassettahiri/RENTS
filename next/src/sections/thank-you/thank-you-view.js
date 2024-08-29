@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { useQuery } from '@tanstack/react-query';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -16,6 +17,9 @@ import Iconify from 'src/components/iconify';
 
 import CrudService from 'src/services/cruds-service';
 
+import ThankYouSummarySkeleton from 'src/sections/thank-you/thank-you-summary-skeleton.js';
+
+
 import ThankYouSummary from './thank-you-summary';
 
 // ----------------------------------------------------------------------
@@ -23,22 +27,22 @@ import ThankYouSummary from './thank-you-summary';
 export default function ThankYouView({ params }) {
   const { checkout_id } = params;
 
-  const [data, setData] = useState(null);
+  // Fetch thank you data using React Query
+  const { data: thankyouData, isLoading, error: thankyouError } = useQuery({
+    queryKey: ['thankYou', checkout_id],
+    queryFn: () => CrudService.getThankYou(checkout_id),
+    onError: (error) => {
+      console.error('Failed to fetch listing:', error);
+    },
+  });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getThankYou(checkout_id);
-        console.log('Response data:', response.data); // Logging the response
-        setData(response.data);
-      } catch (error) {
-        console.error('Failed to fetch listing:', error);
-        setData({ attributes: { title: 'Error', price: 0, picture: '' } }); // Fallback data
-      }
-    })();
-  }, [checkout_id]);
-
-  const mdUp = useResponsive('up', 'md');
+  // Memorize the processed data to avoid unnecessary recalculations
+  const memoizedTourData = useMemo(() => {
+    if (thankyouError) {
+      return { attributes: { title: 'Error', price: 0, picture: '' } }; // Fallback data
+    }
+    return thankyouData?.data || null;
+  }, [thankyouData, thankyouError]);
 
   return (
     <Container
@@ -53,14 +57,7 @@ export default function ThankYouView({ params }) {
         paddingRight: { lg: '100px' },
       }}
     >
-      {/* {mdUp && data && data.attributes && (
-        <Image
-          alt="cover"
-          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${data.attributes.picture}`}
-          ratio="3/4"
-          sx={{ borderRadius: 2 }}
-        />
-      )} */}
+
 
 
         <Stack spacing={5} sx={{
@@ -74,8 +71,11 @@ export default function ThankYouView({ params }) {
 
           <Typography variant="h5"  alignItems="center" textAlign="center">Booking Details</Typography>
 
-          <ThankYouSummary tour={data} />
-
+          {isLoading ? (
+            <ThankYouSummarySkeleton />
+          ) : (
+            <ThankYouSummary tour={memoizedTourData} />
+          )}
           <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center">
             <Button
               component={RouterLink}

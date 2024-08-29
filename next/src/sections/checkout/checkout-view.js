@@ -3,8 +3,10 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useQuery } from '@tanstack/react-query';
+
 import CrudService from 'src/services/cruds-service';
 
 import Box from '@mui/material/Box';
@@ -19,6 +21,11 @@ import { useRouter } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 
+import ShippingFormSkeleton from 'src/sections/checkout/shipping-form-skeleton';
+
+import CheckOutSummarySkeleton from 'src/sections/checkout/check-out-summary-skeleton';
+
+
 import FormProvider from 'src/components/hook-form';
 
 import CheckOutSummary from './check-out-summary';
@@ -32,25 +39,27 @@ export default function CheckoutView({ params }) {
 
   const { category, url } = params;
 
-  const [data, setData] = useState(null);
 
   const sameBilling = useBoolean();
 
   const [departureDay, setDepartureDay] = useState([null, null]);
 
-  useEffect(() => {
-    (async () => {
-      try {
+  // Fetch reservation data using React Query
+  const { data: reservationData, isLoading, error: reservationError } = useQuery({
+    queryKey: ['reservation', category, url],
+    queryFn: () => CrudService.getReservationFront(category, url),
+    onError: (error) => {
+      console.error('Failed to fetch listing:', error);
+    },
+  });
 
-        const response = await CrudService.getReservationFront(category, url);
-
-        setData(response.data);
-      } catch (error) {
-        console.error('Failed to fetch listing:', error);
-        setData({ attributes: { title: 'Error', price: 0, picture: '', category: '', url: '' } }); // Fallback data
-      }
-    })();
-  }, [category, url]);
+  // Memorize the processed data to avoid unnecessary recalculations
+  const memoizedReservationData = useMemo(() => {
+    if (reservationError) {
+      return { attributes: { title: 'Error', price: 0, picture: '', category: '', url: '' } }; // Fallback data
+    }
+    return reservationData?.data || null;
+  }, [reservationData, reservationError]);
 
   useEffect(() => {
     const storedStartDate = sessionStorage.getItem('startDate');
@@ -139,9 +148,7 @@ export default function CheckoutView({ params }) {
         paddingRight: { lg: '100px' },
       }}
     >
-      <Typography variant="h4" sx={{ my: { xs: 3, md: 5 } }}>
-        Checkout
-      </Typography>
+
 
       <FormProvider methods={methods} onSubmit={onSubmit}>
         <Grid container spacing={{ xs: 5, md: 8 }}>
@@ -149,10 +156,14 @@ export default function CheckoutView({ params }) {
             <Stack>
               <StepLabel title="Shipping Information" step="1" />
 
-              <CheckOutShippingForm
-                sameBilling={sameBilling.value}
-                onChangeSameBilling={sameBilling.onToggle}
-              />
+              {isLoading ? (
+                <ShippingFormSkeleton />
+              ) : (
+                <CheckOutShippingForm
+                  sameBilling={sameBilling.value}
+                  onChangeSameBilling={sameBilling.onToggle}
+                />
+              )}
 
               <Divider sx={{ my: 5, borderStyle: 'dashed' }} />
 
@@ -163,14 +174,18 @@ export default function CheckoutView({ params }) {
           </Grid>
 
           <Grid xs={12} md={5}>
-            <CheckOutSummary
-              tour={data}
-              discount={5}
-              onApplyDiscount
-              departureDay={departureDay}
-              isSubmitting={isSubmitting}
-              onChangeDepartureDay={handleChangeDepartureDay}
-            />
+              {isLoading ? (
+                <CheckOutSummarySkeleton />
+              ) : (
+                <CheckOutSummary
+                  tour={memoizedReservationData}
+                  discount={5}
+                  onApplyDiscount
+                  departureDay={departureDay}
+                  isSubmitting={isSubmitting}
+                  onChangeDepartureDay={handleChangeDepartureDay}
+                />
+              )}
           </Grid>
         </Grid>
       </FormProvider>

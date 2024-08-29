@@ -71,6 +71,11 @@ export default function Footer() {
           py: { xs: 8, md: 10 },
           paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
+          bgcolor: 'black',
+          color: 'white',
+          borderTopLeftRadius: '15px',
+          borderTopRightRadius: '15px',
+
         }}
       >
         <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
@@ -140,6 +145,8 @@ export default function Footer() {
       <Container maxWidth={false} sx={{
         paddingLeft: { lg: '100px' },
         paddingRight: { lg: '100px' },
+        bgcolor: 'black',
+        color: 'white',
         }}>
         <Stack
           spacing={2.5}

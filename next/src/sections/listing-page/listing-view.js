@@ -25,6 +25,7 @@ import CrudService from 'src/services/cruds-service';
 import StorePopularProducts from 'src/sections/store/landing/store-popular-products';
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 import Map from 'src/components/map';
+import MarkdownSkeleton from 'src/components/markdown/markdown-skeleton';
 
 import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
 
@@ -166,7 +167,11 @@ export default function ListingView({ params }) {
 
           <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
-          {listingData && (
+
+
+            {isListingLoading ? (
+              <MarkdownSkeleton />
+            ) : (
 
               <ListingSummary
                 specifications={memoizedListingData.specifications}
@@ -174,7 +179,11 @@ export default function ListingView({ params }) {
                 category={listingData?.data?.attributes?.category}
               />
 
-          )}
+
+            )}
+
+
+
         </Grid>
       </Grid>
 
