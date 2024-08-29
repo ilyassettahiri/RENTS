@@ -17,7 +17,7 @@ import TrendingTopics from './travel/trending-topics';
 export default function BlogView() {
 
 
-  const { data: blogData, isLoading, error } = useQuery({
+  const { data: blogData, isLoading, error: blogError } = useQuery({
     queryKey: ['blogs'],
     queryFn: () => CrudService.getBlogs(),
     onError: (error) => {

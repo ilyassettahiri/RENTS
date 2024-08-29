@@ -27,7 +27,7 @@ export default function FaqsView() {
   const mobileOpen = useBoolean();
 
   // Fetch FAQs data using react-query
-  const { data: faqData, isLoading, error } = useQuery({
+  const { data: faqData, isLoading, error: faqsError } = useQuery({
     queryKey: ['faqs'],
     queryFn: () => CrudService.getFaqs(),
     onError: (error) => {

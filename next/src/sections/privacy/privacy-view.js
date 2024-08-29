@@ -20,7 +20,7 @@ import ContactInfo from './privacy-info';
 
 export default function PrivacyView() {
   // Fetch term data using react-query
-  const { data: termData, isLoading, error } = useQuery({
+  const { data: termData, isLoading, error: privacyError } = useQuery({
     queryKey: ['termconditions'],
     queryFn: () => CrudService.getTermconditions(),
     onError: (error) => {

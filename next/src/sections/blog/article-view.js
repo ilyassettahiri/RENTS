@@ -11,16 +11,16 @@ import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
 
-import GeneralArticleSkeleton from 'src/sections/blog/travel/general-article-skeleton.js';
+import GeneralArticleSkeleton from 'src/sections/blog/travel/general-article-skeleton';
 
 
 import Markdown from 'src/components/markdown';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
+import PostHeroSkeleton from 'src/sections/blog/travel/post-hero-skeleton';
 
 import PostTags from './common/post-tags';
 import PostAuthor from './common/post-author';
 import PostSidebar from './common/post-sidebar';
-import PostHeroSkeleton from 'src/sections/blog/travel/post-hero-skeleton';
 
 import PostHero from './travel/post-hero';
 import PostSocialsShare from './common/post-socials-share';
@@ -30,7 +30,7 @@ export default function ArticleView({ params }) {
   const { url } = params;
 
   // Fetch article data using useQuery
-  const { data: articleData, isLoading, error } = useQuery({
+  const { data: articleData, isLoading, error: articleError } = useQuery({
     queryKey: ['article', url],
     queryFn: () => CrudService.getArticle(url),
     onError: (error) => {

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Pagination, { paginationClasses } from '@mui/material/Pagination';
-import PostItemSkeleton from 'src/sections/blog/travel/post-item-skeleton.js';
+import PostItemSkeleton from 'src/sections/blog/travel/post-item-skeleton';
 
 import PostItem from './post-item';
 

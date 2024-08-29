@@ -18,7 +18,7 @@ import ContactInfo from './termcondition-info';
 
 export default function TermconditionView() {
   // Fetch term data using react-query
-  const { data: termData, isLoading, error } = useQuery({
+  const { data: termData, isLoading, error: termconditionError } = useQuery({
     queryKey: ['termconditions'],
     queryFn: () => CrudService.getTermconditions(),
     onError: (error) => {

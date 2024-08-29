@@ -83,18 +83,18 @@ export default function DashboardOrdersPage() {
 
   const handleSort = useCallback(
     (id) => {
-      const isAsc = orderBy === id && order === 'asc';
+      const isAsc = orderBy === id && ordersData === 'asc';
       if (id !== '') {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(id);
       }
     },
-    [order, orderBy]
+    [ordersData, orderBy]
   );
 
   const handleSelectAllRows = useCallback((event) => {
     if (event.target.checked) {
-      const newSelected = data.map((n) => n.id);
+      const newSelected = ordersData.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
@@ -137,7 +137,7 @@ export default function DashboardOrdersPage() {
     setDense(event.target.checked);
   }, []);
 
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - data.length) : 0;
+  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - ordersData.length) : 0;
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>

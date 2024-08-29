@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 
 // ----------------------------------------------------------------------
 
-export default function FeaturedPostItemSkeleton({ largePost, ...other }) {
+export default function FeaturedPostItemSkeleton({ ...other }) {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ export default function FeaturedPostItemSkeleton({ largePost, ...other }) {
       }}
     >
       {/* Image Skeleton */}
-      <Skeleton variant="rectangular" width="100%" height={largePost ? 320 : 240} />
+      <Skeleton variant="rectangular" width="100%" height={240} />
 
       {/* Content Skeleton */}
       <Stack
@@ -28,25 +28,13 @@ export default function FeaturedPostItemSkeleton({ largePost, ...other }) {
           position: 'absolute',
           width: '100%',
           color: 'common.white',
-          ...(largePost && {
-            p: { xs: 3, md: 5 },
-          }),
         }}
       >
         {/* Time Block Skeleton */}
         <Skeleton variant="text" sx={{ height: 20, width: '40%' }} />
 
         {/* Title Skeleton */}
-        <Skeleton
-          variant="text"
-          sx={{
-            height: largePost ? { xs: 28, md: 40 } : 24,
-            width: '80%',
-          }}
-        />
-
-        {/* Content Skeleton (only for large posts) */}
-        {largePost && <Skeleton variant="text" sx={{ height: 16, width: '100%' }} />}
+        <Skeleton variant="text" sx={{ height: 24, width: '80%' }} />
 
         {/* Author Skeleton */}
         <Stack direction="row" alignItems="center" sx={{ pt: 1.5 }}>
