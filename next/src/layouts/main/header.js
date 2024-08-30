@@ -72,8 +72,8 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
       {!mdUp && <NavMobile data={navConfig} />}
 
-      <Box sx={{ lineHeight: 0, position: 'relative' }}>
-        <Logo/>
+      <Box sx={{ lineHeight: 0, position: 'relative', display: { xs: 'inline-flex', md: 'inline-flex' } }}>
+          <Logo/>
 
       </Box>
 

@@ -26,10 +26,8 @@ export default function DashboardChatPage() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
+  const queryClient = useQueryClient();
 
-
-  const [conversationList, setConversationList] = useState(null);
-  const [currentConversation, setCurrentConversation] = useState(null);
   const [recipients, setRecipients] = useState([]);
   const [participants, setParticipants] = useState([]);
   const [currentSender, setCurrentSender] = useState([]);
@@ -40,76 +38,73 @@ export default function DashboardChatPage() {
   const roomNav = useCollapseNav();
   const conversationsNav = useCollapseNav();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getConversations();
 
 
 
-        const conversations = response.data.map((conversation) => conversation.attributes);
-        setConversationList(conversations);
+    // Fetch all conversations
+    const { data: conversationList, isLoading: isConversationsLoading, error: conversationsError } = useQuery({
+      queryKey: ['conversations'],
+      queryFn: () => CrudService.getConversations().then((res) => res.data.map((conv) => conv.attributes)),
+      onError: (error) => {
+        console.error('Failed to fetch conversations:', error);
+      },
+    });
 
-        // Extracting receivers from all conversations
-        const receivers = conversations.map((conversation) => conversation.receiver);
+    // Fetch current conversation by user ID
+    const { data: userConversation, isLoading: isUserConversationLoading, error: userConversationError } = useQuery({
+      queryKey: ['conversation', userID],
+      queryFn: () => CrudService.checkConversation(userID),
+      enabled: !!userID,
+      onError: (error) => {
+        console.error('Failed to fetch conversation:', error);
+      },
+    });
+
+    // Fetch selected conversation by conversation ID
+    const { data: currentConversation, isLoading: isConversationDetailLoading, error: conversationDetailError } = useQuery({
+      queryKey: ['conversationDetail', selectedConversationId],
+      queryFn: () => CrudService.getConversation(selectedConversationId).then((res) => res.data.attributes),
+      enabled: !!selectedConversationId,
+      onError: (error) => {
+        console.error('Failed to fetch conversation detail:', error);
+      },
+    });
+
+    // Update recipients and sender after fetching conversations
+    useEffect(() => {
+      if (conversationList) {
+        const receivers = conversationList.map((conversation) => conversation.receiver);
         setRecipients(receivers);
 
-        // Extracting sender from the first conversation (since the sender is the same across all conversations)
-        const sender = conversations[0]?.sender;
-
-
-
+        const sender = conversationList[0]?.sender;
         setCurrentSender(sender);
-      } catch (error) {
-        console.error('Failed to fetch listing:', error);
       }
-    })();
-  }, []);
+    }, [conversationList]);
 
-  useEffect(() => {
-    if (userID) {
-      (async () => {
-        try {
-          const response = await CrudService.checkConversation(userID);
-          const conversationData = response.data;
+    // Update participants after fetching user conversation
+    useEffect(() => {
+      if (userConversation?.id) {
+        setParticipants(userConversation.attributes.receiver);
+        router.push(`${paths.eCommerce.chat}?id=${userConversation.id}`);
+      } else if (userConversation) {
+        setParticipants([userConversation.attributes]);
+      }
+    }, [userConversation, router]);
 
-          if (conversationData.id) {
-            setCurrentConversation(conversationData);
-            console.log('checkConversation:', conversationData);
-            setParticipants(conversationData.attributes.receiver);
+    // Update participants and sender after fetching selected conversation
+    useEffect(() => {
+      if (currentConversation) {
+        setParticipants(currentConversation.receiver);
+        setCurrentSender(currentConversation.sender);
+      }
+    }, [currentConversation]);
 
-            // Redirect to the chat page with the conversation ID
-            router.push(`${paths.eCommerce.chat}?id=${conversationData.id}`);
-          } else {
-            setParticipants([conversationData.attributes]);
-          }
-        } catch (error) {
-          console.error('Failed to fetch conversation:', error);
-        }
-      })();
-    }
-  }, [userID, router]);
 
-  useEffect(() => {
-    if (selectedConversationId) {
-      (async () => {
-        try {
-          const response = await CrudService.getConversation(selectedConversationId);
-          const conversationData = response.data.attributes;
-          setCurrentConversation(conversationData);
-          setParticipants(conversationData.receiver);
-          setCurrentSender(conversationData.sender);
 
-          console.log('getConversation:', conversationData);
-        } catch (error) {
-          console.error('Failed to fetch conversation:', error);
-        }
-      })();
-    }
-  }, [selectedConversationId]);
+
 
   const handleConversationClick = (conversationData) => {
-    setCurrentConversation(conversationData);
+
     setParticipants(conversationData.receiver);
   };
 
@@ -121,56 +116,54 @@ export default function DashboardChatPage() {
 
 
 
-
   const handleMessageSent = (newMessage) => {
-    setConversationList((prevConversations) => {
+    queryClient.setQueryData(['conversations'], (oldConversations) => {
       let updatedConversations;
-
       if (selectedConversationId) {
-        // Update the existing conversation
-        updatedConversations = prevConversations.map((conv) => {
-          if (conv.id === selectedConversationId) {
-            return {
-              ...conv,
-              messages: [...conv.messages, newMessage],
-            };
-          }
-          return conv;
-        });
+        updatedConversations = oldConversations.map((conv) =>
+          conv.id === selectedConversationId
+            ? { ...conv, messages: [...conv.messages, newMessage] }
+            : conv
+        );
       } else {
-        // Create a new conversation
         const newConversation = {
           id: newMessage.id,
           messages: [newMessage],
           participants: recipients,
           unreadCount: 0,
-          receiver: recipients[0], // Assuming there's only one recipient for simplicity
+          receiver: recipients[0],
           sender: currentSender,
         };
-
-        updatedConversations = [newConversation, ...prevConversations];
+        updatedConversations = [newConversation, ...oldConversations];
       }
 
-      // Reorder conversations by the latest message's timestamp
       updatedConversations.sort((a, b) => {
         const lastMessageA = a.messages[a.messages.length - 1];
         const lastMessageB = b.messages[b.messages.length - 1];
-        return new Date(b.messages[b.messages.length - 1].created_at) - new Date(a.messages[a.messages.length - 1].created_at);
+        return new Date(lastMessageB.created_at) - new Date(lastMessageA.created_at);
       });
 
       return updatedConversations;
     });
 
-    if (selectedConversationId) {
-      // Update the current conversation's messages in the state
-      setCurrentConversation((prevConversation) => ({
-        ...prevConversation,
-        messages: [...(prevConversation?.messages || []), newMessage],
-      }));
-    }
+    queryClient.setQueryData(['conversationDetail', selectedConversationId], (prevConversation) => ({
+      ...prevConversation,
+      messages: [...(prevConversation?.messages || []), newMessage],
+    }));
   };
 
 
+
+    // Memoized values for conversations, participants, and sender
+    const memoizedData = useMemo(() => {
+      if (!conversationList) return { filteredConversations: [], participants: [], sender: null };
+
+      const filteredConversations = conversationList.filter((conv) => conv.messages.length > 0);
+      const allParticipants = filteredConversations.map((conv) => conv.receiver);
+      const mainSender = filteredConversations[0]?.sender || null;
+
+      return { filteredConversations, participants: allParticipants, sender: mainSender };
+    }, [conversationList]);
 
 
   return (
@@ -190,7 +183,11 @@ export default function DashboardChatPage() {
         }}
         slots={{
           header: selectedConversationId ? (
-            <ChatHeaderDetail collapseNav={roomNav} participants={[participants]} />
+            <ChatHeaderDetail
+              collapseNav={roomNav}
+              participants={[participants]}
+              loading={isConversationDetailLoading}
+            />
           ) : (
             <ChatHeaderCompose contacts={participants} onAddRecipients={handleAddRecipients} />
           ),
@@ -206,11 +203,13 @@ export default function DashboardChatPage() {
             >
               <ChatNav
                 contacts={recipients}
-                conversations={conversationList}
-                sender={currentSender}
+                conversations={memoizedData.filteredConversations}
+                sender={memoizedData.sender}
                 selectedConversationId={selectedConversationId}
                 collapseNav={conversationsNav}
                 onConversationClick={handleConversationClick}
+                loading={isConversationsLoading}
+
               />
             </Box>
           ),
@@ -228,6 +227,8 @@ export default function DashboardChatPage() {
                   messages={currentConversation?.messages ?? []}
                   participants={[participants]}
                   sender={currentSender}
+                  loading={isConversationDetailLoading}
+
                 />
               ) : (
                 <EmptyContent
@@ -243,12 +244,19 @@ export default function DashboardChatPage() {
                 disabled={!recipients.length && !selectedConversationId}
                 onMessageSent={handleMessageSent}
                 sender={currentSender}
+
               />
             </Box>
           ),
 
           details: selectedConversationId && (
-            <ChatRoom collapseNav={roomNav} participants={participants} messages={currentConversation?.messages ?? []} />
+            <ChatRoom
+              collapseNav={roomNav}
+              participants={participants}
+              messages={currentConversation?.messages ?? []}
+              loading={isConversationDetailLoading}
+
+            />
           ),
         }}
       />

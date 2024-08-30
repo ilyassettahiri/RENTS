@@ -3,17 +3,23 @@ import Drawer from '@mui/material/Drawer';
 import { useTheme } from '@mui/material/styles';
 import PropTypes from 'prop-types'; // Import PropTypes
 import Scrollbar from 'src/components/scrollbar';
+import { ChatRoomSkeleton } from './chat-skeleton';
+
 import { ChatRoomSingle } from './chat-room-single';
 
 const NAV_WIDTH = 280;
 const NAV_DRAWER_WIDTH = 320;
 
-export function ChatRoom({ collapseNav, participants, messages }) {
+export function ChatRoom({ collapseNav, participants, messages, loading }) {
   const theme = useTheme();
   const { collapseDesktop, openMobile, onCloseMobile } = collapseNav;
   const attachments = messages.map((msg) => msg.attachments).flat() || [];
 
-  const renderContent = (
+
+
+  const renderContent = loading ? (
+    <ChatRoomSkeleton />
+  ) : (
     <Scrollbar>
       <div>
         <ChatRoomSingle participant={participants} />
@@ -54,6 +60,9 @@ export function ChatRoom({ collapseNav, participants, messages }) {
 
 // Define prop types for the component
 ChatRoom.propTypes = {
+
+  loading: PropTypes.bool.isRequired,
+
   collapseNav: PropTypes.shape({
     collapseDesktop: PropTypes.bool.isRequired,
     openMobile: PropTypes.bool.isRequired,

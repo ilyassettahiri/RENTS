@@ -155,20 +155,20 @@ export default function DashboardWishlistView() {
     counts['all categories'] = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services').length;
 
     // Add business counts
-    counts['business'] = favoriteStoresData.data.length;
+    counts.business = favoriteStoresData.data.length;
 
     // Filter listings by selected tab
-    let filteredlistings = [];
+    let filteredListingsByTab = [];
     if (tab === 'All categories') {
-      filteredlistings = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services');
+      filteredListingsByTab = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services');
     } else if (tab !== 'Business') {
-      filteredlistings = favoritelistingsData.filter(listing => listing.attributes.category === tab.toLowerCase());
+      filteredListingsByTab = favoritelistingsData.filter(listing => listing.attributes.category === tab.toLowerCase());
     }
 
     return {
       favoritelistings: favoritelistingsData,
       categoryCounts: counts,
-      filteredlistings,
+      filteredlistings: filteredListingsByTab,
       business: favoriteStoresData.data,
     };
   }, [favoriteListingsData, favoriteStoresData, tab]);
