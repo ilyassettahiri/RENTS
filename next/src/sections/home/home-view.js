@@ -389,13 +389,17 @@ export default function HomeView() {
 
 
         <Container
+
+          maxWidth={false}
+
           sx={{
             mb: { md: 10 },
             left: { md: 0 },
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-
+            paddingLeft: { lg: '100px' },
+            paddingRight: { lg: '100px' },
 
             position: { md: 'absolute' },
           }}

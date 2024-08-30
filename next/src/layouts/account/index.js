@@ -13,7 +13,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Avatar from '@mui/material/Avatar';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
+import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
+import Skeleton from '@mui/material/Skeleton';
+
 import Cookies from 'js-cookie';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -38,43 +41,46 @@ const navigations = [
 export default function AccountLayout({ children }) {
   const mdUp = useResponsive('up', 'md');
   const menuOpen = useBoolean();
-  const [image, setImage] = useState(`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`);
 
   const { getCurrentUser } = useContext(AuthContext);
-  const [user, setUser] = useState({});
+  const queryClient = useQueryClient();
 
   const [imageUrl, setImageUrl] = useState(null);
   const [fileState, setFileState] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const response = await AuthService.getProfile();
+  // Fetch User Profile
+  const { data: userProfile, isLoading: isProfileLoading } = useQuery({
+    queryKey: ["userProfile"],
+    queryFn: AuthService.getProfile,
+    onError: (error) => {
+      console.error("Failed to fetch user profile:", error);
+    },
+  });
 
-      const userData = response.data.attributes;
 
-      setUser({
-        firstName: userData.firstName || '',
-        lastName: userData.lastName || '',
-        emailAddress: userData.email || '',
-        phoneNumber: userData.phoneNumber || '',
-        birthday: userData.birthday || null,
-        gender: userData.gender || 'Male',
-        streetAddress: userData.streetAddress || '',
-        zipCode: userData.zipCode || '',
-        city: userData.city || '',
-        country: userData.country || 'United States',
-        oldPassword: '',
-        newPassword: '',
-        confirmNewPassword: '',
-      });
+  const user = useMemo(() => {
+    if (!userProfile) return {};
 
-      const profileImageUrl = userData.profile_image
-        ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
-        : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
+    const userData = userProfile.data.attributes;
+    return {
+      firstName: userData.firstName || "",
+      lastName: userData.lastName || "",
+      emailAddress: userData.email || "",
 
-      setImage(profileImageUrl);
-    })();
-  }, []);
+    };
+  }, [userProfile]);
+
+
+  const image = useMemo(() => {
+    if (!userProfile) return `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
+
+    const userData = userProfile.data.attributes;
+    return userData.profile_image
+      ? `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${userData.profile_image}`
+      : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/images/member.jpg`;
+  }, [userProfile]);
+
+
 
   const changeHandler = (e) => {
     const formData = new FormData();
@@ -82,6 +88,7 @@ export default function AccountLayout({ children }) {
     setFileState(formData);
     setImageUrl(URL.createObjectURL(e.target.files[0])); // Display selected image immediately
   };
+
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -104,7 +111,56 @@ export default function AccountLayout({ children }) {
     }
   };
 
-  const renderContentFix = (
+
+
+
+  const renderContentFix  = isProfileLoading ?  (
+
+  <Stack
+    sx={{
+      flexShrink: 0,
+      borderRadius: 2,
+      width: 1,
+      ...(mdUp && {
+        width: 280,
+        border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.24)}`,
+      }),
+    }}
+  >
+    <Stack spacing={2} sx={{ p: 3, pb: 2 }} >
+      <Stack spacing={2} direction="row" alignItems="center">
+        <Skeleton variant="circular" width={64} height={64} />
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Skeleton variant="rectangular" width={100} height={40} />
+          <Skeleton variant="rectangular" width={100} height={40} />
+        </Stack>
+      </Stack>
+
+      <Stack spacing={0.5}>
+        <Skeleton variant="text" width={150} />
+        <Skeleton variant="text" width={200} />
+      </Stack>
+    </Stack>
+
+    <Divider sx={{ borderStyle: 'dashed' }} />
+
+    <Stack sx={{ my: 1, px: 2 }}>
+      {[1, 2, 3].map((index) => (
+        <Skeleton key={index} variant="rectangular" height={44} sx={{ my: 1, borderRadius: 1 }} />
+      ))}
+    </Stack>
+
+    <Divider sx={{ borderStyle: 'dashed' }} />
+
+    <Stack sx={{ my: 1, px: 2 }}>
+      <Skeleton variant="rectangular" height={44} sx={{ borderRadius: 1 }} />
+    </Stack>
+  </Stack>
+  ) : (
+
+
+
+
     <Stack
       sx={{
         flexShrink: 0,
@@ -218,7 +274,7 @@ export default function AccountLayout({ children }) {
             },
           }}
         >
-          <Nav open={menuOpen.value} onClose={menuOpen.onFalse} />
+          {/* <Nav open={menuOpen.value} onClose={menuOpen.onFalse} /> */}
 
           {mdUp ? renderContentFix : <Box />}
 
@@ -241,7 +297,7 @@ AccountLayout.propTypes = {
   children: PropTypes.node,
 };
 
-function NavItem({ item }) {
+function NavItem({ item, onClose  }) {
   const active = useActiveLink(item.path);
 
   return (
@@ -251,6 +307,8 @@ function NavItem({ item }) {
       href={item.path}
       color={active ? 'primary' : 'inherit'}
       underline="none"
+      onClick={onClose}  // Close drawer on click
+
     >
       <ListItemButton
         sx={{
@@ -280,4 +338,6 @@ NavItem.propTypes = {
     path: PropTypes.string,
     title: PropTypes.string,
   }),
+  onClose: PropTypes.func,  // Add onClose prop type
+
 };

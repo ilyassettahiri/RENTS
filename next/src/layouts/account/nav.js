@@ -160,7 +160,7 @@ export default function Nav({ open, onClose }) {
 
       <Stack sx={{ my: 1, px: 2 }}>
         {navigations.map((item) => (
-          <NavItem key={item.title} item={item} />
+          <NavItem key={item.title} item={item} onClose={onClose} />
         ))}
       </Stack>
 
@@ -173,6 +173,8 @@ export default function Nav({ open, onClose }) {
             height: 44,
             borderRadius: 1,
           }}
+          onClick={handleLogOut}  // Add onClick to close drawer on logout
+
         >
           <ListItemIcon onClick={handleLogOut}>
             <Iconify icon="carbon:logout" />
@@ -210,7 +212,7 @@ Nav.propTypes = {
   open: PropTypes.bool,
 };
 
-function NavItem({ item }) {
+function NavItem({ item, onClose }) {
   const active = useActiveLink(item.path);
 
   return (
@@ -220,6 +222,8 @@ function NavItem({ item }) {
       href={item.path}
       color={active ? 'primary' : 'inherit'}
       underline="none"
+      onClick={onClose}  // Close drawer on click
+
     >
       <ListItemButton
         sx={{
@@ -249,4 +253,6 @@ NavItem.propTypes = {
     path: PropTypes.string,
     title: PropTypes.string,
   }),
+  onClose: PropTypes.func,  // Add onClose prop type
+
 };

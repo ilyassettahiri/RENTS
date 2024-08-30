@@ -5,7 +5,7 @@ import { RouterLink } from 'src/routes/components';
 
 // ----------------------------------------------------------------------
 
-function Logo({ sx }) {
+function Logo() {
   const staticLogo = (
     <svg
       id="Layer_1"
@@ -41,7 +41,7 @@ function Logo({ sx }) {
           lineHeight: 0,
           cursor: 'pointer',
           display: 'inline-flex',
-          ...sx,
+
         }}
       >
         {staticLogo}
@@ -50,8 +50,5 @@ function Logo({ sx }) {
   );
 }
 
-Logo.propTypes = {
-  sx: PropTypes.object,
-};
 
 export default Logo;

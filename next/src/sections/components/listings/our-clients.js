@@ -38,10 +38,9 @@ export default function OurClients({ brands }) {
     <Container
       maxWidth={false}
       sx={{
-        pt: { xs: 10, md: 15 },
-        pb: { xs: 5, md: 10 },
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        py: { xs:3, md: 5 },
+
+
       }}
     >
       <Stack

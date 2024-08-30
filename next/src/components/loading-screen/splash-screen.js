@@ -6,7 +6,7 @@ import { useTheme } from '@mui/material/styles';
 
 import { bgBlur } from 'src/theme/css';
 
-import Logo from '../logo';
+import Logo from 'src/components/logo/logo';
 
 // ----------------------------------------------------------------------
 
