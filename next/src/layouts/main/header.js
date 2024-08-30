@@ -74,7 +74,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
         <Logo/>
-        <Link href="/" target="_blank" rel="noopener" />
+
       </Box>
 
 

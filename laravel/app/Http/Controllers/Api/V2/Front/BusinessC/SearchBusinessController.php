@@ -187,6 +187,27 @@ class SearchBusinessController extends JsonApiController
 
 
 
+        $authuser = Auth::user();
+
+
+
+
+        if ($authuser) {
+
+
+            $favorites = Favoritestore::where('user_id', $authuser->id)->get();
+
+
+
+
+
+            $favoriteIds = array_filter($favorites->pluck('service_id')->toArray());
+
+
+        }
+
+
+
 
 
         if ($request->has('searchCategories')) {
@@ -239,12 +260,18 @@ class SearchBusinessController extends JsonApiController
 
 
 
-
             // Ensure JSON:API compliance
-            return response()->json([
+            $responseData = [
                 'data' => $businessData,
+            ];
 
-            ]);
+            // Conditionally add 'favorites' key if user is authenticated
+            if (isset($favoriteIds)) {
+                $responseData['favorites'] = $favoriteIds;
+            }
+
+            return response()->json($responseData);
+
 
 
 
@@ -297,10 +324,18 @@ class SearchBusinessController extends JsonApiController
 
 
             // Ensure JSON:API compliance
-            return response()->json([
+            $responseData = [
                 'data' => $businessData,
+            ];
 
-            ]);
+            // Conditionally add 'favorites' key if user is authenticated
+            if (isset($favoriteIds)) {
+                $responseData['favorites'] = $favoriteIds;
+            }
+
+            return response()->json($responseData);
+
+
 
 
 

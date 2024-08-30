@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+
+import { useQuery } from '@tanstack/react-query';
+
 import { useBoolean } from 'src/hooks/use-boolean';
 import Label from 'src/components/label';
 import Box from '@mui/material/Box';
@@ -75,94 +78,101 @@ const categories = [
 ];
 
 export default function DashboardWishlistView() {
-  const [favoritelistings, setFavoritelistings] = useState([]);
-  const [filteredlistings, setFilteredlistings] = useState([]);
+
+
   const [favorites, setFavorites] = useState([]);
-  const [categoryCounts, setCategoryCounts] = useState({});
-  const loading = useBoolean(true);
-  const [business, setBusiness] = useState([]);
+  const [favoritestore, setFavoritestore] = useState([]);
+
+
   const [tab, setTab] = useState('All categories');
 
   const handleChangeTab = useCallback((event, newValue) => {
     setTab(newValue);
   }, []);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getFavorites();
+  // Fetch favorite listings using React Query
+  const { data: favoriteListingsData, isLoading: isFavoritesLoading } = useQuery({
+    queryKey: ['favorites'],
+    queryFn: CrudService.getFavorites,
+    onError: (error) => {
+      console.error('Failed to fetch favorite listings:', error);
+    },
+  });
 
-        const favoritelistingsData = response.data.map(item => ({
-          type: item.type,
-          id: item.id,
-          attributes: {
-            ...item.attributes
-          }
-        }));
 
-        console.log('Mapped favoritelistings data:', favoritelistingsData);
+  // Fetch favorite stores using React Query
+  const { data: favoriteStoresData, isLoading: isStoresLoading } = useQuery({
+    queryKey: ['favoriteStores'],
+    queryFn: CrudService.getFavoritestore,
+    onError: (error) => {
+      console.error('Failed to fetch favorite stores:', error);
+    },
+  });
 
-        const favoritesData = response.favorites;
-        setFavorites(favoritesData);
-        setFavoritelistings(favoritelistingsData);
 
-        // Calculate the count of items in each category
-        const counts = favoritelistingsData.reduce((acc, listing) => {
-          const category = listing.attributes.category.toLowerCase();
-          if (!acc[category]) acc[category] = 0;
-          acc[category] += 1;
-          return acc;
-        }, {});
-
-        // Exclude services from "All categories"
-        counts['all categories'] = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services').length;
-        setCategoryCounts(counts);
-      } catch (error) {
-        console.error('Failed to fetch Home:', error);
+    // Set favorites from home data
+    useEffect(() => {
+      if (favoriteListingsData?.favorites) {
+        setFavorites(favoriteListingsData.favorites);
       }
-    })();
-  }, []);
+    }, [favoriteListingsData]);
 
+
+      // Set favorites from home data
   useEffect(() => {
-    if (tab === 'Business' || tab === 'All categories') {
-      (async () => {
-        try {
-          const response = await CrudService.getFavoritestore();
-          setBusiness(response.data);
-
-          // Update business count
-          setCategoryCounts(prevCounts => ({
-            ...prevCounts,
-            business: response.data.length,
-            'all categories': (prevCounts['all categories'] || 0) + response.data.length,
-          }));
-        } catch (error) {
-          console.error('Failed to fetch favorite stores:', error);
-        }
-      })();
+    if (favoriteStoresData?.favorites) {
+      setFavoritestore(favoriteStoresData.favorites);
     }
-  }, [tab]);
+  }, [favoriteStoresData]);
 
-  useEffect(() => {
-    const filterListings = () => {
-      if (tab === 'All categories') {
-        setFilteredlistings(favoritelistings.filter(listing => listing.attributes.category.toLowerCase() !== 'services'));
-      } else if (tab !== 'Business') {
-        const filtered = favoritelistings.filter(listing => listing.attributes.category === tab.toLowerCase());
-        setFilteredlistings(filtered);
+  // Memoized categories and counts
+  const { favoritelistings, categoryCounts = {}, filteredlistings, business } = useMemo(() => {
+    if (!favoriteListingsData || !favoriteStoresData) return {
+      favoritelistings: [],
+      categoryCounts: {},
+      filteredlistings: [],
+      business: [],
+    };
+
+    // Map favorite listings
+    const favoritelistingsData = favoriteListingsData.data.map(item => ({
+      type: item.type,
+      id: item.id,
+      attributes: {
+        ...item.attributes,
       }
-    };
+    }));
 
-    filterListings();
-  }, [tab, favoritelistings]);
+    // Calculate category counts
+    const counts = favoritelistingsData.reduce((acc, listing) => {
+      const category = listing.attributes.category.toLowerCase();
+      if (!acc[category]) acc[category] = 0;
+      acc[category] += 1;
+      return acc;
+    }, {});
 
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
+    // Exclude services from "All categories"
+    counts['all categories'] = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services').length;
+
+    // Add business counts
+    counts['business'] = favoriteStoresData.data.length;
+
+    // Filter listings by selected tab
+    let filteredlistings = [];
+    if (tab === 'All categories') {
+      filteredlistings = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services');
+    } else if (tab !== 'Business') {
+      filteredlistings = favoritelistingsData.filter(listing => listing.attributes.category === tab.toLowerCase());
+    }
+
+    return {
+      favoritelistings: favoritelistingsData,
+      categoryCounts: counts,
+      filteredlistings,
+      business: favoriteStoresData.data,
     };
-    fakeLoading();
-  }, [loading]);
+  }, [favoriteListingsData, favoriteStoresData, tab]);
+
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
     setFavorites(prevFavorites =>
@@ -198,7 +208,7 @@ export default function DashboardWishlistView() {
           return (
             <ServiceList
               jobs={filteredlistings}
-              loading={loading.value}
+              loading={isFavoritesLoading}
               favorites={favorites}
               onFavoriteToggle={handleFavoriteToggle}
               columns={3}
@@ -210,8 +220,8 @@ export default function DashboardWishlistView() {
           return (
             <BusinessList
               businesses={business}
-              loading={loading.value}
-              favorites={favorites}
+              loading={isStoresLoading}
+              favorites={favoritestore}
               onFavoriteToggle={handleFavoriteToggle}
             />
           );
@@ -220,7 +230,7 @@ export default function DashboardWishlistView() {
         return (
           <ListingList
             tours={filteredlistings}
-            loading={loading.value}
+            loading={isFavoritesLoading}
             favorites={favorites}
             onFavoriteToggle={handleFavoriteToggle}
             columns={3}

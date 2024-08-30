@@ -90,6 +90,9 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
     requireAuth(async () => {
       try {
         const response = await CrudService.createFavoriteStore( url, id);
+
+        console.log('Response Favorite:', response.favorite);
+
         setFavorite(response.favorite);
         onFavoriteToggle(id, response.favorite);
       } catch (error) {

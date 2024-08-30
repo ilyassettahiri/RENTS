@@ -85,19 +85,22 @@ export default function ServicesListView() {
 
 
 
-  // Effect to update favorites from initialData
+
   useEffect(() => {
     if (initialData?.favorites) {
       setFavorites(initialData.favorites);
     }
   }, [initialData]);
 
-  // Effect to update favorites from searchData
+
   useEffect(() => {
     if (searchData?.favorites) {
       setFavorites(searchData.favorites);
     }
   }, [searchData]);
+
+
+
 
 
   const services = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);

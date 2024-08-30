@@ -2832,6 +2832,7 @@ class FavoriteController extends JsonApiController
 
             ]);
 
+            return response()->json(['favorite' => true]);
 
 
         }

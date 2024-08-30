@@ -58,11 +58,11 @@ class BusinessController extends JsonApiController
             $favorites = Favoritestore::where('user_id', $authuser->id)->get();
             $favoriteIds = $favorites->pluck('onlinestore_id')->toArray();
 
-            Log::info('Favorite IDs:', $favoriteIds);
 
         }
 
 
+        Log::info('Favorite IDs in business controller:', $favoriteIds);
 
 
 
@@ -104,12 +104,14 @@ class BusinessController extends JsonApiController
 
 
 
+
+
+
+
         // Ensure JSON:API compliance
-        return response()->json([
+        $responseData = [
             'data' => $businessData,
-
-        ]);
-
+        ];
 
         // Conditionally add 'favorites' key if user is authenticated
         if (isset($favoriteIds)) {
@@ -117,7 +119,6 @@ class BusinessController extends JsonApiController
         }
 
         return response()->json($responseData);
-
 
 
 

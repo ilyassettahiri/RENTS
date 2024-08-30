@@ -63,7 +63,6 @@ export default function Footer() {
 
   const mainFooter = (
     <>
-      <Divider />
 
       <Container maxWidth={false}
         sx={{
@@ -73,8 +72,8 @@ export default function Footer() {
           paddingRight: { lg: '100px' },
           bgcolor: 'black',
           color: 'white',
-          borderTopLeftRadius: '15px',
-          borderTopRightRadius: '15px',
+          borderTopLeftRadius: '20px',
+          borderTopRightRadius: '20px',
 
         }}
       >

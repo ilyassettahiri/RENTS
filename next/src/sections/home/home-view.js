@@ -210,7 +210,6 @@ export default function HomeView() {
 
 
 
-    // Query for initial home data
     const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
       queryKey: ['home'],
       queryFn: CrudService.getHome,
@@ -221,7 +220,6 @@ export default function HomeView() {
 
 
 
-  // Search results query
   const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
     queryKey: ['search', searchParamsState],
     queryFn: () => CrudService.getSearchListings(searchParamsState),
@@ -240,17 +238,19 @@ export default function HomeView() {
   }, [selectedCategory]);
 
 
-  // Set favorites from home data
   useEffect(() => {
     if (homeData?.favorites) {
       setFavorites(homeData.favorites);
+      console.log('Favorites:', homeData.favorites);
+
     }
   }, [homeData]);
 
-  // Set favorites from search results data
   useEffect(() => {
     if (searchResultsData?.favorites) {
       setFavorites(searchResultsData.favorites);
+      console.log('Favorites:', searchResultsData.favorites);
+
     }
   }, [searchResultsData]);
 

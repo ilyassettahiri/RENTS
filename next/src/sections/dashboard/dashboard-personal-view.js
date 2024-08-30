@@ -1,9 +1,11 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
+import { useQuery } from '@tanstack/react-query';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -25,47 +27,57 @@ import { format } from 'date-fns';
 const GENDER_OPTIONS = ['Male', 'Female', 'Other'];
 
 export default function DashboardPersonalView() {
-  const { getCurrentUser } = useContext(AuthContext);
-  const [user, setUser] = useState({
-    firstName: '',
-    lastName: '',
-    emailAddress: '',
-    phoneNumber: '',
-    birthday: null,
-    gender: 'Male',
-    streetAddress: '',
-    zipCode: '',
-    city: '',
-    country: 'United States',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-  });
-  const [userId, setUserId] = useState(null);
 
-  useEffect(() => {
-    (async () => {
-      const response = await AuthService.getProfile();
-      setUserId(response.data.id);
-      setUser((prevUser) => ({
-        ...prevUser,
-        firstName: response.data.attributes.first_name,
-        lastName: response.data.attributes.last_name,
-        emailAddress: response.data.attributes.email,
-        profile_image: response.data.attributes.profile_image,
-        phoneNumber: response.data.attributes.phone_number,
-        birthday: response.data.attributes.birthday ? new Date(response.data.attributes.birthday) : null,
-        gender: response.data.attributes.gender,
-        streetAddress: response.data.attributes.address,
-        zipCode: response.data.attributes.zip,
-        city: response.data.attributes.city,
-        country: response.data.attributes.country,
-        oldPassword: "",
-        newPassword: "",
-        confirmNewPassword: "",
-      }));
-    })();
-  }, []);
+  const { getCurrentUser } = useContext(AuthContext);
+
+
+
+  const { data: rawUserData, isLoading: isUserLoading, error: userError } = useQuery({
+    queryKey: ['userProfile'],
+    queryFn: () => AuthService.getProfile(),
+    onError: (error) => {
+      console.error('Failed to fetch user profile:', error);
+    },
+  });
+
+
+  const userData = useMemo(() => {
+    if (!rawUserData) return {
+      firstName: '',
+      lastName: '',
+      emailAddress: '',
+      phoneNumber: '',
+      birthday: null,
+      gender: 'Male',
+      streetAddress: '',
+      zipCode: '',
+      city: '',
+      country: 'United States',
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+    };
+
+    const userAttributes = rawUserData.data.attributes;
+    return {
+      id: rawUserData.data.id,
+      firstName: userAttributes.first_name,
+      lastName: userAttributes.last_name,
+      emailAddress: userAttributes.email,
+      profile_image: userAttributes.profile_image,
+      phoneNumber: userAttributes.phone_number,
+      birthday: userAttributes.birthday ? new Date(userAttributes.birthday) : null,
+      gender: userAttributes.gender,
+      streetAddress: userAttributes.address,
+      zipCode: userAttributes.zip,
+      city: userAttributes.city,
+      country: userAttributes.country,
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+    };
+  }, [rawUserData]);
+
 
   const passwordShow = useBoolean();
 
@@ -91,33 +103,41 @@ export default function DashboardPersonalView() {
 
   const personalInfoMethods = useForm({
     resolver: yupResolver(personalInfoSchema),
-    defaultValues: user,
+    defaultValues: userData || {},
   });
 
   const passwordMethods = useForm({
     resolver: yupResolver(passwordSchema),
-    defaultValues: user,
+    defaultValues: userData || {},
   });
 
-  useEffect(() => {
-    personalInfoMethods.reset(user);
-    passwordMethods.reset(user);
-  }, [user, personalInfoMethods, passwordMethods]);
+
+    // Reset forms when userData changes using useEffect
+    useEffect(() => {
+      if (userData && !isUserLoading) {
+        personalInfoMethods.reset(userData);
+        passwordMethods.reset(userData);
+      }
+    }, [userData, isUserLoading, personalInfoMethods, passwordMethods]);
+
+
 
   const onSubmitPersonalInfo = personalInfoMethods.handleSubmit(async (data) => {
     try {
       if (data.birthday) {
         data.birthday = format(data.birthday, 'yyyy-MM-dd');
       }
-      await CrudService.updateUser(data, userId);
+      await CrudService.updateUser(data, userData.id);
       const response = await AuthService.getProfile();
-      setUser((prevUser) => ({
-        ...prevUser,
-        ...response.data.attributes,
-        birthday: response.data.attributes.birthday ? new Date(response.data.attributes.birthday) : null,
-      }));
-      personalInfoMethods.reset();
-      console.log('Personal Info Data:', data);
+      const updatedUser = response.data.attributes;
+
+      personalInfoMethods.reset({
+        ...userData,
+        ...updatedUser,
+        birthday: updatedUser.birthday ? new Date(updatedUser.birthday) : null,
+      });
+
+
     } catch (error) {
       console.error(error);
     }

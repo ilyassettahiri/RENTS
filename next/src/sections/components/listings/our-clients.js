@@ -77,7 +77,7 @@ export default function OurClients({ brands }) {
             >
               <Image
                 alt={brand.attributes.name}
-                src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}/${brand.attributes.picture}`}
+                src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${brand.attributes.picture}`}
                 sx={{
                   width: 106,
                   height: 32,

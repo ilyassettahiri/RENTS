@@ -79,6 +79,9 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
     requireAuth(async () => {
       try {
         const response = await CrudService.createFavorite(category, url, id);
+
+        console.log('Response Favorite:', response.favorite);
+
         setFavorite(response.favorite);
         onFavoriteToggle(id, response.favorite);
       } catch (error) {

@@ -76,19 +76,22 @@ export default function BusinessListView() {
 
 
 
-  // Effect to update favorites from initialData
+
   useEffect(() => {
     if (initialData?.favorites) {
       setFavorites(initialData.favorites);
     }
   }, [initialData]);
 
-  // Effect to update favorites from searchData
+
   useEffect(() => {
     if (searchData?.favorites) {
       setFavorites(searchData.favorites);
     }
   }, [searchData]);
+
+
+
 
 
   const business = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);
@@ -120,11 +123,11 @@ export default function BusinessListView() {
 
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
-
     setFavorites(prevFavorites =>
       isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
     );
   }, []);
+
 
 
 

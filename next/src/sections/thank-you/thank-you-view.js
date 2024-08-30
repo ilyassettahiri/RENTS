@@ -17,7 +17,7 @@ import Iconify from 'src/components/iconify';
 
 import CrudService from 'src/services/cruds-service';
 
-import ThankYouSummarySkeleton from 'src/sections/thank-you/thank-you-summary-skeleton.js';
+import ThankYouSummarySkeleton from 'src/sections/thank-you/thank-you-summary-skeleton';
 
 
 import ThankYouSummary from './thank-you-summary';

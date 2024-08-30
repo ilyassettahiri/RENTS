@@ -1,6 +1,8 @@
 'use client';
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -21,9 +23,10 @@ import { ChatHeaderDetail } from 'src/sections/chat/chat-header-detail';
 // ----------------------------------------------------------------------
 
 export default function DashboardChatPage() {
-  const loading = useBoolean(true);
+
   const router = useRouter();
   const searchParams = useSearchParams();
+
 
   const [conversationList, setConversationList] = useState(null);
   const [currentConversation, setCurrentConversation] = useState(null);
@@ -110,13 +113,7 @@ export default function DashboardChatPage() {
     setParticipants(conversationData.receiver);
   };
 
-  useEffect(() => {
-    const fakeLoading = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      loading.onFalse();
-    };
-    fakeLoading();
-  }, [loading]);
+
 
   const handleAddRecipients = useCallback((selected) => {
     setRecipients(selected);
