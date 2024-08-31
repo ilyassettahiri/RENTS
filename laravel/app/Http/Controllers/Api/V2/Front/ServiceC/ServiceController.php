@@ -55,9 +55,15 @@ class ServiceController extends JsonApiController
 
         if ($authuser) {
             $favorites = Favorite::where('user_id', $authuser->id)->get();
-            $favoriteIds = $favorites->pluck('service_id')->toArray();
-        }
 
+            // Create an array of objects containing the category 'services' and the corresponding service IDs
+            $favoriteIds = $favorites->pluck('service_id')->filter()->map(function ($serviceId) {
+                return [
+                    'category' => 'services', // Hardcode 'services' as the category
+                    'id' => $serviceId,       // The ID of the service
+                ];
+            })->values()->toArray(); // Use values() to reindex the array correctly
+        }
 
 
 

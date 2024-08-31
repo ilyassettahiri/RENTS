@@ -46,10 +46,13 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const { attributes } = tour;
   const { title, city,phone, price,seller, created_at, category, url, id, images } = attributes;
 
+  console.log('Favorites in listing list ', favorites); // Ensure this is logged correctly and not empty
+
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
   const [opencall, setOpencall] = useState(null);
 
-  const isFavorite = favorites.includes(id);
+
+  const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();

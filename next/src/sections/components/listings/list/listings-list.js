@@ -12,6 +12,8 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
 
 
 
+
+
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };

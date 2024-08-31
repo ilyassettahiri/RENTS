@@ -22,7 +22,7 @@ const defaultValues = {
   searchLocation: '',
 };
 
-export default function ServiceSearch({ onSearch, colorr }) {
+export default function ServiceSearch({ onSearch, colorr, categories }) {
   const mdUp = useResponsive('up', 'md');
   const mobileOpen = useBoolean();
   const [searchs, setSearchs] = useState(defaultValues);
@@ -118,67 +118,11 @@ export default function ServiceSearch({ onSearch, colorr }) {
 ServiceSearch.propTypes = {
   onSearch: PropTypes.func.isRequired,
   colorr: PropTypes.string,
+  categories: PropTypes.array.isRequired, // Adding categories as a required prop
 
 };
 
 
-
-const categories = [
-  'Billiards',
-  'Activities',
-  'Apartments',
-  'Audios',
-  'Boats',
-  'Boxings',
-  'Bureauxs',
-  'Cameras',
-  'Camions',
-  'Caravans',
-  'Cars',
-  'Chargers',
-  'Clothes',
-  'Divings',
-  'Drones',
-  'Eclairages',
-  'Electricaltools',
-  'Engins',
-  'Footballs',
-  'Furnitures',
-  'Gamings',
-  'Golfs',
-  'Houseappliances',
-  'Huntings',
-  'Jewelrys',
-  'Ladders',
-  'Laptops',
-  'Lightings',
-  'Livres',
-  'Magasins',
-  'Maisons',
-  'Mechanicaltools',
-  'Mobiliers',
-  'Motos',
-  'Musculations',
-  'Musicals',
-  'Photographies',
-  'Powertools',
-  'Pressurewashers',
-  'Printers',
-  'Riads',
-  'Routers',
-  'Scooters',
-  'Services',
-  'Sonorisations',
-  'Surfs',
-  'Tablettes',
-  'Taxiaeroports',
-  'Tennis',
-  'Tentes',
-  'Terrains',
-  'Transportations',
-  'Velos',
-  'Villas'
-];
 
 
 

@@ -194,11 +194,20 @@ class FavoriteController extends JsonApiController
     {
         $authuser = Auth::user();
 
-        $favorites = Favorite::where('user_id', $authuser->id)->get();
 
-        $favoriteIds = array_filter($favorites->pluck('id')->toArray());
+        if ($authuser) {
+            $favorites = Favorite::where('user_id', $authuser->id)->get();
+
+            // Create an array of objects containing category and id
+            $favoriteCategoriesAndIds = $favorites->map(function ($favorite) {
+                return [
+                    'category' => $favorite->category, // Assuming you have a 'category' field in your Favorite model
+                    'id' => $favorite->id,             // The ID of the listing or favorite item
+                ];
+            })->toArray();
 
 
+        }
 
         $favoritelistingsData = $favorites->map(function ($favorite) {
 
@@ -374,7 +383,7 @@ class FavoriteController extends JsonApiController
                // Ensure JSON:API compliance
             return response()->json([
                 'data' => $favoritelistingsData,
-                'favorites' => $favoriteIds,
+                'favorites' => $favoriteCategoriesAndIds,
 
             ]);
 

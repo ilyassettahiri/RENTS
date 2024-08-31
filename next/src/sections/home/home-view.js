@@ -159,6 +159,11 @@ const categories = [
   'Villas'
 ];
 
+const tours = heroUrl.map((url, index) => ({
+  id: index,
+  heroUrl: url,
+  categories: categories[index] || 'Uncategorized',
+}));
 
 const PRODUCT_SORT_OPTIONS = [
   { value: 'featured', label: 'Featured' },
@@ -179,11 +184,7 @@ const PRODUCT_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
 
 const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
-const tours = heroUrl.map((url, index) => ({
-  id: index,
-  heroUrl: url,
-  categories: categories[index] || 'Uncategorized',
-}));
+
 
 export default function HomeView() {
 
@@ -412,6 +413,7 @@ export default function HomeView() {
             colorr="white"
             onCategoryClick={handleCategoryClick}
             onSearch={handleSearch}
+            categories={categories}
             sx={{
               color: { md: 'common.white' },
               bgcolor: (theme) => ({
@@ -576,6 +578,7 @@ function applyFilter({ inputData, filters, sortBy }) {
 
   return inputData;
 }
+
 
 
 

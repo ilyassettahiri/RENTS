@@ -45,6 +45,7 @@ const StyledButton = styled((props) => (
 
 
 export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
+  console.log('Favorites in listing list ', favorites); // Ensure this is logged correctly and not empty
 
   const { attributes } = job;
 
@@ -71,7 +72,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
 
-  const isFavorite = favorites.includes(id);
+  const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
 
 

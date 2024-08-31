@@ -104,8 +104,7 @@ export default function AccountLayout({ children }) {
       };
       await AuthService.updateProfile(JSON.stringify(userData));
       const profileImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${url}`;
-      setImage(profileImageUrl); // Update the image state with the new URL
-      setImageUrl(null); // Clear the imageUrl to fallback to image
+      setImageUrl(profileImageUrl); // Update the imageUrl state with the new URL
     } catch (err) {
       console.error(err);
     }

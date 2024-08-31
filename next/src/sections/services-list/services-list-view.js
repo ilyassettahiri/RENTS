@@ -204,6 +204,8 @@ export default function ServicesListView() {
       <ServiceSearch
         colorr="black"
         onSearch={handleSearch}
+        categories={categories}
+
         sx={{
           color: { md: 'common.white' },
           bgcolor: (theme) => ({
@@ -325,3 +327,14 @@ function applyFilter({ inputData, filters, sortBy }) {
 
 
 
+const categories = [
+  'Apartments',
+
+  'Billiards',
+  'Activities',
+  'Audios',
+  'Boats',
+  'Boxings',
+  'Bureauxs',
+
+];

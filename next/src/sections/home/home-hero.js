@@ -137,7 +137,7 @@ function CarouselItem({ tour }) {
       sx={{
         ...bgGradient({
           startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
-          endColor: `${theme.palette.common.black} 75%`,
+          endColor: `${theme.palette.common.black} 60%`,
         }),
         backgroundColor: alpha(theme.palette.common.black, 0.24),
         top: 0,

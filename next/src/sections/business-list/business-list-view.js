@@ -148,6 +148,7 @@ export default function BusinessListView() {
     >
       <ServiceSearch
         colorr="black"
+        categories={categories}
 
         onSearch={handleSearch}
         sx={{
@@ -222,3 +223,17 @@ export default function BusinessListView() {
     </Container>
   );
 }
+
+
+
+const categories = [
+  'Apartments',
+
+  'Billiards',
+  'Activities',
+  'Audios',
+  'Boats',
+  'Boxings',
+  'Bureauxs',
+
+];
