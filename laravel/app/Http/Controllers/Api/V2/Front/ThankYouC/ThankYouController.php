@@ -68,7 +68,11 @@ class ThankYouController extends JsonApiController
 
                     'picture' => $reservation->listings_thumb,
 
-
+                    // Adding default values for city, address, country, and zip
+                    'city' => $reservation->city ?? 'Casablanca',
+                    'address' => $reservation->address ?? 'Center Ville',
+                    'country' => $reservation->country ?? 'Morocco',
+                    'zip' => $reservation->zip ?? '9000',
 
 
 

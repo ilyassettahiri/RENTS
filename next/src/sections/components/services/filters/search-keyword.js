@@ -12,6 +12,8 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx , col
   const [open, setOpen] = useState(false);
   const autocompleteRef = useRef(null);
 
+
+
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
     onChangeKeyword(newInputValue);
@@ -62,7 +64,11 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx , col
               </InputAdornment>
             ),
             endAdornment: null, // Remove the end adornment (down arrow icon)
-            sx: { pb: 1, ...sx ,color: colorr},
+            sx: { pb: 1, ...sx ,color: colorr,
+
+              ...(colorr === 'white' && { backgroundColor: 'rgba(255, 255, 255, 0.12)' }), // Apply background color only if 'colorr' is white
+
+            },
           }}
         />
       )}

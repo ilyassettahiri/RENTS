@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 
 import { RouterLink } from 'src/routes/components';
+import Map from 'src/components/map';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import Image from 'src/components/image';
@@ -26,6 +27,7 @@ import ThankYouSummary from './thank-you-summary';
 
 export default function ThankYouView({ params }) {
   const { checkout_id } = params;
+  const mdUp = useResponsive('up', 'md');
 
   // Fetch thank you data using React Query
   const { data: thankyouData, isLoading, error: thankyouError } = useQuery({
@@ -36,6 +38,14 @@ export default function ThankYouView({ params }) {
     },
   });
 
+  // Log the thankyouData whenever it changes
+useEffect(() => {
+  if (thankyouData) {
+    console.log('Thank You Data:', thankyouData); // Log thankyouData
+  }
+}, [thankyouData]);
+
+
   // Memorize the processed data to avoid unnecessary recalculations
   const memoizedTourData = useMemo(() => {
     if (thankyouError) {
@@ -45,59 +55,80 @@ export default function ThankYouView({ params }) {
   }, [thankyouData, thankyouError]);
 
   return (
+
+
     <Container
       maxWidth={false}
-      sx={{
-        pt: 5,
-        pb: { xs: 8, md: 15 },
 
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+      sx={{
+
+        py: 5,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center', // Center the content horizontally
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
       }}
+
+
     >
 
+          <Typography variant="h2" align="center">Completed 🎉</Typography>
+
+          <Container
+
+            sx={{
+              pt: 5,
+              pb: { xs: 2, md: 2 },
+              gap: 10,
+              display: 'grid',
+              alignItems: 'flex-start',
+              gridTemplateColumns: { md: 'repeat(2, 1fr)' },
+
+              gridTemplateRows: 'auto 1fr', // Ensure both columns have the same height
+              height: '100%', // Make sure the height is 100%
+
+            }}
+          >
 
 
-        <Stack spacing={5} sx={{
 
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+              <Stack spacing={5} sx={{ height: '100%' }}>
 
 
-          }}>
-          <Typography variant="h2" alignItems="center" textAlign="center">Completed 🎉</Typography>
+                {isLoading ? (
+                  <ThankYouSummarySkeleton />
+                ) : (
+                  <ThankYouSummary tour={memoizedTourData} />
+                )}
 
-          <Typography variant="h5"  alignItems="center" textAlign="center">Booking Details</Typography>
+              </Stack>
 
-          {isLoading ? (
-            <ThankYouSummarySkeleton />
-          ) : (
-            <ThankYouSummary tour={memoizedTourData} />
-          )}
+              {thankyouData &&  ( <Map offices={thankyouData?.data} sx={{ borderRadius: 2 , height: '100%'}} />)}
+
+          </Container>
+
           <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center">
-            <Button
-              component={RouterLink}
-              href="/"
-              variant="outlined"
-              size="large"
-              color="inherit"
-              startIcon={<Iconify icon="carbon:chevron-left" />}
-            >
-              Back Home
-            </Button>
+                <Button
+                  component={RouterLink}
+                  href="/"
+                  variant="outlined"
+                  size="large"
+                  color="inherit"
+                  startIcon={<Iconify icon="carbon:chevron-left" />}
+                >
+                  Back Home
+                </Button>
 
-            <Button
-              variant="contained"
-              size="large"
-              color="inherit"
-              startIcon={<Iconify icon="carbon:package" />}
-            >
-              Download Invoice
-            </Button>
+                <Button
+                  variant="contained"
+                  size="large"
+                  color="inherit"
+                  startIcon={<Iconify icon="carbon:package" />}
+                >
+                  Download Invoice
+                </Button>
           </Stack>
-        </Stack>
 
 
     </Container>

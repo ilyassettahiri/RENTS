@@ -107,7 +107,7 @@ export default function ServiceSearch({ onSearch, colorr, categories }) {
         open={mobileOpen.value}
         onClose={mobileOpen.onFalse}
         PaperProps={{
-          sx: { pt: 5, px: 3, width: 280 },
+          sx: { pt: 5, px: 3, width: 320 },
         }}
       >
         {renderSearchs}

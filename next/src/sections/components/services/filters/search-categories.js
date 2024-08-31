@@ -14,6 +14,8 @@ import Iconify from 'src/components/iconify';
 
 
 export default function SearchCategories({ searchCategories, onChangeCategory, colorr,categories, placeholder, icon }) {
+
+
   return (
     <Autocomplete
       sx={{ width: 1 }}
@@ -39,7 +41,10 @@ export default function SearchCategories({ searchCategories, onChangeCategory, c
                 />
               </InputAdornment>
             ),
-            sx: { pb: 1, color: colorr, },
+            sx: { pb: 1, color: colorr,
+              ...(colorr === 'white' && { backgroundColor: 'rgba(255, 255, 255, 0.12)' }), // Apply background color only if 'colorr' is white
+
+             },
           }}
         />
       )}

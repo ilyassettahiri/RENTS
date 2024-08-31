@@ -193,7 +193,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
               href={`${paths.travel.tour}/${category}/${url}`}
               color="inherit"
             >
-              <TextMaxLine variant="h6" line={2}>
+              <TextMaxLine variant="h6" line={1}>
 
                 {capitalizeFirstLetter(title)}
               </TextMaxLine>

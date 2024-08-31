@@ -87,7 +87,7 @@ export default function DashboardChatPage() {
         setParticipants(userConversation.attributes.receiver);
         router.push(`${paths.eCommerce.chat}?id=${userConversation.id}`);
       } else if (userConversation) {
-        setParticipants([userConversation.attributes]);
+        setParticipants([userConversation.data.attributes]);
       }
     }, [userConversation, router]);
 

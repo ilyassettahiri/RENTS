@@ -133,7 +133,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
               href={`${paths.travel.tour}/${product.attributes.category}/${product.attributes.url}`}
               color="inherit"
             >
-              <TextMaxLine variant="body2" line={2} sx={{ fontWeight: 'fontWeightMedium' }}>
+              <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
 
                 {capitalizeFirstLetter(product.attributes.title)}
               </TextMaxLine>
