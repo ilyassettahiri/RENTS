@@ -26,18 +26,20 @@ export function ProductFiltersResult({ filters, totalResults, sx }) {
   };
 
 
-    // Determine the price range label based on the input
-    const priceLabel = (() => {
-      const { start, end } = filters.state.priceRange;
-      if (start !== 0 && end !== 0) {
-        return `$${start} - $${end}`;
-      } else if (start !== 0) {
-        return `> $${start}`; // Only minimum is entered
-      } else if (end !== 0) {
-        return `< $${end}`; // Only maximum is entered
-      }
-      return ''; // No price filter applied
-    })();
+  const priceLabel = (() => {
+    const { start, end } = filters.state.priceRange;
+    if (start !== 0 && end !== 0) {
+      return `$${start} - $${end}`;
+    }
+    if (start !== 0) {
+      return `> $${start}`;
+    }
+    if (end !== 0) {
+      return `< $${end}`;
+    }
+    return '';
+  })();
+
 
   return (
     <FiltersResult totalResults={totalResults} onReset={filters.onResetState} sx={sx}>

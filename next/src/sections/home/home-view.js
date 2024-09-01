@@ -23,11 +23,9 @@ import ServiceSearch from 'src/sections/components/services/filters/services-sea
 import { EmptyContent } from 'src/components/empty-content';
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 
-import HomeHero from './home-hero';
 
 
 
-import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 import { ProductSearch } from 'src/sections/home/product-search';
 
@@ -37,6 +35,10 @@ import { ProductSort } from 'src/sections/home/product-sort';
 import { ProductFilters } from 'src/sections/home/product-filters';
 
 import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
+
+import HomeHero from './home-hero';
+
+import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 
 import OurClients from '../components/listings/our-clients';

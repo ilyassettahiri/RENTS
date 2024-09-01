@@ -176,9 +176,7 @@ export default function StoreView({ params }) {
     setSortBy(newValue);
   }, []);
 
-  const handleSearch = useCallback((params) => {
-    setSearchParamsState(params);
-  }, []);
+
 
   const productsEmpty = !extractedListings.length;
 

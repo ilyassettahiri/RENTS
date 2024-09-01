@@ -76,6 +76,7 @@ export default function BusinessListView() {
 
   const debouncedQuery = useDebounce(searchQuery);
 
+  const [searchParamsState, setSearchParamsState] = useState({});
 
 
 

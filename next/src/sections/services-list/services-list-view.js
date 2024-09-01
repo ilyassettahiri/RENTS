@@ -61,6 +61,7 @@ export default function ServicesListView() {
 
   const debouncedQuery = useDebounce(searchQuery);
 
+  const [searchParamsState, setSearchParamsState] = useState({});
 
   // Query for initial services
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({

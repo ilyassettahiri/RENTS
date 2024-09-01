@@ -31,7 +31,8 @@ export function orderBy(array, properties, orders) {
       const property = properties[i];
       const order = orders && orders[i] === 'desc' ? -1 : 1;
 
-      let aValue, bValue;
+      let aValue;
+      let bValue;
 
       if (typeof property === 'function') {
         aValue = property(a);
