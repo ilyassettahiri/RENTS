@@ -26,13 +26,12 @@ import Iconify from 'src/components/iconify';
 
 import { ProductSort } from 'src/sections/home/product-sort';
 
-import { ProductFilters } from 'src/sections/home/product-filters';
+import  ProductFilters  from 'src/sections/store/product/filters/product-filters';
 
 import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 import { EmptyContent } from 'src/components/empty-content';
 
 
-import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filters';
 import StoreList from 'src/sections/store/product/list/store-list';
 import StoreHeroSkeleton from 'src/sections/store/landing/store-hero-skeleton';
 
@@ -243,7 +242,21 @@ export default function StoreView({ params }) {
           sx={{ mb: { xs: 8, md: 10 } }}
         >
           <Stack spacing={5} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
-            <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
+
+
+                <ProductFilters
+                  filters={filters}
+                  canReset={canReset}
+                  open={mobileOpen.value}
+                  onClose={mobileOpen.onFalse}
+                  options={{
+                    ratings: PRODUCT_RATING_OPTIONS,
+                    genders: PRODUCT_GENDER_OPTIONS,
+                    categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
+                  }}
+                />
+
+
           </Stack>
 
           <Box
@@ -253,6 +266,16 @@ export default function StoreView({ params }) {
               width: { md: `calc(100% - ${280}px)` },
             }}
           >
+
+
+            <Stack direction="row" justifyContent="space-between" >
+                <Stack spacing={2.5} sx={{ mb: 2 }}>
+                      {canReset && renderResults}
+                </Stack>
+            </Stack>
+
+
+
             <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 5 }}>
               <ToggleButtonGroup
                 exclusive
@@ -268,21 +291,17 @@ export default function StoreView({ params }) {
                 ))}
               </ToggleButtonGroup>
 
-              {/* <FormControl size="small" hiddenLabel sx={{ width: 120 }}>
-                <Select value={sort} onChange={handleChangeSort}>
-                  {SORT_OPTIONS.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
+              <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
+
             </Stack>
+
+
+
 
             <StoreList
               loading={memoizedStoreData.storeLoading}
               viewMode={viewMode}
-              products={extractedListings}
+              products={dataFiltered}
               favorites={favorites} onFavoriteToggle={handleFavoriteToggle}
             />
           </Box>

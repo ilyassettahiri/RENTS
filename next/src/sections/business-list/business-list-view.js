@@ -23,13 +23,12 @@ import MenuItem from '@mui/material/MenuItem';
 
 import { ProductSort } from 'src/sections/home/product-sort';
 
-import { ProductFilters } from 'src/sections/home/product-filters';
+import  ProductFilters  from 'src/sections/store/product/filters/product-filters';
 
 import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 
 import { EmptyContent } from 'src/components/empty-content';
 
-import EcommerceFilters from 'src/sections/store/product/filters/ecommerce-filters';
 import BusinessList from '../components/business/list/business-list';
 
 // ----------------------------------------------------------------------
@@ -265,23 +264,32 @@ export default function BusinessListView() {
             <Stack direction="row" alignItems="center" justifyContent="space-between" >
 
 
-              {/* <FormControl size="small" hiddenLabel sx={{ width: 120 }}>
-                <Select value={sort} onChange={handleChangeSort}>
-                  {SORT_OPTIONS.map((option) => (
-                    <MenuItem key={option.value} value={option.value}>
-                      {option.label}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl> */}
+              <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
+
             </Stack>
+
+
+
 
 
         </Stack>
       </Stack>
 
+
+
       <Stack direction={{ xs: 'column', md: 'row' }}>
-        <EcommerceFilters open={mobileOpen.value} onClose={mobileOpen.onFalse} />
+
+            <ProductFilters
+              filters={filters}
+              canReset={canReset}
+              open={mobileOpen.value}
+              onClose={mobileOpen.onFalse}
+              options={{
+                ratings: PRODUCT_RATING_OPTIONS,
+                genders: PRODUCT_GENDER_OPTIONS,
+                categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
+              }}
+            />
         <Box
           sx={{
             flexGrow: 1,
@@ -289,7 +297,14 @@ export default function BusinessListView() {
             width: { md: `calc(100% - ${280}px)` },
           }}
         >
-          <BusinessList businesses={business} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
+
+            <Stack direction="row" justifyContent="space-between" >
+                <Stack spacing={2.5} sx={{ mb: 2 }}>
+                      {canReset && renderResults}
+                </Stack>
+            </Stack>
+
+          <BusinessList businesses={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
         </Box>
       </Stack>
     </Container>
