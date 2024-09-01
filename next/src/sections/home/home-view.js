@@ -29,14 +29,14 @@ import HomeHero from './home-hero';
 
 import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
+import { ProductSearch } from 'src/sections/home/product-search';
 
 
-import { ProductSort } from './product-sort';
-import { ProductSearch } from './product-search';
+import { ProductSort } from 'src/sections/home/product-sort';
 
-import { ProductFilters } from './product-filters';
+import { ProductFilters } from 'src/sections/home/product-filters';
 
-import { ProductFiltersResult } from './product-filters-result';
+import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 
 
 import OurClients from '../components/listings/our-clients';
@@ -166,8 +166,9 @@ const tours = heroUrl.map((url, index) => ({
 }));
 
 const PRODUCT_SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
+  { value: 'featured', label: 'Featured' },
+
   { value: 'priceDesc', label: 'Price: High - Low' },
   { value: 'priceAsc', label: 'Price: Low - High' },
 ];
@@ -242,7 +243,6 @@ export default function HomeView() {
   useEffect(() => {
     if (homeData?.favorites) {
       setFavorites(homeData.favorites);
-      console.log('Favorites:', homeData.favorites);
 
     }
   }, [homeData]);
@@ -250,7 +250,6 @@ export default function HomeView() {
   useEffect(() => {
     if (searchResultsData?.favorites) {
       setFavorites(searchResultsData.favorites);
-      console.log('Favorites:', searchResultsData.favorites);
 
     }
   }, [searchResultsData]);
@@ -268,6 +267,7 @@ export default function HomeView() {
     [searchResultsData, homeData]
   );
 
+  console.log('InitialListings:', InitialListings);
 
   const isLoading = isHomeLoading || isSearchLoading;
 
@@ -322,7 +322,7 @@ export default function HomeView() {
 
   const openFilters = useBoolean();
 
-  const [sortBy, setSortBy] = useState('featured');
+  const [sortBy, setSortBy] = useState('newest');
 
 
 
@@ -331,7 +331,9 @@ export default function HomeView() {
 
     rating: '',
     category: 'all',
-    priceRange: [0, 200],
+
+    priceRange: { start: 0, end: 0 },
+
   });
 
   // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
@@ -343,10 +345,10 @@ export default function HomeView() {
 
     filters.state.rating !== '' ||
     filters.state.category !== 'all' ||
-    filters.state.priceRange[0] !== 0 ||
-    filters.state.priceRange[1] !== 200;
+    filters.state.priceRange.start !== 0 || // Updated check
+    filters.state.priceRange.end !== 0;   // Updated check
 
-    const notFound = !InitialListings.length && canReset;
+    const notFound = !dataFiltered.length && canReset;
 
   const handleSortBy = useCallback((newValue) => {
     setSortBy(newValue);
@@ -361,7 +363,7 @@ export default function HomeView() {
 
 
   const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={InitialListings.length} />
+    <ProductFiltersResult filters={filters} totalResults={dataFiltered.length} />
   );
 
   const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
@@ -484,14 +486,13 @@ export default function HomeView() {
 
 
 
-        {/* {(InitialListings.listingsEmpty || productsEmpty) && renderNotFound} */}
+
+         {(notFound || productsEmpty) && renderNotFound}
 
 
 
 
-
-
-        <ListingList tours={InitialListings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
         <Stack sx={{ my: 5 }} >
@@ -528,9 +529,11 @@ export default function HomeView() {
 function applyFilter({ inputData, filters, sortBy }) {
   const { gender, category, priceRange, rating } = filters;
 
-  const min = priceRange[0];
+  const min = priceRange.start;
+  const max = priceRange.end;
 
-  const max = priceRange[1];
+
+
 
   // Sort by
   if (sortBy === 'featured') {
@@ -538,17 +541,16 @@ function applyFilter({ inputData, filters, sortBy }) {
   }
 
   if (sortBy === 'newest') {
-    inputData = orderBy(inputData, ['createdAt'], ['desc']);
+    inputData = orderBy(inputData, [(item) => new Date(item.attributes.created_at)], ['desc']);
   }
 
   if (sortBy === 'priceDesc') {
-    inputData = orderBy(inputData, ['price'], ['desc']);
+    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['desc']);
   }
 
   if (sortBy === 'priceAsc') {
-    inputData = orderBy(inputData, ['price'], ['asc']);
+    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['asc']);
   }
-
   // filters
   if (gender.length) {
     inputData = inputData.filter((product) => product.gender.some((i) => gender.includes(i)));
@@ -559,10 +561,15 @@ function applyFilter({ inputData, filters, sortBy }) {
   }
 
 
-
-  if (min !== 0 || max !== 200) {
-    inputData = inputData.filter((product) => product.attributes.price >= min && product.attributes.price <= max);
+  // Apply price filter based on user input only
+  if (min !== 0 || max !== 0) {
+    inputData = inputData.filter((product) => {
+      const price = Number(product.attributes.price);
+      // Filter based on the existence of min and/or max
+      return (min === 0 || price >= min) && (max === 0 || price <= max);
+    });
   }
+
 
   if (rating) {
     inputData = inputData.filter((product) => {
@@ -575,6 +582,8 @@ function applyFilter({ inputData, filters, sortBy }) {
       return product.totalRatings > convertRating(rating);
     });
   }
+
+
 
   return inputData;
 }

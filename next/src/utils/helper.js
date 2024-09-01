@@ -31,15 +31,28 @@ export function orderBy(array, properties, orders) {
       const property = properties[i];
       const order = orders && orders[i] === 'desc' ? -1 : 1;
 
-      const aValue = a[property];
-      const bValue = b[property];
+      let aValue, bValue;
 
+      if (typeof property === 'function') {
+        aValue = property(a);
+        bValue = property(b);
+      } else {
+        aValue = a[property];
+        bValue = b[property];
+      }
+
+      // Convert strings to lowercase if they are string type to handle case insensitivity
+      if (typeof aValue === 'string') aValue = aValue.toLowerCase();
+      if (typeof bValue === 'string') bValue = bValue.toLowerCase();
+
+      // Handle sorting for numbers and strings
       if (aValue < bValue) return -1 * order;
       if (aValue > bValue) return 1 * order;
     }
     return 0;
   });
 }
+
 
 // ----------------------------------------------------------------------
 

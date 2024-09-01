@@ -15,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import PropTypes from 'prop-types';
+import FilterPrice from 'src/sections/store/product/filters/filter-price';
 
 import { varAlpha } from 'src/theme/styles';
 import Iconify from 'src/components/iconify';
@@ -49,12 +50,26 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     [filters]
   );
 
-  const handleFilterPriceRange = useCallback(
-    (event, newValue) => {
-      filters.setState({ priceRange: newValue });
+
+
+
+
+  const handleFilterStartPrice = useCallback(
+    (event) => {
+      const newStartPrice = Number(event.target.value);
+      filters.setState({ priceRange: { start: newStartPrice, end: filters.state.priceRange.end } }); // Fix update
     },
     [filters]
   );
+
+  const handleFilterEndPrice = useCallback(
+    (event) => {
+      const newEndPrice = Number(event.target.value);
+      filters.setState({ priceRange: { start: filters.state.priceRange.start, end: newEndPrice } }); // Fix update
+    },
+    [filters]
+  );
+
 
   const handleFilterRating = useCallback(
     (newValue) => {
@@ -132,21 +147,11 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     <Box display="flex" flexDirection="column">
       <Typography variant="subtitle2">Price</Typography>
 
-      <Box gap={5} display="flex" sx={{ my: 2 }}>
-        <InputRange type="min" value={filters.state.priceRange} onFilters={filters.setState} />
-        <InputRange type="max" value={filters.state.priceRange} onFilters={filters.setState} />
-      </Box>
-
-      <Slider
-        value={filters.state.priceRange}
-        onChange={handleFilterPriceRange}
-        step={10}
-        min={0}
-        max={200}
-        marks={marksLabel}
-        getAriaValueText={(value) => `$${value}`}
-        valueLabelFormat={(value) => `$${value}`}
-        sx={{ alignSelf: 'center', width: `calc(100% - 24px)` }}
+      <FilterPrice
+        filterPrice={{ start: filters.state.priceRange[0], end: filters.state.priceRange[1] }}
+        onChangeStartPrice={handleFilterStartPrice}
+        onChangeEndPrice={handleFilterEndPrice}
+        sx={{ my: 2, alignSelf: 'center', width: '100%' }}
       />
     </Box>
   );
@@ -248,72 +253,4 @@ ProductFilters.propTypes = {
   }).isRequired,
 };
 
-function InputRange({ type, value, onFilters }) {
-  const min = value[0];
-  const max = value[1];
 
-  const handleBlurInputRange = useCallback(() => {
-    if (min < 0) {
-      onFilters({ priceRange: [0, max] });
-    }
-    if (min > 200) {
-      onFilters({ priceRange: [200, max] });
-    }
-    if (max < 0) {
-      onFilters({ priceRange: [min, 0] });
-    }
-    if (max > 200) {
-      onFilters({ priceRange: [min, 200] });
-    }
-  }, [max, min, onFilters]);
-
-  return (
-    <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ width: 1 }}>
-      <Typography
-        variant="caption"
-        sx={{
-          flexShrink: 0,
-          color: 'text.disabled',
-          textTransform: 'capitalize',
-          fontWeight: 'fontWeightSemiBold',
-        }}
-      >
-        {`${type} ($)`}
-      </Typography>
-
-      <InputBase
-        fullWidth
-        value={type === 'min' ? min : max}
-        onChange={(event) =>
-          type === 'min'
-            ? onFilters({ priceRange: [Number(event.target.value), max] })
-            : onFilters({ priceRange: [min, Number(event.target.value)] })
-        }
-        onBlur={handleBlurInputRange}
-        inputProps={{
-          step: 10,
-          min: 0,
-          max: 200,
-          type: 'number',
-          'aria-labelledby': 'input-slider',
-        }}
-        sx={{
-          maxWidth: 48,
-          borderRadius: 0.75,
-          [`& .${inputBaseClasses.input}`]: {
-            pr: 1,
-            py: 0.75,
-            textAlign: 'right',
-            typography: 'body2',
-          },
-        }}
-      />
-    </Stack>
-  );
-}
-
-InputRange.propTypes = {
-  type: PropTypes.string.isRequired,
-  value: PropTypes.arrayOf(PropTypes.number).isRequired,
-  onFilters: PropTypes.func.isRequired,
-};

@@ -30,10 +30,10 @@ import ServiceList from '../components/services/list/services-list';
 
 
 
-
 const PRODUCT_SORT_OPTIONS = [
-  { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
+  { value: 'featured', label: 'Featured' },
+
   { value: 'priceDesc', label: 'Price: High - Low' },
   { value: 'priceAsc', label: 'Price: Low - High' },
 ];
@@ -135,9 +135,10 @@ export default function ServicesListView() {
 
 
 
+
   const openFilters = useBoolean();
 
-  const [sortBy, setSortBy] = useState('featured');
+  const [sortBy, setSortBy] = useState('newest');
 
 
 
@@ -146,7 +147,9 @@ export default function ServicesListView() {
 
     rating: '',
     category: 'all',
-    priceRange: [0, 200],
+
+    priceRange: { start: 0, end: 0 },
+
   });
 
   // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
@@ -158,17 +161,17 @@ export default function ServicesListView() {
 
     filters.state.rating !== '' ||
     filters.state.category !== 'all' ||
-    filters.state.priceRange[0] !== 0 ||
-    filters.state.priceRange[1] !== 200;
+    filters.state.priceRange.start !== 0 || // Updated check
+    filters.state.priceRange.end !== 0;   // Updated check
 
-  const notFound = !services.length && canReset;
+    const notFound = !dataFiltered.length && canReset;
 
   const handleSortBy = useCallback((newValue) => {
     setSortBy(newValue);
   }, []);
 
-  const handleSearch = useCallback((inputValue) => {
-    setSearchQuery(inputValue);
+  const handleSearch = useCallback((params) => {
+    setSearchParamsState(params);
   }, []);
 
   const productsEmpty = !services.length;
@@ -176,10 +179,11 @@ export default function ServicesListView() {
 
 
   const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={services.length} />
+    <ProductFiltersResult filters={filters} totalResults={dataFiltered.length} />
   );
 
   const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
+
 
 
 
@@ -254,6 +258,7 @@ export default function ServicesListView() {
 
 
 
+        {(notFound || productsEmpty) && renderNotFound}
 
 
 
@@ -262,7 +267,7 @@ export default function ServicesListView() {
 
 
 
-      <ServiceList jobs={services} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
+      <ServiceList jobs={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
     </Container>
   );
 }
@@ -274,9 +279,11 @@ export default function ServicesListView() {
 function applyFilter({ inputData, filters, sortBy }) {
   const { gender, category, priceRange, rating } = filters;
 
-  const min = priceRange[0];
+  const min = priceRange.start;
+  const max = priceRange.end;
 
-  const max = priceRange[1];
+
+
 
   // Sort by
   if (sortBy === 'featured') {
@@ -284,17 +291,16 @@ function applyFilter({ inputData, filters, sortBy }) {
   }
 
   if (sortBy === 'newest') {
-    inputData = orderBy(inputData, ['createdAt'], ['desc']);
+    inputData = orderBy(inputData, [(item) => new Date(item.attributes.created_at)], ['desc']);
   }
 
   if (sortBy === 'priceDesc') {
-    inputData = orderBy(inputData, ['price'], ['desc']);
+    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['desc']);
   }
 
   if (sortBy === 'priceAsc') {
-    inputData = orderBy(inputData, ['price'], ['asc']);
+    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['asc']);
   }
-
   // filters
   if (gender.length) {
     inputData = inputData.filter((product) => product.gender.some((i) => gender.includes(i)));
@@ -305,10 +311,15 @@ function applyFilter({ inputData, filters, sortBy }) {
   }
 
 
-
-  if (min !== 0 || max !== 200) {
-    inputData = inputData.filter((product) => product.attributes.price >= min && product.attributes.price <= max);
+  // Apply price filter based on user input only
+  if (min !== 0 || max !== 0) {
+    inputData = inputData.filter((product) => {
+      const price = Number(product.attributes.price);
+      // Filter based on the existence of min and/or max
+      return (min === 0 || price >= min) && (max === 0 || price <= max);
+    });
   }
+
 
   if (rating) {
     inputData = inputData.filter((product) => {
@@ -322,8 +333,11 @@ function applyFilter({ inputData, filters, sortBy }) {
     });
   }
 
+
+
   return inputData;
 }
+
 
 
 

@@ -18,12 +18,26 @@ export function ProductFiltersResult({ filters, totalResults, sx }) {
   };
 
   const handleRemovePrice = () => {
-    filters.setState({ priceRange: [0, 200] });
+    filters.setState({ priceRange: { start: 0, end: 0 } });
   };
 
   const handleRemoveRating = () => {
     filters.setState({ rating: '' });
   };
+
+
+    // Determine the price range label based on the input
+    const priceLabel = (() => {
+      const { start, end } = filters.state.priceRange;
+      if (start !== 0 && end !== 0) {
+        return `$${start} - $${end}`;
+      } else if (start !== 0) {
+        return `> $${start}`; // Only minimum is entered
+      } else if (end !== 0) {
+        return `< $${end}`; // Only maximum is entered
+      }
+      return ''; // No price filter applied
+    })();
 
   return (
     <FiltersResult totalResults={totalResults} onReset={filters.onResetState} sx={sx}>
@@ -39,11 +53,11 @@ export function ProductFiltersResult({ filters, totalResults, sx }) {
 
       <FiltersBlock
         label="Price:"
-        isShow={filters.state.priceRange[0] !== 0 || filters.state.priceRange[1] !== 200}
+        isShow={filters.state.priceRange.start !== 0 || filters.state.priceRange.end !== 0}
       >
         <Chip
           {...chipProps}
-          label={`$${filters.state.priceRange[0]} - ${filters.state.priceRange[1]}`}
+          label={priceLabel} // Updated label based on input
           onDelete={handleRemovePrice}
         />
       </FiltersBlock>
@@ -60,7 +74,10 @@ ProductFiltersResult.propTypes = {
     state: PropTypes.shape({
       gender: PropTypes.arrayOf(PropTypes.string).isRequired,
       category: PropTypes.string.isRequired,
-      priceRange: PropTypes.arrayOf(PropTypes.number).isRequired,
+      priceRange: PropTypes.shape({
+        start: PropTypes.number.isRequired,
+        end: PropTypes.number.isRequired,
+      }).isRequired,
       rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }).isRequired,
     setState: PropTypes.func.isRequired,

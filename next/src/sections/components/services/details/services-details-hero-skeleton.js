@@ -67,7 +67,7 @@ function CarouselSkeleton() {
             <Skeleton
               key={index}
               variant="rectangular"
-              sx={{ width: '100%', height: 240, borderRadius: 2 }}
+              sx={{ width: '100%', height: 300, borderRadius: 2 }}
             />
           ))}
         </Carousel>

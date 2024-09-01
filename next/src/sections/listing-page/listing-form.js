@@ -68,7 +68,7 @@ export default function ListingForm({ tour }) {
 
   return (
     <Card>
-      <Stack spacing={3} sx={{ p: 2 }}>
+      <Stack spacing={3} sx={{ px: 1.5, py: 2 }}>
         <Stack spacing={1} direction="row" alignItems="center" sx={{ typography: 'h4' }}>
           {fCurrency(price)}
           <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}>

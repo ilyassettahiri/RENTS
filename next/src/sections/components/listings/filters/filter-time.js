@@ -31,28 +31,8 @@ export default function FilterTime({
         minDate={minDate}
         maxDate={maxDate}
         shouldDisableDate={shouldDisableDate}
-        slotProps={{
-          textField: {
-            fullWidth: true,
-            variant: 'standard',
-            InputProps: {
-              disableUnderline: true,
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Iconify width={24} icon="carbon:calendar" sx={{ color: 'text.disabled', mr: 1 }} />
-                </InputAdornment>
-              ),
-            },
-            sx: {
-              [`& .${inputBaseClasses.input}`]: {
-                py: 0,
-                height: 52,
-                typography: 'subtitle1',
-              },
-              ...sx,
-            },
-          },
-        }}
+        localeText={{ start: 'Start Date', end: 'End Date' }}
+
       />
     </LocalizationProvider>
   );

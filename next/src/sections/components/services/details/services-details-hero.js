@@ -114,7 +114,7 @@ function CarouselBasic3({ data }) {
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
           {data.map((item) => (
 
-            <Image alt={item.title} src={item.coverUrl} ratio="4/3" />
+            <Image alt={item.title} src={item.coverUrl} ratio="1/1" />
           ))}
         </Carousel>
       </CarouselArrows>
