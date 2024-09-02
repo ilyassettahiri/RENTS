@@ -22,7 +22,7 @@ const defaultValues = {
   searchLocation: '',
 };
 
-export default function ServiceSearch({ onSearch, colorr, categories }) {
+export default function ServiceSearch({ onSearch, colorr, categories, keywordCategoryMap }) {
   const mdUp = useResponsive('up', 'md');
   const mobileOpen = useBoolean();
   const [searchs, setSearchs] = useState(defaultValues);
@@ -33,8 +33,15 @@ export default function ServiceSearch({ onSearch, colorr, categories }) {
 
 
   const handleChangeKeyword = useCallback((newValue) => {
-    setSearchs((prevSearchs) => ({ ...prevSearchs, searchKeyword: newValue }));
-  }, []);
+    const mappedCategory = keywordCategoryMap[newValue] || ''; // Get the mapped category or default to empty
+    setSearchs((prevSearchs) => ({
+      ...prevSearchs,
+      searchKeyword: newValue,
+      searchCategories: mappedCategory, // Update the category based on the selected suggestion
+    }));
+  }, [keywordCategoryMap]);
+
+
 
   const handleChangeCategory = useCallback((newValue) => {
     setSearchs((prevSearchs) => ({ ...prevSearchs, searchCategories: newValue }));
@@ -60,7 +67,7 @@ export default function ServiceSearch({ onSearch, colorr, categories }) {
     <>
       <Grid container spacing={2.5} alignItems="center" >
         <Grid item xs={12} md={5}>
-          <SearchKeyword searchKeyword={searchs.searchKeyword} onChangeKeyword={handleChangeKeyword} colorr={mobileColorr}/>
+          <SearchKeyword searchKeyword={searchs.searchKeyword} onChangeKeyword={handleChangeKeyword} colorr={mobileColorr} keywordCategoryMap={keywordCategoryMap} onSearch={onSearch}/>
         </Grid>
         <Grid item xs={12} md={3}>
           <SearchCategories searchCategories={searchs.searchCategories} onChangeCategory={handleChangeCategory} categories={categories} colorr={mobileColorr} placeholder="category" icon="carbon:inventory-management"/>
@@ -118,7 +125,9 @@ export default function ServiceSearch({ onSearch, colorr, categories }) {
 ServiceSearch.propTypes = {
   onSearch: PropTypes.func.isRequired,
   colorr: PropTypes.string,
-  categories: PropTypes.array.isRequired, // Adding categories as a required prop
+  categories: PropTypes.array.isRequired,
+
+  keywordCategoryMap: PropTypes.object.isRequired,
 
 };
 
