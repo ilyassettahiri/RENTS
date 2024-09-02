@@ -1,45 +1,27 @@
-"use client";
+// No "use client" directive here
 
-import 'src/global.css';
+export const metadata = {
+  title: 'Rents.ma: Morocco Rentals Marketplace',
+  description: 'Morocco Rentals Marketplace',
+  icons: {
+    icon: '/favicon/favicon.ico', // Make sure the path is correct relative to the public directory
+    shortcut: '/favicon/favicon-32x32.png',
+    apple: '/favicon/apple-touch-icon.png',
+  },
+  manifest: '/favicon/manifest.json', // Ensure this path is correct
+  themeColor: '#17c1e8',
+};
 
-// ----------------------------------------------------------------------
-
-import PropTypes from 'prop-types';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MotionLazy } from 'src/components/animate/motion-lazy';
-import ProgressBar from 'src/components/progress-bar';
-import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
-import { AuthContextProvider } from 'src/context/AuthContextProvider'; // Adjust the import path
-import ThemeProvider from 'src/theme';
+// Import the client layout component
+import ClientLayout from './client-layout';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head />
       <body>
-        <LocalizationProvider>
-          <SettingsProvider
-            defaultSettings={{
-              themeMode: 'light', // 'light' | 'dark'
-              themeDirection: 'ltr', //  'rtl' | 'ltr'
-              themeColorPresets: 'default', // 'default' | 'preset01' | 'preset02' | 'preset03' | 'preset04' | 'preset05'
-            }}
-          >
-            <AuthContextProvider>
-              <ThemeProvider>
-                <MotionLazy>
-                  <ProgressBar />
-                  <SettingsDrawer />
-                  {children}
-                </MotionLazy>
-              </ThemeProvider>
-            </AuthContextProvider>
-          </SettingsProvider>
-        </LocalizationProvider>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
 }
-
-RootLayout.propTypes = {
-  children: PropTypes.node,
-};

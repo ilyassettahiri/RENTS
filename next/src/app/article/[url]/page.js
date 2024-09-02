@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Travel: Blog Post',
+  title: 'Blog Post',
 };
 
 const ArticlePage = ({ params }) => <ArticleView params={params} />;

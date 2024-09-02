@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
-  title: 'Career: Job',
-};
+export async function generateMetadata({ params }) {
+  const { url } = params;
+
+  // Set the title dynamically based on the `url` param
+  return {
+    title: `Rents.ma - ${url}`, // Customize the title as needed
+  };
+}
+
 
 const ServicePage = ({ params }) => <ServicePageView params={params} />;
 

@@ -3,9 +3,15 @@ import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
-  title: 'E-commerce: Home',
-};
+export async function generateMetadata({ params }) {
+  const { url } = params;
+
+  // Set the title dynamically based on the `url` param
+  return {
+    title: `Store - ${url}`, // Customize the title as needed
+  };
+}
+
 
 const EcommerceLandingPage = ({ params }) => <StoreView params={params} />;
 

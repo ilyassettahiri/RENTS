@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { useTheme } from '@mui/material/styles';
 import { useResponsive } from 'src/hooks/use-responsive';
+import Typography from '@mui/material/Typography';
 
 
 import {
@@ -15,7 +16,7 @@ import {
 
 import ServiceItem from 'src/sections/components/services/list/services-item';
 
-export default function ListingsCarouselService({ tours }) {
+export default function ListingsCarouselService({ tours, title }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
 
@@ -33,7 +34,6 @@ export default function ListingsCarouselService({ tours }) {
   });
 
 
-  console.log('Tours:', tours);
 
 
 
@@ -46,6 +46,7 @@ export default function ListingsCarouselService({ tours }) {
     >
 
 
+      <Typography variant="h4" sx={{ my: 3 }}>{title}</Typography>
 
 
       <Carousel carousel={carousel}>
@@ -68,4 +69,6 @@ export default function ListingsCarouselService({ tours }) {
 
 ListingsCarouselService.propTypes = {
   tours: PropTypes.array.isRequired,
+  title: PropTypes.string,
+
 };

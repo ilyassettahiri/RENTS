@@ -1558,19 +1558,19 @@ export default function HomeView() {
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title="apartments" />}
+          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title="Nouvelles annonces d'Appartements" />}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title="Billiards" />}
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title="Nouvelles annonces de Billiards" />}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title="velos" />}
+        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title="Nouvelles annonces de velos" />}
 
         </Stack>
 

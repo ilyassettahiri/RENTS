@@ -3,7 +3,7 @@ import DashboardPersonalView from 'src/sections/dashboard/dashboard-personal-vie
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'E-commerce: Account Personal',
+  title: 'Account Personal',
 };
 
 export default function DashboardPersonalPage() {

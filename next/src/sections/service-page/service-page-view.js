@@ -161,7 +161,7 @@ export default function ServicePageView({ params }) {
         )}
 
 
-        {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Billiards" />}
+        {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Recommended for you" />}
 
       </Box>
     </Container>

@@ -3,7 +3,7 @@ import TermconditionView from 'src/sections/termcondition/termcondition-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Travel: About us',
+  title: 'Terms of Service',
 };
 
 export default function TermconditionPage() {

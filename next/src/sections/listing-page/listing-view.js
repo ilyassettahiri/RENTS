@@ -209,7 +209,7 @@ export default function ListingView({ params }) {
 
             {listingData && (
 
-              <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title="Billiards" />
+              <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title="Recommended for you" />
 
             )}
 

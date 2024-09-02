@@ -3,7 +3,7 @@ import FaqsView from 'src/sections/faqs/faqs-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Support',
+  title: 'Help Center',
 };
 
 export default function FaqsPage() {

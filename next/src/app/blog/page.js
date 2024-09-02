@@ -3,7 +3,7 @@ import BlogView from 'src/sections/blog/blog-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Travel: Blog',
+  title: 'Blog',
 };
 
 export default function BlogPage() {

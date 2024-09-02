@@ -3,7 +3,7 @@ import BusinessListView from 'src/sections/business-list/business-list-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'E-learning: Courses',
+  title: 'Discover Your Ideal Business Opportunity',
 };
 
 export default function BusinessListPage() {

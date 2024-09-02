@@ -30,7 +30,7 @@ import ListingItem from 'src/sections/components/listings/list/listing-item';
 
 
 
-export default function ListingsCarousel({ tours }) {
+export default function ListingsCarousel({ tours, title }) {
 
   const theme = useTheme();
 
@@ -52,6 +52,11 @@ export default function ListingsCarousel({ tours }) {
 
   return (
     <>
+
+      <Typography variant="h4" sx={{ my: 3 }}>{title}</Typography>
+
+
+
       <Carousel carousel={carousel}>
         {tours.map((tour) => (
           <ListingItem tour={tour} />
@@ -72,4 +77,6 @@ export default function ListingsCarousel({ tours }) {
 
 ListingsCarousel.propTypes = {
   tours: PropTypes.array,
+  title: PropTypes.string,
+
 };
