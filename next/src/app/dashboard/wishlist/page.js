@@ -3,7 +3,7 @@ import DashboardWishlistView from 'src/sections/dashboard/dashboard-wishlist-vie
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Account Wishlist',
+  title: 'Rents.ma - Wishlist',
 };
 
 export default function DashboardWishlistPage() {

@@ -3,7 +3,7 @@ import DashboardPaymentView from 'src/sections/dashboard/dashboard-payment-view'
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Account Payment',
+  title: 'Rents.ma - Payment',
 };
 
 export default function DashboardPaymentPage() {

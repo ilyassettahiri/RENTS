@@ -3,7 +3,7 @@ import DashboardOrdersView from 'src/sections/dashboard/dashboard-orders-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Account Orders',
+  title: 'Rents.ma - Orders',
 };
 
 export default function DashboardOrdersPage() {

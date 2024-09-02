@@ -3,7 +3,7 @@ import RegisterView from 'src/sections/auth/register-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Register',
+  title: 'Rents.ma - Register',
 };
 
 export default function RegisterPage() {

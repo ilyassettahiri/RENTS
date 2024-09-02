@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Checkout',
+  title: 'Rents.ma - Checkout',
 };
 
 const CheckoutPage = ({ params }) => <CheckoutView params={params} />;

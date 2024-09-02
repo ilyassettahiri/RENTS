@@ -4,9 +4,14 @@ import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 
-export const metadata = {
-  title: 'Blog Post',
-};
+export async function generateMetadata({ params }) {
+  const { url } = params;
+
+  // Set the title dynamically based on the `url` param
+  return {
+    title: `Rents.ma - ${url}`, // Customize the title as needed
+  };
+}
 
 const ArticlePage = ({ params }) => <ArticleView params={params} />;
 

@@ -1,6 +1,6 @@
 {
-  "name": "Zone UI",
-  "short_name": "Zone UI",
+  "name": "Rents.ma",
+  "short_name": "Rents.ma",
   "display": "standalone",
   "start_url": "/",
   "theme_color": "#000000",

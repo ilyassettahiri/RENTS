@@ -3,7 +3,7 @@ import FaqsView from 'src/sections/faqs/faqs-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Help Center',
+  title: 'Rents.ma - Help Center',
 };
 
 export default function FaqsPage() {

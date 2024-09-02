@@ -3,7 +3,7 @@ import ComingSoonView from 'src/sections/status/coming-soon-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Coming Soon',
+  title: 'Rents.ma - Coming Soon',
 };
 
 export default function ComingSoonPage() {

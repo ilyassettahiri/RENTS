@@ -3,7 +3,7 @@ import MaintenanceView from 'src/sections/status/maintenance-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Maintenance',
+  title: 'Rents.ma - Maintenance',
 };
 
 export default function MaintenancePage() {

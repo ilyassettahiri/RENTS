@@ -3,7 +3,7 @@ import BlogView from 'src/sections/blog/blog-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Blog',
+  title: 'Rents.ma - Blog',
 };
 
 export default function BlogPage() {

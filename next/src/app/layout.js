@@ -1,4 +1,8 @@
-// No "use client" directive here
+
+import PropTypes from 'prop-types';
+
+import ClientLayout from './client-layout';
+
 
 export const metadata = {
   title: 'Rents.ma: Morocco Rentals Marketplace',
@@ -13,7 +17,6 @@ export const metadata = {
 };
 
 // Import the client layout component
-import ClientLayout from './client-layout';
 
 export default function RootLayout({ children }) {
   return (
@@ -25,3 +28,7 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
+RootLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
