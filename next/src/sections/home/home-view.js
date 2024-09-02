@@ -433,7 +433,6 @@ const keywordCategoryMap = {
   'Billiard cue stick': 'Billiards',
   'Billiard cue tip': 'Billiards',
   'Billiard table repair kit': 'Billiards',
-  'Billiard table legs': 'Billiards',
   'Billiard game': 'Billiards',
   'Billiard table legs': 'Billiards',
   'Billiard chalk holder': 'Billiards',
@@ -498,7 +497,6 @@ const keywordCategoryMap = {
   'Snowboarding gear': 'Sports',
   'Fitness equipment': 'Sports',
   'Yoga mats': 'Sports',
-  'Boxing gloves': 'Sports',
   'Martial arts gear': 'Sports',
   'Gym equipment': 'Sports',
   'Sports accessories': 'Sports',
@@ -509,7 +507,6 @@ const keywordCategoryMap = {
 
 'Boxing gloves': 'Boxings',
 'Boxing bags': 'Boxings',
-'Boxing shoes': 'Boxings',
 'Boxing wraps': 'Boxings',
 'Boxing headgear': 'Boxings',
 'Boxing shorts': 'Boxings',
@@ -535,7 +532,6 @@ const keywordCategoryMap = {
 'Action cameras': 'Cameras',
 'Camera lenses': 'Cameras',
 'Camera tripods': 'Cameras',
-'Camera bags': 'Cameras',
 'Camera batteries': 'Cameras',
 'Camera memory cards': 'Cameras',
 'Camera accessories': 'Cameras',
@@ -641,7 +637,6 @@ const keywordCategoryMap = {
 
 'Diving equipment': 'Divings',
 'Diving masks': 'Divings',
-'Diving fins': 'Divings',
 'Diving wetsuits': 'Divings',
 'Diving tanks': 'Divings',
 'Diving regulators': 'Divings',
@@ -661,7 +656,7 @@ const keywordCategoryMap = {
 'Diving training': 'Divings',
 
 
-'Camera drones': 'Drones',
+
 'Racing drones': 'Drones',
 'Professional drones': 'Drones',
 'Drone accessories': 'Drones',
@@ -683,22 +678,22 @@ const keywordCategoryMap = {
 'Drone lights': 'Drones',
 
 
-'Lighting fixtures': 'Eclairages',
+
 'LED lights': 'Eclairages',
 'Floor lamps': 'Eclairages',
 'Table lamps': 'Eclairages',
-'Ceiling lights': 'Eclairages',
+
 'Wall sconces': 'Eclairages',
-'Outdoor lighting': 'Eclairages',
+
 'Smart lights': 'Eclairages',
 'Chandeliers': 'Eclairages',
-'Pendant lights': 'Eclairages',
+
 'Recessed lights': 'Eclairages',
 'Spotlights': 'Eclairages',
 'Light bulbs': 'Eclairages',
 'Lighting accessories': 'Eclairages',
 'Lighting control systems': 'Eclairages',
-'Dimmer switches': 'Eclairages',
+
 'Decorative lighting': 'Eclairages',
 'LED strips': 'Eclairages',
 'Floodlights': 'Eclairages',
@@ -714,7 +709,6 @@ const keywordCategoryMap = {
 'Grinders': 'Electricaltools',
 'Sanders': 'Electricaltools',
 'Electric hammers': 'Electricaltools',
-'Rotary tools': 'Electricaltools',
 'Electric testers': 'Electricaltools',
 'Electric chisels': 'Electricaltools',
 'Power tools accessories': 'Electricaltools',
@@ -764,30 +758,21 @@ const keywordCategoryMap = {
 'Football nets': 'Footballs',
 'Football referee gear': 'Footballs',
 'Football drills': 'Footballs',
-'Football equipment': 'Footballs',
+
 'Football headgear': 'Footballs',
 'Football shin guards': 'Footballs',
 
 
 'Living room furniture': 'Furnitures',
-'Bedroom furniture': 'Furnitures',
+
 'Dining room furniture': 'Furnitures',
-'Office furniture': 'Furnitures',
 'Outdoor furniture': 'Furnitures',
-'Storage furniture': 'Furnitures',
 'Bedroom sets': 'Furnitures',
-'Sofas': 'Furnitures',
-'Tables': 'Furnitures',
-'Chairs': 'Furnitures',
 'Cabinets': 'Furnitures',
-'Bookshelves': 'Furnitures',
 'Dressers': 'Furnitures',
 'Beds': 'Furnitures',
-'Nightstands': 'Furnitures',
 'Entertainment centers': 'Furnitures',
-'Desk chairs': 'Furnitures',
 'Dining tables': 'Furnitures',
-'Bar stools': 'Furnitures',
 'Accent furniture': 'Furnitures',
 
 
@@ -813,7 +798,7 @@ const keywordCategoryMap = {
 'Esports equipment': 'Gamings',
 
 
-'Golf clubs': 'Golfs',
+
 'Golf balls': 'Golfs',
 'Golf bags': 'Golfs',
 'Golf shoes': 'Golfs',
@@ -923,14 +908,14 @@ const keywordCategoryMap = {
 'Ladder guards': 'Ladders',
 
 
-'Gaming laptops': 'Laptops',
+
 'Business laptops': 'Laptops',
 'Convertible laptops': 'Laptops',
 'Ultrabooks': 'Laptops',
 'Laptop accessories': 'Laptops',
 'Laptop bags': 'Laptops',
 'Laptop cases': 'Laptops',
-'Laptop chargers': 'Laptops',
+
 'Laptop stands': 'Laptops',
 'Laptop cooling pads': 'Laptops',
 'Laptop docking stations': 'Laptops',
@@ -946,25 +931,24 @@ const keywordCategoryMap = {
 
 
 'LED bulbs': 'Lightings',
-'Chandeliers': 'Lightings',
+
 'Ceiling lights': 'Lightings',
 'Wall lights': 'Lightings',
-'Table lamps': 'Lightings',
-'Floor lamps': 'Lightings',
+
+
 'Outdoor lighting': 'Lightings',
-'Spotlights': 'Lightings',
+
 'String lights': 'Lightings',
 'Lighting fixtures': 'Lightings',
 'Lighting controls': 'Lightings',
 'Dimmer switches': 'Lightings',
 'Smart lighting': 'Lightings',
-'Lighting accessories': 'Lightings',
+
 'Track lighting': 'Lightings',
 'Pendant lights': 'Lightings',
 'Recessed lighting': 'Lightings',
 'Night lights': 'Lightings',
 'Flood lights': 'Lightings',
-'Light bulbs': 'Lightings',
 
 
 'Fiction books': 'Livres',
@@ -1032,7 +1016,6 @@ const keywordCategoryMap = {
 'Home design': 'Maisons',
 
 
-'Wrenches': 'Mechanicaltools',
 'Socket sets': 'Mechanicaltools',
 'Pliers': 'Mechanicaltools',
 'Hammers': 'Mechanicaltools',
@@ -1053,26 +1036,17 @@ const keywordCategoryMap = {
 'Maintenance tools': 'Mechanicaltools',
 
 
-'Living room furniture': 'Mobiliers',
 'Bedroom furniture': 'Mobiliers',
-'Dining room furniture': 'Mobiliers',
 'Office furniture': 'Mobiliers',
-'Outdoor furniture': 'Mobiliers',
+
 'Storage furniture': 'Mobiliers',
-'Bedroom sets': 'Mobiliers',
 'Sofas': 'Mobiliers',
 'Tables': 'Mobiliers',
 'Chairs': 'Mobiliers',
-'Cabinets': 'Mobiliers',
 'Bookshelves': 'Mobiliers',
-'Dressers': 'Mobiliers',
-'Beds': 'Mobiliers',
 'Nightstands': 'Mobiliers',
-'Entertainment centers': 'Mobiliers',
 'Desk chairs': 'Mobiliers',
-'Dining tables': 'Mobiliers',
 'Bar stools': 'Mobiliers',
-'Accent furniture': 'Mobiliers',
 
 
 'Motorcycles': 'Motos',
@@ -1145,7 +1119,6 @@ const keywordCategoryMap = {
 'Photography accessories': 'Photographies',
 'Photo albums': 'Photographies',
 'Photography lighting': 'Photographies',
-'Camera lenses': 'Photographies',
 'Tripods': 'Photographies',
 'Camera bags': 'Photographies',
 'Photo printers': 'Photographies',
@@ -1157,19 +1130,14 @@ const keywordCategoryMap = {
 'Photography backdrops': 'Photographies',
 'Photography studio equipment': 'Photographies',
 'Photography workshops': 'Photographies',
-'Camera batteries': 'Photographies',
 'Memory cards': 'Photographies',
 'Photography tutorials': 'Photographies',
 'Photography equipment': 'Photographies',
 
 
-'Drills': 'Powertools',
 'Saws': 'Powertools',
-'Grinders': 'Powertools',
-'Sanders': 'Powertools',
 'Rotary tools': 'Powertools',
 'Impact drivers': 'Powertools',
-'Cordless tools': 'Powertools',
 'Power tool accessories': 'Powertools',
 'Power tool batteries': 'Powertools',
 'Power tool chargers': 'Powertools',
@@ -1210,7 +1178,6 @@ const keywordCategoryMap = {
 'Inkjet printers': 'Printers',
 'Laser printers': 'Printers',
 'All-in-one printers': 'Printers',
-'Photo printers': 'Printers',
 '3D printers': 'Printers',
 'Printer cartridges': 'Printers',
 'Printer paper': 'Printers',
