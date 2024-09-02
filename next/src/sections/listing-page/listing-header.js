@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect  } from 'react';
-import { formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNow } from 'date-fns';
 import { useResponsive } from 'src/hooks/use-responsive';
 
 import Box from '@mui/material/Box';
@@ -54,10 +54,14 @@ const StyledButton = styled((props) => (
 export default function ListingHeader({ tour, seller, favorites = [], onFavoriteToggle }) {
   const { attributes } = tour;
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
-  const { name, profile_image, id: sellerId  } = seller;
+  const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
 
   const mdUp = useResponsive('up', 'md');
+
+
+  const year = format(new Date(sellerCreated_at), 'yyyy');
+
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
@@ -213,27 +217,75 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
               />
 
               <Stack spacing={0.2}>
-                  <Link variant="subtitle2" color="inherit" >
 
-                   {capitalizeFirstLetter(name)}
-                  </Link>
 
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  sx={{ typography: 'body2', color: 'text.secondary' }}
-                >
-                    <Iconify icon="carbon:store"  sx={{ mr: 0.3 }}/>
-                    <Link variant="body2" sx={{ color: 'text.secondary' }}>
 
-                      <Box sx={{ typography: 'body2' }}>
-                        voir store
-                      </Box>
 
+                  {sellerUrl ? (
+                    <Link
+                      component={RouterLink}
+                      href={`${paths.eCommerce.stores}/${sellerUrl}`}  // Conditionally set href
+                      variant="subtitle2"
+                      color="inherit"
+                    >
+                      {capitalizeFirstLetter(name)}
                     </Link>
+                  ) : (
+                      <Link variant="subtitle2" color="inherit" >
+
+                        {capitalizeFirstLetter(name)}
+                      </Link>
+                  )}
 
 
-                </Stack>
+
+
+
+                    {sellerUrl ? (
+
+                            <Stack
+                            direction="row"
+                            alignItems="center"
+                            sx={{ typography: 'body2', color: 'text.secondary' }}
+                            >
+                              <Iconify icon="carbon:store"  sx={{ mr: 0.3 }}/>
+                              <Link component={RouterLink}
+
+                              href={`${paths.eCommerce.stores}/${sellerUrl}`}
+                              variant="body2" sx={{ color: 'text.secondary' }}>
+
+                                <Box sx={{ typography: 'body2' }}>
+                                  voir store
+                                </Box>
+
+                              </Link>
+
+
+                            </Stack>
+
+                    ) : (
+
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        sx={{ typography: 'body2', color: 'text.secondary' }}
+                      >
+
+                          <Link  variant="body2" sx={{ color: 'text.secondary' }}>
+
+                            <Box sx={{ typography: 'body2' }}>
+                              Joined: {year}
+
+                            </Box>
+
+                          </Link>
+
+
+                      </Stack>
+
+
+                    )}
+
               </Stack>
 
             </Stack>
@@ -356,6 +408,10 @@ ListingHeader.propTypes = {
     name: PropTypes.string,
     id: PropTypes.number,
     sellerId: PropTypes.number,
+    sellerUrl: PropTypes.string,
+    url: PropTypes.string,
+    created_at: PropTypes.string.isRequired,
+    sellerCreated_at: PropTypes.string.isRequired,
 
 
   }).isRequired,

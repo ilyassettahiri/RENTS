@@ -6,6 +6,8 @@ import Badge from '@mui/material/Badge';
 import Drawer from '@mui/material/Drawer';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
+import Collapse from '@mui/material/Collapse';
+
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
 import Tooltip from '@mui/material/Tooltip';
@@ -16,6 +18,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import PropTypes from 'prop-types';
 import FilterPrice from 'src/sections/store/product/filters/filter-price';
+import { useBoolean } from 'src/hooks/use-boolean';
 
 import { varAlpha } from 'src/theme/styles';
 import Iconify from 'src/components/iconify';
@@ -103,89 +106,114 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
   );
 
   const renderGender = (
-    <Box display="flex" flexDirection="column">
-      <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Gender
-      </Typography>
-      {options.genders.map((option) => (
-        <FormControlLabel
-          key={option.value}
-          control={
-            <Checkbox
-              checked={filters.state.gender.includes(option.label)}
-              onClick={() => handleFilterGender(option.label)}
-            />
-          }
-          label={option.label}
-        />
-      ))}
-    </Box>
+
+
+    <Block title="Gender">
+
+          <Box display="flex" flexDirection="column">
+
+            {options.genders.map((option) => (
+              <FormControlLabel
+                key={option.value}
+                control={
+                  <Checkbox
+                    checked={filters.state.gender.includes(option.label)}
+                    onClick={() => handleFilterGender(option.label)}
+                  />
+                }
+                label={option.label}
+              />
+            ))}
+          </Box>
+
+    </Block>
+
   );
 
   const renderCategory = (
-    <Box display="flex" flexDirection="column">
-      <Typography variant="subtitle2" sx={{ mb: 1 }}>
-        Category
-      </Typography>
-      {options.categories.map((option) => (
-        <FormControlLabel
-          key={option}
-          control={
-            <Radio
-              checked={option === filters.state.category}
-              onClick={() => handleFilterCategory(option)}
+
+
+    <Block title="Category">
+
+        <Box display="flex" flexDirection="column">
+
+          {options.categories.map((option) => (
+            <FormControlLabel
+              key={option}
+              control={
+                <Radio
+                  checked={option === filters.state.category}
+                  onClick={() => handleFilterCategory(option)}
+                />
+              }
+              label={option}
+              sx={{ ...(option === 'all' && { textTransform: 'capitalize' }) }}
             />
-          }
-          label={option}
-          sx={{ ...(option === 'all' && { textTransform: 'capitalize' }) }}
-        />
-      ))}
-    </Box>
+          ))}
+        </Box>
+
+    </Block>
+
+
   );
 
   const renderPrice = (
-    <Box display="flex" flexDirection="column">
-      <Typography variant="subtitle2">Price</Typography>
 
-      <FilterPrice
-        filterPrice={{ start: filters.state.priceRange[0], end: filters.state.priceRange[1] }}
-        onChangeStartPrice={handleFilterStartPrice}
-        onChangeEndPrice={handleFilterEndPrice}
-        sx={{ my: 2, alignSelf: 'center', width: '100%' }}
-      />
-    </Box>
+    <Block title="Price">
+
+
+        <Box display="flex" flexDirection="column">
+
+          <FilterPrice
+            filterPrice={{ start: filters.state.priceRange[0], end: filters.state.priceRange[1] }}
+            onChangeStartPrice={handleFilterStartPrice}
+            onChangeEndPrice={handleFilterEndPrice}
+            sx={{ my: 2, alignSelf: 'center', width: '100%' }}
+          />
+        </Box>
+
+    </Block>
+
+
   );
 
   const renderRating = (
-    <Box display="flex" flexDirection="column">
-      <Typography variant="subtitle2" sx={{ mb: 2 }}>
-        Rating
-      </Typography>
 
-      {options.ratings.map((item, index) => (
-        <Box
-          key={item}
-          onClick={() => handleFilterRating(item)}
-          sx={{
-            mb: 1,
-            gap: 1,
-            ml: -1,
-            p: 0.5,
-            display: 'flex',
-            borderRadius: 1,
-            cursor: 'pointer',
-            typography: 'body2',
-            alignItems: 'center',
-            '&:hover': { opacity: 0.48 },
-            ...(filters.state.rating === item && {
-              bgcolor: 'action.selected',
-            }),
-          }}
-        >
-          <Rating readOnly value={4 - index} /> & Up
-        </Box>
-      ))}
-    </Box>
+
+    <Block title="Rating">
+
+
+          <Box display="flex" flexDirection="column">
+
+
+            {options.ratings.map((item, index) => (
+              <Box
+                key={item}
+                onClick={() => handleFilterRating(item)}
+                sx={{
+                  mb: 1,
+                  gap: 1,
+                  ml: -1,
+                  p: 0.5,
+                  display: 'flex',
+                  borderRadius: 1,
+                  cursor: 'pointer',
+                  typography: 'body2',
+                  alignItems: 'center',
+                  '&:hover': { opacity: 0.48 },
+                  ...(filters.state.rating === item && {
+                    bgcolor: 'action.selected',
+                  }),
+                }}
+              >
+                <Rating readOnly value={4 - index} /> & Up
+              </Box>
+            ))}
+          </Box>
+
+    </Block>
+
+
   );
 
   return (
@@ -254,3 +282,34 @@ ProductFilters.propTypes = {
 };
 
 
+function Block({ title, children, ...other }) {
+  const contentOpen = useBoolean(true);
+
+  return (
+    <Stack alignItems="flex-start" sx={{ width: 1 }} {...other}>
+      <Stack
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        onClick={contentOpen.onToggle}
+        sx={{ width: 1, cursor: 'pointer' }}
+      >
+        <Typography variant="h6">{title}</Typography>
+
+        <Iconify
+          icon={contentOpen.value ? 'carbon:subtract' : 'carbon:add'}
+          sx={{ color: 'text.secondary' }}
+        />
+      </Stack>
+
+      <Collapse unmountOnExit in={contentOpen.value} sx={{ px: 0.5 }}>
+        {children}
+      </Collapse>
+    </Stack>
+  );
+}
+
+Block.propTypes = {
+  children: PropTypes.node,
+  title: PropTypes.string,
+};

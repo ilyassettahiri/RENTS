@@ -35,6 +35,7 @@ use App\Models\User;
 
 use App\Models\Reservation;
 
+use App\Models\Onlinestore;
 
 
 
@@ -366,6 +367,7 @@ class ListingFrontController extends JsonApiController
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                 // Fetch 10 recent listings
 
@@ -468,6 +470,7 @@ class ListingFrontController extends JsonApiController
 
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -825,6 +828,7 @@ class ListingFrontController extends JsonApiController
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -920,6 +924,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -1285,11 +1290,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Diving::where('url', $url)->first();
+                        $listingcategory = Diving::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -1383,6 +1389,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -1751,12 +1758,13 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Football::where('url', $url)->first();
+                        $listingcategory = Football::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -1848,6 +1856,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -2211,11 +2220,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Golf::where('url', $url)->first();
+                        $listingcategory = Golf::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -2308,6 +2318,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -2675,11 +2686,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Hunting::where('url', $url)->first();
+                        $listingcategory = Hunting::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -2777,6 +2789,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -3143,11 +3156,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Musculation::where('url', $url)->first();
+                        $listingcategory = Musculation::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -3248,6 +3262,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -3617,11 +3632,12 @@ class ListingFrontController extends JsonApiController
             case 'surfs':
 
 
-                $listingcategory = Surf::where('url', $url)->first();
+                        $listingcategory = Surf::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -3717,6 +3733,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -4084,11 +4101,12 @@ class ListingFrontController extends JsonApiController
             case 'tennis':
 
 
-                $listingcategory = Tennis::where('url', $url)->first();
+                        $listingcategory = Tennis::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -4181,6 +4199,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -4549,11 +4568,12 @@ class ListingFrontController extends JsonApiController
             case 'audios':
 
 
-                $listingcategory = Audio::where('url', $url)->first();
+                        $listingcategory = Audio::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -4651,6 +4671,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -5018,11 +5039,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Camera::where('url', $url)->first();
+                        $listingcategory = Camera::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -5122,6 +5144,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -5487,11 +5510,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Charger::where('url', $url)->first();
+                        $listingcategory = Charger::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -5590,6 +5614,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -5955,11 +5980,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Drone::where('url', $url)->first();
+                        $listingcategory = Drone::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -6060,6 +6086,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -6427,11 +6454,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Gaming::where('url', $url)->first();
+                        $listingcategory = Gaming::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -6528,6 +6556,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -6893,11 +6922,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Laptop::where('url', $url)->first();
+                        $listingcategory = Laptop::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -7000,6 +7030,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -7369,11 +7400,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Lighting::where('url', $url)->first();
+                        $listingcategory = Lighting::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -7468,6 +7500,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -7831,11 +7864,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Printer::where('url', $url)->first();
+                        $listingcategory = Printer::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -7933,6 +7967,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -8296,11 +8331,12 @@ class ListingFrontController extends JsonApiController
             case 'routers':
 
 
-                $listingcategory = Router::where('url', $url)->first();
+                        $listingcategory = Router::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -8399,6 +8435,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -8762,11 +8799,12 @@ class ListingFrontController extends JsonApiController
             case 'tablettes':
 
 
-                $listingcategory = Tablette::where('url', $url)->first();
+                        $listingcategory = Tablette::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -8864,6 +8902,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -9227,11 +9266,12 @@ class ListingFrontController extends JsonApiController
             case 'eclairages':
 
 
-                $listingcategory = Eclairage::where('url', $url)->first();
+                        $listingcategory = Eclairage::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -9335,6 +9375,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -9699,11 +9740,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Mobilier::where('url', $url)->first();
+                        $listingcategory = Mobilier::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -9800,6 +9842,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -10163,11 +10206,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Photographie::where('url', $url)->first();
+                        $listingcategory = Photographie::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -10266,6 +10310,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -10631,6 +10676,7 @@ class ListingFrontController extends JsonApiController
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -10737,6 +10783,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -11101,11 +11148,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Tente::where('url', $url)->first();
+                        $listingcategory = Tente::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -11200,6 +11248,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -11563,11 +11612,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Clothes::where('url', $url)->first();
+                        $listingcategory = Clothes::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -11664,6 +11714,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -12025,12 +12076,13 @@ class ListingFrontController extends JsonApiController
             case 'jewelrys':
 
 
-                $listingcategory = Jewelry::where('url', $url)->first();
+                        $listingcategory = Jewelry::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -12127,6 +12179,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -12490,11 +12543,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Apartment::where('url', $url)->first();
+                        $listingcategory = Apartment::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -12592,6 +12646,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -12955,11 +13010,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Bureaux::where('url', $url)->first();
+                        $listingcategory = Bureaux::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -13065,6 +13121,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -13427,11 +13484,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Magasin::where('url', $url)->first();
+                        $listingcategory = Magasin::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -13536,6 +13594,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -13898,12 +13957,13 @@ class ListingFrontController extends JsonApiController
             case 'maisons':
 
 
-                $listingcategory = Maison::where('url', $url)->first();
+                        $listingcategory = Maison::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -14000,6 +14060,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -14362,12 +14423,13 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Riad::where('url', $url)->first();
+                        $listingcategory = Riad::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -14498,6 +14560,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -14860,12 +14923,13 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Terrain::where('url', $url)->first();
+                        $listingcategory = Terrain::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -14970,6 +15034,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -15332,11 +15397,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Villa::where('url', $url)->first();
+                        $listingcategory = Villa::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -15435,6 +15501,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -15796,11 +15863,12 @@ class ListingFrontController extends JsonApiController
             case 'activities':
 
 
-                $listingcategory = Activity::where('url', $url)->first();
+                        $listingcategory = Activity::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -15898,6 +15966,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -16260,11 +16329,12 @@ class ListingFrontController extends JsonApiController
             case 'livres':
 
 
-                $listingcategory = Livre::where('url', $url)->first();
+                        $listingcategory = Livre::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -16360,6 +16430,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -16723,11 +16794,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Musical::where('url', $url)->first();
+                        $listingcategory = Musical::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -16821,6 +16893,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -17180,11 +17253,12 @@ class ListingFrontController extends JsonApiController
             case 'furnitures':
 
 
-                $listingcategory = Furniture::where('url', $url)->first();
+                        $listingcategory = Furniture::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -17283,6 +17357,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -17643,11 +17718,12 @@ class ListingFrontController extends JsonApiController
 
             case 'houseappliances':
 
-                $listingcategory = Houseappliance::where('url', $url)->first();
+                        $listingcategory = Houseappliance::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -17745,6 +17821,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -18106,11 +18183,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Electricaltool::where('url', $url)->first();
+                        $listingcategory = Electricaltool::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -18216,6 +18294,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -18578,11 +18657,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Ladder::where('url', $url)->first();
+                        $listingcategory = Ladder::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -18684,6 +18764,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -19043,11 +19124,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Mechanicaltool::where('url', $url)->first();
+                        $listingcategory = Mechanicaltool::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -19147,6 +19229,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -19507,12 +19590,13 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Powertool::where('url', $url)->first();
+                        $listingcategory = Powertool::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -19615,6 +19699,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -19975,11 +20060,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Pressurewasher::where('url', $url)->first();
+                        $listingcategory = Pressurewasher::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -20084,6 +20170,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -20444,11 +20531,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Service::where('url', $url)->first();
+                        $listingcategory = Service::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -20551,6 +20639,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -20911,11 +21000,12 @@ class ListingFrontController extends JsonApiController
             case 'boats':
 
 
-                $listingcategory = Boat::where('url', $url)->first();
+                        $listingcategory = Boat::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -21015,6 +21105,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -21374,12 +21465,13 @@ class ListingFrontController extends JsonApiController
             case 'camions':
 
 
-                $listingcategory = Camion::where('url', $url)->first();
+                        $listingcategory = Camion::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
@@ -21476,6 +21568,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -21836,11 +21929,12 @@ class ListingFrontController extends JsonApiController
             case 'caravans':
 
 
-                $listingcategory = Caravan::where('url', $url)->first();
+                        $listingcategory = Caravan::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -21937,6 +22031,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -22295,11 +22390,12 @@ class ListingFrontController extends JsonApiController
             case 'cars':
 
 
-                $listingcategory = Car::where('url', $url)->first();
+                        $listingcategory = Car::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -22398,6 +22494,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -22759,11 +22856,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Engin::where('url', $url)->first();
+                        $listingcategory = Engin::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -22863,6 +22961,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -23223,11 +23322,12 @@ class ListingFrontController extends JsonApiController
             case 'motos':
 
 
-                $listingcategory = Moto::where('url', $url)->first();
+                        $listingcategory = Moto::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -23326,6 +23426,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -23685,11 +23786,12 @@ class ListingFrontController extends JsonApiController
             case 'scooters':
 
 
-                $listingcategory = Scooter::where('url', $url)->first();
+                        $listingcategory = Scooter::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -23781,6 +23883,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -24142,11 +24245,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Taxiaeroport::where('url', $url)->first();
+                        $listingcategory = Taxiaeroport::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -24239,6 +24343,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -24601,11 +24706,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Transportation::where('url', $url)->first();
+                        $listingcategory = Transportation::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -24700,6 +24806,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 
@@ -25060,11 +25167,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                $listingcategory = Velo::where('url', $url)->first();
+                        $listingcategory = Velo::where('url', $url)->first();
                         $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
                         $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
                         $user = User::where('id', $listingcategory->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                         // Calculate total reviews and average rating
@@ -25160,6 +25268,7 @@ class ListingFrontController extends JsonApiController
                                         'id' => $user->id,
                                         'profile_image' => $user->profile_image,
                                         'created_at' => $user->created_at->toIso8601String(),
+                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
 

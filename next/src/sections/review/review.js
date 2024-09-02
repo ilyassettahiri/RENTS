@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import ReviewList from './review-list';
 import ReviewToolbar from './review-toolbar';
 import ReviewNewForm from './review-new-form';
-import ReviewTourGuideInfo from './review-tour-guide-info';
+import ReviewSummary from './review-summary';
 
 export default function Review({ category, url, reviews, seller }) {
   const [sort, setSort] = useState('latest');
@@ -40,7 +40,7 @@ export default function Review({ category, url, reviews, seller }) {
       <Container maxWidth={false} sx={{ overflow: 'hidden',  }}>
         <Grid container spacing={8}>
           <Grid xs={12} md={5} lg={4}>
-            <ReviewTourGuideInfo seller={seller} />
+            <ReviewSummary ratingNumber={4.1} reviewNumber={reviewList.length} />
           </Grid>
 
           <Grid xs={12} md={7} lg={8}>

@@ -35,8 +35,6 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
     }
   };
 
-
-
   return (
     <Autocomplete
       ref={autocompleteRef}
@@ -76,7 +74,7 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
           }}
         />
       )}
-      renderOption={(props, option, { inputValue }) => {
+      renderOption={(props, option, { inputValue: searchInputValue }) => { // Renamed the destructured variable
         const category = keywordCategoryMap[option] || 'Uncategorized';
 
         return (
@@ -110,5 +108,4 @@ SearchKeyword.propTypes = {
   colorr: PropTypes.string,
   keywordCategoryMap: PropTypes.object.isRequired,
   onSearch: PropTypes.func.isRequired,
-
 };

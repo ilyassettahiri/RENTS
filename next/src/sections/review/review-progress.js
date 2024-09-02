@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import RadioGroup from '@mui/material/RadioGroup';
 
-import ReviewProgressItem from './review-progress-item';
+import ReviewProgressItem from 'src/sections/review/review-progress-item';
 
 // ----------------------------------------------------------------------
 
