@@ -103,7 +103,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
         <Card sx={{ position: 'relative' }}>
           {/* Carousel of Images */}
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} />
+            <CarouselBasic1 data={images} category={category} url={url} />
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -217,7 +217,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                           <Iconify width={14} icon="carbon:star-filled" sx={{ color: 'black' }} />
 
                           <Box sx={{ typography: 'subtitle2' }}>
-                            {averageRating ? (Number.isInteger(averageRating) ? `${averageRating}.0` : averageRating) : '5.0'}
+                          {averageRating ? `${parseFloat(averageRating).toFixed(1)}` : '5.0'}
                           </Box>
 
 
@@ -413,7 +413,7 @@ ListingsItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data }) {
+function CarouselBasic1({ data, category, url }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -421,14 +421,28 @@ function CarouselBasic1({ data }) {
   return (
     <>
       <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
+
+
         {data.map((item, index) => (
-          <Image
-            key={index}
-            alt={`Image ${index + 1}`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
-            ratio="4/3"
-          />
+
+            <Link
+              key={index}
+              href={`${paths.travel.tour}/${category}/${url}`}
+              component={RouterLink}
+            >
+
+                <Image
+                  key={index}
+                  alt={`Image ${index + 1}`}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+                  ratio="4/3"
+                />
+            </Link>
+
+
         ))}
+
+
       </Carousel>
 
       <Box sx={{ position: 'relative', zIndex: 999 }}>  {/* Added z-index 999 here */}
@@ -445,4 +459,8 @@ function CarouselBasic1({ data }) {
 
 CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
+  category: PropTypes.string.isRequired,
+
+  url: PropTypes.string.isRequired,
+
 };

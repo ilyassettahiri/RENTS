@@ -137,20 +137,32 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
           }}
         >
           <Box sx={{ flexShrink: { sm: 0 } }}>
-            <Image
-              alt={name}
-              src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`}
 
 
-              sx={{
-                height: 1,
-                objectFit: 'cover',
-                width: { sm: 240 },
-                ...(vertical && {
-                  width: { sm: 1 },
-                }),
-              }}
-            />
+
+            <Link
+              href={`${paths.eCommerce.stores}/${url}`}
+
+              component={RouterLink}
+            >
+                      <Image
+                        alt={name}
+                        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`}
+
+
+                        sx={{
+                          height: 1,
+                          objectFit: 'cover',
+                          width: { sm: 240 },
+                          ...(vertical && {
+                            width: { sm: 1 },
+                          }),
+                        }}
+                      />
+
+            </Link>
+
+
           </Box>
 
 

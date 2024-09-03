@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -58,16 +58,18 @@ const StyledButton = styled((props) => (
 
 
 
-export default function StoreHero({ StoreData }) {
+export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle }) {
 
 
   const { attributes } = StoreData;
-  const { name,seller, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;
+  const { name,seller,id, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;
 
   const year = format(new Date(created_at), 'yyyy');
 
   const router = useRouter();
 
+  const isFavorite = favorites.includes(id);
+  const [favorite, setFavorite] = useState(isFavorite);
   const [opencall, setOpencall] = useState(null);
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
@@ -106,9 +108,7 @@ export default function StoreHero({ StoreData }) {
 
 
   const theme = useTheme();
-  const favorited = false;
 
-  const [favorite, setFavorite] = useState(favorited);
   const [open, setOpen] = useState(null);
 
   const handleOpen = useCallback((event) => {
@@ -120,10 +120,28 @@ export default function StoreHero({ StoreData }) {
   }, []);
 
 
+  const handleChangeFavorite = useCallback(() => {
+    requireAuth(async () => {
+      try {
+        const response = await CrudService.createFavoriteStore( url, id);
 
-  const handleChangeFavorite = useCallback((event) => {
-    setFavorite(event.target.checked);
-  }, []);
+        console.log('Response Favorite:', response.favorite);
+
+        setFavorite(response.favorite);
+        onFavoriteToggle(id, response.favorite);
+      } catch (error) {
+        console.error('Failed to update favorite:', error);
+      }
+    });
+  }, [requireAuth, url, id, onFavoriteToggle]);
+
+
+
+
+  useEffect(() => {
+    setFavorite(isFavorite); // Ensure state is updated when favorites prop changes
+  }, [isFavorite]);
+
 
   return (
     <>
@@ -442,4 +460,10 @@ StoreHero.propTypes = {
       total_reviews: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
+
+  favorites: PropTypes.array,
+  onFavoriteToggle: PropTypes.func.isRequired,
+};
+StoreHero.defaultProps = {
+  favorites: [],
 };

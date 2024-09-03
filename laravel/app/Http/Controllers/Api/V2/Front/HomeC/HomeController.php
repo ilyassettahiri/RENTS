@@ -342,7 +342,7 @@ class HomeController extends JsonApiController
         $billiardsData = $billiards->map(function ($billiard) {
 
             $user = User::where('id', $billiard->user_id)->first();
-            $reviews = $apartment->review()->orderBy('created_at')->get();
+            $reviews = $billiard->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
             $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
 
@@ -389,7 +389,7 @@ class HomeController extends JsonApiController
 
             $user = User::where('id', $velo->user_id)->first();
 
-            $reviews = $apartment->review()->orderBy('created_at')->get();
+            $reviews = $velo->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
             $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
 

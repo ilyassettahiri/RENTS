@@ -29,24 +29,28 @@ import ProductRating from '../../common/product-rating';
 export default function StoreViewListItem({ product, favorites = [], onFavoriteToggle, ...other }) {
 
   const formattedDuration = formatDistanceToNow(new Date(product.attributes.created_at), { addSuffix: true });
+  const { id, category, url } = product.attributes;
 
 
-  const isFavorite = favorites.includes(product.attributes.id);
+  const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
+
   const handleChangeFavorite = useCallback(() => {
     requireAuth(async () => {
       try {
-        const response = await CrudService.createFavorite(product.attributes.category, product.attributes.url, product.attributes.id);
+        const response = await CrudService.createFavorite(category, url, id);
         setFavorite(response.favorite);
-        onFavoriteToggle(product.attributes.id, response.favorite);
+        onFavoriteToggle(id, response.favorite);
       } catch (error) {
         console.error('Failed to update favorite:', error);
       }
     });
-  }, [requireAuth, product.attributes.category, product.attributes.url, product.attributes.id, onFavoriteToggle]);
+  }, [requireAuth, category, url, id, onFavoriteToggle]);
+
+
 
   useEffect(() => {
     setFavorite(isFavorite); // Ensure state is updated when favorites prop changes
@@ -111,7 +115,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
               overflow: 'hidden', // Ensure the carousel respects the borderRadius
             }}
           >
-            <CarouselBasic1 data={product.attributes.images} />
+            <CarouselBasic1 data={product.attributes.images} category={category} url={url} />
           </Box>
 
           <Stack spacing={1}>
@@ -123,7 +127,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
               <Link component={RouterLink}
 
-              href={`${paths.travel.tour}/${product.attributes.category}/${product.attributes.url}`}
+              href={`${paths.travel.tour}/${category}/${url}`}
 
 
               color="inherit">
@@ -194,7 +198,7 @@ StoreViewListItem.defaultProps = {
 };
 
 
-function CarouselBasic1({ data }) {
+function CarouselBasic1({ data, category, url }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -203,12 +207,23 @@ function CarouselBasic1({ data }) {
     <>
       <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
         {data.map((item, index) => (
-          <Image
-            key={index}
-            alt={`Image ${index + 1}`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
-            ratio="1/1"
-          />
+
+
+            <Link
+              key={index}
+              href={`${paths.travel.tour}/${category}/${url}`}
+              component={RouterLink}
+            >
+                  <Image
+                    key={index}
+                    alt={`Image ${index + 1}`}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+                    ratio="1/1"
+                  />
+
+            </Link>
+
+
         ))}
       </Carousel>
 
@@ -226,4 +241,9 @@ function CarouselBasic1({ data }) {
 
 CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
+
+
+  category: PropTypes.string.isRequired,
+
+  url: PropTypes.string.isRequired,
 };

@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
+import { useRouter } from 'src/routes/hooks';
+
 import AuthService from "src/services/auth-service";
 import CrudService from "src/services/cruds-service";
 
@@ -19,6 +21,7 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const router = useRouter();
 
   const token = Cookies.get("authToken");
 
@@ -71,9 +74,15 @@ const AuthContextProvider = ({ children }) => {
 
 
   const handleCategoryClick = useCallback((category) => {
-    console.log("Category clicked:", category);
+
     setSelectedCategory(category);
-  }, []);
+
+
+
+    router.push(`/?searchCategories=${category}`); // Update URL with query parameter
+
+
+  }, [router]);
 
   // Memoize the context value to prevent it from changing on every render
   const contextValue = useMemo(() => ({

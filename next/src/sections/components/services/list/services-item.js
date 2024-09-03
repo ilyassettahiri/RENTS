@@ -119,7 +119,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} />
+            <CarouselBasic1 data={images} category={category} url={url} />
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -313,7 +313,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             alignItems="center"
             justifyContent="space-between"
 
-            sx={{ px: 1,my:2 }}
+            sx={{ px: 1,my:1 }}
 
           >
                 <Stack  >
@@ -344,7 +344,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                           <Iconify width={14} icon="carbon:star-filled" sx={{ color: 'black' }} />
 
                           <Box sx={{ typography: 'subtitle2' }}>
-                            {averageRating ? (Number.isInteger(averageRating) ? `${averageRating}.0` : averageRating) : '5.0'}
+                          {averageRating ? `${parseFloat(averageRating).toFixed(1)}` : '5.0'}
                           </Box>
 
 
@@ -369,7 +369,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             container
             spacing={1.5}
             sx={{
-              p: 2,
+              p: 1,
               pt: 0,
               typography: 'body2',
               color: 'text.secondary',
@@ -485,7 +485,7 @@ ServiceItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data }) {
+function CarouselBasic1({ data, category, url }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -494,12 +494,24 @@ function CarouselBasic1({ data }) {
     <>
       <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
         {data.map((item, index) => (
-          <Image
-            key={index}
-            alt={`Image ${index + 1}`}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
-            ratio="6/4"
-          />
+
+
+            <Link
+              key={index}
+              href={`${paths.career.job}/${url}`}
+              component={RouterLink}
+            >
+
+                <Image
+                  key={index}
+                  alt={`Image ${index + 1}`}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+                  ratio="6/4"
+                />
+
+            </Link>
+
+
         ))}
       </Carousel>
 
@@ -517,4 +529,8 @@ function CarouselBasic1({ data }) {
 
 CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
+
+  category: PropTypes.string.isRequired,
+
+  url: PropTypes.string.isRequired,
 };

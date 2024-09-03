@@ -1295,6 +1295,15 @@ export default function HomeView() {
 
 
   useEffect(() => {
+    const queryCategory = searchParams.get('searchCategories'); // Read from URL
+    if (queryCategory) {
+      setSearchParamsState({ searchKeyword: '', searchCategories: queryCategory, searchLocation: '' });
+    }
+  }, [searchParams]); // Depend on searchParams
+
+
+
+  useEffect(() => {
     if (selectedCategory) {
       setSearchParamsState({ searchKeyword: '', searchCategories: selectedCategory,  searchLocation: '' });
     }

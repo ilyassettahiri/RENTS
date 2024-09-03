@@ -76,9 +76,11 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 export default function StoreView({ params }) {
   const mobileOpen = useBoolean();
   const { url } = params;
-  const [favorites, setFavorites] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
 
+  const [favorites, setFavorites] = useState([]);
+
+  const [favoritestore, setFavoritestore] = useState([]);
 
 
   const { data: storeData, isLoading: isStoreLoading, error: storeError } = useQuery({
@@ -91,10 +93,26 @@ export default function StoreView({ params }) {
 
   // Update favorites from storeData
   useEffect(() => {
-    if (storeData?.data?.attributes?.favorites) {
-      setFavorites(storeData.data.attributes.favorites);
+    if (storeData?.favorites) {
+
+      console.log('Store Data:', storeData); // Log storeData
+      console.log('Favorites:', storeData.favorites); // Log favorites from storeData
+
+      setFavorites(storeData.favorites);
     }
   }, [storeData]);
+
+
+
+  useEffect(() => {
+    if (storeData?.favoritestore) {
+
+      console.log('Favoritestore:', storeData.favoritestore); // Log favoritestore from storeData
+
+      setFavoritestore(storeData.favoritestore);
+    }
+  }, [storeData]);
+
 
   // Extract listings from storeData using useMemo
   const extractedListings = useMemo(() => storeData?.data?.attributes?.listings || [], [storeData]);
@@ -103,12 +121,17 @@ export default function StoreView({ params }) {
   // Memoize listings and other store data values
   const memoizedStoreData = useMemo(() => {
     const listings = storeData?.data?.attributes?.listings || [];
-    const favoritesData = storeData?.data?.attributes?.favorites || [];
+    const favoritesData = storeData?.favorites || [];
+
+    const favoritestoreData = storeData?.favoritestore || [];
+
     const storeEmpty = !isStoreLoading && !listings.length;
 
     return {
       listings,
       favorites: favoritesData,
+      favoritestore: favoritestoreData,
+
       storeLoading: isStoreLoading,
       storeError,
       storeFetching: false, // Assuming there's no need for fetching state
@@ -135,6 +158,13 @@ export default function StoreView({ params }) {
 
 
 
+
+
+  const handleFavoriteTogglestore = useCallback((id, isFavorite) => {
+    setFavoritestore(prevFavorites =>
+      isFavorite ? [...prevFavorites, id] : prevFavorites.filter(favId => favId !== id)
+    );
+  }, []);
 
 
 
@@ -207,7 +237,7 @@ export default function StoreView({ params }) {
         {memoizedStoreData.storeLoading ? (
           <StoreHeroSkeleton />
         ) : (
-          <StoreHero StoreData={storeData?.data} />
+          <StoreHero StoreData={storeData?.data}  favorites={favoritestore} onFavoriteToggle={handleFavoriteTogglestore}/>
         )}
 
 
