@@ -134,7 +134,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
               </Link>
             </Stack>
 
-            <ProductRating ratingNumber={product.attributes.average_rating} label={`${product.attributes.total_reviews} reviews`} />
+            <ProductRating ratingNumber={product.attributes.averageRating} label={`${product.attributes.totalReviews} reviews`} />
 
             <Stack
                       direction="row"
@@ -172,8 +172,8 @@ StoreViewListItem.propTypes = {
       picture: PropTypes.string,
       category: PropTypes.string,
       title: PropTypes.string,
-      average_rating: PropTypes.number,
-      total_reviews: PropTypes.number,
+      averageRating: PropTypes.number,
+      totalReviews: PropTypes.number,
       created_at: PropTypes.string,
       price: PropTypes.number,
       images: PropTypes.array.isRequired,

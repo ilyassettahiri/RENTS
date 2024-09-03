@@ -16,6 +16,7 @@ use App\Enums\ItemStatus;
 use App\Models\Servicesimg;
 
 
+use App\Models\Review;
 
 use App\Models\Onlinestore;
 
@@ -62,13 +63,19 @@ class BusinessController extends JsonApiController
         }
 
 
-        Log::info('Favorite IDs in business controller:', $favoriteIds);
 
 
 
 
         $businessData = $businesslist->map(function ($business) {
             $user = User::where('id', $business->user_id)->first();
+
+
+            $storereviews = $business->review()->orderBy('created_at')->get();
+
+            $totalReviews = $storereviews->count();
+            $averageRating = $totalReviews > 0 ? $storereviews->avg('rating') : 0;
+
 
             return [
                 'type' => 'business',
@@ -79,6 +86,8 @@ class BusinessController extends JsonApiController
                     'city' => $business->city,
                     'id' => $business->id,
 
+                    'totalReviews' => $totalReviews,
+                    'averageRating' => round($averageRating, 1),
 
 
                     'url' => $business->url,

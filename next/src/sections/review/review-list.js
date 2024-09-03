@@ -40,6 +40,7 @@ export default function ReviewList({ reviews, onLike, category, url }) {
             name={review.name}
             createdAt={new Date(review.created_at)}
             message={review.message}
+            profile_image= {review.profile_image}
             rating={review.rating}
             helpful={review.helpful}
             replies={review.replies}

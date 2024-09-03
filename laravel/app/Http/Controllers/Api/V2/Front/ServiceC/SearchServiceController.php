@@ -245,6 +245,12 @@ class SearchServiceController extends JsonApiController
             $servicesData = $services->map(function ($service) {
                 $user = User::where('id', $service->user_id)->first();
 
+
+                $reviews = $service->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                $totalReviews = $reviews->count();
+                $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+
                 return [
                     'type' => 'services',
                     'id' => $service->id,
@@ -255,6 +261,7 @@ class SearchServiceController extends JsonApiController
                         'id' => $service->id,
 
                         'phone' => $service->phone,
+                        'averageRating' => $averageRating, // Include average rating
 
 
                         'category' => 'services',
@@ -322,6 +329,12 @@ class SearchServiceController extends JsonApiController
 
                 $user = User::where('id', $service->user_id)->first();
 
+
+                $reviews = $service->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                $totalReviews = $reviews->count();
+                $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+
                 return [
                     'type' => 'services',
                     'id' => $service->id,
@@ -332,6 +345,7 @@ class SearchServiceController extends JsonApiController
                         'id' => $service->id,
 
                         'phone' => $service->phone,
+                        'averageRating' => $averageRating, // Include average rating
 
 
                         'category' => 'services',

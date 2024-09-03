@@ -19,6 +19,7 @@ use App\Enums\ItemStatus;
 use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
+use App\Models\Review;
 
 
 use App\Models\Listing;
@@ -235,6 +236,12 @@ class SearchBusinessController extends JsonApiController
 
 
             $businessData = $businesslist->map(function ($business) {
+
+                $storereviews = $business->review()->orderBy('created_at')->get();
+
+                $totalReviews = $storereviews->count();
+                $averageRating = $totalReviews > 0 ? $storereviews->avg('rating') : 0;
+
                 return [
                     'type' => 'business',
                     'id' => $business->id,
@@ -244,6 +251,8 @@ class SearchBusinessController extends JsonApiController
                         'city' => $business->city,
                         'id' => $business->id,
 
+                        'totalReviews' => $totalReviews,
+                        'averageRating' => round($averageRating, 1),
 
 
                         'url' => $business->url,
@@ -298,6 +307,13 @@ class SearchBusinessController extends JsonApiController
 
 
             $businessData = $businesslist->map(function ($business) {
+
+                $storereviews = $business->review()->orderBy('created_at')->get();
+
+                $totalReviews = $storereviews->count();
+                $averageRating = $totalReviews > 0 ? $storereviews->avg('rating') : 0;
+
+
                 return [
                     'type' => 'business',
                     'id' => $business->id,
@@ -306,6 +322,9 @@ class SearchBusinessController extends JsonApiController
                         'description' => $business->description,
                         'city' => $business->city,
                         'id' => $business->id,
+
+                        'totalReviews' => $totalReviews,
+                        'averageRating' => round($averageRating, 1),
 
                         'picture' => $business->picture,
 

@@ -76,6 +76,10 @@ class ServiceController extends JsonApiController
         $servicesData = $services->map(function ($service) {
             $user = User::where('id', $service->user_id)->first();
 
+            $reviews = $service->review()->orderBy('created_at')->get();
+            $totalReviews = $reviews->count();
+            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+
             return [
                 'type' => 'services',
                 'id' => $service->id,
@@ -87,6 +91,7 @@ class ServiceController extends JsonApiController
 
                     'id' => $service->id,
 
+                    'averageRating' => $averageRating, // Include average rating
 
 
                     'category' => 'services',

@@ -84,7 +84,7 @@ export default function ListingForm({ tour }) {
             maxDate={new Date(enddate)}
             disabledDateRanges={disabledDateRanges}
             sx={{
-              px: 1.5,
+
               borderRadius: 1,
               bgcolor: (theme) => alpha(theme.palette.grey[500], 0.08),
             }}

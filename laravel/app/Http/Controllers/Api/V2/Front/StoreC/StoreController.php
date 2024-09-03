@@ -337,19 +337,15 @@ class StoreController extends JsonApiController
 
             $store = Onlinestore::where('url', $url)->first();
             $reservations = $store->reservation()->get();
-            $storereviews = $store->review()->orderBy('created_at')->get();
             $listings = $store->listing()->get();
 
             $seller = User::where('id', $store->user_id)->first();
 
 
-            //Log::info('Listings:', $listings->toArray());
+            $storereviews = $store->review()->orderBy('created_at')->get();
 
-
-
-        // Calculate total reviews and average rating
-        $totalReviews = $storereviews->count();
-        $averageRating = $totalReviews > 0 ? $storereviews->avg('rating') : 0;
+            $totalReviews = $storereviews->count();
+            $averageRating = $totalReviews > 0 ? $storereviews->avg('rating') : 0;
 
 
 
@@ -421,9 +417,7 @@ class StoreController extends JsonApiController
 
 
 
-
                             $getImages = function ($listing) {
-                                Log::info('listing category: ' . $listing->category);
 
                                 switch ($listing->category) {
                                     case 'billiards':
@@ -819,7 +813,302 @@ class StoreController extends JsonApiController
                             };
 
 
+                            $getAverageRating = function ($listing) {
+                                switch ($listing->category) {
+                                    case 'billiards':
+                                        $billiard = Billiard::where('url', $listing->url)->first();
+                                        $reviews = $billiard ? $billiard->review()->orderBy('created_at')->get() : collect();
+                                        break;
 
+                                    case 'boxings':
+                                        $boxing = Boxing::where('url', $listing->url)->first();
+                                        $reviews = $boxing ? $boxing->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'divings':
+                                        $diving = Diving::where('url', $listing->url)->first();
+                                        $reviews = $diving ? $diving->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'footballs':
+                                        $football = Football::where('url', $listing->url)->first();
+                                        $reviews = $football ? $football->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'golfs':
+                                        $golf = Golf::where('url', $listing->url)->first();
+                                        $reviews = $golf ? $golf->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'huntings':
+                                        $hunting = Hunting::where('url', $listing->url)->first();
+                                        $reviews = $hunting ? $hunting->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'musculations':
+                                        $musculation = Musculation::where('url', $listing->url)->first();
+                                        $reviews = $musculation ? $musculation->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'surfs':
+                                        $surf = Surf::where('url', $listing->url)->first();
+                                        $reviews = $surf ? $surf->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'tennis':
+                                        $tennis = Tennis::where('url', $listing->url)->first();
+                                        $reviews = $tennis ? $tennis->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Electronique
+                                    case 'audios':
+                                        $audio = Audio::where('url', $listing->url)->first();
+                                        $reviews = $audio ? $audio->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'cameras':
+                                        $camera = Camera::where('url', $listing->url)->first();
+                                        $reviews = $camera ? $camera->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'chargers':
+                                        $charger = Charger::where('url', $listing->url)->first();
+                                        $reviews = $charger ? $charger->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'drones':
+                                        $drone = Drone::where('url', $listing->url)->first();
+                                        $reviews = $drone ? $drone->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'gamings':
+                                        $gaming = Gaming::where('url', $listing->url)->first();
+                                        $reviews = $gaming ? $gaming->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'laptops':
+                                        $laptop = Laptop::where('url', $listing->url)->first();
+                                        $reviews = $laptop ? $laptop->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'lightings':
+                                        $lighting = Lighting::where('url', $listing->url)->first();
+                                        $reviews = $lighting ? $lighting->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'printers':
+                                        $printer = Printer::where('url', $listing->url)->first();
+                                        $reviews = $printer ? $printer->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'routers':
+                                        $router = Router::where('url', $listing->url)->first();
+                                        $reviews = $router ? $router->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'tablettes':
+                                        $tablette = Tablette::where('url', $listing->url)->first();
+                                        $reviews = $tablette ? $tablette->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Evenement
+                                    case 'eclairages':
+                                        $eclairage = Eclairage::where('url', $listing->url)->first();
+                                        $reviews = $eclairage ? $eclairage->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'mobiliers':
+                                        $mobilier = Mobilier::where('url', $listing->url)->first();
+                                        $reviews = $mobilier ? $mobilier->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'photographies':
+                                        $photographie = Photographie::where('url', $listing->url)->first();
+                                        $reviews = $photographie ? $photographie->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'sonorisations':
+                                        $sonorisation = Sonorisation::where('url', $listing->url)->first();
+                                        $reviews = $sonorisation ? $sonorisation->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'tentes':
+                                        $tente = Tente::where('url', $listing->url)->first();
+                                        $reviews = $tente ? $tente->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Habillement
+                                    case 'clothes':
+                                        $clothes = Clothes::where('url', $listing->url)->first();
+                                        $reviews = $clothes ? $clothes->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'jewelrys':
+                                        $jewelry = Jewelry::where('url', $listing->url)->first();
+                                        $reviews = $jewelry ? $jewelry->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Immobilier
+                                    case 'apartments':
+                                        $apartment = Apartment::where('url', $listing->url)->first();
+                                        $reviews = $apartment ? $apartment->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'bureauxs':
+                                        $bureaux = Bureaux::where('url', $listing->url)->first();
+                                        $reviews = $bureaux ? $bureaux->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'magasins':
+                                        $magasin = Magasin::where('url', $listing->url)->first();
+                                        $reviews = $magasin ? $magasin->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'maisons':
+                                        $maison = Maison::where('url', $listing->url)->first();
+                                        $reviews = $maison ? $maison->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'riads':
+                                        $riad = Riad::where('url', $listing->url)->first();
+                                        $reviews = $riad ? $riad->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'terrains':
+                                        $terrain = Terrain::where('url', $listing->url)->first();
+                                        $reviews = $terrain ? $terrain->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'villas':
+                                        $villa = Villa::where('url', $listing->url)->first();
+                                        $reviews = $villa ? $villa->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Loisirs
+                                    case 'activities':
+                                        $activity = Activity::where('url', $listing->url)->first();
+                                        $reviews = $activity ? $activity->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'livres':
+                                        $livre = Livre::where('url', $listing->url)->first();
+                                        $reviews = $livre ? $livre->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'musicals':
+                                        $musical = Musical::where('url', $listing->url)->first();
+                                        $reviews = $musical ? $musical->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Maison et Jardin
+                                    case 'furnitures':
+                                        $furniture = Furniture::where('url', $listing->url)->first();
+                                        $reviews = $furniture ? $furniture->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'houseappliances':
+                                        $houseappliance = Houseappliance::where('url', $listing->url)->first();
+                                        $reviews = $houseappliance ? $houseappliance->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Materiels
+                                    case 'electricaltools':
+                                        $electricaltool = Electricaltool::where('url', $listing->url)->first();
+                                        $reviews = $electricaltool ? $electricaltool->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'ladders':
+                                        $ladder = Ladder::where('url', $listing->url)->first();
+                                        $reviews = $ladder ? $ladder->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'mechanicaltools':
+                                        $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
+                                        $reviews = $mechanicaltool ? $mechanicaltool->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'powertools':
+                                        $powertool = Powertool::where('url', $listing->url)->first();
+                                        $reviews = $powertool ? $powertool->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'pressurewashers':
+                                        $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
+                                        $reviews = $pressurewasher ? $pressurewasher->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Services
+                                    case 'services':
+                                        $service = Service::where('url', $listing->url)->first();
+                                        $reviews = $service ? $service->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    // Vehicules
+                                    case 'boats':
+                                        $boat = Boat::where('url', $listing->url)->first();
+                                        $reviews = $boat ? $boat->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'camions':
+                                        $camion = Camion::where('url', $listing->url)->first();
+                                        $reviews = $camion ? $camion->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'caravans':
+                                        $caravan = Caravan::where('url', $listing->url)->first();
+                                        $reviews = $caravan ? $caravan->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'cars':
+                                        $car = Car::where('url', $listing->url)->first();
+                                        $reviews = $car ? $car->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'engins':
+                                        $engin = Engin::where('url', $listing->url)->first();
+                                        $reviews = $engin ? $engin->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'motos':
+                                        $moto = Moto::where('url', $listing->url)->first();
+                                        $reviews = $moto ? $moto->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'scooters':
+                                        $scooter = Scooter::where('url', $listing->url)->first();
+                                        $reviews = $scooter ? $scooter->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'taxiaeroports':
+                                        $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
+                                        $reviews = $taxiaeroport ? $taxiaeroport->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'transportations':
+                                        $transportation = Transportation::where('url', $listing->url)->first();
+                                        $reviews = $transportation ? $transportation->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    case 'velos':
+                                        $velo = Velo::where('url', $listing->url)->first();
+                                        $reviews = $velo ? $velo->review()->orderBy('created_at')->get() : collect();
+                                        break;
+
+                                    default:
+                                        $reviews = collect(); // Return an empty collection if no match
+                                }
+
+                                $totalReviews = $reviews->count();
+                                $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+                                return [
+                                    'averageRating' => $averageRating,
+                                    'totalReviews' => $totalReviews,
+                                ];
+                            };
+
+
+                            $ratingData = $getAverageRating($listing);
 
 
                             return [
@@ -843,7 +1132,8 @@ class StoreController extends JsonApiController
                                     'picture' => $listing->picture,
                                     'user_id' => $listing->user_id,
 
-
+                                    'averageRating' => $ratingData['averageRating'],
+                                    'totalReviews' => $ratingData['totalReviews'],
                                 ],
 
 

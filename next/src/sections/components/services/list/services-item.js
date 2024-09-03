@@ -49,7 +49,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const { attributes } = job;
 
-  const { title, city,phone, price,seller, created_at, category, url, id, images } = attributes;
+  const { title, city,phone, averageRating, price,seller, created_at, category, url, id, images } = attributes;
 
   const router = useRouter();
 
@@ -188,15 +188,15 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
           </Box>
 
-          <Stack sx={{ px: 2, pb: 0 }}>
-
-
-            <Stack spacing={0.5} sx={{ mt: 0, mb: 0 }}>
+          <Stack sx={{ px: 1, py: 1 }}>
 
 
 
 
-              <Stack spacing={4} direction={{ xs: 'row', md: 'row' }} sx={{ py: 1,  }}>
+
+
+
+              <Stack spacing={4} direction={{ xs: 'row', md: 'row' }}>
 
 
 
@@ -298,21 +298,68 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
               </Stack>
 
-              <Link component={RouterLink}
 
-              href={`${paths.career.job}/${url}`}
 
-              color="inherit"
-              >
-                <TextMaxLine variant="h6" line={1}>
-                {capitalizeFirstLetter(title)}
-                </TextMaxLine>
-              </Link>
 
-            </Stack>
 
 
           </Stack>
+
+
+
+
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+
+            sx={{ px: 1,my:2 }}
+
+          >
+                <Stack  >
+
+
+
+                  <Link
+                    component={RouterLink}
+                    href={`${paths.career.job}/${url}`}
+                    color="inherit"
+                  >
+                    <TextMaxLine variant="h6" line={1}>
+
+                      {capitalizeFirstLetter(title)}
+                    </TextMaxLine>
+                  </Link>
+                </Stack>
+
+                <Stack  direction={{ xs: 'column-reverse', md: 'row' }} >
+
+
+
+
+
+                    <Stack direction="row" alignItems="center" justifyContent="space-between" >
+
+                        <Stack spacing={0.5} direction="row" alignItems="center">
+                          <Iconify width={14} icon="carbon:star-filled" sx={{ color: 'black' }} />
+
+                          <Box sx={{ typography: 'subtitle2' }}>
+                            {averageRating ? (Number.isInteger(averageRating) ? `${averageRating}.0` : averageRating) : '5.0'}
+                          </Box>
+
+
+                        </Stack>
+
+                    </Stack>
+
+
+                </Stack>
+
+          </Stack>
+
+
+
+
 
           <Divider sx={{ borderStyle: 'dashed', my: 2 }} />
 
@@ -414,6 +461,7 @@ ServiceItem.propTypes = {
       city: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
+      averageRating: PropTypes.number.isRequired,
 
       images: PropTypes.array.isRequired,
       seller: PropTypes.shape({

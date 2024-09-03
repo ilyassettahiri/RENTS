@@ -35,12 +35,15 @@ export default function Review({ category, url, reviews, seller }) {
     }
   };
 
+
+
+
   return (
     <>
       <Container maxWidth={false} sx={{ overflow: 'hidden',  }}>
         <Grid container spacing={8}>
           <Grid xs={12} md={5} lg={4}>
-            <ReviewSummary ratingNumber={4.1} reviewNumber={reviewList.length} />
+            <ReviewSummary reviews={reviewList} reviewNumber={reviewList.length} />
           </Grid>
 
           <Grid xs={12} md={7} lg={8}>

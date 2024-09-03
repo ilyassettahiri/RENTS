@@ -33,6 +33,33 @@ export default function FilterTime({
         shouldDisableDate={shouldDisableDate}
         localeText={{ start: 'Start Date', end: 'End Date' }}
 
+        slotProps={{
+          textField: {
+            fullWidth: true,
+            variant: 'outlined',
+
+            sx: {
+              [`& .${inputBaseClasses.input}`]: {
+                py: 0.5,
+                height: 52,
+                typography: 'subtitle1',
+              },
+              [`& .MuiOutlinedInput-notchedOutline`]: {
+                border: 'none', // Removes the border
+              },
+              ...sx,
+            },
+          },
+
+
+        }}
+
+
+        sx={{
+          [`& .MuiInputLabel-root`]: { // Target the input labels for start and end dates
+            typography: 'subtitle1',
+          },
+        }}
       />
     </LocalizationProvider>
   );

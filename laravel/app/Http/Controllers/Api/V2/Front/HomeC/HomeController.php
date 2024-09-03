@@ -294,6 +294,11 @@ class HomeController extends JsonApiController
 
             $user = User::where('id', $apartment->user_id)->first();
 
+            $reviews = $apartment->review()->orderBy('created_at')->get();
+            $totalReviews = $reviews->count();
+            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+
+
             return [
                 'type' => 'apartments',
                 'id' => $apartment->id,
@@ -325,6 +330,9 @@ class HomeController extends JsonApiController
 
                     ],
 
+                    'averageRating' => $averageRating, // Include average rating
+
+
 
                 ],
             ];
@@ -334,6 +342,9 @@ class HomeController extends JsonApiController
         $billiardsData = $billiards->map(function ($billiard) {
 
             $user = User::where('id', $billiard->user_id)->first();
+            $reviews = $apartment->review()->orderBy('created_at')->get();
+            $totalReviews = $reviews->count();
+            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
 
             return [
                 'type' => 'billiards',
@@ -367,6 +378,9 @@ class HomeController extends JsonApiController
                     ],
 
 
+                    'averageRating' => $averageRating, // Include average rating
+
+
                 ],
             ];
         });
@@ -374,6 +388,10 @@ class HomeController extends JsonApiController
         $velosData = $velos->map(function ($velo) {
 
             $user = User::where('id', $velo->user_id)->first();
+
+            $reviews = $apartment->review()->orderBy('created_at')->get();
+            $totalReviews = $reviews->count();
+            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
 
             return [
                 'type' => 'velos',
@@ -402,6 +420,9 @@ class HomeController extends JsonApiController
                         'created_at' => $user->created_at->toIso8601String(),
 
                     ],
+
+                    'averageRating' => $averageRating, // Include average rating
+
 
 
                 ],

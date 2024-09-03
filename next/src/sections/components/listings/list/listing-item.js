@@ -44,7 +44,7 @@ const StyledButton = styled((props) => (
 
 export default function ListingsItem({ tour, favorites = [], onFavoriteToggle }) {
   const { attributes } = tour;
-  const { title, city,phone, price,seller, created_at, category, url, id, images } = attributes;
+  const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
 
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
@@ -181,23 +181,56 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
 
 
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
 
-          {/* Title */}
-          <Stack  sx={{ px: 1,my:3 }}>
+            sx={{ px: 1,my:3 }}
+
+          >
+                <Stack  >
 
 
 
-            <Link
-              component={RouterLink}
-              href={`${paths.travel.tour}/${category}/${url}`}
-              color="inherit"
-            >
-              <TextMaxLine variant="h6" line={1}>
+                  <Link
+                    component={RouterLink}
+                    href={`${paths.travel.tour}/${category}/${url}`}
+                    color="inherit"
+                  >
+                    <TextMaxLine variant="h6" line={1}>
 
-                {capitalizeFirstLetter(title)}
-              </TextMaxLine>
-            </Link>
+                      {capitalizeFirstLetter(title)}
+                    </TextMaxLine>
+                  </Link>
+                </Stack>
+
+                <Stack  direction={{ xs: 'column-reverse', md: 'row' }} >
+
+
+
+
+
+                    <Stack direction="row" alignItems="center" justifyContent="space-between" >
+
+                        <Stack spacing={0.5} direction="row" alignItems="center">
+                          <Iconify width={14} icon="carbon:star-filled" sx={{ color: 'black' }} />
+
+                          <Box sx={{ typography: 'subtitle2' }}>
+                            {averageRating ? (Number.isInteger(averageRating) ? `${averageRating}.0` : averageRating) : '5.0'}
+                          </Box>
+
+
+                        </Stack>
+
+                    </Stack>
+
+
+                </Stack>
+
           </Stack>
+
+
 
 
 
@@ -359,6 +392,7 @@ ListingsItem.propTypes = {
       city: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       phone: PropTypes.string.isRequired,
+      averageRating: PropTypes.number.isRequired,
 
       created_at: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,

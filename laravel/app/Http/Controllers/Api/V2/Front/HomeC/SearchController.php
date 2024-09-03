@@ -488,6 +488,10 @@ class SearchController extends JsonApiController
                     }) : [];
 
 
+                    $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                    $totalReviews = $reviews->count();
+                    $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
 
                     return [
                         'type' => 'listings',
@@ -500,6 +504,7 @@ class SearchController extends JsonApiController
 
                             'phone' => $listing->phone,
 
+                            'averageRating' => $averageRating, // Include average rating
 
                             'category' => $category,
                             'url' => $listing->url,
@@ -627,6 +632,12 @@ class SearchController extends JsonApiController
                         }) : [];
 
 
+                        $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                        $totalReviews = $reviews->count();
+                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+
+
                     return [
                         'type' => 'listings',
                         'id' => $listing->id,
@@ -639,6 +650,7 @@ class SearchController extends JsonApiController
                             'phone' => $listing->phone,
 
 
+                            'averageRating' => $averageRating, // Include average rating
 
 
                             'category' => $listing->category,

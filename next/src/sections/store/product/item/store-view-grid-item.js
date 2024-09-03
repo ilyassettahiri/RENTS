@@ -140,7 +140,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
             </Link>
 
 
-            <ProductRating ratingNumber={product.attributes.average_rating} label={`${product.attributes.total_reviews} reviews`} />
+            <ProductRating ratingNumber={product.attributes.averageRating} label={`${product.attributes.totalReviews} reviews`} />
           </Stack>
         </Card>
         <LoginDialog open={loginDialogOpen} onClose={handleLoginDialogClose} />
@@ -153,8 +153,8 @@ StoreViewGridItem.propTypes = {
   product: PropTypes.shape({
     attributes: PropTypes.shape({
       title: PropTypes.string,
-      average_rating: PropTypes.number,
-      total_reviews: PropTypes.number,
+      averageRating: PropTypes.number,
+      totalReviews: PropTypes.number,
       picture: PropTypes.string,
       category: PropTypes.string,
       created_at: PropTypes.string,

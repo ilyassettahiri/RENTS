@@ -57,7 +57,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
 
 
   const { attributes } = business;
-  const { name,description,profile,id, city,phone,picture, created_at, category, url, } = attributes;
+  const { name,description,profile,id,totalReviews,averageRating, city,phone,picture, created_at, category, url, } = attributes;
 
   const router = useRouter();
 
@@ -203,17 +203,20 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
               flexWrap="wrap"
               divider={<Divider orientation="vertical" sx={{ height: 20, my: 'auto' }} />}
             >
+
+
+
               <Stack spacing={0.5} direction="row" alignItems="center">
                 <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
                 <Box sx={{ typography: 'h6' }}>
-                  {Number.isInteger(5) ? `${5}.0` : 5}
+                  {Number.isInteger(averageRating) ? `${averageRating}.0` : averageRating}
                 </Box>
 
-                {10 && (
+
                   <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                    ({fShortenNumber(10)} reviews)
+                    ({fShortenNumber(totalReviews)} reviews)
                   </Link>
-                )}
+
               </Stack>
 
               <Stack direction="row" sx={{ typography: 'subtitle2' }}>
@@ -407,6 +410,9 @@ BusinessItem.propTypes = {
       city: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
+      averageRating: PropTypes.number.isRequired,
+      totalReviews: PropTypes.number.isRequired,
+
 
       id: PropTypes.number.isRequired,
 

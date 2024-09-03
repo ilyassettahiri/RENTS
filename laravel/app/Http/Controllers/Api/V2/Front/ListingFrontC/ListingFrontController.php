@@ -369,10 +369,7 @@ class ListingFrontController extends JsonApiController
 
                         $userStore = Onlinestore::where('user_id', $user->id)->first();
 
-                                // Fetch 10 recent listings
 
-
-                        // Calculate total reviews and average rating
                         $totalReviews = $reviewslistings->count();
                         $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
@@ -430,22 +427,34 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'reviewslistings' => $reviewslistings->map(function ($review) {
+
+
+                                        $user = User::find($review->user_id);
+
                                         return [
                                             'id' => $review->id, // Ensure id is included
 
-                                            'name' => $review->name,
+                                            'name' => $user->name,
                                             'rating' => $review->rating,
                                             'message' => $review->description,
                                             'helpful' => $review->like,
+
+                                            'profile_image' => $user->profile_image,
+
 
                                             'created_at' => $review->created_at->toIso8601String(),
 
 
                                             'replies' => $review->reviewreply->map(function ($reply) {
+
+                                                $replyUser = User::find($reply->user_id);
+
                                             return [
                                                 'id' => $reply->id,
-                                                'name' => $reply->name,
+                                                'name' => $replyUser->name,
                                                 'picture' => $reply->picture,
+                                                'profile_image' => $replyUser->profile_image,
+
                                                 'message' => $reply->message,
                                                 'created_at' => $reply->created_at->toIso8601String(),
                                             ];
@@ -483,6 +492,11 @@ class ListingFrontController extends JsonApiController
 
                                     'recentlistings' => Billiard::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
                                         return [
@@ -497,6 +511,7 @@ class ListingFrontController extends JsonApiController
                                             'url' => $recentlisting->url,
                                             'created_at' => $recentlisting->created_at->toIso8601String(),
                                             'picture' => $recentlisting->picture,
+                                            'averageRating' => $averageRating,
 
                                             'images' => Billiardsimg::where('billiard_id', $recentlisting->id)->get()->map(function ($image) {
                                                 return $image->picture;
@@ -520,6 +535,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Billiard::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -527,6 +548,8 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiards',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -535,6 +558,14 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'recentlistingsmarrakech' => Billiard::where('city', 'Marrakech')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -945,11 +976,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
+                                                'averageRating' => $averageRating,
 
 
                                                 'seller' => [
@@ -980,12 +1016,21 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Boxing::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'boxings',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -1410,12 +1455,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -1445,12 +1495,21 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Diving::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'divings',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -1876,12 +1935,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -1911,12 +1974,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Football::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'footballs',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -2339,13 +2412,17 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Golf::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -2373,12 +2450,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Golf::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'golfs',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -2810,13 +2897,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -2844,12 +2935,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Hunting::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'huntings',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -3282,12 +3383,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -3318,12 +3423,23 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Musculation::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'musculations',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -3755,13 +3871,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -3790,12 +3910,23 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Surf::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'surfs',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -4221,13 +4352,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
 
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -4258,12 +4392,23 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Tennis::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'tennis',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -4693,13 +4838,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -4728,12 +4877,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Audio::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'audios',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -5164,6 +5323,9 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Camera::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
 
 
                                         return [
@@ -5171,7 +5333,7 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -5201,12 +5363,23 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Camera::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'cameras',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -5635,12 +5808,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -5670,12 +5847,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Charger::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'chargers',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -6106,13 +6293,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -6141,12 +6332,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Drone::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'drones',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -6577,12 +6778,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -6612,12 +6817,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Gaming::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'gamings',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -7050,13 +7265,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -7086,6 +7305,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Laptop::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -7093,6 +7319,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -7521,12 +7750,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -7556,12 +7789,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Lighting::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'lightings',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -7989,12 +8232,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -8025,6 +8272,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Printer::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -8032,6 +8286,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -8456,13 +8713,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -8492,6 +8753,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Router::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -8499,6 +8767,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -8923,13 +9194,17 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Tablette::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -8959,6 +9234,14 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Tablette::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -8966,6 +9249,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablettes',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -9396,13 +9682,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -9432,12 +9722,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Eclairage::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'eclairages',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -9863,6 +10163,10 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
@@ -9870,7 +10174,7 @@ class ListingFrontController extends JsonApiController
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -9900,12 +10204,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Mobilier::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'mobiliers',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -10331,13 +10645,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -10367,6 +10685,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Photographie::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -10374,6 +10699,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photographies',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -10803,13 +11131,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -10839,6 +11171,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Sonorisation::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -10846,6 +11185,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sonorisations',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -11269,6 +11611,10 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
@@ -11276,7 +11622,7 @@ class ListingFrontController extends JsonApiController
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -11306,6 +11652,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Tente::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -11313,6 +11666,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tentes',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -11734,13 +12090,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -11770,6 +12130,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Clothes::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -11777,6 +12144,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -12199,13 +12569,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -12236,6 +12610,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Jewelry::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -12243,6 +12624,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelrys',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -12666,12 +13050,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -12702,6 +13090,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Apartment::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -12709,6 +13104,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -13142,6 +13540,10 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
@@ -13149,7 +13551,7 @@ class ListingFrontController extends JsonApiController
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -13179,6 +13581,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Bureaux::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -13186,6 +13595,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bureauxs',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -13615,13 +14027,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -13652,6 +14068,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Magasin::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -13659,6 +14082,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'magasins',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -14081,12 +14507,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -14117,6 +14547,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Maison::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -14124,6 +14561,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'maisons',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -14581,13 +15021,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -14618,6 +15062,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Riad::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -14625,6 +15076,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -15054,13 +15508,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -15091,6 +15549,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Terrain::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -15098,6 +15563,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'terrains',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -15523,12 +15991,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -15559,6 +16031,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Villa::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -15566,6 +16045,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -15986,13 +16468,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -16022,6 +16508,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Activity::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -16029,6 +16522,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -16451,12 +16947,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -16487,6 +16987,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Livre::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -16494,6 +17001,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'livres',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -16913,13 +17423,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -16949,6 +17463,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Musical::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -16956,6 +17477,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musicals',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -17377,13 +17901,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -17413,6 +17941,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Furniture::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -17420,6 +17955,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furnitures',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -17843,13 +18381,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -17879,6 +18421,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Houseappliance::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -17886,6 +18434,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houseappliances',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -18315,12 +18866,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -18351,6 +18906,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Electricaltool::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -18358,6 +18920,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electricaltools',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -18784,12 +19349,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -18819,12 +19388,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Ladder::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'ladders',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -19249,12 +19828,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -19285,12 +19868,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Mechanicaltool::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'mechanicaltools',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -19719,12 +20312,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -19755,6 +20352,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Powertool::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -19762,6 +20366,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'powertools',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -20190,13 +20797,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -20226,12 +20837,22 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Pressurewasher::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'category' => 'pressurewashers',
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
@@ -20660,12 +21281,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -20695,6 +21320,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Service::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -20702,6 +21334,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'services',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -21125,13 +21760,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -21161,6 +21800,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Boat::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -21168,6 +21814,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -21589,12 +22238,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -21625,6 +22278,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Camion::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -21632,6 +22292,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'camions',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -22051,12 +22714,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -22087,6 +22754,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Caravan::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -22094,6 +22767,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -22515,12 +23191,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -22551,6 +23231,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Car::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -22558,6 +23245,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -22981,12 +23671,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -23017,6 +23711,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Engin::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -23024,6 +23725,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -23446,12 +24150,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -23482,6 +24190,13 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Moto::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -23489,6 +24204,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motos',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -23903,12 +24621,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -23939,6 +24661,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Scooter::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -23946,6 +24674,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -24364,12 +25095,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -24400,6 +25135,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Taxiaeroport::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -24407,6 +25148,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'taxiaeroports',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -24825,13 +25569,17 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
 
-
+                                                'averageRating' => $averageRating,
                                                 'seller' => [
                                                     'name' => $user->name,
                                                     'id' => $user->id,
@@ -24860,6 +25608,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Transportation::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -24867,6 +25621,9 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportations',
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'url' => $recentlisting->url,
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
@@ -25288,12 +26045,16 @@ class ListingFrontController extends JsonApiController
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
                                         return [
 
                                             'attributes' => [
 
                                                 'phone' => $recentlisting->phone,
-
+                                                'averageRating' => $averageRating,
 
                                                 'seller' => [
                                                     'name' => $user->name,
@@ -25323,6 +26084,12 @@ class ListingFrontController extends JsonApiController
 
 
                                     'recentlistingscasablanca' => Velo::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
+
+                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
+                                        $totalReviews = $reviews->count();
+                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+
+
                                         return [
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
@@ -25331,6 +26098,9 @@ class ListingFrontController extends JsonApiController
                                                 'id' => $recentlisting->id,
                                                 'category' => 'velos',
                                                 'url' => $recentlisting->url,
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
                                                 'created_at' => $recentlisting->created_at->toIso8601String(),
                                                 'picture' => $recentlisting->picture,
                                             ],

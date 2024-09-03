@@ -25,7 +25,7 @@ export default function ReviewItem({
   tagUser = '',
   createdAt,
   hasReply = false,
-  avatarUrl = '',
+  profile_image = '',
   helpful = 0,
   replies = [],
   onLike,
@@ -64,7 +64,9 @@ export default function ReviewItem({
       >
         <Avatar
           alt={name}
-          src={avatarUrl}
+
+          src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`}
+
           sx={{ width: AVATAR_SIZE, height: AVATAR_SIZE, mr: 2.5 }}
         />
 
@@ -144,7 +146,9 @@ export default function ReviewItem({
                 <Stack key={reply.id} direction="row" sx={{ mt: 2 }}>
                   <Avatar
                     alt={reply.name}
-                    src={reply.picture}
+
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${reply.profile_image}`}
+
                     sx={{ width: AVATAR_SIZE, height: AVATAR_SIZE, mr: 2.5 }}
                   />
                   <Box>
@@ -174,7 +178,7 @@ ReviewItem.propTypes = {
   helpful: PropTypes.number,
   message: PropTypes.string.isRequired,
   tagUser: PropTypes.string,
-  avatarUrl: PropTypes.string,
+  profile_image: PropTypes.string,
   createdAt: PropTypes.instanceOf(Date).isRequired,
   onLike: PropTypes.func.isRequired,
   category: PropTypes.string.isRequired,
@@ -185,6 +189,8 @@ ReviewItem.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       picture: PropTypes.string,
+      profile_image: PropTypes.string,
+
       message: PropTypes.string.isRequired,
       created_at: PropTypes.string.isRequired,
     })

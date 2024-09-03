@@ -54,7 +54,8 @@ export default function StoreItemBestSellers({ product, ...other }) {
             {capitalizeFirstLetter(product.title)}
           </TextMaxLine>
 
-          <ProductRating ratingNumber={product.ratingNumber} label={`${product.sold} sold`} />
+          <ProductRating ratingNumber={product.averageRating} label={`${product.totalReviews} reviews`} />
+
 
           <ProductPrice price={product.price} priceSale={product.priceSale} />
         </Stack>
@@ -71,6 +72,8 @@ StoreItemBestSellers.propTypes = {
     priceSale: PropTypes.number,
     sold: PropTypes.number,
     ratingNumber: PropTypes.number,
+    averageRating: PropTypes.number,
+    totalReviews: PropTypes.number,
     category: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
