@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import { alpha } from '@mui/material/styles';
 import Link from '@mui/material/Link';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useRouter } from 'src/routes/hooks';
 
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -34,7 +35,7 @@ const navigations = [
   { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
   { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
   { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
-  { title: 'Orders', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
+  { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
   { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
 ];
 
@@ -42,8 +43,14 @@ export default function AccountLayout({ children }) {
   const mdUp = useResponsive('up', 'md');
   const menuOpen = useBoolean();
 
+  const authContext = useContext(AuthContext);
+
+  const router = useRouter();
+
   const { getCurrentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();
+  const [isImageSelected, setIsImageSelected] = useState(false);
+
 
   const [imageUrl, setImageUrl] = useState(null);
   const [fileState, setFileState] = useState(null);
@@ -86,7 +93,9 @@ export default function AccountLayout({ children }) {
     const formData = new FormData();
     formData.append("attachment", e.target.files[0]);
     setFileState(formData);
-    setImageUrl(URL.createObjectURL(e.target.files[0])); // Display selected image immediately
+    setImageUrl(URL.createObjectURL(e.target.files[0]));
+    setIsImageSelected(true);
+
   };
 
 
@@ -104,13 +113,72 @@ export default function AccountLayout({ children }) {
       };
       await AuthService.updateProfile(JSON.stringify(userData));
       const profileImageUrl = `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${url}`;
-      setImageUrl(profileImageUrl); // Update the imageUrl state with the new URL
+      setImageUrl(profileImageUrl);
+
+      setIsImageSelected(false);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const handleLogOut = async () => {
+    try {
+      await AuthService.logout();
+      authContext.logout();
+      router.push(`/`);
+    } catch (err) {
+      console.error(err);
+    }
+    return undefined;
+  };
 
+
+
+
+// Conditional rendering for Edit and Save buttons
+const renderEditOrSaveButton = isImageSelected ? (
+
+    <>
+      <Stack
+        direction="row"
+        alignItems="center"
+        onClick={() => document.getElementById('profile-image-upload').click()}
+        sx={{
+          typography: 'caption',
+          cursor: 'pointer',
+          '&:hover': { opacity: 0.72 },
+        }}
+      >
+        <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
+        Edit
+      </Stack>
+
+      <LoadingButton
+        color="inherit"
+        size="small"
+        type="submit"
+        variant="contained"
+        onClick={submitHandler}
+      >
+        Save
+      </LoadingButton>
+
+    </>
+) : (
+  <Stack
+    direction="row"
+    alignItems="center"
+    onClick={() => document.getElementById('profile-image-upload').click()}
+    sx={{
+      typography: 'caption',
+      cursor: 'pointer',
+      '&:hover': { opacity: 0.72 },
+    }}
+  >
+    <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
+    Edit
+  </Stack>
+);
 
 
   const renderContentFix  = isProfileLoading ?  (
@@ -184,24 +252,9 @@ export default function AccountLayout({ children }) {
               style={{ display: 'none' }}
             />
 
-              <LoadingButton
-                color="inherit"
-                size="small"
-                type="submit"
-                variant="contained"
-                onClick={() => document.getElementById('profile-image-upload').click()}
-              >
-                Edit
-              </LoadingButton>
-              <LoadingButton
-                  color="inherit"
-                  size="small"
-                  type="submit"
-                  variant="contained"
-                  onClick={submitHandler}
-                >
-                  Save
-              </LoadingButton>
+
+            {renderEditOrSaveButton}
+
 
           </Stack>
 
@@ -234,11 +287,14 @@ export default function AccountLayout({ children }) {
             height: 44,
             borderRadius: 1,
           }}
+
         >
-          <ListItemIcon>
+          <ListItemIcon onClick={handleLogOut}>
             <Iconify icon="carbon:logout" />
           </ListItemIcon>
           <ListItemText
+
+            onClick={handleLogOut}
             primary="Logout"
             primaryTypographyProps={{
               typography: 'body2',

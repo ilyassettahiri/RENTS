@@ -29,21 +29,21 @@ import EcommerceAccountOrdersTableRow from '../components/dashboard/account/dash
 import EcommerceAccountOrdersTableHead from '../components/dashboard/account/dashboard-orders-table-head';
 import EcommerceAccountOrdersTableToolbar from '../components/dashboard/account/dashboard-orders-table-toolbar';
 
-const TABS = ['All Orders', 'Completed', 'To Process', 'Cancelled', 'Return & Refund'];
+const TABS = ['All', 'Completed', 'To Process', 'Cancelled'];
 
 export const TABLE_HEAD = [
-  { id: 'id', label: 'Reservation ID' },
+  { id: 'id', label: ' ID' },
   { id: 'title', label: 'Title' },
   { id: 'price', label: 'Price' },
-  { id: 'reservationstart', label: 'Reservation Start' },
-  { id: 'reservationsend', label: 'Reservation End' },
-  { id: 'created_at', label: 'Created At' },
+  { id: 'reservationstart', label: ' Start' },
+  { id: 'reservationsend', label: ' End' },
+  { id: 'created_at', label: 'Created at' },
   { id: '' },
 ];
 
 export default function DashboardOrdersPage() {
 
-  const [tab, setTab] = useState('All Orders');
+  const [tab, setTab] = useState('All');
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('id');
   const [selected, setSelected] = useState([]);
@@ -142,7 +142,7 @@ export default function DashboardOrdersPage() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Orders
+        Reservations
       </Typography>
 
       <Tabs

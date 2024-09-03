@@ -11,6 +11,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { paths } from 'src/routes/paths';
 import { useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
+import { useRouter } from 'src/routes/hooks';
+
 import { useResponsive } from 'src/hooks/use-responsive';
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
@@ -24,12 +26,13 @@ const navigations = [
   { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
   { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
   { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
-  { title: 'Orders', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
+  { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
   { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
 ];
 
 export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
+  const router = useRouter();
 
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
@@ -103,7 +106,8 @@ export default function Nav({ open, onClose }) {
     try {
       await AuthService.logout();
       authContext.logout();
-      window.location.href = "/"; // Redirect to home page after successful logout
+      router.push(`/`);
+
     } catch (err) {
       console.error(err);
     }
