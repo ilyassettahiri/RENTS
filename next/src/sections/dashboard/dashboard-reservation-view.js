@@ -53,9 +53,9 @@ export default function DashboardReservationPage({ params }) {
     return {
       id: orderData.id,
       details: orderData.attributes,
-      customer: {
-        name: orderData.data.attributes.name,
-        avatarUrl: orderData.data.attributes.picture, // Assuming you have a picture field
+      shippingAddress: {
+        address: orderData.data.attributes.name,
+        phone_number: orderData.data.attributes.picture, // Assuming you have a picture field
       },
       items: [
         {
@@ -83,7 +83,7 @@ export default function DashboardReservationPage({ params }) {
 
 
 
-  const [status, setStatus] = useState(memoizedOrderData?.status);
+  const [status, setStatus] = useState(orderData?.data.attributes.status);
 
   const handleChangeStatus = useCallback((newValue) => {
     setStatus(newValue);
@@ -118,7 +118,7 @@ export default function DashboardReservationPage({ params }) {
 
         <Grid xs={12} md={4}>
          <OrderDetailsInfo
-            customer={memoizedOrderData?.customer}
+
             delivery={null} // Delivery info is not provided in fetched data
             payment={null} // Payment info is not provided in fetched data
             shippingAddress={null} // Shipping info is not provided in fetched data

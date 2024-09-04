@@ -16,57 +16,13 @@ import { Iconify } from 'src/components/iconifyy';
 // ----------------------------------------------------------------------
 
 export function OrderDetailsInfo({ customer, delivery, payment, shippingAddress }) {
-  const renderCustomer = (
-    <>
-      <CardHeader
-        title="Customer info"
-        action={
-          <IconButton>
-            <Iconify icon="solar:pen-bold" />
-          </IconButton>
-        }
-      />
-      <Stack direction="row" sx={{ p: 3 }}>
-        <Avatar
-          alt={customer?.name}
-          src={customer?.avatarUrl}
-          sx={{ width: 48, height: 48, mr: 2 }}
-        />
 
-        <Stack spacing={0.5} alignItems="flex-start" sx={{ typography: 'body2' }}>
-          <Typography variant="subtitle2">{customer?.name}</Typography>
-
-          <Box sx={{ color: 'text.secondary' }}>{customer?.email}</Box>
-
-          <div>
-            IP address:
-            <Box component="span" sx={{ color: 'text.secondary', ml: 0.25 }}>
-              {customer?.ipAddress}
-            </Box>
-          </div>
-
-          <Button
-            size="small"
-            color="error"
-            startIcon={<Iconify icon="mingcute:add-line" />}
-            sx={{ mt: 1 }}
-          >
-            Add to Blacklist
-          </Button>
-        </Stack>
-      </Stack>
-    </>
-  );
 
   const renderDelivery = (
     <>
       <CardHeader
         title="Delivery"
-        action={
-          <IconButton>
-            <Iconify icon="solar:pen-bold" />
-          </IconButton>
-        }
+
       />
       <Stack spacing={1.5} sx={{ p: 3, typography: 'body2' }}>
         <Stack direction="row" alignItems="center">
@@ -97,11 +53,7 @@ export function OrderDetailsInfo({ customer, delivery, payment, shippingAddress 
     <>
       <CardHeader
         title="Shipping"
-        action={
-          <IconButton>
-            <Iconify icon="solar:pen-bold" />
-          </IconButton>
-        }
+
       />
       <Stack spacing={1.5} sx={{ p: 3, typography: 'body2' }}>
         <Stack direction="row">
@@ -125,11 +77,7 @@ export function OrderDetailsInfo({ customer, delivery, payment, shippingAddress 
     <>
       <CardHeader
         title="Payment"
-        action={
-          <IconButton>
-            <Iconify icon="solar:pen-bold" />
-          </IconButton>
-        }
+
       />
       <Box
         display="flex"
@@ -145,9 +93,8 @@ export function OrderDetailsInfo({ customer, delivery, payment, shippingAddress 
 
   return (
     <Card>
-      {renderCustomer}
 
-      <Divider sx={{ borderStyle: 'dashed' }} />
+
 
       {renderDelivery}
 

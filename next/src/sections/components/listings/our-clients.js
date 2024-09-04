@@ -52,12 +52,9 @@ export default function OurClients({ brands }) {
           mb: { xs: 8, md: 10 },
         }}
       >
-        <Typography variant="h2">Our Clients</Typography>
+        <Typography variant="h3">Our Clients</Typography>
 
-        <Typography sx={{ color: 'text.secondary' }}>
-          Curabitur a felis in nunc fringilla tristique. Fusce egestas elit eget lorem. Etiam vitae
-          tortor.
-        </Typography>
+
       </Stack>
 
       <Carousel {...carousel.carouselSettings}>

@@ -60,11 +60,7 @@ export function OrderDetailsItems({
     <Card>
       <CardHeader
         title="Details"
-        action={
-          <IconButton>
-            <Iconify icon="solar:pen-bold" />
-          </IconButton>
-        }
+
       />
 
       <Scrollbar>
@@ -79,7 +75,13 @@ export function OrderDetailsItems({
               borderBottom: (theme) => `dashed 2px ${theme.palette.background.neutral}`,
             }}
           >
-            <Avatar src={item.coverUrl} variant="rounded" sx={{ width: 48, height: 48, mr: 2 }} />
+            <Avatar
+              variant="rounded"
+              sx={{ width: 48, height: 48, mr: 2 }}
+              src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item.coverUrl}`}
+
+
+            />
 
             <ListItemText
               primary={item.name}

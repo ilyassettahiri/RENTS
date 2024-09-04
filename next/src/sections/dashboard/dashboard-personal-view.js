@@ -219,16 +219,25 @@ export default function DashboardPersonalView() {
             getOptionLabel={(option) => option}
           />
         </Box>
-        <LoadingButton
-          sx={{ mt: 5 }}
-          color="inherit"
-          size="large"
-          type="submit"
-          variant="contained"
-          loading={personalInfoMethods.formState.isSubmitting}
-        >
-          Save Changes
-        </LoadingButton>
+
+        <Box sx={{ textAlign: 'right' }}>
+
+
+              <LoadingButton
+                sx={{ mt: 5 }}
+                color="inherit"
+                size="large"
+                type="submit"
+                variant="contained"
+                loading={personalInfoMethods.formState.isSubmitting}
+              >
+                Save Changes
+              </LoadingButton>
+
+        </Box>
+
+
+
       </FormProvider>
 
       <FormProvider methods={passwordMethods} onSubmit={onSubmitPassword}>
@@ -283,15 +292,22 @@ export default function DashboardPersonalView() {
           </Stack>
 
         </Stack>
-          <LoadingButton
-            color="inherit"
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={passwordMethods.formState.isSubmitting}
-          >
-            Change Password
-          </LoadingButton>
+
+
+        <Box sx={{ textAlign: 'right' }}>
+
+              <LoadingButton
+                color="inherit"
+                size="large"
+                type="submit"
+                variant="contained"
+                loading={passwordMethods.formState.isSubmitting}
+              >
+                Change Password
+              </LoadingButton>
+
+        </Box>
+
       </FormProvider>
     </LocalizationProvider>
   );

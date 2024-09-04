@@ -77,7 +77,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
         <Link component={RouterLink} href="/" aria-label="go to homepage">
           <Box
             sx={{
-              width: 80,
+              width: 90,
               lineHeight: 0,
               cursor: 'pointer',
               display: 'inline-flex',
