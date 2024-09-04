@@ -1,4 +1,6 @@
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+
 import Card from '@mui/material/Card';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
@@ -95,3 +97,16 @@ export function OrderDetailsHistory({ history }) {
     </Card>
   );
 }
+
+
+OrderDetailsHistory.propTypes = {
+  history: PropTypes.shape({
+    orderTime: PropTypes.string,
+    timeline: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        time: PropTypes.string.isRequired,
+      })
+    ),
+  }).isRequired,
+};

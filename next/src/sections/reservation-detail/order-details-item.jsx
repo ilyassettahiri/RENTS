@@ -1,5 +1,7 @@
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import PropTypes from 'prop-types';
+
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import CardHeader from '@mui/material/CardHeader';
@@ -8,8 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 
 import { fCurrency } from 'src/utils/format-number';
 
-import { Iconify } from 'src/components/iconify';
-import { Scrollbar } from 'src/components/scrollbar';
+import { Iconify } from 'src/components/iconifyy';
+import  Scrollbar  from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
@@ -74,7 +76,7 @@ export function OrderDetailsItems({
             sx={{
               p: 3,
               minWidth: 640,
-              borderBottom: (theme) => `dashed 2px ${theme.vars.palette.background.neutral}`,
+              borderBottom: (theme) => `dashed 2px ${theme.palette.background.neutral}`,
             }}
           >
             <Avatar src={item.coverUrl} variant="rounded" sx={{ width: 48, height: 48, mr: 2 }} />
@@ -103,3 +105,22 @@ export function OrderDetailsItems({
     </Card>
   );
 }
+
+
+OrderDetailsItems.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      sku: PropTypes.string,
+      coverUrl: PropTypes.string,
+      quantity: PropTypes.number.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  taxes: PropTypes.number,
+  shipping: PropTypes.number,
+  discount: PropTypes.number,
+  subtotal: PropTypes.number,
+  totalAmount: PropTypes.number,
+};

@@ -1,4 +1,6 @@
 import Box from '@mui/material/Box';
+import PropTypes from 'prop-types';
+
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -9,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 
-import { Iconify } from 'src/components/iconify';
+import { Iconify } from 'src/components/iconifyy';
 
 // ----------------------------------------------------------------------
 
@@ -159,3 +161,25 @@ export function OrderDetailsInfo({ customer, delivery, payment, shippingAddress 
     </Card>
   );
 }
+
+
+OrderDetailsInfo.propTypes = {
+  customer: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
+    email: PropTypes.string.isRequired,
+    ipAddress: PropTypes.string,
+  }),
+  delivery: PropTypes.shape({
+    shipBy: PropTypes.string,
+    speedy: PropTypes.string,
+    trackingNumber: PropTypes.string,
+  }),
+  payment: PropTypes.shape({
+    cardNumber: PropTypes.string,
+  }),
+  shippingAddress: PropTypes.shape({
+    fullAddress: PropTypes.string,
+    phoneNumber: PropTypes.string,
+  }),
+};

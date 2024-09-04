@@ -210,9 +210,7 @@ class UserController extends JsonApiController
             $data = $request->only(['oldPassword', 'newPassword', 'confirmNewPassword']);
 
 
-            Log::info('Attempting to update password for user ID: ' . $userId, [
-                'newPassword' => $data['newPassword']
-            ]);
+
 
 
             $validator = Validator::make($data, [

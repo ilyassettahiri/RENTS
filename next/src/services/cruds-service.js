@@ -333,6 +333,10 @@ class CrudService {
     };
 
 
+    getReservation = async (id) => {
+      const reservationsEndpoint = `reservations/${id}`;
+      return await HttpService.get(reservationsEndpoint);
+    };
 
     // Reservation requests
     getReservationFront = async (category, url) => {

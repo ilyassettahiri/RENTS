@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
+import { paths } from 'src/routes/paths';
+import { useRouter } from 'src/routes/hooks';
 
 import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
@@ -22,6 +24,9 @@ import Iconify from 'src/components/iconify';
 export default function EcommerceAccountOrdersTableRow({ row, onSelectRow, selected }) {
   const [open, setOpen] = useState(null);
 
+  const router = useRouter();
+
+
   const handleOpen = useCallback((event) => {
     setOpen(event.currentTarget);
   }, []);
@@ -37,19 +42,37 @@ export default function EcommerceAccountOrdersTableRow({ row, onSelectRow, selec
     },
   };
 
+
+  const handleRowClick = () => {
+
+    router.push(`${paths.eCommerce.reservation}/${row.id}`);
+
+  };
+
   return (
     <>
-      <TableRow hover selected={selected}>
+      <TableRow hover selected={selected}
+
+
+        sx={{
+          cursor: 'pointer',
+          '&:hover': {
+            backgroundColor: 'rgba(0, 0, 0, 0.08)', // Add custom hover color here
+          },
+        }}
+
+
+      >
         <TableCell padding="checkbox">
           <Checkbox color="primary" checked={selected} onClick={onSelectRow} />
         </TableCell>
 
         <TableCell>{row.id}</TableCell>
-        <TableCell>{row.title}</TableCell>
-        <TableCell>{fCurrency(row.price)}</TableCell>
-        <TableCell>{fDate(row.reservationstart)}</TableCell>
-        <TableCell>{fDate(row.reservationsend)}</TableCell> {/* Display reservationsend as date */}
-        <TableCell>{fDate(row.created_at)}</TableCell>
+        <TableCell onClick={handleRowClick}>{row.title}</TableCell>
+        <TableCell onClick={handleRowClick}>{fCurrency(row.price)}</TableCell>
+        <TableCell onClick={handleRowClick}>{fDate(row.reservationstart)}</TableCell>
+        <TableCell onClick={handleRowClick}>{fDate(row.reservationsend)}</TableCell> {/* Display reservationsend as date */}
+        <TableCell onClick={handleRowClick}>{fDate(row.created_at)}</TableCell>
 
         <TableCell align="right" padding="none">
           <IconButton onClick={handleOpen}>
