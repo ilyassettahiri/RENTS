@@ -35,7 +35,7 @@ export default function DashboardChatPage() {
   const userID = searchParams.get('userID');
   const selectedConversationId = searchParams.get('id') || '';
 
-  const roomNav = useCollapseNav();
+  const roomNav = useCollapseNav(true);
   const conversationsNav = useCollapseNav();
 
 

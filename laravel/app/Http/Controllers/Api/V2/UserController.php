@@ -14,6 +14,7 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Models\Discount;
 use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -186,23 +187,60 @@ class UserController extends JsonApiController
 
 
 
-           // Get the user ID from the route parameters
+
            $userId = $route->parameter('user')->id;
 
-           // Find the user by ID
+
            $user = User::find($userId);
 
            if (!$user) {
                return response()->json(['error' => 'User not found'], 404);
            }
 
-           // Get the request data
+
            $request = request();
 
-           // Log request data for debugging
-           Log::info('Request Data:', $request->all());
 
-           // Map the request data to the appropriate fields
+
+
+
+
+        if ($request->has('newPassword') && $request->has('oldPassword')) {
+
+            $data = $request->only(['oldPassword', 'newPassword', 'confirmNewPassword']);
+
+
+            Log::info('Attempting to update password for user ID: ' . $userId, [
+                'newPassword' => $data['newPassword']
+            ]);
+
+
+            $validator = Validator::make($data, [
+                'oldPassword' => 'required|string',
+                'newPassword' => 'required|string|min:8',
+                'confirmNewPassword' => 'required|same:newPassword',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            if (!Hash::check($data['oldPassword'], $user->password)) {
+                return response()->json(['error' => 'Old password does not match'], 400);
+            }
+
+            $user->password = $data['newPassword'];
+
+            $user->save();
+
+            return response()->json(['message' => 'Password updated successfully'], 200);
+        } else {
+
+
+
+
+
+
            $data = [
                'first_name' => $request->input('firstName'),
                'last_name' => $request->input('lastName'),
@@ -214,9 +252,7 @@ class UserController extends JsonApiController
                'city' => $request->input('city'),
                'zip' => $request->input('zipCode'),
                'country' => $request->input('country'),
-               'oldPassword' => $request->input('oldPassword'),
-               'newPassword' => $request->input('newPassword'),
-               'confirmNewPassword' => $request->input('confirmNewPassword'),
+
            ];
 
            // Validate the request data
@@ -231,9 +267,7 @@ class UserController extends JsonApiController
                'city' => 'string|max:255|nullable',
                'zip' => 'string|max:20|nullable',
                'country' => 'string|max:255|nullable',
-               'oldPassword' => 'string|nullable',
-               'newPassword' => 'string|min:8|nullable',
-               'confirmNewPassword' => 'same:newPassword|nullable',
+
            ]);
 
            if ($validator->fails()) {
@@ -257,21 +291,16 @@ class UserController extends JsonApiController
            $user->zip = $data['zip'] ?? $user->zip;
            $user->country = $data['country'] ?? $user->country;
 
-           // Handle password update
-           if (!empty($data['newPassword'])) {
-               if (Hash::check($data['oldPassword'], $user->password)) {
-                   $user->password = bcrypt($data['newPassword']);
-               } else {
-                   return response()->json(['error' => 'Old password does not match'], 400);
-               }
-           }
+
 
            $user->save();
 
-           // Log the updated user data
-           Log::info('Updated user:', ['user' => $user]);
+
 
            return response()->json(['data' => $user], 200);
+
+
+        }
 
     }
 

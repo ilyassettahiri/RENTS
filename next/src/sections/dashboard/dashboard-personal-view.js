@@ -53,9 +53,7 @@ export default function DashboardPersonalView() {
       zipCode: '',
       city: '',
       country: 'United States',
-      oldPassword: '',
-      newPassword: '',
-      confirmNewPassword: '',
+
     };
 
     const userAttributes = rawUserData.data.attributes;
@@ -72,9 +70,7 @@ export default function DashboardPersonalView() {
       zipCode: userAttributes.zip,
       city: userAttributes.city,
       country: userAttributes.country,
-      oldPassword: '',
-      newPassword: '',
-      confirmNewPassword: '',
+
     };
   }, [rawUserData]);
 
@@ -108,7 +104,11 @@ export default function DashboardPersonalView() {
 
   const passwordMethods = useForm({
     resolver: yupResolver(passwordSchema),
-    defaultValues: userData || {},
+    defaultValues: {
+      oldPassword: '',
+      newPassword: '',
+      confirmNewPassword: '',
+    },
   });
 
 
@@ -117,6 +117,11 @@ export default function DashboardPersonalView() {
       if (userData && !isUserLoading) {
         personalInfoMethods.reset(userData);
         passwordMethods.reset(userData);
+        passwordMethods.reset({
+          oldPassword: '',
+          newPassword: '',
+          confirmNewPassword: '',
+        });
       }
     }, [userData, isUserLoading, personalInfoMethods, passwordMethods]);
 
@@ -145,11 +150,16 @@ export default function DashboardPersonalView() {
 
   const onSubmitPassword = passwordMethods.handleSubmit(async (data) => {
     try {
-      // Implement password update logic here
-      console.log('Password Data:', data);
-      passwordMethods.reset();
+      await CrudService.updateUser(data, userData.id);
+      passwordMethods.reset({
+        oldPassword: '',
+        newPassword: '',
+        confirmNewPassword: '',
+      });
+      alert('Password changed successfully');
     } catch (error) {
       console.error(error);
+      alert('Failed to change password. Please try again.');
     }
   });
 

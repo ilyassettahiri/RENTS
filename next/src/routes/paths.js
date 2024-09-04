@@ -74,6 +74,7 @@ export const paths = {
     orders: `/dashboard/orders`,
     payment: `/dashboard/payment`,
 
+    reservation: `/dashboard/reservation-detail`,
 
   },
 

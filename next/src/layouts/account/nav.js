@@ -9,9 +9,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
 import { paths } from 'src/routes/paths';
-import { useActiveLink } from 'src/routes/hooks';
+import { useRouter, useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
-import { useRouter } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import Iconify from 'src/components/iconify';
