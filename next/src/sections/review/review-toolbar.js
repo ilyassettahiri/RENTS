@@ -64,7 +64,7 @@ export default function ReviewToolbar({ sort, totalReviews, onOpenReview, onChan
               </Select>
             </FormControl>
 
-            <Button size="large" variant="contained" color="inherit" onClick={handleWriteReviewClick}>
+            <Button size="large" variant="contained" color="primary" onClick={handleWriteReviewClick}>
               Write a Review
             </Button>
           </Stack>

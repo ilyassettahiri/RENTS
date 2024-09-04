@@ -77,7 +77,7 @@ export default function MaintenanceView() {
         />
       </m.div>
 
-      <Button component={RouterLink} href="/" size="large" color="inherit" variant="contained">
+      <Button component={RouterLink} href="/" size="large" color="primary" variant="contained">
         Go to Home
       </Button>
     </MotionContainer>

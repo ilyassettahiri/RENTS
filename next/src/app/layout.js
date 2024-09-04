@@ -21,7 +21,16 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <title>{metadata.title}</title>
+        <link rel="icon" href={metadata.icons.icon} />
+        <link rel="shortcut icon" href={metadata.icons.shortcut} />
+        <link rel="apple-touch-icon" href={metadata.icons.apple} />
+        <link rel="manifest" href={metadata.manifest} />
+        <meta name="theme-color" content={metadata.themeColor} />
+        <meta name="description" content={metadata.description} />
+      </head>
       <body>
         <ClientLayout>{children}</ClientLayout>
       </body>

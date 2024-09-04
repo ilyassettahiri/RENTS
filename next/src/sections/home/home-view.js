@@ -103,6 +103,65 @@ const heroUrl = [
   'categoriescover/villas.jpg'
 ];
 
+
+const heroUrlicon = [
+  'categoryiconcover/apartments.svg',
+
+  'categoryiconcover/billiards.svg',
+  'categoryiconcover/activities.svg',
+  'categoryiconcover/audios.svg',
+  'categoryiconcover/boats.svg',
+  'categoryiconcover/boxings.svg',
+  'categoryiconcover/bureauxs.svg',
+  'categoryiconcover/cameras.svg',
+  'categoryiconcover/camions.svg',
+  'categoryiconcover/caravans.svg',
+  'categoryiconcover/cars.svg',
+  'categoryiconcover/chargers.svg',
+  'categoryiconcover/clothes.svg',
+  'categoryiconcover/divings.svg',
+  'categoryiconcover/drones.svg',
+  'categoryiconcover/eclairages.svg',
+  'categoryiconcover/electricaltools.svg',
+  'categoryiconcover/engins.svg',
+  'categoryiconcover/footballs.svg',
+  'categoryiconcover/furnitures.svg',
+  'categoryiconcover/gamings.svg',
+  'categoryiconcover/golfs.svg',
+  'categoryiconcover/houseappliances.svg',
+  'categoryiconcover/huntings.svg',
+  'categoryiconcover/jewelrys.svg',
+  'categoryiconcover/ladders.svg',
+  'categoryiconcover/laptops.svg',
+  'categoryiconcover/lightings.svg',
+  'categoryiconcover/livres.svg',
+  'categoryiconcover/magasins.svg',
+  'categoryiconcover/maisons.svg',
+  'categoryiconcover/mechanicaltools.svg',
+  'categoryiconcover/mobiliers.svg',
+  'categoryiconcover/motos.svg',
+  'categoryiconcover/musculations.svg',
+  'categoryiconcover/musicals.svg',
+  'categoryiconcover/photographies.svg',
+  'categoryiconcover/powertools.svg',
+  'categoryiconcover/pressurewashers.svg',
+  'categoryiconcover/printers.svg',
+  'categoryiconcover/riads.svg',
+  'categoryiconcover/routers.svg',
+  'categoryiconcover/scooters.svg',
+  'categoryiconcover/services.svg',
+  'categoryiconcover/sonorisations.svg',
+  'categoryiconcover/surfs.svg',
+  'categoryiconcover/tablettes.svg',
+  'categoryiconcover/taxiaeroports.svg',
+  'categoryiconcover/tennis.svg',
+  'categoryiconcover/tentes.svg',
+  'categoryiconcover/terrains.svg',
+  'categoryiconcover/transportations.svg',
+  'categoryiconcover/velos.svg',
+  'categoryiconcover/villas.svg'
+];
+
 const categories = [
   'Apartments',
 
@@ -1223,6 +1282,8 @@ const keywordCategoryMap = {
 const tours = heroUrl.map((url, index) => ({
   id: index,
   heroUrl: url,
+  iconUrl: heroUrlicon[index] || '', // Add icon URL from heroUrlicon
+
   categories: categories[index] || 'Uncategorized',
 }));
 
@@ -1463,6 +1524,7 @@ export default function HomeView() {
 
         <Container
 
+          maxWidth={false}
 
           sx={{
             mb: { md: 10 },
@@ -1503,7 +1565,7 @@ export default function HomeView() {
       </Box>
 
       <Container
-
+        maxWidth={false}
         sx={{
           position: 'relative',
           zIndex: 1,

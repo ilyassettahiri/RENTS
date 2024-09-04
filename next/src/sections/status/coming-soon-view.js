@@ -101,7 +101,7 @@ export default function ComingSoonView() {
         InputProps={{
           endAdornment: (
             <InputAdornment position="end">
-              <Button variant="contained" size="large" color="inherit" sx={{ mr: -1.25 }}>
+              <Button variant="contained" size="large" color="primary" sx={{ mr: -1.25 }}>
                 Notify
               </Button>
             </InputAdornment>

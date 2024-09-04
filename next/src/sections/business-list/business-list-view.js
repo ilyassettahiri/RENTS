@@ -1298,7 +1298,7 @@ export default function BusinessListView() {
 
       >
         <Button
-          color="inherit"
+          color="primary"
           variant="contained"
           startIcon={<Iconify icon="carbon:filter" width={18} />}
           onClick={mobileOpen.onTrue}

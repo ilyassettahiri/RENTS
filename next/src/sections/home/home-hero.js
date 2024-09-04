@@ -196,6 +196,8 @@ function CarouselItem({ tour }) {
 CarouselItem.propTypes = {
   tour: PropTypes.shape({
     heroUrl: PropTypes.string,
+    iconUrl: PropTypes.string,  // Update the prop type
+
     categories: PropTypes.string,
   }),
 };
@@ -228,7 +230,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
         }),
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.heroUrl}`} sx={{ width: 48, height: 48 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.iconUrl}`} sx={{ width: 48, height: 48 }} />
       {mdUp && (
 
         <Stack spacing={0.5}   >

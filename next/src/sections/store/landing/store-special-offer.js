@@ -182,7 +182,7 @@ function SpecialOfferBuyNow({ color, memory, onChangeColor, onChangeMemory, ...o
         <ProductOptionPicker value={memory} onChange={onChangeMemory} options={MEMORY_OPTIONS} />
       </Stack>
 
-      <Button size="large" color="inherit" variant="contained">
+      <Button size="large" color="primary" variant="contained">
         Buy Now
       </Button>
     </Stack>

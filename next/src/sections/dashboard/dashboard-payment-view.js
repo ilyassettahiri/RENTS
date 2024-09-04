@@ -101,7 +101,7 @@ export default function DashboardPaymentView() {
 
         <EcommerceAccountNewCardForm />
 
-        <Button color="inherit" size="large" variant="contained" sx={{ alignSelf: 'flex-end' }}>
+        <Button color="primary" size="large" variant="contained" sx={{ alignSelf: 'flex-end' }}>
           Save
         </Button>
       </Stack>

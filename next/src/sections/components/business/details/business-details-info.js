@@ -68,7 +68,7 @@ export default function ElearningCourseDetailsInfo({ course }) {
           </Stack>
         </Stack>
 
-        <Button variant="contained" size="large" color="inherit">
+        <Button variant="contained" size="large" color="primary">
           Enrol Now
         </Button>
       </Stack>
