@@ -1463,7 +1463,6 @@ export default function HomeView() {
 
         <Container
 
-          maxWidth={false}
 
           sx={{
             mb: { md: 10 },
@@ -1504,7 +1503,7 @@ export default function HomeView() {
       </Box>
 
       <Container
-        maxWidth={false}
+
         sx={{
           position: 'relative',
           zIndex: 1,

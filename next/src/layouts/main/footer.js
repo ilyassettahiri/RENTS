@@ -256,7 +256,7 @@ export function ListDesktop({ list }) {
 
   const handleClick = (category) => {
     handleCategoryClick(category);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
   };
 
   return (

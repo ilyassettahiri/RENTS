@@ -53,10 +53,10 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, 
 
             <CarouselBasic3 data={images} />
 
-          <Container>
+          <Box>
            {job && <ListingHeader tour={job} seller={job.attributes.seller} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>}
 
-          </Container>
+          </Box>
 
 
         </Box>

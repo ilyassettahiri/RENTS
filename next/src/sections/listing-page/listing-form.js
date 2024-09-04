@@ -43,24 +43,27 @@ export default function ListingForm({ tour }) {
     }
   }, []);
 
+
   const handleIncrementGuests = useCallback(
     (guest) => {
-      setGuests((prevGuests) => ({
-        ...prevGuests,
-        [guest]: prevGuests[guest] + 1
-      }));
+      if (guest === 'children') {
+        setGuests({ ...guests, children: guests.children + 1 });
+      } else {
+        setGuests({ ...guests, adults: guests.adults + 1 });
+      }
     },
-    []
+    [guests]
   );
 
   const handleDecreaseGuests = useCallback(
     (guest) => {
-      setGuests((prevGuests) => ({
-        ...prevGuests,
-        [guest]: prevGuests[guest] - 1
-      }));
+      if (guest === 'children') {
+        setGuests({ ...guests, children: guests.children - 1 });
+      } else {
+        setGuests({ ...guests, adults: guests.adults - 1 });
+      }
     },
-    []
+    [guests]
   );
 
   const totalDays = startDate && endDate ? (new Date(endDate) - new Date(startDate)) / (1000 * 60 * 60 * 24) : 0;

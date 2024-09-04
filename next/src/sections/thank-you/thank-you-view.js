@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useQuery } from '@tanstack/react-query';
+import Box from '@mui/material/Box';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -58,42 +59,41 @@ useEffect(() => {
 
 
     <Container
-      maxWidth={false}
 
-      sx={{
 
-        py: 5,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center', // Center the content horizontally
-        paddingLeft: { lg: '80px' },
-        paddingRight: { lg: '80px' },
-      }}
+
 
 
     >
 
-          <Typography variant="h2" align="center">Completed 🎉</Typography>
+          <Typography variant="h3" align="center"
+          sx={{
+            pt: 3,
 
-          <Container
+          }}
 
+          >Completed 🎉</Typography>
+
+
+
+
+
+
+
+          <Box
+            gap={3}
+            display="grid"
+            gridTemplateColumns={{
+              xs: 'repeat(1, 1fr)',
+              md: 'repeat(2, 1fr)',
+            }}
             sx={{
-              pt: 5,
-              pb: { xs: 2, md: 2 },
-              gap: 10,
-              display: 'grid',
+              py: 7,
               alignItems: 'flex-start',
-              gridTemplateColumns: { md: 'repeat(2, 1fr)' },
-
-              gridTemplateRows: 'auto 1fr', // Ensure both columns have the same height
-              height: '100%', // Make sure the height is 100%
-
             }}
           >
 
 
-
-              <Stack spacing={5} sx={{ height: '100%' }}>
 
 
                 {isLoading ? (
@@ -102,13 +102,29 @@ useEffect(() => {
                   <ThankYouSummary tour={memoizedTourData} />
                 )}
 
-              </Stack>
 
-              {thankyouData &&  ( <Map offices={thankyouData?.data} sx={{ borderRadius: 2 , height: '100%'}} />)}
 
-          </Container>
 
-          <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center">
+
+                  {thankyouData &&  ( <Map offices={thankyouData?.data} sx={{ borderRadius: 2 }} />)}
+
+
+
+
+          </Box>
+
+
+
+
+
+
+          <Stack spacing={2.5} direction={{ xs: 'column', md: 'row' }} justifyContent="center"
+                   sx={{
+                    py: 7,
+
+                  }}
+
+          >
                 <Button
                   component={RouterLink}
                   href="/"

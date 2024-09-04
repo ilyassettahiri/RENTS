@@ -2,6 +2,7 @@ import { createContext, useEffect, useState, useMemo, useCallback } from "react"
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';
 import { useRouter } from 'src/routes/hooks';
+import NProgress from 'nprogress';
 
 import AuthService from "src/services/auth-service";
 import CrudService from "src/services/cruds-service";
@@ -74,14 +75,14 @@ const AuthContextProvider = ({ children }) => {
 
 
   const handleCategoryClick = useCallback((category) => {
-
     setSelectedCategory(category);
+    NProgress.start();
 
-
-
-    router.push(`/?searchCategories=${category}`); // Update URL with query parameter
-
-
+    router.push(`/?searchCategories=${category}`).then(() => {
+      NProgress.done();
+    }).catch(() => {
+      NProgress.done();
+    });
   }, [router]);
 
   // Memoize the context value to prevent it from changing on every render

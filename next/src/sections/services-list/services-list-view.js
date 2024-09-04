@@ -1252,7 +1252,7 @@ export default function ServicesListView() {
 
   return (
     <Container
-      maxWidth={false}
+
       sx={{
         mt: { xs: 15, md: 0 },
 
