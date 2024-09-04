@@ -20,7 +20,7 @@ export default function OurClients({ brands }) {
     slidesToScroll: 1,
     autoplay: true,
     speed: 5000,
-    autoplaySpeed: 5000,
+    autoplaySpeed: 10,
     cssEase: 'linear',
     responsive: [
       {

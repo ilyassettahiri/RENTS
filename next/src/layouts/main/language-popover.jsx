@@ -1,7 +1,7 @@
 'use client';
 
 
-import PropTypes from 'prop-types'; // Import PropTypes for type checking
+import PropTypes from 'prop-types';
 
 
 import { m } from 'framer-motion';
@@ -16,20 +16,24 @@ import { useTranslate } from 'src/locales';
 import { varHover } from 'src/components/animate';
 import { FlagIcon } from 'src/components/iconifyy';
 import { usePopover, CustomPopover } from 'src/components/custom-popover';
+import { useSettingsContext } from 'src/components/settings/context';
 
 // ----------------------------------------------------------------------
 
 export function LanguagePopover({ data = [], sx, ...other }) {
   const popover = usePopover();
-
+  const settings = useSettingsContext();
   const { onChangeLang, currentLang } = useTranslate();
 
   const handleChangeLang = useCallback(
     (newLang) => {
       onChangeLang(newLang);
+
+      settings.onUpdate('themeDirection', newLang === 'ar' ? 'rtl' : 'ltr');
+
       popover.onClose();
     },
-    [onChangeLang, popover]
+    [onChangeLang, popover, settings]
   );
 
   return (

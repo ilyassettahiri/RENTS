@@ -3,6 +3,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import Avatar from '@mui/material/Avatar';
+import IconButton from '@mui/material/IconButton';
+
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
@@ -11,6 +13,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import { paths } from 'src/routes/paths';
 import { useRouter, useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
+import Typography from '@mui/material/Typography';
 
 import { useResponsive } from 'src/hooks/use-responsive';
 import Iconify from 'src/components/iconify';
@@ -20,6 +23,11 @@ import { AuthContext } from 'src/context/AuthContextProvider';
 import CrudService from 'src/services/cruds-service';
 import AuthService from 'src/services/auth-service';
 import { Box } from '@mui/system';
+
+import { useSettingsContext } from 'src/components/settings/context'; // Import useSettingsContext
+import BaseOptions from 'src/components/settings/drawer/base-options'; // Import BaseOptions
+
+
 
 const navigations = [
   { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
@@ -32,6 +40,7 @@ const navigations = [
 export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
   const router = useRouter();
+  const settings = useSettingsContext(); // Use settings context
 
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
@@ -194,6 +203,35 @@ export default function Nav({ open, onClose }) {
     </Stack>
   );
 
+
+  const renderMode = (
+
+    <Stack sx={{ my: 1, px: 2 }}>
+
+        <ListItemButton
+          sx={{
+            px: 2,
+            py: 1.5,
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+          onClick={() =>
+            settings.onUpdate('themeMode', settings.themeMode === 'dark' ? 'light' : 'dark')
+          }
+        >
+          <Typography variant="subtitle2">
+            {settings.themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+          </Typography>
+          <IconButton>
+            <Iconify icon={settings.themeMode === 'dark' ? 'carbon:asleep-filled' : 'carbon:asleep'} />
+          </IconButton>
+        </ListItemButton>
+    </Stack>
+
+
+  );
+
+
   return (
     <Drawer
       anchor="right"
@@ -206,6 +244,9 @@ export default function Nav({ open, onClose }) {
       }}
     >
       {renderContent}
+      <Divider sx={{ borderStyle: 'dashed', my: 1 }} />
+
+      {renderMode}
     </Drawer>
   );
 }

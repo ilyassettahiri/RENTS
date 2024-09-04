@@ -166,18 +166,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
           <LanguagePopover data-slot="localization" data={allLangs} />
 
-            {/* <Badge badgeContent={2} color="info">
-              <IconButton
-                onClick={handleFavoriteClick}
 
-
-                size="small"
-                color="inherit"
-                sx={{ p: 0 }}
-              >
-                <Iconify icon="carbon:notification" width={24} />
-              </IconButton>
-            </Badge> */}
             <Badge badgeContent={4} color="error" >
               <IconButton
 
