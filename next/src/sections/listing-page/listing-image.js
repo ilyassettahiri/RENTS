@@ -159,6 +159,9 @@ ListingImage.propTypes = {
 // ----------------------------------------------------------------------
 
 function PhotoItem({ photo, onOpenLightbox }) {
+
+
+  const isMdUp = useResponsive('up', 'md');
   return (
     <m.div
       whileHover="hover"
@@ -170,7 +173,7 @@ function PhotoItem({ photo, onOpenLightbox }) {
       <Image
         alt="photo"
         src={photo}
-        ratio="1/1"
+        ratio={isMdUp ? '4/3' : '1/1'}
         onClick={onOpenLightbox}
         sx={{ borderRadius: 2, cursor: 'pointer' }}
       />

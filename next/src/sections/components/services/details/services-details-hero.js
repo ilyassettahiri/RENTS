@@ -9,6 +9,8 @@ import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useResponsive } from 'src/hooks/use-responsive';
+
 import Card from '@mui/material/Card';
 import { alpha, useTheme } from '@mui/material/styles';
 import Image from 'src/components/image';
@@ -91,6 +93,7 @@ ServicesDetailsHero.propTypes = {
 
 function CarouselBasic3({ data }) {
   const theme = useTheme();
+  const isMdUp = useResponsive('up', 'md'); // Responsive hook for media queries
 
   const carousel = useCarousel({
     autoplay: false,
@@ -114,7 +117,12 @@ function CarouselBasic3({ data }) {
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
           {data.map((item) => (
 
-            <Image alt={item.title} src={item.coverUrl} ratio="1/1" />
+            <Image alt={item.title} src={item.coverUrl}
+
+            ratio={isMdUp ? '4/3' : '1/1'} // Apply 4/3 for large screens, 1/1 for mobile
+
+
+            />
           ))}
         </Carousel>
       </CarouselArrows>

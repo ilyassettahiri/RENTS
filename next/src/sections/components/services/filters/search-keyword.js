@@ -9,9 +9,10 @@ import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
-export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colorr, keywordCategoryMap, onSearch }) {
+export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colorr, keywordCategoryMap, onSearch, mobileOpen }) {
   const [inputValue, setInputValue] = useState('');
   const autocompleteRef = useRef(null);
+  const [open, setOpen] = useState(false);
 
   const handleInputChange = (event, newInputValue) => {
     setInputValue(newInputValue);
@@ -20,18 +21,22 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
 
   const handleOptionSelect = (event, value) => {
     if (value) {
-      const mappedCategory = keywordCategoryMap[value] || 'Uncategorized'; // Get the mapped category or default to 'Uncategorized'
+      const mappedCategory = keywordCategoryMap[value] || 'Uncategorized';
       console.log('Selected Keyword:', value);  // Log the selected keyword
       console.log('Mapped Category:', mappedCategory);  // Log the mapped category
 
       onChangeKeyword(value);  // Call the onChangeKeyword with the selected value
       setInputValue(value);  // Update input value to selected value
+      setOpen(false);
 
       // Trigger search immediately after selecting an option
       onSearch({
         searchKeyword: value,
         searchCategories: mappedCategory
       });
+
+      mobileOpen.onFalse();
+
     }
   };
 
@@ -45,6 +50,10 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
       inputValue={inputValue}
       onInputChange={handleInputChange}
       onChange={handleOptionSelect}
+
+      open={open}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
       autoHighlight
       popupIcon={null}
       noOptionsText="No matches found"
@@ -81,7 +90,10 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
           <Box
             component="li"
             {...props}
-            onClick={() => handleOptionSelect(null, option)}
+            onClick={() => {
+              handleOptionSelect(null, option);
+              setOpen(false);
+            }}
             key={option}
             sx={{ display: 'flex', alignItems: 'center' }}
           >
@@ -108,4 +120,6 @@ SearchKeyword.propTypes = {
   colorr: PropTypes.string,
   keywordCategoryMap: PropTypes.object.isRequired,
   onSearch: PropTypes.func.isRequired,
+  mobileOpen: PropTypes.object.isRequired, // Add mobileOpen prop type
+
 };

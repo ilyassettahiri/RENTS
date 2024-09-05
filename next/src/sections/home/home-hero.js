@@ -25,7 +25,7 @@ export default function HomeHero({ tours }) {
     slidesToShow: 1,
     centerMode: true,
 
-    slidesToScroll: 5,
+    slidesToScroll: mdUp ? 5 : 1,
     draggable: false,
     swipeToSlide: false,
     centerPadding: '0px',
@@ -38,9 +38,9 @@ export default function HomeHero({ tours }) {
 
   const carouselThumb = useCarousel({
     horizontal: true,
-    slidesToShow: 5,
+    slidesToShow: mdUp ? 5 : 3,
     centerMode: false,
-    slidesToScroll: 5,
+    slidesToScroll: mdUp ? 5 : 1,
     swipeToSlide: true,
     draggable: true,
     focusOnSelect: true,
@@ -231,7 +231,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
       }}
     >
       <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.iconUrl}`} sx={{ width: 48, height: 48 }} />
-      {mdUp && (
+
 
         <Stack spacing={0.5}   >
           <TextMaxLine variant="h6" line={1}>
@@ -240,7 +240,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
           </TextMaxLine>
 
         </Stack>
-      )}
+
     </Stack>
   );
 }

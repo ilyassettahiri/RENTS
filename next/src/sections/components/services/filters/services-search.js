@@ -61,13 +61,21 @@ export default function ServiceSearch({ onSearch, colorr, categories, keywordCat
     }, {});
 
     onSearch(nonEmptySearchs);
+
+    mobileOpen.onFalse();
+
   };
 
   const renderSearchs = (
     <>
       <Grid container spacing={2.5} alignItems="center" >
         <Grid item xs={12} md={5}>
-          <SearchKeyword searchKeyword={searchs.searchKeyword} onChangeKeyword={handleChangeKeyword} colorr={mobileColorr} keywordCategoryMap={keywordCategoryMap} onSearch={onSearch}/>
+          <SearchKeyword searchKeyword={searchs.searchKeyword}
+          onChangeKeyword={handleChangeKeyword} colorr={mobileColorr}
+          keywordCategoryMap={keywordCategoryMap}
+          mobileOpen={mobileOpen}
+
+          onSearch={onSearch}/>
         </Grid>
         <Grid item xs={12} md={3}>
           <SearchCategories searchCategories={searchs.searchCategories} onChangeCategory={handleChangeCategory} categories={categories} colorr={mobileColorr} placeholder="category" icon="carbon:inventory-management"/>

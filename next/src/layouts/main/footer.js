@@ -68,7 +68,7 @@ export default function Footer() {
       <Container maxWidth={false}
         sx={{
           overflow: 'hidden',
-          py: { xs: 2, md: 4 },
+          py: { xs: 4, md: 4 },
           paddingLeft: { lg: '100px' },
           paddingRight: { lg: '100px' },
           bgcolor: 'black',
