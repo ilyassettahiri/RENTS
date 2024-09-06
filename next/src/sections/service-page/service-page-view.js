@@ -83,88 +83,91 @@ export default function ServicePageView({ params }) {
 
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        overflow: 'hidden',
-        paddingLeft: { lg: '80px' },
-        paddingRight: { lg: '80px' },
-        pt: { xs: 2, md: 4 },
-      }}
-    >
 
 
-      {isServiceLoading ? (
-        <ServicesDetailsHeroSkeleton />
-      ) : (
-        <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
-      )}
+    <>
+          {isServiceLoading ? (
+            <ServicesDetailsHeroSkeleton />
+          ) : (
+            <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+          )}
+
+        <Container
+          maxWidth={false}
+          sx={{
+            overflow: 'hidden',
+            paddingLeft: { lg: '80px' },
+            paddingRight: { lg: '80px' },
+            pt: { xs: 2, md: 0 },
+          }}
+        >
+
+          <Box
+
+            sx={{
+              overflow: 'hidden',
+              pt: { xs: 5, md: 7 },
+              pb: 10,
+
+            }}
+          >
+            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
+              <Grid xs={12} md={5} lg={4}>
 
 
 
-      <Box
 
-        sx={{
-          overflow: 'hidden',
-          pt: { xs: 5, md: 7 },
-          pb: 10,
+                {isServiceLoading ? (
+                  <ListingFormSkeleton />
+                ) : (
+                  <ListingForm tour={serviceData.data} />
+                )}
 
-        }}
-      >
-        <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
-          <Grid xs={12} md={5} lg={4}>
+              </Grid>
 
+              <Grid xs={12} md={7} lg={8}>
 
 
+                {isServiceLoading ? (
+                  <ListingHeaderSkeleton />
+                ) : (
+                  <ListingSummary
+                  specifications={memoizedServiceData.specifications}
+                  description={serviceData?.data?.attributes?.description}
+                  category="services"
+                  />
+                )}
 
-            {isServiceLoading ? (
-              <ListingFormSkeleton />
-            ) : (
-              <ListingForm tour={serviceData.data} />
-            )}
 
-          </Grid>
-
-          <Grid xs={12} md={7} lg={8}>
+              </Grid>
+            </Grid>
 
 
-            {isServiceLoading ? (
-              <ListingHeaderSkeleton />
-            ) : (
-              <ListingSummary
-              specifications={memoizedServiceData.specifications}
-              description={serviceData?.data?.attributes?.description}
-              category="services"
+            <Stack spacing={3} sx={{ my: 10 }}>
+              <Typography variant="h5">Location</Typography>
+
+              {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
+            </Stack>
+
+            <Divider sx={{ my: 10 }} />
+
+            {serviceData && (
+              <Review
+                category="services"
+                url={url}
+                reviews={serviceData.data.attributes.reviewslistings}
+                seller={serviceData.data.attributes.seller}
               />
             )}
 
 
-          </Grid>
-        </Grid>
+            {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Recommended for you" />}
+
+          </Box>
+        </Container>
 
 
-        <Stack spacing={3} sx={{ my: 10 }}>
-          <Typography variant="h5">Location</Typography>
-
-          {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
-        </Stack>
-
-        <Divider sx={{ my: 10 }} />
-
-        {serviceData && (
-          <Review
-            category="services"
-            url={url}
-            reviews={serviceData.data.attributes.reviewslistings}
-            seller={serviceData.data.attributes.seller}
-          />
-        )}
-
-
-        {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Recommended for you" />}
-
-      </Box>
-    </Container>
+    </>
   );
 }
 

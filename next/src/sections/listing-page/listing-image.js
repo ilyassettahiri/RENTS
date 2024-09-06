@@ -212,7 +212,7 @@ function PhotoItem({ photo, onOpenLightbox }) {
         src={photo}
         ratio={isMdUp ? '4/3' : '1/1'}
         onClick={onOpenLightbox}
-        sx={{ borderRadius: 2, cursor: 'pointer' }}
+        sx={{ borderRadius: { xs: 0, md: 2 }, cursor: 'pointer' }}
       />
     </m.div>
   );
@@ -251,7 +251,7 @@ function CarouselThumbnail({ data, lightbox }) {
     <Box
       sx={{
         mb: 3,
-        borderRadius: 2,
+
         overflow: 'hidden',
         position: 'relative',
       }}

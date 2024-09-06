@@ -24,6 +24,8 @@ export default function ServicesDetailsHeroSkeleton() {
       }}
       sx={{
         alignItems: 'flex-start',
+        px: {  md: 10 },
+
       }}
     >
       <CarouselSkeleton />

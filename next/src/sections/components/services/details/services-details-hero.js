@@ -40,28 +40,33 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, 
   return (
 
 
-        <Box
-          gap={3}
-          display="grid"
-          gridTemplateColumns={{
-            xs: 'repeat(1, 1fr)',
-            md: 'repeat(2, 1fr)',
-          }}
-          sx={{
-
-            alignItems: 'flex-start',
-          }}
-        >
-
-            <CarouselBasic3 data={images} />
-
-          <Box>
-           {job && <ListingHeader tour={job} seller={job.attributes.seller} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>}
-
-          </Box>
 
 
-        </Box>
+            <Box
+              gap={3}
+              display="grid"
+              gridTemplateColumns={{
+                xs: 'repeat(1, 1fr)',
+                md: 'repeat(2, 1fr)',
+              }}
+              sx={{
+
+                alignItems: 'flex-start',
+              }}
+            >
+
+                <CarouselBasic3 data={images} />
+
+                <Container>
+
+                  <Box>
+                  {job && <ListingHeader tour={job} seller={job.attributes.seller} favorites={favorites} onFavoriteToggle={onFavoriteToggle}/>}
+
+                  </Box>
+
+              </Container>
+
+            </Box>
 
 
   );
@@ -99,7 +104,7 @@ function CarouselBasic3({ data }) {
     autoplay: false,
     ...CarouselDots({
       rounded: true,
-      sx: { mt: -3 },
+      sx: { mt: -3 , },
     }),
   });
 
@@ -107,10 +112,12 @@ function CarouselBasic3({ data }) {
     <Card
       sx={{
         position: 'relative',
-        '& .slick-list': {
-          borderRadius: 2,
-          boxShadow: theme.customShadows.z16,
-        },
+        border: 'none', // Removes the border
+
+        borderRadius: { xs: 0, md: 2 },
+
+        ml: {  md: 10 },
+
       }}
     >
       <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
