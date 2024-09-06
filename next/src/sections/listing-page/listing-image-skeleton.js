@@ -23,6 +23,8 @@ export default function ListingImageSkeleton() {
           md: 'repeat(2, 1fr)', // Two columns on medium screens and up
         },
         mb: { xs: 5, md: 5 },
+        px: {  md: 10 },
+
       }}
     >
       {/* Main Image Skeleton */}

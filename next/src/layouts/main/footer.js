@@ -80,7 +80,7 @@ export default function Footer() {
       >
         <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
           <Grid xs={12} md={4}>
-            <Stack spacing={{ xs: 3, md: 5 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
+            <Stack spacing={{ xs: 5, md: 5 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
 
 
 
@@ -90,7 +90,7 @@ export default function Footer() {
 
 
 
-              <Stack spacing={1} alignItems="flex-start">
+              <Stack spacing={2} alignItems="flex-start">
 
                 <Typography variant="h6">Important Links</Typography>
 

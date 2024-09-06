@@ -25,7 +25,7 @@ export default function HomeHero({ tours }) {
     slidesToShow: 1,
     centerMode: true,
 
-    slidesToScroll: mdUp ? 5 : 1,
+    slidesToScroll: mdUp ? 6 : 3,
     draggable: false,
     swipeToSlide: false,
     centerPadding: '0px',
@@ -38,9 +38,9 @@ export default function HomeHero({ tours }) {
 
   const carouselThumb = useCarousel({
     horizontal: true,
-    slidesToShow: mdUp ? 5 : 3,
+    slidesToShow: mdUp ? 6 : 3,
     centerMode: false,
-    slidesToScroll: mdUp ? 5 : 1,
+    slidesToScroll: mdUp ? 6 : 3,
     swipeToSlide: true,
     draggable: true,
     focusOnSelect: true,
@@ -212,13 +212,13 @@ function ThumbnailItem({ tour, selected, onClick }) {
 
   return (
     <Stack
-      direction="row"
+    direction={mdUp ? 'row' : 'column'}
       alignItems="center"
-      spacing={2}
+      spacing={1}
       onClick={onClick}
       sx={{
-        px: 1,
-        py: 1.5,
+        px: { xs: 0.5, md: 1.5 },
+        py: { xs: 0.5, md: 1.5 },
         cursor: 'pointer',
         color: 'common.white',
         ...(selected && {
@@ -230,7 +230,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
         }),
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.iconUrl}`} sx={{ width: 48, height: 48 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.iconUrl}`} sx={{ width: 45, height: 45 }} />
 
 
         <Stack spacing={0.5}   >

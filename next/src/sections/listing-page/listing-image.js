@@ -4,6 +4,9 @@ import { useState, useEffect } from "react";
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import { paths } from 'src/routes/paths';
+
 import Image from 'src/components/image';
 import { varTranHover } from 'src/components/animate';
 import Lightbox, { useLightbox } from 'src/components/lightbox';
@@ -13,6 +16,7 @@ import { alpha, styled } from '@mui/material/styles';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { bgGradient } from 'src/theme/css';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
+import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +66,7 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
   }),
 }));
 
-export default function ListingImage({ images }) {
+export default function ListingImage({ images, params }) {
   const slides = images.map((slide) => ({
     src: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${slide}`,
   }));
@@ -74,70 +78,98 @@ export default function ListingImage({ images }) {
   return (
     <>
       {mdUp ? (
-        <Box
-          sx={{
-            gap: 1,
-            display: 'grid',
-            gridTemplateColumns: {
-              xs: 'repeat(1, 1fr)',
-              md: 'repeat(2, 1fr)',
-            },
-            mb: { xs: 5, md: 5 },
-          }}
+
+
+
+
+
+        <Container
+        maxWidth={false}
+        sx={{
+          overflow: 'hidden',
+          paddingLeft: { lg: '80px' },
+          paddingRight: { lg: '80px' },
+        }}
         >
-          <PhotoItem photo={slides[0].src} onOpenLightbox={() => lightbox.onOpen(slides[0].src)} />
 
-          <Box
-            sx={{
-              gap: 1,
-              display: 'grid',
-              gridTemplateColumns: 'repeat(2, 1fr)',
-              position: 'relative',
-            }}
-          >
-            {slides.slice(1, 4).map((slide) => (
-              <PhotoItem
-                key={slide.src}
-                photo={slide.src}
-                onOpenLightbox={() => lightbox.onOpen(slide.src)}
-              />
-            ))}
+            <CustomBreadcrumbs
+              links={[
+                { name: 'Home', href: '/' },
+                { name: params.category, href: paths.travel.tour },
+                { name: params.url },
+              ]}
+              sx={{ mt: 1, mb: 3 }}
+            />
 
-            {slides.length > 5 && (
+
+            <Box
+              sx={{
+                gap: 1,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: 'repeat(1, 1fr)',
+                  md: 'repeat(2, 1fr)',
+                },
+                mb: { xs: 5, md: 5 },
+              }}
+            >
+              <PhotoItem photo={slides[0].src} onOpenLightbox={() => lightbox.onOpen(slides[0].src)} />
+
               <Box
                 sx={{
+                  gap: 1,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
                   position: 'relative',
-                  cursor: 'pointer',
                 }}
-                onClick={() => lightbox.onOpen(slides[4].src)}
               >
-                <PhotoItem
-                  key={slides[4].src}
-                  photo={slides[4].src}
-                  onOpenLightbox={() => lightbox.onOpen(slides[4].src)}
-                />
-                <Box
-                  sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    borderRadius: 2,
-                  }}
-                >
-                  <Typography variant="h4" color="white">
-                    +{slides.length - 5}
-                  </Typography>
-                </Box>
+                {slides.slice(1, 4).map((slide) => (
+                  <PhotoItem
+                    key={slide.src}
+                    photo={slide.src}
+                    onOpenLightbox={() => lightbox.onOpen(slide.src)}
+                  />
+                ))}
+
+                {slides.length > 5 && (
+                  <Box
+                    sx={{
+                      position: 'relative',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => lightbox.onOpen(slides[4].src)}
+                  >
+                    <PhotoItem
+                      key={slides[4].src}
+                      photo={slides[4].src}
+                      onOpenLightbox={() => lightbox.onOpen(slides[4].src)}
+                    />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 2,
+                      }}
+                    >
+                      <Typography variant="h4" color="white">
+                        +{slides.length - 5}
+                      </Typography>
+                    </Box>
+                  </Box>
+                )}
               </Box>
-            )}
-          </Box>
-        </Box>
+            </Box>
+
+        </Container>
+
+
       ) : (
         <CarouselThumbnail data={slides} lightbox={lightbox} />
       )}
@@ -154,6 +186,11 @@ export default function ListingImage({ images }) {
 
 ListingImage.propTypes = {
   images: PropTypes.array.isRequired,
+
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 // ----------------------------------------------------------------------
