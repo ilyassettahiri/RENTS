@@ -71,7 +71,7 @@ export const pageLinks = [
   },
   {
     order: '4',
-    subheader: 'Materiel Professionnel',
+    subheader: 'MaterielProfessionnel',
 
     items: [
 
@@ -88,7 +88,7 @@ export const pageLinks = [
   },
   {
     order: '5',
-    subheader: 'Bien etre & Sport',
+    subheader: 'BienetreSport',
 
     items: [
 
@@ -113,7 +113,7 @@ export const pageLinks = [
   {
 
     order: '6',
-    subheader: 'Equipement pour Evenements',
+    subheader: 'EquipementpourEvenements',
 
     items: [
       { title: 'Eclairages', path: paths.travel.termcondition },
@@ -134,7 +134,7 @@ export const pageLinks = [
   {
 
     order: '7',
-    subheader: 'Loisirs et Divertissements',
+    subheader: 'LoisirsetDivertissements',
 
     items: [
       { title: 'Activities', path: paths.travel.termcondition },
@@ -166,7 +166,7 @@ export const pageLinks = [
   {
 
     order: '9',
-    subheader: ' Maison et Jardin',
+    subheader: 'MaisonetetJardin',
 
     items: [
       { title: 'Furnitures', path: paths.travel.termcondition },

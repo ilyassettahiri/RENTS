@@ -1,14 +1,19 @@
 import { useRef, useState, useCallback } from 'react';
 import { useTheme } from '@mui/material/styles';
+import { useTranslate } from 'src/locales/use-locales';
+
 
 export default function useCarousel(props) {
   const theme = useTheme();
+
+  const { i18n } = useTranslate();
   const carouselRef = useRef(null);
 
   const [currentIndex, setCurrentIndex] = useState(props?.initialSlide || 0);
   const [nav, setNav] = useState(undefined);
 
-  const rtl = theme.direction === 'rtl';
+  const isRTL = i18n.language === 'ar';
+
   const isLoopEnabled = props?.loop !== false;
 
   const totalSlides = props?.totalSlides || 0;
@@ -16,11 +21,11 @@ export default function useCarousel(props) {
   const carouselSettings = {
     arrows: false,
     dots: !!props?.customPaging,
-    rtl,
+    rtl: isRTL,
     infinite: isLoopEnabled,  // Enable infinite loop by default; disable if loop is false
     beforeChange: (current, next) => setCurrentIndex(next),
     ...props,
-    fade: !!(props?.fade && !rtl),
+    fade: !!(props?.fade && !isRTL),
   };
 
   const onSetNav = useCallback(() => {

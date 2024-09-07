@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { memo, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Collapse from '@mui/material/Collapse';
@@ -10,12 +11,15 @@ import NavList from './nav-list';
 // ----------------------------------------------------------------------
 
 function NavSectionVertical({ data, slotProps, onItemClick, ...other }) {
+
+  const { t } = useTranslation();
+
   return (
     <Stack component="nav" id="nav-section-vertical" {...other}>
       {data.map((group, index) => (
         <Group
           key={group.subheader || index}
-          subheader={group.subheader}
+          subheader={t(group.subheader)}
           items={group.items}
           slotProps={slotProps}
           onItemClick={onItemClick}  // Pass down to NavSectionVertical
@@ -65,7 +69,7 @@ function Group({ subheader, items, slotProps, onItemClick  }) {
               cursor: 'pointer',
               typography: 'overline',
               display: 'inline-flex',
-              color: 'text.disabled',
+              color: 'text.primary',
               mb: `${slotProps?.gap || 4}px`,
               p: (theme) => theme.spacing(2, 1, 1, 1.5),
               transition: (theme) =>

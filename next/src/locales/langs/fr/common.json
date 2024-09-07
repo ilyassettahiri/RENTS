@@ -74,15 +74,18 @@
 
           "Electronic": "Électronique",
 
-          "Materiel Professionnel": "Matériel Professionnel",
+          "MaterielProfessionnel": "Matériel Professionnel",
 
-          "Bien etre & Sport": "Bien-être & Sport",
 
-          "Equipement pour Evenements": "Équipement pour événements",
+          "EquipementpourEvenements": "Équipement pour événements",
 
-          "Loisirs et Divertissements": "Loisirs et divertissements",
+          "LoisirsetDivertissements": "Loisirs et divertissements",
 
-          "Maison et Jardin": "Maison et jardin",
+          "BienetreSport": "Bien-être & Sport",
+
+          "Habillement": "Habillement",
+          "MaisonetetJardin": "Maison & Jardin",
+
 
 
 

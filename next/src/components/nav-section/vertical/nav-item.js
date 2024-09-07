@@ -1,5 +1,7 @@
 import { forwardRef, useContext } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Tooltip from '@mui/material/Tooltip';
@@ -50,6 +52,7 @@ const NavItem = forwardRef(
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+    const { t } = useTranslation();
 
     const renderContent = (
       <StyledNavItem
@@ -79,13 +82,17 @@ const NavItem = forwardRef(
         {title && (
           <Box component="span" sx={{ flex: '1 1 auto', minWidth: 0 }}>
             <Box component="span" className="label">
-              {title}
+
+              {t(title)}
+
             </Box>
 
             {caption && (
               <Tooltip title={caption} placement="top-start">
                 <Box component="span" className="caption">
-                  {caption}
+
+                  {t(caption)}
+
                 </Box>
               </Tooltip>
             )}

@@ -231,7 +231,7 @@ export function ListDesktop({ list }) {
 
   return (
     <Stack spacing={1.5} alignItems="flex-start">
-      <Typography variant="h6">{list.subheader}</Typography>
+      <Typography variant="h6"> {t(list.subheader)}</Typography>
       {list.items?.map((link) => (
         <Typography
           key={link.title}

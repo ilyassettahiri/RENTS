@@ -9,7 +9,6 @@ import About from './about';
 import OurClients from '../components/listings/our-clients';
 import Testimonial from '../components/listings/testimonial/testimonial';
 import AboutOurMission from './about-our-mission';
-import LatestPosts from '../blog/travel/latest-posts';
 
 // ----------------------------------------------------------------------
 
@@ -62,7 +61,7 @@ export default function AboutView() {
         profilePicture={about.attributes?.profile_picture}
       />
       <OurClients brands={ourclients} />
-      <LatestPosts posts={recentArticles.slice(0, 4)} />
+
     </>
   );
 }

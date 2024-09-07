@@ -75,13 +75,16 @@
 
           "Electronic": "إلكترونيات",
 
-          "Materiel Professionnel": "معدات مهنية",
+          "MaterielProfessionnel": "معدات مهنية",
 
-          "Equipement pour Evenements": "معدات للأحداث",
+          "EquipementpourEvenements": "معدات للأحداث",
 
-          "Loisirs et Divertissements": "ترفيه وألعاب",
+          "LoisirsetDivertissements": "ترفيه وألعاب",
 
-          "Maison et Jardin": "المنزل والحديقة",
+          "MaisonetetJardin": "المنزل والحديقة",
+          "BienetreSport": "الرفاهية والرياضة",
+
+              "Habillement": "الملابس",
 
 
           "Home": "الرئيسية",

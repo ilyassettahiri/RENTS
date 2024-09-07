@@ -24,7 +24,6 @@ import PostSidebar from './common/post-sidebar';
 
 import PostHero from './travel/post-hero';
 import PostSocialsShare from './common/post-socials-share';
-import LatestPosts from './travel/latest-posts';
 
 export default function ArticleView({ params }) {
   const { url } = params;
@@ -117,7 +116,6 @@ export default function ArticleView({ params }) {
             </Grid>
           </Container>
 
-          <LatestPosts posts={formattedData.recentArticles.slice(0, 4)} />
         </>
       )}
     </>

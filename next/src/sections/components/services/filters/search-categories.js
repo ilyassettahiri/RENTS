@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useTranslation } from 'react-i18next';
 
 
 import Iconify from 'src/components/iconify';
@@ -15,6 +16,7 @@ import Iconify from 'src/components/iconify';
 
 export default function SearchCategories({ searchCategories, onChangeCategory, colorr,categories, placeholder, icon }) {
 
+  const { t } = useTranslation();
 
   return (
     <Autocomplete
@@ -50,7 +52,8 @@ export default function SearchCategories({ searchCategories, onChangeCategory, c
       )}
       renderOption={(props, option) => (
         <li {...props} key={option}>
-          {option}
+
+          {t(option)}
         </li>
       )}
     />

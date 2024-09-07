@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -14,10 +15,16 @@ import Iconify from 'src/components/iconify';
 
 const NavItem = forwardRef(
   ({ title, path, open, active, hasChild, externalLink, ...other }, ref) => {
+
+    const { t } = useTranslation();
+
     const renderContent = (
       <StyledNavItem ref={ref} active={active} {...other}>
         <Box component="span" sx={{ flexGrow: 1 }}>
-          {title}
+
+
+          {t(title)}
+
         </Box>
 
         {hasChild && (

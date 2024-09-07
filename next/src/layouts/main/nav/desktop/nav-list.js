@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import { useEffect, useCallback, useContext  } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -123,6 +124,7 @@ NavList.propTypes = {
 function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
   const pathname = usePathname();
   const { handleCategoryClick } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const coverPath = items.length ? items[0].path : '';
 
@@ -143,7 +145,8 @@ function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
           bgcolor: 'transparent',
         }}
       >
-        {subheader}
+        {t(subheader)}
+
         {isNew && (
           <Label color="info" sx={{ ml: 1 }}>
             NEW
