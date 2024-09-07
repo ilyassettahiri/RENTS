@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import Label from 'src/components/label';
@@ -19,7 +20,7 @@ import BusinessList from 'src/sections/components/business/list/business-list';
 
 // ----------------------------------------------------------------------
 const categories = [
-  'All categories',
+  'Allcategories',
   'Business',
   'Services',
   'Billiards',
@@ -82,6 +83,7 @@ export default function DashboardWishlistView() {
 
   const [favorites, setFavorites] = useState([]);
   const [favoritestore, setFavoritestore] = useState([]);
+  const { t } = useTranslation();
 
 
   const [tab, setTab] = useState('All categories');
@@ -183,7 +185,7 @@ export default function DashboardWishlistView() {
   return (
     <>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Wishlist
+      {t('Wishlist')}
       </Typography>
 
       <Tabs
@@ -198,7 +200,7 @@ export default function DashboardWishlistView() {
           <Tab
             key={category}
             value={category}
-            label={`${category} (${categoryCounts[category.toLowerCase()] || 0})`}
+            label={`${t(category)} (${categoryCounts[category.toLowerCase()] || 0})`}
           />
         ))}
       </Tabs>

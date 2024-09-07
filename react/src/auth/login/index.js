@@ -123,13 +123,11 @@ function Login() {
 
 
         <Card sx={{ boxShadow: 3 }}>
-          <SoftBox p={3}  display="flex" justifyContent="space-between" alignItems="center">
-            <SoftTypography variant="h5" fontWeight="medium" textAlign="center">
-              Sign in with:
-            </SoftTypography>
-            <SoftBox >
+          <SoftBox p={3}  display="flex" justifyContent="center" alignItems="center">
+           
+            
               <Socials />
-            </SoftBox>
+            
           </SoftBox>
 
           <Separator />

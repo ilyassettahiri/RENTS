@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'src/routes/hooks';
 import { paths } from 'src/routes/paths';
 import { formatISO } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 import { uuidv4 } from 'src/utils/uuidv4';
 import { Iconify } from 'src/components/iconifyy';
@@ -21,6 +22,7 @@ export function ChatMessageInput({
   const router = useRouter();
   const fileRef = useRef(null);
   const [message, setMessage] = useState('');
+  const { t } = useTranslation();
 
   const messageData = useMemo(
     () => ({
@@ -96,7 +98,7 @@ export function ChatMessageInput({
         value={message}
         onKeyUp={handleSendMessage}
         onChange={handleChangeMessage}
-        placeholder="Type a message"
+        placeholder={t('Typemessage')}
         disabled={disabled}
         startAdornment={
           <IconButton>

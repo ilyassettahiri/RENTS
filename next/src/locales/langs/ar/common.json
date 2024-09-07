@@ -152,7 +152,75 @@
           "Yourrating": "تقييمك:",
           "Cancel": "إلغاء",
           "PostReview": "نشر المراجعة",
-          "Membersince": "عضو منذ"
+          "Membersince": "عضو منذ",
+
+          "Adults": "البالغون",
+          "Children": "الأطفال",
+          "Agesabove": "الأعمار 13 سنة أو أكثر",
+          "Ages": "الأعمار من 2 إلى 12 سنة",
+          "Review": "مراجعة",
+          "Name": "الاسم",
+          "Emailaddress": " البريد الإلكتروني",
+
+          "PersonalInfo": "المعلومات الشخصية",
+          "Wishlist": "قائمة الرغبات",
+          "Messages": "الرسائل",
+          "Reservations": "الحجوزات",
+          "Payment": "الدفع",
+
+          "Edit": "تعديل",
+          "Save": "حفظ",
+          "LightMode": "الوضع الفاتح",
+          "DarkMode": "الوضع الداكن",
+          "Logout": "تسجيل الخروج",
+
+          "Personal": "شخصي",
+          "FirstName": "الاسم الأول",
+          "LastName": "اسم العائلة",
+          "EmailAddress": "عنوان البريد الإلكتروني",
+          "PhoneNumber": "رقم الهاتف",
+          "Birthday": "تاريخ الميلاد",
+          "Gender": "الجنس",
+          "StreetAddress": "عنوان الشارع",
+          "ZipCode": "الرمز البريدي",
+          "City": "المدينة",
+          "Country": "البلد",
+          "Choosecountry": "اختر بلدًا",
+          "SaveChanges": "حفظ التغييرات",
+          "ChangePassword": "تغيير كلمة المرور",
+          "OldPassword": "كلمة المرور القديمة",
+          "NewPassword": "كلمة المرور الجديدة",
+          "ConfirmPassword": "تأكيد كلمة المرور الجديدة",
+          "Allcategories": "جميع الفئات",
+          "ChatWith": "الدردشة مع",
+          "Typemessage": "اكتب رسالة",
+          "Searchcontacts": "...البحث عن جهات الاتصال",
+
+          "PaymentMethod": "طريقة الدفع",
+          "Paypal": "باي بال",
+          "CardHolder": "حامل البطاقة",
+          "ExpiryDate": "تاريخ الانتهاء",
+          "Visa": "فيزا",
+          "Mastercard": "ماستركارد",
+          "Primary": "رئيسي",
+          "AddCard": "أضف بطاقة جديدة",
+          "All": "الكل",
+          "Completed": "مكتمل",
+          "ToProcess": "للمعالجة",
+          "Cancelled": "ملغى",
+          "ID": "المعرف",
+          "Title": "العنوان",
+          "Price": "السعر",
+          "Start": "البدء",
+          "End": "الانتهاء",
+          "Createdat": "تاريخ الإنشاء",
+          "Setprimary": "تعيين كوسيلة الدفع الرئيسية",
+          "Delete": "حذف"
+
+
+
+
+
 
 
 

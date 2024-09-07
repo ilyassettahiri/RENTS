@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import InputAdornment from '@mui/material/InputAdornment';
 import { inputBaseClasses } from '@mui/material/InputBase';
+import { useTranslation } from 'react-i18next';
+
 import { DateRangePicker } from '@mui/x-date-pickers-pro';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
@@ -22,6 +24,12 @@ export default function FilterTime({
     }
     return disabledDateRanges.some((range) => date >= range.start && date <= range.end);
   };
+  const { t } = useTranslation();
+
+  const localeText = {
+    start: t('StartDate'),
+    end: t('EndDate'),
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -31,7 +39,7 @@ export default function FilterTime({
         minDate={minDate}
         maxDate={maxDate}
         shouldDisableDate={shouldDisableDate}
-        localeText={{ start: 'Start Date', end: 'End Date' }}
+        localeText={localeText}
 
         slotProps={{
           textField: {

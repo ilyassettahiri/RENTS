@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -21,6 +22,7 @@ export default function FilterGuests({
   ...other
 }) {
   const totalGuests = guests.children + guests.adults;
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(null);
 
@@ -37,7 +39,7 @@ export default function FilterGuests({
       <InputBase
         fullWidth
         value={totalGuests > 0 ? `${totalGuests} Guests` : ''}
-        placeholder="Guests"
+        placeholder={t('Guest')}
         startAdornment={
           <InputAdornment position="start">
             <Iconify width={24} icon="carbon:events" sx={{ mr: 1, color: 'text.disabled' }} />
@@ -68,16 +70,16 @@ export default function FilterGuests({
       >
         <Stack spacing={2.5} divider={<Divider sx={{ borderStyle: 'dashed' }} />}>
           <Input
-            title="Adults"
-            caption="Ages 13 or above"
+            title={t('Adults')}
+            caption={t('Agesabove')}
             total={guests.adults}
             onDecrease={onDecreaseGuests}
             onIncrement={onIncrementGuests}
           />
 
           <Input
-            title="Children"
-            caption="Ages 2 - 12"
+            title={t('Children')}
+            caption={t('Ages')}
             total={guests.children}
             onDecrease={() => onDecreaseGuests('children')}
             onIncrement={() => onIncrementGuests('children')}

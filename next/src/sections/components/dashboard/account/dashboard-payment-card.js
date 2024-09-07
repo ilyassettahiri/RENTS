@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -19,6 +20,7 @@ import Iconify from 'src/components/iconify';
 
 export default function EcommerceAccountPaymentCard({ card }) {
   const { value, label, cardNumber, cardHolder, expirationDate, isPrimary } = card;
+  const { t } = useTranslation();
 
   const [open, setOpen] = useState(null);
 
@@ -45,11 +47,11 @@ export default function EcommerceAccountPaymentCard({ card }) {
       >
         <Stack direction="row" alignItems="center" sx={{ typography: 'subtitle1' }}>
           <Stack direction="row" alignItems="center" flexGrow={1}>
-            <Box component="span">{label}</Box>
+            <Box component="span">{t(label)}</Box>
 
             {isPrimary && (
               <Label color="info" startIcon={<Iconify icon="carbon:star-filled" />} sx={{ ml: 1 }}>
-                Primary
+                {t('Primary')}
               </Label>
             )}
           </Stack>
@@ -80,13 +82,13 @@ export default function EcommerceAccountPaymentCard({ card }) {
         <Box display="grid" gridTemplateColumns="repeat(2, 1fr)">
           <Stack spacing={0.5}>
             <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-              Card Holder
+            {t('CardHolder')}
             </Typography>
             <Typography variant="subtitle2"> {cardHolder} </Typography>
           </Stack>
           <Stack spacing={0.5}>
             <Typography variant="caption" sx={{ color: 'text.disabled' }}>
-              Expiry Date
+            {t('ExpiryDate')}
             </Typography>
             <Typography variant="subtitle2"> {expirationDate} </Typography>
           </Stack>
@@ -101,17 +103,17 @@ export default function EcommerceAccountPaymentCard({ card }) {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
         <MenuItem disabled={isPrimary} onClick={handleClose}>
-          <Iconify icon="carbon:star-filled" sx={{ mr: 1 }} /> Set primary payment
+          <Iconify icon="carbon:star-filled" sx={{ mr: 1 }} /> {t('Setprimary')}
         </MenuItem>
 
         <MenuItem onClick={handleClose}>
-          <Iconify icon="carbon:edit" sx={{ mr: 1 }} /> Edit
+          <Iconify icon="carbon:edit" sx={{ mr: 1 }} /> {t('Edit')}
         </MenuItem>
 
         <Divider sx={{ borderStyle: 'dashed', mt: 0.5 }} />
 
         <MenuItem onClick={handleClose} sx={{ color: 'error.main' }}>
-          <Iconify icon="carbon:trash-can" sx={{ mr: 1 }} /> Delete
+          <Iconify icon="carbon:trash-can" sx={{ mr: 1 }} /> {t('Delete')}
         </MenuItem>
       </Popover>
     </>

@@ -206,7 +206,7 @@ export default function App({ ability }) {
         <QueryClientProvider client={queryClient}> 
 
         
-            direction === "rtl" ? (
+            {direction === "rtl" ? (
               <CacheProvider value={rtlCache}>
                 <ThemeProvider theme={themeRTL}>
                   <CssBaseline />
@@ -215,7 +215,7 @@ export default function App({ ability }) {
                       <Sidenav
                         color={sidenavColor}
                         brand={brand}
-                        brandName=""
+                        brandName="Rents.ma"
                         routes={routes}
                         hasStore={hasStore}  // Make sure hasStore is being passed correctly
 
@@ -242,7 +242,7 @@ export default function App({ ability }) {
                     <Sidenav
                       color={sidenavColor}
                       brand={brand}
-                      brandName="Soft UI Dashboard PRO"
+                      brandName="Rents.ma"
                       routes={routes}
                       hasStore={hasStore}  // Make sure hasStore is being passed correctly
 
@@ -263,7 +263,7 @@ export default function App({ ability }) {
                         <Route path="*" element={<Navigate to="/dashboard" />} />
                   </Routes>
               </ThemeProvider>
-            );
+            )}
 
         </QueryClientProvider>
 

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'; // Import PropTypes
 import { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -17,6 +18,7 @@ import { SearchNotFound } from 'src/components/search-not-found';
 export function ChatHeaderCompose({ contacts, onAddRecipients }) {
   const [searchRecipients, setSearchRecipients] = useState('');
   const [selectedRecipients, setSelectedRecipients] = useState([]);
+  const { t } = useTranslation();
 
   const handleAddRecipients = useCallback(
     (selected) => {
@@ -37,7 +39,7 @@ export function ChatHeaderCompose({ contacts, onAddRecipients }) {
   return (
     <>
       <Typography variant="subtitle2" sx={{ color: 'text.primary', mr: 2 }}>
-        To:
+      {t('ChatWith')}:
       </Typography>
 
       <Autocomplete

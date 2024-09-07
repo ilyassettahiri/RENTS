@@ -4,6 +4,7 @@ import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
+import { useTranslation } from 'react-i18next';
 
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
@@ -30,7 +31,7 @@ import BaseOptions from 'src/components/settings/drawer/base-options'; // Import
 
 
 const navigations = [
-  { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
+  { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
   { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
   { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
   { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
@@ -41,6 +42,7 @@ export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
   const router = useRouter();
   const settings = useSettingsContext(); // Use settings context
+  const { t } = useTranslation();
 
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
@@ -193,7 +195,7 @@ export default function Nav({ open, onClose }) {
           </ListItemIcon>
           <ListItemText
             onClick={handleLogOut}
-            primary="Logout"
+            primary={t('Logout')}
             primaryTypographyProps={{
               typography: 'body2',
             }}
@@ -220,7 +222,7 @@ export default function Nav({ open, onClose }) {
           }
         >
           <Typography variant="subtitle2">
-            {settings.themeMode === 'dark' ? 'Light Mode' : 'Dark Mode'}
+            {settings.themeMode === 'dark' ? t('LightMode') : t('DarkMode')}
           </Typography>
           <IconButton>
             <Iconify icon={settings.themeMode === 'dark' ? 'carbon:asleep-filled' : 'carbon:asleep'} />
@@ -258,6 +260,7 @@ Nav.propTypes = {
 
 function NavItem({ item, onClose }) {
   const active = useActiveLink(item.path);
+  const { t } = useTranslation();
 
   return (
     <Link
@@ -278,7 +281,7 @@ function NavItem({ item, onClose }) {
       >
         <ListItemIcon>{item.icon}</ListItemIcon>
         <ListItemText
-          primary={item.title}
+          primary={t(item.title)}
           primaryTypographyProps={{
             typography: 'body2',
             ...(active && {

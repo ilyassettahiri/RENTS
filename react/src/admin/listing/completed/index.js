@@ -191,7 +191,7 @@ function ListCompleted() {
 
 
   const clickOpenHandler = (category, url) => {
-    window.open(`https://next.prinssy.com/listing-page/${category}/${url}`, '_blank');
+    window.open(`https://rents.ma/listing-page/${category}/${url}`, '_blank');
   };
 
   const handleRowClick = (row) => {

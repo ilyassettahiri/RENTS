@@ -98,11 +98,11 @@ export default function ReviewNewForm({ onClose, category, url, ...other }) {
               {!!errors.rating && <FormHelperText error> {errors.rating?.message}</FormHelperText>}
             </div>
 
-            <RHFTextField multiline rows={3} name="review" label="Review *" />
+            <RHFTextField multiline rows={3} name="review" label={t('Review')} />
 
-            <RHFTextField name="name" label="Name *" />
+            <RHFTextField name="name" label={t('Name')} />
 
-            <RHFTextField name="email" label="Email address *" />
+            <RHFTextField name="email" label={t('Emailaddress')} />
           </Stack>
         </DialogContent>
 

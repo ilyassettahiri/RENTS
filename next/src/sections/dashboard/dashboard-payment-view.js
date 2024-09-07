@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import CrudService from "src/services/cruds-service";
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -51,6 +52,7 @@ export default function DashboardPaymentView() {
 
 
 
+  const { t } = useTranslation();
 
 
   const [data, setData] = useState(null);
@@ -81,7 +83,7 @@ export default function DashboardPaymentView() {
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
-        <Typography variant="h5">Payment Method</Typography>
+        <Typography variant="h5">{t('PaymentMethod')}</Typography>
 
         <Box
           gap={3}
@@ -97,12 +99,12 @@ export default function DashboardPaymentView() {
       <Divider sx={{ borderStyle: 'dashed', my: 5 }} />
 
       <Stack spacing={3}>
-        <Typography variant="h5">Add New Card</Typography>
+        <Typography variant="h5">{t('AddCard')}</Typography>
 
         <EcommerceAccountNewCardForm />
 
         <Button color="primary" size="large" variant="contained" sx={{ alignSelf: 'flex-end' }}>
-          Save
+          {t('Save')}
         </Button>
       </Stack>
     </Stack>

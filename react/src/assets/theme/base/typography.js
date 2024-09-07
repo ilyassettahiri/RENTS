@@ -7,7 +7,7 @@ import pxToRem from "assets/theme/functions/pxToRem";
 const { dark } = colors;
 
 const baseProperties = {
-  fontFamily: '"Open Sans", "Helvetica", "Arial", sans-serif',
+  fontFamily: '"Public Sans", sans-serif',
   fontWeightLight: 300,
   fontWeightRegular: 400,
   fontWeightMedium: 500,

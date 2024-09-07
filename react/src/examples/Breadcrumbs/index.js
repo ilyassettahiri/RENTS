@@ -19,15 +19,7 @@ function Breadcrumbs({ icon, title, route, light }) {
   return (
     <SoftBox mr={{ xs: 0, xl: 8 }}>
 
-      <SoftTypography my={{ xs: 2, xl: 2 }}
-        fontWeight="bold"
-        textTransform="capitalize"
-        variant="h6"
-        color={light ? "white" : "dark"}
-        noWrap
-      >
-        {title.replace("-", " ")}
-      </SoftTypography>
+     
 
       <MuiBreadcrumbs
         sx={{

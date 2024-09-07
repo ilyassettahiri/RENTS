@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback,useMemo   } from 'react';
 import CrudService from "src/services/cruds-service";
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
@@ -29,19 +30,21 @@ import EcommerceAccountOrdersTableRow from '../components/dashboard/account/dash
 import EcommerceAccountOrdersTableHead from '../components/dashboard/account/dashboard-orders-table-head';
 import EcommerceAccountOrdersTableToolbar from '../components/dashboard/account/dashboard-orders-table-toolbar';
 
-const TABS = ['All', 'Completed', 'To Process', 'Cancelled'];
+const TABS = ['All', 'Completed', 'ToProcess', 'Cancelled'];
 
 export const TABLE_HEAD = [
-  { id: 'id', label: ' ID' },
+  { id: 'id', label: 'ID' },
   { id: 'title', label: 'Title' },
   { id: 'price', label: 'Price' },
-  { id: 'reservationstart', label: ' Start' },
-  { id: 'reservationsend', label: ' End' },
-  { id: 'created_at', label: 'Created at' },
+  { id: 'reservationstart', label: 'Start' },
+  { id: 'reservationsend', label: 'End' },
+  { id: 'created_at', label: 'Createdat' },
   { id: '' },
 ];
 
 export default function DashboardOrdersPage() {
+
+  const { t } = useTranslation();
 
   const [tab, setTab] = useState('All');
   const [order, setOrder] = useState('asc');
@@ -142,7 +145,7 @@ export default function DashboardOrdersPage() {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Reservations
+      {t('Reservations')}
       </Typography>
 
       <Tabs
@@ -153,7 +156,7 @@ export default function DashboardOrdersPage() {
         onChange={handleChangeTab}
       >
         {TABS.map((category) => (
-          <Tab key={category} value={category} label={category} />
+          <Tab key={category} value={category} label={t(category)} />
         ))}
       </Tabs>
 
@@ -161,7 +164,7 @@ export default function DashboardOrdersPage() {
         <TextField
           fullWidth
           hiddenLabel
-          placeholder="Search..."
+          placeholder={t('Search')}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

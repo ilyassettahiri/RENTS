@@ -38,12 +38,6 @@ import DetailUpcoming from "admin/reservation/upcoming/detail-upcoming";
 
 
 
-  // message
-
-import Message from "admin/message";
-
-
-
 
 
 
@@ -230,19 +224,8 @@ const routes = [
 
 
 
-  // message
 
-  {
-    type: "collapse",
-    name: "Messages",
-    key: "message",
-    icon: <SettingsIcon size="12px" />,
-    route: "/message",
-    component: <Message />,
-    noCollapse: true,
-
-    
-  },
+ 
 
 
 

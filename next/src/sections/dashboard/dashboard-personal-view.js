@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -29,6 +30,7 @@ const GENDER_OPTIONS = ['Male', 'Female', 'Other'];
 export default function DashboardPersonalView() {
 
   const { getCurrentUser } = useContext(AuthContext);
+  const { t } = useTranslation();
 
 
 
@@ -167,7 +169,7 @@ export default function DashboardPersonalView() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <FormProvider methods={personalInfoMethods} onSubmit={onSubmitPersonalInfo}>
         <Typography variant="h5" sx={{ mb: 3 }}>
-          Personal
+        {t('Personal')}
         </Typography>
 
         <Box
@@ -176,16 +178,16 @@ export default function DashboardPersonalView() {
           display="grid"
           gridTemplateColumns={{ xs: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
         >
-          <RHFTextField name="firstName" label="First Name" />
-          <RHFTextField name="lastName" label="Last Name" />
-          <RHFTextField name="emailAddress" label="Email Address" />
-          <RHFTextField name="phoneNumber" label="Phone Number" />
+          <RHFTextField name="firstName" label={t('FirstName')} />
+          <RHFTextField name="lastName" label={t('LastName')}  />
+          <RHFTextField name="emailAddress" label={t('EmailAddress')} />
+          <RHFTextField name="phoneNumber" label={t('PhoneNumber')} />
 
           <Controller
             name="birthday"
             render={({ field, fieldState: { error } }) => (
               <DatePicker
-                label="Birthday"
+                label={t('Birthday')}
                 slotProps={{
                   textField: {
                     helperText: error?.message,
@@ -198,7 +200,7 @@ export default function DashboardPersonalView() {
             )}
           />
 
-          <RHFSelect native name="gender" label="Gender">
+          <RHFSelect native name="gender" label={t('Gender')}>
             {GENDER_OPTIONS.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -206,14 +208,14 @@ export default function DashboardPersonalView() {
             ))}
           </RHFSelect>
 
-          <RHFTextField name="streetAddress" label="Street Address" />
-          <RHFTextField name="zipCode" label="Zip Code" />
-          <RHFTextField name="city" label="City" />
+          <RHFTextField name="streetAddress" label={t('StreetAddress')}/>
+          <RHFTextField name="zipCode" label={t('ZipCode')} />
+          <RHFTextField name="city" label={t('City')}/>
           <RHFAutocomplete
             name="country"
             type="country"
-            label="Country"
-            placeholder="Choose a country"
+            label={t('Country')}
+            placeholder={t('Choosecountry')}
             fullWidth
             options={countries.map((option) => option.label)}
             getOptionLabel={(option) => option}
@@ -231,7 +233,7 @@ export default function DashboardPersonalView() {
                 variant="contained"
                 loading={personalInfoMethods.formState.isSubmitting}
               >
-                Save Changes
+                {t('SaveChanges')}
               </LoadingButton>
 
         </Box>
@@ -242,12 +244,12 @@ export default function DashboardPersonalView() {
 
       <FormProvider methods={passwordMethods} onSubmit={onSubmitPassword}>
         <Stack spacing={3} sx={{ my: 5 }}>
-          <Typography variant="h5"> Change Password </Typography>
+          <Typography variant="h5"> {t('ChangePassword')} </Typography>
 
           <Stack spacing={2.5}>
             <RHFTextField
               name="oldPassword"
-              label="Old Password"
+              label={t('OldPassword')}
               type={passwordShow.value ? 'text' : 'password'}
               InputProps={{
                 endAdornment: (
@@ -262,7 +264,7 @@ export default function DashboardPersonalView() {
 
             <RHFTextField
               name="newPassword"
-              label="New Password"
+              label={t('NewPassword')}
               type={passwordShow.value ? 'text' : 'password'}
               InputProps={{
                 endAdornment: (
@@ -277,7 +279,7 @@ export default function DashboardPersonalView() {
 
             <RHFTextField
               name="confirmNewPassword"
-              label="Confirm New Password"
+              label={t('ConfirmPassword')}
               type={passwordShow.value ? 'text' : 'password'}
               InputProps={{
                 endAdornment: (
@@ -303,7 +305,7 @@ export default function DashboardPersonalView() {
                 variant="contained"
                 loading={passwordMethods.formState.isSubmitting}
               >
-                Change Password
+                {t('ChangePassword')}
               </LoadingButton>
 
         </Box>

@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { useTranslation } from 'react-i18next';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
@@ -42,6 +43,7 @@ export function ChatNav({
   const theme = useTheme();
   const router = useRouter();
   const mdUp = useResponsive('up', 'md');
+  const { t } = useTranslation();
 
   const {
     openMobile,
@@ -136,7 +138,7 @@ export function ChatNav({
         fullWidth
         value={searchContacts.query}
         onChange={(event) => handleSearchContacts(event.target.value)}
-        placeholder="Search contacts..."
+        placeholder={t('Searchcontacts')}
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">

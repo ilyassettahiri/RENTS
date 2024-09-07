@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'react-i18next';
 
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
@@ -27,6 +28,7 @@ export default function DashboardChatPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const [recipients, setRecipients] = useState([]);
   const [participants, setParticipants] = useState([]);
@@ -169,7 +171,7 @@ export default function DashboardChatPage() {
   return (
     <>
       <Typography variant="h5" sx={{ mb: 3 }}>
-        Chat
+      {t('Chat')}
       </Typography>
 
       <Layout

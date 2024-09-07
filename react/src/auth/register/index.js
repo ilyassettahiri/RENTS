@@ -141,16 +141,12 @@ function Register() {
     >
       <Card sx={{ boxShadow: 3 }}>
 
-          <SoftBox p={3}  display="flex" justifyContent="space-between" alignItems="center">
+          <SoftBox p={3}  display="flex" justifyContent="center" alignItems="center">
 
-            <SoftBox  textAlign="center">
-              <SoftTypography variant="h5" fontWeight="medium">
-                Register with:
-              </SoftTypography>
-            </SoftBox>
-            <SoftBox >
+            
+            
               <Socials />
-            </SoftBox>
+            
 
           </SoftBox>
           

@@ -7,6 +7,7 @@ import Container from '@mui/material/Container';
 import { alpha } from '@mui/material/styles';
 import Link from '@mui/material/Link';
 import LoadingButton from '@mui/lab/LoadingButton';
+import { useTranslation } from 'react-i18next';
 
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -31,7 +32,7 @@ import { AuthContext, AuthContextProvider } from 'src/context/AuthContextProvide
 import Nav from 'src/layouts/account/nav';
 
 const navigations = [
-  { title: 'Personal Info', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
+  { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
   { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
   { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
   { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
@@ -41,6 +42,7 @@ const navigations = [
 export default function AccountLayout({ children }) {
   const mdUp = useResponsive('up', 'md');
   const menuOpen = useBoolean();
+  const { t } = useTranslation();
 
   const authContext = useContext(AuthContext);
 
@@ -149,7 +151,7 @@ const renderEditOrSaveButton = isImageSelected ? (
         }}
       >
         <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
-        Edit
+        {t('Edit')}
       </Stack>
 
       <LoadingButton
@@ -159,7 +161,7 @@ const renderEditOrSaveButton = isImageSelected ? (
         variant="contained"
         onClick={submitHandler}
       >
-        Save
+        {t('Save')}
       </LoadingButton>
 
     </>
@@ -175,7 +177,7 @@ const renderEditOrSaveButton = isImageSelected ? (
     }}
   >
     <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
-    Edit
+    {t('Edit')}
   </Stack>
 );
 
@@ -294,7 +296,7 @@ const renderEditOrSaveButton = isImageSelected ? (
           <ListItemText
 
             onClick={handleLogOut}
-            primary="Logout"
+            primary={t('Logout')}
             primaryTypographyProps={{
               typography: 'body2',
             }}
@@ -353,6 +355,7 @@ AccountLayout.propTypes = {
 
 function NavItem({ item, onClose  }) {
   const active = useActiveLink(item.path);
+  const { t } = useTranslation();  // useTranslation hook for translations
 
   return (
     <Link
@@ -373,7 +376,7 @@ function NavItem({ item, onClose  }) {
       >
         <ListItemIcon>{item.icon}</ListItemIcon>
         <ListItemText
-          primary={item.title}
+          primary={t(item.title)}
           primaryTypographyProps={{
             typography: 'body2',
             ...(active && {
