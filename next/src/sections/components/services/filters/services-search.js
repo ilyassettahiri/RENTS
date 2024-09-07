@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
@@ -29,6 +30,7 @@ export default function ServiceSearch({ onSearch, colorr, categories, keywordCat
 
   const mobileColorr = useResponsive('down', 'sm') ? 'black' : colorr;
 
+  const { t } = useTranslation();
 
 
 
@@ -74,14 +76,20 @@ export default function ServiceSearch({ onSearch, colorr, categories, keywordCat
           onChangeKeyword={handleChangeKeyword} colorr={mobileColorr}
           keywordCategoryMap={keywordCategoryMap}
           mobileOpen={mobileOpen}
-
+          placeholder={t('searchPlaceholder')}
           onSearch={onSearch}/>
         </Grid>
         <Grid item xs={12} md={3}>
-          <SearchCategories searchCategories={searchs.searchCategories} onChangeCategory={handleChangeCategory} categories={categories} colorr={mobileColorr} placeholder="category" icon="carbon:inventory-management"/>
+          <SearchCategories searchCategories={searchs.searchCategories}
+          onChangeCategory={handleChangeCategory}
+          categories={categories} colorr={mobileColorr} placeholder={t('categoryPlaceholder')}
+          icon="carbon:inventory-management"/>
         </Grid>
         <Grid item xs={12} md={3}>
-          <SearchCategories searchCategories={searchs.searchLocation} onChangeCategory={handleChangeLocation} categories={cities} colorr={mobileColorr} placeholder="city" icon="carbon:location"/>
+          <SearchCategories searchCategories={searchs.searchLocation}
+          onChangeCategory={handleChangeLocation} categories={cities}
+          colorr={mobileColorr} placeholder={t('cityPlaceholder')}
+          icon="carbon:location"/>
         </Grid>
         {mdUp && (
           <Grid item xs={12} md={1}>

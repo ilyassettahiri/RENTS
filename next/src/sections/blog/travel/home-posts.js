@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -19,6 +20,7 @@ import LandingPostItemCarousel from './landing-post-item-carousel';
 
 export default function HomePosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
+  const { t } = useTranslation();
 
   const carousel = useCarousel({
     slidesToShow: 1,
@@ -34,7 +36,9 @@ export default function HomePosts({ posts }) {
     <Box sx={{ bgcolor: 'grey.900' }}>
       {!mdUp && (
         <Typography variant="h2" sx={{ pt: 10, pb: 8, color: 'common.white', textAlign: 'center' }}>
-          Latest Posts
+
+          {t('latestPosts')}
+
         </Typography>
       )}
 
@@ -68,7 +72,7 @@ export default function HomePosts({ posts }) {
         >
           {mdUp && (
             <Typography variant="h2" sx={{ color: 'common.white', py: 10 }}>
-              Latest Posts
+              {t('latestPosts')}
             </Typography>
           )}
 
@@ -91,7 +95,7 @@ export default function HomePosts({ posts }) {
               href={paths.travel.posts}
               endIcon={<Iconify icon="carbon:chevron-right" />}
             >
-              View All
+              {t('viewAll')}
             </Button>
           </Box>
         </Box>

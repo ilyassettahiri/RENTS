@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -14,6 +15,7 @@ import Carousel, { useCarousel } from 'src/components/carousel';
 
 export default function OurClients({ brands }) {
   const theme = useTheme();
+  const { t } = useTranslation();
 
   const carousel = useCarousel({
     slidesToShow: 6,
@@ -52,7 +54,7 @@ export default function OurClients({ brands }) {
           mb: { xs: 8, md: 10 },
         }}
       >
-        <Typography variant="h3">Our Clients</Typography>
+        <Typography variant="h3">{t('ourClients')}</Typography>
 
 
       </Stack>

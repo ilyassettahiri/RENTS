@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useContext } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
+import { useTranslation } from 'react-i18next';
 
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -17,6 +18,8 @@ import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
 export default function HomeHero({ tours }) {
   const mdUp = useResponsive('up', 'md');
+  const { t } = useTranslation();
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { handleCategoryClick } = useContext(AuthContext);
 
@@ -208,6 +211,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
   const theme = useTheme();
   const mdUp = useResponsive('up', 'md');
 
+  const { t } = useTranslation();
 
 
   return (
@@ -236,7 +240,9 @@ function ThumbnailItem({ tour, selected, onClick }) {
         <Stack spacing={0.5}   >
           <TextMaxLine variant="h6" line={1}>
 
-            {tour.categories}
+
+
+          {t(tour.categories)}
           </TextMaxLine>
 
         </Stack>

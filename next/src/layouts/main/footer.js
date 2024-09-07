@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import Box from '@mui/material/Box';
@@ -50,6 +51,7 @@ const StyledAppStoreButton = styled(Button)(({ theme }) => ({
 export default function Footer() {
   const mdUp = useResponsive('up', 'md');
   const { handleCategoryClick } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const pathname = usePathname();
 
@@ -92,14 +94,14 @@ export default function Footer() {
 
               <Stack spacing={2} alignItems="flex-start">
 
-                <Typography variant="h6">Important Links</Typography>
+                <Typography variant="h6">{t('importantLinks')}</Typography>
 
 
                 <Link variant="subtitle2" sx={{ color: 'text.secondary' }}
 
                 href={paths.travel.contact}
                 >
-                  Contact Us
+                  {t('contactUs')}
                 </Link>
 
 
@@ -107,7 +109,7 @@ export default function Footer() {
 
                   href={paths.support}
                   >
-                    Help Center
+                    {t('helpCenter')}
                   </Link>
 
 
@@ -115,27 +117,27 @@ export default function Footer() {
 
                   href={paths.travel.posts}
                   >
-                    Blog
+                    {t('blog')}
                   </Link>
 
 
                   <Link variant="subtitle2" sx={{ color: 'text.secondary' }}
                   href={paths.travel.privacy}
                   >
-                    Privacy Policy
+                  {t('privacyPolicy')}
                   </Link>
 
                   <Link variant="subtitle2" sx={{ color: 'text.secondary' }}
                   href={paths.travel.termcondition}
                   >
-                    Terms of Service
+                  {t('termsOfService')}
                   </Link>
 
                   <Link variant="subtitle2" sx={{ color: 'text.secondary' }}
 
                   href={paths.travel.about}
                   >
-                    About
+                  {t('about')}
                   </Link>
 
 
@@ -146,7 +148,7 @@ export default function Footer() {
 
 
               <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Typography variant="h6">Social</Typography>
+                <Typography variant="h6">{t('social')}</Typography>
                 <Stack direction="row" alignItems="center">
                   <IconButton color="primary">
                     <Iconify icon="mdi:facebook" />
@@ -167,7 +169,7 @@ export default function Footer() {
               </Stack>
 
               <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Typography variant="h6">Apps</Typography>
+                <Typography variant="h6">{t('apps')}</Typography>
                 <AppStoreButton />
               </Stack>
             </Stack>
@@ -205,7 +207,7 @@ export default function Footer() {
           sx={{ py: 3, textAlign: 'center' }}
         >
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            © 2024 RENTS . All rights reserved
+            © 2024 RENTS . {t('allRightsReserved')}
           </Typography>
 
 
@@ -220,6 +222,7 @@ export default function Footer() {
 // ----------------------------------------------------------------------
 export function ListDesktop({ list }) {
   const { handleCategoryClick } = useContext(AuthContext);
+  const { t } = useTranslation();
 
   const handleClick = (category) => {
     handleCategoryClick(category);
@@ -242,7 +245,9 @@ export function ListDesktop({ list }) {
             },
           }}
         >
-          {link.title}
+
+
+          {t(link.title)}
         </Typography>
       ))}
     </Stack>
@@ -268,6 +273,7 @@ ListDesktop.propTypes = {
 
 export function ListMobile({ list }) {
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const listExpand = useBoolean();
 
@@ -282,7 +288,9 @@ export function ListMobile({ list }) {
           alignItems: 'center',
         }}
       >
-        {list.subheader}
+
+
+        {t(list.subheader)}
         <Iconify
           width={16}
           icon={listExpand.value ? 'carbon:chevron-down' : 'carbon:chevron-right'}

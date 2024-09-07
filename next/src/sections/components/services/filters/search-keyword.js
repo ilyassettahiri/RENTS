@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 
 // ----------------------------------------------------------------------
 
-export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colorr, keywordCategoryMap, onSearch, mobileOpen }) {
+export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colorr, keywordCategoryMap, onSearch, placeholder, mobileOpen }) {
   const [inputValue, setInputValue] = useState('');
   const autocompleteRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -65,7 +65,7 @@ export default function SearchKeyword({ searchKeyword, onChangeKeyword, sx, colo
         <TextField
           {...params}
           hiddenLabel
-          placeholder="Que cherchez vous..."
+          placeholder={placeholder}
           InputProps={{
             ...params.InputProps,
             autoComplete: 'search',
@@ -121,5 +121,6 @@ SearchKeyword.propTypes = {
   keywordCategoryMap: PropTypes.object.isRequired,
   onSearch: PropTypes.func.isRequired,
   mobileOpen: PropTypes.object.isRequired, // Add mobileOpen prop type
+  placeholder: PropTypes.string,
 
 };

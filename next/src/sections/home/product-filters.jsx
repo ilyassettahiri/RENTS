@@ -7,6 +7,7 @@ import Drawer from '@mui/material/Drawer';
 import Rating from '@mui/material/Rating';
 import Button from '@mui/material/Button';
 import Collapse from '@mui/material/Collapse';
+import { useTranslation } from 'react-i18next';
 
 import Slider from '@mui/material/Slider';
 import Divider from '@mui/material/Divider';
@@ -53,6 +54,7 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     [filters]
   );
 
+  const { t } = useTranslation();
 
 
 
@@ -220,7 +222,7 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
     <>
       <Button
         disableRipple
-        color="inherit"
+        color="primary"
         variant="contained"
         endIcon={
           <Badge color="error" variant="dot" invisible={!canReset}>
@@ -229,7 +231,7 @@ export function ProductFilters({ open, onOpen, onClose, canReset, filters, optio
         }
         onClick={onOpen}
       >
-        Filters
+        {t('filters')}
       </Button>
 
       <Drawer

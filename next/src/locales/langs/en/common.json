@@ -2,5 +2,129 @@
   "demo": {
     "lang": "English",
     "description": "The starting point for your next project is based on MUI. Easy customization helps you build apps faster and better."
-  }
+  },
+
+  "clientUsage": "Use Client",
+  "createListing": "Create Listing",
+
+
+
+
+      "Apartments": "Apartments",
+      "Billiards": "Billiards",
+      "Activities": "Activities",
+      "Audios": "Audios",
+      "Boats": "Boats",
+      "Boxings": "Boxing",
+      "Bureauxs": "Offices",
+      "Cameras": "Cameras",
+      "Camions": "Trucks",
+      "Caravans": "Caravans",
+      "Cars": "Cars",
+      "Chargers": "Chargers",
+      "Clothes": "Clothes",
+      "Divings": "Diving",
+      "Drones": "Drones",
+      "Eclairages": "Lighting",
+      "Electricaltools": "Electrical Tools",
+      "Engins": "Machinery",
+      "Footballs": "Football",
+      "Furnitures": "Furniture",
+      "Gamings": "Gaming",
+      "Golfs": "Golf",
+      "Houseappliances": "House Appliances",
+      "Huntings": "Hunting",
+      "Jewelrys": "Jewelry",
+      "Ladders": "Ladders",
+      "Laptops": "Laptops",
+      "Lightings": "Lighting",
+      "Livres": "Books",
+      "Magasins": "Stores",
+      "Maisons": "Houses",
+      "Mechanicaltools": "Mechanical Tools",
+      "Mobiliers": "Furniture",
+      "Motos": "Motorcycles",
+      "Musculations": "Bodybuilding",
+      "Musicals": "Musicals",
+      "Photographies": "Photography",
+      "Powertools": "Power Tools",
+      "Pressurewashers": "Pressure Washers",
+      "Printers": "Printers",
+      "Riads": "Riads",
+      "Routers": "Routers",
+      "Scooters": "Scooters",
+      "Services": "Services",
+      "Sonorisations": "Sound Systems",
+      "Surfs": "Surfing",
+      "Tablettes": "Tablets",
+      "Taxiaeroports": "Airport Taxis",
+      "Tennis": "Tennis",
+      "Tentes": "Tents",
+      "Terrains": "Land",
+      "Transportations": "Transportation",
+      "Velos": "Bicycles",
+      "Villas": "Villas",
+
+
+
+
+          "Vehicule": "Vehicle",
+
+          "Immobilier": "Real Estate",
+
+          "Electronic": "Electronic",
+
+          "Materiel Professionnel": "Professional Equipment",
+
+          "Equipement pour Evenements": "Event Equipment",
+
+          "Loisirs et Divertissements": "Leisure and Entertainment",
+
+          "Maison et Jardin": "Home and Garden",
+
+
+
+
+              "Home": "Home",
+
+              "Business": "Business",
+              "Categories": "Categories",
+
+
+
+              "importantLinks": "Important Links",
+              "contactUs": "Contact Us",
+              "helpCenter": "Help Center",
+              "blog": "Blog",
+              "privacyPolicy": "Privacy Policy",
+              "termsOfService": "Terms of Service",
+              "about": "About",
+              "social": "Social",
+              "apps": "Apps",
+              "downloadOnThe": "Download on the",
+              "appleStore": "Apple Store",
+              "downloadFrom": "Download from",
+              "googlePlay": "Google Play",
+              "allRightsReserved": "All rights reserved",
+
+              "signUpForNewsletter": "Sign Up For Newsletter",
+              "receiveDiscount": "Receive 50% discount on first project",
+              "enterYourEmail": "Enter your email",
+              "signUp": "Sign Up",
+
+              "ourClients": "Our Clients",
+              "filters": "Filters",
+              "viewAll": "View all",
+              "newApartmentListings": "New Apartment Listings",
+              "newBicycleListings": "New Bicycle Listings",
+              "newBilliardsListings": "New Billiards Listings",
+              "latestPosts": "Latest Posts",
+
+              "searchPlaceholder": "What are you looking for...",
+              "categoryPlaceholder": "Category",
+              "cityPlaceholder": "City"
+
+
+
+
 }

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -13,6 +14,9 @@ import SvgColor from 'src/components/svg-color';
 // ----------------------------------------------------------------------
 
 export default function Newsletter({ sx, ...other }) {
+
+  const { t } = useTranslation();
+
   return (
     <Box sx={{ py: 8, bgcolor: 'background.neutral', ...sx }} {...other}>
       <Container>
@@ -31,10 +35,10 @@ export default function Newsletter({ sx, ...other }) {
 
 
             <Stack spacing={1}>
-              <Typography variant="h4">Sign Up For Newsletter</Typography>
+              <Typography variant="h4">{t('signUpForNewsletter')}</Typography>
 
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                Receive 50% discount on first project
+              {t('receiveDiscount')}
               </Typography>
             </Stack>
           </Stack>
@@ -42,7 +46,7 @@ export default function Newsletter({ sx, ...other }) {
           <TextField
             fullWidth
             hiddenLabel
-            placeholder="Enter your email"
+            placeholder={t('enterYourEmail')}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -56,7 +60,7 @@ export default function Newsletter({ sx, ...other }) {
                       borderBottomLeftRadius: 0,
                     }}
                   >
-                    Sign Up
+                    {t('signUp')}
                   </Button>
                 </InputAdornment>
               ),

@@ -2,5 +2,125 @@
   "demo": {
     "lang": "Arabic",
     "description": "نقطة البداية لمشروعك التالي مستندة إلى MUI. التخصيص السهل يساعدك على بناء التطبيقات بشكل أسرع وأفضل."
-  }
+  },
+
+
+
+  "clientUsage": "استخدام العميل",
+  "createListing": "إنشاء إعلان",
+
+
+
+      "Apartments": "الشقق",
+      "Billiards": "البلياردو",
+      "Activities": "الأنشطة",
+      "Audios": "الصوتيات",
+      "Boats": "القوارب",
+      "Boxings": "الملاكمة",
+      "Bureauxs": "المكاتب",
+      "Cameras": "الكاميرات",
+      "Camions": "الشاحنات",
+      "Caravans": "القوافل",
+      "Cars": "السيارات",
+      "Chargers": "الشواحن",
+      "Clothes": "الملابس",
+      "Divings": "الغوص",
+      "Drones": "الطائرات بدون طيار",
+      "Eclairages": "الإضاءة",
+      "Electricaltools": "أدوات كهربائية",
+      "Engins": "الآلات",
+      "Footballs": "كرة القدم",
+      "Furnitures": "الأثاث",
+      "Gamings": "ألعاب الفيديو",
+      "Golfs": "الغولف",
+      "Houseappliances": "أجهزة منزلية",
+      "Huntings": "الصيد",
+      "Jewelrys": "المجوهرات",
+      "Ladders": "السلالم",
+      "Laptops": "أجهزة اللابتوب",
+      "Lightings": "إضاءة",
+      "Livres": "الكتب",
+      "Magasins": "المتاجر",
+      "Maisons": "المنازل",
+      "Mechanicaltools": "أدوات ميكانيكية",
+      "Mobiliers": "أثاث",
+      "Motos": "الدراجات النارية",
+      "Musculations": "كمال الأجسام",
+      "Musicals": "الموسيقى",
+      "Photographies": "التصوير",
+      "Powertools": "أدوات الطاقة",
+      "Pressurewashers": "ماكينات غسيل بالضغط",
+      "Printers": "الطابعات",
+      "Riads": "الرياض",
+      "Routers": "أجهزة التوجيه",
+      "Scooters": "السكوتر",
+      "Services": "الخدمات",
+      "Sonorisations": "أنظمة الصوت",
+      "Surfs": "ركوب الأمواج",
+      "Tablettes": "أجهزة التابلت",
+      "Taxiaeroports": "سيارات أجرة المطار",
+      "Tennis": "التنس",
+      "Tentes": "الخيام",
+      "Terrains": "الأراضي",
+      "Transportations": "النقل",
+      "Velos": "الدراجات",
+      "Villas": "الفلل",
+
+
+
+
+          "Vehicule": "مركبات",
+
+          "Immobilier": "عقارات",
+
+          "Electronic": "إلكترونيات",
+
+          "Materiel Professionnel": "معدات مهنية",
+
+          "Equipement pour Evenements": "معدات للأحداث",
+
+          "Loisirs et Divertissements": "ترفيه وألعاب",
+
+          "Maison et Jardin": "المنزل والحديقة",
+
+
+          "Home": "الرئيسية",
+
+          "Business": "الأعمال",
+          "Categories": "الفئات",
+
+          "importantLinks": "روابط مهمة",
+          "contactUs": "اتصل بنا",
+          "helpCenter": "مركز المساعدة",
+          "blog": "مدونة",
+          "privacyPolicy": "سياسة الخصوصية",
+          "termsOfService": "شروط الخدمة",
+          "about": "حول",
+          "social": "مواقع التواصل",
+          "apps": "تطبيقات",
+          "downloadOnThe": "تنزيل على",
+          "appleStore": "متجر آبل",
+          "downloadFrom": "تنزيل من",
+          "googlePlay": "متجر جوجل بلاي",
+          "allRightsReserved": "جميع الحقوق محفوظة",
+
+          "signUpForNewsletter": "اشترك في النشرة الإخبارية",
+          "receiveDiscount": "احصل على خصم 50% على المشروع الأول",
+          "enterYourEmail": "أدخل بريدك الإلكتروني",
+          "signUp": "اشترك",
+
+          "ourClients": "عملاؤنا",
+          "filters": "فلاتر",
+          "viewAll": "عرض الكل",
+          "newApartmentListings": "إعلانات الشقق الجديدة",
+          "newBicycleListings": "إعلانات الدراجات الجديدة",
+          "newBilliardsListings": "إعلانات البلياردو الجديدة",
+          "latestPosts": "أحدث المنشورات",
+
+          "searchPlaceholder": "ما الذي تبحث عنه...",
+          "categoryPlaceholder": "الفئة",
+          "cityPlaceholder": "المدينة"
+
+
+
 }

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { forwardRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
@@ -12,7 +13,12 @@ import Iconify from 'src/components/iconify';
 // ----------------------------------------------------------------------
 
 const NavItem = forwardRef(
+
   ({ title, path, open, active, subItem, hasChild, externalLink, disableLink, onClick, ...other }, ref) => {
+
+    const { t } = useTranslation();
+
+
     const renderContent = (
       <StyledNavItem
         disableRipple
@@ -25,7 +31,7 @@ const NavItem = forwardRef(
 
         {...other}
       >
-        {title}
+        {t(title)}
 
         {hasChild && <Iconify width={16} icon="carbon:chevron-down" sx={{ ml: 0.75 }} />}
       </StyledNavItem>

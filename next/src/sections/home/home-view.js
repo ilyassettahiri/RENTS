@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback, useContext, useMemo } from "react";
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';
+import { useTranslation } from 'react-i18next';
+
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -1316,6 +1318,7 @@ export default function HomeView() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  const { t } = useTranslation();
 
 
 
@@ -1628,19 +1631,19 @@ export default function HomeView() {
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title="Nouvelles annonces d'Appartements" />}
+          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title="Nouvelles annonces de Billiards" />}
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newBilliardsListings')}/>}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title="Nouvelles annonces de velos" />}
+        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title={t('newBicycleListings')} />}
 
         </Stack>
 

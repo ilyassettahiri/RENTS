@@ -2,6 +2,7 @@
 
 
 import { useCallback} from 'react';
+import { useTranslation } from 'react-i18next';
 
 
 import PropTypes from 'prop-types';
@@ -45,6 +46,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const theme = useTheme();
   const offset = useOffSetTop();
   const mdUp = useResponsive('up', 'md');
+  const { t } = useTranslation();
 
 
 
@@ -155,7 +157,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
                     href={paths.createlisting}
                     sx={{ px: 2 }}
                   >
-                    Create Listing
+                    {t('createListing')}
                   </Button>
                 </Box>
 
