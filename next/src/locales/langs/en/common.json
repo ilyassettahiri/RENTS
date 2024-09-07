@@ -123,7 +123,44 @@
 
               "searchPlaceholder": "What are you looking for...",
               "categoryPlaceholder": "Category",
-              "cityPlaceholder": "City"
+              "cityPlaceholder": "City",
+
+
+              "Description": "Description",
+              "Location": "Location",
+              "Reviews": "Reviews",
+              "WriteaReview": "Write a Review",
+              "Recommendedforyou": "Recommended for you",
+              "PopularCities": "Popular Cities",
+              "Specifications": "Specifications",
+              "StartDate": "Start Date",
+              "EndDate": "End Date",
+              "Guest": "Guest",
+              "Call": "Call",
+              "Chat": "Chat",
+              "Whatsapp": "Whatsapp",
+              "Reserve": "Reserve",
+              "Day": "day",
+              "TotalDays": "Total Days",
+              "Total": "Total",
+              "ViewStore": "View Store",
+              "Joined": "Joined",
+              "reference": "Don't forget to mention the property reference when you call.",
+              "Sharevia": "Share via",
+              "Helpful": "Helpful",
+              "Reply": "Reply",
+              "Submit": "Submit",
+              "Yourrating": "Your rating:",
+              "Cancel": "Cancel",
+              "PostReview": "Post Review",
+              "Membersince": "Member since"
+
+
+
+
+
+
+
 
 
 

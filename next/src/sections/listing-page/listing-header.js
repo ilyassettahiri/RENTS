@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect  } from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
 import { useResponsive } from 'src/hooks/use-responsive';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -56,6 +57,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
   const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
   const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+  const { t } = useTranslation();
 
   const mdUp = useResponsive('up', 'md');
 
@@ -174,7 +176,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
             </Box>
 
             <Link variant="body2" sx={{ color: 'text.secondary' }}>
-              ({fShortenNumber(total_reviews)} reviews)
+              ({fShortenNumber(total_reviews)} {t('Reviews')})
             </Link>
           </Stack>}
 
@@ -255,7 +257,8 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
                               variant="body2" sx={{ color: 'text.secondary' }}>
 
                                 <Box sx={{ typography: 'body2' }}>
-                                  voir store
+
+                                  {t('ViewStore')}
                                 </Box>
 
                               </Link>
@@ -274,7 +277,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
                           <Link  variant="body2" sx={{ color: 'text.secondary' }}>
 
                             <Box sx={{ typography: 'body2' }}>
-                              Joined: {year}
+                            {t('Joined')}: {year}
 
                             </Box>
 
@@ -297,19 +300,19 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
           <StyledButton onClick={() => window.open(`https://wa.me/${phone}`, '_blank')}>
             <Iconify icon="mdi:whatsapp" width={26} />
-            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Whatsapp</Typography>
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}> {t('Whatsapp')}</Typography>
 
           </StyledButton>
 
           <StyledButton onClick={handleChatClick}>
             <Iconify icon="carbon:chat" width={26} />
-            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Chat</Typography>
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}> {t('Chat')}</Typography>
 
           </StyledButton>
 
           <StyledButton onClick={handleOpenCall} color={opencall ? 'primary' : 'default'}>
             <Iconify icon="carbon:phone" width={26} />
-            <Typography variant="subtitle2" sx={{ ml:-1.3 }}>Call</Typography>
+            <Typography variant="subtitle2" sx={{ ml:-1.3 }}> {t('Call')}</Typography>
 
           </StyledButton>
 
@@ -340,8 +343,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
       >
             <Typography variant="subtitle2" >
 
-              Don&apos;t forget to mention the property reference when you call.
-
+              {t('reference')}
             </Typography>
 
           <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
@@ -374,7 +376,8 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
         {socialMediaIcons.map((social) => (
           <MenuItem key={social.label} onClick={handleClose}>
             <Iconify icon={social.icon} width={24} sx={{ mr: 1, color: social.color }} />
-            Share via {social.label}
+
+            {t('Sharevia')} {social.label}
           </MenuItem>
         ))}
       </Popover>

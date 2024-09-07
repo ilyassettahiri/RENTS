@@ -3,6 +3,7 @@
 import { useState, useCallback, useEffect } from 'react';
 
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -26,6 +27,9 @@ const SORT_OPTIONS = [
 
 export default function ReviewToolbar({ sort, totalReviews, onOpenReview, onChangeSort }) {
 
+  const { t } = useTranslation();
+
+
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
   const handleWriteReviewClick = () => {
@@ -43,7 +47,7 @@ export default function ReviewToolbar({ sort, totalReviews, onOpenReview, onChan
           sx={{ mb: 5 }}
         >
           <Typography variant="h4" sx={{ width: 1 }}>
-            {totalReviews} Reviews
+            {totalReviews} {t('Reviews')}
           </Typography>
 
           <Stack direction="row" spacing={2} flexShrink={0} alignItems="center">
@@ -65,7 +69,7 @@ export default function ReviewToolbar({ sort, totalReviews, onOpenReview, onChan
             </FormControl>
 
             <Button size="large" variant="contained" color="primary" onClick={handleWriteReviewClick}>
-              Write a Review
+            {t('WriteaReview')}
             </Button>
           </Stack>
         </Stack>

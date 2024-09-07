@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -59,6 +60,7 @@ const StyledButton = styled((props) => (
 
 
 export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle }) {
+  const { t } = useTranslation();
 
 
   const { attributes } = StoreData;
@@ -239,7 +241,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                                   {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
                                 </Box>
                                 <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                                  ({fShortenNumber(total_reviews)} reviews)
+                                  ({fShortenNumber(total_reviews)} {t('Reviews')})
                                 </Link>
 
                             </Stack>
@@ -255,7 +257,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
 
 
                                 <Box sx={{ typography: 'body2' }}>
-                                  Member since {year}
+                                {t('Membersince')} {year}
 
                                 </Box>
 

@@ -125,7 +125,42 @@
 
           "searchPlaceholder": "Que cherchez vous...",
           "categoryPlaceholder": "Catégorie",
-          "cityPlaceholder": "Ville"
+          "cityPlaceholder": "Ville",
+
+          "Description": "Description",
+          "Location": "Emplacement",
+          "Reviews": "Avis",
+          "WriteaReview": "Écrire un avis",
+          "Recommendedforyou": "Recommandé pour vous",
+          "PopularCities": "Villes populaires",
+          "Specifications": "Spécifications",
+          "StartDate": "Date de début",
+          "EndDate": "Date de fin",
+          "Guest": "Invité",
+          "Call": "Appeler",
+          "Chat": "Discussion",
+          "Whatsapp": "Whatsapp",
+          "Reserve": "Réserver",
+          "Day": "jour",
+          "TotalDays": "Nombre total de jours",
+          "Total": "Total",
+          "ViewStore": "Voir le magasin",
+          "Joined": "Rejoint",
+          "Sharevia": "Partager via",
+          "reference": "N'oubliez pas de mentionner la référence de la propriété lorsque vous appelez.",
+          "Helpful": "Utile",
+          "Reply": "Répondre",
+          "Submit": "Soumettre",
+
+          "Yourrating": "Votre note :",
+          "Cancel": "Annuler",
+          "PostReview": "Publier un avis",
+          "Membersince": "Membre depuis"
+
+
+
+
+
 
 
 

@@ -3,6 +3,8 @@
 
 import { useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
@@ -55,6 +57,7 @@ export default function StorePopularProducts({
   recentListingsBeniMellal,
 }) {
   const [tab, setTab] = useState('Casablanca');
+  const { t } = useTranslation();
 
   const handleChangeTab = useCallback((event, newValue) => {
     setTab(newValue);
@@ -94,7 +97,7 @@ export default function StorePopularProducts({
           textAlign: { xs: 'center', md: 'unset' },
         }}
       >
-        Popular Cities
+        {t('PopularCities')}
       </Typography>
 
       <Tabs

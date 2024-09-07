@@ -3,6 +3,7 @@
 
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -54,6 +55,7 @@ const StyledButton = styled((props) => (
 
 export default function BusinessItem({ business, vertical, favorites = [], onFavoriteToggle }) {
 
+  const { t } = useTranslation();
 
 
   const { attributes } = business;
@@ -232,7 +234,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
               </Stack>
 
               <Stack direction="row" sx={{ typography: 'subtitle2' }}>
-                Member since {year}
+              {t('Membersince')} {year}
 
               </Stack>
             </Stack>

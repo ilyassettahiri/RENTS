@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter } from 'src/routes/hooks';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -19,6 +20,10 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 import CrudService from 'src/services/cruds-service';
 
 export default function ReviewNewForm({ onClose, category, url, ...other }) {
+
+  const { t } = useTranslation();
+
+
   const router = useRouter();
 
   const defaultValues = {
@@ -73,7 +78,7 @@ export default function ReviewNewForm({ onClose, category, url, ...other }) {
           <Stack spacing={2.5}>
             <div>
               <Typography variant="subtitle2" gutterBottom>
-                Your rating:
+              {t('Yourrating')} :
               </Typography>
 
               <Controller
@@ -103,11 +108,11 @@ export default function ReviewNewForm({ onClose, category, url, ...other }) {
 
         <DialogActions>
           <Button variant="outlined" onClick={onClose} color="inherit">
-            Cancel
+          {t('Cancel')}
           </Button>
 
           <LoadingButton color="inherit" type="submit" variant="contained" loading={isSubmitting}>
-            Post Review
+          {t('PostReview')}
           </LoadingButton>
         </DialogActions>
       </FormProvider>

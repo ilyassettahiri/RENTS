@@ -2,6 +2,8 @@
 
 import { useState, useCallback } from 'react';
 import Link from 'next/link';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -19,6 +21,7 @@ import FilterGuests from 'src/sections/components/listings/filters/filter-guests
 export default function ListingForm({ tour }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const { t } = useTranslation();
 
   const { attributes } = tour;
   const { price, category, url, startdate, enddate, reservations } = attributes;
@@ -75,7 +78,7 @@ export default function ListingForm({ tour }) {
         <Stack spacing={1} direction="row" alignItems="center" sx={{ typography: 'h4' }}>
           {fCurrency(price)}
           <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}>
-            /Day
+            /{t('Day')}
           </Typography>
         </Stack>
 
@@ -117,7 +120,8 @@ export default function ListingForm({ tour }) {
           <>
             <Box display="flex">
               <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
-                Total Days
+
+                {t('TotalDays')}
               </Typography>
 
               <Box sx={{ textAlign: 'right' }}>
@@ -126,14 +130,15 @@ export default function ListingForm({ tour }) {
                   variant="subtitle1"
                   sx={{ display: 'block', color: 'error.main' }}
                 >
-                  {totalDays} days
+                  {totalDays} {t('Day')}
                 </Typography>
               </Box>
             </Box>
 
             <Box display="flex">
               <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
-                Total
+
+                {t('Total')}
               </Typography>
 
               <Box sx={{ textAlign: 'right' }}>
@@ -162,7 +167,8 @@ export default function ListingForm({ tour }) {
             sessionStorage.setItem('endDate', endDate);
           }}
         >
-          Reserve
+
+          {t('Reserve')}
         </Button>
       </Stack>
     </Card>

@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useMemo  } from 'react';
 import CrudService from 'src/services/cruds-service';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -32,6 +33,7 @@ import ServicesDetailsHero from '../components/services/details/services-details
 
 export default function ServicePageView({ params }) {
   const mdUp = useResponsive('up', 'md');
+  const { t } = useTranslation();
 
 
   const [favorites, setFavorites] = useState([]);
@@ -144,7 +146,7 @@ export default function ServicePageView({ params }) {
 
 
             <Stack spacing={3} sx={{ my: 10 }}>
-              <Typography variant="h5">Location</Typography>
+              <Typography variant="h5">{t('Location')}</Typography>
 
               {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
             </Stack>
@@ -161,7 +163,7 @@ export default function ServicePageView({ params }) {
             )}
 
 
-            {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title="Recommended for you" />}
+            {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}
 
           </Box>
         </Container>

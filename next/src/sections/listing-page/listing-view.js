@@ -7,6 +7,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 
 import { useQuery } from '@tanstack/react-query';
 
+import { useTranslation } from 'react-i18next';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -44,6 +45,7 @@ export default function ListingView({ params }) {
   const router = useRouter();
   const { category, url } = params;
 
+  const { t } = useTranslation();
 
 
   const mdUp = useResponsive('up', 'md');
@@ -181,7 +183,7 @@ export default function ListingView({ params }) {
 
 
           <Stack spacing={3} sx={{ my: 10 }}>
-            <Typography variant="h5">Location</Typography>
+            <Typography variant="h5">{t('Location')}</Typography>
 
             {listingData && ( <Map offices={listingData?.data} sx={{ borderRadius: 2 }} />)}
           </Stack>
@@ -201,7 +203,7 @@ export default function ListingView({ params }) {
 
                 {listingData && (
 
-                  <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title="Recommended for you" />
+                  <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title={t('Recommendedforyou')} />
 
                 )}
 

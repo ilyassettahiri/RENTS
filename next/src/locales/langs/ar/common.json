@@ -122,7 +122,41 @@
 
           "searchPlaceholder": "ما الذي تبحث عنه...",
           "categoryPlaceholder": "الفئة",
-          "cityPlaceholder": "المدينة"
+          "cityPlaceholder": "المدينة",
+
+          "Description": "الوصف",
+          "Location": "الموقع",
+          "Reviews": "المراجعات",
+          "WriteaReview": "اكتب مراجعة",
+          "Recommendedforyou": "موصى به لك",
+          "PopularCities": "المدن الشهيرة",
+          "Specifications": "المواصفات",
+          "StartDate": "تاريخ البدء",
+          "EndDate": "تاريخ الانتهاء",
+          "Guest": "ضيف",
+          "Call": "اتصال",
+          "Chat": "دردشة",
+          "Whatsapp": "واتساب",
+          "Reserve": "احجز",
+          "TotalDays": "إجمالي الأيام",
+          "Total": "المجموع",
+          "Day": "يوم",
+          "ViewStore": "عرض المتجر",
+          "Joined": "انضم",
+          "Sharevia": "مشاركة عبر",
+          "reference": "لا تنس ذكر مرجع العقار عند الاتصال.",
+          "Helpful": "مفيد",
+          "Reply": "رد",
+          "Submit": "إرسال",
+
+          "Yourrating": "تقييمك:",
+          "Cancel": "إلغاء",
+          "PostReview": "نشر المراجعة",
+          "Membersince": "عضو منذ"
+
+
+
+
 
 
 

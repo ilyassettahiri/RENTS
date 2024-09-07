@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import { useTranslation } from 'react-i18next';
+
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
@@ -11,10 +13,14 @@ import Iconify from 'src/components/iconify';
 
 
 export default function ListingSummary({ specifications, description, category }) {
+
+
+  const { t } = useTranslation();
+
   return (
     <Stack spacing={5}>
       <Stack spacing={3}>
-        <Typography variant="h5">Specifications</Typography>
+        <Typography variant="h5"> {t('Specifications')}</Typography>
         <Box
           sx={{
             rowGap: 2.5,
@@ -33,7 +39,7 @@ export default function ListingSummary({ specifications, description, category }
       <Divider sx={{ borderStyle: 'dashed' }} />
 
       <Stack spacing={2}>
-        <Typography variant="h5">Description</Typography>
+        <Typography variant="h5"> {t('Description')}</Typography>
         <Markdown content={description} />
       </Stack>
 

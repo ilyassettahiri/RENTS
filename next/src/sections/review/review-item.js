@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -35,6 +37,7 @@ export default function ReviewItem({
 }) {
   const replyOpen = useBoolean();
   const [replyMessage, setReplyMessage] = useState('');
+  const { t } = useTranslation();
 
   const handleReplySubmit = async () => {
     try {
@@ -103,7 +106,7 @@ export default function ReviewItem({
           {!hasReply && (
             <Stack direction="row" alignItems="center" spacing={2} sx={{ mt: 2 }}>
               <Button size="small" color="inherit" onClick={() => onLike(id)}>
-                Helpful ({helpful})
+                 {t('Helpful')} ({helpful})
               </Button>
 
               <Box
@@ -120,7 +123,7 @@ export default function ReviewItem({
                 color={replyOpen.value ? 'primary' : 'inherit'}
                 onClick={replyOpen.onToggle}
               >
-                Reply
+                {t('Reply')}
               </Button>
             </Stack>
           )}
@@ -136,7 +139,7 @@ export default function ReviewItem({
                 value={replyMessage}
                 onChange={(e) => setReplyMessage(e.target.value)}
               />
-              <Button onClick={handleReplySubmit}>Submit</Button>
+              <Button onClick={handleReplySubmit}> {t('Submit')} </Button>
             </>
           )}
 

@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
+import { useTranslation } from 'react-i18next';
+
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -10,6 +12,9 @@ import ReviewProgress from 'src/sections/review/review-progress';
 // ----------------------------------------------------------------------
 
 export default function ReviewSummary({ reviewNumber, reviews }) {
+
+  const { t } = useTranslation();
+
   // Calculate the average rating
   const ratingNumber = reviews.length
     ? reviews.reduce((sum, review) => sum + parseFloat(review.rating), 0) / reviews.length
@@ -30,7 +35,7 @@ export default function ReviewSummary({ reviewNumber, reviews }) {
           <Stack spacing={0.5}>
             <Rating value={ratingNumber} readOnly precision={0.1} />
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {fShortenNumber(reviewNumber)} reviews
+              {fShortenNumber(reviewNumber)} {t('Reviews')}
             </Typography>
           </Stack>
         </Stack>
