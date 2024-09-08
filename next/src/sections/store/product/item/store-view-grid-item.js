@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNowStrict } from 'date-fns';
 import Card from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
 import CrudService from 'src/services/cruds-service';
@@ -27,7 +27,7 @@ import ProductRating from '../../common/product-rating';
 
 export default function StoreViewGridItem({ product, sx, favorites = [], onFavoriteToggle, ...other }) {
 
-  const formattedDuration = formatDistanceToNow(new Date(product.attributes.created_at), { addSuffix: true });
+  const formattedDuration = formatDistanceToNowStrict(new Date(product.attributes.created_at), { addSuffix: true });
   const { id, category, url } = product.attributes;
 
 

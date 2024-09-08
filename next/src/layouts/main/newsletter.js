@@ -52,7 +52,7 @@ export default function Newsletter({ sx, ...other }) {
                 <InputAdornment position="end">
                   <Button
                     size="large"
-                    color="inherit"
+                    color="primary"
                     variant="contained"
                     sx={{
                       height: 54,

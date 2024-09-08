@@ -1166,8 +1166,8 @@ function CreateListing() {
   const [pricing, setPricing] = useState({
     price: "",
     currency: "dh", // Default currency
-    sku: "",
-    tags: [],
+    phone: "",
+    
   });
 
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -1641,8 +1641,7 @@ function CreateListing() {
    
     formData.append('data[attributes][price]', pricing.price);
     formData.append('data[attributes][currency]', pricing.currency);
-    formData.append('data[attributes][sku]', pricing.sku);
-    formData.append('data[attributes][tags]', JSON.stringify(pricing.tags));
+    formData.append('data[attributes][phone]', pricing.phone);
 
 
     selectedFiles.forEach((file, index) => {

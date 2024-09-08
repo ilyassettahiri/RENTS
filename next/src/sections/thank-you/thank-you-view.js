@@ -139,7 +139,7 @@ useEffect(() => {
                 <Button
                   variant="contained"
                   size="large"
-                  color="inherit"
+                  color="primary"
                   startIcon={<Iconify icon="carbon:package" />}
                 >
                   Download Invoice

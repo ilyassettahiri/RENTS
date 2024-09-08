@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNowStrict } from 'date-fns';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -47,7 +47,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
 
-  const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
   const [opencall, setOpencall] = useState(null);
 
 

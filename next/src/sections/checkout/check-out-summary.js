@@ -240,7 +240,7 @@ export default function TravelCheckOutSummary({
           type="submit"
           size="large"
           variant="contained"
-          color="inherit"
+          color="primary"
           loading={isSubmitting}
         >
           Complete Booking

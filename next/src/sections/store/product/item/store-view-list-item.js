@@ -11,7 +11,7 @@ import { capitalizeFirstLetter } from 'src/utils/format-time';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Image from 'src/components/image';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNowStrict } from 'date-fns';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
 
@@ -28,7 +28,7 @@ import ProductRating from '../../common/product-rating';
 
 export default function StoreViewListItem({ product, favorites = [], onFavoriteToggle, ...other }) {
 
-  const formattedDuration = formatDistanceToNow(new Date(product.attributes.created_at), { addSuffix: true });
+  const formattedDuration = formatDistanceToNowStrict(new Date(product.attributes.created_at), { addSuffix: true });
   const { id, category, url } = product.attributes;
 
 

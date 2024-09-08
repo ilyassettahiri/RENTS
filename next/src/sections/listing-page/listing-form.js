@@ -161,7 +161,7 @@ export default function ListingForm({ tour }) {
           href={`${paths.travel.checkout}/${category}/${url}`}
           size="large"
           variant="contained"
-          color="inherit"
+          color="primary"
           onClick={() => {
             sessionStorage.setItem('startDate', startDate);
             sessionStorage.setItem('endDate', endDate);

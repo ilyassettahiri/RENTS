@@ -227,7 +227,7 @@ export default function DashboardPersonalView() {
 
               <LoadingButton
                 sx={{ mt: 5 }}
-                color="inherit"
+                color="primary"
                 size="large"
                 type="submit"
                 variant="contained"
@@ -299,7 +299,7 @@ export default function DashboardPersonalView() {
         <Box sx={{ textAlign: 'right' }}>
 
               <LoadingButton
-                color="inherit"
+                color="primary"
                 size="large"
                 type="submit"
                 variant="contained"

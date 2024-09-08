@@ -134,7 +134,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
                   sx={{
                     borderRadius: 1,
                     position: 'relative',
-                    bgcolor: 'text.primary',
+                    bgcolor: '#1e90ff',
                     color: 'background.paper',
                     display: { xs: 'none', md: 'inline-flex' },
 
@@ -144,8 +144,8 @@ export default function Header({ headerOnDark, onOpenNav}) {
                     animate={{
                       duration: 12,
                       distance: 40,
-                      color: ['#1976D2', '#D32F2F'],
-                      outline: `135deg, ${alpha('#1976D2', 0.04)}, ${alpha('#D32F2F', 0.04)}`, // Use alpha from MUI
+                      color: ['#fff', '#D32F2F'],
+                      outline: `135deg, ${alpha('#fff', 0.04)}, ${alpha('#D32F2F', 0.04)}`, // Use alpha from MUI
                     }}
                     sx={{ width: 1, height: 1, minHeight: 'auto', position: 'absolute' }}
                   />

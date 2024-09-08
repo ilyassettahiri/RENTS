@@ -46,42 +46,16 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
           <Grid item xs={12} sm={5}>
             <FormField
               type="text"
-              label="SKU"
-              placeholder="71283476591"
-              name="sku"
-              value={pricing.sku}
+              label="Phone Number"
+              placeholder="0611111111"
+              name="phone"
+              value={pricing.phone}
               onChange={onPricingChange}
             />
           </Grid>
         </Grid>
       </SoftBox>
-      <SoftBox mt={1}>
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-              <SoftTypography component="label" variant="caption" fontWeight="bold">
-                Tags
-              </SoftTypography>
-            </SoftBox>
-            <SoftSelect
-              defaultValue={[
-                { value: "in stock", label: "In Stock" },
-                { value: "out of stock", label: "Out of Stock" },
-              ]}
-              options={[
-                { value: "black friday", label: "Black Friday" },
-                { value: "expired", label: "Expired", isDisabled: true },
-                { value: "out of stock", label: "Out of Stock" },
-                { value: "in stock", label: "In Stock" },
-                { value: "sale", label: "Sale" },
-              ]}
-              size="large"
-              isMulti
-              onChange={(options) => onSelectChange("tags", options.map((option) => option.value))}
-            />
-          </Grid>
-        </Grid>
-      </SoftBox>
+      
     </SoftBox>
   );
 }

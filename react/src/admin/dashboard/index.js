@@ -74,15 +74,7 @@ function Dashboard() {
       <SoftBox py={3}>
         <Grid container>
           <Grid item xs={12} lg={7}>
-            <SoftBox mb={3} p={1}>
-              <SoftTypography
-                variant={window.innerWidth < values.sm ? "h3" : "h2"}
-                textTransform="capitalize"
-                fontWeight="bold"
-              >
-                general statistics
-              </SoftTypography>
-            </SoftBox>
+            
 
             <Grid container>
               <Grid item xs={12}>

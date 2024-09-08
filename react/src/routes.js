@@ -38,6 +38,12 @@ import DetailUpcoming from "admin/reservation/upcoming/detail-upcoming";
 
 
 
+  // message
+
+import Message from "admin/message";
+
+
+
 
 
 
@@ -171,7 +177,17 @@ const routes = [
 
 
   
+  {
+   
+    name: "Home",
+    key: "home",
+    icon: <Shop size="12px" />,
+    route: "/",
+    component: <Dashboard />,
 
+
+    
+  },
 
 
 
@@ -224,6 +240,7 @@ const routes = [
 
 
 
+  // message
 
  
 

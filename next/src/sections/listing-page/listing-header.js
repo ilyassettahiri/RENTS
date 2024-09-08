@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect  } from 'react';
-import { format, formatDistanceToNow } from 'date-fns';
+import { format, formatDistanceToNowStrict } from 'date-fns';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useTranslation } from 'react-i18next';
 
@@ -56,7 +56,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   const { attributes } = tour;
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
   const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
-  const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
   const { t } = useTranslation();
 
   const mdUp = useResponsive('up', 'md');

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNowStrict } from 'date-fns';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -54,7 +54,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
   const router = useRouter();
 
 
-  const formattedDuration = formatDistanceToNow(new Date(created_at), { addSuffix: true });
+  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
 
 
   const [opencall, setOpencall] = useState(null);
