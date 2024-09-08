@@ -11,7 +11,7 @@ class Velosimg extends Model
 {
 
 
-    protected $fillable = ['velo_id','picture', 'alttext'];
+    protected $fillable = ['velo_id','picture', 'alttext','picturesmall'];
 
     public function velosimg(): BelongsTo {
 

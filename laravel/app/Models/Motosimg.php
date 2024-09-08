@@ -12,7 +12,7 @@ class Motosimg extends Model
 
 
 
-    protected $fillable = ['moto_id','picture', 'alttext'];
+    protected $fillable = ['moto_id','picture', 'alttext','picturesmall'];
 
     public function motosimg(): BelongsTo {
 

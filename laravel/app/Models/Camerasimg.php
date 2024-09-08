@@ -11,7 +11,7 @@ class Camerasimg extends Model
 {
 
 
-    protected $fillable = ['camera_id','picture', 'alttext'];
+    protected $fillable = ['camera_id','picture', 'alttext','picturesmall'];
 
     public function camerasimg(): BelongsTo {
 

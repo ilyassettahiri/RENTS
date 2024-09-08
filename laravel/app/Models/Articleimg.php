@@ -16,7 +16,7 @@ class Articleimg extends Model
 
 
 
-    protected $fillable = ['article_id','picture', 'alttext'];
+    protected $fillable = ['article_id','picture', 'alttext','picturesmall'];
 
     public function article(): BelongsTo {
 

@@ -12,7 +12,7 @@ class Dronesimg extends Model
 
 
 
-    protected $fillable = ['drone_id','picture', 'alttext'];
+    protected $fillable = ['drone_id','picture', 'alttext','picturesmall'];
 
     public function dronesimg(): BelongsTo {
 

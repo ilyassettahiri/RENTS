@@ -12,7 +12,7 @@ class Apartmentsimg extends Model
 
 
 
-    protected $fillable = ['apartment_id','picture', 'alttext'];
+    protected $fillable = ['apartment_id','picture', 'alttext','picturesmall'];
 
     public function apartmentsimg(): BelongsTo {
 

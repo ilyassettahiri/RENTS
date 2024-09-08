@@ -11,7 +11,7 @@ class Maisonsimg extends Model
 {
 
 
-    protected $fillable = ['maison_id','picture', 'alttext'];
+    protected $fillable = ['maison_id','picture', 'alttext','picturesmall'];
 
     public function maisonsimg(): BelongsTo {
 

@@ -11,7 +11,7 @@ class Scootersimg extends Model
 {
 
 
-    protected $fillable = ['scooter_id','picture', 'alttext'];
+    protected $fillable = ['scooter_id','picture', 'alttext','picturesmall'];
 
     public function scootersimg(): BelongsTo {
 

@@ -19,7 +19,8 @@ return new class extends Migration
 
             $table->foreignId('drone_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
-            $table->string('alttext')->nullable();
+                        $table->string('alttext')->nullable();
+            $table->string('picturesmall')->nullable();
 
 
             $table->timestamps();

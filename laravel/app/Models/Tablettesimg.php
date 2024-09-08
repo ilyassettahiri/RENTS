@@ -11,7 +11,7 @@ class Tablettesimg extends Model
 {
 
 
-    protected $fillable = ['tablette_id','picture', 'alttext'];
+    protected $fillable = ['tablette_id','picture', 'alttext','picturesmall'];
 
     public function tablettesimg(): BelongsTo {
 

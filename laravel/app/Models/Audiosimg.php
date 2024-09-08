@@ -12,7 +12,7 @@ class Audiosimg extends Model
 
 
 
-    protected $fillable = ['audio_id','picture', 'alttext'];
+    protected $fillable = ['audio_id','picture', 'alttext','picturesmall'];
 
     public function audiosimg(): BelongsTo {
 

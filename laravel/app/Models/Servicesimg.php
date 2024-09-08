@@ -11,7 +11,7 @@ class Servicesimg extends Model
 {
 
 
-    protected $fillable = ['service_id','picture', 'alttext'];
+    protected $fillable = ['service_id','picture', 'alttext','picturesmall'];
 
     public function servicesimg(): BelongsTo {
 

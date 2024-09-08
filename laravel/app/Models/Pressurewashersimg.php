@@ -11,7 +11,7 @@ class Pressurewashersimg extends Model
 {
 
 
-    protected $fillable = ['pressurewasher_id','picture', 'alttext'];
+    protected $fillable = ['pressurewasher_id','picture', 'alttext','picturesmall'];
 
     public function pressurewashersimg(): BelongsTo {
 

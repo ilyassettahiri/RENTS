@@ -11,7 +11,7 @@ class Caravansimg extends Model
 {
 
 
-    protected $fillable = ['caravan_id','picture', 'alttext'];
+    protected $fillable = ['caravan_id','picture', 'alttext','picturesmall'];
 
     public function caravansimg(): BelongsTo {
 

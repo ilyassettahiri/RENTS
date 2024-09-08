@@ -11,7 +11,7 @@ class Furnituresimg extends Model
 {
 
 
-    protected $fillable = ['furniture_id','picture', 'alttext'];
+    protected $fillable = ['furniture_id','picture', 'alttext','picturesmall'];
 
     public function furnituresimg(): BelongsTo {
 

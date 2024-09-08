@@ -11,7 +11,7 @@ class Reviewsimg extends Model
 {
 
 
-    protected $fillable = ['reviews_id','picture', 'alttext'];
+    protected $fillable = ['reviews_id','picture', 'alttext','picturesmall'];
 
     public function reviewsimg(): BelongsTo {
 

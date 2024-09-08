@@ -11,7 +11,7 @@ class Routersimg extends Model
 {
 
 
-    protected $fillable = ['router_id','picture', 'alttext'];
+    protected $fillable = ['router_id','picture', 'alttext','picturesmall'];
 
     public function routersimg(): BelongsTo {
 

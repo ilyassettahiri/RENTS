@@ -12,7 +12,7 @@ class Bureauxsimg extends Model
 
 
 
-    protected $fillable = ['bureaux_id','picture', 'alttext'];
+    protected $fillable = ['bureaux_id','picture', 'alttext','picturesmall'];
 
     public function bureauxsimg(): BelongsTo {
 

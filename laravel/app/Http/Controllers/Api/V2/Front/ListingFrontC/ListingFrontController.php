@@ -208,7 +208,6 @@ class ListingFrontController extends JsonApiController
 
         $authuser = Auth::user();
 
-        $generaleinfo = Generaleinfo::find(1);
 
 
 
@@ -935,16 +934,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
+
 
 
 
@@ -1550,16 +1540,7 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
+
 
 
 
@@ -2172,17 +2153,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -2794,18 +2764,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -3408,17 +3366,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -4032,17 +3979,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -4649,17 +4585,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -5263,17 +5188,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -5886,18 +5800,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -6507,18 +6409,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -7136,17 +7026,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -7758,16 +7637,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -8383,16 +8252,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -9008,17 +8867,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -9624,18 +9472,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -10251,17 +10087,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -10873,17 +10698,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -11491,17 +11305,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -12113,17 +11916,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -12741,18 +12533,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -13351,18 +13131,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -13971,17 +13739,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -14596,17 +14353,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -15211,18 +14957,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -15830,17 +15564,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -16442,17 +16165,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -17052,18 +16764,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -17677,16 +17377,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -18291,17 +17981,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -18895,18 +18574,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -19539,18 +19206,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -20154,17 +19809,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -20767,17 +20411,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -21372,16 +21005,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -21980,18 +21603,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -22580,19 +22191,6 @@ class ListingFrontController extends JsonApiController
                                         ];
                                     }),
 
-
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -23188,17 +22786,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -23793,17 +23380,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -24408,17 +23984,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -25017,18 +24582,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -25621,18 +25174,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -26234,16 +25775,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -26846,17 +26377,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -27456,18 +26976,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
-
 
 
 
@@ -28063,17 +27571,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -28668,16 +28165,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -29269,17 +28756,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -29876,16 +29352,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -30483,17 +29949,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -31090,16 +30545,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -31685,17 +31130,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -32287,17 +31721,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
-
 
 
 
@@ -32885,18 +32308,6 @@ class ListingFrontController extends JsonApiController
                                     }),
 
 
-
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 
@@ -33490,17 +32901,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-
-                                    'socials' => [
-                                            'facebook' => $generaleinfo->facebook,
-                                            'twitter' => $generaleinfo->twitter, // X / Twitter
-                                            'instagram' => $generaleinfo->instagram,
-                                            'linkedin' => $generaleinfo->linkedin,
-                                            'pinterest' => $generaleinfo->pinterest,
-                                            'telegram' => $generaleinfo->telegram,
-                                            'tiktok' => $generaleinfo->tiktok,
-                                            'youtube' => $generaleinfo->youtube,
-                                    ],
 
 
 

@@ -11,7 +11,7 @@ class Jewelrysimg extends Model
 {
 
 
-    protected $fillable = ['jewelry_id','picture', 'alttext'];
+    protected $fillable = ['jewelry_id','picture', 'alttext','picturesmall'];
 
     public function jewelrysimg(): BelongsTo {
 

@@ -12,7 +12,7 @@ class Laptopsimg extends Model
 
 
 
-    protected $fillable = ['laptop_id','picture', 'alttext'];
+    protected $fillable = ['laptop_id','picture', 'alttext','picturesmall'];
 
     public function laptopsimg(): BelongsTo {
 

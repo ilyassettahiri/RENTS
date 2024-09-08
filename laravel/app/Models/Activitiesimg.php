@@ -11,7 +11,7 @@ class Activitiesimg extends Model
 {
 
 
-    protected $fillable = ['activity_id','picture', 'alttext'];
+    protected $fillable = ['activity_id','picture', 'alttext','picturesmall'];
 
     public function activitiesimg(): BelongsTo {
 

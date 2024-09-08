@@ -13,11 +13,15 @@ use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
-use Spatie\Image\Image;
 
 use Illuminate\Support\Str;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\GifEncoder;
 
 use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
@@ -36,6 +40,9 @@ use App\Models\Hunting  ;
 use App\Models\Musculation  ;
 use App\Models\Surf  ;
 use App\Models\Tennis  ;
+
+
+
 
 
 
@@ -231,6 +238,18 @@ class ListingController extends JsonApiController
         return $url;
     }
 
+
+    function generateUniqueFileName($extension = 'jpg')
+    {
+
+        $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
+        $shuffledString = str_shuffle($randomString); // Shuffle the string for added randomness
+        return $shuffledString . '.' . $extension;
+
+    }
+
+
+
     public function store(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -248,72 +267,98 @@ class ListingController extends JsonApiController
 
         // Initialize an array to hold the image paths
             $imagePaths = [];
+            $imagePathssmall = [];
+
             $thumb = null;
 
 
-            // Handle multiple image uploads
+
+
+
+            $manager = new ImageManager(new Driver());
+
             if ($request->hasFile('data.attributes.images')) {
-
-
                 $files = $request->file('data.attributes.images');
 
+                foreach ($files as $index => $file) {
+                    try {
 
+
+                        $imagelarge = $manager->read($file->getRealPath());
+
+                        $imagesmall = $manager->read($file->getRealPath());
+
+                        $imagelarge->scaleDown(width: 1500);
+
+                        $imagesmall->scaleDown(width: 400);
+
+
+                        $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+                        $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
+
+                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+
+                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+
+
+                        $encodedImagelarge->save($fileNamelarge);
+
+                        $encodedImagesmall->save($fileNamesmall);
+
+
+
+
+                        $filePathlarge = Storage::disk('spaces')->put('storage/listinglarge/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+                        $filePathsmall = Storage::disk('spaces')->put('storage/listingsmall/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
+
+
+
+                        $relativePathlarge = '/listinglarge/' . $fileNamelarge;
+                        $imagePathslarge[] = $relativePathlarge;
+
+                        $relativePathsmall = '/listingsmall/' . $fileNamesmall;
+                        $imagePathssmall[] = $relativePathsmall;
+
+
+                        if ($index === 0) {
+                            $thumb = $relativePathsmall;
+                        }
+
+                    } catch (\Exception $e) {
+                        Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                    }
+                }
+            }
+
+
+
+
+            /*if ($request->hasFile('data.attributes.images')) {
+                $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
+                    try {
+                        $filePath = Storage::disk('spaces')->put('storage/listings', $file, 'public');
 
-                    $filePath = 'images/' . uniqid() . '.jpg';
+                        $relativePath = str_replace('storage/', '', $filePath);
+                        $relativePath = '/' . $relativePath; // Ensure the path is relative
+                        $imagePaths[] = $relativePath;
 
+                        // Save the first image path to the Billiard table
+                        if ($index === 0) {
+                            $thumb = $relativePath;
+                        }
 
-
-                    $image = Image::load($file->getPathname()) // Load the image from the file path
-                    ->width(1500) // Resize width to max 1500
-                    ->height(1000) // Resize height to max 1000
-                    ->optimize() // Optimize the image size
-                    ->save(storage_path('app/public/' . $filePath)); // Save the image
-
-
-
-
-
-                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
-                    $imagePaths[] = $relativePath;
-
-                    // Save the first image path to the Billiard table
-                    if ($index === 0) {
-                        $thumb = $relativePath;
+                    } catch (\Exception $e) {
+                        Log::error('Image upload failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }
+            }*/
 
 
 
-        /* Prod
-
-
-          if ($request->hasFile('data.attributes.images')) {
-            $files = $request->file('data.attributes.images');
-
-            foreach ($files as $index => $file) {
-                try {
-                    $filePath = Storage::disk('spaces')->put('storage/images', $file, 'public');
-
-                    $relativePath = str_replace('storage/', '', $filePath);
-                    $relativePath = '/' . $relativePath; // Ensure the path is relative
-                    $imagePaths[] = $relativePath;
-
-                    // Save the first image path to the Billiard table
-                    if ($index === 0) {
-                        $thumb = $relativePath;
-                    }
-
-                } catch (\Exception $e) {
-                    Log::error('Image upload failed.', ['error' => $e->getMessage()]);
-                }
-            }
-        }
-
-
-        */
 
 
 
@@ -407,6 +452,19 @@ class ListingController extends JsonApiController
                     $billiardsimg->picture = $path;
                     $billiardsimg->save();
                 }
+
+                foreach ($imagePathslarge as $index => $largePath) {
+                    // Corresponding small image path exists at the same index
+                    $smallPath = $imagePathssmall[$index];
+
+                    // Create a new Billiardsimg instance
+                    $billiardsimg = new Billiardsimg();
+                    $billiardsimg->billiard_id = $billiard->id;
+                    $billiardsimg->picture = $largePath; // Store the large image path
+                    $billiardsimg->picturesmall = $smallPath; // Store the small image path
+                    $billiardsimg->save();
+                }
+
 
 
 

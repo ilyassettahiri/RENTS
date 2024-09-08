@@ -11,7 +11,7 @@ class Laddersimg extends Model
 {
 
 
-    protected $fillable = ['ladder_id','picture', 'alttext'];
+    protected $fillable = ['ladder_id','picture', 'alttext','picturesmall'];
 
     public function laddersimg(): BelongsTo {
 

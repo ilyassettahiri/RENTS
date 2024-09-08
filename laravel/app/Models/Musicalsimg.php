@@ -11,7 +11,7 @@ class Musicalsimg extends Model
 {
 
 
-    protected $fillable = ['musical_id','picture', 'alttext'];
+    protected $fillable = ['musical_id','picture', 'alttext','picturesmall'];
 
     public function musicalsimg(): BelongsTo {
 
