@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceRequest;
 use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
-class ActivitieimgRequest extends ResourceRequest
+class ActivityimgRequest extends ResourceRequest
 {
 
 

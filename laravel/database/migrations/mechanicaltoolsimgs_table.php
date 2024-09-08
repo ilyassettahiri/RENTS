@@ -18,7 +18,7 @@ return new class extends Migration
 
 
 
-            $table->foreignId('mechanicaltool_id');
+            $table->foreignId('mechanicaltool_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

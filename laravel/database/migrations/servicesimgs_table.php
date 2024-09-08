@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
 
-            $table->foreignId('service_id');
+            $table->foreignId('service_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

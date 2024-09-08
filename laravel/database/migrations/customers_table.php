@@ -19,7 +19,7 @@ return new class extends Migration
 
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
 
 
@@ -27,14 +27,20 @@ return new class extends Migration
             $table->string('listings_thumb')->nullable();
             $table->string('listings_title')->nullable();
             $table->string('listings_price')->nullable();
-            $table->string('url')->nullable();
-            $table->string('listings_description')->nullable();
+            $table->string('url');
+
+            $table->string('phone', 15)->nullable();
+
+            $table->string('zip', 10)->nullable();
+            $table->string('country')->nullable();
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
 
 
-
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('billiard_id')->nullable();
 
+            $table->foreignId('listing_id')->nullable();
 
             $table->foreignId('boxing_id')->nullable();
             $table->foreignId('diving_id')->nullable();

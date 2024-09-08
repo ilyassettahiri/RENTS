@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
 
-            $table->foreignId('football_id');
+            $table->foreignId('football_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

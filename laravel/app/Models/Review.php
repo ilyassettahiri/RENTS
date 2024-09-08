@@ -17,9 +17,9 @@ class Review extends Model
 {
 
 
-    protected $fillable = ['like','rating','name','email' ,'description','status','user_id','onlinestore_id' ,'category','listings_thumb','listings_title','listings_price','url','listings_description',
+    protected $fillable = ['like','rating','name','email' ,'description','status','user_id','onlinestore_id' ,'category','listings_thumb','listings_title','listings_price','url',
 
-    'billiard_id','boxing_id','diving_id','football_id','golf_id','hunting_id','musculation_id','surf_id','tennis_id',
+    'listing_id','billiard_id','boxing_id','diving_id','football_id','golf_id','hunting_id','musculation_id','surf_id','tennis_id',
 
     'audio_id','camera_id','charger_id','drone_id','gaming_id','laptop_id','lighting_id','printer_id','router_id','tablette_id',
 

@@ -13,7 +13,9 @@ use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
+use Spatie\Image\Image;
 
+use Illuminate\Support\Str;
 
 
 
@@ -175,6 +177,8 @@ class ListingController extends JsonApiController
 {
 
 
+
+
     public function index(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -213,6 +217,20 @@ class ListingController extends JsonApiController
 
 
 
+    private function generateUrl($title)
+    {
+
+        $url = Str::slug($title, '-', null);
+
+
+        $uniqueNumber = rand(10000000, 99999999);
+
+
+        $url .= '-' . $uniqueNumber;
+
+        return $url;
+    }
+
     public function store(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -235,10 +253,28 @@ class ListingController extends JsonApiController
 
             // Handle multiple image uploads
             if ($request->hasFile('data.attributes.images')) {
+
+
                 $files = $request->file('data.attributes.images');
 
+
+
                 foreach ($files as $index => $file) {
-                    $filePath = Storage::disk('public')->put('images', $file);
+
+                    $filePath = 'images/' . uniqid() . '.jpg';
+
+
+
+                    $image = Image::load($file->getPathname()) // Load the image from the file path
+                    ->width(1500) // Resize width to max 1500
+                    ->height(1000) // Resize height to max 1000
+                    ->optimize() // Optimize the image size
+                    ->save(storage_path('app/public/' . $filePath)); // Save the image
+
+
+
+
+
                     $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
                     $imagePaths[] = $relativePath;
 
@@ -295,7 +331,7 @@ class ListingController extends JsonApiController
         $price = $request->input('data.attributes.price');
         $phone = $request->input('data.attributes.phone');
 
-        $url = str_replace(' ', '-', strtolower($title));
+        $url = $this->generateUrl($title);
 
 
 

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('country')->nullable();
-            $table->string('zip')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('zip', 10)->nullable();
+            $table->string('phone', 15)->nullable();
             $table->string('email')->nullable();
             $table->string('website')->nullable();
             $table->string('facebook')->nullable();

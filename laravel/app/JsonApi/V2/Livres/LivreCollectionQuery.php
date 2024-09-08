@@ -5,7 +5,7 @@ namespace App\JsonApi\V2\Livres;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceQuery;
 use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
-class livreCollectionQuery extends ResourceQuery
+class LivreCollectionQuery extends ResourceQuery
 {
 
     public function rules(): array

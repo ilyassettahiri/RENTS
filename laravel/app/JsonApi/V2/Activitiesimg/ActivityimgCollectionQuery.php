@@ -5,7 +5,7 @@ namespace App\JsonApi\V2\Activitiesimg;
 use LaravelJsonApi\Laravel\Http\Requests\ResourceQuery;
 use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
-class ActivitieimgCollectionQuery extends ResourceQuery
+class ActivityimgCollectionQuery extends ResourceQuery
 {
 
     public function rules(): array

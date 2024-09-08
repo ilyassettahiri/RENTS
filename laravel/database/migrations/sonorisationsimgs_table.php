@@ -18,7 +18,7 @@ return new class extends Migration
 
 
 
-            $table->foreignId('sonorisation_id');
+            $table->foreignId('sonorisation_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

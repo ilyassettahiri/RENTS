@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('photographies', function (Blueprint $table) {
+        Schema::create('golves', function (Blueprint $table) {
             $table->id();
+
 
 
 
@@ -35,30 +36,19 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
 
-            $table->string('size')->nullable();
-            $table->string('max_shutter_speed')->nullable();
-            $table->string('battery')->nullable();
-            $table->string('panorama_capture')->nullable();
-            $table->string('burst_shooting')->nullable();
-            $table->string('wifi_connectivity')->nullable();
-            $table->string('brand_name')->nullable();
-            $table->string('camera')->nullable();
-            $table->string('flashes')->nullable();
-            $table->string('tripod')->nullable();
-            $table->string('resolution')->nullable();
-            $table->string('sensor')->nullable();
-            $table->string('angle')->nullable();
-            $table->string('lcd')->nullable();
-            $table->string('memory_card')->nullable();
-            $table->string('softbox')->nullable();
-            $table->string('backdrop')->nullable();
-            $table->string('bag')->nullable();
-            $table->string('lenses')->nullable();
+            $table->string('clubs')->nullable();
+            $table->string('balls')->nullable();
+            $table->string('tees')->nullable();
+            $table->string('bags')->nullable();
+            $table->string('chariot')->nullable();
+            $table->string('clothing')->nullable();
+            $table->string('golf_cars')->nullable();
 
             $table->string('other_equipment')->nullable();
 
 
             $table->string('more_details')->nullable();
+
 
             $table->timestamps();
         });
@@ -69,6 +59,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('photographies');
+        Schema::dropIfExists('golves');
     }
 };

@@ -17,21 +17,21 @@ return new class extends Migration
             $table->id();
 
 
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->string('category')->nullable();
             $table->string('picture')->nullable();
             $table->string('title')->nullable();
-            $table->string('price')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
 
             $table->string('city')->nullable();
 
-            $table->integer('zip')->nullable();
+            $table->string('zip', 10)->nullable();
 
+            $table->string('phone', 15)->nullable();
 
-
-            $table->string('url')->nullable();
-            $table->string('status')->nullable();
+            $table->string('url');
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
             $table->foreignId('onlinestore_id');
 
 

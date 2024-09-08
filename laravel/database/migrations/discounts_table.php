@@ -17,13 +17,13 @@ return new class extends Migration
 
         Schema::create('discounts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('code');
             $table->string('discountvalue');
             $table->string('applies_to')->nullable();
             $table->string('requirements')->nullable();
             $table->string('purchaseamount')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->timestamps();
         });

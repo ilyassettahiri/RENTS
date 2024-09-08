@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('favoritestores', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('seller_id');
             $table->string('category')->nullable();
             $table->string('picture')->nullable();
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('name')->nullable();
 
             $table->string('address')->nullable();
-            $table->string('zip')->nullable();
+            $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();
             $table->string('profile_picture')->nullable();
 
@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('city')->nullable();
 
 
-            $table->string('url')->nullable();
-            $table->string('status')->nullable();
+            $table->string('url');
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->foreignId('onlinestore_id')->nullable();
 

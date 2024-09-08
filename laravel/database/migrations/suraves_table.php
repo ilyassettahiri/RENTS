@@ -11,23 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('caravans', function (Blueprint $table) {
+        Schema::create('surves', function (Blueprint $table) {
             $table->id();
 
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
-
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->foreignId('onlinestore_id');
 
             $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();
+            $table->foreignId('onlinestore_id');
 
             $table->string('phone', 15)->nullable();
 
@@ -35,21 +34,15 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
 
-            $table->string('brand_name')->nullable();
-            $table->string('model')->nullable();
-            $table->string('year')->nullable();
-            $table->string('gearbox')->nullable();
-            $table->string('fuel_type')->nullable();
-            $table->string('kitchen_equipment')->nullable();
-            $table->string('toilet')->nullable();
-            $table->string('ac')->nullable();
-            $table->string('blinds')->nullable();
-            $table->string('bedlinen')->nullable();
-            $table->string('accessories')->nullable();
-            $table->string('furniture')->nullable();
-            $table->string('minimum_age')->nullable();
-
+            $table->string('surf_category')->nullable();
+            $table->string('surf_board_kite')->nullable();
+            $table->string('board_types')->nullable();
+            $table->string('board_size')->nullable();
+            $table->string('wetsuits')->nullable();
+            $table->string('paddleboarding')->nullable();
             $table->string('more_details')->nullable();
+
+            $table->string('surf_other')->nullable();
 
 
             $table->timestamps();
@@ -61,6 +54,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('caravans');
+        Schema::dropIfExists('surves');
     }
 };

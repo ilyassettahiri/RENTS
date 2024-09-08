@@ -19,7 +19,7 @@ return new class extends Migration
 
 
 
-            $table->foreignId('laptop_id');
+            $table->foreignId('laptop_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

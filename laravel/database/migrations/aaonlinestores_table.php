@@ -11,15 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reviewreplies', function (Blueprint $table) {
+        Schema::create('onlinestores', function (Blueprint $table) {
             $table->id();
 
 
-            $table->foreignId('review_id');
+            $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->text('message')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->string('name')->nullable();
-            $table->string('email')->nullable();
+
+            $table->string('address')->nullable();
+            $table->string('city')->nullable();
+
+            $table->string('zip', 10)->nullable();
+            $table->string('country')->nullable();
+
+            $table->text('description')->nullable();
+
             $table->string('picture')->nullable();
 
 
@@ -32,6 +40,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reviewreplies');
+        Schema::dropIfExists('onlinestores');
     }
 };

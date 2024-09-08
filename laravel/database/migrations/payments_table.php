@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
 
 
-            $table->string('status')->nullable();
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->timestamps();
         });

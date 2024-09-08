@@ -18,7 +18,7 @@ return new class extends Migration
 
 
 
-            $table->foreignId('router_id');
+            $table->foreignId('router_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

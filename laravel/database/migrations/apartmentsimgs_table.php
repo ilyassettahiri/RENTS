@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('apartmentsimgs', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('apartment_id');
+            $table->foreignId('apartment_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

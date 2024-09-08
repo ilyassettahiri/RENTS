@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('price')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
 
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
@@ -27,13 +27,13 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
 
-            $table->string('zip')->nullable();
+            $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();
 
-            $table->string('phone')->nullable();
+            $table->string('phone', 15)->nullable();
 
-            $table->string('url')->nullable();
-            $table->foreignId('user_id');
+            $table->string('url');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
 
 

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('activitiesimgs', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('activity_id');
+            $table->foreignId('activity_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

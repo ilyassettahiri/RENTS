@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('seller_id');
             $table->string('category')->nullable();
             $table->string('picture')->nullable();
@@ -26,9 +26,9 @@ return new class extends Migration
             $table->string('city')->nullable();
 
 
-            $table->string('price')->nullable();
-            $table->string('url')->nullable();
-            $table->string('status')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
+            $table->string('url');
+            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->foreignId('billiard_id')->nullable();
 

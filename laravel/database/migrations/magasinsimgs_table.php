@@ -18,7 +18,7 @@ return new class extends Migration
 
 
 
-            $table->foreignId('magasin_id');
+            $table->foreignId('magasin_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('alttext')->nullable();
 

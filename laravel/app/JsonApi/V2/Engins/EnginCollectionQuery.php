@@ -1,11 +1,11 @@
 <?php
 
-namespace App\JsonApi\V2\EnginCollections;
+namespace App\JsonApi\V2\Engins;
 
 use LaravelJsonApi\Laravel\Http\Requests\ResourceQuery;
 use LaravelJsonApi\Validation\Rule as JsonApiRule;
 
-class EnginCollectionCollectionQuery extends ResourceQuery
+class EnginCollectionQuery extends ResourceQuery
 {
 
     public function rules(): array
