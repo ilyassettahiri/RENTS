@@ -140,6 +140,9 @@ use App\Models\Photographiesimg;
 use App\Models\Sonorisationsimg;
 use App\Models\Tentesimg;
 
+
+use App\Models\Listingsimg;
+
 use App\Models\Clothesimg;
 use App\Models\Jewelrysimg;
 
@@ -266,7 +269,7 @@ class ListingController extends JsonApiController
 
 
         // Initialize an array to hold the image paths
-            $imagePaths = [];
+            $imagePathslarge = [];
             $imagePathssmall = [];
 
             $thumb = null;
@@ -400,7 +403,21 @@ class ListingController extends JsonApiController
         $listing->user_id = $user->id;
         $listing->onlinestore_id = $user->id;
 
+
+
         $listing->save();
+
+        foreach ($imagePathslarge as $index => $largePath) {
+
+            $smallPath = $imagePathssmall[$index];
+
+
+            $listingsimg = new Listingsimg();
+            $listingsimg->listing_id = $listing->id;
+            $listingsimg->picture = $largePath;
+            $listingsimg->picturesmall = $smallPath;
+            $listingsimg->save();
+        }
 
 
         switch (strtolower($category)) {
@@ -446,22 +463,17 @@ class ListingController extends JsonApiController
                 $billiard->save();
 
 
-                foreach ($imagePaths as $path) {
-                    $billiardsimg = new Billiardsimg();
-                    $billiardsimg->billiard_id = $billiard->id;
-                    $billiardsimg->picture = $path;
-                    $billiardsimg->save();
-                }
+
 
                 foreach ($imagePathslarge as $index => $largePath) {
-                    // Corresponding small image path exists at the same index
+
                     $smallPath = $imagePathssmall[$index];
 
-                    // Create a new Billiardsimg instance
+
                     $billiardsimg = new Billiardsimg();
                     $billiardsimg->billiard_id = $billiard->id;
-                    $billiardsimg->picture = $largePath; // Store the large image path
-                    $billiardsimg->picturesmall = $smallPath; // Store the small image path
+                    $billiardsimg->picture = $largePath;
+                    $billiardsimg->picturesmall = $smallPath;
                     $billiardsimg->save();
                 }
 
@@ -513,12 +525,20 @@ class ListingController extends JsonApiController
 
                                 $boxing->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $boxingsimg = new Boxingsimg();
                                     $boxingsimg->boxing_id = $boxing->id;
-                                    $boxingsimg->picture = $path;
+                                    $boxingsimg->picture = $largePath;
+                                    $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->save();
                                 }
+
 
 
 
@@ -565,12 +585,20 @@ class ListingController extends JsonApiController
 
                                 $diving->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $divingsimg = new Divingsimg();
                                     $divingsimg->diving_id = $diving->id;
-                                    $divingsimg->picture = $path;
+                                    $divingsimg->picture = $largePath;
+                                    $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->save();
                                 }
+
 
 
 
@@ -618,12 +646,20 @@ class ListingController extends JsonApiController
 
                                 $football->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $footballsimg = new Footballsimg();
                                     $footballsimg->football_id = $football->id;
-                                    $footballsimg->picture = $path;
+                                    $footballsimg->picture = $largePath;
+                                    $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->save();
                                 }
+
 
 
 
@@ -672,12 +708,20 @@ class ListingController extends JsonApiController
 
                                 $golf->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $golfsimg = new Golfsimg();
                                     $golfsimg->golf_id = $golf->id;
-                                    $golfsimg->picture = $path;
+                                    $golfsimg->picture = $largePath;
+                                    $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->save();
                                 }
+
 
 
 
@@ -733,12 +777,20 @@ class ListingController extends JsonApiController
 
                                 $hunting->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $huntingsimg = new Huntingsimg();
                                     $huntingsimg->hunting_id = $hunting->id;
-                                    $huntingsimg->picture = $path;
+                                    $huntingsimg->picture = $largePath;
+                                    $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->save();
                                 }
+
 
 
 
@@ -795,12 +847,19 @@ class ListingController extends JsonApiController
 
                                 $musculation->save();
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $musculationsimg = new Musculationsimg();
                                     $musculationsimg->musculation_id = $musculation->id;
-                                    $musculationsimg->picture = $path;
+                                    $musculationsimg->picture = $largePath;
+                                    $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->save();
                                 }
+
 
 
 
@@ -855,12 +914,20 @@ class ListingController extends JsonApiController
 
                                 $surf->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $surfsimg = new Surfsimg();
                                     $surfsimg->surf_id = $surf->id;
-                                    $surfsimg->picture = $path;
+                                    $surfsimg->picture = $largePath;
+                                    $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->save();
                                 }
+
 
 
 
@@ -907,12 +974,20 @@ class ListingController extends JsonApiController
 
                                 $tennis->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $Tennisimg = new Tennisimg();
                                     $Tennisimg->tennis_id = $tennis->id;
-                                    $Tennisimg->picture = $path;
+                                    $Tennisimg->picture = $largePath;
+                                    $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->save();
                                 }
+
 
 
 
@@ -969,12 +1044,20 @@ class ListingController extends JsonApiController
                                 $audio->save();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $audiosimg = new Audiosimg();
                                     $audiosimg->audio_id = $audio->id;
-                                    $audiosimg->picture = $path;
+                                    $audiosimg->picture = $largePath;
+                                    $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->save();
                                 }
+
 
 
 
@@ -1033,12 +1116,20 @@ class ListingController extends JsonApiController
 
                                 $camera->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $camerasimg = new Camerasimg();
                                     $camerasimg->camera_id = $camera->id;
-                                    $camerasimg->picture = $path;
+                                    $camerasimg->picture = $largePath;
+                                    $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->save();
                                 }
+
 
 
 
@@ -1090,12 +1181,20 @@ class ListingController extends JsonApiController
 
                                 $charger->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $chargersimg = new Chargersimg();
                                     $chargersimg->charger_id = $charger->id;
-                                    $chargersimg->picture = $path;
+                                    $chargersimg->picture = $largePath;
+                                    $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->save();
                                 }
+
 
 
 
@@ -1153,12 +1252,20 @@ class ListingController extends JsonApiController
 
                                 $drone->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $dronesimg = new Dronesimg();
                                     $dronesimg->drone_id = $drone->id;
-                                    $dronesimg->picture = $path;
+                                    $dronesimg->picture = $largePath;
+                                    $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->save();
                                 }
+
 
 
 
@@ -1214,12 +1321,20 @@ class ListingController extends JsonApiController
 
                                 $gaming->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $gamingsimg = new Gamingsimg();
                                     $gamingsimg->gaming_id = $gaming->id;
-                                    $gamingsimg->picture = $path;
+                                    $gamingsimg->picture = $largePath;
+                                    $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->save();
                                 }
+
 
 
 
@@ -1277,12 +1392,20 @@ class ListingController extends JsonApiController
 
                                 $laptop->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $laptopsimg = new Laptopsimg();
                                     $laptopsimg->laptop_id = $laptop->id;
-                                    $laptopsimg->picture = $path;
+                                    $laptopsimg->picture = $largePath;
+                                    $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->save();
                                 }
+
 
 
 
@@ -1334,12 +1457,20 @@ class ListingController extends JsonApiController
 
                                 $lighting->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $lightingsimg = new Lightingsimg();
                                     $lightingsimg->lighting_id = $lighting->id;
-                                    $lightingsimg->picture = $path;
+                                    $lightingsimg->picture = $largePath;
+                                    $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->save();
                                 }
+
 
 
 
@@ -1395,10 +1526,17 @@ class ListingController extends JsonApiController
 
                                 $printer->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $printersimg = new Printersimg();
                                     $printersimg->printer_id = $printer->id;
-                                    $printersimg->picture = $path;
+                                    $printersimg->picture = $largePath;
+                                    $printersimg->picturesmall = $smallPath;
                                     $printersimg->save();
                                 }
 
@@ -1454,12 +1592,21 @@ class ListingController extends JsonApiController
 
                                 $router->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $routersimg = new Routersimg();
                                     $routersimg->router_id = $router->id;
-                                    $routersimg->picture = $path;
+                                    $routersimg->picture = $largePath;
+                                    $routersimg->picturesmall = $smallPath;
                                     $routersimg->save();
                                 }
+
 
 
 
@@ -1514,12 +1661,20 @@ class ListingController extends JsonApiController
 
                                 $tablette->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $tablettesimg = new Tablettesimg();
                                     $tablettesimg->tablette_id = $tablette->id;
-                                    $tablettesimg->picture = $path;
+                                    $tablettesimg->picture = $largePath;
+                                    $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->save();
                                 }
+
 
 
 
@@ -1582,12 +1737,20 @@ class ListingController extends JsonApiController
 
                                 $eclairage->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $eclairagesimg = new Eclairagesimg();
                                     $eclairagesimg->eclairage_id = $eclairage->id;
-                                    $eclairagesimg->picture = $path;
+                                    $eclairagesimg->picture = $largePath;
+                                    $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->save();
                                 }
+
 
 
 
@@ -1641,12 +1804,21 @@ class ListingController extends JsonApiController
 
                                 $mobilier->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $mobiliersimg = new Mobiliersimg();
                                     $mobiliersimg->mobilier_id = $mobilier->id;
-                                    $mobiliersimg->picture = $path;
+                                    $mobiliersimg->picture = $largePath;
+                                    $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->save();
                                 }
+
 
 
 
@@ -1700,12 +1872,20 @@ class ListingController extends JsonApiController
 
                                 $photographie->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $photographiesimg = new Photographiesimg();
                                     $photographiesimg->photographie_id = $photographie->id;
-                                    $photographiesimg->picture = $path;
+                                    $photographiesimg->picture = $largePath;
+                                    $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->save();
                                 }
+
 
 
 
@@ -1769,12 +1949,20 @@ class ListingController extends JsonApiController
 
                                 $sonorisation->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $sonorisationsimg = new Sonorisationsimg();
                                     $sonorisationsimg->sonorisation_id = $sonorisation->id;
-                                    $sonorisationsimg->picture = $path;
+                                    $sonorisationsimg->picture = $largePath;
+                                    $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->save();
                                 }
+
 
 
 
@@ -1825,12 +2013,21 @@ class ListingController extends JsonApiController
 
                                 $tente->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $tentesimg = new Tentesimg();
                                     $tentesimg->tente_id = $tente->id;
-                                    $tentesimg->picture = $path;
+                                    $tentesimg->picture = $largePath;
+                                    $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->save();
                                 }
+
 
 
 
@@ -1885,12 +2082,20 @@ class ListingController extends JsonApiController
 
                                 $clothes->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $clothessimg = new Clothesimg();
                                     $clothessimg->clothes_id = $clothes->id;
-                                    $clothessimg->picture = $path;
+                                    $clothessimg->picture = $largePath;
+                                    $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->save();
                                 }
+
 
 
 
@@ -1946,12 +2151,20 @@ class ListingController extends JsonApiController
 
                                 $jewelry->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $jewelrysimg = new Jewelrysimg();
                                     $jewelrysimg->jewelry_id = $jewelry->id;
-                                    $jewelrysimg->picture = $path;
+                                    $jewelrysimg->picture = $largePath;
+                                    $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->save();
                                 }
+
 
 
 
@@ -2007,12 +2220,20 @@ class ListingController extends JsonApiController
 
                                 $apartment->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $apartmentsimg = new Apartmentsimg();
                                     $apartmentsimg->apartment_id = $apartment->id;
-                                    $apartmentsimg->picture = $path;
+                                    $apartmentsimg->picture = $largePath;
+                                    $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->save();
                                 }
+
 
 
 
@@ -2076,12 +2297,19 @@ class ListingController extends JsonApiController
 
                                 $bureaux->save();
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $bureauxsimg = new Bureauxsimg();
                                     $bureauxsimg->bureaux_id = $bureaux->id;
-                                    $bureauxsimg->picture = $path;
+                                    $bureauxsimg->picture = $largePath;
+                                    $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->save();
                                 }
+
 
 
 
@@ -2142,12 +2370,20 @@ class ListingController extends JsonApiController
 
                                 $magasin->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $magasinsimg = new Magasinsimg();
                                     $magasinsimg->magasin_id = $magasin->id;
-                                    $magasinsimg->picture = $path;
+                                    $magasinsimg->picture = $largePath;
+                                    $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->save();
                                 }
+
 
 
 
@@ -2202,12 +2438,20 @@ class ListingController extends JsonApiController
 
                                 $maison->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $maisonsimg = new Maisonsimg();
                                     $maisonsimg->maison_id = $maison->id;
-                                    $maisonsimg->picture = $path;
+                                    $maisonsimg->picture = $largePath;
+                                    $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->save();
                                 }
+
 
 
 
@@ -2291,12 +2535,20 @@ class ListingController extends JsonApiController
 
                                 $riad->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $riadsimg = new Riadsimg();
                                     $riadsimg->riad_id = $riad->id;
-                                    $riadsimg->picture = $path;
+                                    $riadsimg->picture = $largePath;
+                                    $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->save();
                                 }
+
 
 
 
@@ -2356,12 +2608,20 @@ class ListingController extends JsonApiController
 
                                 $terrain->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $terrainsimg = new Terrainsimg();
                                     $terrainsimg->terrain_id = $terrain->id;
-                                    $terrainsimg->picture = $path;
+                                    $terrainsimg->picture = $largePath;
+                                    $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->save();
                                 }
+
 
 
 
@@ -2416,12 +2676,20 @@ class ListingController extends JsonApiController
 
                                 $villa->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $villasimg = new Villasimg();
                                     $villasimg->villa_id = $villa->id;
-                                    $villasimg->picture = $path;
+                                    $villasimg->picture = $largePath;
+                                    $villasimg->picturesmall = $smallPath;
                                     $villasimg->save();
                                 }
+
 
 
 
@@ -2475,12 +2743,20 @@ class ListingController extends JsonApiController
                                 $activity->save();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $activitiesimg = new Activitiesimg();
                                     $activitiesimg->activity_id = $activity->id;
-                                    $activitiesimg->picture = $path;
+                                    $activitiesimg->picture = $largePath;
+                                    $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->save();
                                 }
+
 
 
 
@@ -2533,12 +2809,20 @@ class ListingController extends JsonApiController
 
                                 $livre->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $livresimg = new Livresimg();
                                     $livresimg->livre_id = $livre->id;
-                                    $livresimg->picture = $path;
+                                    $livresimg->picture = $largePath;
+                                    $livresimg->picturesmall = $smallPath;
                                     $livresimg->save();
                                 }
+
 
 
 
@@ -2591,12 +2875,20 @@ class ListingController extends JsonApiController
 
                                 $musical->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $musicalsimg = new Musicalsimg();
                                     $musicalsimg->musical_id = $musical->id;
-                                    $musicalsimg->picture = $path;
+                                    $musicalsimg->picture = $largePath;
+                                    $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->save();
                                 }
+
 
 
 
@@ -2653,12 +2945,20 @@ class ListingController extends JsonApiController
 
                                 $furniture->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $furnituresimg = new Furnituresimg();
                                     $furnituresimg->furniture_id = $furniture->id;
-                                    $furnituresimg->picture = $path;
+                                    $furnituresimg->picture = $largePath;
+                                    $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->save();
                                 }
+
 
 
 
@@ -2715,12 +3015,20 @@ class ListingController extends JsonApiController
 
                                 $houseappliance->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $houseappliancesimg = new Houseappliancesimg();
                                     $houseappliancesimg->houseappliance_id = $houseappliance->id;
-                                    $houseappliancesimg->picture = $path;
+                                    $houseappliancesimg->picture = $largePath;
+                                    $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->save();
                                 }
+
 
 
 
@@ -2786,12 +3094,19 @@ class ListingController extends JsonApiController
 
                                 $electricaltool->save();
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $electricaltoolsimg = new Electricaltoolsimg();
                                     $electricaltoolsimg->electricaltool_id = $electricaltool->id;
-                                    $electricaltoolsimg->picture = $path;
+                                    $electricaltoolsimg->picture = $largePath;
+                                    $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->save();
                                 }
+
 
 
 
@@ -2854,12 +3169,20 @@ class ListingController extends JsonApiController
 
                                 $ladder->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $laddersimg = new Laddersimg();
                                     $laddersimg->ladder_id = $ladder->id;
-                                    $laddersimg->picture = $path;
+                                    $laddersimg->picture = $largePath;
+                                    $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->save();
                                 }
+
 
 
 
@@ -2919,10 +3242,17 @@ class ListingController extends JsonApiController
 
                                 $mechanicaltool->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $mechanicaltoolsimg = new Mechanicaltoolsimg();
                                     $mechanicaltoolsimg->mechanicaltool_id = $mechanicaltool->id;
-                                    $mechanicaltoolsimg->picture = $path;
+                                    $mechanicaltoolsimg->picture = $largePath;
+                                    $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->save();
                                 }
 
@@ -2985,10 +3315,18 @@ class ListingController extends JsonApiController
 
                                 $powertool->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $powertoolsimg = new Powertoolsimg();
                                     $powertoolsimg->powertool_id = $powertool->id;
-                                    $powertoolsimg->picture = $path;
+                                    $powertoolsimg->picture = $largePath;
+                                    $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->save();
                                 }
 
@@ -3054,10 +3392,17 @@ class ListingController extends JsonApiController
 
                                 $pressurewasher->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $pressurewashersimg = new Pressurewashersimg();
                                     $pressurewashersimg->pressurewasher_id = $pressurewasher->id;
-                                    $pressurewashersimg->picture = $path;
+                                    $pressurewashersimg->picture = $largePath;
+                                    $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->save();
                                 }
 
@@ -3117,13 +3462,21 @@ class ListingController extends JsonApiController
 
                                 $service->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $servicesimg = new Servicesimg();
                                     $servicesimg->service_id = $service->id;
-                                    $servicesimg->picture = $path;
+                                    $servicesimg->picture = $largePath;
+                                    $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->save();
                                 }
-
 
 
 
@@ -3180,10 +3533,18 @@ class ListingController extends JsonApiController
                                 $boat->save();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $boatsimg = new Boatsimg();
                                     $boatsimg->boat_id = $boat->id;
-                                    $boatsimg->picture = $path;
+                                    $boatsimg->picture = $largePath;
+                                    $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->save();
                                 }
 
@@ -3238,10 +3599,17 @@ class ListingController extends JsonApiController
 
                                 $camion->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $camionsimg = new Camionsimg();
                                     $camionsimg->camion_id = $camion->id;
-                                    $camionsimg->picture = $path;
+                                    $camionsimg->picture = $largePath;
+                                    $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->save();
                                 }
 
@@ -3294,10 +3662,18 @@ class ListingController extends JsonApiController
 
                                 $caravan->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $caravansimg = new Caravansimg();
                                     $caravansimg->caravan_id = $caravan->id;
-                                    $caravansimg->picture = $path;
+                                    $caravansimg->picture = $largePath;
+                                    $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->save();
                                 }
 
@@ -3350,10 +3726,18 @@ class ListingController extends JsonApiController
 
                                 $car->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $carsimg = new Carsimg();
                                     $carsimg->car_id = $car->id;
-                                    $carsimg->picture = $path;
+                                    $carsimg->picture = $largePath;
+                                    $carsimg->picturesmall = $smallPath;
                                     $carsimg->save();
                                 }
 
@@ -3409,13 +3793,20 @@ class ListingController extends JsonApiController
 
                                 $engin->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $enginsimg = new Enginsimg();
                                     $enginsimg->engin_id = $engin->id;
-                                    $enginsimg->picture = $path;
+                                    $enginsimg->picture = $largePath;
+                                    $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->save();
                                 }
-
 
 
 
@@ -3471,10 +3862,18 @@ class ListingController extends JsonApiController
 
                                 $moto->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $motosimg = new Motosimg();
                                     $motosimg->moto_id = $moto->id;
-                                    $motosimg->picture = $path;
+                                    $motosimg->picture = $largePath;
+                                    $motosimg->picturesmall = $smallPath;
                                     $motosimg->save();
                                 }
 
@@ -3527,13 +3926,21 @@ class ListingController extends JsonApiController
 
                                 $scooter->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $scootersimg = new Scootersimg();
                                     $scootersimg->scooter_id = $scooter->id;
-                                    $scootersimg->picture = $path;
+                                    $scootersimg->picture = $largePath;
+                                    $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->save();
                                 }
-
 
 
 
@@ -3584,13 +3991,20 @@ class ListingController extends JsonApiController
 
                                 $taxiaeroport->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $taxiaeroportsimg = new Taxiaeroportsimg();
                                     $taxiaeroportsimg->taxiaeroport_id = $taxiaeroport->id;
-                                    $taxiaeroportsimg->picture = $path;
+                                    $taxiaeroportsimg->picture = $largePath;
+                                    $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->save();
                                 }
-
 
 
 
@@ -3641,13 +4055,20 @@ class ListingController extends JsonApiController
 
                                 $transportation->save();
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $transportationsimg = new Transportationsimg();
                                     $transportationsimg->transportation_id = $transportation->id;
-                                    $transportationsimg->picture = $path;
+                                    $transportationsimg->picture = $largePath;
+                                    $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->save();
                                 }
-
 
 
 
@@ -3699,10 +4120,16 @@ class ListingController extends JsonApiController
 
                                 $velo->save();
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $velosimg = new Velosimg();
                                     $velosimg->velo_id = $velo->id;
-                                    $velosimg->picture = $path;
+                                    $velosimg->picture = $largePath;
+                                    $velosimg->picturesmall = $smallPath;
                                     $velosimg->save();
                                 }
 
@@ -3783,12 +4210,13 @@ class ListingController extends JsonApiController
         $enddate = $request->input('attributes.enddate');
         $price = $request->input('attributes.price');
 
+        $phone = $request->input('data.attributes.phone');
 
+        $url = $this->generateUrl($title);
         // Extract imagePaths and thumb from the request
         $imagePaths = $request->input('attributes.imagePaths');
         $thumb = $request->input('attributes.thumb');
 
-        $url = str_replace(' ', '-', strtolower($title));
 
 
 
@@ -3844,7 +4272,7 @@ class ListingController extends JsonApiController
 
                 $billiard->title = $title;
                 $billiard->price = $price;
-                $billiard->price = $price;
+                $billiard->phone = $phone;
 
                 $billiard->address = $address;
                 $billiard->city = $city;
@@ -3871,14 +4299,20 @@ class ListingController extends JsonApiController
                     // Remove old images
                     Billiardsimg::where('billiard_id', $billiard->id)->delete();
 
-                    // Add new images
-                    foreach ($imagePaths as $path) {
+
+
+
+                    foreach ($imagePathslarge as $index => $largePath) {
+
+                        $smallPath = $imagePathssmall[$index];
+
+
                         $billiardsimg = new Billiardsimg();
                         $billiardsimg->billiard_id = $billiard->id;
-                        $billiardsimg->picture = $path;
+                        $billiardsimg->picture = $largePath;
+                        $billiardsimg->picturesmall = $smallPath;
                         $billiardsimg->save();
                     }
-
 
 
                 break;
@@ -3902,7 +4336,7 @@ class ListingController extends JsonApiController
                                 $boxing->title = $title;
                                 $boxing->price = $price;
 
-                                $boxing->price = $price;
+                                $boxing->phone = $phone;
 
                                 $boxing->address = $address;
                                 $boxing->city = $city;
@@ -3929,12 +4363,20 @@ class ListingController extends JsonApiController
                                 Boxingsimg::where('boxing_id', $boxing->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $boxingsimg = new Boxingsimg();
                                     $boxingsimg->boxing_id = $boxing->id;
-                                    $boxingsimg->picture = $path;
+                                    $boxingsimg->picture = $largePath;
+                                    $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->save();
                                 }
+
 
 
 
@@ -3959,7 +4401,7 @@ class ListingController extends JsonApiController
                                 $diving->title = $title;
                                 $diving->price = $price;
 
-                                $diving->price = $price;
+                                $diving->phone = $phone;
 
                                 $diving->address = $address;
                                 $diving->city = $city;
@@ -3985,12 +4427,20 @@ class ListingController extends JsonApiController
                                 Divingsimg::where('diving_id', $diving->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $divingsimg = new Divingsimg();
                                     $divingsimg->diving_id = $diving->id;
-                                    $divingsimg->picture = $path;
+                                    $divingsimg->picture = $largePath;
+                                    $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->save();
                                 }
+
 
 
 
@@ -4018,7 +4468,7 @@ class ListingController extends JsonApiController
                                 $football->title = $title;
                                 $football->price = $price;
 
-                                $football->price = $price;
+                                $football->phone = $phone;
 
                                 $football->address = $address;
                                 $football->city = $city;
@@ -4042,12 +4492,20 @@ class ListingController extends JsonApiController
                                 Footballsimg::where('football_id', $football->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $footballsimg = new Footballsimg();
                                     $footballsimg->football_id = $football->id;
-                                    $footballsimg->picture = $path;
+                                    $footballsimg->picture = $largePath;
+                                    $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->save();
                                 }
+
 
 
 
@@ -4075,7 +4533,7 @@ class ListingController extends JsonApiController
                                 $golf->title = $title;
                                 $golf->price = $price;
 
-                                $golf->price = $price;
+                                $golf->phone = $phone;
 
                                 $golf->address = $address;
                                 $golf->city = $city;
@@ -4100,12 +4558,20 @@ class ListingController extends JsonApiController
                                 Golfsimg::where('golf_id', $golf->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $golfsimg = new Golfsimg();
                                     $golfsimg->golf_id = $golf->id;
-                                    $golfsimg->picture = $path;
+                                    $golfsimg->picture = $largePath;
+                                    $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->save();
                                 }
+
 
 
 
@@ -4135,7 +4601,7 @@ class ListingController extends JsonApiController
                                 $hunting->title = $title;
                                 $hunting->price = $price;
 
-                                $hunting->price = $price;
+                                $hunting->phone = $phone;
 
                                 $hunting->address = $address;
                                 $hunting->city = $city;
@@ -4166,10 +4632,16 @@ class ListingController extends JsonApiController
                                 Huntingsimg::where('hunting_id', $hunting->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $huntingsimg = new Huntingsimg();
                                     $huntingsimg->hunting_id = $hunting->id;
-                                    $huntingsimg->picture = $path;
+                                    $huntingsimg->picture = $largePath;
+                                    $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->save();
                                 }
 
@@ -4199,7 +4671,7 @@ class ListingController extends JsonApiController
                                 $musculation->title = $title;
                                 $musculation->price = $price;
 
-                                $musculation->price = $price;
+                                $musculation->phone = $phone;
 
                                 $musculation->address = $address;
                                 $musculation->city = $city;
@@ -4232,12 +4704,19 @@ class ListingController extends JsonApiController
                                 Musculationsimg::where('musculation_id', $musculation->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $musculationsimg = new Musculationsimg();
                                     $musculationsimg->musculation_id = $musculation->id;
-                                    $musculationsimg->picture = $path;
+                                    $musculationsimg->picture = $largePath;
+                                    $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->save();
                                 }
+
 
 
 
@@ -4267,7 +4746,7 @@ class ListingController extends JsonApiController
                                 $surf->title = $title;
                                 $surf->price = $price;
 
-                                $surf->price = $price;
+                                $surf->phone = $phone;
 
                                 $surf->address = $address;
                                 $surf->city = $city;
@@ -4296,10 +4775,18 @@ class ListingController extends JsonApiController
                                 Surfsimg::where('surf_id', $surf->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $surfsimg = new Surfsimg();
                                     $surfsimg->surf_id = $surf->id;
-                                    $surfsimg->picture = $path;
+                                    $surfsimg->picture = $largePath;
+                                    $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->save();
                                 }
 
@@ -4329,7 +4816,7 @@ class ListingController extends JsonApiController
                                 $tennis->title = $title;
                                 $tennis->price = $price;
 
-                                $tennis->price = $price;
+                                $tennis->phone = $phone;
 
                                 $tennis->address = $address;
                                 $tennis->city = $city;
@@ -4353,12 +4840,20 @@ class ListingController extends JsonApiController
                                 Tennisimg::where('tennis_id', $tennis->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $Tennisimg = new Tennisimg();
                                     $Tennisimg->tennis_id = $tennis->id;
-                                    $Tennisimg->picture = $path;
+                                    $Tennisimg->picture = $largePath;
+                                    $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->save();
                                 }
+
 
 
 
@@ -4386,7 +4881,7 @@ class ListingController extends JsonApiController
                                 $audio->title = $title;
                                 $audio->price = $price;
 
-                                $audio->price = $price;
+                                $audio->phone = $phone;
 
                                 $audio->address = $address;
                                 $audio->city = $city;
@@ -4419,10 +4914,18 @@ class ListingController extends JsonApiController
 
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $audiosimg = new Audiosimg();
                                     $audiosimg->audio_id = $audio->id;
-                                    $audiosimg->picture = $path;
+                                    $audiosimg->picture = $largePath;
+                                    $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->save();
                                 }
 
@@ -4454,7 +4957,7 @@ class ListingController extends JsonApiController
                                 $camera->title = $title;
                                 $camera->price = $price;
 
-                                $camera->price = $price;
+                                $camera->phone = $phone;
 
                                 $camera->address = $address;
                                 $camera->city = $city;
@@ -4487,12 +4990,20 @@ class ListingController extends JsonApiController
                                 Camerasimg::where('camera_id', $camera->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $camerasimg = new Camerasimg();
                                     $camerasimg->camera_id = $camera->id;
-                                    $camerasimg->picture = $path;
+                                    $camerasimg->picture = $largePath;
+                                    $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->save();
                                 }
+
 
 
 
@@ -4517,7 +5028,7 @@ class ListingController extends JsonApiController
                                 $charger->title = $title;
                                 $charger->price = $price;
 
-                                $charger->price = $price;
+                                $charger->phone = $phone;
 
                                 $charger->address = $address;
                                 $charger->city = $city;
@@ -4548,10 +5059,18 @@ class ListingController extends JsonApiController
                                 Chargersimg::where('charger_id', $charger->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $chargersimg = new Chargersimg();
                                     $chargersimg->charger_id = $charger->id;
-                                    $chargersimg->picture = $path;
+                                    $chargersimg->picture = $largePath;
+                                    $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->save();
                                 }
 
@@ -4581,7 +5100,7 @@ class ListingController extends JsonApiController
                                 $drone->title = $title;
                                 $drone->price = $price;
 
-                                $drone->price = $price;
+                                $drone->phone = $phone;
 
                                 $drone->address = $address;
                                 $drone->city = $city;
@@ -4615,12 +5134,20 @@ class ListingController extends JsonApiController
                                 Dronesimg::where('drone_id', $drone->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $dronesimg = new Dronesimg();
                                     $dronesimg->drone_id = $drone->id;
-                                    $dronesimg->picture = $path;
+                                    $dronesimg->picture = $largePath;
+                                    $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->save();
                                 }
+
 
 
 
@@ -4650,7 +5177,7 @@ class ListingController extends JsonApiController
                                 $gaming->title = $title;
                                 $gaming->price = $price;
 
-                                $gaming->price = $price;
+                                $gaming->phone = $phone;
 
                                 $gaming->address = $address;
                                 $gaming->city = $city;
@@ -4680,10 +5207,18 @@ class ListingController extends JsonApiController
                                 Gamingsimg::where('gaming_id', $gaming->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $gamingsimg = new Gamingsimg();
                                     $gamingsimg->gaming_id = $gaming->id;
-                                    $gamingsimg->picture = $path;
+                                    $gamingsimg->picture = $largePath;
+                                    $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->save();
                                 }
 
@@ -4712,7 +5247,7 @@ class ListingController extends JsonApiController
                                 $laptop->title = $title;
                                 $laptop->price = $price;
 
-                                $laptop->price = $price;
+                                $laptop->phone = $phone;
 
                                 $laptop->address = $address;
                                 $laptop->city = $city;
@@ -4747,10 +5282,17 @@ class ListingController extends JsonApiController
                                 Laptopsimg::where('laptop_id', $laptop->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $laptopsimg = new Laptopsimg();
                                     $laptopsimg->laptop_id = $laptop->id;
-                                    $laptopsimg->picture = $path;
+                                    $laptopsimg->picture = $largePath;
+                                    $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->save();
                                 }
 
@@ -4781,7 +5323,7 @@ class ListingController extends JsonApiController
                                 $lighting->title = $title;
                                 $lighting->price = $price;
 
-                                $lighting->price = $price;
+                                $lighting->phone = $phone;
 
                                 $lighting->address = $address;
                                 $lighting->city = $city;
@@ -4809,10 +5351,18 @@ class ListingController extends JsonApiController
                                 Lightingsimg::where('lighting_id', $lighting->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $lightingsimg = new Lightingsimg();
                                     $lightingsimg->lighting_id = $lighting->id;
-                                    $lightingsimg->picture = $path;
+                                    $lightingsimg->picture = $largePath;
+                                    $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->save();
                                 }
 
@@ -4843,7 +5393,7 @@ class ListingController extends JsonApiController
                                 $printer->title = $title;
                                 $printer->price = $price;
 
-                                $printer->price = $price;
+                                $printer->phone = $phone;
 
                                 $printer->address = $address;
                                 $printer->city = $city;
@@ -4874,10 +5424,18 @@ class ListingController extends JsonApiController
                                 Printersimg::where('printer_id', $printer->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $printersimg = new Printersimg();
                                     $printersimg->printer_id = $printer->id;
-                                    $printersimg->picture = $path;
+                                    $printersimg->picture = $largePath;
+                                    $printersimg->picturesmall = $smallPath;
                                     $printersimg->save();
                                 }
 
@@ -4905,7 +5463,7 @@ class ListingController extends JsonApiController
 
                                 $router->title = $title;
                                 $router->price = $price;
-                                $router->price = $price;
+                                $router->phone = $phone;
 
                                 $router->address = $address;
                                 $router->city = $city;
@@ -4936,10 +5494,18 @@ class ListingController extends JsonApiController
                                 Routersimg::where('router_id', $router->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $routersimg = new Routersimg();
                                     $routersimg->router_id = $router->id;
-                                    $routersimg->picture = $path;
+                                    $routersimg->picture = $largePath;
+                                    $routersimg->picturesmall = $smallPath;
                                     $routersimg->save();
                                 }
 
@@ -4970,7 +5536,7 @@ class ListingController extends JsonApiController
                                 $tablette->title = $title;
                                 $tablette->price = $price;
 
-                                $tablette->price = $price;
+                                $tablette->phone = $phone;
 
                                 $tablette->address = $address;
                                 $tablette->city = $city;
@@ -5000,14 +5566,22 @@ class ListingController extends JsonApiController
                                 Tablettesimg::where('tablette_id', $tablette->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $tablettesimg = new Tablettesimg();
                                     $tablettesimg->tablette_id = $tablette->id;
-                                    $tablettesimg->picture = $path;
+                                    $tablettesimg->picture = $largePath;
+                                    $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->save();
                                 }
-
-
 
 
 
@@ -5034,7 +5608,7 @@ class ListingController extends JsonApiController
                                 $eclairage->title = $title;
                                 $eclairage->price = $price;
 
-                                $eclairage->price = $price;
+                                $eclairage->phone = $phone;
 
                                 $eclairage->address = $address;
                                 $eclairage->city = $city;
@@ -5072,10 +5646,17 @@ class ListingController extends JsonApiController
                                 Eclairagesimg::where('eclairage_id', $eclairage->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $eclairagesimg = new Eclairagesimg();
                                     $eclairagesimg->eclairage_id = $eclairage->id;
-                                    $eclairagesimg->picture = $path;
+                                    $eclairagesimg->picture = $largePath;
+                                    $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->save();
                                 }
 
@@ -5105,7 +5686,7 @@ class ListingController extends JsonApiController
                                 $mobilier->title = $title;
                                 $mobilier->price = $price;
 
-                                $mobilier->price = $price;
+                                $mobilier->phone = $phone;
 
                                 $mobilier->address = $address;
                                 $mobilier->city = $city;
@@ -5134,10 +5715,18 @@ class ListingController extends JsonApiController
                                 Mobiliersimg::where('mobilier_id', $mobilier->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $mobiliersimg = new Mobiliersimg();
                                     $mobiliersimg->mobilier_id = $mobilier->id;
-                                    $mobiliersimg->picture = $path;
+                                    $mobiliersimg->picture = $largePath;
+                                    $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->save();
                                 }
 
@@ -5166,7 +5755,7 @@ class ListingController extends JsonApiController
                                 $photographie->title = $title;
                                 $photographie->price = $price;
 
-                                $photographie->price = $price;
+                                $photographie->phone = $phone;
 
                                 $photographie->address = $address;
                                 $photographie->city = $city;
@@ -5196,13 +5785,21 @@ class ListingController extends JsonApiController
                                 Photographiesimg::where('photographie_id', $photographie->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $photographiesimg = new Photographiesimg();
                                     $photographiesimg->photographie_id = $photographie->id;
-                                    $photographiesimg->picture = $path;
+                                    $photographiesimg->picture = $largePath;
+                                    $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->save();
                                 }
-
 
 
 
@@ -5229,7 +5826,7 @@ class ListingController extends JsonApiController
                                 $sonorisation->title = $title;
                                 $sonorisation->price = $price;
 
-                                $sonorisation->price = $price;
+                                $sonorisation->phone = $phone;
 
                                 $sonorisation->address = $address;
                                 $sonorisation->city = $city;
@@ -5269,13 +5866,20 @@ class ListingController extends JsonApiController
                                 Sonorisationsimg::where('sonorisation_id', $sonorisation->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $sonorisationsimg = new Sonorisationsimg();
                                     $sonorisationsimg->sonorisation_id = $sonorisation->id;
-                                    $sonorisationsimg->picture = $path;
+                                    $sonorisationsimg->picture = $largePath;
+                                    $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->save();
                                 }
-
 
 
 
@@ -5303,7 +5907,7 @@ class ListingController extends JsonApiController
                                 $tente->title = $title;
                                 $tente->price = $price;
 
-                                $tente->price = $price;
+                                $tente->phone = $phone;
 
                                 $tente->address = $address;
                                 $tente->city = $city;
@@ -5329,13 +5933,19 @@ class ListingController extends JsonApiController
                                 Tentesimg::where('tente_id', $tente->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $tentesimg = new Tentesimg();
                                     $tentesimg->tente_id = $tente->id;
-                                    $tentesimg->picture = $path;
+                                    $tentesimg->picture = $largePath;
+                                    $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->save();
                                 }
-
 
 
 
@@ -5363,7 +5973,7 @@ class ListingController extends JsonApiController
                                 $clothes->title = $title;
                                 $clothes->price = $price;
 
-                                $clothes->price = $price;
+                                $clothes->phone = $phone;
 
                                 $clothes->address = $address;
                                 $clothes->city = $city;
@@ -5393,13 +6003,19 @@ class ListingController extends JsonApiController
                                 Clothesimg::where('clothes_id', $clothes->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $clothessimg = new Clothesimg();
                                     $clothessimg->clothes_id = $clothes->id;
-                                    $clothessimg->picture = $path;
+                                    $clothessimg->picture = $largePath;
+                                    $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->save();
                                 }
-
 
 
 
@@ -5427,7 +6043,7 @@ class ListingController extends JsonApiController
                                 $jewelry->title = $title;
                                 $jewelry->price = $price;
 
-                                $jewelry->price = $price;
+                                $jewelry->phone = $phone;
 
                                 $jewelry->address = $address;
                                 $jewelry->city = $city;
@@ -5458,13 +6074,19 @@ class ListingController extends JsonApiController
                                 Jewelrysimg::where('jewelry_id', $jewelry->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $jewelrysimg = new Jewelrysimg();
                                     $jewelrysimg->jewelry_id = $jewelry->id;
-                                    $jewelrysimg->picture = $path;
+                                    $jewelrysimg->picture = $largePath;
+                                    $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->save();
                                 }
-
 
 
 
@@ -5491,7 +6113,7 @@ class ListingController extends JsonApiController
                                 $apartment->title = $title;
                                 $apartment->price = $price;
 
-                                $apartment->price = $price;
+                                $apartment->phone = $phone;
 
                                 $apartment->address = $address;
                                 $apartment->city = $city;
@@ -5523,13 +6145,18 @@ class ListingController extends JsonApiController
                                 Apartmentsimg::where('apartment_id', $apartment->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $apartmentsimg = new Apartmentsimg();
                                     $apartmentsimg->apartment_id = $apartment->id;
-                                    $apartmentsimg->picture = $path;
+                                    $apartmentsimg->picture = $largePath;
+                                    $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->save();
                                 }
-
 
 
 
@@ -5558,7 +6185,7 @@ class ListingController extends JsonApiController
                                 $bureaux->title = $title;
                                 $bureaux->price = $price;
 
-                                $bureaux->price = $price;
+                                $bureaux->phone = $phone;
 
                                 $bureaux->address = $address;
                                 $bureaux->city = $city;
@@ -5596,14 +6223,20 @@ class ListingController extends JsonApiController
                                 Bureauxsimg::where('bureaux_id', $bureaux->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $bureauxsimg = new Bureauxsimg();
                                     $bureauxsimg->bureaux_id = $bureaux->id;
-                                    $bureauxsimg->picture = $path;
+                                    $bureauxsimg->picture = $largePath;
+                                    $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->save();
                                 }
-
-
 
 
 
@@ -5629,7 +6262,7 @@ class ListingController extends JsonApiController
                                 $magasin->title = $title;
                                 $magasin->price = $price;
 
-                                $magasin->price = $price;
+                                $magasin->phone = $phone;
 
                                 $magasin->address = $address;
                                 $magasin->city = $city;
@@ -5666,10 +6299,16 @@ class ListingController extends JsonApiController
                                 Magasinsimg::where('magasin_id', $magasin->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $magasinsimg = new Magasinsimg();
                                     $magasinsimg->magasin_id = $magasin->id;
-                                    $magasinsimg->picture = $path;
+                                    $magasinsimg->picture = $largePath;
+                                    $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->save();
                                 }
 
@@ -5699,7 +6338,7 @@ class ListingController extends JsonApiController
                                 $maison->title = $title;
                                 $maison->price = $price;
 
-                                $maison->price = $price;
+                                $maison->phone = $phone;
 
                                 $maison->address = $address;
                                 $maison->city = $city;
@@ -5730,13 +6369,18 @@ class ListingController extends JsonApiController
                                 Maisonsimg::where('maison_id', $maison->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $maisonsimg = new Maisonsimg();
                                     $maisonsimg->maison_id = $maison->id;
-                                    $maisonsimg->picture = $path;
+                                    $maisonsimg->picture = $largePath;
+                                    $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->save();
                                 }
-
 
 
                 break;
@@ -5763,7 +6407,7 @@ class ListingController extends JsonApiController
                                 $riad->title = $title;
                                 $riad->price = $price;
 
-                                $riad->price = $price;
+                                $riad->phone = $phone;
 
                                 $riad->address = $address;
                                 $riad->city = $city;
@@ -5823,13 +6467,19 @@ class ListingController extends JsonApiController
                                 Riadsimg::where('riad_id', $riad->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $riadsimg = new Riadsimg();
                                     $riadsimg->riad_id = $riad->id;
-                                    $riadsimg->picture = $path;
+                                    $riadsimg->picture = $largePath;
+                                    $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->save();
                                 }
-
 
 
 
@@ -5855,7 +6505,7 @@ class ListingController extends JsonApiController
                                 $terrain->title = $title;
                                 $terrain->price = $price;
 
-                                $terrain->price = $price;
+                                $terrain->phone = $phone;
 
                                 $terrain->address = $address;
                                 $terrain->city = $city;
@@ -5893,13 +6543,18 @@ class ListingController extends JsonApiController
                                 Terrainsimg::where('terrain_id', $terrain->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $terrainsimg = new Terrainsimg();
                                     $terrainsimg->terrain_id = $terrain->id;
-                                    $terrainsimg->picture = $path;
+                                    $terrainsimg->picture = $largePath;
+                                    $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->save();
                                 }
-
 
 
 
@@ -5927,7 +6582,7 @@ class ListingController extends JsonApiController
                                 $villa->title = $title;
                                 $villa->price = $price;
 
-                                $villa->price = $price;
+                                $villa->phone = $phone;
 
                                 $villa->address = $address;
                                 $villa->city = $city;
@@ -5958,14 +6613,20 @@ class ListingController extends JsonApiController
                                 Villasimg::where('villa_id', $villa->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $villasimg = new Villasimg();
                                     $villasimg->villa_id = $villa->id;
-                                    $villasimg->picture = $path;
+                                    $villasimg->picture = $largePath;
+                                    $villasimg->picturesmall = $smallPath;
                                     $villasimg->save();
                                 }
-
-
 
 
                 break;
@@ -5990,7 +6651,7 @@ class ListingController extends JsonApiController
 
                                 $activity->title = $title;
                                 $activity->price = $price;
-                                $activity->price = $price;
+                                $activity->phone = $phone;
 
                                 $activity->address = $address;
                                 $activity->city = $city;
@@ -6020,14 +6681,19 @@ class ListingController extends JsonApiController
 
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $activitiesimg = new Activitiesimg();
                                     $activitiesimg->activity_id = $activity->id;
-                                    $activitiesimg->picture = $path;
+                                    $activitiesimg->picture = $largePath;
+                                    $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->save();
                                 }
-
-
 
 
                 break;
@@ -6055,7 +6721,7 @@ class ListingController extends JsonApiController
                                 $livre->title = $title;
                                 $livre->price = $price;
 
-                                $livre->price = $price;
+                                $livre->phone = $phone;
 
                                 $livre->address = $address;
                                 $livre->city = $city;
@@ -6082,13 +6748,19 @@ class ListingController extends JsonApiController
                                 Livresimg::where('livre_id', $livre->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $livresimg = new Livresimg();
                                     $livresimg->livre_id = $livre->id;
-                                    $livresimg->picture = $path;
+                                    $livresimg->picture = $largePath;
+                                    $livresimg->picturesmall = $smallPath;
                                     $livresimg->save();
                                 }
-
 
 
                 break;
@@ -6116,7 +6788,7 @@ class ListingController extends JsonApiController
                                 $musical->title = $title;
                                 $musical->price = $price;
 
-                                $musical->price = $price;
+                                $musical->phone = $phone;
 
                                 $musical->address = $address;
                                 $musical->city = $city;
@@ -6144,13 +6816,19 @@ class ListingController extends JsonApiController
                                 Musicalsimg::where('musical_id', $musical->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $musicalsimg = new Musicalsimg();
                                     $musicalsimg->musical_id = $musical->id;
-                                    $musicalsimg->picture = $path;
+                                    $musicalsimg->picture = $largePath;
+                                    $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->save();
                                 }
-
 
 
 
@@ -6179,7 +6857,7 @@ class ListingController extends JsonApiController
                                 $furniture->title = $title;
                                 $furniture->price = $price;
 
-                                $furniture->price = $price;
+                                $furniture->phone = $phone;
 
                                 $furniture->address = $address;
                                 $furniture->city = $city;
@@ -6210,13 +6888,18 @@ class ListingController extends JsonApiController
                                 Furnituresimg::where('furniture_id', $furniture->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $furnituresimg = new Furnituresimg();
                                     $furnituresimg->furniture_id = $furniture->id;
-                                    $furnituresimg->picture = $path;
+                                    $furnituresimg->picture = $largePath;
+                                    $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->save();
                                 }
-
 
 
 
@@ -6245,7 +6928,7 @@ class ListingController extends JsonApiController
                                 $houseappliance->title = $title;
                                 $houseappliance->price = $price;
 
-                                $houseappliance->price = $price;
+                                $houseappliance->phone = $phone;
 
                                 $houseappliance->address = $address;
                                 $houseappliance->city = $city;
@@ -6276,13 +6959,19 @@ class ListingController extends JsonApiController
                                 Houseappliancesimg::where('houseappliance_id', $houseappliance->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $houseappliancesimg = new Houseappliancesimg();
                                     $houseappliancesimg->houseappliance_id = $houseappliance->id;
-                                    $houseappliancesimg->picture = $path;
+                                    $houseappliancesimg->picture = $largePath;
+                                    $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->save();
                                 }
-
 
 
 
@@ -6311,7 +7000,7 @@ class ListingController extends JsonApiController
                                 $electricaltool->title = $title;
                                 $electricaltool->price = $price;
 
-                                $electricaltool->price = $price;
+                                $electricaltool->phone = $phone;
 
                                 $electricaltool->address = $address;
                                 $electricaltool->city = $city;
@@ -6351,14 +7040,20 @@ class ListingController extends JsonApiController
                                 Electricaltoolsimg::where('electricaltool_id', $electricaltool->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $electricaltoolsimg = new Electricaltoolsimg();
                                     $electricaltoolsimg->electricaltool_id = $electricaltool->id;
-                                    $electricaltoolsimg->picture = $path;
+                                    $electricaltoolsimg->picture = $largePath;
+                                    $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->save();
                                 }
-
-
 
 
 
@@ -6388,7 +7083,7 @@ class ListingController extends JsonApiController
                                 $ladder->title = $title;
                                 $ladder->price = $price;
 
-                                $ladder->price = $price;
+                                $ladder->phone = $phone;
 
                                 $ladder->address = $address;
                                 $ladder->city = $city;
@@ -6422,13 +7117,19 @@ class ListingController extends JsonApiController
                                 Laddersimg::where('ladder_id', $ladder->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $laddersimg = new Laddersimg();
                                     $laddersimg->ladder_id = $ladder->id;
-                                    $laddersimg->picture = $path;
+                                    $laddersimg->picture = $largePath;
+                                    $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->save();
                                 }
-
 
 
                 break;
@@ -6456,7 +7157,7 @@ class ListingController extends JsonApiController
                                 $mechanicaltool->title = $title;
                                 $mechanicaltool->price = $price;
 
-                                $mechanicaltool->price = $price;
+                                $mechanicaltool->phone = $phone;
 
                                 $mechanicaltool->address = $address;
                                 $mechanicaltool->city = $city;
@@ -6490,13 +7191,19 @@ class ListingController extends JsonApiController
                                 Mechanicaltoolsimg::where('mechanicaltool_id', $mechanicaltool->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $mechanicaltoolsimg = new Mechanicaltoolsimg();
                                     $mechanicaltoolsimg->mechanicaltool_id = $mechanicaltool->id;
-                                    $mechanicaltoolsimg->picture = $path;
+                                    $mechanicaltoolsimg->picture = $largePath;
+                                    $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->save();
                                 }
-
 
 
 
@@ -6523,7 +7230,7 @@ class ListingController extends JsonApiController
                                 $powertool->title = $title;
                                 $powertool->price = $price;
 
-                                $powertool->price = $price;
+                                $powertool->phone = $phone;
 
                                 $powertool->address = $address;
                                 $powertool->city = $city;
@@ -6560,13 +7267,18 @@ class ListingController extends JsonApiController
                                 Powertoolsimg::where('powertool_id', $powertool->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $powertoolsimg = new Powertoolsimg();
                                     $powertoolsimg->powertool_id = $powertool->id;
-                                    $powertoolsimg->picture = $path;
+                                    $powertoolsimg->picture = $largePath;
+                                    $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->save();
                                 }
-
 
 
                 break;
@@ -6594,7 +7306,7 @@ class ListingController extends JsonApiController
                                 $pressurewasher->title = $title;
                                 $pressurewasher->price = $price;
 
-                                $pressurewasher->price = $price;
+                                $pressurewasher->phone = $phone;
 
                                 $pressurewasher->address = $address;
                                 $pressurewasher->city = $city;
@@ -6633,13 +7345,19 @@ class ListingController extends JsonApiController
                                 Pressurewashersimg::where('pressurewasher_id', $pressurewasher->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $pressurewashersimg = new Pressurewashersimg();
                                     $pressurewashersimg->pressurewasher_id = $pressurewasher->id;
-                                    $pressurewashersimg->picture = $path;
+                                    $pressurewashersimg->picture = $largePath;
+                                    $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->save();
                                 }
-
 
 
                 break;
@@ -6665,7 +7383,7 @@ class ListingController extends JsonApiController
                                 $service->title = $title;
                                 $service->price = $price;
 
-                                $service->price = $price;
+                                $service->phone = $phone;
 
                                 $service->address = $address;
                                 $service->city = $city;
@@ -6700,14 +7418,20 @@ class ListingController extends JsonApiController
                                 Servicesimg::where('service_id', $service->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $servicesimg = new Servicesimg();
                                     $servicesimg->service_id = $service->id;
-                                    $servicesimg->picture = $path;
+                                    $servicesimg->picture = $largePath;
+                                    $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->save();
                                 }
-
-
 
 
                 break;
@@ -6734,7 +7458,7 @@ class ListingController extends JsonApiController
                                 $boat->title = $title;
                                 $boat->price = $price;
 
-                                $boat->price = $price;
+                                $boat->phone = $phone;
 
                                 $boat->address = $address;
                                 $boat->city = $city;
@@ -6767,13 +7491,19 @@ class ListingController extends JsonApiController
 
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $boatsimg = new Boatsimg();
                                     $boatsimg->boat_id = $boat->id;
-                                    $boatsimg->picture = $path;
+                                    $boatsimg->picture = $largePath;
+                                    $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->save();
                                 }
-
 
 
                 break;
@@ -6799,7 +7529,7 @@ class ListingController extends JsonApiController
                                 $camion->title = $title;
                                 $camion->price = $price;
 
-                                $camion->price = $price;
+                                $camion->phone = $phone;
 
                                 $camion->address = $address;
                                 $camion->city = $city;
@@ -6829,13 +7559,18 @@ class ListingController extends JsonApiController
                                 Camionsimg::where('camion_id', $camion->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $camionsimg = new Camionsimg();
                                     $camionsimg->camion_id = $camion->id;
-                                    $camionsimg->picture = $path;
+                                    $camionsimg->picture = $largePath;
+                                    $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->save();
                                 }
-
 
 
                 break;
@@ -6860,7 +7595,7 @@ class ListingController extends JsonApiController
                                 $caravan->title = $title;
                                 $caravan->price = $price;
 
-                                $caravan->price = $price;
+                                $caravan->phone = $phone;
 
                                 $caravan->address = $address;
                                 $caravan->city = $city;
@@ -6889,13 +7624,19 @@ class ListingController extends JsonApiController
                                 Caravansimg::where('caravan_id', $caravan->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $caravansimg = new Caravansimg();
                                     $caravansimg->caravan_id = $caravan->id;
-                                    $caravansimg->picture = $path;
+                                    $caravansimg->picture = $largePath;
+                                    $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->save();
                                 }
-
 
 
                 break;
@@ -6922,7 +7663,7 @@ class ListingController extends JsonApiController
                                 $car->title = $title;
                                 $car->price = $price;
 
-                                $car->price = $price;
+                                $car->phone = $phone;
 
                                 $car->address = $address;
                                 $car->city = $city;
@@ -6949,13 +7690,18 @@ class ListingController extends JsonApiController
                                 Carsimg::where('car_id', $car->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $carsimg = new Carsimg();
                                     $carsimg->car_id = $car->id;
-                                    $carsimg->picture = $path;
+                                    $carsimg->picture = $largePath;
+                                    $carsimg->picturesmall = $smallPath;
                                     $carsimg->save();
                                 }
-
 
 
 
@@ -6984,7 +7730,7 @@ class ListingController extends JsonApiController
                                 $engin->title = $title;
                                 $engin->price = $price;
 
-                                $engin->price = $price;
+                                $engin->phone = $phone;
 
                                 $engin->address = $address;
                                 $engin->city = $city;
@@ -7012,13 +7758,19 @@ class ListingController extends JsonApiController
                                 Enginsimg::where('engin_id', $engin->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $enginsimg = new Enginsimg();
                                     $enginsimg->engin_id = $engin->id;
-                                    $enginsimg->picture = $path;
+                                    $enginsimg->picture = $largePath;
+                                    $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->save();
                                 }
-
 
 
 
@@ -7048,7 +7800,7 @@ class ListingController extends JsonApiController
                                 $moto->title = $title;
                                 $moto->price = $price;
 
-                                $moto->price = $price;
+                                $moto->phone = $phone;
 
                                 $moto->address = $address;
                                 $moto->city = $city;
@@ -7078,13 +7830,18 @@ class ListingController extends JsonApiController
                                 Motosimg::where('moto_id', $moto->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $motosimg = new Motosimg();
                                     $motosimg->moto_id = $moto->id;
-                                    $motosimg->picture = $path;
+                                    $motosimg->picture = $largePath;
+                                    $motosimg->picturesmall = $smallPath;
                                     $motosimg->save();
                                 }
-
 
 
 
@@ -7113,7 +7870,7 @@ class ListingController extends JsonApiController
                                 $scooter->title = $title;
                                 $scooter->price = $price;
 
-                                $scooter->price = $price;
+                                $scooter->phone = $phone;
 
                                 $scooter->address = $address;
                                 $scooter->city = $city;
@@ -7138,13 +7895,19 @@ class ListingController extends JsonApiController
                                 Scootersimg::where('scooter_id', $scooter->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $scootersimg = new Scootersimg();
                                     $scootersimg->scooter_id = $scooter->id;
-                                    $scootersimg->picture = $path;
+                                    $scootersimg->picture = $largePath;
+                                    $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->save();
                                 }
-
 
 
 
@@ -7173,7 +7936,7 @@ class ListingController extends JsonApiController
                                 $taxiaeroport->title = $title;
                                 $taxiaeroport->price = $price;
 
-                                $taxiaeroport->price = $price;
+                                $taxiaeroport->phone = $phone;
 
                                 $taxiaeroport->address = $address;
                                 $taxiaeroport->city = $city;
@@ -7198,13 +7961,19 @@ class ListingController extends JsonApiController
                                 Taxiaeroportsimg::where('taxiaeroport_id', $taxiaeroport->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $taxiaeroportsimg = new Taxiaeroportsimg();
                                     $taxiaeroportsimg->taxiaeroport_id = $taxiaeroport->id;
-                                    $taxiaeroportsimg->picture = $path;
+                                    $taxiaeroportsimg->picture = $largePath;
+                                    $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->save();
                                 }
-
 
 
 
@@ -7232,7 +8001,7 @@ class ListingController extends JsonApiController
                                 $transportation->title = $title;
                                 $transportation->price = $price;
 
-                                $transportation->price = $price;
+                                $transportation->phone = $phone;
 
                                 $transportation->address = $address;
                                 $transportation->city = $city;
@@ -7260,14 +8029,20 @@ class ListingController extends JsonApiController
                                 Transportationsimg::where('transportation_id', $transportation->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $transportationsimg = new Transportationsimg();
                                     $transportationsimg->transportation_id = $transportation->id;
-                                    $transportationsimg->picture = $path;
+                                    $transportationsimg->picture = $largePath;
+                                    $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->save();
                                 }
-
-
 
 
                 break;
@@ -7293,7 +8068,7 @@ class ListingController extends JsonApiController
 
                                 $velo->title = $title;
                                 $velo->price = $price;
-                                $velo->price = $price;
+                                $velo->phone = $phone;
 
                                 $velo->address = $address;
                                 $velo->city = $city;
@@ -7321,13 +8096,19 @@ class ListingController extends JsonApiController
                                 Velosimg::where('velo_id', $velo->id)->delete();
 
 
-                                foreach ($imagePaths as $path) {
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+
+
                                     $velosimg = new Velosimg();
                                     $velosimg->velo_id = $velo->id;
-                                    $velosimg->picture = $path;
+                                    $velosimg->picture = $largePath;
+                                    $velosimg->picturesmall = $smallPath;
                                     $velosimg->save();
                                 }
-
 
 
 

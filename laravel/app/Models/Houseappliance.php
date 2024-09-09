@@ -23,7 +23,7 @@ class Houseappliance extends Model
 
 
 
-    public function houseappliancesimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Houseappliancesimg::class);

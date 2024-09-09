@@ -24,7 +24,7 @@ class Tennis extends Model
 
 
 
-    public function tennisimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Tennisimg::class);

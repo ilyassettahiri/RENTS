@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->string('type')->nullable();
             $table->string('phone', 15)->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->nullable();
 
 
             $table->string('zip', 10)->nullable();

@@ -33,7 +33,6 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
 
-use App\Models\Generaleinfo;
 
 
 
@@ -339,7 +338,7 @@ class ServicePageController extends JsonApiController
             $totalReviews = $reviewslistings->count();
             $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
 
-            $generaleinfo = Generaleinfo::find(1);
+
 
 
 
@@ -466,8 +465,12 @@ class ServicePageController extends JsonApiController
                             'picture' => $recentlisting->picture,
                             'phone' => $recentlisting->phone,
 
-                            'images' => Servicesimg::where('service_id', $recentlisting->id)->get()->map(function ($image) {
-                                return $image->picture;
+                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                return [
+
+                                    'picturesmall' => $image->picturesmall,
+                                    'alttext' => $image->alttext,
+                                ];
                             }),
 
                             'seller' => [
@@ -485,16 +488,6 @@ class ServicePageController extends JsonApiController
                     }),
 
 
-                    'socials' => [
-                        'facebook' => $generaleinfo->facebook,
-                        'twitter' => $generaleinfo->twitter, // X / Twitter
-                        'instagram' => $generaleinfo->instagram,
-                        'linkedin' => $generaleinfo->linkedin,
-                        'pinterest' => $generaleinfo->pinterest,
-                        'telegram' => $generaleinfo->telegram,
-                        'tiktok' => $generaleinfo->tiktok,
-                        'youtube' => $generaleinfo->youtube,
-                ],
 
 
 

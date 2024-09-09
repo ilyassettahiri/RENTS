@@ -23,7 +23,7 @@ class Ladder extends Model
 
 
 
-    public function laddersimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Laddersimg::class);

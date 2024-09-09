@@ -22,7 +22,7 @@ class Audio extends Model
     protected $fillable = ['address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
 
 
-    public function audiosimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Audiosimg::class);

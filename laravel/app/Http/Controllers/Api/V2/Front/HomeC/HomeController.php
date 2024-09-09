@@ -318,8 +318,12 @@ class HomeController extends JsonApiController
                     'created_at' => $apartment->created_at,
                     'picture' => $apartment->picture,
 
-                    'images' => Apartmentsimg::where('apartment_id', $apartment->id)->get()->map(function ($image) {
-                        return $image->picture;
+                    'images' => $apartment->apartmentsimg->map(function ($image) {
+                        return [
+
+                            'picturesmall' => $image->picturesmall,
+                            'alttext' => $image->alttext,
+                        ];
                     }),
 
                     'seller' => [
@@ -365,8 +369,13 @@ class HomeController extends JsonApiController
                     'created_at' => $billiard->created_at,
                     'picture' => $billiard->picture,
 
-                    'images' => Billiardsimg::where('billiard_id', $billiard->id)->get()->map(function ($image) {
-                        return $image->picture;
+                    'images' => $billiard->billiardsimg->map(function ($image) {
+                        return [
+
+                            'picturesmall' => $image->picturesmall,
+                            'alttext' => $image->alttext,
+                        ];
+
                     }),
 
                     'seller' => [
@@ -404,9 +413,17 @@ class HomeController extends JsonApiController
                     'phone' => $velo->phone,
 
 
-                    'images' => Velosimg::where('velo_id', $velo->id)->get()->map(function ($image) {
-                        return $image->picture;
+                    'images' => $velo->velosimg->map(function ($image) {
+                        return [
+
+                            'picturesmall' => $image->picturesmall,
+                            'alttext' => $image->alttext,
+                        ];
                     }),
+
+
+
+
 
                     'category' => 'velos',
                     'url' => $velo->url,

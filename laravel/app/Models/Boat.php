@@ -23,7 +23,7 @@ class Boat extends Model
     protected $fillable = ['address','city','onlinestore_id','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
 
 
-    public function boatsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Boatsimg::class);

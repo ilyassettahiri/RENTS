@@ -24,7 +24,7 @@ class Photographie extends Model
 
 
 
-    public function photographiesimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Photographiesimg::class);

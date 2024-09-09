@@ -22,7 +22,7 @@ class Magasin extends Model
     protected $fillable = ['onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','property_type'];
 
 
-    public function magasinsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Magasinsimg::class);

@@ -23,7 +23,7 @@ class Bureaux extends Model
 
 
 
-    public function bureauxsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Bureauxsimg::class);

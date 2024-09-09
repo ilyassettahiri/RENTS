@@ -31,7 +31,7 @@ class Boxing extends Model
     }
 
 
-    public function boxingsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Boxingsimg::class);

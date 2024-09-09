@@ -23,7 +23,7 @@ class Villa extends Model
 
 
 
-    public function villasimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Villasimg::class);

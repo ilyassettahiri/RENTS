@@ -23,7 +23,7 @@ class Taxiaeroport extends Model
 
 
 
-    public function taxiaeroportsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Taxiaeroportsimg::class);

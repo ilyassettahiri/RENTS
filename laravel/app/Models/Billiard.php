@@ -45,7 +45,7 @@ class Billiard extends Model
     }
 
 
-    public function billiardsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Billiardsimg::class);

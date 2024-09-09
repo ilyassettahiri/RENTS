@@ -22,7 +22,7 @@ class Riad extends Model
     protected $fillable = ['onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','doorkeeper'];
 
 
-    public function riadsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Riadsimg::class);

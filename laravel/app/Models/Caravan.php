@@ -23,7 +23,7 @@ class Caravan extends Model
 
 
 
-    public function caravansimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Caravansimg::class);

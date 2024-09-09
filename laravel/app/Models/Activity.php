@@ -23,7 +23,7 @@ class Activity extends Model
 
 
 
-    public function activitiesimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Activitiesimg::class);

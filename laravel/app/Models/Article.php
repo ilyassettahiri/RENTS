@@ -37,7 +37,7 @@ class Article extends Model
 
 
 
-    public function articleimgs(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Articleimg::class);

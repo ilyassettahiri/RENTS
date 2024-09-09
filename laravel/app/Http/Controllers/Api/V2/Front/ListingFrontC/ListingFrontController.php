@@ -512,8 +512,12 @@ class ListingFrontController extends JsonApiController
 
                                             'averageRating' => $averageRating,
 
-                                            'images' => Billiardsimg::where('billiard_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             'phone' => $recentlisting->phone,
@@ -1131,8 +1135,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Boxingsimg::where('boxing_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -1742,8 +1750,12 @@ class ListingFrontController extends JsonApiController
                                                                                                                                             'picture' => $recentlisting->picture,
 
 
-                                            'images' => Divingsimg::where('diving_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -2354,8 +2366,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Footballsimg::where('football_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -2961,8 +2977,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Golfsimg::where('golf_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
                                             ],
 
@@ -3574,8 +3594,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Huntingsimg::where('hunting_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
                                             ],
 
@@ -4187,8 +4211,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Musculationsimg::where('musculation_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -4792,8 +4820,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Surfsimg::where('surf_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -5390,8 +5422,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Tennisimg::where('tennis_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -6004,8 +6040,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Audiosimg::where('audio_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -6617,8 +6657,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Camerasimg::where('camera_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -7230,8 +7274,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Chargersimg::where('charger_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -7844,8 +7892,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Dronesimg::where('drone_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -8459,8 +8511,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Gamingsimg::where('gaming_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -9075,8 +9131,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Laptopsimg::where('laptop_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -9678,8 +9738,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Lightingsimg::where('lighting_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -10290,8 +10354,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Printersimg::where('printer_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -10899,8 +10967,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Routersimg::where('router_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -11507,8 +11579,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Tablettesimg::where('tablette_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -12124,8 +12200,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Eclairagesimg::where('eclairage_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -12734,8 +12814,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Mobiliersimg::where('mobilier_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -13333,8 +13417,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Photographiesimg::where('photographie_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -13946,8 +14034,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Sonorisationsimg::where('sonorisation_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -14554,8 +14646,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Tentesimg::where('tente_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -15156,8 +15252,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Clothesimg::where('clothes_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -15764,8 +15864,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Jewelrysimg::where('jewelry_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -16365,8 +16469,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Apartmentsimg::where('apartment_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -16976,8 +17084,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Bureauxsimg::where('bureaux_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -17585,8 +17697,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Magasinsimg::where('magasin_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -18180,8 +18296,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Maisonsimg::where('maison_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -18810,8 +18930,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Riadsimg::where('riad_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -19412,8 +19536,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Terrainsimg::where('terrain_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -20011,8 +20139,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Villasimg::where('villa_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -20608,8 +20740,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Activitiesimg::where('activity_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -21205,8 +21341,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Livresimg::where('livre_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -21798,8 +21938,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Musicalsimg::where('musical_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -22390,8 +22534,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Furnituresimg::where('furniture_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -22986,8 +23134,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Houseappliancesimg::where('houseappliance_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -23587,8 +23739,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Electricaltoolsimg::where('electricaltool_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -24187,8 +24343,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Laddersimg::where('ladder_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -24780,8 +24940,12 @@ class ListingFrontController extends JsonApiController
                                                                                                                                             'picture' => $recentlisting->picture,
 
 
-                                            'images' => Mechanicaltoolsimg::where('mechanicaltool_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -25379,8 +25543,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Powertoolsimg::where('powertool_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -25981,8 +26149,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Pressurewashersimg::where('pressurewasher_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -26581,8 +26753,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Servicesimg::where('rervice_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -27175,8 +27351,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Boatsimg::where('boat_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -27769,8 +27949,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Camionsimg::where('camion_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -28362,8 +28546,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Caravansimg::where('caravan_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -28955,8 +29143,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Carsimg::where('car_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -29553,8 +29745,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Enginsimg::where('engin_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -30148,8 +30344,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Motosimg::where('moto_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -30737,8 +30937,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Scootersimg::where('scooter_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -31326,8 +31530,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Taxiaeroportsimg::where('taxiaeroport_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
 
@@ -31916,8 +32124,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Transportationsimg::where('transportation_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],
@@ -32507,8 +32719,12 @@ class ListingFrontController extends JsonApiController
 
 
 
-                                            'images' => Velosimg::where('velo_id', $recentlisting->id)->get()->map(function ($image) {
-                                                return $image->picture;
+                                            'images' => $recentlisting->servicesimg->map(function ($image) {
+                                                return [
+
+                                                    'picturesmall' => $image->picturesmall,
+                                                    'alttext' => $image->alttext,
+                                                ];
                                             }),
 
                                             ],

@@ -23,7 +23,7 @@ class Electricaltool extends Model
 
 
 
-    public function electricaltoolsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Electricaltoolsimg::class);

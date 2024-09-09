@@ -150,6 +150,9 @@ use App\Models\Activitiesimg;
 use App\Models\Livresimg;
 use App\Models\Musicalsimg;
 
+use App\Models\Listingsimg;
+
+
 use App\Models\Furnituresimg;
 use App\Models\Houseappliancesimg;
 
@@ -484,7 +487,11 @@ class SearchController extends JsonApiController
                     $categoryIdColumn = $categoryColumnMap[$category] ?? null;
 
                     $images = $imageModel && $categoryIdColumn ? $imageModel::where($categoryIdColumn, $listing->id)->get()->map(function ($image) {
-                        return $image->picture;
+                        return [
+
+                            'picturesmall' => $image->picturesmall,
+                            'alttext' => $image->alttext,
+                        ];
                     }) : [];
 
 
@@ -563,74 +570,12 @@ class SearchController extends JsonApiController
                     $user = User::where('id', $listing->user_id)->first();
 
 
-                    $category = $listing->category;
-                    $imageModel = $this->getImageModel($category);
-
-                        // Define a mapping between category names and their foreign key column names
-                        $categoryColumnMap = [
-                            'billiards' => 'billiard_id',
-                            'boxings' => 'boxing_id',
-                            'divings' => 'diving_id',
-                            'footballs' => 'football_id',
-                            'golfs' => 'golf_id',
-                            'huntings' => 'hunting_id',
-                            'musculations' => 'musculation_id',
-                            'surfs' => 'surf_id',
-                            'tennis' => 'tennis_id',
-                            'audios' => 'audio_id',
-                            'cameras' => 'camera_id',
-                            'chargers' => 'charger_id',
-                            'drones' => 'drone_id',
-                            'gamings' => 'gaming_id',
-                            'laptops' => 'laptop_id',
-                            'lightings' => 'lighting_id',
-                            'printers' => 'printer_id',
-                            'routers' => 'router_id',
-                            'tablettes' => 'tablette_id',
-                            'eclairages' => 'eclairage_id',
-                            'mobiliers' => 'mobilier_id',
-                            'photographies' => 'photographie_id',
-                            'sonorisations' => 'sonorisation_id',
-                            'tentes' => 'tente_id',
-                            'clothes' => 'clothe_id',
-                            'jewelrys' => 'jewelry_id',
-                            'apartments' => 'apartment_id',
-                            'bureauxs' => 'bureaux_id',
-                            'magasins' => 'magasin_id',
-                            'maisons' => 'maison_id',
-                            'riads' => 'riad_id',
-                            'terrains' => 'terrain_id',
-                            'villas' => 'villa_id',
-                            'activities' => 'activity_id',
-                            'livres' => 'livre_id',
-                            'musicals' => 'musical_id',
-                            'furnitures' => 'furniture_id',
-                            'houseappliances' => 'houseappliance_id',
-                            'electricaltools' => 'electricaltool_id',
-                            'ladders' => 'ladder_id',
-                            'mechanicaltools' => 'mechanicaltool_id',
-                            'powertools' => 'powertool_id',
-                            'pressurewashers' => 'pressurewasher_id',
-                            'services' => 'service_id',
-                            'boats' => 'boat_id',
-                            'camions' => 'camion_id',
-                            'caravans' => 'caravan_id',
-                            'cars' => 'car_id',
-                            'engins' => 'engin_id',
-                            'motos' => 'moto_id',
-                            'scooters' => 'scooter_id',
-                            'taxiaeroports' => 'taxiaeroport_id',
-                            'transportations' => 'transportation_id',
-                            'velos' => 'velo_id',
+                    $images = $listing->listingsimg->map(function ($image) {
+                        return [
+                            'picturesmall' => $image->picturesmall,
+                            'alttext' => $image->alttext,
                         ];
-
-                        // Use the mapped column name
-                        $categoryIdColumn = $categoryColumnMap[$category] ?? null;
-
-                        $images = $imageModel && $categoryIdColumn ? $imageModel::where($categoryIdColumn, $listing->id)->get()->map(function ($image) {
-                            return $image->picture;
-                        }) : [];
-
+                    });
 
                         $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
                         $totalReviews = $reviews->count();

@@ -270,7 +270,11 @@ class SearchServiceController extends JsonApiController
                         'picture' => $service->picture,
 
                         'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
-                            return $image->picture;
+                            return [
+
+                                'picturesmall' => $image->picturesmall,
+                                'alttext' => $image->alttext,
+                            ];
                         }),
 
                         'seller' => [
@@ -353,8 +357,12 @@ class SearchServiceController extends JsonApiController
                         'created_at' => $service->created_at,
                         'picture' => $service->picture,
 
-                        'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
-                            return $image->picture;
+                        'images' => $service->servicesimg->map(function ($image) {
+                            return [
+
+                                'picturesmall' => $image->picturesmall,
+                                'alttext' => $image->alttext,
+                            ];
                         }),
 
                         'seller' => [

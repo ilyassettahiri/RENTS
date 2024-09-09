@@ -23,7 +23,7 @@ class Car extends Model
 
 
 
-    public function carsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Carsimg::class);

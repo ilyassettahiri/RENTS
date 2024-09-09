@@ -23,7 +23,7 @@ class Mechanicaltool extends Model
 
 
 
-    public function mechanicaltoolsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Mechanicaltoolsimg::class);

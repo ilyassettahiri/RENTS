@@ -22,7 +22,7 @@ class Surf extends Model
     protected $fillable = ['onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','surf_category'];
 
 
-    public function surfsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Surfsimg::class);

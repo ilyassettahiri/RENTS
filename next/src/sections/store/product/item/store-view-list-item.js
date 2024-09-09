@@ -217,7 +217,7 @@ function CarouselBasic1({ data, category, url }) {
                   <Image
                     key={index}
                     alt={`Image ${index + 1}`}
-                    src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item}`}
+                    src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item.picturesmall}`}
                     ratio="1/1"
                   />
 

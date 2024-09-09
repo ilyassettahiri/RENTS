@@ -23,7 +23,7 @@ class Charger extends Model
 
 
 
-    public function chargersimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Chargersimg::class);

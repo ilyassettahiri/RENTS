@@ -23,7 +23,7 @@ class Maison extends Model
 
 
 
-    public function maisonsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Maisonsimg::class);

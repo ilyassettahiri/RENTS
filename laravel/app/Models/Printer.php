@@ -26,7 +26,7 @@ class Printer extends Model
 
 
 
-    public function printersimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Printersimg::class);

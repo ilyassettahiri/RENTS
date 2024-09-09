@@ -23,7 +23,7 @@ class Clothes extends Model
 
 
 
-    public function clothesimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Clothesimg::class);

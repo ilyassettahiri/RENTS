@@ -23,7 +23,7 @@ class Scooter extends Model
 
 
 
-    public function scootersimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Scootersimg::class);

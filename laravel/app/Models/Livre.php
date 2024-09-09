@@ -23,7 +23,7 @@ class Livre extends Model
 
 
 
-    public function livresimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Livresimg::class);

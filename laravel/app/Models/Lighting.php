@@ -24,7 +24,7 @@ class Lighting extends Model
 
 
 
-    public function lightingsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Lightingsimg::class);

@@ -12,6 +12,17 @@ use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
+
+use Illuminate\Support\Str;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\GifEncoder;
+
+
 use App\Models\Listing;
 use App\Models\User;
 
@@ -51,6 +62,33 @@ class OnlinestoreController extends JsonApiController
         ]);
     }
 
+
+    private function generateUrl($title)
+    {
+
+        $url = Str::slug($title, '-', null);
+
+
+        $uniqueNumber = rand(10000000, 99999999);
+
+
+        $url .= '-' . $uniqueNumber;
+
+        return $url;
+    }
+
+
+    function generateUniqueFileName($extension = 'jpg')
+    {
+
+        $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
+        $shuffledString = str_shuffle($randomString); // Shuffle the string for added randomness
+        return $shuffledString . '.' . $extension;
+
+    }
+
+
+
     public function store(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -69,18 +107,112 @@ class OnlinestoreController extends JsonApiController
         $picturerelativePath = null;
         $profil_picturerelativePath = null;
 
-        // Handle image uploads
+
+
+        $manager = new ImageManager(new Driver());
+
         if ($request->hasFile('data.attributes.picture')) {
-            $picturefile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('public')->put('images', $picturefile);
-            $picturerelativePath = '/' . $picturePath; // Prepend '/' to make it a relative path
+            $file = $request->file('data.attributes.picture');
+
+
+                try {
+
+
+                    $imagelarge = $manager->read($file->getRealPath());
+
+
+
+                    $imagelarge->scaleDown(width: 1500);
+
+
+
+
+                    $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+
+
+
+
+                    $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+                    $filePathlarge = Storage::disk('spaces')->put('storage/storelarge/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+                    $relativePathlarge = '/storelarge/' . $fileNamelarge;
+                    $picturerelativePath = $relativePathlarge;
+
+
+
+
+
+                } catch (\Exception $e) {
+                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                }
+
         }
 
+
         if ($request->hasFile('data.attributes.profil_picture')) {
-            $profil_picturefile = $request->file('data.attributes.profil_picture');
-            $profil_picturePath = Storage::disk('public')->put('images', $profil_picturefile);
-            $profil_picturerelativePath = '/' . $profil_picturePath; // Prepend '/' to make it a relative path
+            $file = $request->file('data.attributes.profil_picture');
+
+
+                try {
+
+
+                    $imagesmall = $manager->read($file->getRealPath());
+
+
+
+                    $imagesmall->scaleDown(width: 100);
+
+
+
+
+                    $fileNamesmall = $this->generateUniqueFileName('jpg');
+
+
+
+                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+
+
+
+
+                    $encodedImagesmall->save($fileNamesmall);
+
+
+
+
+
+
+                    $filePathsmall = Storage::disk('spaces')->put('storage/storesmall/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
+
+
+
+
+                    $relativePathsmall = '/storesmall/' . $fileNamesmall;
+                    $profil_picturerelativePath = $relativePathsmall;
+
+
+
+
+
+                } catch (\Exception $e) {
+                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                }
+
         }
+
+
 
 
         /* Prod
@@ -121,7 +253,8 @@ class OnlinestoreController extends JsonApiController
         $city = $request->input('data.attributes.city');
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
-        $url = str_replace(' ', '-', $title);
+        $url = $this->generateUrl($title);
+
 
         // Create a new Onlinestore instance
         $onlinestore = new Onlinestore();

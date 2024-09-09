@@ -25,6 +25,7 @@ use App\Models\Favoritestore;
 
 
 
+use App\Models\Listingsimg;
 
 use App\Models\Listing;
 use App\Models\User;
@@ -372,814 +373,461 @@ class StoreController extends JsonApiController
                         'listings' => $listings->map(function ($listing) {
 
 
-
-
-                            $getImages = function ($listing) {
-                                $result = ['id' => null, 'images' => collect()]; // Initialize the result with default values
-
-                                switch ($listing->category) {
-                                    case 'billiards':
-                                        $billiard = Billiard::where('url', $listing->url)->first();
-                                        if ($billiard) {
-                                            $listing->billiard_id = $billiard->id;
-                                            $result['id'] = $billiard->id;
-                                            $result['images'] = Billiardsimg::where('billiard_id', $listing->billiard_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'boxings':
-                                        $boxing = Boxing::where('url', $listing->url)->first();
-                                        if ($boxing) {
-                                            $listing->boxing_id = $boxing->id;
-                                            $result['id'] = $boxing->id;
-                                            $result['images'] = Boxingsimg::where('boxing_id', $listing->boxing_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'divings':
-                                        $diving = Diving::where('url', $listing->url)->first();
-                                        if ($diving) {
-                                            $listing->diving_id = $diving->id;
-                                            $result['id'] = $diving->id;
-                                            $result['images'] = Divingsimg::where('diving_id', $listing->diving_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'footballs':
-                                        $football = Football::where('url', $listing->url)->first();
-                                        if ($football) {
-                                            $listing->football_id = $football->id;
-                                            $result['id'] = $football->id;
-                                            $result['images'] = Footballsimg::where('football_id', $listing->football_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'golfs':
-                                        $golf = Golf::where('url', $listing->url)->first();
-                                        if ($golf) {
-                                            $listing->golf_id = $golf->id;
-                                            $result['id'] = $golf->id;
-                                            $result['images'] = Golfsimg::where('golf_id', $listing->golf_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'huntings':
-                                        $hunting = Hunting::where('url', $listing->url)->first();
-                                        if ($hunting) {
-                                            $listing->hunting_id = $hunting->id;
-                                            $result['id'] = $hunting->id;
-                                            $result['images'] = Huntingsimg::where('hunting_id', $listing->hunting_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'musculations':
-                                        $musculation = Musculation::where('url', $listing->url)->first();
-                                        if ($musculation) {
-                                            $listing->musculation_id = $musculation->id;
-                                            $result['id'] = $musculation->id;
-                                            $result['images'] = Musculationsimg::where('musculation_id', $listing->musculation_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'surfs':
-                                        $surf = Surf::where('url', $listing->url)->first();
-                                        if ($surf) {
-                                            $listing->surf_id = $surf->id;
-                                            $result['id'] = $surf->id;
-                                            $result['images'] = Surfsimg::where('surf_id', $listing->surf_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'tennis':
-                                        $tennis = Tennis::where('url', $listing->url)->first();
-                                        if ($tennis) {
-                                            $listing->tennis_id = $tennis->id;
-                                            $result['id'] = $tennis->id;
-                                            $result['images'] = Tennisimg::where('tennis_id', $listing->tennis_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Electronique
-                                    case 'audios':
-                                        $audio = Audio::where('url', $listing->url)->first();
-                                        if ($audio) {
-                                            $listing->audio_id = $audio->id;
-                                            $result['id'] = $audio->id;
-                                            $result['images'] = Audiosimg::where('audio_id', $listing->audio_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'cameras':
-                                        $camera = Camera::where('url', $listing->url)->first();
-                                        if ($camera) {
-                                            $listing->camera_id = $camera->id;
-                                            $result['id'] = $camera->id;
-                                            $result['images'] = Camerasimg::where('camera_id', $listing->camera_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'chargers':
-                                        $charger = Charger::where('url', $listing->url)->first();
-                                        if ($charger) {
-                                            $listing->charger_id = $charger->id;
-                                            $result['id'] = $charger->id;
-                                            $result['images'] = Chargersimg::where('charger_id', $listing->charger_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'drones':
-                                        $drone = Drone::where('url', $listing->url)->first();
-                                        if ($drone) {
-                                            $listing->drone_id = $drone->id;
-                                            $result['id'] = $drone->id;
-                                            $result['images'] = Dronesimg::where('drone_id', $listing->drone_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'gamings':
-                                        $gaming = Gaming::where('url', $listing->url)->first();
-                                        if ($gaming) {
-                                            $listing->gaming_id = $gaming->id;
-                                            $result['id'] = $gaming->id;
-                                            $result['images'] = Gamingsimg::where('gaming_id', $listing->gaming_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'laptops':
-                                        $laptop = Laptop::where('url', $listing->url)->first();
-                                        if ($laptop) {
-                                            $listing->laptop_id = $laptop->id;
-                                            $result['id'] = $laptop->id;
-                                            $result['images'] = Laptopsimg::where('laptop_id', $listing->laptop_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'lightings':
-                                        $lighting = Lighting::where('url', $listing->url)->first();
-                                        if ($lighting) {
-                                            $listing->lighting_id = $lighting->id;
-                                            $result['id'] = $lighting->id;
-                                            $result['images'] = Lightingsimg::where('lighting_id', $listing->lighting_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'printers':
-                                        $printer = Printer::where('url', $listing->url)->first();
-                                        if ($printer) {
-                                            $listing->printer_id = $printer->id;
-                                            $result['id'] = $printer->id;
-                                            $result['images'] = Printersimg::where('printer_id', $listing->printer_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'routers':
-                                        $router = Router::where('url', $listing->url)->first();
-                                        if ($router) {
-                                            $listing->router_id = $router->id;
-                                            $result['id'] = $router->id;
-                                            $result['images'] = Routersimg::where('router_id', $listing->router_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'tablettes':
-                                        $tablette = Tablette::where('url', $listing->url)->first();
-                                        if ($tablette) {
-                                            $listing->tablette_id = $tablette->id;
-                                            $result['id'] = $tablette->id;
-                                            $result['images'] = Tablettesimg::where('tablette_id', $listing->tablette_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Evenement
-                                    case 'eclairages':
-                                        $eclairage = Eclairage::where('url', $listing->url)->first();
-                                        if ($eclairage) {
-                                            $listing->eclairage_id = $eclairage->id;
-                                            $result['id'] = $eclairage->id;
-                                            $result['images'] = Eclairagesimg::where('eclairage_id', $listing->eclairage_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'mobiliers':
-                                        $mobilier = Mobilier::where('url', $listing->url)->first();
-                                        if ($mobilier) {
-                                            $listing->mobilier_id = $mobilier->id;
-                                            $result['id'] = $mobilier->id;
-                                            $result['images'] = Mobiliersimg::where('mobilier_id', $listing->mobilier_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'photographies':
-                                        $photographie = Photographie::where('url', $listing->url)->first();
-                                        if ($photographie) {
-                                            $listing->photographie_id = $photographie->id;
-                                            $result['id'] = $photographie->id;
-                                            $result['images'] = Photographiesimg::where('photographie_id', $listing->photographie_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'sonorisations':
-                                        $sonorisation = Sonorisation::where('url', $listing->url)->first();
-                                        if ($sonorisation) {
-                                            $listing->sonorisation_id = $sonorisation->id;
-                                            $result['id'] = $sonorisation->id;
-                                            $result['images'] = Sonorisationsimg::where('sonorisation_id', $listing->sonorisation_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'tentes':
-                                        $tente = Tente::where('url', $listing->url)->first();
-                                        if ($tente) {
-                                            $listing->tente_id = $tente->id;
-                                            $result['id'] = $tente->id;
-                                            $result['images'] = Tentesimg::where('tente_id', $listing->tente_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Habillement
-                                    case 'clothes':
-                                        $clothes = Clothes::where('url', $listing->url)->first();
-                                        if ($clothes) {
-                                            $listing->clothes_id = $clothes->id;
-                                            $result['id'] = $clothes->id;
-                                            $result['images'] = Clothesimg::where('clothes_id', $listing->clothes_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'jewelrys':
-                                        $jewelry = Jewelry::where('url', $listing->url)->first();
-                                        if ($jewelry) {
-                                            $listing->jewelry_id = $jewelry->id;
-                                            $result['id'] = $jewelry->id;
-                                            $result['images'] = Jewelrysimg::where('jewelry_id', $listing->jewelry_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Immobilier
-                                    case 'apartments':
-                                        $apartment = Apartment::where('url', $listing->url)->first();
-                                        if ($apartment) {
-                                            $listing->apartment_id = $apartment->id;
-                                            $result['id'] = $apartment->id;
-                                            $result['images'] = Apartmentsimg::where('apartment_id', $listing->apartment_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'bureauxs':
-                                        $bureaux = Bureaux::where('url', $listing->url)->first();
-                                        if ($bureaux) {
-                                            $listing->bureaux_id = $bureaux->id;
-                                            $result['id'] = $bureaux->id;
-                                            $result['images'] = Bureauxsimg::where('bureaux_id', $listing->bureaux_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'magasins':
-                                        $magasin = Magasin::where('url', $listing->url)->first();
-                                        if ($magasin) {
-                                            $listing->magasin_id = $magasin->id;
-                                            $result['id'] = $magasin->id;
-                                            $result['images'] = Magasinsimg::where('magasin_id', $listing->magasin_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'maisons':
-                                        $maison = Maison::where('url', $listing->url)->first();
-                                        if ($maison) {
-                                            $listing->maison_id = $maison->id;
-                                            $result['id'] = $maison->id;
-                                            $result['images'] = Maisonsimg::where('maison_id', $listing->maison_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'riads':
-                                        $riad = Riad::where('url', $listing->url)->first();
-                                        if ($riad) {
-                                            $listing->riad_id = $riad->id;
-                                            $result['id'] = $riad->id;
-                                            $result['images'] = Riadsimg::where('riad_id', $listing->riad_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'terrains':
-                                        $terrain = Terrain::where('url', $listing->url)->first();
-                                        if ($terrain) {
-                                            $listing->terrain_id = $terrain->id;
-                                            $result['id'] = $terrain->id;
-                                            $result['images'] = Terrainsimg::where('terrain_id', $listing->terrain_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'villas':
-                                        $villa = Villa::where('url', $listing->url)->first();
-                                        if ($villa) {
-                                            $listing->villa_id = $villa->id;
-                                            $result['id'] = $villa->id;
-                                            $result['images'] = Villasimg::where('villa_id', $listing->villa_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Loisirs
-                                    case 'activities':
-                                        $activity = Activity::where('url', $listing->url)->first();
-                                        if ($activity) {
-                                            $listing->activity_id = $activity->id;
-                                            $result['id'] = $activity->id;
-                                            $result['images'] = Activitiesimg::where('activity_id', $listing->activity_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'livres':
-                                        $livre = Livre::where('url', $listing->url)->first();
-                                        if ($livre) {
-                                            $listing->livre_id = $livre->id;
-                                            $result['id'] = $livre->id;
-                                            $result['images'] = Livresimg::where('livre_id', $listing->livre_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'musicals':
-                                        $musical = Musical::where('url', $listing->url)->first();
-                                        if ($musical) {
-                                            $listing->musical_id = $musical->id;
-                                            $result['id'] = $musical->id;
-                                            $result['images'] = Musicalsimg::where('musical_id', $listing->musical_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Maison et Jardin
-                                    case 'furnitures':
-                                        $furniture = Furniture::where('url', $listing->url)->first();
-                                        if ($furniture) {
-                                            $listing->furniture_id = $furniture->id;
-                                            $result['id'] = $furniture->id;
-                                            $result['images'] = Furnituresimg::where('furniture_id', $listing->furniture_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'houseappliances':
-                                        $houseappliance = Houseappliance::where('url', $listing->url)->first();
-                                        if ($houseappliance) {
-                                            $listing->houseappliance_id = $houseappliance->id;
-                                            $result['id'] = $houseappliance->id;
-                                            $result['images'] = Houseappliancesimg::where('houseappliance_id', $listing->houseappliance_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Materiels
-                                    case 'electricaltools':
-                                        $electricaltool = Electricaltool::where('url', $listing->url)->first();
-                                        if ($electricaltool) {
-                                            $listing->electricaltool_id = $electricaltool->id;
-                                            $result['id'] = $electricaltool->id;
-                                            $result['images'] = Electricaltoolsimg::where('electricaltool_id', $listing->electricaltool_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'ladders':
-                                        $ladder = Ladder::where('url', $listing->url)->first();
-                                        if ($ladder) {
-                                            $listing->ladder_id = $ladder->id;
-                                            $result['id'] = $ladder->id;
-                                            $result['images'] = Laddersimg::where('ladder_id', $listing->ladder_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'mechanicaltools':
-                                        $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
-                                        if ($mechanicaltool) {
-                                            $listing->mechanicaltool_id = $mechanicaltool->id;
-                                            $result['id'] = $mechanicaltool->id;
-                                            $result['images'] = Mechanicaltoolsimg::where('mechanicaltool_id', $listing->mechanicaltool_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'powertools':
-                                        $powertool = Powertool::where('url', $listing->url)->first();
-                                        if ($powertool) {
-                                            $listing->powertool_id = $powertool->id;
-                                            $result['id'] = $powertool->id;
-                                            $result['images'] = Powertoolsimg::where('powertool_id', $listing->powertool_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'pressurewashers':
-                                        $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
-                                        if ($pressurewasher) {
-                                            $listing->pressurewasher_id = $pressurewasher->id;
-                                            $result['id'] = $pressurewasher->id;
-                                            $result['images'] = Pressurewashersimg::where('pressurewasher_id', $listing->pressurewasher_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Services
-                                    case 'services':
-                                        $service = Service::where('url', $listing->url)->first();
-                                        if ($service) {
-                                            $listing->service_id = $service->id;
-                                            $result['id'] = $service->id;
-                                            $result['images'] = Servicesimg::where('service_id', $listing->service_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    // Vehicules
-                                    case 'boats':
-                                        $boat = Boat::where('url', $listing->url)->first();
-                                        if ($boat) {
-                                            $listing->boat_id = $boat->id;
-                                            $result['id'] = $boat->id;
-                                            $result['images'] = Boatsimg::where('boat_id', $listing->boat_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'camions':
-                                        $camion = Camion::where('url', $listing->url)->first();
-                                        if ($camion) {
-                                            $listing->camion_id = $camion->id;
-                                            $result['id'] = $camion->id;
-                                            $result['images'] = Camionsimg::where('camion_id', $listing->camion_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'caravans':
-                                        $caravan = Caravan::where('url', $listing->url)->first();
-                                        if ($caravan) {
-                                            $listing->caravan_id = $caravan->id;
-                                            $result['id'] = $caravan->id;
-                                            $result['images'] = Caravansimg::where('caravan_id', $listing->caravan_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'cars':
-                                        $car = Car::where('url', $listing->url)->first();
-                                        if ($car) {
-                                            $listing->car_id = $car->id;
-                                            $result['id'] = $car->id;
-                                            $result['images'] = Carsimg::where('car_id', $listing->car_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'engins':
-                                        $engin = Engin::where('url', $listing->url)->first();
-                                        if ($engin) {
-                                            $listing->engin_id = $engin->id;
-                                            $result['id'] = $engin->id;
-                                            $result['images'] = Enginsimg::where('engin_id', $listing->engin_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'motos':
-                                        $moto = Moto::where('url', $listing->url)->first();
-                                        if ($moto) {
-                                            $listing->moto_id = $moto->id;
-                                            $result['id'] = $moto->id;
-                                            $result['images'] = Motosimg::where('moto_id', $listing->moto_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'scooters':
-                                        $scooter = Scooter::where('url', $listing->url)->first();
-                                        if ($scooter) {
-                                            $listing->scooter_id = $scooter->id;
-                                            $result['id'] = $scooter->id;
-                                            $result['images'] = Scootersimg::where('scooter_id', $listing->scooter_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'taxiaeroports':
-                                        $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
-                                        if ($taxiaeroport) {
-                                            $listing->taxiaeroport_id = $taxiaeroport->id;
-                                            $result['id'] = $taxiaeroport->id;
-                                            $result['images'] = Taxiaeroportsimg::where('taxiaeroport_id', $listing->taxiaeroport_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'transportations':
-                                        $transportation = Transportation::where('url', $listing->url)->first();
-                                        if ($transportation) {
-                                            $listing->transportation_id = $transportation->id;
-                                            $result['id'] = $transportation->id;
-                                            $result['images'] = Transportationsimg::where('transportation_id', $listing->transportation_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    case 'velos':
-                                        $velo = Velo::where('url', $listing->url)->first();
-                                        if ($velo) {
-                                            $listing->velo_id = $velo->id;
-                                            $result['id'] = $velo->id;
-                                            $result['images'] = Velosimg::where('velo_id', $listing->velo_id)->get()->pluck('picture');
-                                        }
-                                        break;
-
-                                    default:
-                                        $result['images'] = collect(); // Return an empty collection if no match
-                                }
-
-                                return $result; // Return the result containing id and images
-                            };
-
-
-
-                            $getAverageRating = function ($listing) {
-                                switch ($listing->category) {
-                                    case 'billiards':
-                                        $billiard = Billiard::where('url', $listing->url)->first();
-                                        $reviews = $billiard ? $billiard->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'boxings':
-                                        $boxing = Boxing::where('url', $listing->url)->first();
-                                        $reviews = $boxing ? $boxing->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'divings':
-                                        $diving = Diving::where('url', $listing->url)->first();
-                                        $reviews = $diving ? $diving->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'footballs':
-                                        $football = Football::where('url', $listing->url)->first();
-                                        $reviews = $football ? $football->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'golfs':
-                                        $golf = Golf::where('url', $listing->url)->first();
-                                        $reviews = $golf ? $golf->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'huntings':
-                                        $hunting = Hunting::where('url', $listing->url)->first();
-                                        $reviews = $hunting ? $hunting->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'musculations':
-                                        $musculation = Musculation::where('url', $listing->url)->first();
-                                        $reviews = $musculation ? $musculation->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'surfs':
-                                        $surf = Surf::where('url', $listing->url)->first();
-                                        $reviews = $surf ? $surf->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'tennis':
-                                        $tennis = Tennis::where('url', $listing->url)->first();
-                                        $reviews = $tennis ? $tennis->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Electronique
-                                    case 'audios':
-                                        $audio = Audio::where('url', $listing->url)->first();
-                                        $reviews = $audio ? $audio->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'cameras':
-                                        $camera = Camera::where('url', $listing->url)->first();
-                                        $reviews = $camera ? $camera->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'chargers':
-                                        $charger = Charger::where('url', $listing->url)->first();
-                                        $reviews = $charger ? $charger->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'drones':
-                                        $drone = Drone::where('url', $listing->url)->first();
-                                        $reviews = $drone ? $drone->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'gamings':
-                                        $gaming = Gaming::where('url', $listing->url)->first();
-                                        $reviews = $gaming ? $gaming->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'laptops':
-                                        $laptop = Laptop::where('url', $listing->url)->first();
-                                        $reviews = $laptop ? $laptop->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'lightings':
-                                        $lighting = Lighting::where('url', $listing->url)->first();
-                                        $reviews = $lighting ? $lighting->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'printers':
-                                        $printer = Printer::where('url', $listing->url)->first();
-                                        $reviews = $printer ? $printer->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'routers':
-                                        $router = Router::where('url', $listing->url)->first();
-                                        $reviews = $router ? $router->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'tablettes':
-                                        $tablette = Tablette::where('url', $listing->url)->first();
-                                        $reviews = $tablette ? $tablette->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Evenement
-                                    case 'eclairages':
-                                        $eclairage = Eclairage::where('url', $listing->url)->first();
-                                        $reviews = $eclairage ? $eclairage->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'mobiliers':
-                                        $mobilier = Mobilier::where('url', $listing->url)->first();
-                                        $reviews = $mobilier ? $mobilier->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'photographies':
-                                        $photographie = Photographie::where('url', $listing->url)->first();
-                                        $reviews = $photographie ? $photographie->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'sonorisations':
-                                        $sonorisation = Sonorisation::where('url', $listing->url)->first();
-                                        $reviews = $sonorisation ? $sonorisation->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'tentes':
-                                        $tente = Tente::where('url', $listing->url)->first();
-                                        $reviews = $tente ? $tente->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Habillement
-                                    case 'clothes':
-                                        $clothes = Clothes::where('url', $listing->url)->first();
-                                        $reviews = $clothes ? $clothes->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'jewelrys':
-                                        $jewelry = Jewelry::where('url', $listing->url)->first();
-                                        $reviews = $jewelry ? $jewelry->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Immobilier
-                                    case 'apartments':
-                                        $apartment = Apartment::where('url', $listing->url)->first();
-                                        $reviews = $apartment ? $apartment->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'bureauxs':
-                                        $bureaux = Bureaux::where('url', $listing->url)->first();
-                                        $reviews = $bureaux ? $bureaux->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'magasins':
-                                        $magasin = Magasin::where('url', $listing->url)->first();
-                                        $reviews = $magasin ? $magasin->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'maisons':
-                                        $maison = Maison::where('url', $listing->url)->first();
-                                        $reviews = $maison ? $maison->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'riads':
-                                        $riad = Riad::where('url', $listing->url)->first();
-                                        $reviews = $riad ? $riad->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'terrains':
-                                        $terrain = Terrain::where('url', $listing->url)->first();
-                                        $reviews = $terrain ? $terrain->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'villas':
-                                        $villa = Villa::where('url', $listing->url)->first();
-                                        $reviews = $villa ? $villa->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Loisirs
-                                    case 'activities':
-                                        $activity = Activity::where('url', $listing->url)->first();
-                                        $reviews = $activity ? $activity->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'livres':
-                                        $livre = Livre::where('url', $listing->url)->first();
-                                        $reviews = $livre ? $livre->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'musicals':
-                                        $musical = Musical::where('url', $listing->url)->first();
-                                        $reviews = $musical ? $musical->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Maison et Jardin
-                                    case 'furnitures':
-                                        $furniture = Furniture::where('url', $listing->url)->first();
-                                        $reviews = $furniture ? $furniture->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'houseappliances':
-                                        $houseappliance = Houseappliance::where('url', $listing->url)->first();
-                                        $reviews = $houseappliance ? $houseappliance->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Materiels
-                                    case 'electricaltools':
-                                        $electricaltool = Electricaltool::where('url', $listing->url)->first();
-                                        $reviews = $electricaltool ? $electricaltool->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'ladders':
-                                        $ladder = Ladder::where('url', $listing->url)->first();
-                                        $reviews = $ladder ? $ladder->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'mechanicaltools':
-                                        $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
-                                        $reviews = $mechanicaltool ? $mechanicaltool->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'powertools':
-                                        $powertool = Powertool::where('url', $listing->url)->first();
-                                        $reviews = $powertool ? $powertool->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'pressurewashers':
-                                        $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
-                                        $reviews = $pressurewasher ? $pressurewasher->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Services
-                                    case 'services':
-                                        $service = Service::where('url', $listing->url)->first();
-                                        $reviews = $service ? $service->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    // Vehicules
-                                    case 'boats':
-                                        $boat = Boat::where('url', $listing->url)->first();
-                                        $reviews = $boat ? $boat->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'camions':
-                                        $camion = Camion::where('url', $listing->url)->first();
-                                        $reviews = $camion ? $camion->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'caravans':
-                                        $caravan = Caravan::where('url', $listing->url)->first();
-                                        $reviews = $caravan ? $caravan->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'cars':
-                                        $car = Car::where('url', $listing->url)->first();
-                                        $reviews = $car ? $car->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'engins':
-                                        $engin = Engin::where('url', $listing->url)->first();
-                                        $reviews = $engin ? $engin->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'motos':
-                                        $moto = Moto::where('url', $listing->url)->first();
-                                        $reviews = $moto ? $moto->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'scooters':
-                                        $scooter = Scooter::where('url', $listing->url)->first();
-                                        $reviews = $scooter ? $scooter->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'taxiaeroports':
-                                        $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
-                                        $reviews = $taxiaeroport ? $taxiaeroport->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'transportations':
-                                        $transportation = Transportation::where('url', $listing->url)->first();
-                                        $reviews = $transportation ? $transportation->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    case 'velos':
-                                        $velo = Velo::where('url', $listing->url)->first();
-                                        $reviews = $velo ? $velo->review()->orderBy('created_at')->get() : collect();
-                                        break;
-
-                                    default:
-                                        $reviews = collect(); // Return an empty collection if no match
-                                }
-
+                            $images = $listing->listingsimg->map(function ($image) {
+                                return [
+                                    'picturesmall' => $image->picturesmall,
+                                    'alttext' => $image->alttext,
+                                ];
+                            });
+
+                                $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
                                 $totalReviews = $reviews->count();
                                 $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
 
-                                return [
-                                    'averageRating' => $averageRating,
-                                    'totalReviews' => $totalReviews,
-                                ];
-                            };
+                                $getIdOnly = function ($listing) {
+                                    $result = ['id' => null]; // Initialize the result with default value
 
+                                    switch ($listing->category) {
+                                        case 'billiards':
+                                            $billiard = Billiard::where('url', $listing->url)->first();
+                                            if ($billiard) {
+                                                $listing->billiard_id = $billiard->id;
+                                                $result['id'] = $billiard->id;
+                                            }
+                                            break;
 
-                            $ratingData = $getAverageRating($listing);
+                                        case 'boxings':
+                                            $boxing = Boxing::where('url', $listing->url)->first();
+                                            if ($boxing) {
+                                                $listing->boxing_id = $boxing->id;
+                                                $result['id'] = $boxing->id;
+                                            }
+                                            break;
 
-                            $getImagesResult = $getImages($listing);
+                                        case 'divings':
+                                            $diving = Diving::where('url', $listing->url)->first();
+                                            if ($diving) {
+                                                $listing->diving_id = $diving->id;
+                                                $result['id'] = $diving->id;
+                                            }
+                                            break;
+
+                                        case 'footballs':
+                                            $football = Football::where('url', $listing->url)->first();
+                                            if ($football) {
+                                                $listing->football_id = $football->id;
+                                                $result['id'] = $football->id;
+                                            }
+                                            break;
+
+                                        case 'golfs':
+                                            $golf = Golf::where('url', $listing->url)->first();
+                                            if ($golf) {
+                                                $listing->golf_id = $golf->id;
+                                                $result['id'] = $golf->id;
+                                            }
+                                            break;
+
+                                        case 'huntings':
+                                            $hunting = Hunting::where('url', $listing->url)->first();
+                                            if ($hunting) {
+                                                $listing->hunting_id = $hunting->id;
+                                                $result['id'] = $hunting->id;
+                                            }
+                                            break;
+
+                                        case 'musculations':
+                                            $musculation = Musculation::where('url', $listing->url)->first();
+                                            if ($musculation) {
+                                                $listing->musculation_id = $musculation->id;
+                                                $result['id'] = $musculation->id;
+                                            }
+                                            break;
+
+                                        case 'surfs':
+                                            $surf = Surf::where('url', $listing->url)->first();
+                                            if ($surf) {
+                                                $listing->surf_id = $surf->id;
+                                                $result['id'] = $surf->id;
+                                            }
+                                            break;
+
+                                        case 'tennis':
+                                            $tennis = Tennis::where('url', $listing->url)->first();
+                                            if ($tennis) {
+                                                $listing->tennis_id = $tennis->id;
+                                                $result['id'] = $tennis->id;
+                                            }
+                                            break;
+
+                                        case 'audios':
+                                            $audio = Audio::where('url', $listing->url)->first();
+                                            if ($audio) {
+                                                $listing->audio_id = $audio->id;
+                                                $result['id'] = $audio->id;
+                                            }
+                                            break;
+
+                                        case 'cameras':
+                                            $camera = Camera::where('url', $listing->url)->first();
+                                            if ($camera) {
+                                                $listing->camera_id = $camera->id;
+                                                $result['id'] = $camera->id;
+                                            }
+                                            break;
+
+                                        case 'chargers':
+                                            $charger = Charger::where('url', $listing->url)->first();
+                                            if ($charger) {
+                                                $listing->charger_id = $charger->id;
+                                                $result['id'] = $charger->id;
+                                            }
+                                            break;
+
+                                        case 'drones':
+                                            $drone = Drone::where('url', $listing->url)->first();
+                                            if ($drone) {
+                                                $listing->drone_id = $drone->id;
+                                                $result['id'] = $drone->id;
+                                            }
+                                            break;
+
+                                        case 'gamings':
+                                            $gaming = Gaming::where('url', $listing->url)->first();
+                                            if ($gaming) {
+                                                $listing->gaming_id = $gaming->id;
+                                                $result['id'] = $gaming->id;
+                                            }
+                                            break;
+
+                                        case 'laptops':
+                                            $laptop = Laptop::where('url', $listing->url)->first();
+                                            if ($laptop) {
+                                                $listing->laptop_id = $laptop->id;
+                                                $result['id'] = $laptop->id;
+                                            }
+                                            break;
+
+                                        case 'lightings':
+                                            $lighting = Lighting::where('url', $listing->url)->first();
+                                            if ($lighting) {
+                                                $listing->lighting_id = $lighting->id;
+                                                $result['id'] = $lighting->id;
+                                            }
+                                            break;
+
+                                        case 'printers':
+                                            $printer = Printer::where('url', $listing->url)->first();
+                                            if ($printer) {
+                                                $listing->printer_id = $printer->id;
+                                                $result['id'] = $printer->id;
+                                            }
+                                            break;
+
+                                        case 'routers':
+                                            $router = Router::where('url', $listing->url)->first();
+                                            if ($router) {
+                                                $listing->router_id = $router->id;
+                                                $result['id'] = $router->id;
+                                            }
+                                            break;
+
+                                        case 'tablettes':
+                                            $tablette = Tablette::where('url', $listing->url)->first();
+                                            if ($tablette) {
+                                                $listing->tablette_id = $tablette->id;
+                                                $result['id'] = $tablette->id;
+                                            }
+                                            break;
+
+                                        case 'eclairages':
+                                            $eclairage = Eclairage::where('url', $listing->url)->first();
+                                            if ($eclairage) {
+                                                $listing->eclairage_id = $eclairage->id;
+                                                $result['id'] = $eclairage->id;
+                                            }
+                                            break;
+
+                                        case 'mobiliers':
+                                            $mobilier = Mobilier::where('url', $listing->url)->first();
+                                            if ($mobilier) {
+                                                $listing->mobilier_id = $mobilier->id;
+                                                $result['id'] = $mobilier->id;
+                                            }
+                                            break;
+
+                                        case 'photographies':
+                                            $photographie = Photographie::where('url', $listing->url)->first();
+                                            if ($photographie) {
+                                                $listing->photographie_id = $photographie->id;
+                                                $result['id'] = $photographie->id;
+                                            }
+                                            break;
+
+                                        case 'sonorisations':
+                                            $sonorisation = Sonorisation::where('url', $listing->url)->first();
+                                            if ($sonorisation) {
+                                                $listing->sonorisation_id = $sonorisation->id;
+                                                $result['id'] = $sonorisation->id;
+                                            }
+                                            break;
+
+                                        case 'tentes':
+                                            $tente = Tente::where('url', $listing->url)->first();
+                                            if ($tente) {
+                                                $listing->tente_id = $tente->id;
+                                                $result['id'] = $tente->id;
+                                            }
+                                            break;
+
+                                        case 'clothes':
+                                            $clothes = Clothes::where('url', $listing->url)->first();
+                                            if ($clothes) {
+                                                $listing->clothes_id = $clothes->id;
+                                                $result['id'] = $clothes->id;
+                                            }
+                                            break;
+
+                                        case 'jewelrys':
+                                            $jewelry = Jewelry::where('url', $listing->url)->first();
+                                            if ($jewelry) {
+                                                $listing->jewelry_id = $jewelry->id;
+                                                $result['id'] = $jewelry->id;
+                                            }
+                                            break;
+
+                                        case 'apartments':
+                                            $apartment = Apartment::where('url', $listing->url)->first();
+                                            if ($apartment) {
+                                                $listing->apartment_id = $apartment->id;
+                                                $result['id'] = $apartment->id;
+                                            }
+                                            break;
+
+                                        case 'bureauxs':
+                                            $bureaux = Bureaux::where('url', $listing->url)->first();
+                                            if ($bureaux) {
+                                                $listing->bureaux_id = $bureaux->id;
+                                                $result['id'] = $bureaux->id;
+                                            }
+                                            break;
+
+                                        case 'magasins':
+                                            $magasin = Magasin::where('url', $listing->url)->first();
+                                            if ($magasin) {
+                                                $listing->magasin_id = $magasin->id;
+                                                $result['id'] = $magasin->id;
+                                            }
+                                            break;
+
+                                        case 'maisons':
+                                            $maison = Maison::where('url', $listing->url)->first();
+                                            if ($maison) {
+                                                $listing->maison_id = $maison->id;
+                                                $result['id'] = $maison->id;
+                                            }
+                                            break;
+
+                                        case 'riads':
+                                            $riad = Riad::where('url', $listing->url)->first();
+                                            if ($riad) {
+                                                $listing->riad_id = $riad->id;
+                                                $result['id'] = $riad->id;
+                                            }
+                                            break;
+
+                                        case 'terrains':
+                                            $terrain = Terrain::where('url', $listing->url)->first();
+                                            if ($terrain) {
+                                                $listing->terrain_id = $terrain->id;
+                                                $result['id'] = $terrain->id;
+                                            }
+                                            break;
+
+                                        case 'villas':
+                                            $villa = Villa::where('url', $listing->url)->first();
+                                            if ($villa) {
+                                                $listing->villa_id = $villa->id;
+                                                $result['id'] = $villa->id;
+                                            }
+                                            break;
+
+                                        case 'activities':
+                                            $activity = Activity::where('url', $listing->url)->first();
+                                            if ($activity) {
+                                                $listing->activity_id = $activity->id;
+                                                $result['id'] = $activity->id;
+                                            }
+                                            break;
+
+                                        case 'livres':
+                                            $livre = Livre::where('url', $listing->url)->first();
+                                            if ($livre) {
+                                                $listing->livre_id = $livre->id;
+                                                $result['id'] = $livre->id;
+                                            }
+                                            break;
+
+                                        case 'musicals':
+                                            $musical = Musical::where('url', $listing->url)->first();
+                                            if ($musical) {
+                                                $listing->musical_id = $musical->id;
+                                                $result['id'] = $musical->id;
+                                            }
+                                            break;
+
+                                        case 'furnitures':
+                                            $furniture = Furniture::where('url', $listing->url)->first();
+                                            if ($furniture) {
+                                                $listing->furniture_id = $furniture->id;
+                                                $result['id'] = $furniture->id;
+                                            }
+                                            break;
+
+                                        case 'houseappliances':
+                                            $houseappliance = Houseappliance::where('url', $listing->url)->first();
+                                            if ($houseappliance) {
+                                                $listing->houseappliance_id = $houseappliance->id;
+                                                $result['id'] = $houseappliance->id;
+                                            }
+                                            break;
+
+                                        case 'electricaltools':
+                                            $electricaltool = Electricaltool::where('url', $listing->url)->first();
+                                            if ($electricaltool) {
+                                                $listing->electricaltool_id = $electricaltool->id;
+                                                $result['id'] = $electricaltool->id;
+                                            }
+                                            break;
+
+                                        case 'ladders':
+                                            $ladder = Ladder::where('url', $listing->url)->first();
+                                            if ($ladder) {
+                                                $listing->ladder_id = $ladder->id;
+                                                $result['id'] = $ladder->id;
+                                            }
+                                            break;
+
+                                        case 'mechanicaltools':
+                                            $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
+                                            if ($mechanicaltool) {
+                                                $listing->mechanicaltool_id = $mechanicaltool->id;
+                                                $result['id'] = $mechanicaltool->id;
+                                            }
+                                            break;
+
+                                        case 'powertools':
+                                            $powertool = Powertool::where('url', $listing->url)->first();
+                                            if ($powertool) {
+                                                $listing->powertool_id = $powertool->id;
+                                                $result['id'] = $powertool->id;
+                                            }
+                                            break;
+
+                                        case 'pressurewashers':
+                                            $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
+                                            if ($pressurewasher) {
+                                                $listing->pressurewasher_id = $pressurewasher->id;
+                                                $result['id'] = $pressurewasher->id;
+                                            }
+                                            break;
+
+                                        case 'services':
+                                            $service = Service::where('url', $listing->url)->first();
+                                            if ($service) {
+                                                $listing->service_id = $service->id;
+                                                $result['id'] = $service->id;
+                                            }
+                                            break;
+
+                                        case 'boats':
+                                            $boat = Boat::where('url', $listing->url)->first();
+                                            if ($boat) {
+                                                $listing->boat_id = $boat->id;
+                                                $result['id'] = $boat->id;
+                                            }
+                                            break;
+
+                                        case 'camions':
+                                            $camion = Camion::where('url', $listing->url)->first();
+                                            if ($camion) {
+                                                $listing->camion_id = $camion->id;
+                                                $result['id'] = $camion->id;
+                                            }
+                                            break;
+
+                                        case 'caravans':
+                                            $caravan = Caravan::where('url', $listing->url)->first();
+                                            if ($caravan) {
+                                                $listing->caravan_id = $caravan->id;
+                                                $result['id'] = $caravan->id;
+                                            }
+                                            break;
+
+                                        case 'cars':
+                                            $car = Car::where('url', $listing->url)->first();
+                                            if ($car) {
+                                                $listing->car_id = $car->id;
+                                                $result['id'] = $car->id;
+                                            }
+                                            break;
+
+                                        case 'engins':
+                                            $engin = Engin::where('url', $listing->url)->first();
+                                            if ($engin) {
+                                                $listing->engin_id = $engin->id;
+                                                $result['id'] = $engin->id;
+                                            }
+                                            break;
+
+                                        case 'motos':
+                                            $moto = Moto::where('url', $listing->url)->first();
+                                            if ($moto) {
+                                                $listing->moto_id = $moto->id;
+                                                $result['id'] = $moto->id;
+                                            }
+                                            break;
+
+                                        case 'scooters':
+                                            $scooter = Scooter::where('url', $listing->url)->first();
+                                            if ($scooter) {
+                                                $listing->scooter_id = $scooter->id;
+                                                $result['id'] = $scooter->id;
+                                            }
+                                            break;
+
+                                        case 'taxiaeroports':
+                                            $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
+                                            if ($taxiaeroport) {
+                                                $listing->taxiaeroport_id = $taxiaeroport->id;
+                                                $result['id'] = $taxiaeroport->id;
+                                            }
+                                            break;
+
+                                        case 'transportations':
+                                            $transportation = Transportation::where('url', $listing->url)->first();
+                                            if ($transportation) {
+                                                $listing->transportation_id = $transportation->id;
+                                                $result['id'] = $transportation->id;
+                                            }
+                                            break;
+
+                                        case 'velos':
+                                            $velo = Velo::where('url', $listing->url)->first();
+                                            if ($velo) {
+                                                $listing->velo_id = $velo->id;
+                                                $result['id'] = $velo->id;
+                                            }
+                                            break;
+
+                                        default:
+                                            $result['id'] = null; // Return null if no match
+                                    }
+
+                                    return $result; // Return the result containing id only
+                                };
+
+                                $idResult = $getIdOnly($listing);
 
                             return [
 
@@ -1196,15 +844,16 @@ class StoreController extends JsonApiController
                                     'created_at' => $listing->created_at,
                                     //'listing_city' => $listing->city,
 
-                                    'id' => $getImagesResult['id'],
-                                    'images' => $getImagesResult['images'],
+                                    'id' => $idResult['id'],
+
+                                    'images' => $images,
 
                                     'status' => $listing->status,
                                     'picture' => $listing->picture,
                                     'user_id' => $listing->user_id,
 
-                                    'averageRating' => $ratingData['averageRating'],
-                                    'totalReviews' => $ratingData['totalReviews'],
+                                    'averageRating' => $averageRating,
+                                    'totalReviews' => $totalReviews,
                                 ],
 
 

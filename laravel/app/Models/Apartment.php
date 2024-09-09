@@ -22,7 +22,7 @@ class Apartment extends Model
     protected $fillable = ['address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','elevator'];
 
 
-    public function apartmentsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Apartmentsimg::class);

@@ -23,7 +23,7 @@ class Moto extends Model
 
 
 
-    public function motosimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Motosimg::class);

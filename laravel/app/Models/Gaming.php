@@ -24,7 +24,7 @@ class Gaming extends Model
 
 
 
-    public function gamingsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Gamingsimg::class);

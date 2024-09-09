@@ -24,7 +24,7 @@ class Musculation extends Model
 
 
 
-    public function musculationsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Musculationsimg::class);

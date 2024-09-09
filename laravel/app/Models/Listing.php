@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
+use App\Models\Review;
+use App\Models\Favorite;
+use App\Models\Listingsimg;
+use App\Models\Reservation;
 
 
 class Listing extends Model
@@ -21,7 +25,17 @@ class Listing extends Model
 
 
 
+    public function listingsimg(): HasMany {
 
+
+        return $this->hasMany(Listingsimg::class);
+    }
+
+    public function review(): HasMany {
+
+
+        return $this->hasMany(Review::class);
+    }
 
 
     public function user(): belongsTo {

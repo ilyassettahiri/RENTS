@@ -23,7 +23,7 @@ class Hunting extends Model
 
 
 
-    public function huntingsimg(): HasMany {
+    public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Huntingsimg::class);
