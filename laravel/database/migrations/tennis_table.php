@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->string('racket')->nullable();
             $table->string('url');
+            $table->string('typea')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();

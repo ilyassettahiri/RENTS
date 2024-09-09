@@ -19,7 +19,7 @@ class Bureaux extends Model
 {
 
 
-    protected $fillable = ['address','city','zip','onlinestore_id','country','phone','startdate','enddate','title','description','price','url','user_id','picture','property_type'];
+    protected $fillable = ['typea','address','city','zip','onlinestore_id','country','phone','startdate','enddate','title','description','price','url','user_id','picture','property_type'];
 
 
 

@@ -21,7 +21,7 @@ class Boxing extends Model
 {
 
 
-    protected $fillable = ['title','address','city','zip','onlinestore_id','country','phone','description','price','url','user_id','picture','brand_name','startdate','enddate'];
+    protected $fillable = ['typea','title','address','city','zip','onlinestore_id','country','phone','description','price','url','user_id','picture','brand_name','startdate','enddate'];
 
 
     public function user(): BelongsTo {

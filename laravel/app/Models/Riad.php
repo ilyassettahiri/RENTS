@@ -19,7 +19,7 @@ class Riad extends Model
 {
 
 
-    protected $fillable = ['onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','doorkeeper'];
+    protected $fillable = ['typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','doorkeeper'];
 
 
     public function servicesimg(): HasMany {

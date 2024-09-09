@@ -22,6 +22,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
+            $table->string('typea')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();

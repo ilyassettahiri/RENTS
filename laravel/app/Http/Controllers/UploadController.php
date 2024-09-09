@@ -10,6 +10,15 @@ use App\Models\Collection;
 use Illuminate\Support\Facades\Log;
 
 
+use Illuminate\Support\Str;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\GifEncoder;
+
 use App\Models\Listing;
 
 
@@ -166,6 +175,17 @@ use App\Models\User;
 class UploadController extends Controller
 {
 
+
+    function generateUniqueFileName($extension = 'jpg')
+    {
+
+        $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
+        $shuffledString = str_shuffle($randomString); // Shuffle the string for added randomness
+        return $shuffledString . '.' . $extension;
+
+    }
+
+
     public function upload(Request $request)
     {
         // Validate the request
@@ -185,14 +205,44 @@ class UploadController extends Controller
             ], 401);
         }
 
+        $manager = new ImageManager(new Driver());
+
         $file = $request->file('attachment');
+        $imagelarge = $manager->read($file->getRealPath());
 
 
 
-        $filePath = Storage::disk('spaces')->put('storage/userimages', $file, 'public');
 
-        $relativePath = str_replace('storage/', '', $filePath);
-        $relativePath = '/' . $relativePath;
+        $imagelarge->scaleDown(width: 100);
+
+
+
+
+        $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+
+
+
+
+        $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+        $filePathlarge = Storage::disk('spaces')->put('storage/userimages/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+        $relativePathlarge = '/userimages/' . $fileNamelarge;
+        $relativePath = $relativePathlarge;
+
+
 
 
 

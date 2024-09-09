@@ -19,7 +19,7 @@ class Listing extends Model
 {
 
 
-    protected $fillable = [ 'onlinestore_id','user_id','title','status','picture','phone','price','category','url'];
+    protected $fillable = [ 'typea','onlinestore_id','user_id','title','status','picture','phone','price','category','url'];
 
 
 

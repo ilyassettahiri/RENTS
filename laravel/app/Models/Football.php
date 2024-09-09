@@ -21,7 +21,7 @@ class Football extends Model
 
 
 
-    protected $fillable = ['onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','type'];
+    protected $fillable = ['typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','type'];
 
 
     public function servicesimg(): HasMany {

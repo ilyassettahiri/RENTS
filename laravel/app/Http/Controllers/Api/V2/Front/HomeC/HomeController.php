@@ -318,7 +318,7 @@ class HomeController extends JsonApiController
                     'created_at' => $apartment->created_at,
                     'picture' => $apartment->picture,
 
-                    'images' => $apartment->apartmentsimg->map(function ($image) {
+                    'images' => $apartment->servicesimg->map(function ($image) {
                         return [
 
                             'picturesmall' => $image->picturesmall,
@@ -369,7 +369,7 @@ class HomeController extends JsonApiController
                     'created_at' => $billiard->created_at,
                     'picture' => $billiard->picture,
 
-                    'images' => $billiard->billiardsimg->map(function ($image) {
+                    'images' => $billiard->servicesimg->map(function ($image) {
                         return [
 
                             'picturesmall' => $image->picturesmall,
@@ -413,7 +413,7 @@ class HomeController extends JsonApiController
                     'phone' => $velo->phone,
 
 
-                    'images' => $velo->velosimg->map(function ($image) {
+                    'images' => $velo->servicesimg->map(function ($image) {
                         return [
 
                             'picturesmall' => $image->picturesmall,

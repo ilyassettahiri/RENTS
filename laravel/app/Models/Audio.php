@@ -19,7 +19,7 @@ class Audio extends Model
 {
 
 
-    protected $fillable = ['address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
+    protected $fillable = ['typea','address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
 
 
     public function servicesimg(): HasMany {

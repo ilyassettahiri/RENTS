@@ -35,6 +35,7 @@ return new class extends Migration
             $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
+            $table->string('typea')->nullable();
 
 
             $table->string('sound_quality')->nullable();

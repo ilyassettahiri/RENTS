@@ -19,7 +19,7 @@ use App\Models\Billiardsimg;
 class Billiard extends Model
 {
 
-    protected $fillable = ['startdate','enddate','address','city','zip','country','phone','title','description','price','url','user_id','onlinestore_id','picture','table_brand','year_model','table_dimensions','table_weight','table_type','condition'];
+    protected $fillable = ['typea','startdate','enddate','address','city','zip','country','phone','title','description','price','url','user_id','onlinestore_id','picture','table_brand','year_model','table_dimensions','table_weight','table_type','condition'];
 
 
     public function user(): BelongsTo {

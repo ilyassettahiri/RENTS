@@ -25,6 +25,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
 
             $table->string('city')->nullable();
+            $table->string('typea')->nullable();
 
             $table->string('zip', 10)->nullable();
 

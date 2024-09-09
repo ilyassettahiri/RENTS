@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
+            $table->string('typea')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();
