@@ -1622,7 +1622,7 @@ export default function HomeView() {
 
 
 
-         {(notFound || productsEmpty) && renderNotFound}
+        {!isLoading  && (notFound || productsEmpty) && renderNotFound}
 
 
 

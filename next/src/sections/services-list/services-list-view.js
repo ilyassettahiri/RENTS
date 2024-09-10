@@ -1315,7 +1315,7 @@ export default function ServicesListView() {
 
 
 
-        {(notFound || productsEmpty) && renderNotFound}
+        {!isLoading  && (notFound || productsEmpty) && renderNotFound}
 
 
 

@@ -48,7 +48,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
   dayjs.locale(i18n.language);
 
 
-  const formattedDuration = dayjs(new Date(created_at)).fromNow();
+  const formattedDuration = dayjs(new Date(product.attributes.created_at)).fromNow();
 
 
 

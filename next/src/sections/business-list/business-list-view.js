@@ -1362,6 +1362,10 @@ export default function BusinessListView() {
                 </Stack>
             </Stack>
 
+
+            {!isLoading  && (notFound || productsEmpty) && renderNotFound}
+
+
           <BusinessList businesses={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
         </Box>
       </Stack>

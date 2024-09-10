@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Children, isValidElement } from 'react';
+import { useTranslate } from 'src/locales/use-locales';
 
 import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
@@ -40,10 +41,14 @@ export const StyledContainer = styled(Box, {
 
 export function Carousel({ carousel, children, sx, slotProps }) {
   const { mainRef, options } = carousel;
+  const { i18n } = useTranslate();
+
+  const isRTL = i18n.language === 'ar';
+
 
   const axis = options?.axis ?? 'x';
   const slideSpacing = options?.slideSpacing ?? '0px';
-  const direction = options?.direction ?? 'ltr';
+  const direction = isRTL ? 'rtl' : 'ltr';
 
   const renderChildren = Children.map(children, (child) => {
     if (isValidElement(child)) {
