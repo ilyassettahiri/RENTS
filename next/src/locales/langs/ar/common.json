@@ -7,7 +7,7 @@
 
 
   "clientUsage": "استخدام العميل",
-  "createListing": "إنشاء إعلان",
+  "createListing": "أضف اعلانك",
 
 
 
@@ -113,7 +113,7 @@
           "signUp": "اشترك",
 
           "ourClients": "عملاؤنا",
-          "filters": "فلاتر",
+          "filters": "فلتر",
           "viewAll": "عرض الكل",
           "newApartmentListings": "إعلانات الشقق الجديدة",
           "newBicycleListings": "إعلانات الدراجات الجديدة",
@@ -163,7 +163,7 @@
           "Emailaddress": " البريد الإلكتروني",
 
           "PersonalInfo": "المعلومات الشخصية",
-          "Wishlist": "قائمة الرغبات",
+          "Wishlist": "مفضلتي",
           "Messages": "الرسائل",
           "Reservations": "الحجوزات",
           "Payment": "الدفع",
@@ -215,10 +215,21 @@
           "End": "الانتهاء",
           "Createdat": "تاريخ الإنشاء",
           "Setprimary": "تعيين كوسيلة الدفع الرئيسية",
-          "Delete": "حذف"
+          "Delete": "حذف",
 
 
 
+
+          "Rooms": "غرف",
+          "Living Rooms": "غرف المعيشة",
+          "Bathrooms": "حمامات",
+          "Bedrooms": "غرف النوم",
+          "Security System": "نظام أمني",
+          "Equipped Kitchen": "مطبخ مجهز",
+          "Service": "خدمة",
+          "Facilities": "مرافق",
+
+          "More Details": "المزيد من التفاصيل"
 
 
 

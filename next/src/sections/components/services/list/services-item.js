@@ -2,7 +2,12 @@ import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
-import { formatDistanceToNowStrict } from 'date-fns';
+import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/en';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/ar';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -30,6 +35,7 @@ import LoginDialog from 'src/sections/auth/login-dialog';
 
 
 // ----------------------------------------------------------------------
+dayjs.extend(relativeTime);
 
 
 const StyledButton = styled((props) => (
@@ -54,7 +60,14 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
   const router = useRouter();
 
 
-  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
+  const { i18n } = useTranslation();
+
+
+  dayjs.locale(i18n.language);
+
+
+  const formattedDuration = dayjs(new Date(created_at)).fromNow();
+
 
 
   const [opencall, setOpencall] = useState(null);
@@ -505,7 +518,7 @@ function CarouselBasic1({ data, category, url }) {
                 <Image
                   key={index}
                   alt={`Image ${index + 1}`}
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item.picturesmall}`}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                   ratio="6/4"
                 />
 

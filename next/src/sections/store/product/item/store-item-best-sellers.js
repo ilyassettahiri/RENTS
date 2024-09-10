@@ -14,7 +14,7 @@ import ProductRating from '../../common/product-rating';
 
 // ----------------------------------------------------------------------
 
-const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
+const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL;
 
 export default function StoreItemBestSellers({ product, ...other }) {
   return (

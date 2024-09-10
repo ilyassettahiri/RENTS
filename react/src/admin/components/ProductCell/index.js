@@ -9,7 +9,7 @@ function ProductCell({ image, name, checked, linkPath }) {
     <SoftBox display="flex" alignItems="center">
       
       <SoftBox mx={2} width="3.75rem" component={NavLink}  to={linkPath}>
-        <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_BASE_URL}${image}`} alt={name} width="100%" />
+        <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`} alt={name} width="100%" />
       </SoftBox>
       <SoftTypography variant="button" fontWeight="medium" component={NavLink}  to={linkPath}>
         {name}

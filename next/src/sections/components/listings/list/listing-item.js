@@ -1,6 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { formatDistanceToNowStrict } from 'date-fns';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
@@ -8,7 +7,13 @@ import Checkbox from '@mui/material/Checkbox';
 import Avatar from '@mui/material/Avatar';
 import Popover from '@mui/material/Popover';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
+import { useTranslation } from 'react-i18next';
 
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/en';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/ar';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import { useRouter } from 'src/routes/hooks';
 
@@ -28,6 +33,7 @@ import CrudService from 'src/services/cruds-service';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
 import LoginDialog from 'src/sections/auth/login-dialog';
 
+dayjs.extend(relativeTime);
 
 const StyledButton = styled((props) => (
   <CardActionArea >
@@ -47,7 +53,16 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
 
-  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
+  const { i18n } = useTranslation();
+
+
+  dayjs.locale(i18n.language);
+
+
+  const formattedDuration = dayjs(new Date(created_at)).fromNow();
+
+
+
   const [opencall, setOpencall] = useState(null);
 
 
@@ -434,7 +449,7 @@ function CarouselBasic1({ data, category, url }) {
                 <Image
                   key={index}
                   alt={`Image ${index + 1}`}
-                  src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${item.picturesmall}`}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                   ratio="4/3"
                 />
             </Link>

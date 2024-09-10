@@ -218,14 +218,23 @@
           "End": "Fin",
           "Createdat": "Créé le",
           "Setprimary": "Définir comme moyen de paiement principal",
-          "Delete": "Supprimer"
+          "Delete": "Supprimer",
 
 
 
 
 
 
+          "Rooms": "Chambres",
+          "Living Rooms": "Salons",
+          "Bathrooms": "Salles de bains",
+          "Bedrooms": "Chambres à coucher",
+          "Security System": "Système de sécurité",
+          "Equipped Kitchen": "Cuisine équipée",
+          "Service": "Service",
+          "Facilities": "Installations",
 
+          "More Details": "Plus de détails"
 
 
 

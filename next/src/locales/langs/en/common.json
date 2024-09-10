@@ -109,7 +109,7 @@
               "allRightsReserved": "All rights reserved",
 
               "signUpForNewsletter": "Sign Up For Newsletter",
-              "receiveDiscount": "Receive 50% discount on first project",
+              "receiveDiscount": "Receive 50% discount on the first project",
               "enterYourEmail": "Enter your email",
               "signUp": "Sign Up",
 
@@ -216,13 +216,22 @@
               "End": "End",
               "Createdat": "Created at",
               "Setpayment": "Set primary payment",
-              "Delete": "Delete"
+              "Delete": "Delete",
 
 
 
 
 
+              "Rooms": "Rooms",
+              "Living Rooms": "Living Rooms",
+              "Bathrooms": "Bathrooms",
+              "Bedrooms": "Bedrooms",
+              "Security System": "Security System",
+              "Equipped Kitchen": "Equipped Kitchen",
+              "Service": "Service",
+              "Facilities": "Facilities",
 
+              "More Details": "More Details"
 
 
 

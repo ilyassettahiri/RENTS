@@ -1,8 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect  } from 'react';
-import { format, formatDistanceToNowStrict } from 'date-fns';
+import { format } from 'date-fns';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useTranslation } from 'react-i18next';
+
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import 'dayjs/locale/en';
+import 'dayjs/locale/fr';
+import 'dayjs/locale/ar';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -30,6 +36,10 @@ import { fShortenNumber } from 'src/utils/format-number';
 import Iconify from 'src/components/iconify';
 import LoginDialog from 'src/sections/auth/login-dialog';
 
+
+dayjs.extend(relativeTime);
+
+
 // ----------------------------------------------------------------------
 // Define the specific social media icons
 const socialMediaIcons = [
@@ -56,7 +66,18 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   const { attributes } = tour;
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
   const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
-  const formattedDuration = formatDistanceToNowStrict(new Date(created_at), { addSuffix: true });
+
+
+  const { i18n } = useTranslation();
+
+
+  dayjs.locale(i18n.language);
+
+
+  const formattedDuration = dayjs(new Date(created_at)).fromNow();
+
+
+
   const { t } = useTranslation();
 
   const mdUp = useResponsive('up', 'md');

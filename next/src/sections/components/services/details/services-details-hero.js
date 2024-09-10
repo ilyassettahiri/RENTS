@@ -34,7 +34,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle, 
   const images = job.attributes.images.map((url, index) => ({
     id: index,
     title: job.attributes.title,
-    coverUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${url}`, // Ensure the correct URL format
+    coverUrl: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${url}`, // Ensure the correct URL format
   }));
 
   return (

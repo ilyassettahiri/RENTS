@@ -68,7 +68,7 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
 
 export default function ListingImage({ images, params }) {
   const slides = images.map((slide) => ({
-    src: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${slide}`,
+    src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${slide}`,
   }));
 
   const mdUp = useResponsive('up', 'md');

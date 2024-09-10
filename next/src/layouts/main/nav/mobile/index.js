@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import { RouterLink } from 'src/routes/components';
+import { useTranslation } from 'react-i18next';
 
 import List from '@mui/material/List';
 import Stack from '@mui/material/Stack';
@@ -26,6 +27,8 @@ import { NAV } from '../../../config-layout';
 
 export default function NavMobile({ data }) {
   const pathname = usePathname();
+
+  const { t } = useTranslation();
 
   const mobileOpen = useBoolean();
 
@@ -99,20 +102,26 @@ export default function NavMobile({ data }) {
           </List>
 
 
-          <Stack spacing={1.5} sx={{ p: 3 }}>
-            <Button
-              fullWidth
-              variant="contained"
-              color="inherit"
-              href={paths.createlisting}
-              target="_blank"
-              rel="noopener"
-            >
-              Create Listing
-            </Button>
-          </Stack>
+
+
 
         </Scrollbar>
+
+
+          <Box gap={1.5} display="flex" sx={{ px: 2.5, py: 3 }}>
+              <Button
+                fullWidth
+                size="large"
+                color='primary'
+                variant="contained"
+                rel="noopener"
+                target="_blank"
+                href={paths.createlisting}
+              >
+                {t('createListing')}
+              </Button>
+          </Box>
+
       </Drawer>
     </>
   );

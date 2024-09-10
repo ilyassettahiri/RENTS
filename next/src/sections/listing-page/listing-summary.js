@@ -614,6 +614,8 @@ function formatLabel(label) {
 
 function OverviewItem({ icon, label, text = '-' }) {
 
+  const { t } = useTranslation();
+
 
   return (
     <Stack spacing={1.5} direction="row" alignItems="flex-start">
@@ -622,9 +624,9 @@ function OverviewItem({ icon, label, text = '-' }) {
 
       <Stack spacing={0.5}>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          {label}
+        {t(label)}
         </Typography>
-        <Typography>{text}</Typography>
+        <Typography>{t(text)} </Typography>
       </Stack>
     </Stack>
   );
