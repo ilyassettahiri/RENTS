@@ -13,7 +13,6 @@ import { setupAxiosInterceptors } from "services/interceptor";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import Configurator from "examples/Configurator";
 
 import SoftBox from "components/SoftBox";
 import Icon from "@mui/material/Icon";
@@ -35,7 +34,7 @@ import routes from "routes";
 
 
 // Soft UI Dashboard PRO React contexts
-import { useSoftUIController,setMiniSidenav, AuthContext, setOpenConfigurator } from "context";
+import { useSoftUIController,setMiniSidenav, AuthContext } from "context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Import QueryClient and QueryClientProvider
 
 
@@ -66,7 +65,7 @@ import AuthService from "services/auth-service";
 
 export default function App({ ability }) {
   const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav, direction, layout, sidenavColor,openConfigurator } = controller;
+  const { miniSidenav, direction, layout } = controller;
   
   const [rtlCache, setRtlCache] = useState(false);
   const { pathname } = useLocation();
@@ -102,10 +101,7 @@ export default function App({ ability }) {
 
   
   
-  // Change the openConfigurator state
-  const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
 
-    
   // settings the dir attribute for the body element
   useEffect(() => {
     document.body.setAttribute("dir", direction);
@@ -172,30 +168,7 @@ export default function App({ ability }) {
     });
 
 
-   
-    const configsButton = (
-      <SoftBox
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        width="3.5rem"
-        height="3.5rem"
-        bgColor="white"
-        shadow="sm"
-        borderRadius="50%"
-        position="fixed"
-        right="2rem"
-        bottom="2rem"
-        zIndex={99}
-        color="dark"
-        sx={{ cursor: "pointer" }}
-        onClick={handleConfiguratorOpen}
-      >
-        <Icon fontSize="default" color="inherit">
-          settings
-        </Icon>
-      </SoftBox>
-    );
+ 
 
 
 
@@ -213,7 +186,7 @@ export default function App({ ability }) {
                   {layout === "dashboard" && (
                     <>
                       <Sidenav
-                        color={sidenavColor}
+                        color="info"
                         brand={brand}
                         brandName="Rents.ma"
                         routes={routes}
@@ -221,14 +194,14 @@ export default function App({ ability }) {
 
                       
                       />
-                      <Configurator user={userDetails} />
-                      {configsButton}
+                      
+                      
                       
                     </>
                   )}
-                  {layout === "vr" }
-                  <Routes>
-                    <Route path="/auth/login" element={<Login />} />
+                  
+                    <Routes>
+                          <Route path="/auth/login" element={<Login />} />
                           {getRoutes(routes)}
                           <Route path="*" element={<Navigate to="/dashboard" />} />
                     </Routes>
@@ -240,21 +213,21 @@ export default function App({ ability }) {
                 {layout === "dashboard" && (
                   <>
                     <Sidenav
-                      color={sidenavColor}
+                      color="info"
                       brand={brand}
                       brandName="Rents.ma"
                       routes={routes}
                       hasStore={hasStore}  // Make sure hasStore is being passed correctly
 
                     />
-                    <Configurator user={userDetails}/>
-                    {configsButton}
+                    
+                    
                     
                   </>
                 )}
-                {layout === "vr" }
-                <Routes>
-                  <Route path="/auth/login" element={<Login />} />
+                
+                  <Routes>
+                        <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
                         <Route path="/auth/forgot-password" element={<ForgotPassword />} />
                         <Route path="/auth/reset-password" element={<ResetPassword />} />

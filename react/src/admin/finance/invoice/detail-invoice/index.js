@@ -30,7 +30,6 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 // Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import FormField from "admin/components/FormField";
 import { useNavigate, useParams } from "react-router-dom";
@@ -375,7 +374,6 @@ const DetailInvoice = () => {
 
   return (
     <DashboardLayout>
-      <DashboardNavbar breadcrumbTitle={item.name} />
       <MDBox mt={5} mb={9}>
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={8}>

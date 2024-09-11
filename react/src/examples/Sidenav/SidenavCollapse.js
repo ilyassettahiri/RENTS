@@ -25,14 +25,14 @@ import { useSoftUIController } from "context";
 
 function SidenavCollapse({ icon, name, children, active, noCollapse, open, ...rest }) {
   const [controller] = useSoftUIController();
-  const { miniSidenav, transparentSidenav, sidenavColor } = controller;
+  const { miniSidenav, transparentSidenav } = controller;
 
   return (
     <>
       <ListItem component="li" sx={{ marginTop: '10px' }}>
         <SoftBox {...rest} sx={(theme) => collapseItem(theme, { active, transparentSidenav })}>
           <ListItemIcon
-            sx={(theme) => collapseIconBox(theme, { active, transparentSidenav, sidenavColor })}
+            sx={(theme) => collapseIconBox(theme, { active, transparentSidenav,  sidenavColor: "info" })}
           >
             {typeof icon === "string" ? (
               <Icon sx={(theme) => collapseIcon(theme, { active })}>{icon}</Icon>

@@ -14,7 +14,6 @@ import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 
 // Soft UI Dashboard PRO React example components
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Soft UI Dashboard PRO React icons
 import Cube from "examples/Icons/Cube";
@@ -64,7 +63,6 @@ function Header() {
 
   return (
     <SoftBox position="relative">
-      <DashboardNavbar absolute light />
       <SoftBox
         display="flex"
         alignItems="center"

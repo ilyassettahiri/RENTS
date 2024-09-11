@@ -16,7 +16,6 @@ import SoftBox from "components/SoftBox";
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import EventCalendar from "examples/Calendar";
 

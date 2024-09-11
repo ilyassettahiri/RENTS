@@ -26,7 +26,6 @@ import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DefaultStatisticsCard from "examples/Cards/StatisticsCards/DefaultStatisticsCard";
 import DefaultLineChart from "examples/Charts/LineCharts/DefaultLineChart";
