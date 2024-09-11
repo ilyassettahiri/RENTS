@@ -32,7 +32,6 @@ import { useSoftUIController,setMiniSidenav } from "context";
 
 function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
 
-  console.log("Sidenav - hasStore:", hasStore); // Log hasStore on every render
 
   const [openCollapse, setOpenCollapse] = useState(false);
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false);

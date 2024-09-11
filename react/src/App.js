@@ -199,8 +199,17 @@ export default function App({ ability }) {
                       
                     </>
                   )}
+
+                  {layout === "page" && (
+                    <>
+                      
+                      
+                      
+                      
+                    </>
+                  )}
                   
-                    <Routes>
+                  <Routes>
                           <Route path="/auth/login" element={<Login />} />
                           {getRoutes(routes)}
                           <Route path="*" element={<Navigate to="/dashboard" />} />
@@ -225,8 +234,17 @@ export default function App({ ability }) {
                     
                   </>
                 )}
+
+                  {layout === "page" && (
+                    <>
+                      
+                      
+                      
+                      
+                    </>
+                  )}
                 
-                  <Routes>
+                <Routes>
                         <Route path="/auth/login" element={<Login />} />
                         <Route path="/auth/register" element={<Register />} />
                         <Route path="/auth/forgot-password" element={<ForgotPassword />} />

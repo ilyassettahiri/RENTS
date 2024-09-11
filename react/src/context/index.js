@@ -133,7 +133,7 @@ function SoftUIControllerProvider({ children }) {
     direction: "ltr",
     
 
-    layout: "dashboard",
+    layout: "pages",
   };
 
   const [controller, dispatch] = useReducer(reducer, initialState);

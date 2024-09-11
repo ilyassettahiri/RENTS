@@ -39,6 +39,7 @@ const SoftInput = forwardRef(({ size, icon, error, success, disabled, ...rest },
         <SoftInputRoot
           {...rest}
           ownerState={{ size, error, success, iconDirection, direction, disabled }}
+          autoComplete={autocomplete}
         />
         <SoftInputIconBoxRoot ownerState={{ size }}>
           <SoftInputIconRoot fontSize="small" ownerState={{ size }}>
