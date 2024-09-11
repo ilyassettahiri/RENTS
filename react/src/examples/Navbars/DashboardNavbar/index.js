@@ -1,6 +1,6 @@
 
 
-import { useEffect, useState, useContext,useCallback } from "react";
+import { useEffect, useState, useContext } from "react";
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -15,10 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import SoftAvatar from "components/SoftAvatar";
-import MenuList from '@mui/material/MenuList';
-import MenuItem from '@mui/material/MenuItem';
-import Popover from '@mui/material/Popover';
-import Stack from '@mui/material/Stack';
+
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -28,6 +25,7 @@ import SoftInput from "components/SoftInput";
 // Soft UI Dashboard PRO React example components
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
+import { useTextDirection, setTextDirection } from "context/useTextDirection"; // Import TextDirectionContext
 
 
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
@@ -39,11 +37,6 @@ export {
   team1
 };
 
-const flagUrls = {
-  us: 'https://flagcdn.com/us.svg',
-  fr: 'https://flagcdn.com/fr.svg',
-  sa: 'https://flagcdn.com/sa.svg',
-};
 
 // Custom styles for DashboardNavbar
 import {
@@ -61,9 +54,6 @@ import {
   AuthContext,
   useSoftUIController,
   setTransparentNavbar,
-  
-  setDirection 
-
 
 } from "context";
 
@@ -78,26 +68,42 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
-  const { miniSidenav,direction, transparentNavbar, fixedNavbar  } = controller;
+  const { miniSidenav, transparentNavbar, fixedNavbar,   } = controller;
   const [openMenu, setOpenMenu] = useState(false);
-  const route = useLocation().pathname.split("/").slice(1);
 
   const [openLanguage, setOpenLanguage] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState({ code: 'us', label: 'English' });
+
+
+  const route = useLocation().pathname.split("/").slice(1);
+
+  // Access text direction context
+  const { state: textDirectionState, dispatch: textDirectionDispatch } = useTextDirection();
+  const { textDirection } = textDirectionState;
 
   
+
+
   useEffect(() => {
-    // Save current direction to revert back on cleanup
-    const currentDirection = direction;
+    if (fixedNavbar) {
+      setNavbarType("sticky");
+    } else {
+      setNavbarType("static");
+    }
 
-    // Set the direction based on the selected language
-    setDirection(dispatch, currentLanguage.code === "sa" ? "rtl" : "ltr");
+    function handleTransparentNavbar() {
+      setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
+    }
 
-    // Cleanup function to revert direction to its initial state when component unmounts
-    return () => setDirection(dispatch, currentDirection);
-  }, [currentLanguage, dispatch, direction]);
+    window.addEventListener("scroll", handleTransparentNavbar);
+    handleTransparentNavbar();
 
-  
+    return () => window.removeEventListener("scroll", handleTransparentNavbar);
+  }, [dispatch, fixedNavbar]);
+
+
+
+
+
 
   useEffect(() => {
     // settings the navbar type
@@ -126,7 +132,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
   }, [dispatch, fixedNavbar]);
 
 
-  
+
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
 
@@ -136,14 +142,10 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleOpenLanguage = (event) => setOpenLanguage(event.currentTarget);
   const handleCloseLanguage = () => setOpenLanguage(false);
 
-
-  const handleChangeLanguage = useCallback((language) => {
-    if (currentLanguage.code !== language.code) {
-      setCurrentLanguage(language);
-      setDirection(dispatch, language.code === "sa" ? "rtl" : "ltr"); // Update direction based on language
-    }
-    handleCloseLanguage();
-  }, [dispatch, currentLanguage.code]);
+  const changeLanguageDirection = (direction) => {
+    setTextDirection(textDirectionDispatch, direction);
+    handleCloseLanguage(); // Close language menu after selecting a language
+  };
 
 
   // Render the notifications menu
@@ -188,49 +190,33 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
 
   const renderLanguage = () => (
-    <Popover
+    <Menu
       anchorEl={openLanguage}
-      open={Boolean(openLanguage)}
-      onClose={handleCloseLanguage}
+      anchorReference={null}
       anchorOrigin={{
         vertical: "bottom",
         horizontal: "left",
       }}
+      open={Boolean(openLanguage)}
+      onClose={handleCloseLanguage}
       sx={{ mt: 2 }}
     >
-      <MenuList sx={{ width: 160, minHeight: 72 }}>
-        <MenuItem onClick={() => handleChangeLanguage({ code: 'us', label: 'English' })}>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <img
-              src={flagUrls.us}
-              alt="English"
-              style={{ width: 24, height: 24, borderRadius: '50%' }}
-            />
-            English
-          </Stack>
-        </MenuItem>
-        <MenuItem onClick={() => handleChangeLanguage({ code: 'fr', label: 'French' })}>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <img
-              src={flagUrls.fr}
-              alt="French"
-              style={{ width: 24, height: 24, borderRadius: '50%' }}
-            />
-            French
-          </Stack>
-        </MenuItem>
-        <MenuItem onClick={() => handleChangeLanguage({ code: 'sa', label: 'Arabic' })}>
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <img
-              src={flagUrls.sa}
-              alt="Arabic"
-              style={{ width: 24, height: 24, borderRadius: '50%' }}
-            />
-            Arabic
-          </Stack>
-        </MenuItem>
-      </MenuList>
-    </Popover>
+      <NotificationItem
+        image={<img src={team1} alt="person" />}
+        title={["English"]}
+        onClick={() => changeLanguageDirection("ltr")}
+      />
+      <NotificationItem
+        image={<img src={team1} alt="person" />}
+        title={["Arabic"]}
+        onClick={() => changeLanguageDirection("rtl")}
+      />
+      <NotificationItem
+        image={<img src={team1} alt="person" />}
+        title={["French"]}
+        onClick={() => changeLanguageDirection("ltr")}
+      />
+    </Menu>
   );
 
 
@@ -282,16 +268,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 variant="contained"
                 onClick={handleOpenLanguage}
               >
-                <img
-                  src={flagUrls[currentLanguage.code]}
-                  alt={currentLanguage.label}
-                  style={{ width: 24, height: 24, borderRadius: '50%' }}
-                />
+                <Icon className={light ? "text-white" : "text-dark"}>language</Icon>
               </IconButton>
 
+
               {renderLanguage()}
-
-
               
               <IconButton
                 size="large"

@@ -38,6 +38,21 @@ import { useSoftUIController,setMiniSidenav, AuthContext } from "context";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'; // Import QueryClient and QueryClientProvider
 
 
+
+import { TextDirectionProvider, useTextDirection, setTextDirection } from "context/useTextDirection";
+
+
+import { getPermissions } from "config/Permissions";
+
+
+import ProtectedRoute from "examples/ProtectedRoute";
+import Login from "auth/login";
+import Register from "auth/register";
+import ForgotPassword from "auth/forgot-password";
+import ResetPassword from "auth/reset-password";
+import AuthService from "services/auth-service";
+
+
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
 
 // Define the dynamic paths for each image
@@ -53,16 +68,6 @@ export {
 
 
 
-import { getPermissions } from "config/Permissions";
-
-
-import ProtectedRoute from "examples/ProtectedRoute";
-import Login from "auth/login";
-import Register from "auth/register";
-import ForgotPassword from "auth/forgot-password";
-import ResetPassword from "auth/reset-password";
-import AuthService from "services/auth-service";
-
 export default function App({ ability }) {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, direction, layout } = controller;
@@ -70,7 +75,9 @@ export default function App({ ability }) {
   const [rtlCache, setRtlCache] = useState(false);
   const { pathname } = useLocation();
 
-
+  const { state: textDirectionState, dispatch: textDirectionDispatch } = useTextDirection(); // Use the new context
+  const { textDirection } = textDirectionState; // Get textDirection from the new context
+  
 
   const authContext = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState({ name: "", image: "" });
@@ -104,8 +111,8 @@ export default function App({ ability }) {
 
   // settings the dir attribute for the body element
   useEffect(() => {
-    document.body.setAttribute("dir", direction);
-  }, [direction]);
+    document.body.setAttribute("dir", textDirection);
+  }, [textDirection]);
 
   // settings page scroll to 0 when changing the route
   useEffect(() => {
@@ -169,6 +176,7 @@ export default function App({ ability }) {
 
 
  
+    console.log('Current Text Direction:', textDirection); // Debugging log
 
 
 
@@ -179,7 +187,7 @@ export default function App({ ability }) {
         <QueryClientProvider client={queryClient}> 
 
         
-            {direction === "rtl" ? (
+            {textDirection === "rtl" ? (
               <CacheProvider value={rtlCache}>
                 <ThemeProvider theme={themeRTL}>
                   <CssBaseline />

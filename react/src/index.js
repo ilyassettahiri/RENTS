@@ -16,6 +16,7 @@ import { AbilityContext } from "Can";
 
 const rootElement = document.getElementById("root");
 const ability = new createMongoAbility();
+import { TextDirectionProvider } from "context/useTextDirection";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,7 +27,12 @@ root.render(
       <BrowserRouter>
         <AuthContextProvider>
           <SoftUIControllerProvider>
-            <App ability={ability} />
+            
+            <TextDirectionProvider> 
+
+              <App ability={ability} />
+            </TextDirectionProvider>
+
           </SoftUIControllerProvider>
         </AuthContextProvider>
 
