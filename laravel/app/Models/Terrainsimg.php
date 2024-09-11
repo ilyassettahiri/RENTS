@@ -11,7 +11,7 @@ class Terrainsimg extends Model
 {
 
 
-    protected $fillable = ['terrain_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['terrain_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function terrainsimg(): BelongsTo {
 

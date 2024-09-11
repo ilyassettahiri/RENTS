@@ -11,7 +11,7 @@ class Chargersimg extends Model
 {
 
 
-    protected $fillable = ['charger_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['charger_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function chargersimg(): BelongsTo {
 

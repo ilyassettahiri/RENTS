@@ -11,7 +11,7 @@ class Enginsimg extends Model
 {
 
 
-    protected $fillable = ['engin_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['engin_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function enginsimg(): BelongsTo {
 

@@ -11,7 +11,7 @@ class Livresimg extends Model
 {
 
 
-    protected $fillable = ['livre_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['livre_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function livresimg(): BelongsTo {
 

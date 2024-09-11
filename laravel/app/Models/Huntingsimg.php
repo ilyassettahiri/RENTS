@@ -11,7 +11,7 @@ class Huntingsimg extends Model
 {
 
 
-    protected $fillable = ['hunting_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['hunting_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function huntingsimg(): BelongsTo {
 

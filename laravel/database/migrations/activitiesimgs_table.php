@@ -21,6 +21,8 @@ return new class extends Migration
 
 
                         $table->string('alttext')->nullable();
+                        $table->string('picturesxlarge')->nullable();
+
             $table->string('picturesmall')->nullable();
 
 

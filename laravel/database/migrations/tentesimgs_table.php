@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('tente_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
                         $table->string('alttext')->nullable();
+                        $table->string('picturesxlarge')->nullable();
             $table->string('picturesmall')->nullable();
 
 

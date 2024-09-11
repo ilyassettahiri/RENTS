@@ -12,7 +12,7 @@ class Billiardsimg extends Model
 
 
 
-    protected $fillable = ['billiard_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['billiard_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function billiardsimg(): BelongsTo {
 

@@ -11,7 +11,7 @@ class Houseappliancesimg extends Model
 {
 
 
-    protected $fillable = ['houseappliance_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['houseappliance_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function houseappliancesimg(): BelongsTo {
 

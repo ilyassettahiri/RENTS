@@ -11,7 +11,7 @@ class Sonorisationsimg extends Model
 {
 
 
-    protected $fillable = ['sonorisation_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['sonorisation_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function sonorisationsimg(): BelongsTo {
 

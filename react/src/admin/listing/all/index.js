@@ -188,8 +188,13 @@ function ListListing() {
   };
 
   const clickOpenHandler = (category, url) => {
-    window.open(`https://rents.ma/listing-page/${category}/${url}`, '_blank');
+    const baseUrl = category === 'services' 
+      ? `https://rents.ma/service-page/${url}`  // URL for services category
+      : `https://rents.ma/listing-page/${category}/${url}`;  // Default URL for other categories
+    
+    window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };
+  
 
   const handleRowClick = (row) => {
     clickViewHandler(row.original.id);

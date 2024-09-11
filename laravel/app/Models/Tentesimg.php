@@ -11,7 +11,7 @@ class Tentesimg extends Model
 {
 
 
-    protected $fillable = ['tente_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['tente_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function tentesimg(): BelongsTo {
 

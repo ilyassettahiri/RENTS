@@ -11,7 +11,7 @@ class Powertoolsimg extends Model
 {
 
 
-    protected $fillable = ['powertool_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['powertool_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function powertoolsimg(): BelongsTo {
 

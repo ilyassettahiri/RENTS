@@ -11,7 +11,7 @@ class Taxiaeroportsimg extends Model
 {
 
 
-    protected $fillable = ['taxiaeroport_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['taxiaeroport_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function taxiaeroportsimg(): BelongsTo {
 

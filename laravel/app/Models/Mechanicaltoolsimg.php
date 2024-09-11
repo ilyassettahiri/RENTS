@@ -11,7 +11,7 @@ class Mechanicaltoolsimg extends Model
 {
 
 
-    protected $fillable = ['mechanicaltool_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['mechanicaltool_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function mechanicaltoolsimg(): BelongsTo {
 

@@ -151,7 +151,11 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
               <Link component={RouterLink}
 
-              href={`${paths.travel.tour}/${category}/${url}`}
+                href={
+                  category === 'services'
+                    ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
+                    : `${paths.travel.tour}/${category}/${url}`  // Default path
+                }
 
 
               color="inherit">
@@ -235,7 +239,11 @@ function CarouselBasic1({ data, category, url }) {
 
             <Link
               key={index}
-              href={`${paths.travel.tour}/${category}/${url}`}
+              href={
+                category === 'services'
+                  ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
+                  : `${paths.travel.tour}/${category}/${url}`  // Default path
+              }
               component={RouterLink}
             >
                   <Image

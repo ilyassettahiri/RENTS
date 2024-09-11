@@ -25,7 +25,7 @@ class RegisterController extends Controller
             'name'          => $request->name,
             'email'         => $request->email,
             'password'      => $request->password,
-            'profile_image' => "https://i.pravatar.cc/150?u=noavatar",
+            'profile_image' => '/logo/admin.jpg',
         ])->assignRole('admin');
 
         return (new LoginController)(new LoginRequest($request->only(['email', 'password'])));

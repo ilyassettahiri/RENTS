@@ -11,7 +11,7 @@ class Clothesimg extends Model
 {
 
 
-    protected $fillable = ['clothes_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['clothes_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function clothesimg(): BelongsTo {
 

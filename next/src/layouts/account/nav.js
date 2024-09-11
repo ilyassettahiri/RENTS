@@ -46,7 +46,7 @@ export default function Nav({ open, onClose }) {
 
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});
-  const [image, setImage] = useState('/images/member.jpg');
+  const [image, setImage] = useState('/images/admin.jpg');
   const [fileState, setFileState] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 

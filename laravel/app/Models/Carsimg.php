@@ -12,7 +12,7 @@ class Carsimg extends Model
 
 
 
-    protected $fillable = ['car_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['car_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function carsimg(): BelongsTo {
 

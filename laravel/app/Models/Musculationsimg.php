@@ -11,7 +11,7 @@ class Musculationsimg extends Model
 {
 
 
-    protected $fillable = ['musculation_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['musculation_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function musculationsimg(): BelongsTo {
 

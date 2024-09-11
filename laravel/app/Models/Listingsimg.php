@@ -11,7 +11,7 @@ class Listingsimg extends Model
 {
 
 
-    protected $fillable = ['listing_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['listing_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function listingsimg(): BelongsTo {
 

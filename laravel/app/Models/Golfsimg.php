@@ -11,7 +11,7 @@ class Golfsimg extends Model
 {
 
 
-    protected $fillable = ['golf_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['golf_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function golfsimg(): BelongsTo {
 

@@ -11,7 +11,7 @@ class Villasimg extends Model
 {
 
 
-    protected $fillable = ['villa_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['villa_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function villasimg(): BelongsTo {
 

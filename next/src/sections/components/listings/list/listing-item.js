@@ -82,7 +82,6 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   }, []);
 
 
-
   const handleChangeFavorite = useCallback(() => {
     requireAuth(async () => {
       try {
@@ -285,7 +284,10 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                   <Avatar
                     variant="rounded"
                     alt={NamedNodeMap}
+
+
                     src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${seller.profile_image}`}
+
                     sx={{ width: 40, height: 40 }}
                   />
 

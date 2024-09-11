@@ -11,7 +11,7 @@ class Riadsimg extends Model
 {
 
 
-    protected $fillable = ['riad_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['riad_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function riadsimg(): BelongsTo {
 

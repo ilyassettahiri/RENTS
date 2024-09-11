@@ -11,7 +11,7 @@ class Surfsimg extends Model
 {
 
 
-    protected $fillable = ['surf_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['surf_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function surfsimg(): BelongsTo {
 

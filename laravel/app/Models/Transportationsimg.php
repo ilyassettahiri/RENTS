@@ -11,7 +11,7 @@ class Transportationsimg extends Model
 {
 
 
-    protected $fillable = ['transportation_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['transportation_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function transportationsimg(): BelongsTo {
 

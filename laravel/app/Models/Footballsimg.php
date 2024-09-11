@@ -11,7 +11,7 @@ class Footballsimg extends Model
 {
 
 
-    protected $fillable = ['football_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['football_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function footballsimg(): BelongsTo {
 

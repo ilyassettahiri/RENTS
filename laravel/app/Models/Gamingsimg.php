@@ -11,7 +11,7 @@ class Gamingsimg extends Model
 {
 
 
-    protected $fillable = ['gaming_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['gaming_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function gamingsimg(): BelongsTo {
 

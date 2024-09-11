@@ -11,7 +11,7 @@ class Electricaltoolsimg extends Model
 {
 
 
-    protected $fillable = ['electricaltool_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['electricaltool_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function electricaltoolsimg(): BelongsTo {
 

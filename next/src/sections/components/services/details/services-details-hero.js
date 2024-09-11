@@ -10,6 +10,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { useResponsive } from 'src/hooks/use-responsive';
+import Lightbox, { useLightbox } from 'src/components/lightbox';
 
 import Card from '@mui/material/Card';
 import { alpha, useTheme } from '@mui/material/styles';
@@ -124,12 +125,22 @@ function CarouselBasic3({ data }) {
         <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
           {data.map((item) => (
 
-            <Image alt={item.title} src={item.coverUrl}
-
-            ratio={isMdUp ? '4/3' : '1/1'} // Apply 4/3 for large screens, 1/1 for mobile
 
 
-            />
+                  <Image alt={item.title} src={item.coverUrl}
+
+                  ratio={isMdUp ? '4/3' : '1/1'} // Apply 4/3 for large screens, 1/1 for mobile
+
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                  }}
+                  />
+
+
+
+
           ))}
         </Carousel>
       </CarouselArrows>

@@ -11,7 +11,7 @@ class Tennisimg extends Model
 {
 
 
-    protected $fillable = ['tennis_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['tennis_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function tennisimg(): BelongsTo {
 

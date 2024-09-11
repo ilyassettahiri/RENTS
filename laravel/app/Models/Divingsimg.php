@@ -12,7 +12,7 @@ class Divingsimg extends Model
 
 
 
-    protected $fillable = ['diving_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['diving_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function divingsimg(): BelongsTo {
 

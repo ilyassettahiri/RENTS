@@ -12,7 +12,7 @@ class Boatsimg extends Model
 
 
 
-    protected $fillable = ['boat_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['boat_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function boatsimg(): BelongsTo {
 

@@ -12,7 +12,7 @@ class Camionsimg extends Model
 
 
 
-    protected $fillable = ['camion_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['camion_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function camionsimg(): BelongsTo {
 

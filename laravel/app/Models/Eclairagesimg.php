@@ -11,7 +11,7 @@ class Eclairagesimg extends Model
 {
 
 
-    protected $fillable = ['eclairage_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['eclairage_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function eclairagesimg(): BelongsTo {
 

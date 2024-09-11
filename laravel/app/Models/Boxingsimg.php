@@ -12,7 +12,7 @@ class Boxingsimg extends Model
 
 
 
-    protected $fillable = ['boxing_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['boxing_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function boxingsimg(): BelongsTo {
 

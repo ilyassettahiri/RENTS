@@ -11,7 +11,7 @@ class Magasinsimg extends Model
 {
 
 
-    protected $fillable = ['magasin_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['magasin_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function magasinsimg(): BelongsTo {
 

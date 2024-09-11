@@ -11,7 +11,7 @@ class Lightingsimg extends Model
 {
 
 
-    protected $fillable = ['lighting_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['lighting_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function lightingsimg(): BelongsTo {
 

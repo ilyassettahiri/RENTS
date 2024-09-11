@@ -11,7 +11,7 @@ class Mobiliersimg extends Model
 {
 
 
-    protected $fillable = ['mobilier_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['mobilier_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function mobiliersimg(): BelongsTo {
 

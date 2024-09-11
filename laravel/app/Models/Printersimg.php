@@ -11,7 +11,7 @@ class Printersimg extends Model
 {
 
 
-    protected $fillable = ['printer_id','picture', 'alttext','picturesmall'];
+    protected $fillable = ['printer_id','picture', 'alttext','picturesmall','picturesxlarge'];
 
     public function printersimg(): BelongsTo {
 
