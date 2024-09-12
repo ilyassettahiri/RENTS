@@ -17,7 +17,7 @@ function textDirectionReducer(state, action) {
 // Context provider for text direction
 export function TextDirectionProvider({ children }) {
   const initialState = {
-    textDirection: "rtl", // Initial direction
+    textDirection: "ltr", // Initial direction
   };
 
   const [state, dispatch] = useReducer(textDirectionReducer, initialState);

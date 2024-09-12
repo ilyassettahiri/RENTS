@@ -1,6 +1,7 @@
 
 
 import { useEffect, useState, useContext } from "react";
+import { useTranslation } from 'react-i18next';  // Import useTranslation for language change
 
 // react-router components
 import { useLocation, Link } from "react-router-dom";
@@ -65,7 +66,7 @@ import {
 function DashboardNavbar({ absolute, light, isMini }) {
   
   const authContext = useContext(AuthContext);
-
+  const { t, i18n } = useTranslation(); 
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar,   } = controller;
@@ -142,11 +143,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleOpenLanguage = (event) => setOpenLanguage(event.currentTarget);
   const handleCloseLanguage = () => setOpenLanguage(false);
 
-  const changeLanguageDirection = (direction) => {
-    setTextDirection(textDirectionDispatch, direction);
+  const changeLanguageDirection = (language, direction) => {
+    i18n.changeLanguage(language);  // Change the language
+    setTextDirection(textDirectionDispatch, direction);  // Change the text direction
+    document.body.setAttribute('dir', direction);  // Set the direction attribute on the body
     handleCloseLanguage(); // Close language menu after selecting a language
   };
-
 
   // Render the notifications menu
   const renderMenu = () => (
@@ -204,21 +206,20 @@ function DashboardNavbar({ absolute, light, isMini }) {
       <NotificationItem
         image={<img src={team1} alt="person" />}
         title={["English"]}
-        onClick={() => changeLanguageDirection("ltr")}
+        onClick={() => changeLanguageDirection("en", "ltr")}
       />
       <NotificationItem
         image={<img src={team1} alt="person" />}
         title={["Arabic"]}
-        onClick={() => changeLanguageDirection("rtl")}
+        onClick={() => changeLanguageDirection("ar", "rtl")}
       />
       <NotificationItem
         image={<img src={team1} alt="person" />}
         title={["French"]}
-        onClick={() => changeLanguageDirection("ltr")}
+        onClick={() => changeLanguageDirection("fr", "ltr")}
       />
     </Menu>
   );
-
 
   return (
     <AppBar

@@ -9,7 +9,7 @@ import { createMongoAbility } from "@casl/ability";
 
 
 import App from "App";
-
+import { I18nProvider } from 'locales/i18n-provider'; 
 // Soft UI Context Provider
 import { SoftUIControllerProvider, AuthContextProvider } from "context";
 import { AbilityContext } from "Can";
@@ -24,6 +24,7 @@ root.render(
 
   <AbilityContext.Provider value={ability}>
 
+    <I18nProvider>
       <BrowserRouter>
         <AuthContextProvider>
           <SoftUIControllerProvider>
@@ -37,7 +38,7 @@ root.render(
         </AuthContextProvider>
 
       </BrowserRouter>
-
+    </I18nProvider>
   </AbilityContext.Provider>
 
 

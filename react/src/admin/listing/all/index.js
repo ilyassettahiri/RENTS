@@ -8,6 +8,7 @@ import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -53,6 +54,7 @@ function ListListing() {
 
 
 
+  const { t } = useTranslation();
 
 
   // menu
@@ -320,7 +322,7 @@ function ListListing() {
               <SoftBox mr={2}>
                 <SoftButton variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
-                  New Listing
+                {t('createListing')} 
                 </SoftButton>
               </SoftBox>
 

@@ -1,0 +1,242 @@
+{
+  "demo": {
+    "lang": "France",
+    "description": "Le point de départ pour votre prochain projet est basé sur MUI. La personnalisation facile vous aide à construire des applications plus rapidement et mieux."
+  },
+
+
+  "clientUsage": "Utiliser Client",
+  "createListing": "Créer une annonce",
+
+
+
+
+      "Apartments": "Appartements",
+      "Billiards": "Billards",
+      "Activities": "Activités",
+      "Audios": "Audio",
+      "Boats": "Bateaux",
+      "Boxings": "Boxe",
+      "Bureauxs": "Bureaux",
+      "Cameras": "Caméras",
+      "Camions": "Camions",
+      "Caravans": "Caravanes",
+      "Cars": "Voitures",
+      "Chargers": "Chargeurs",
+      "Clothes": "Vêtements",
+      "Divings": "Plongée",
+      "Drones": "Drones",
+      "Eclairages": "Éclairages",
+      "Electricaltools": "Outils électriques",
+      "Engins": "Engins",
+      "Footballs": "Football",
+      "Furnitures": "Meubles",
+      "Gamings": "Jeux",
+      "Golfs": "Golf",
+      "Houseappliances": "Appareils domestiques",
+      "Huntings": "Chasse",
+      "Jewelrys": "Bijoux",
+      "Ladders": "Échelles",
+      "Laptops": "Ordinateurs portables",
+      "Lightings": "Éclairage",
+      "Livres": "Livres",
+      "Magasins": "Magasins",
+      "Maisons": "Maisons",
+      "Mechanicaltools": "Outils mécaniques",
+      "Mobiliers": "Mobilier",
+      "Motos": "Motos",
+      "Musculations": "Musculation",
+      "Musicals": "Musicaux",
+      "Photographies": "Photographie",
+      "Powertools": "Outils électroportatifs",
+      "Pressurewashers": "Nettoyeurs haute pression",
+      "Printers": "Imprimantes",
+      "Riads": "Riads",
+      "Routers": "Routeurs",
+      "Scooters": "Scooters",
+      "Services": "Services",
+      "Sonorisations": "Sonorisations",
+      "Surfs": "Surf",
+      "Tablettes": "Tablettes",
+      "Taxiaeroports": "Taxis aéroport",
+      "Tennis": "Tennis",
+      "Tentes": "Tentes",
+      "Terrains": "Terrains",
+      "Transportations": "Transports",
+      "Velos": "Vélos",
+      "Villas": "Villas",
+
+
+
+          "Vehicule": "Véhicule",
+
+          "Immobilier": "Immobilier",
+
+          "Electronic": "Électronique",
+
+          "MaterielProfessionnel": "Matériel Professionnel",
+
+
+          "EquipementpourEvenements": "Équipement pour événements",
+
+          "LoisirsetDivertissements": "Loisirs et divertissements",
+
+          "BienetreSport": "Bien-être & Sport",
+
+          "Habillement": "Habillement",
+          "MaisonetetJardin": "Maison & Jardin",
+
+
+
+
+          "Home": "Accueil",
+
+          "Business": "Affaires",
+          "Categories": "Catégories",
+
+          "importantLinks": "Liens Importants",
+          "contactUs": "Nous Contacter",
+          "helpCenter": "Centre d'aide",
+          "blog": "Blog",
+          "privacyPolicy": "Politique de Confidentialité",
+          "termsOfService": "Conditions de Service",
+          "about": "À propos",
+          "social": "Social",
+          "apps": "Applications",
+          "downloadOnThe": "Télécharger sur le",
+          "appleStore": "Apple Store",
+          "downloadFrom": "Télécharger depuis",
+          "googlePlay": "Google Play",
+          "allRightsReserved": "Tous droits réservés",
+
+          "signUpForNewsletter": "Inscrivez-vous à la newsletter",
+          "receiveDiscount": "Recevez 50% de réduction sur le premier projet",
+          "enterYourEmail": "Entrez votre e-mail",
+          "signUp": "S'inscrire",
+
+
+          "ourClients": "Nos Clients",
+          "filters": "Filtres",
+          "viewAll": "Voir tout",
+          "newApartmentListings": "Nouvelles annonces d'Appartements",
+          "newBicycleListings": "Nouvelles annonces de vélos",
+          "newBilliardsListings": "Nouvelles annonces de Billiards",
+          "latestPosts": "Derniers Articles",
+
+          "searchPlaceholder": "Que cherchez vous...",
+          "categoryPlaceholder": "Catégorie",
+          "cityPlaceholder": "Ville",
+
+          "Description": "Description",
+          "Location": "Emplacement",
+          "Reviews": "Avis",
+          "WriteaReview": "Écrire un avis",
+          "Recommendedforyou": "Recommandé pour vous",
+          "PopularCities": "Villes populaires",
+          "Specifications": "Spécifications",
+          "StartDate": "Date de début",
+          "EndDate": "Date de fin",
+          "Guest": "Invités",
+          "Call": "Appeler",
+          "Chat": "Discussion",
+          "Whatsapp": "Whatsapp",
+          "Reserve": "Réserver",
+          "Day": "jour",
+          "TotalDays": "Nombre total de jours",
+          "Total": "Total",
+          "ViewStore": "Voir le magasin",
+          "Joined": "Rejoint",
+          "Sharevia": "Partager via",
+          "reference": "N'oubliez pas de mentionner la référence de la propriété lorsque vous appelez.",
+          "Helpful": "Utile",
+          "Reply": "Répondre",
+          "Submit": "Soumettre",
+
+          "Yourrating": "Votre note :",
+          "Cancel": "Annuler",
+          "PostReview": "Publier un avis",
+          "Membersince": "Membre depuis",
+
+          "Adults": "Adultes",
+          "Children": "Enfants",
+          "Agesabove": "Âge de 13 ans et plus",
+          "Ages": "Âges de 2 à 12 ans",
+          "Review": "Avis",
+          "Name": "Nom",
+          "Emailaddress": "Adresse e-mail",
+
+          "PersonalInfo": "Informations personnelles",
+          "Wishlist": "Liste de souhaits",
+          "Messages": "Messages",
+          "Reservations": "Réservations",
+          "Payment": "Paiement",
+
+          "Edit": "Éditer",
+          "Save": "Enregistrer",
+          "LightMode": "Mode clair",
+          "DarkMode": "Mode sombre",
+          "Logout": "Déconnexion",
+
+          "Personal": "Personnel",
+          "FirstName": "Prénom",
+          "LastName": "Nom de famille",
+          "EmailAddress": "Adresse e-mail",
+          "PhoneNumber": "Numéro de téléphone",
+          "Birthday": "Date de naissance",
+          "Gender": "Genre",
+          "StreetAddress": "Adresse",
+          "ZipCode": "Code postal",
+          "City": "Ville",
+          "Country": "Pays",
+          "Choosecountry": "Choisissez un pays",
+          "SaveChanges": "Enregistrer les modifications",
+          "ChangePassword": "Changer le mot de passe",
+          "OldPassword": "Ancien mot de passe",
+          "NewPassword": "Nouveau mot de passe",
+          "ConfirmPassword": "Confirmer le nouveau mot de passe",
+          "Allcategories": "Toutes les catégories",
+          "ChatWith": "Discuter avec",
+          "Typemessage": "Tapez un message",
+          "Searchcontacts": "Rechercher des contacts...",
+
+          "PaymentMethod": "Méthode de paiement",
+          "Paypal": "Paypal",
+          "CardHolder": "Titulaire de la carte",
+          "ExpiryDate": "Date d'expiration",
+          "Visa": "Visa",
+          "Mastercard": "Mastercard",
+          "Primary": "Primaire",
+          "AddCard": "Ajouter une nouvelle carte",
+          "All": "Toutes",
+          "Completed": "Terminé",
+          "ToProcess": "À traiter",
+          "Cancelled": "Annulé",
+          "ID": "ID",
+          "Title": "Titre",
+          "Price": "Prix",
+          "Start": "Début",
+          "End": "Fin",
+          "Createdat": "Créé le",
+          "Setprimary": "Définir comme moyen de paiement principal",
+          "Delete": "Supprimer",
+
+
+
+
+
+
+          "Rooms": "Chambres",
+          "Living Rooms": "Salons",
+          "Bathrooms": "Salles de bains",
+          "Bedrooms": "Chambres à coucher",
+          "Security System": "Système de sécurité",
+          "Equipped Kitchen": "Cuisine équipée",
+          "Service": "Service",
+          "Facilities": "Installations",
+
+          "More Details": "Plus de détails"
+
+
+
+
+}
