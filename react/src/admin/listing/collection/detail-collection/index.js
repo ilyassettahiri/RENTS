@@ -298,7 +298,7 @@ const DetailCollection = () => {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                        border: "2px dashed #ccc",
+                        border: "2px dashed #e7e7e7",
                         borderRadius: "8px",
                         padding: "16px",
                         textAlign: "center",

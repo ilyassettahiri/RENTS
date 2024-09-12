@@ -34,7 +34,7 @@ const colors = {
   },
 
   info: {
-    main: "#17c1e8",
+    main: "#1e90ff",
     focus: "#21d4fd",
   },
 
@@ -78,7 +78,7 @@ const colors = {
   gradients: {
     primary: {
       main: "#1e90ff",
-      state: "#21d4fd",
+      state: "#1e90ff",
     },
 
     secondary: {
@@ -255,7 +255,7 @@ const colors = {
     },
 
     info: {
-      main: "#2152ff",
+      main: "#1e90ff",
       state: "#02c6f3",
       border: "#b9ecf8",
     },
@@ -303,7 +303,7 @@ const colors = {
     },
 
     info: {
-      background: "#abe9f7",
+      background: "#1e90ff",
       text: "#08a1c4",
     },
 
@@ -345,7 +345,7 @@ const colors = {
     },
 
     info: {
-      background: "#aecef7",
+      background: "#1e90ff",
       text: "#095bc6",
     },
 
@@ -376,7 +376,7 @@ const colors = {
   },
 
   inputColors: {
-    borderColor: { main: "#d2d6da", focus: "#35d1f5" },
+    borderColor: { main: "#e7e7e7", focus: "#35d1f5" },
     boxShadow: "#81e3f9",
     error: "#fd5c70",
     success: "#66d432",
@@ -393,7 +393,7 @@ const colors = {
   coloredShadows: {
     primary: "#e91e62",
     secondary: "#110e0e",
-    info: "#00bbd4",
+    info: "#1e90ff",
     success: "#4caf4f",
     warning: "#ff9900",
     error: "#f44336",

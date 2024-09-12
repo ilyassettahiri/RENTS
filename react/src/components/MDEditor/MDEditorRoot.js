@@ -14,15 +14,18 @@ export default styled("div")(({ theme, ownerState }) => {
   return {
     "& .ql-toolbar": {
       borderRadius: `${borderRadius.md} ${borderRadius.md} 0 0`,
+      border: "1px solid #e7e7e7",
 
       "& .ql-picker, & .ql-stroke": {
         stroke: `${darkMode ? white.main : dark.main} !important`,
         color: `${darkMode ? white.main : dark.main} !important`,
+        
       },
     },
 
     "& .ql-container": {
       borderRadius: `0 0 ${borderRadius.md} ${borderRadius.md}`,
+      border: "1px solid #e7e7e7",
     },
 
     "& .ql-editor": {
@@ -33,7 +36,7 @@ export default styled("div")(({ theme, ownerState }) => {
 
       paddingTop: "2rem", // Add bottom padding here
 
-      backgroundColor: darkMode ? grey[900] : grey[100], // Add light gray background
+      backgroundColor: darkMode ? "#f9f9f9" : "#f9f9f9", // Add light gray background
       "&::placeholder": {
         color: darkMode ? grey[500] : grey[600], // Placeholder text color
         fontStyle: "italic", // Optional: make placeholder italic

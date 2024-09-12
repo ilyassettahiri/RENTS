@@ -1973,7 +1973,7 @@ function CreateListing() {
                         </SoftBox>
                         <SoftSelect
 
-                          defaultValue={{ value: "", label: "Select Category" }}
+                          placeholder="Select Category"
                           options={[
                             { value: "", label: "Select Category" },
                             { value: "boats", label: "boats", icon: BoatsIcon },

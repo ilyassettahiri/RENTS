@@ -42,9 +42,9 @@ export default (selectSize, selectError, selectSuccess) => {
   }
 
   if (selectSize === "small") {
-    selectSizeValue = pxToRem(32);
-  } else if (selectSize === "large") {
     selectSizeValue = pxToRem(48);
+  } else if (selectSize === "large") {
+    selectSizeValue = pxToRem(54);
   } else {
     selectSizeValue = pxToRem(40);
   }
@@ -75,7 +75,7 @@ export default (selectSize, selectError, selectSuccess) => {
       border: `${borderWidth[1]} solid ${inputColors.borderColor.main}`,
       appearance: "none",
       borderRadius: borderRadius.md,
-      transition: "box-shadow 10ms ease, border-color 150ms ease",
+      transition: "box-shadow 10ms ease, border-color 10ms ease",
       cursor: "pointer",
       borderColor: state.isFocused ? borderColorFocused : borderColorValue,
       boxShadow: state.isFocused ? boxShadowValue : "none",
@@ -123,12 +123,12 @@ export default (selectSize, selectError, selectSuccess) => {
 
       "& svg": {
         fill: text.main,
-        width: pxToRem(14),
-        height: pxToRem(14),
+        width: pxToRem(18),
+        height: pxToRem(18),
         strokeWidth: 1,
         stroke: text.main,
         transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0)",
-        transition: "transform 20ms ease",
+        transition: "transform 10ms ease",
       },
     }),
 

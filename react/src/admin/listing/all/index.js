@@ -320,7 +320,7 @@ function ListListing() {
 
 
               <SoftBox mr={2}>
-                <SoftButton variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+                <SoftButton  variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
                 {t('createListing')} 
                 </SoftButton>
