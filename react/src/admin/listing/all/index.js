@@ -320,16 +320,28 @@ function ListListing() {
 
 
               <SoftBox mr={2}>
-                <SoftButton  variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+                <SoftButton   sx={{ px:3, py: 0 }} variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
-                {t('createListing')} 
+                  
+                  <SoftTypography color="white" variant="body2" fontWeight="medium" >
+                    {t('createListing')} 
+                  </SoftTypography>
+
                 </SoftButton>
               </SoftBox>
 
               <SoftBox display="flex">
-                <SoftButton variant="contained" color="white" onClick={openMenu}>
-                  More Action &nbsp;
-                  <Icon>keyboard_arrow_down</Icon>
+                <SoftButton sx={{ px:3, py: 0 }} variant="contained" color="white" onClick={openMenu}>
+                   
+                 
+
+
+                    <SoftBox display="flex" alignItems="center" gap={1}> {/* Flexbox to align icon and text */}
+                      <SoftTypography color="dark" variant="body2" fontWeight="medium">
+                      {t('More Action')} 
+                      </SoftTypography>
+                      <Icon>keyboard_arrow_down</Icon>
+                    </SoftBox>
                 </SoftButton>
                 {renderMenu}
                 
