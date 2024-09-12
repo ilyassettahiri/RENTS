@@ -22,6 +22,7 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
       borderBottom={`${borderWidth[1]} solid ${light.main}`}
       py={2.5}
       px={1}
+      sx={{ backgroundColor: "#f7f7f7" }}
     >
       <SoftBox
         {...rest}

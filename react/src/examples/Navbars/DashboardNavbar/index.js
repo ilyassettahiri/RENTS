@@ -172,24 +172,20 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={{ mt: 2 }}
     >
       <NotificationItem
-        image={<img src={team1} alt="person" />}
+        image="/icons/flags/US.png"
         title={["New message", "from Laur"]}
         date="13 minutes ago"
         onClick={handleCloseMenu}
       />
       <NotificationItem
-        image={<img src={team1} alt="person" />}
+        image="/icons/flags/US.png"
         title={["New album", "by Travis Scott"]}
         date="1 day"
         onClick={handleCloseMenu}
       />
       <NotificationItem
         color="secondary"
-        image={
-          <Icon fontSize="small" sx={{ color: ({ palette: { white } }) => white.main }}>
-            payment
-          </Icon>
-        }
+        image="/icons/flags/US.png"
         title={["", "Payment successfully completed"]}
         date="2 days"
         onClick={handleCloseMenu}
@@ -212,17 +208,17 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={{ mt: 2 }}
     >
       <NotificationItem
-        image={<img src={team1} alt="person" />}
+        image="/icons/flags/AU.png"
         title={["English"]}
         onClick={() => changeLanguageDirection("en", "ltr")}
       />
       <NotificationItem
-        image={<img src={team1} alt="person" />}
+        image="/icons/flags/GB.png"
         title={["Arabic"]}
         onClick={() => changeLanguageDirection("ar", "rtl")}
       />
       <NotificationItem
-        image={<img src={team1} alt="person" />}
+        image="/icons/flags/US.png"
         title={["French"]}
         onClick={() => changeLanguageDirection("fr", "ltr")}
       />

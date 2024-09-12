@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { forwardRef } from "react";
 
@@ -29,6 +16,9 @@ import SoftTypography from "components/SoftTypography";
 // custom styles for the NotificationItem
 import { menuItem, menuImage } from "examples/Items/NotificationItem/styles";
 
+import Image from "components/image"; 
+
+
 const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref) => (
   <MenuItem {...rest} ref={ref} sx={(theme) => menuItem(theme)}>
     <SoftBox
@@ -40,7 +30,16 @@ const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref
       borderRadius="lg"
       sx={(theme) => menuImage(theme, { color })}
     >
-      {image}
+      <Image
+        src={`${process.env.REACT_APP_PUBLIC_IMAGE_BASE_URL}${image}`}
+        alt={title[0]} // provide alt text for accessibility
+        ratio="1/1" // example ratio, can be customized as needed
+        width="100%"
+        height="100%"
+        sx={{ borderRadius: "8px" }} // optional, to apply border-radius or any styles
+        
+        disabledEffect={false} // enable image effect
+      />
     </SoftBox>
     <SoftBox>
       <SoftTypography variant="button" textTransform="capitalize" fontWeight="regular">

@@ -20,7 +20,7 @@ function DataTableBodyCell({ noBorder, align, children }) {
       textAlign={align}
       fontSize={size.sm}
       borderBottom={noBorder ? "none" : `${borderWidth[1]} solid ${light.main}`}
-      py={2.5}
+      py={1.5}
       px={1}
     >
       <SoftBox

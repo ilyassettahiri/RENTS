@@ -4,12 +4,23 @@ import Checkbox from "@mui/material/Checkbox";
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
 
+import  Image  from 'components/image';
+
+
 function ProductCell({ image, name, checked, linkPath }) {
   return (
     <SoftBox display="flex" alignItems="center">
       
-      <SoftBox mx={2} width="3.75rem" component={NavLink}  to={linkPath}>
-        <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`} alt={name} width="100%" />
+      <SoftBox mx={2} width="4rem" component={NavLink}  to={linkPath}>
+        <Image
+          src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`}
+          alt={name}
+          ratio="1/1"
+          width="100%"
+          sx={{ borderRadius: '10px' }}
+          // Using 'blur' effect as an example; customize as needed
+          disabledEffect={false} // Example prop to enable effects
+        />
       </SoftBox>
       <SoftTypography variant="button" fontWeight="medium" component={NavLink}  to={linkPath}>
         {name}

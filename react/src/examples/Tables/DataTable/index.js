@@ -255,7 +255,7 @@ function DataTable({
       </SoftBox>
       ) : null}
 
-      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
+      <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={1}>
         {selectedRows.length > 0 && (
           <SoftButton onClick={deleteSelectedRows} color="error">
             Delete Selected ({selectedRows.length})
