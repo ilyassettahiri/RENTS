@@ -16,6 +16,7 @@ import IconButton from "@mui/material/IconButton";
 import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import SoftAvatar from "components/SoftAvatar";
+import Nav from 'examples/Navbars/DashboardNavbar/nav';
 
 
 // Soft UI Dashboard PRO React components
@@ -71,6 +72,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar,   } = controller;
   const [openMenu, setOpenMenu] = useState(false);
+
+  const [navOpen, setNavOpen] = useState(false); 
 
   const [openLanguage, setOpenLanguage] = useState(false);
 
@@ -139,6 +142,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+
+
+  const handleNavOpen = () => setNavOpen(true);  // Set navOpen to true to open the Nav
+  const handleCloseNav = () => setNavOpen(false);  // Set navOpen to false to close the Nav
+
 
   const handleOpenLanguage = (event) => setOpenLanguage(event.currentTarget);
   const handleCloseLanguage = () => setOpenLanguage(false);
@@ -291,11 +299,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 size="large"
                 color="inherit"
                 sx={navbarIconButton}
-                
+                onClick={handleNavOpen} 
               >
-                              <SoftAvatar src={"/team-1.jpg"} alt="profile-image" size="xs" shadow="sm" />
+                <SoftAvatar src={"/team-1.jpg"} alt="profile-image" size="xs" shadow="sm" />
 
               </IconButton>
+              <Nav open={navOpen} onClose={handleCloseNav} />
 
 
               {renderMenu()}
