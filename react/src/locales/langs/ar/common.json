@@ -124,9 +124,9 @@
           "categoryPlaceholder": "الفئة",
           "cityPlaceholder": "المدينة",
 
-          "Description": "الوصف",
+          
           "Location": "الموقع",
-          "Reviews": "المراجعات",
+          
           "WriteaReview": "اكتب مراجعة",
           "Recommendedforyou": "موصى به لك",
           "PopularCities": "المدن الشهيرة",
@@ -159,7 +159,7 @@
           "Agesabove": "الأعمار 13 سنة أو أكثر",
           "Ages": "الأعمار من 2 إلى 12 سنة",
           "Review": "مراجعة",
-          "Name": "الاسم",
+          
           "Emailaddress": " البريد الإلكتروني",
 
           "PersonalInfo": "المعلومات الشخصية",
@@ -183,8 +183,7 @@
           "Gender": "الجنس",
           "StreetAddress": "عنوان الشارع",
           "ZipCode": "الرمز البريدي",
-          "City": "المدينة",
-          "Country": "البلد",
+          
           "Choosecountry": "اختر بلدًا",
           "SaveChanges": "حفظ التغييرات",
           "ChangePassword": "تغيير كلمة المرور",
@@ -197,7 +196,7 @@
           "Searchcontacts": "...البحث عن جهات الاتصال",
 
           "PaymentMethod": "طريقة الدفع",
-          "Paypal": "باي بال",
+          
           "CardHolder": "حامل البطاقة",
           "ExpiryDate": "تاريخ الانتهاء",
           "Visa": "فيزا",
@@ -205,14 +204,11 @@
           "Primary": "رئيسي",
           "AddCard": "أضف بطاقة جديدة",
           "All": "الكل",
-          "Completed": "مكتمل",
+          
           "ToProcess": "للمعالجة",
           "Cancelled": "ملغى",
           "ID": "المعرف",
-          "Title": "العنوان",
-          "Price": "السعر",
-          "Start": "البدء",
-          "End": "الانتهاء",
+          
           "Createdat": "تاريخ الإنشاء",
           "Setprimary": "تعيين كوسيلة الدفع الرئيسية",
           "Delete": "حذف",
@@ -229,7 +225,194 @@
           "Service": "خدمة",
           "Facilities": "مرافق",
 
-          "More Details": "المزيد من التفاصيل"
+          "More Details": "المزيد من التفاصيل",
+          
+
+
+
+          "Dashboard": "لوحة القيادة",
+          "Today's Money": "أموال اليوم",
+          "New Clients": "عملاء جدد",
+          "Today's Users": "مستخدمو اليوم",
+          
+          "Type here...": "اكتب هنا...",
+          "Reservation": "الحجز",
+          "Upcoming": "القادمة",
+          "NEW RESERVATION": "حجز جديد",
+          "MORE ACTION": "المزيد من الإجراءات",
+          "contains": "يحتوي على",
+          "equals": "يساوي",
+          "starts With": "يبدأ بـ",
+          "ends With": "ينتهي بـ",
+          "APPLY": "تطبيق",
+          "Status: Paid": "الحالة: مدفوع",
+          "Status: Refunded": "الحالة: تم استرداد المبلغ",
+          "Status: Canceled": "الحالة: ملغى",
+          "Remove Fillter": "إزالة الفلتر",
+          "per page": "لكل صفحة",
+          "Showing 1 - 30 of 0": "عرض 1 - 30 من 0",
+          "Checking Out": "إتمام الدفع",
+          "Currently Hosting": "يستضيف حاليًا",
+          "ALL": "الكل",
+          "SAVE": "حفظ",
+          "Enter your tracking number here...": "أدخل رقم التتبع الخاص بك هنا...",
+          "Track order": "تتبع الطلب",
+          "Order received": "تم استلام الطلب",
+          "Generate order id": "إنشاء معرف الطلب",
+          "Order transmitted to courier": "تم نقل الطلب إلى شركة التوصيل",
+          "Order delivered": "تم تسليم الطلب",
+          "Search...": "بحث...",
+          "Select column": "اختر العمود",
+          
+          "STATUS": "الحالة",
+          "CUSTOMER": "العميل",
+          "REVENUE": "الإيرادات",
+          "PRODUCT": "المنتج",
+
+        
+            "Listing Information": "معلومات القائمة",
+            "Listing": "القائمة",
+            "Create Listing": "إنشاء قائمة",
+            "Category": "الفئة",
+           
+            "apartament for rent...": "شقة للإيجار...",
+            "Description": "الوصف",
+            "Select Category": "اختر الفئة",
+            "Availability": "التوفر",
+            "Start": "البداية",
+            "End": "النهاية",
+            "Listing Details": "تفاصيل القائمة",
+            "Listing Images": "صور القائمة",
+            "Drag and drop some files here, or click to select files": "اسحب وأسقط بعض الملفات هنا، أو انقر لتحديد الملفات",
+            "Listing Address": "عنوان القائمة",
+            "Address": "العنوان",
+            "Eg. Soft": "مثال: سوفت",
+            "City": "المدينة",
+            "Eg. Tokyo": "مثال: طوكيو",
+            "Country": "البلد",
+            "Eg. Argentina": "مثال: الأرجنتين",
+            "Zip": "الرمز البريدي",
+            "Eg.123456": "مثال: 123456",
+            "Pricing": "التسعير",
+            "Price": "السعر",
+            "Currency": "العملة",
+            "Phone Number": "رقم الهاتف",
+            "USD": "دولار أمريكي",
+            "EUR": "يورو",
+            "DH": "درهم",
+            "Completed": "مكتمل",
+            "Draft": "مسودة",
+            "Boosted": "معزز",
+            "Collection": "مجموعة",
+            "Discount": "خصم",
+            "customer": "العميل",
+            
+            "Reviews": "المراجعات",
+            "REQUEST REVIEW": "طلب مراجعة",
+            "Analytics": "تحليلات",
+            "ADD LISTING": "إضافة قائمة",
+            "Yesterday": "أمس",
+            "Last 7 days": "آخر 7 أيام",
+            "Last 30 days": "آخر 30 يومًا",
+            "users": "المستخدمون",
+            "new users": "مستخدمون جدد",
+            "sessions": "الجلسات",
+            "Pages/Session": "الصفحات/الجلسة",
+            "Referrals": "الإحالات",
+            "Traffic channels": "قنوات المرور",
+            "Organic search": "البحث العضوي",
+            "Referral": "إحالة",
+            "Social media": "وسائل التواصل الاجتماعي",
+            "Finance": "التمويل",
+            "Overview": "نظرة عامة",
+            "Sales": "المبيعات",
+            "Customers": "العملاء",
+            "Avg. Revenue": "متوسط الإيرادات",
+            "Channels": "القنوات",
+            "Revenue": "الإيرادات",
+            "Sales by age": "المبيعات حسب العمر",
+            "Sales by Country": "المبيعات حسب الدولة",
+            "Top Selling Products": "المنتجات الأكثر مبيعًا",
+            "Payment Settings": "إعدادات الدفع",
+            "Salary": "الراتب",
+            "Belong Interactive": "تتبع تفاعلي",
+            "Paypal": "باي بال",
+            "Freelance Payment": "دفع مستقل",
+            "Invoices": "الفواتير",
+            "VIEW ALL": "عرض الكل",
+            "Payment Method": "طريقة الدفع",
+            "ADD NEW CARD": "إضافة بطاقة جديدة",
+            "Billing Information": "معلومات الفوترة",
+            "NEW CUSTOMER": "عميل جديد",
+            "Store": "متجر",
+            "Create Store": "إنشاء متجر",
+            "Store Information": "معلومات المتجر",
+            "Title": "العنوان",
+            "Store Name": "اسم المتجر",
+            "Plan": "الخطة",
+            "Settings": "الإعدادات",
+            "Account": "الحساب",
+            "Team Security": "أمان الفريق",
+            "IMAGE": "صورة",
+            "NAME": "الاسم",
+            "EMAIL": "البريد الإلكتروني",
+            "ROLE": "الدور",
+            "CREATED AT": "تم إنشاؤه في",
+            "Name": "الاسم",
+            "Email": "البريد الإلكتروني",
+            "Role": "الدور",
+            "Profile Image": "صورة الملف الشخصي",
+            "BACK": "العودة",
+            "Industry": "الصناعة",
+            "Rating": "التقييم",
+            "Members": "الأعضاء",
+            "Action": "الإجراء",
+            "Another action": "إجراء آخر",
+            "Something else here": "شيء آخر هنا",
+            "Security": "الأمان",
+            "Security settings": "إعدادات الأمان",
+            "Notify me via email when logging in": "إخطار عبر البريد الإلكتروني عند تسجيل الدخول",
+            "Send SMS confirmation for all online payments": "إرسال تأكيد عبر الرسائل النصية لجميع المدفوعات عبر الإنترنت",
+            "Check which devices accessed your account": "تحقق من الأجهزة التي وصلت إلى حسابك",
+            "Find My Device": "العثور على جهازي",
+            "Make sure your device can be found if it gets lost": "تأكد من أنه يمكن العثور على جهازك إذا فقد",
+            "Lock your device with a PIN, pattern, or password": "قفل جهازك باستخدام رقم تعريف شخصي أو نمط أو كلمة مرور",
+            "Manage what apps have access to app-usage data on your device": "إدارة التطبيقات التي يمكنها الوصول إلى بيانات استخدام التطبيقات على جهازك",
+            "Two factor authentication": "المصادقة الثنائية",
+            "Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.": "تضيف المصادقة الثنائية طبقة إضافية من الأمان إلى حسابك عن طريق طلب أكثر من مجرد كلمة مرور لتسجيل الدخول.",
+            "CANCEL": "إلغاء",
+            "SAVE CHANGES": "حفظ التغييرات",
+            "Change Password": "تغيير كلمة المرور",
+            "We will send you an email with the verification code.": "سنرسل لك بريدًا إلكترونيًا يحتوي على رمز التحقق.",
+            "Current password": "كلمة المرور الحالية",
+            "New Password": "كلمة المرور الجديدة",
+            "Confirm New Password": "تأكيد كلمة المرور الجديدة",
+            "UPDATE PASSWORD": "تحديث كلمة المرور",
+            "This information will describe more about the customer.": "ستصف هذه المعلومات المزيد عن العميل.",
+            "Create Customer": "إنشاء عميل",
+            "Add New customer": "إضافة عميل جديد"
+
+
+
+
+
+
+          
+
+
+
+
+
+
+
+
+
+          
+            
+
+            
+          
+          
 
 
 

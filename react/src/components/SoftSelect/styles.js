@@ -75,7 +75,7 @@ export default (selectSize, selectError, selectSuccess) => {
       border: `${borderWidth[1]} solid ${inputColors.borderColor.main}`,
       appearance: "none",
       borderRadius: borderRadius.md,
-      transition: "box-shadow 150ms ease, border-color 150ms ease",
+      transition: "box-shadow 10ms ease, border-color 150ms ease",
       cursor: "pointer",
       borderColor: state.isFocused ? borderColorFocused : borderColorValue,
       boxShadow: state.isFocused ? boxShadowValue : "none",
@@ -128,7 +128,7 @@ export default (selectSize, selectError, selectSuccess) => {
         strokeWidth: 1,
         stroke: text.main,
         transform: state.selectProps.menuIsOpen ? "rotate(180deg)" : "rotate(0)",
-        transition: "transform 250ms ease",
+        transition: "transform 20ms ease",
       },
     }),
 
@@ -143,7 +143,7 @@ export default (selectSize, selectError, selectSuccess) => {
       backgroundColor: white.main,
       borderRadius: borderRadius.md,
       transformOrigin: "50% 0",
-      animation: `${prespective} 250ms ease forwards !important`,
+      animation: `${prespective} 20ms ease forwards !important`,
     }),
 
     menuList: (provided) => ({
@@ -165,7 +165,7 @@ export default (selectSize, selectError, selectSuccess) => {
       cursor: state.isDisabled ? "not-allowed" : "pointer",
       opacity: state.isDisabled ? 0.5 : 1,
       userSelect: state.isDisabled ? "none" : "auto",
-      transition: "background-color 300ms ease, color 300ms ease",
+      transition: "background-color 10ms ease, color 30ms ease",
 
       "&:after": {
         content: "'Press to select'",

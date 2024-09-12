@@ -15,12 +15,12 @@ export default styled(InputBase)(({ theme, ownerState }) => {
   // styles for the input with size="small"
   const smallStyles = () => ({
     fontSize: fontSize.xs,
-    padding: `${pxToRem(4)} ${pxToRem(12)}`,
+    padding: `${pxToRem(4)} ${pxToRem(15)}`,
   });
 
   // styles for the input with size="large"
   const largeStyles = () => ({
-    padding: pxToRem(12),
+    padding: pxToRem(15),
   });
 
   // styles for the focused state of the input

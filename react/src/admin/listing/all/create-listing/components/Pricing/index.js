@@ -14,8 +14,8 @@ import FormField from "admin/components/FormField";
 function Pricing({ pricing, onPricingChange, onSelectChange }) {
   return (
     <SoftBox>
-      <SoftTypography variant="h5">Pricing</SoftTypography>
-      <SoftBox mt={3}>
+      
+      <SoftBox >
         <Grid container spacing={3}>
           <Grid item xs={12} sm={3}>
             <FormField

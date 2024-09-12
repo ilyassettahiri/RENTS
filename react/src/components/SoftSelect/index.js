@@ -10,7 +10,7 @@ import SoftBox from "components/SoftBox";
 const IconOption = (props) => (
   <components.Option {...props}>
     {props.data.icon && (
-      <SoftBox component="img" src={props.data.icon} alt="" sx={{ width: 30, height: 30, marginRight: 1}} />
+      <SoftBox component="img" src={props.data.icon} alt="" sx={{ width: 40, height: 40, marginRight: 1}} />
     )}
     {props.data.label}
   </components.Option>

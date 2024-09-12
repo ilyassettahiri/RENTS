@@ -7,6 +7,7 @@ import { useLocation, NavLink } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
+import { useTranslation } from 'react-i18next';
 
 // @mui material components
 import List from "@mui/material/List";
@@ -32,6 +33,7 @@ import { useSoftUIController,setMiniSidenav } from "context";
 
 function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
 
+  const { t } = useTranslation();
 
   const [openCollapse, setOpenCollapse] = useState(false);
   const [openNestedCollapse, setOpenNestedCollapse] = useState(false);
@@ -90,11 +92,11 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
           rel="noreferrer"
           sx={{ textDecoration: "none" }}
         >
-          <SidenavItem name={name} nested />
+          <SidenavItem name={t(name)}  nested />
         </Link>
       ) : (
         <NavLink to={route} key={key} sx={{ textDecoration: "none" }}>
-          <SidenavItem name={name} active={route === pathname} nested />
+          <SidenavItem name={t(name)} active={route === pathname} nested />
         </NavLink>
       )
     );
@@ -111,7 +113,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
         returnValue = (
           <SidenavItem
             key={key}
-            name={name}
+            name={t(name)}
             active={key === itemName}
             open={openNestedCollapse === name}
             onClick={() =>
@@ -132,11 +134,11 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
             rel="noreferrer"
             sx={{ textDecoration: "none" }}
           >
-            <SidenavItem name={name} active={key === itemName} />
+            <SidenavItem name={t(name)} active={key === itemName} />
           </Link>
         ) : (
           <NavLink to={route} key={key} sx={{ textDecoration: "none" }}>
-            <SidenavItem name={name} active={key === itemName} />
+            <SidenavItem name={t(name)} active={key === itemName} />
           </NavLink>
         );
       }
@@ -170,7 +172,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
           returnValue = (
             <NavLink to={route} key={key}>
               <SidenavCollapse
-                name={name}
+                name={t(name)}
                 icon={icon}
                 noCollapse={noCollapse}
                 active={key === collapseName}
@@ -183,7 +185,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
           returnValue = (
             <SidenavCollapse
               key={key}
-              name={name}
+              name={t(name)}
               icon={icon}
               active={key === collapseName}
               open={openCollapse === key}

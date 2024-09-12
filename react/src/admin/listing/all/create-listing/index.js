@@ -1961,8 +1961,8 @@ function CreateListing() {
           <Grid item xs={12} lg={20}>
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
-                <SoftTypography variant="h5">Listing Information</SoftTypography>
-                <SoftBox mt={3}>
+                
+                <SoftBox >
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6} mt={1}>
                       <SoftBox mb={3}>
@@ -2098,7 +2098,7 @@ function CreateListing() {
 
               <SoftBox p={3}>
 
-                  <SoftTypography variant="h5">Listing Details</SoftTypography>
+                  
 
 
                     {getCategory(
@@ -2174,9 +2174,9 @@ function CreateListing() {
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
 
-                <SoftTypography variant="h5">Listing Images</SoftTypography>
+                
 
-                <SoftBox mt={3}>
+                <SoftBox >
                   
                   <CustomFileInput onFilesChange={handleFilesChange} />
                 </SoftBox>
@@ -2187,7 +2187,7 @@ function CreateListing() {
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
 
-               <SoftTypography variant="h5">Listing Address </SoftTypography>
+               
 
                 <Address address={address} onAddressChange={handleAddressChange} />
               </SoftBox>
