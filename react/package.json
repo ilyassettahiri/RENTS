@@ -79,6 +79,7 @@
     "react-chartjs-2": "3.0.5",
     "react-circular-slider-svg": "0.2.0",
     "react-copy-to-clipboard": "5.1.0",
+    "react-country-flag": "^3.1.0",
     "react-countup": "6.4.2",
     "react-dom": ">=16.8.0",
     "react-draft-wysiwyg": "^1.15.0",

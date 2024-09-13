@@ -45,8 +45,14 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
             top={0}
             right={align !== "right" ? "16px" : 0}
             left={align === "right" ? "-5px" : "unset"}
-            sx={({ typography: { size } }) => ({
-              fontSize: size.lg,
+            
+
+            sx={({ typography: { size, fontWeightBold } }) => ({
+              fontSize: size.xl,
+              fontWeight: fontWeightBold,
+              textTransform: "uppercase",
+              cursor: sorted && "pointer",
+              userSelect: sorted && "none",
             })}
           >
             <SoftBox

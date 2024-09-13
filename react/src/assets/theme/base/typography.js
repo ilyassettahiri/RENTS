@@ -13,11 +13,11 @@ const baseProperties = {
   fontWeightMedium: 600,
   fontWeightBold: 700,
   fontSizeXXS: pxToRem(13.4),
-  fontSizeXS: pxToRem(14),
+  fontSizeXS: pxToRem(14.3),
   fontSizeSM: pxToRem(14),
   fontSizeMD: pxToRem(16),
   fontSizeLG: pxToRem(18),
-  fontSizeXL: pxToRem(20),
+  fontSizeXL: pxToRem(24),
 };
 
 const baseHeadingProperties = {

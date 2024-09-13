@@ -27,6 +27,9 @@ import SoftInput from "components/SoftInput";
 // Soft UI Dashboard PRO React example components
 import Breadcrumbs from "examples/Breadcrumbs";
 import NotificationItem from "examples/Items/NotificationItem";
+
+import DefaultItem from "examples/Items/DefaultItem";
+
 import { useTextDirection, setTextDirection } from "context/useTextDirection"; // Import TextDirectionContext
 
 
@@ -172,20 +175,20 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={{ mt: 2 }}
     >
       <NotificationItem
-        image="/icons/flags/US.png"
+        image="/logo/admin.jpg"
         title={["New message", "from Laur"]}
         date="13 minutes ago"
         onClick={handleCloseMenu}
       />
       <NotificationItem
-        image="/icons/flags/US.png"
+        image="/logo/admin.jpg"
         title={["New album", "by Travis Scott"]}
         date="1 day"
         onClick={handleCloseMenu}
       />
       <NotificationItem
-        color="secondary"
-        image="/icons/flags/US.png"
+        
+        image="/logo/admin.jpg"
         title={["", "Payment successfully completed"]}
         date="2 days"
         onClick={handleCloseMenu}
@@ -207,19 +210,19 @@ function DashboardNavbar({ absolute, light, isMini }) {
       onClose={handleCloseLanguage}
       sx={{ mt: 2 }}
     >
-      <NotificationItem
-        image="/icons/flags/AU.png"
-        title={["English"]}
+      <DefaultItem
+        countryCode="GB"
+        title="English"
         onClick={() => changeLanguageDirection("en", "ltr")}
       />
-      <NotificationItem
-        image="/icons/flags/GB.png"
-        title={["Arabic"]}
+      <DefaultItem
+        countryCode="SA"
+        title="Arabic"
         onClick={() => changeLanguageDirection("ar", "rtl")}
       />
-      <NotificationItem
-        image="/icons/flags/US.png"
-        title={["French"]}
+      <DefaultItem
+        countryCode="FR"
+        title="French"
         onClick={() => changeLanguageDirection("fr", "ltr")}
       />
     </Menu>

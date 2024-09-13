@@ -115,7 +115,7 @@ function Analytics() {
                 title={{ text: "users", fontWeight: "medium" }}
                 count="930"
                 percentage={{ color: "success", text: "+55%" }}
-                icon={{ color: "dark", component: "account_circle" }}
+                icon={{ color: "info", component: "account_circle" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
@@ -123,7 +123,7 @@ function Analytics() {
                 title={{ text: "new users", fontWeight: "medium" }}
                 count="744"
                 percentage={{ color: "success", text: "+3%" }}
-                icon={{ color: "dark", component: "public" }}
+                icon={{ color: "info", component: "public" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
@@ -131,7 +131,7 @@ function Analytics() {
                 title={{ text: "sessions", fontWeight: "medium" }}
                 count="1,414"
                 percentage={{ color: "success", text: "-2%" }}
-                icon={{ color: "dark", component: "watch" }}
+                icon={{ color: "info", component: "watch" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
@@ -139,7 +139,7 @@ function Analytics() {
                 title={{ text: "Pages/Session", fontWeight: "medium" }}
                 count="1.76"
                 percentage={{ color: "success", text: "+5%" }}
-                icon={{ color: "dark", component: "image" }}
+                icon={{ color: "info", component: "image" }}
               />
             </Grid>
           </Grid>
@@ -152,7 +152,7 @@ function Analytics() {
                 description={
                   <SoftBox display="flex" ml={-1}>
                     <SoftBadgeDot color="info" size="sm" badgeContent="Organic search" />
-                    <SoftBadgeDot color="dark" size="sm" badgeContent="Referral" />
+                    <SoftBadgeDot color="info" size="sm" badgeContent="Referral" />
                     <SoftBadgeDot color="primary" size="sm" badgeContent="Social media" />
                   </SoftBox>
                 }

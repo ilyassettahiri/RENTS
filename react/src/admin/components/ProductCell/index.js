@@ -18,8 +18,7 @@ function ProductCell({ image, name, checked, linkPath }) {
           ratio="1/1"
           width="100%"
           sx={{ borderRadius: '10px' }}
-          // Using 'blur' effect as an example; customize as needed
-          disabledEffect={false} // Example prop to enable effects
+          
         />
       </SoftBox>
       <SoftTypography variant="button" fontWeight="medium" component={NavLink}  to={linkPath}>

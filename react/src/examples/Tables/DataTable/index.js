@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 import SoftSelect from "components/SoftSelect";
 import Grid from "@mui/material/Grid";
+import { useTranslation } from 'react-i18next';
 
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
@@ -36,6 +37,8 @@ function DataTable({
 
   const [filteredData, setFilteredData] = useState(data);
   const [selectedRows, setSelectedRows] = useState([]);
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     setFilteredData(data);
@@ -191,6 +194,7 @@ function DataTable({
             <SoftInput
               placeholder="Search..."
               value={search}
+              icon={{ component: "search", direction: "left" }}
               onChange={({ currentTarget }) => {
                 setSearch(currentTarget.value);
                 onSearchChange(currentTarget.value);
@@ -246,9 +250,15 @@ function DataTable({
             <Grid item xs={12} sm={2}>
               <SoftBox display="flex" alignItems="center" >
                  
-                  <SoftButton onClick={applyFilter} size="large">
-                    Apply
-                  </SoftButton>
+                  
+                    <SoftButton  onClick={applyFilter} sx={{  py: 2 }} variant="gradient" type="submit" color="info">
+
+                  
+                        <SoftTypography color="white" variant="caption"  fontWeight="medium" >
+                          {t('Apply')} 
+                        </SoftTypography>
+
+                    </SoftButton>
               </SoftBox>
             </Grid>
         </Grid>

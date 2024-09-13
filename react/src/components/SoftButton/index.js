@@ -25,7 +25,7 @@ const SoftButton = forwardRef(
 
 // settings default values for the props of SoftButton
 SoftButton.defaultProps = {
-  size: "large",
+  size: "medium",
   variant: "gradient",
   color: "white",
   circular: false,

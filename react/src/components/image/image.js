@@ -22,11 +22,12 @@ const Image = forwardRef(
       threshold,
       beforeLoad,
       delayMethod,
+      visibleByDefault = true,
       placeholder,
       wrapperProps,
       scrollPosition,
       effect = 'blur',
-      visibleByDefault,
+     
       wrapperClassName,
       useIntersectionObserver,
       sx,

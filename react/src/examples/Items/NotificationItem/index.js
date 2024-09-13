@@ -31,7 +31,7 @@ const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref
       sx={(theme) => menuImage(theme, { color })}
     >
       <Image
-        src={`${process.env.REACT_APP_PUBLIC_IMAGE_BASE_URL}${image}`}
+        src={`${process.env.REACT_APP_IMAGE_BASE_URL}${image}`}
         alt={title[0]} // provide alt text for accessibility
         ratio="1/1" // example ratio, can be customized as needed
         width="100%"
