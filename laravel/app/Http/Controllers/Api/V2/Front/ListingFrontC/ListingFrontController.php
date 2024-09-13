@@ -33166,7 +33166,401 @@ class ListingFrontController extends JsonApiController
     }
 
 
+    public function getListingpic(Request $request, $category, $url)
+    {
+        Log::info('Category:', ['category' => $category]);
 
+        switch ($category) {
+            case 'apartments':
+                $listingCategory = Apartment::where('url', $url)->first();
+                $images = Apartmentsimg::where('apartment_id', $listingCategory->id)->get()->map(function ($image) {
+
+
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'billiards':
+                $listingCategory = Billiard::where('url', $url)->first();
+                $images = Billiardsimg::where('billiard_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'activities':
+                $listingCategory = Activity::where('url', $url)->first();
+                $images = Activitiesimg::where('activity_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'audios':
+                $listingCategory = Audio::where('url', $url)->first();
+                $images = Audiosimg::where('audio_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'boats':
+                $listingCategory = Boat::where('url', $url)->first();
+                $images = Boatsimg::where('boat_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'boxings':
+                $listingCategory = Boxing::where('url', $url)->first();
+                $images = Boxingsimg::where('boxing_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'bureauxs':
+                $listingCategory = Bureaux::where('url', $url)->first();
+                $images = Bureauxsimg::where('bureaux_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'cameras':
+                $listingCategory = Camera::where('url', $url)->first();
+                $images = Camerasimg::where('camera_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'camions':
+                $listingCategory = Camion::where('url', $url)->first();
+                $images = Camionsimg::where('camion_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'caravans':
+                $listingCategory = Caravan::where('url', $url)->first();
+                $images = Caravansimg::where('caravan_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'cars':
+                $listingCategory = Car::where('url', $url)->first();
+                $images = Carsimg::where('car_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'chargers':
+                $listingCategory = Charger::where('url', $url)->first();
+                $images = Chargersimg::where('charger_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'clothes':
+                $listingCategory = Cloth::where('url', $url)->first();
+                $images = Clothesimg::where('cloth_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'divings':
+                $listingCategory = Diving::where('url', $url)->first();
+                $images = Divingsimg::where('diving_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'drones':
+                $listingCategory = Drone::where('url', $url)->first();
+                $images = Dronesimg::where('drone_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'eclairages':
+                $listingCategory = Eclairage::where('url', $url)->first();
+                $images = Eclairagesimg::where('eclairage_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'electricaltools':
+                $listingCategory = ElectricalTool::where('url', $url)->first();
+                $images = ElectricalToolsimg::where('electricaltool_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'engins':
+                $listingCategory = Engin::where('url', $url)->first();
+                $images = Enginsimg::where('engin_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'footballs':
+                $listingCategory = Football::where('url', $url)->first();
+                $images = Footballsimg::where('football_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'furnitures':
+                $listingCategory = Furniture::where('url', $url)->first();
+                $images = Furnituresimg::where('furniture_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'gamings':
+                $listingCategory = Gaming::where('url', $url)->first();
+                $images = Gamingsimg::where('gaming_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'golfs':
+                $listingCategory = Golf::where('url', $url)->first();
+                $images = Golfsimg::where('golf_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'houseappliances':
+                $listingCategory = HouseAppliance::where('url', $url)->first();
+                $images = HouseAppliancesimg::where('houseappliance_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'huntings':
+                $listingCategory = Hunting::where('url', $url)->first();
+                $images = Huntingsimg::where('hunting_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'jewelrys':
+                $listingCategory = Jewelry::where('url', $url)->first();
+                $images = Jewelrysimg::where('jewelry_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'ladders':
+                $listingCategory = Ladder::where('url', $url)->first();
+                $images = Laddersimg::where('ladder_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'laptops':
+                $listingCategory = Laptop::where('url', $url)->first();
+                $images = Laptopsimg::where('laptop_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'lightings':
+                $listingCategory = Lighting::where('url', $url)->first();
+                $images = Lightingsimg::where('lighting_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'livres':
+                $listingCategory = Livre::where('url', $url)->first();
+                $images = Livresimg::where('livre_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'magasins':
+                $listingCategory = Magasin::where('url', $url)->first();
+                $images = Magasinsimg::where('magasin_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'maisons':
+                $listingCategory = Maison::where('url', $url)->first();
+                $images = Maisonsimg::where('maison_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'mechanicaltools':
+                $listingCategory = MechanicalTool::where('url', $url)->first();
+                $images = MechanicalToolsimg::where('mechanicaltool_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'mobiliers':
+                $listingCategory = Mobilier::where('url', $url)->first();
+                $images = Mobiliersimg::where('mobilier_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'motos':
+                $listingCategory = Moto::where('url', $url)->first();
+                $images = Motosimg::where('moto_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'musculations':
+                $listingCategory = Musculation::where('url', $url)->first();
+                $images = Musculationsimg::where('musculation_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'musicals':
+                $listingCategory = Musical::where('url', $url)->first();
+                $images = Musicalsimg::where('musical_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'photographies':
+                $listingCategory = Photographie::where('url', $url)->first();
+                $images = Photographiesimg::where('photographie_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'powertools':
+                $listingCategory = PowerTool::where('url', $url)->first();
+                $images = PowerToolsimg::where('powertool_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'pressurewashers':
+                $listingCategory = PressureWasher::where('url', $url)->first();
+                $images = PressureWashersimg::where('pressurewasher_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'printers':
+                $listingCategory = Printer::where('url', $url)->first();
+                $images = Printersimg::where('printer_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'riads':
+                $listingCategory = Riad::where('url', $url)->first();
+                $images = Riadsimg::where('riad_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'routers':
+                $listingCategory = Router::where('url', $url)->first();
+                $images = Routersimg::where('router_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'scooters':
+                $listingCategory = Scooter::where('url', $url)->first();
+                $images = Scootersimg::where('scooter_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'services':
+                $listingCategory = Service::where('url', $url)->first();
+                $images = Servicesimg::where('service_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'sonorisations':
+                $listingCategory = Sonorisation::where('url', $url)->first();
+                $images = Sonorisationsimg::where('sonorisation_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'surfs':
+                $listingCategory = Surf::where('url', $url)->first();
+                $images = Surfsimg::where('surf_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'tablettes':
+                $listingCategory = Tablette::where('url', $url)->first();
+                $images = Tablettesimg::where('tablette_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'taxiaeroports':
+                $listingCategory = TaxiAeroport::where('url', $url)->first();
+                $images = TaxiAeroportsimg::where('taxiaeroport_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'tennis':
+                $listingCategory = Tennis::where('url', $url)->first();
+                $images = Tennisimg::where('tennis_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'tentes':
+                $listingCategory = Tente::where('url', $url)->first();
+                $images = Tentesimg::where('tente_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'terrains':
+                $listingCategory = Terrain::where('url', $url)->first();
+                $images = Terrainsimg::where('terrain_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'transportations':
+                $listingCategory = Transportation::where('url', $url)->first();
+                $images = Transportationsimg::where('transportation_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'velos':
+                $listingCategory = Velo::where('url', $url)->first();
+                $images = Velosimg::where('velo_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            case 'villas':
+                $listingCategory = Villa::where('url', $url)->first();
+                $images = Villasimg::where('villa_id', $listingCategory->id)->get()->map(function ($image) {
+                    return $image->picturesxlarge;
+                });
+                break;
+
+            default:
+                $listingCategory = null; // Or handle the default case as needed
+                $images = [];
+                break;
+        }
+
+
+
+
+    }
 
 
 

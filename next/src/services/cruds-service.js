@@ -195,6 +195,11 @@ class CrudService {
       return HttpService.get(listingsfrontEndpoint);
     };
 
+    getListingpic = async (category, url) => {
+      const listingsfrontEndpoint = `listingpic/${category}/${url}`;
+      return HttpService.get(listingsfrontEndpoint);
+    };
+
     // Listing Review
     createReview = async (payload,category, url) => {
       const endpoint = `listings/${category}/${url}`;

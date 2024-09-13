@@ -5,8 +5,8 @@
 
 function getLocaleCode() {
   return {
-    code: 'en-US',
-    currency: 'USD',
+    code: 'ar-MA',
+    currency: 'MAD',
   };
 }
 

@@ -28,7 +28,7 @@ import { InputLabel } from "@mui/material";
 const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
 
 // Define the dynamic path for the image
-const curved6 = `${imagePath}/curved-images/curved6.jpg`;
+const curved6 = `${imagePath}/curved-images/curved9.jpg`;
 
 export {
   curved6
@@ -145,7 +145,7 @@ function Register() {
           
 
           
-        <SoftBox my={1} textAlign="center">
+        <SoftBox my={1.5} textAlign="center">
 
             <SoftTypography  variant="h3" color="dark" fontWeight="bold">
                 Sign up
@@ -320,7 +320,7 @@ function Register() {
 
 
 
-        <SoftBox p={1}  display="flex" justifyContent="center" alignItems="center">
+        <SoftBox p={2}  display="flex" justifyContent="center" alignItems="center">
 
             
             

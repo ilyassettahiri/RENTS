@@ -358,6 +358,9 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     // Listing Front
     Route::get('listings/{category}/{url}', [ListingFrontController::class, 'getListing']);
+
+    Route::get('listingpic/{category}/{url}', [ListingFrontController::class, 'getListingpic']);
+
     Route::post('listings/{category}/{url}', [ListingFrontController::class, 'createReview']);
     Route::post('listings/{category}/{url}/reviews/{reviewId}/like', [ListingFrontController::class, 'addToHelpful']);
 

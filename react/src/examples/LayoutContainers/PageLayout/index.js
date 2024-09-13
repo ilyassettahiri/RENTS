@@ -40,7 +40,7 @@ function PageLayout({ background, children }) {
         transparent
         action={{
           type: "external",
-          route: "https://creative-tim.com/product/soft-ui-dashboard-pro-react",
+          route: "",
           label: "buy now",
           color: "dark",
         }}

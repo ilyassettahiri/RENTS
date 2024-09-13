@@ -1,11 +1,13 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { paths } from 'src/routes/paths';
+import { useQuery } from '@tanstack/react-query';
+import CrudService from 'src/services/cruds-service';
 
 import Image from 'src/components/image';
 import { varTranHover } from 'src/components/animate';
@@ -73,110 +75,126 @@ export default function ListingImage({ images, params }) {
 
   const mdUp = useResponsive('up', 'md');
 
-  const lightbox = useLightbox(slides);
+  const [lightboxSlides, setLightboxSlides] = useState([]);
+  const [fetchLightboxData, setFetchLightboxData] = useState(false); // Control when to fetch
+
+  // Fetch images only when an image is clicked to open the lightbox
+  const { data: listingpicData, isLoading: isListingpicLoading, error: listingpicError } = useQuery({
+    queryKey: ['listingpic', params.category, params.url],
+    queryFn: () => CrudService.getListingpic(params.category, params.url),
+    enabled: fetchLightboxData,  // Fetch only when this state is true
+    onSuccess: (data) => {
+      const fetchedSlides = data.map((img) => ({
+        src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${img}`,
+      }));
+      setLightboxSlides(fetchedSlides);  // Set the fetched images for Lightbox
+      setFetchLightboxData(false); // Reset to prevent refetch on every click
+    },
+    onError: (error) => {
+      console.error('Failed to fetch listing:', error);
+    },
+  });
+
+  const lightbox = useLightbox(lightboxSlides);
+
+  const handleImageClick = (src) => {
+    setFetchLightboxData(true);  // Trigger data fetching
+    lightbox.onOpen(src);        // Open the lightbox with the selected image
+  };
 
   return (
     <>
       {mdUp ? (
-
-
-
-
-
         <Container
-        maxWidth={false}
-        sx={{
-          overflow: 'hidden',
-          paddingLeft: { lg: '80px' },
-          paddingRight: { lg: '80px' },
-        }}
+          maxWidth={false}
+          sx={{
+            overflow: 'hidden',
+            paddingLeft: { lg: '80px' },
+            paddingRight: { lg: '80px' },
+          }}
         >
+          <CustomBreadcrumbs
+            links={[
+              { name: 'Home', href: '/' },
+              { name: params.category, href: paths.travel.tour },
+              { name: params.url },
+            ]}
+            sx={{ mt: 1, mb: 3 }}
+          />
 
-            <CustomBreadcrumbs
-              links={[
-                { name: 'Home', href: '/' },
-                { name: params.category, href: paths.travel.tour },
-                { name: params.url },
-              ]}
-              sx={{ mt: 1, mb: 3 }}
-            />
-
+          <Box
+            sx={{
+              gap: 1,
+              display: 'grid',
+              gridTemplateColumns: {
+                xs: 'repeat(1, 1fr)',
+                md: 'repeat(2, 1fr)',
+              },
+              mb: { xs: 5, md: 5 },
+            }}
+          >
+            <PhotoItem photo={slides[0]?.src} onOpenLightbox={() => handleImageClick(slides[0]?.src)} />
 
             <Box
               sx={{
                 gap: 1,
                 display: 'grid',
-                gridTemplateColumns: {
-                  xs: 'repeat(1, 1fr)',
-                  md: 'repeat(2, 1fr)',
-                },
-                mb: { xs: 5, md: 5 },
+                gridTemplateColumns: 'repeat(2, 1fr)',
+                position: 'relative',
               }}
             >
-              <PhotoItem photo={slides[0].src} onOpenLightbox={() => lightbox.onOpen(slides[0].src)} />
+              {slides.slice(1, 4).map((slide) => (
+                <PhotoItem
+                  key={slide.src}
+                  photo={slide.src}
+                  onOpenLightbox={() => handleImageClick(slide.src)}
+                />
+              ))}
 
-              <Box
-                sx={{
-                  gap: 1,
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(2, 1fr)',
-                  position: 'relative',
-                }}
-              >
-                {slides.slice(1, 4).map((slide) => (
+              {slides.length > 5 && (
+                <Box
+                  sx={{
+                    position: 'relative',
+                    cursor: 'pointer',
+                  }}
+                  onClick={() => handleImageClick(slides[4].src)}
+                >
                   <PhotoItem
-                    key={slide.src}
-                    photo={slide.src}
-                    onOpenLightbox={() => lightbox.onOpen(slide.src)}
+                    key={slides[4].src}
+                    photo={slides[4].src}
+                    onOpenLightbox={() => handleImageClick(slides[4].src)}
                   />
-                ))}
-
-                {slides.length > 5 && (
                   <Box
                     sx={{
-                      position: 'relative',
-                      cursor: 'pointer',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      width: '100%',
+                      height: '100%',
+                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      borderRadius: 2,
                     }}
-                    onClick={() => lightbox.onOpen(slides[4].src)}
                   >
-                    <PhotoItem
-                      key={slides[4].src}
-                      photo={slides[4].src}
-                      onOpenLightbox={() => lightbox.onOpen(slides[4].src)}
-                    />
-                    <Box
-                      sx={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        borderRadius: 2,
-                      }}
-                    >
-                      <Typography variant="h4" color="white">
-                        +{slides.length - 5}
-                      </Typography>
-                    </Box>
+                    <Typography variant="h4" color="white">
+                      +{slides.length - 5}
+                    </Typography>
                   </Box>
-                )}
-              </Box>
+                </Box>
+              )}
             </Box>
-
+          </Box>
         </Container>
-
-
       ) : (
         <CarouselThumbnail data={slides} lightbox={lightbox} />
       )}
 
+      {/* Update the Lightbox component to use lightboxSlides */}
       <Lightbox
         index={lightbox.selected}
-        slides={slides}
+        slides={lightboxSlides} // Use lightboxSlides instead of slides
         open={lightbox.open}
         close={lightbox.onClose}
       />
@@ -196,8 +214,6 @@ ListingImage.propTypes = {
 // ----------------------------------------------------------------------
 
 function PhotoItem({ photo, onOpenLightbox }) {
-
-
   const isMdUp = useResponsive('up', 'md');
   return (
     <m.div
@@ -251,7 +267,6 @@ function CarouselThumbnail({ data, lightbox }) {
     <Box
       sx={{
         mb: 3,
-
         overflow: 'hidden',
         position: 'relative',
       }}
