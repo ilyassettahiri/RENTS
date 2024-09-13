@@ -188,81 +188,66 @@ function DataTable({
   return (
     <TableContainer sx={{ boxShadow: "none" }}>
       {canSearch ? (
-      <SoftBox p={3}>
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={12} sm={4}>
-            <SoftInput
-              placeholder="Search..."
-              value={search}
-              icon={{ component: "search", direction: "left" }}
-              onChange={({ currentTarget }) => {
-                setSearch(currentTarget.value);
-                onSearchChange(currentTarget.value);
-              }}
-            />
+        <SoftBox p={3}>
+          <Grid container spacing={2} alignItems="center">
+            {/* Search input on the left */}
+            <Grid item xs={12} sm={4}>
+              <SoftInput
+                placeholder="Search..."
+                value={search}
+                icon={{ component: "search", direction: "left" }}
+                onChange={({ currentTarget }) => {
+                  setSearch(currentTarget.value);
+                  onSearchChange(currentTarget.value);
+                }}
+              />
+            </Grid>
+
+            {/* Container for all other filter components on the right */}
+            <Grid item xs={12} sm={8}>
+              <SoftBox display="flex" alignItems="center" justifyContent="flex-end" gap={2}>
+                {/* Select Column */}
+                <SoftSelect
+                  value={selectedColumn ? { value: selectedColumn, label: selectedColumn } : null}
+                  onChange={(option) => setSelectedColumn(option.value)}
+                  options={columns.map((column) => ({ value: column.accessor, label: column.Header }))}
+                  placeholder=" column"
+                  sx={{ minWidth: 120 }} // Optional: set a minimum width for consistency
+                />
+
+                {/* Select Operator */}
+                <SoftSelect
+                  value={selectedOperator ? { value: selectedOperator, label: selectedOperator } : null}
+                  onChange={(option) => setSelectedOperator(option.value)}
+                  options={[
+                    { value: "contains", label: "contains" },
+                    { value: "equals", label: "equals" },
+                    { value: "startsWith", label: "starts with" },
+                    { value: "endsWith", label: "ends with" },
+                  ]}
+                  placeholder=" operator"
+                  sx={{ minWidth: 120 }} // Optional: set a minimum width for consistency
+                />
+
+                {/* Input Value */}
+                <SoftInput
+                  placeholder=" value"
+                  value={filterValue}
+                  onChange={({ currentTarget }) => setFilterValue(currentTarget.value)}
+                  sx={{ maxWidth: 140 }} // Optional: set a minimum width for consistency
+                />
+
+                {/* Apply Button */}
+                <SoftButton onClick={applyFilter} sx={{ px: 3 , py: 2 }} variant="gradient" type="submit" color="info">
+                  <SoftTypography color="white" variant="caption" fontWeight="medium">
+                    {t('Apply')}
+                  </SoftTypography>
+                </SoftButton>
+              </SoftBox>
+            </Grid>
           </Grid>
-          
+        </SoftBox>
 
-            <Grid item xs={12} sm={2}>
-              <SoftBox display="flex" alignItems="center" >
-                 
-                  <SoftSelect
-                    value={selectedColumn ? { value: selectedColumn, label: selectedColumn } : null}
-                    onChange={(option) => setSelectedColumn(option.value)}
-                    options={columns.map((column) => ({ value: column.accessor, label: column.Header }))}
-                    placeholder="Select column"
-                  />
-              </SoftBox>
-            </Grid>
-
-            <Grid item xs={12} sm={2}>
-              <SoftBox display="flex" alignItems="center" >
-                 
-                  <SoftSelect
-                    value={selectedOperator ? { value: selectedOperator, label: selectedOperator } : null}
-                    onChange={(option) => setSelectedOperator(option.value)}
-                    options={[
-                      { value: "contains", label: "contains" },
-                      { value: "equals", label: "equals" },
-                      { value: "startsWith", label: "starts with" },
-                      { value: "endsWith", label: "ends with" },
-                    ]}
-                    placeholder="Select operator"
-                  />
-              </SoftBox>
-            </Grid>
-
-            
-
-
-            <Grid item xs={12} sm={2}>
-              <SoftBox display="flex" alignItems="center" >
-                  <SoftInput
-                    placeholder="Enter value"
-                    
-                    value={filterValue}
-                    onChange={({ currentTarget }) => setFilterValue(currentTarget.value)}
-                  />
-                  
-              </SoftBox>
-            </Grid>
-
-            <Grid item xs={12} sm={2}>
-              <SoftBox display="flex" alignItems="center" >
-                 
-                  
-                    <SoftButton  onClick={applyFilter} sx={{  py: 2 }} variant="gradient" type="submit" color="info">
-
-                  
-                        <SoftTypography color="white" variant="caption"  fontWeight="medium" >
-                          {t('Apply')} 
-                        </SoftTypography>
-
-                    </SoftButton>
-              </SoftBox>
-            </Grid>
-        </Grid>
-      </SoftBox>
       ) : null}
 
       <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={1}>

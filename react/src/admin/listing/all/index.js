@@ -310,12 +310,12 @@ function ListListing() {
           </SoftTypography>
         </SoftAlert>
       )}
-      <SoftBox my={5}>
+      <SoftBox my={1}>
 
 
 
 
-        <SoftBox display="flex" justifyContent="flex-end" my={3}>
+        <SoftBox display="flex" justifyContent="flex-end" mb={8}>
           
 
 
@@ -331,7 +331,7 @@ function ListListing() {
               </SoftBox>
 
               <SoftBox display="flex">
-                <SoftButton sx={{ px:3, py: 1.5 }} variant="contained" color="white" onClick={openMenu}>
+                <SoftButton sx={{ px:3, py: 1.5 }} variant="outlined" color="white" onClick={openMenu}>
                    
                  
 

@@ -66,7 +66,7 @@ export default styled(Button)(({ theme, ownerState }) => {
   // styles for the button with variant="outlined"
   const outliedStyles = () => {
     // background color value
-    const backgroundValue = color === "white" ? rgba(white.main, 0.1) : transparent.main;
+    const backgroundValue = "#f3f3f3";
 
     // color value
     const colorValue = palette[color] ? palette[color].main : white.main;
@@ -86,27 +86,27 @@ export default styled(Button)(({ theme, ownerState }) => {
     return {
       background: backgroundValue,
       color: colorValue,
-      borderColor: borderColorValue,
+      borderColor: backgroundValue,
 
       "&:hover": {
-        background: transparent.main,
+        background: backgroundValue,
         borderColor: colorValue,
       },
 
       "&:focus:not(:hover)": {
-        background: transparent.main,
-        boxShadow: boxShadowValue,
+        background: backgroundValue,
+        
       },
 
       "&:active:not(:hover)": {
-        backgroundColor: colorValue,
+        backgroundColor: backgroundValue,
         color: white.main,
         opacity: 0.85,
       },
 
       "&:disabled": {
         color: colorValue,
-        borderColor: colorValue,
+        borderColor: backgroundValue,
       },
     };
   };

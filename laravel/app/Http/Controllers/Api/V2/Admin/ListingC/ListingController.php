@@ -236,7 +236,7 @@ class ListingController extends JsonApiController
         $url = Str::slug($title, '-', null);
 
 
-        $uniqueNumber = rand(10000000, 99999999);
+        $uniqueNumber = rand(1000000000, 9999999999);
 
 
         $url .= '-' . $uniqueNumber;
@@ -312,12 +312,12 @@ class ListingController extends JsonApiController
 
 
 
-                        $imagelarge->scaleDown(height: 400);
+                        $imagelarge->scaleDown(height: 500);
 
                         $imagexlarge->scaleDown(width: 1000);
 
 
-                        $imagesmall->scaleDown(width: 200);
+                        $imagesmall->scaleDown(width: 400);
 
 
 
@@ -332,12 +332,12 @@ class ListingController extends JsonApiController
 
 
 
-                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
-                        $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+                        $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
-                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
 
 
 
