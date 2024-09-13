@@ -123,19 +123,36 @@ function Login() {
 
 
         <Card sx={{ boxShadow: 3 }}>
-          <SoftBox p={3}  display="flex" justifyContent="center" alignItems="center">
-           
-            
-              <Socials />
-            
-          </SoftBox>
-
-          <Separator />
+          
 
 
-          <SoftBox p={3}>
-            <SoftBox component="form" role="form" method="POST" onSubmit={submitHandler}>
-              <SoftBox mb={2}>
+          <SoftBox p={2.6}>
+
+
+            <SoftBox mb={3} textAlign="center">
+
+              <SoftTypography  variant="h3" color="dark" fontWeight="bold">
+                  Login
+                
+              </SoftTypography>
+
+              <SoftTypography variant="button" color="text" fontWeight="regular">
+                  Don’t have an account?&nbsp;
+                <SoftTypography
+                  component={Link}
+                  to="/auth/register"
+                  variant="button"
+                  color="info"
+                  fontWeight="bold"
+                  textGradient
+                >
+                  Get started
+                </SoftTypography>
+              </SoftTypography>
+            </SoftBox>
+
+            <SoftBox component="form"  role="form" method="POST" onSubmit={submitHandler}>
+              <SoftBox mb={3}>
                 <SoftInput type="email"
                   label="Email"
                   fullWidth
@@ -144,7 +161,7 @@ function Login() {
                   onChange={changeHandler}
                   error={errors.emailError} />
               </SoftBox>
-              <SoftBox mb={2}>
+              <SoftBox mb={3}>
                 <SoftInput 
                 type="password"
                 label="Password"
@@ -176,29 +193,28 @@ function Login() {
 
 
               <SoftBox mt={4} mb={1}>
-                <SoftButton variant="gradient" color="info" fullWidth type="submit">
+                <SoftButton  sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit">
                   sign in
                 </SoftButton>
               </SoftBox>
 
-              <Separator />
+             
 
               
-              <SoftBox mt={1} mb={3}>
-                <SoftButton
-                  component={Link}
-                  to="/auth/register"
-                  variant="gradient"
-                  color="dark"
-                  fullWidth
-                >
-                  sign up
-                </SoftButton>
-              </SoftBox>
+              
             </SoftBox>
           </SoftBox>
 
+          <Separator />
+          <SoftBox p={3}  display="flex" justifyContent="center" alignItems="center">
+           
+          
 
+           <Socials />
+         
+          </SoftBox>
+
+          
 
         </Card>
 

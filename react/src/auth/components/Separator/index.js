@@ -1,19 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
 import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
@@ -22,7 +7,7 @@ import SoftTypography from "components/SoftTypography";
 
 function Separator() {
   return (
-    <SoftBox position="relative" py={0.25}>
+    <SoftBox position="relative" py={0}>
       <Divider />
       <SoftBox
         bgColor="white"
@@ -34,7 +19,7 @@ function Separator() {
         sx={{ transform: "translate(-50%, -60%)" }}
       >
         <SoftTypography variant="button" fontWeight="medium" color="secondary">
-          or
+          or continue with
         </SoftTypography>
       </SoftBox>
     </SoftBox>

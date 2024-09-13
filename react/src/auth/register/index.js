@@ -141,16 +141,31 @@ function Register() {
     >
       <Card sx={{ boxShadow: 3 }}>
 
-          <SoftBox p={3}  display="flex" justifyContent="center" alignItems="center">
 
-            
-            
-              <Socials />
-            
-
-          </SoftBox>
           
-          <Separator />
+
+          
+        <SoftBox my={1} textAlign="center">
+
+            <SoftTypography  variant="h3" color="dark" fontWeight="bold">
+                Sign up
+              
+            </SoftTypography>
+
+            <SoftTypography variant="button" color="text" fontWeight="regular">
+                Already have an account?&nbsp;
+              <SoftTypography
+                component={Link}
+                to="/auth/login"
+                variant="button"
+                color="info"
+                fontWeight="bold"
+                textGradient
+              >
+                Sign in
+              </SoftTypography>
+            </SoftTypography>
+        </SoftBox>
 
         
         <SoftBox pt={2} pb={3} px={3}>
@@ -289,30 +304,32 @@ function Register() {
             )}
 
 
-            <SoftBox mt={4} mb={1}>
-              <SoftButton variant="gradient" color="dark" fullWidth type="submit">
+            <SoftBox mt={3} >
+              <SoftButton sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit">
                 sign up
               </SoftButton>
             </SoftBox>
-            <SoftBox mt={3} textAlign="center">
-              <SoftTypography variant="button" color="text" fontWeight="regular">
-                Already have an account?&nbsp;
-                <SoftTypography
-                  component={Link}
-                  to="/auth/login"
-                  variant="button"
-                  color="dark"
-                  fontWeight="bold"
-                  textGradient
-                >
-                  Sign in
-                </SoftTypography>
-              </SoftTypography>
-            </SoftBox>
+            
           </SoftBox>
 
 
         </SoftBox>
+
+
+        <Separator />
+
+
+
+        <SoftBox p={1}  display="flex" justifyContent="center" alignItems="center">
+
+            
+            
+        <Socials />
+
+
+        </SoftBox>
+
+
       </Card>
     </CoverLayout>
   );
