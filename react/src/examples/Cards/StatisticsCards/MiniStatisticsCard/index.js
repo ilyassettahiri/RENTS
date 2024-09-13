@@ -35,8 +35,8 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
               <Grid item>
                 <SoftBox
                   variant="gradient"
-                  bgColor={bgColor === "white" ? icon.color : "white"}
-                  color={bgColor === "white" ? "white" : "dark"}
+                   bgColor="white"
+                  color="info"
                   width="3rem"
                   height="3rem"
                   borderRadius="md"

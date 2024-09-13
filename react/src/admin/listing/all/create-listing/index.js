@@ -1956,7 +1956,7 @@ function CreateListing() {
 
   return (
     <DashboardLayout>
-      <SoftBox mt={1} mb={20} component="form" method="POST" onSubmit={submitHandler}>
+      <SoftBox mt={1} mb={10} component="form" method="POST" onSubmit={submitHandler}>
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={20}>
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
@@ -1975,7 +1975,7 @@ function CreateListing() {
 
                           placeholder="Select Category"
                           options={[
-                            { value: "", label: "Select Category" },
+                            
                             { value: "boats", label: "boats", icon: BoatsIcon },
                             { value: "camions", label: "camions", icon: CamionsIcon },
                             { value: "caravans", label: "caravans", icon: CaravansIcon },
@@ -2198,8 +2198,8 @@ function CreateListing() {
               </SoftBox>
             </Card>
           </Grid>
-          <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
-            <SoftButton variant="gradient" color="dark" size="small" type="submit">
+          <SoftBox   display="flex" justifyContent="center" alignItems="center">
+            <SoftButton sx={{ px:5, py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
               Save
             </SoftButton>
           </SoftBox>

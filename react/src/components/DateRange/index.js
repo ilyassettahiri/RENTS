@@ -45,6 +45,7 @@ export default function DateRange({ value, onChange, minDate, maxDate, disabledD
                 py: 0.5,
                 height: 38,
                 
+                
               },
               [`& .MuiOutlinedInput-notchedOutline`]: {
                 border: 'none', // Removes the border
@@ -53,9 +54,11 @@ export default function DateRange({ value, onChange, minDate, maxDate, disabledD
             },
           },
         }}
+        
         sx={{
-          [`& .MuiInputLabel-root`]: {
-            
+          [`& .MuiInputLabel-root`]: { // Target the label root class
+            fontSize: '17px', 
+            fontWeight: '600',
           },
         }}
       />

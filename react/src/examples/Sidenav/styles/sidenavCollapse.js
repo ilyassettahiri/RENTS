@@ -44,16 +44,26 @@ function collapseIconBox(theme, ownerState) {
   const { white, info, light, gradients } = palette;
   const { md } = boxShadows;
   const { borderRadius } = borders;
-  const { pxToRem } = functions;
+  const { pxToRem, linearGradient } = functions;
+
+  // List of valid gradient colors
+  const validGradients = Object.keys(gradients);
+
+  // Determine the background value based on active status and sidenavColor
+  const backgroundValue = () => {
+    if (active) {
+      // Apply gradient when active and valid gradient color is found
+      return validGradients.includes(sidenavColor)
+        ? linearGradient(gradients[sidenavColor].main, gradients[sidenavColor].state)
+        : info.main; // Default color if no gradient is found
+    }
+
+    // Background for non-active state
+    return light.main;
+  };
 
   return {
-    background: () => {
-      if (active) {
-        return sidenavColor === "default" ? info.main : palette[sidenavColor].main;
-      }
-
-      return light.main;
-    },
+    background: backgroundValue(), // Set the background value
     minWidth: pxToRem(32),
     minHeight: pxToRem(32),
     borderRadius: borderRadius.md,
@@ -71,10 +81,8 @@ function collapseIconBox(theme, ownerState) {
 
         if (!active) {
           background = transparentSidenav ? white.main : light.main;
-        } else if (sidenavColor === "default") {
-          background = info.main;
-        } else if (sidenavColor === "warning") {
-          background = gradients.warning.main;
+        } else if (validGradients.includes(sidenavColor)) {
+          background = linearGradient(gradients[sidenavColor].main, gradients[sidenavColor].state);
         } else {
           background = palette[sidenavColor].main;
         }
@@ -88,6 +96,7 @@ function collapseIconBox(theme, ownerState) {
     },
   };
 }
+
 
 const collapseIcon = ({ palette: { white, gradients } }, { active }) => ({
   color: active ? white.main : gradients.dark.state,
