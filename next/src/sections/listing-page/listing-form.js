@@ -77,9 +77,9 @@ export default function ListingForm({ tour }) {
       <Stack spacing={3} sx={{ px: 1.5, py: 2 }}>
         <Stack spacing={1} direction="row" alignItems="center" sx={{ typography: 'h4' }}>
           {fCurrency(price)}
-          <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}>
+          <Typography variant="body2" component="span" sx={{ color: 'text.disabled', ml: 1 }}/>
 
-          </Typography>
+
         </Stack>
 
         <Stack spacing={1.5}>

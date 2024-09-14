@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo  } from "react";
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { paths } from 'src/routes/paths';
-import { useQuery } from '@tanstack/react-query';
 import CrudService from 'src/services/cruds-service';
+import { useQuery } from '@tanstack/react-query';
 
 import Image from 'src/components/image';
 import { varTranHover } from 'src/components/animate';
@@ -69,135 +69,123 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
 }));
 
 export default function ListingImage({ images, params }) {
-  const slides = images.map((slide) => ({
-    src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${slide}`,
-  }));
+
+
+
+  const [slides, setSlides] = useState(
+    images.map((slide) => ({
+      src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${slide}`,
+    }))
+  );
 
   const mdUp = useResponsive('up', 'md');
 
-  const [lightboxSlides, setLightboxSlides] = useState([]);
-  const [fetchLightboxData, setFetchLightboxData] = useState(false); // Control when to fetch
 
-  // Fetch images only when an image is clicked to open the lightbox
-  const { data: listingpicData, isLoading: isListingpicLoading, error: listingpicError } = useQuery({
-    queryKey: ['listingpic', params.category, params.url],
-    queryFn: () => CrudService.getListingpic(params.category, params.url),
-    enabled: fetchLightboxData,  // Fetch only when this state is true
-    onSuccess: (data) => {
-      const fetchedSlides = data.map((img) => ({
-        src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${img}`,
-      }));
-      setLightboxSlides(fetchedSlides);  // Set the fetched images for Lightbox
-      setFetchLightboxData(false); // Reset to prevent refetch on every click
-    },
-    onError: (error) => {
-      console.error('Failed to fetch listing:', error);
-    },
-  });
 
-  const lightbox = useLightbox(lightboxSlides);
 
-  const handleImageClick = (src) => {
-    setFetchLightboxData(true);  // Trigger data fetching
-    lightbox.onOpen(src);        // Open the lightbox with the selected image
-  };
 
   return (
     <>
       {mdUp ? (
-        <Container
-          maxWidth={false}
-          sx={{
-            overflow: 'hidden',
-            paddingLeft: { lg: '80px' },
-            paddingRight: { lg: '80px' },
-          }}
-        >
-          <CustomBreadcrumbs
-            links={[
-              { name: 'Home', href: '/' },
-              { name: params.category, href: paths.travel.tour },
-              { name: params.url },
-            ]}
-            sx={{ mt: 1, mb: 3 }}
-          />
 
-          <Box
-            sx={{
-              gap: 1,
-              display: 'grid',
-              gridTemplateColumns: {
-                xs: 'repeat(1, 1fr)',
-                md: 'repeat(2, 1fr)',
-              },
-              mb: { xs: 5, md: 5 },
-            }}
-          >
-            <PhotoItem photo={slides[0]?.src} onOpenLightbox={() => handleImageClick(slides[0]?.src)} />
+
+
+
+
+        <Container
+        maxWidth={false}
+        sx={{
+          overflow: 'hidden',
+          paddingLeft: { lg: '80px' },
+          paddingRight: { lg: '80px' },
+        }}
+        >
+
+            <CustomBreadcrumbs
+              links={[
+                { name: 'Home', href: '/' },
+                { name: params.category, href: paths.travel.tour },
+                { name: params.url },
+              ]}
+              sx={{ mt: 1, mb: 3 }}
+            />
+
 
             <Box
               sx={{
                 gap: 1,
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, 1fr)',
-                position: 'relative',
+                gridTemplateColumns: {
+                  xs: 'repeat(1, 1fr)',
+                  md: 'repeat(2, 1fr)',
+                },
+                mb: { xs: 5, md: 5 },
               }}
             >
-              {slides.slice(1, 4).map((slide) => (
-                <PhotoItem
-                  key={slide.src}
-                  photo={slide.src}
-                  onOpenLightbox={() => handleImageClick(slide.src)}
-                />
-              ))}
+              <PhotoItem photo={slides[0].src} params={params} id={0} />
 
-              {slides.length > 5 && (
-                <Box
-                  sx={{
-                    position: 'relative',
-                    cursor: 'pointer',
-                  }}
-                  onClick={() => handleImageClick(slides[4].src)}
-                >
+              <Box
+                sx={{
+                  gap: 1,
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(2, 1fr)',
+                  position: 'relative',
+                }}
+              >
+                {slides.slice(1, 4).map((slide, index) => (
                   <PhotoItem
-                    key={slides[4].src}
-                    photo={slides[4].src}
-                    onOpenLightbox={() => handleImageClick(slides[4].src)}
-                  />
+                    key={slide.src}
+                    params={params}
+                    photo={slide.src}
+                    id={index + 1}
+                    />
+                ))}
+
+                {slides.length > 5 && (
                   <Box
                     sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      borderRadius: 2,
+                      position: 'relative',
+                      cursor: 'pointer',
                     }}
+
                   >
-                    <Typography variant="h4" color="white">
-                      +{slides.length - 5}
-                    </Typography>
+                    <PhotoItem
+                      key={slides[4].src}
+                      params={params}
+                      photo={slides[4].src}
+                      id={5}
+                      />
+                    <Box
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        borderRadius: 2,
+                      }}
+                    >
+                      <Typography variant="h4" color="white">
+                        +{slides.length - 5}
+                      </Typography>
+                    </Box>
                   </Box>
-                </Box>
-              )}
+                )}
+              </Box>
             </Box>
-          </Box>
+
         </Container>
+
+
       ) : (
-        <CarouselThumbnail data={slides} lightbox={lightbox} />
+        <CarouselThumbnail data={slides}  params={params} />
       )}
 
-      {/* Update the Lightbox component to use lightboxSlides */}
-      <Lightbox
-        index={lightbox.selected}
-        slides={lightboxSlides} // Use lightboxSlides instead of slides
-        open={lightbox.open}
-        close={lightbox.onClose}
-      />
+
     </>
   );
 }
@@ -213,8 +201,81 @@ ListingImage.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function PhotoItem({ photo, onOpenLightbox }) {
+function PhotoItem({ photo,  id , params }) {
+
+
   const isMdUp = useResponsive('up', 'md');
+
+
+
+  const [fetchedImages, setFetchedImages] = useState([]);
+  const [isLightboxOpened, setIsLightboxOpened] = useState(false);
+  const [imageToOpen, setImageToOpen] = useState(-1);
+  const [slides, setSlides] = useState([]);
+  const lightbox = useLightbox(slides);
+
+  useEffect(() => {
+    if (isLightboxOpened) {
+      if (fetchedImages.length === 0) {
+        CrudService.getListingpic(params.category, params.url)
+          .then((listingpicData) => {
+            const dataImages = listingpicData.images.map((image) => ({
+              src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_XLARGE}${image}`,
+            }));
+
+            setFetchedImages(dataImages);
+            setSlides(dataImages);
+            lightbox.setSelected(0);
+
+            if (imageToOpen >= 0 ) {
+              const selectedIndex = imageToOpen;
+              if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
+                lightbox.setSelected(selectedIndex);
+                lightbox.onOpen(dataImages[selectedIndex].src);
+              } else {
+                console.warn('Image to open not found in fetched images.');
+              }
+            }
+          })
+          .catch((error) => {
+            console.error('Failed to fetch listing:', error);
+          })
+          .finally(() => {
+            setIsLightboxOpened(false);
+            setImageToOpen(null);
+          });
+      } else {
+        setSlides(fetchedImages);
+        lightbox.setSelected(0);
+
+        if (imageToOpen >= 0 ) {
+          const selectedIndex = imageToOpen;
+          if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
+            lightbox.setSelected(selectedIndex);
+            lightbox.onOpen(fetchedImages[selectedIndex].src);
+          } else {
+            console.warn('Image to open not found in fetched images.');
+          }
+        }
+
+        setIsLightboxOpened(false);
+        setImageToOpen(null);
+      }
+    }
+  }, [isLightboxOpened, params.category, params.url, lightbox, imageToOpen, fetchedImages]);
+
+  const handleImageClick = () => {
+    console.log("Clicked item ID:", id);
+    setImageToOpen(id);
+    setIsLightboxOpened(true);
+  };
+
+  const handleLightboxClose = () => {
+    lightbox.onClose();
+    lightbox.setSelected(-1); //
+  };
+
+
   return (
     <m.div
       whileHover="hover"
@@ -227,21 +288,36 @@ function PhotoItem({ photo, onOpenLightbox }) {
         alt="photo"
         src={photo}
         ratio={isMdUp ? '4/3' : '1/1'}
-        onClick={onOpenLightbox}
+        onClick={handleImageClick}
         sx={{ borderRadius: { xs: 0, md: 2 }, cursor: 'pointer' }}
+      />
+
+      <Lightbox
+        index={lightbox.selected}
+        slides={slides}
+        open={lightbox.open}
+        close={handleLightboxClose}
       />
     </m.div>
   );
 }
 
 PhotoItem.propTypes = {
-  onOpenLightbox: PropTypes.func.isRequired,
+
+  id: PropTypes.number.isRequired,
   photo: PropTypes.string.isRequired,
+
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
+
 };
 
 // ----------------------------------------------------------------------
 
-function CarouselThumbnail({ data, lightbox }) {
+
+function CarouselThumbnail({ data , params }) {
   const carouselLarge = useCarousel({
     rtl: false,
     draggable: false,
@@ -276,9 +352,14 @@ function CarouselThumbnail({ data, lightbox }) {
         asNavFor={carouselThumb.nav}
         ref={carouselLarge.carouselRef}
       >
-        {data.map((item) => (
-          <PhotoItem key={item.src} photo={item.src} onOpenLightbox={() => lightbox.onOpen(item.src)} />
-        ))}
+        {data.map((item, index) => (
+          <PhotoItem
+            key={item.src}
+            photo={item.src}
+            params={params}
+            id={index}
+          />
+          ))}
       </Carousel>
 
       <CarouselArrowIndex
@@ -334,7 +415,12 @@ function CarouselThumbnail({ data, lightbox }) {
   );
 }
 
+
 CarouselThumbnail.propTypes = {
   data: PropTypes.array.isRequired,
-  lightbox: PropTypes.object.isRequired,
+
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }).isRequired,
 };

@@ -293,7 +293,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            $manager = new ImageManager(new Driver());
+            /*$manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -379,33 +379,27 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }
+            }*/
 
 
 
 
-            /*if ($request->hasFile('data.attributes.images')) {
+            if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
-                    try {
-                        $filePath = Storage::disk('spaces')->put('storage/listings', $file, 'public');
+                    $filePath = Storage::disk('public')->put('images', $file);
+                    $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+                    $imagePathslarge[] = $relativePath;
+                    $imagePathssmall[] = $relativePath;
+                    $imagePathsxlarge[] = $relativePath;
 
-                        $relativePath = str_replace('storage/', '', $filePath);
-                        $relativePath = '/' . $relativePath; // Ensure the path is relative
-                        $imagePaths[] = $relativePath;
-
-                        // Save the first image path to the Billiard table
-                        if ($index === 0) {
-                            $thumb = $relativePath;
-                        }
-
-                    } catch (\Exception $e) {
-                        Log::error('Image upload failed.', ['error' => $e->getMessage()]);
+                    // Save the first image path to the Billiard table
+                    if ($index === 0) {
+                        $thumb = $relativePath;
                     }
                 }
-            }*/
-
+            }
 
 
 

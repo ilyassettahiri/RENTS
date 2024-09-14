@@ -328,6 +328,12 @@ class CrudService {
     };
 
 
+    getServicepic = async (url) => {
+      const serviceEndpoint = `servicepic/${url}`;
+      return HttpService.get(serviceEndpoint);
+    };
+
+
 
 
 

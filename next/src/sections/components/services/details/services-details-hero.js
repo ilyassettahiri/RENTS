@@ -1,20 +1,27 @@
 "use client";
 
-import React, { useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Card from '@mui/material/Card';
-import { useTheme } from '@mui/material/styles';
-import Image from 'src/components/image';
-import ListingHeader from 'src/sections/listing-page/listing-header';
-import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/components/carousel';
-import Lightbox, { useLightbox } from 'src/components/lightbox';
-import { useResponsive } from 'src/hooks/use-responsive';
+import React, { useState, useEffect, useCallback } from "react";
+import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
+import Container from "@mui/material/Container";
+import Card from "@mui/material/Card";
+import { useTheme } from "@mui/material/styles";
+import Image from "src/components/image";
+import { useQuery } from '@tanstack/react-query';
+
+import CrudService from "src/services/cruds-service";
+import ListingHeader from "src/sections/listing-page/listing-header";
+import Carousel, { useCarousel, CarouselDots, CarouselArrows } from "src/components/carousel";
+import Lightbox, { useLightbox } from "src/components/lightbox";
+import { useResponsive } from "src/hooks/use-responsive";
+
+
 
 export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }) {
   const theme = useTheme();
   const [favorite, setFavorite] = useState(job.favorited);
+
+
 
   const handleChangeFavorite = useCallback((event) => {
     setFavorite(event.target.checked);
@@ -23,7 +30,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }
   const images = job.attributes.images.map((url, index) => ({
     id: index,
     title: job.attributes.title,
-    coverUrl: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${url}`, // Ensure the correct URL format
+    coverUrl: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${url}`,
   }));
 
   return (
@@ -38,7 +45,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }
         alignItems: 'flex-start',
       }}
     >
-      <CarouselBasic3 data={images} />
+      <CarouselBasic3 data={images} jobUrl={job.attributes.url}/>
 
       <Container>
         <Box>
@@ -65,6 +72,7 @@ ServicesDetailsHero.propTypes = {
       city: PropTypes.string,
       total_views: PropTypes.number,
       deadline: PropTypes.string,
+      url: PropTypes.string.isRequired,
       images: PropTypes.arrayOf(PropTypes.string).isRequired,
       seller: PropTypes.shape({
         name: PropTypes.string.isRequired,
@@ -76,16 +84,25 @@ ServicesDetailsHero.propTypes = {
   onFavoriteToggle: PropTypes.func.isRequired,
 };
 
-function CarouselBasic3({ data }) {
+
+
+
+function CarouselBasic3({ data , jobUrl }) {
   const theme = useTheme();
-  const isMdUp = useResponsive('up', 'md'); // Responsive hook for media queries
+  const isMdUp = useResponsive('up', 'md');
 
-  // Lightbox setup
-  const slides = data.map((slide) => ({
-    src: slide.coverUrl,
-  }));
 
+  const [slides, setSlides] = useState(
+    data.map((slide) => ({
+      src: slide.coverUrl,
+    }))
+  );
+
+  const [fetchedImages, setFetchedImages] = useState([]);
+  const [isLightboxOpened, setIsLightboxOpened] = useState(false);
+  const [imageToOpen, setImageToOpen] = useState(null);
   const lightbox = useLightbox(slides);
+
 
   const carousel = useCarousel({
     autoplay: false,
@@ -95,12 +112,84 @@ function CarouselBasic3({ data }) {
     }),
   });
 
+
+
+
+   useEffect(() => {
+    if (isLightboxOpened) {
+      if (fetchedImages.length === 0) {
+        CrudService.getServicepic(jobUrl)
+          .then((listingpicData) => {
+            const dataImages = listingpicData.images.map((image) => ({
+              src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_XLARGE}${image}`,
+            }));
+
+
+
+            setFetchedImages(dataImages);
+            setSlides(dataImages);
+            lightbox.setSelected(0);
+
+
+            if (imageToOpen) {
+              const selectedIndex = imageToOpen;
+              if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
+                lightbox.setSelected(selectedIndex);
+                lightbox.onOpen(dataImages[selectedIndex].src);
+              } else {
+                console.warn('Image to open not found in fetched images.');
+              }
+            }
+          })
+          .catch((error) => {
+            console.error('Failed to fetch listing:', error);
+          })
+          .finally(() => {
+            setIsLightboxOpened(false);
+            setImageToOpen(null);
+          });
+      } else {
+
+        setSlides(fetchedImages);
+        lightbox.setSelected(0);
+
+
+        if (imageToOpen) {
+          const selectedIndex = imageToOpen;
+          if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
+            lightbox.setSelected(selectedIndex);
+            lightbox.onOpen(fetchedImages[selectedIndex].src);
+          } else {
+            console.warn('Image to open not found in fetched images.');
+          }
+        }
+
+        setIsLightboxOpened(false);
+        setImageToOpen(null);
+      }
+    }
+  }, [isLightboxOpened, jobUrl, lightbox, imageToOpen, fetchedImages]);
+
+
+  const handleImageClick = (item) => {
+    setImageToOpen(item.id);
+    setIsLightboxOpened(true);
+  };
+
+
+  const handleLightboxClose = () => {
+    lightbox.onClose();
+    lightbox.setSelected(-1); //
+  };
+
+
+
   return (
     <>
       <Card
         sx={{
           position: 'relative',
-          border: 'none', // Removes the border
+          border: 'none',
           borderRadius: { xs: 0, md: 2 },
           ml: { md: 10 },
         }}
@@ -108,11 +197,11 @@ function CarouselBasic3({ data }) {
         <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
           <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
             {data.map((item) => (
-              <Box key={item.id} onClick={() => lightbox.onOpen(item.coverUrl)} sx={{ cursor: 'pointer' }}>
+              <Box key={item.id} onClick={() => handleImageClick(item)} sx={{ cursor: 'pointer' }}>
                 <Image
                   alt={item.title}
                   src={item.coverUrl}
-                  ratio={isMdUp ? '4/3' : '1/1'} // Apply 4/3 for large screens, 1/1 for mobile
+                  ratio={isMdUp ? '4/3' : '1/1'}
                   sx={{
                     width: '100%',
                     height: '100%',
@@ -130,7 +219,7 @@ function CarouselBasic3({ data }) {
         index={lightbox.selected}
         slides={slides}
         open={lightbox.open}
-        close={lightbox.onClose}
+        close={handleLightboxClose}
       />
     </>
   );
@@ -144,4 +233,6 @@ CarouselBasic3.propTypes = {
       coverUrl: PropTypes.string.isRequired,
     })
   ).isRequired,
+
+  jobUrl: PropTypes.string.isRequired,
 };

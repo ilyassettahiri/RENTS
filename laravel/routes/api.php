@@ -410,6 +410,9 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
     // Service page
     Route::get('services/{url}', [ServicepageController::class, 'getService']);
 
+    Route::get('servicepic/{url}', [ServicepageController::class, 'getServicepic']);
+
+
 
     // Reservation Front
     Route::get('checkout/{category}/{url}', [ReservationFrontController::class, 'getReservation']);

@@ -518,4 +518,29 @@ class ServicePageController extends JsonApiController
 
     }
 
+
+    public function getServicepic(Request $request, $url)
+    {
+
+        $listingCategory = Service::where('url', $url)->first();
+
+        $images = $listingCategory->servicesimg->map(function ($image) {
+
+
+            return $image->picturesxlarge;
+        });
+
+
+        if ($listingCategory) {
+            return response()->json([
+
+
+                'images' => $images,
+            ]);
+        } else {
+            return response()->json(['message' => 'Invalid category or no listing found'], 404);
+        }
+
+
+    }
 }
