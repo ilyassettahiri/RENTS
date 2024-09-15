@@ -7,6 +7,8 @@ import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 import SoftBadge from "components/SoftBadge";
+import  Image  from 'components/image';
+
 
 function OrderInfo({ title, status, description, picture }) {
   return (
@@ -14,11 +16,15 @@ function OrderInfo({ title, status, description, picture }) {
       <Grid item xs={12} md={6}>
         <SoftBox display="flex" alignItems="center">
           <SoftBox mr={2}>
-            <SoftAvatar
-              variant="rounded"
-              size="xxl"
-              src={picture}
+            
+
+            <Image
+              src={`${process.env.REACT_APP_IMAGE_BASE_URL}${picture}`}
               alt={title}
+              ratio="1/1"
+              width="100%"
+              sx={{ borderRadius: '10px' }}
+              
             />
           </SoftBox>
           <SoftBox lineHeight={1}>
@@ -30,13 +36,7 @@ function OrderInfo({ title, status, description, picture }) {
                 {description}
               </SoftTypography>
             </SoftBox>
-            <SoftBadge
-              variant="gradient"
-              color={status === "active" ? "success" : "warning"}
-              size="xs"
-              badgeContent={status}
-              container
-            />
+            
           </SoftBox>
         </SoftBox>
       </Grid>

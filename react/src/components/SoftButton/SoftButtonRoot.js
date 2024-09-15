@@ -84,29 +84,29 @@ export default styled(Button)(({ theme, ownerState }) => {
     }
 
     return {
-      background: backgroundValue,
+      background: "white",
       color: colorValue,
-      borderColor: backgroundValue,
+      borderColor: "#AFAFAF",
 
       "&:hover": {
-        background: backgroundValue,
-        borderColor: colorValue,
+        background: "white",
+        borderColor: "#AFAFAF",
       },
 
       "&:focus:not(:hover)": {
-        background: backgroundValue,
+        background: "white",
         
       },
 
       "&:active:not(:hover)": {
-        backgroundColor: backgroundValue,
+        backgroundColor: "white",
         color: white.main,
         opacity: 0.85,
       },
 
       "&:disabled": {
         color: colorValue,
-        borderColor: backgroundValue,
+        borderColor: "#AFAFAF",
       },
     };
   };

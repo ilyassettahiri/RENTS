@@ -218,6 +218,13 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
+
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -271,6 +278,12 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -324,6 +337,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -377,6 +395,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -431,6 +454,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -487,6 +515,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -540,6 +573,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -595,6 +633,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -650,6 +693,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -704,6 +752,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -757,6 +810,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -810,6 +868,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -863,6 +926,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -920,6 +988,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -974,6 +1047,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1029,6 +1107,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1084,6 +1167,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1137,6 +1225,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1192,6 +1285,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1247,6 +1345,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1301,6 +1404,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1355,6 +1463,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1408,6 +1521,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1463,6 +1581,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1516,6 +1639,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1569,6 +1697,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1622,6 +1755,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1678,6 +1816,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1731,6 +1874,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1783,6 +1931,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1835,6 +1988,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1888,6 +2046,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1942,6 +2105,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -1994,6 +2162,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2047,6 +2220,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2100,6 +2278,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2153,6 +2336,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2207,6 +2395,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2260,6 +2453,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2312,6 +2510,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2364,6 +2567,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2417,6 +2625,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2468,6 +2681,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2521,6 +2739,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2573,6 +2796,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2625,6 +2853,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2677,6 +2910,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2729,6 +2967,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2780,6 +3023,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2833,6 +3081,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2885,6 +3138,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2938,6 +3196,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -2990,6 +3253,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
@@ -3044,6 +3312,11 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+                                                        'created_at' => $this->listingcategory->created_at,
+                                                        'status' => $this->listingcategory->status,
+                                                        'url' => $this->listingcategory->url,
+                                                        'id' => $this->listingcategory->id,
+
                                                         'zip' => $this->listingcategory->zip,
                                                         'category' => $this->category,
                                                         'reservations' => $this->reservations->map(function ($reservation) {
