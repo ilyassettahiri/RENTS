@@ -26,6 +26,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React helper functions
@@ -39,6 +40,8 @@ import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
 
 function ProductivityChart() {
+  const { t } = useTranslation();
+
   const { white } = colors;
   const { size } = typography;
   const chartRef = useRef(null);

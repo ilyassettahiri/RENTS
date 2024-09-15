@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // settings page components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -28,6 +29,8 @@ import DeleteAccount from "admin/settings/account/components/DeleteAccount";
 import AuthService from "services/auth-service";
 
 function Account() {
+  const { t } = useTranslation();
+
   
   const [user, setUser] = useState({
     id: '',

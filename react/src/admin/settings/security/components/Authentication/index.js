@@ -18,10 +18,13 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
 function Authentication() {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <SoftBox display="flex" justifyContent="space-between" alignItems="centers" pt={2} px={2}>

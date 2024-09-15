@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import SoftAvatar from "components/SoftAvatar";
@@ -28,6 +29,8 @@ const orderImage =
   "https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80";
 
 function OrderInfo() {
+  const { t } = useTranslation();
+
   return (
     <Grid container spacing={3} alignItems="center">
       <Grid item xs={12} md={6}>

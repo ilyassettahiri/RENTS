@@ -12,7 +12,7 @@ import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
 import ListingHeader from "src/sections/listing-page/listing-header";
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from "src/components/carousel";
-import Lightbox, { useLightbox } from "src/components/lightbox";
+import Lightbox, { useLightbox } from 'src/components/lightbox';
 import { useResponsive } from "src/hooks/use-responsive";
 
 
@@ -117,6 +117,10 @@ function CarouselBasic3({ data , jobUrl }) {
 
    useEffect(() => {
     if (isLightboxOpened) {
+
+      lightbox.onOpen('');
+      lightbox.setSelected(imageToOpen);
+
       if (fetchedImages.length === 0) {
         CrudService.getServicepic(jobUrl)
           .then((listingpicData) => {
@@ -128,12 +132,13 @@ function CarouselBasic3({ data , jobUrl }) {
 
             setFetchedImages(dataImages);
             setSlides(dataImages);
-            lightbox.setSelected(0);
 
 
-            if (imageToOpen) {
+
+            if (imageToOpen !== null) {
               const selectedIndex = imageToOpen;
               if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
+                lightbox.setSlides(dataImages);
                 lightbox.setSelected(selectedIndex);
                 lightbox.onOpen(dataImages[selectedIndex].src);
               } else {
@@ -151,12 +156,14 @@ function CarouselBasic3({ data , jobUrl }) {
       } else {
 
         setSlides(fetchedImages);
-        lightbox.setSelected(0);
+        lightbox.setSelected(imageToOpen);
 
 
-        if (imageToOpen) {
+        if (imageToOpen !== null) {
           const selectedIndex = imageToOpen;
           if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
+            lightbox.setSlides(fetchedImages);
+
             lightbox.setSelected(selectedIndex);
             lightbox.onOpen(fetchedImages[selectedIndex].src);
           } else {
@@ -172,6 +179,7 @@ function CarouselBasic3({ data , jobUrl }) {
 
 
   const handleImageClick = (item) => {
+
     setImageToOpen(item.id);
     setIsLightboxOpened(true);
   };

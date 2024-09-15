@@ -15,6 +15,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React example components
 import DefaultNavbarCategory from "examples/Navbars/DefaultNavbar/DefaultNavbarCategory";

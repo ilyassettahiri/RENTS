@@ -22,12 +22,15 @@ import Switch from "@mui/material/Switch";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // settings pages components
 import TableCell from "admin/settings/account/components/TableCell";
 
 function Notifications() {
+  const { t } = useTranslation();
+
   return (
     <Card id="notifications">
       <SoftBox p={3} lineHeight={1}>

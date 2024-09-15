@@ -23,6 +23,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -42,6 +43,8 @@ import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 
 function DetailUpcoming() {
+  const { t } = useTranslation();
+
   const { id } = useParams();
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();

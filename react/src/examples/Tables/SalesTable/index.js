@@ -28,6 +28,7 @@ import TableRow from "@mui/material/TableRow";
 // Soft UI Dashboard PRO React components
 import SoftTypography from "components/SoftTypography";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React example components
 import SalesTableCell from "examples/Tables/SalesTable/SalesTableCell";

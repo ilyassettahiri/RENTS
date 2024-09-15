@@ -20,6 +20,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -58,6 +59,7 @@ function DefaultNavbar({ routes, transparent, light, action }) {
   useEffect(() => {
     // A function that sets the display state for the DefaultNavbarMobile.
     function displayMobileNavbar() {
+
       if (window.innerWidth < breakpoints.values.lg) {
         setMobileView(true);
         setMobileNavbar(false);

@@ -4,6 +4,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React icons
@@ -17,6 +18,8 @@ import settings from "examples/Icons/Settings";
 import CreditCard from "examples/Icons/CreditCard";
 
 function Sidenav() {
+  const { t } = useTranslation();
+
   const sidenavItems = [
     { icon: <SpaceShip />, label: "profile", href: "profile" },
     { icon: <Document />, label: "basic info", href: "basic-info" },

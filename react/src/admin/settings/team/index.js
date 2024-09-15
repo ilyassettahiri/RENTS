@@ -8,6 +8,7 @@ import Card from "@mui/material/Card";
 
 // Material Dashboard 2 PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftAlert from "components/SoftAlert";
 
@@ -33,6 +34,8 @@ import { Can } from "Can";
 import { subject } from "@casl/ability";
 
 function ListTeam() {
+  const { t } = useTranslation();
+
   let { state } = useLocation();
   const [isDemo, setIsDemo] = useState(false);
   const [user, setUsers] = useState([]);

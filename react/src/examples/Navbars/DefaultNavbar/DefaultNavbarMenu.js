@@ -10,6 +10,7 @@ import Grow from "@mui/material/Grow";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 function DefaultNavbarMenu({ open, close, placement, children, style }) {
   const [anchor, setAnchor] = useState(false);

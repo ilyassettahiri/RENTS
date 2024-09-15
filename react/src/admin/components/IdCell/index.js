@@ -7,6 +7,7 @@ import Checkbox from "@mui/material/Checkbox";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 function IdCell({ id, checked }) {

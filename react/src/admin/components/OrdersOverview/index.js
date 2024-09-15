@@ -5,12 +5,15 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
 import TimelineItem from "examples/Timeline/TimelineItem";
 
 function OrdersOverview() {
+  const { t } = useTranslation();
+
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox pt={3} px={3}>

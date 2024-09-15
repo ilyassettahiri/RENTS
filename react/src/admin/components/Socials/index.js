@@ -19,12 +19,15 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // EditProduct page components
 import FormField from "layouts/ecommerce/products/edit-product/components/FormField";
 
 function Socials() {
+  const { t } = useTranslation();
+
   return (
     <Card>
       <SoftBox p={3}>

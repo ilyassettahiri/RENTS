@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React components
 import MasterCard from "examples/Cards/MasterCard";
@@ -24,6 +25,8 @@ import BillingInformation from "admin/finance/payment-settings/components/Billin
 import Transactions from "admin/finance/payment-settings/components/Transaction";
 
 function Paymentsettings() {
+  const { t } = useTranslation();
+
 
 
 

@@ -18,12 +18,15 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // NewProduct page components
 import FormField from "admin/components/FormField";
 
 function Socials() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox>
       <SoftTypography variant="h5" fontWeight="bold">

@@ -2,6 +2,7 @@
 
 import React from "react";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import { format } from "date-fns";

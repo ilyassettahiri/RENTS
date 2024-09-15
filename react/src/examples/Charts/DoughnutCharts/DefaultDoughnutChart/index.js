@@ -26,6 +26,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // DefaultDoughnutChart configurations

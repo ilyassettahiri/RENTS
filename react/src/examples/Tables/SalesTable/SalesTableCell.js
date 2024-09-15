@@ -22,6 +22,7 @@ import TableCell from "@mui/material/TableCell";
 // Soft UI Dashboard PRO React components
 import SoftTypography from "components/SoftTypography";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 function SalesTableCell({ title, content, image, noBorder, ...rest }) {
   let template;

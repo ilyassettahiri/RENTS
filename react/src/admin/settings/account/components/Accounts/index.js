@@ -24,6 +24,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 import SoftInput from "components/SoftInput";
@@ -44,6 +45,8 @@ export {
 
 
 function Accounts() {
+  const { t } = useTranslation();
+
   const [slack2FA, setSlack2FA] = useState(true);
   const [spotify2FA, setSpotify2FA] = useState(true);
   const [atlassian2FA, setAtlassian2FA] = useState(true);

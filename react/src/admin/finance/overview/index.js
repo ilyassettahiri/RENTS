@@ -20,6 +20,7 @@ import ProductCell from "admin/components/ProductCell";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftBadgeDot from "components/SoftBadgeDot";
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
@@ -42,6 +43,8 @@ import horizontalBarChartData from "admin/finance/overview/data/horizontalBarCha
 import salesTableData from "admin/finance/overview/data/salesTableData";
 
 function Overview() {
+  const { t } = useTranslation();
+
 
 
 

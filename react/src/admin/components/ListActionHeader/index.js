@@ -1,37 +1,33 @@
+import { useState, useEffect } from "react";
 
 
-import { useState } from "react";
+import PropTypes from "prop-types";
 
 // @mui material components
-import Grid from "@mui/material/Grid";
+import Icon from "@mui/material/Icon";
+import Collapse from "@mui/material/Collapse";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import TeamProfileCard from "examples/Cards/TeamCards/TeamProfileCard";
-
-import SoftButton from "components/SoftButton";
-
-import Icon from "@mui/material/Icon";
-
 import Divider from "@mui/material/Divider";
-
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
-
-// Soft UI Dashboard PRO React example components
-import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import SoftButton from "components/SoftButton";
 
 
 
 
-function DetailBoosted() {
-  const { t } = useTranslation();
+
+function ListActionHeader({ title, clickAddHandler }) {
 
 
 
+    const { t } = useTranslation();
 
-  
+  // menu
+
+    
   const [menu, setMenu] = useState(null);
 
   const openMenu = (event) => setMenu(event.currentTarget);
@@ -107,85 +103,65 @@ function DetailBoosted() {
 
 
 
-  return (
-    <DashboardLayout>
-     
-      
-      <SoftBox mb={3}>
-
-        <SoftBox display="flex" justifyContent="flex-end" mb={2}>
-
-          <SoftBox mr={3}>
-            <SoftButton variant="gradient" color="info" >
-              New Listing
-            </SoftButton>
-          </SoftBox>
-
-          <SoftBox display="flex">
-            <SoftButton variant={menu ? "contained" : "gradient"} color="white" onClick={openMenu}>
-              More Action &nbsp;
-              <Icon>keyboard_arrow_down</Icon>
-            </SoftButton>
-            {renderMenu}
-            
-          </SoftBox>
-        </SoftBox>
 
 
-        <Grid container spacing={3}>
+    return (
+        <>
+
+                <SoftBox display="flex" justifyContent="flex-end" mb={5}>
+                        
+                    <SoftBox display="flex" alignItems="center">
+
+                        <SoftBox mr={2}>
+                            <SoftButton   sx={{ px:3, py: 1.5 }} variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+
+                            
+                            <SoftTypography color="white" variant="caption" fontWeight="medium" >
+                                {t(title)} 
+                            </SoftTypography>
+
+                            </SoftButton>
+                        </SoftBox>
+
+                        <SoftBox display="flex">
+                            <SoftButton sx={{ px:3, py: 1.5 }} variant="outlined" color="white" onClick={openMenu}>
+                            
+                            
 
 
-          <Grid item xs={12} lg={8}>
-            Hii
-          </Grid>
+                                <SoftBox display="flex" alignItems="center" gap={1}> {/* Flexbox to align icon and text */}
+                                <SoftTypography color="dark" variant="caption" fontWeight="medium">
+                                {t('More Action')} 
+                                </SoftTypography>
+                                <Icon>keyboard_arrow_down</Icon>
+                                </SoftBox>
+                            </SoftButton>
+                            {renderMenu}
+                            
+                        </SoftBox>
+                    
+
+                    </SoftBox>
+
+
+                </SoftBox>
 
 
 
-
-          <Grid item xs={12} lg={4}>
-
-
-            <Grid item xs={12}>
-              <SoftBox mb={3}>
-                <TeamProfileCard
-                  title="digital marketing"
-                  description="A group of people who collectively are responsible for all of the work necessary to produce working, validated assets."
-                  industry="marketing team"
-                  rating={4.5}
-                  
-                  dropdown={{
-                    action: openMarketingMenu,
-                    menu: renderMarketingMenu,
-                  }}
-                />
-              </SoftBox>
-            </Grid>
+          
+        </>
+      );
 
 
-            <Grid item xs={12}>
-              <SoftBox mb={3}>
-                <TeamProfileCard
-                  title="design"
-                  description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
-                  industry="design team"
-                  rating={5}
-                  
-                  dropdown={{
-                    action: openDesignMenu,
-                    menu: renderDesignMenu,
-                  }}
-                />
-              </SoftBox>
-            </Grid>
-            
-          </Grid>
 
-
-        </Grid>
-      </SoftBox>
-      
-    </DashboardLayout>
-  );
 }
 
-export default DetailBoosted;
+
+    // Typechecking props for the FaqCollapse
+ListActionHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    clickAddHandler: PropTypes.func.isRequired,
+};
+  
+  export default ListActionHeader;
+  

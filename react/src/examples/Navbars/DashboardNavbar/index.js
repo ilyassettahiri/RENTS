@@ -21,6 +21,7 @@ import Nav from 'examples/Navbars/DashboardNavbar/nav';
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 
@@ -98,6 +99,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
     }
 
     function handleTransparentNavbar() {
+
       setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
     }
 
@@ -122,6 +124,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
 
     // A function that sets the transparent state of the navbar.
     function handleTransparentNavbar() {
+
       setTransparentNavbar(dispatch, (fixedNavbar && window.scrollY === 0) || !fixedNavbar);
     }
 
@@ -237,17 +240,14 @@ function DashboardNavbar({ absolute, light, isMini }) {
       <Toolbar sx={(theme) => navbarContainer(theme)}>
 
 
-          <SoftBox color="inherit" display={{ xs: 'none', md: 'block'  }} mb={{ xs: 1, md: 0 }} sx={(theme) => navbarRow(theme, { isMini })}>
-            <Breadcrumbs  icon="home" title={route[route.length - 1]} route={route} light={light} /> 
-            
-          </SoftBox>
+          <SoftBox/>
           
         {isMini ? null : (
           <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
             <SoftBox pr={1}/>
               
             
-            <SoftBox color={light ? "white" : "inherit"}>
+            <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1}>
               
                 
               

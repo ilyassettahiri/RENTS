@@ -12,6 +12,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -33,6 +34,8 @@ import reportsBarChartData from "admin/dashboard//data/reportsBarChartData";
 import gradientLineChartData from "admin/dashboard//data/gradientLineChartData";
 
 function Dashboard() {
+  const { t } = useTranslation();
+
   const { values } = breakpoints;
   const { size } = typography;
   const { chart, items } = reportsBarChartData;

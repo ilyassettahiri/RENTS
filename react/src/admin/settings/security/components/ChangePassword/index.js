@@ -19,6 +19,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -26,6 +27,8 @@ import SoftButton from "components/SoftButton";
 import FormField from "admin/components/FormField";
 
 function ChangePassword() {
+  const { t } = useTranslation();
+
   return (
     <Card id="change-password">
       <SoftBox pt={2} px={2} lineHeight={1}>

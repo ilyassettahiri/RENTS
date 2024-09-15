@@ -15,12 +15,15 @@ Coded by www.creative-tim.com
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
 import TimelineItem from "examples/Timeline/TimelineItem";
 
 function OrdersOverview() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SoftTypography variant="h6" fontWeight="medium">

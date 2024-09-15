@@ -30,6 +30,7 @@ function TimelineProvider({ children, value }) {
 
 // Timeline custom hook for using context
 function useTimeline() {
+
   return useContext(Timeline);
 }
 

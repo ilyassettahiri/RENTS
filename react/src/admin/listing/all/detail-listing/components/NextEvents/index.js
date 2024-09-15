@@ -18,12 +18,15 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
 import DefaultItem from "examples/Items/DefaultItem";
 
 function NextEvents() {
+  const { t } = useTranslation();
+
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox pt={2} px={2}>

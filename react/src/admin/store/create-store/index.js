@@ -7,6 +7,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import SoftEditor from "components/MDEditor";
 import SoftTypography from "components/SoftTypography";
@@ -21,6 +22,8 @@ import Address from "components/Address";
 import CrudService from "services/cruds-service";
 
 function CreateStore() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const [address, setAddress] = useState({

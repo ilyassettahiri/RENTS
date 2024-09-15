@@ -14,6 +14,8 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 
 function Message() {
+  const { t } = useTranslation();
+
   return (
     <DashboardLayout>
       

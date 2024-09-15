@@ -20,6 +20,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftAvatar from "components/SoftAvatar";
 import SoftButton from "components/SoftButton";
@@ -39,6 +40,8 @@ export {
  
 
 function Header() {
+  const { t } = useTranslation();
+
   const avatarStyles = {
     border: ({ borders: { borderWidth }, palette: { white } }) =>
       `${borderWidth[2]} solid ${white.main}`,

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Dropzone from "dropzone";
 import "dropzone/dist/dropzone.css";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftDropzoneRoot from "components/SoftDropzone/SoftDropzoneRoot";
 
 function SoftDropzone({ options, onFilesUpload }) {
@@ -16,6 +17,8 @@ function SoftDropzone({ options, onFilesUpload }) {
       autoProcessQueue: false, // Prevent automatic upload
       ...options,
       init: function() {
+  const { t } = useTranslation();
+
         this.on("addedfile", function(file) {
           onFilesUpload([...this.files]); // Pass files as array
         });

@@ -15,6 +15,8 @@ import MDTypography from "components/MDTypography";
 import MDButton from "components/SoftButton";
 
 function Account() {
+  const { t } = useTranslation();
+
   const [design, setDesign] = useState(false);
   const [code, setCode] = useState(false);
   const [develop, setDevelop] = useState(false);

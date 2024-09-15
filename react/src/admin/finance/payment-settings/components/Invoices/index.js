@@ -18,6 +18,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -25,6 +26,8 @@ import SoftButton from "components/SoftButton";
 import Invoice from "admin/finance/payment-settings/components/Invoice";
 
 function Invoices() {
+  const { t } = useTranslation();
+
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox pt={2} px={2} display="flex" justifyContent="space-between" alignItems="center">

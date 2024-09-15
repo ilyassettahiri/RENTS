@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import "./CustomFileInput.css"; // Import the custom styles
 
 function CustomFileInput({ onFilesChange }) {

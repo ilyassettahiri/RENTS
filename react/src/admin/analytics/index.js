@@ -9,6 +9,7 @@ import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 import { format } from 'date-fns';
+import ListActionHeader from "admin/components/ListActionHeader";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -18,6 +19,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import SoftBadgeDot from "components/SoftBadgeDot";
 
@@ -40,11 +42,9 @@ import complexReportsDoughnutChartData from "admin/analytics/data/complexReports
 
 
 function Analytics() {
-  const [menu, setMenu] = useState(null);
+  const { t } = useTranslation();
 
-  const openMenu = (event) => setMenu(event.currentTarget);
-  const closeMenu = () => setMenu(null);
-
+  
 
 
   let { state } = useLocation();
@@ -72,39 +72,13 @@ function Analytics() {
 
 
 
-  const renderMenu = (
-    <Menu
-      anchorEl={menu}
-      transformOrigin={{ vertical: "top", horizontal: "left" }}
-      open={Boolean(menu)}
-      onClose={closeMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMenu}>Yesterday</MenuItem>
-      <MenuItem onClick={closeMenu}>Last 7 days</MenuItem>
-      <MenuItem onClick={closeMenu}>Last 30 days</MenuItem>
-    </Menu>
-  );
-
   return (
     <DashboardLayout>
       
-      <SoftBox py={3}>
+      <SoftBox my={3}>
         
 
 
-        <SoftBox display="flex" justifyContent="flex-end" mb={3} ml={2}>
-          <SoftBox mr={3}>
-            <SoftButton variant="gradient" color="white">
-              Add Listing
-            </SoftButton>
-          </SoftBox>
-          <SoftButton variant="gradient" color="white" onClick={openMenu}>
-            Mode Action &nbsp;
-            <Icon>expand_more</Icon>
-          </SoftButton>
-          {renderMenu}
-        </SoftBox>
 
 
 

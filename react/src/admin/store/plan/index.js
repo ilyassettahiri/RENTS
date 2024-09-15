@@ -11,6 +11,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -22,6 +23,8 @@ import DataTable from "examples/Tables/DataTable";
 import dataTableData from "admin/store/plan/data/dataTableData";
 
 function Plan() {
+  const { t } = useTranslation();
+
 
 
 

@@ -3,9 +3,12 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 function Separator() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox position="relative" py={0}>
       <Divider />

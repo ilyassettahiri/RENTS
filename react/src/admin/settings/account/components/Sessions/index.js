@@ -20,10 +20,13 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftBadge from "components/SoftBadge";
 
 function Sessions() {
+  const { t } = useTranslation();
+
   const actionButtonStyles = {
     "& .material-icons-round": {
       transform: `translateX(0)`,

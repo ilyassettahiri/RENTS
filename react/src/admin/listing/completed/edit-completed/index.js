@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -25,6 +26,8 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 
 function EditCompleted() {
+  const { t } = useTranslation();
+
 
 
   const [menu, setMenu] = useState(null);

@@ -15,10 +15,13 @@ Coded by www.creative-tim.com
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
 function Header() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox display="flex" justifyContent="space-between" alignItems="center">
       <SoftBox>

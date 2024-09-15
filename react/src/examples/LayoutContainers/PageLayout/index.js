@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React context
 import { useSoftUIController, setLayout } from "context";

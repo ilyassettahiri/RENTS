@@ -19,11 +19,14 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import SoftBadge from "components/SoftBadge";
 
 function Authentication() {
+  const { t } = useTranslation();
+
   return (
     <Card id="2fa" sx={{ overflow: "visible" }}>
       <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>

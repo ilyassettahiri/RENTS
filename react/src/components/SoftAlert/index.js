@@ -23,6 +23,7 @@ import Fade from "@mui/material/Fade";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Custom styles for the SoftAlert
 import SoftAlertRoot from "components/SoftAlert/SoftAlertRoot";

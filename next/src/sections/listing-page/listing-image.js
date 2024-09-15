@@ -210,28 +210,40 @@ function PhotoItem({ photo,  id , params }) {
 
   const [fetchedImages, setFetchedImages] = useState([]);
   const [isLightboxOpened, setIsLightboxOpened] = useState(false);
-  const [imageToOpen, setImageToOpen] = useState(-1);
+  const [imageToOpen, setImageToOpen] = useState(null);
   const [slides, setSlides] = useState([]);
   const lightbox = useLightbox(slides);
 
   useEffect(() => {
     if (isLightboxOpened) {
+
+      // Attempt to open the lightbox immediately on the first click
+      lightbox.onOpen('');
+      lightbox.setSelected(imageToOpen);
+
       if (fetchedImages.length === 0) {
+        console.log("Fetching images...");
+
         CrudService.getListingpic(params.category, params.url)
           .then((listingpicData) => {
+            console.log("Fetched images:", listingpicData);
+
             const dataImages = listingpicData.images.map((image) => ({
               src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_XLARGE}${image}`,
             }));
 
             setFetchedImages(dataImages);
             setSlides(dataImages);
-            lightbox.setSelected(0);
 
-            if (imageToOpen >= 0 ) {
+            console.log("Set fetched images and slides:", { dataImages });
+
+            if (imageToOpen !== null) {
               const selectedIndex = imageToOpen;
               if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
+                lightbox.setSlides(dataImages);
                 lightbox.setSelected(selectedIndex);
                 lightbox.onOpen(dataImages[selectedIndex].src);
+                console.log("Opened lightbox with fetched image:", dataImages[selectedIndex].src);
               } else {
                 console.warn('Image to open not found in fetched images.');
               }
@@ -241,23 +253,28 @@ function PhotoItem({ photo,  id , params }) {
             console.error('Failed to fetch listing:', error);
           })
           .finally(() => {
+            console.log("Resetting states after fetching images.");
             setIsLightboxOpened(false);
             setImageToOpen(null);
           });
       } else {
+        console.log("Using already fetched images.");
         setSlides(fetchedImages);
-        lightbox.setSelected(0);
+        lightbox.setSelected(imageToOpen);
 
-        if (imageToOpen >= 0 ) {
+        if (imageToOpen !== null) {
           const selectedIndex = imageToOpen;
           if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
+            lightbox.setSlides(fetchedImages);
             lightbox.setSelected(selectedIndex);
             lightbox.onOpen(fetchedImages[selectedIndex].src);
+            console.log("Opened lightbox with already fetched image:", fetchedImages[selectedIndex].src);
           } else {
             console.warn('Image to open not found in fetched images.');
           }
         }
 
+        console.log("Resetting states after opening lightbox with fetched images.");
         setIsLightboxOpened(false);
         setImageToOpen(null);
       }

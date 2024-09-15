@@ -6,6 +6,7 @@ import Select, { components } from "react-select";
 import colors from "assets/theme/base/colors";
 import styles from "components/SoftSelect/styles";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 const IconOption = (props) => (
   <components.Option {...props}>

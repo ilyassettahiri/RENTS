@@ -16,6 +16,7 @@ import SoftButton from "components/SoftButton";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -27,6 +28,8 @@ import FormField from "admin/components/FormField";
 // Data
 
 function Tracking() {
+  const { t } = useTranslation();
+
   return (
     <DashboardLayout>
       

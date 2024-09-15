@@ -6,6 +6,7 @@ import CollapseList from "admin/components/CollapseList";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import OneSelect from "admin/components/OneSelect";
 import MultSelect from "admin/components/MultSelect";

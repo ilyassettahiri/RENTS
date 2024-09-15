@@ -38,6 +38,7 @@ TextDirectionProvider.propTypes = {
 
 // Custom hook to use the TextDirection context
 export function useTextDirection() {
+
   const context = useContext(TextDirectionContext);
   if (context === undefined) {
     throw new Error(

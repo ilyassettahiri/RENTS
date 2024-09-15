@@ -11,6 +11,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -22,6 +23,8 @@ import DataTable from "examples/Tables/DataTable";
 // Data
 
 function CreateReservation() {
+  const { t } = useTranslation();
+
   const [menu, setMenu] = useState(null);
 
   const openMenu = (event) => setMenu(event.currentTarget);

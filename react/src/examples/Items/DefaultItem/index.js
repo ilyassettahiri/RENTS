@@ -4,6 +4,7 @@ import ReactCountryFlag from "react-country-flag";
 
 // @mui material components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // custom styles for the DefaultItem

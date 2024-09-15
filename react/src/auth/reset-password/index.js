@@ -11,6 +11,7 @@ import Switch from "@mui/material/Switch";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
@@ -31,6 +32,8 @@ export {
 
 
 function PasswordReset() {
+  const { t } = useTranslation();
+
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);

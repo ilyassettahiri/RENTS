@@ -15,9 +15,12 @@ Coded by www.creative-tim.com
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 function OrderSummary() {
+  const { t } = useTranslation();
+
   return (
     <>
       <SoftBox mb={2}>

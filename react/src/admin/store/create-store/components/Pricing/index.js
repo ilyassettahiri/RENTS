@@ -18,6 +18,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftSelect from "components/SoftSelect";
 
@@ -25,6 +26,8 @@ import SoftSelect from "components/SoftSelect";
 import FormField from "admin/components/FormField";
 
 function Pricing() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox>
       <SoftTypography variant="h5">Pricing</SoftTypography>

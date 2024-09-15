@@ -13,6 +13,7 @@ import Grid from "@mui/material/Grid";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -28,6 +29,8 @@ import ProductivityChart from "admin/message/components/ProductivityChart";
 import calendarEventsData from "admin/message/data/calendarEventsData";
 
 function DetailStore() {
+  const { t } = useTranslation();
+
 
 
 

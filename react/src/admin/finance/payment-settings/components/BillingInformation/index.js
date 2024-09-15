@@ -18,12 +18,15 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Billing page components
 import Bill from "admin/finance/payment-settings/components/Bill";
 
 function BillingInformation() {
+  const { t } = useTranslation();
+
   return (
     <Card id="delete-account">
       <SoftBox pt={3} px={2}>

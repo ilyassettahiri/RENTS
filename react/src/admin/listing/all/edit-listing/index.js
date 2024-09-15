@@ -15,6 +15,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import SoftEditor from "components/MDEditor";
 import SoftSelect from "components/SoftSelect";
@@ -402,6 +403,8 @@ function getCategory(
 
 
 function EditListing() {
+  const { t } = useTranslation();
+
 
 
   const navigate = useNavigate();

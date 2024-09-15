@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import Checkbox from "@mui/material/Checkbox";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 import  Image  from 'components/image';

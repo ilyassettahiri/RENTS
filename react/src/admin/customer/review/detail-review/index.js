@@ -23,6 +23,7 @@ import { useAbility } from "@casl/react";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -36,6 +37,8 @@ import Card from "@mui/material/Card";
 
 
 function DetailReview() {
+  const { t } = useTranslation();
+
 
   const { id } = useParams();
   const ability = useAbility(AbilityContext);

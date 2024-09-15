@@ -27,6 +27,7 @@ import RedditIcon from "@mui/icons-material/Reddit";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -34,6 +35,8 @@ import SoftButton from "components/SoftButton";
 import SocialItem from "admin/analytics/components/SocialItem";
 
 function Social() {
+  const { t } = useTranslation();
+
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>

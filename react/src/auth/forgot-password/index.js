@@ -5,6 +5,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";
@@ -19,6 +20,8 @@ import PageLayout from "examples/LayoutContainers/PageLayout";
 import pageRoutes from "page.routes";
 
 function Basic() {
+  const { t } = useTranslation();
+
   return (
     <PageLayout background="light">
       <DefaultNavbar

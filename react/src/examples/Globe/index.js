@@ -24,6 +24,7 @@ import * as THREE from "three";
 import { OrbitControls } from "@three-ts/orbit-controls";
 
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 function Globe({ canvasStyle, ...rest }) {
   const globeRef = useRef(null);
@@ -31,6 +32,7 @@ function Globe({ canvasStyle, ...rest }) {
 
   useEffect(() => {
     function createGlobe() {
+
       const container = globeRef.current;
       const canvas = canvasRef.current;
 
@@ -101,6 +103,7 @@ function Globe({ canvasStyle, ...rest }) {
         camera.position.z = -265;
 
         function animate() {
+
           // orbitControls.autoRotate is enabled so orbitControls.update
           // must be called inside animation loop.
           camera.orbitControls.update();
@@ -111,6 +114,7 @@ function Globe({ canvasStyle, ...rest }) {
       }
 
       function hasWebGL() {
+
         const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         if (gl && gl instanceof WebGLRenderingContext) {
           return true;
@@ -119,6 +123,7 @@ function Globe({ canvasStyle, ...rest }) {
       }
 
       function init() {
+
         if (hasWebGL()) {
           window
             .fetch(

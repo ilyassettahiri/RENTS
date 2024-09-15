@@ -8,12 +8,12 @@ import TableRow from "@mui/material/TableRow";
 import Checkbox from "@mui/material/Checkbox";
 import SoftSelect from "components/SoftSelect";
 import Grid from "@mui/material/Grid";
-import { useTranslation } from 'react-i18next';
 
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
 import SoftButton from "components/SoftButton";

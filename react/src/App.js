@@ -15,6 +15,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import SoftBox from "components/SoftBox";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+
 import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React example components
@@ -193,6 +195,9 @@ export default function App({ ability }) {
                   <CssBaseline />
                   {layout === "dashboard" && (
                     <>
+
+                      <DashboardNavbar />
+
                       <Sidenav
                         color="info"
                         brand={brand}
@@ -229,6 +234,9 @@ export default function App({ ability }) {
                 <CssBaseline />
                 {layout === "dashboard" && (
                   <>
+
+                    <DashboardNavbar />
+
                     <Sidenav
                       color="info"
                       brand={brand}

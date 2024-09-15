@@ -8,6 +8,7 @@ import IconButton from "@mui/material/IconButton";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import EditIcon from "@mui/icons-material/Edit";
 
 // Images

@@ -7,7 +7,6 @@ import { useLocation, NavLink } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
-import { useTranslation } from 'react-i18next';
 
 // @mui material components
 import List from "@mui/material/List";
@@ -17,6 +16,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 // Soft UI Dashboard PRO React example components
@@ -49,6 +49,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
   useEffect(() => {
     // A function that sets the mini state of the sidenav.
     function handleMiniSidenav() {
+
       setMiniSidenav(dispatch, window.innerWidth < 1200);
     }
 

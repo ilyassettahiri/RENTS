@@ -23,6 +23,8 @@ const imagePath = process.env.REACT_APP_IMAGE_PATH;
 
 
 function About() {
+  const { t } = useTranslation();
+
   return (
     <MDBox>
       <MDBox width="82%" textAlign="center" mx="auto" my={4}>

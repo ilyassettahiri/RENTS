@@ -19,6 +19,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 
@@ -37,6 +38,8 @@ export {
 
 
 function PaymentDetails() {
+  const { t } = useTranslation();
+
   const { borderWidth, borderColor } = borders;
 
   return (

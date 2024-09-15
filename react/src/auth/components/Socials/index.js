@@ -3,8 +3,11 @@
 // Soft UI Dashboard PRO React components
 import SoftButton from "components/SoftButton";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 function Socials() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox display="flex" justifyContent="center">
       <SoftButton variant="outlined" color="light">

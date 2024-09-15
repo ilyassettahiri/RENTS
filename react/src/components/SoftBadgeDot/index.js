@@ -20,6 +20,7 @@ import PropTypes from "prop-types";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 const SoftBadgeDot = forwardRef(({ variant, color, size, badgeContent, font, ...rest }, ref) => {

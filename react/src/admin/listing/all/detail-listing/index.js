@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import Divider from "@mui/material/Divider";
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import CrudService from "services/cruds-service";
@@ -19,6 +20,8 @@ import ProductCell from "admin/components/ProductCell";
 
 
 function DetailListing() {
+  const { t } = useTranslation();
+
   const { id } = useParams();
   const [data, setData] = useState(null);
   const [calendarEvents, setCalendarEvents] = useState([]);

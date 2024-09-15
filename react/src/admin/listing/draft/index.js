@@ -25,9 +25,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Divider from "@mui/material/Divider";
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
 import ProductCell from "admin/components/ProductCell";
+import ListActionHeader from "admin/components/ListActionHeader";
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
@@ -51,6 +53,8 @@ import { format } from 'date-fns';
 // Data
 
 function ListDraft() {
+  const { t } = useTranslation();
+
   let { state } = useLocation();
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
@@ -217,13 +221,13 @@ function ListDraft() {
         </SoftAlert>
       )}
       <SoftBox my={3}>
-        <SoftBox display="flex" justifyContent="flex-end" mb={2}>
-          <SoftBox mr={2}>
-            <SoftButton variant="gradient" type="submit" onClick={clickAddHandler} color="info">
-              New Listing
-            </SoftButton>
-          </SoftBox>
-        </SoftBox>
+        
+
+        <ListActionHeader title="createListing" clickAddHandler={clickAddHandler} />
+
+
+
+
         <Card>
           <DataTable
             table={dataTableData}

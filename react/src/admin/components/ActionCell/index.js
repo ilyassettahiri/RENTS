@@ -7,9 +7,12 @@ import Tooltip from "@mui/material/Tooltip";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 function ActionCell() {
+  const { t } = useTranslation();
+
   return (
     <SoftBox display="flex" alignItems="center">
       <SoftTypography variant="body1" color="secondary" sx={{ cursor: "pointer", lineHeight: 0 }} component={NavLink} to="/listing">

@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import Pricing from "admin/listing/all/create-listing/components/Pricing";
 import Address from "components/Address";
@@ -388,6 +389,8 @@ function getCategory(
 
 
 function CreateListing() {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
 

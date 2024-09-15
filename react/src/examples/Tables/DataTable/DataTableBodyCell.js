@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 
 // Soft UI Dashboard PRO React base styles
 import colors from "assets/theme/base/colors";

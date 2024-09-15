@@ -10,6 +10,7 @@ import Icon from "@mui/material/Icon";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftAvatar from "components/SoftAvatar";
 import SoftTypography from "components/SoftTypography";
 import SoftButton from "components/SoftButton";
@@ -42,6 +43,8 @@ export {
 
 
 function Post() {
+  const { t } = useTranslation();
+
   const { borderWidth, borderColor } = borders;
 
   const [comments] = useState([

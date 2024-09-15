@@ -22,6 +22,7 @@ import Switch from "@mui/material/Switch";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
 function ControllerCard({ color, state, icon, title, description, onChange }) {

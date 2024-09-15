@@ -9,6 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 
 // Material Dashboard 2 PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
 import SoftEditor from "components/MDEditor";

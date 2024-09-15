@@ -145,6 +145,7 @@ function SoftUIControllerProvider({ children }) {
 
 // Soft UI Dashboard PRO React custom hook for using context
 function useSoftUIController() {
+
   const context = useContext(SoftUI);
 
   if (!context) {

@@ -13,6 +13,7 @@ import Divider from "@mui/material/Divider";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import SoftSelect from "components/SoftSelect";
 import SoftTypography from "components/SoftTypography";
 
@@ -25,6 +26,8 @@ import ChangePassword from "admin/settings/security/components/ChangePassword";
 import PasswordRequirements from "admin/settings/security/components/PasswordRequirements";
 
 function Security() {
+  const { t } = useTranslation();
+
 
 
 
