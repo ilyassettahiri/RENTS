@@ -9,6 +9,7 @@ import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
 import TeamProfileCard from "examples/Cards/TeamCards/TeamProfileCard";
 import Divider from "@mui/material/Divider";
+import { ListingDetailsToolbar } from "admin/components/ListingDetailsToolbar/ListingDetailsToolbar";
 
 
 import Menu from "@mui/material/Menu";
@@ -411,6 +412,19 @@ function EditListing() {
   const { id } = useParams();
 
 
+  const clickAddHandler = () => {
+    navigate("/listing/create-listing");
+  };
+
+
+
+  const clickOpenHandler = (category, url) => {
+    const baseUrl = category === 'services' 
+      ? `https://rents.ma/service-page/${url}`  // URL for services category
+      : `https://rents.ma/listing-page/${category}/${url}`;  // Default URL for other categories
+    
+    window.open(baseUrl, '_blank');  // Open the URL in a new tab
+  };
 
 
 
@@ -1225,6 +1239,8 @@ function EditListing() {
     (async () => {
       try {
         const res = await CrudService.getListing(id);
+
+        setData(res.data.attributes);
         const {
           title,
           description,
@@ -2135,6 +2151,11 @@ function EditListing() {
   };
 
 
+  const [data, setData] = useState(null);
+
+  const category= data?.category;
+  const url= data?.url;
+
 
 
 
@@ -2225,349 +2246,356 @@ function EditListing() {
 
   return (
     <DashboardLayout>
-      <SoftBox mt={1} mb={20} component="form" method="POST" onSubmit={submitHandler}>
+      <SoftBox my={3} mb={10} c>
 
 
 
-          <SoftBox display="flex" justifyContent="flex-end" mb={2}>
 
-              <SoftBox mr={3}>
-                <SoftButton variant="gradient" color="info" >
-                  New Listing
-                </SoftButton>
-              </SoftBox>
+        {data && (<ListingDetailsToolbar
+            backLink="/reservation/list"
+            listingNumber={data?.id}
+            createdAt={data?.created_at}
+            status={data?.status}
+            title="New Listing"
+            clickAddHandler={clickAddHandler}
+            
+            clickOpenHandler={() => clickOpenHandler(category, url)}
 
-              <SoftBox display="flex">
-                <SoftButton variant={menu ? "contained" : "gradient"} color="white" onClick={openMenu}>
-                  More Action &nbsp;
-                  <Icon>keyboard_arrow_down</Icon>
-                </SoftButton>
-                {renderMenu}
-                
-              </SoftBox>
-          </SoftBox>
-
-
-
-        <Grid container spacing={3}>
-
-              
-              
-              
-              <Grid item xs={12} lg={8}>
+            statusOptions={[
+              { value: 'pending', label: 'Pending' },
+              { value: 'active', label: 'Active' },
+              { value: 'completed', label: 'Completed' },
+              { value: 'cancelled', label: 'Cancelled' }
+            ]}
+          />
+        )}
 
 
 
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-                        <SoftTypography variant="h5">Listing Information</SoftTypography>
-                        <SoftBox mt={3}>
-                          <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6} mt={1}>
-                              <SoftBox mb={3}>
+          
+
+          <SoftBox  component="form" method="POST" onSubmit={submitHandler}>
+
+
+            <Grid container spacing={3}>
+
+                  
+                  
+                  
+                  <Grid item xs={12} lg={8}>
+
+
+
+                        <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                          <SoftBox p={3}>
+                            <SoftBox mt={3}>
+                              <Grid container spacing={3}>
+                                <Grid item xs={12} sm={6} mt={1}>
+                                  <SoftBox mb={3}>
+                                    <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                                        Category
+                                      </SoftTypography>
+                                    </SoftBox>
+                                    <SoftSelect
+
+                                      value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
+                                      options={[
+                                        
+                                        { value: "boats", label: "boats", icon: BoatsIcon },
+                                        { value: "camions", label: "camions", icon: CamionsIcon },
+                                        { value: "caravans", label: "caravans", icon: CaravansIcon },
+                                        { value: "cars", label: "cars", icon: CarsIcon },
+                                        { value: "engins", label: "engins", icon: EnginsIcon },
+                                        { value: "motos", label: "motos", icon: MotosIcon },
+                                        { value: "scooters", label: "scooters", icon: ScootersIcon },
+                                        { value: "taxiaeroports", label: "taxiaeroports", icon: TaxiaeroportsIcon },
+                                        { value: "transportations", label: "transportations", icon: TransportationsIcon },
+                                        { value: "velos", label: "velos", icon: VelosIcon },
+                                        { value: "apartments", label: "apartments", icon: ApartmentsIcon },
+                                        { value: "bureauxs", label: "bureauxs", icon: BureauxsIcon },
+                                        { value: "magasins", label: "magasins", icon: MagasinsIcon },
+                                        { value: "maisons", label: "maisons", icon: MaisonsIcon },
+                                        { value: "riads", label: "riads", icon: RiadsIcon },
+                                        { value: "terrains", label: "terrains", icon: TerrainsIcon },
+                                        { value: "villas", label: "villas", icon: VillasIcon },
+                                        { value: "services", label: "services", icon: ServicesIcon },
+                                        { value: "audios", label: "audios", icon: AudiosIcon },
+                                        { value: "cameras", label: "cameras", icon: CamerasIcon },
+                                        { value: "chargers", label: "chargers", icon: ChargersIcon },
+                                        { value: "drones", label: "drones", icon: DronesIcon },
+                                        { value: "gamings", label: "gamings", icon: GamingsIcon },
+                                        { value: "laptops", label: "laptops", icon: LaptopsIcon },
+                                        { value: "lightings", label: "lightings", icon: LightingsIcon },
+                                        { value: "printers", label: "printers", icon: PrintersIcon },
+                                        { value: "routers", label: "routers", icon: RoutersIcon },
+                                        { value: "tablettes", label: "tablettes", icon: TablettesIcon },
+                                        { value: "electricaltools", label: "electricaltools", icon: ElectricaltoolsIcon },
+                                        { value: "ladders", label: "ladders", icon: LaddersIcon },
+                                        { value: "mechanicaltools", label: "mechanicaltools", icon: MechanicaltoolsIcon },
+                                        { value: "powertools", label: "powertools", icon: PowertoolsIcon },
+                                        { value: "pressurewashers", label: "pressurewashers", icon: PressurewashersIcon },
+                                        { value: "billiards", label: "billiards", icon: BilliardsIcon },
+                                        { value: "boxings", label: "boxings", icon: BoxingsIcon },
+                                        { value: "divings", label: "divings", icon: DivingsIcon },
+                                        { value: "footballs", label: "footballs", icon: FootballsIcon },
+                                        { value: "golfs", label: "golfs", icon: GolfsIcon },
+                                        { value: "huntings", label: "huntings", icon: HuntingsIcon },
+                                        { value: "musculations", label: "musculations", icon: MusculationsIcon },
+                                        { value: "surfs", label: "surfs", icon: SurfsIcon },
+                                        { value: "tennis", label: "tennis", icon: TennisIcon },
+                                        { value: "clothes", label: "clothes", icon: ClothesIcon },
+                                        { value: "jewelrys", label: "jewelrys", icon: JewelrysIcon },
+                                        { value: "activities", label: "activities", icon: ActivitiesIcon },
+                                        { value: "livres", label: "livres", icon: LivresIcon },
+                                        { value: "musicals", label: "musicals", icon: MusicalsIcon },
+                                        { value: "furnitures", label: "furnitures", icon: FurnituresIcon },
+                                        { value: "houseappliances", label: "houseappliances", icon: HouseappliancesIcon },
+                                        { value: "eclairages", label: "eclairages", icon: EclairagesIcon },
+                                        { value: "mobiliers", label: "mobiliers", icon: MobiliersIcon },
+                                        { value: "photographies", label: "photographies", icon: PhotographiesIcon },
+                                        { value: "sonorisations", label: "sonorisations", icon: SonorisationsIcon },
+                                        { value: "tentes", label: "tentes", icon: TentesIcon }
+                                      ]}
+
+
+
+
+                                      onChange={handleCategoryChange}
+                                    />
+                                  </SoftBox>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                  <SoftBox p={1}>
+                                    <FormField
+                                      type="text"
+                                      placeholder="apartment for rent..."
+                                      label="Title"
+                                      name="title"
+                                      value={title.text}
+                                      onChange={changeTitleHandler}
+                                      error={title.error}
+                                    />
+                                    {title.error && (
+                                      <SoftTypography variant="caption" color="error" fontWeight="light">
+                                        {title.textError}
+                                      </SoftTypography>
+                                    )}
+                                  </SoftBox>
+                                </Grid>
+                              </Grid>
+                            </SoftBox>
+                            <SoftBox mt={3}>
+                              <SoftBox mt={2}>
                                 <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                                   <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                                    Category
+                                    Description&nbsp;&nbsp;
                                   </SoftTypography>
                                 </SoftBox>
-                                <SoftSelect
-
-                                  value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
-                                  options={[
-                                    
-                                    { value: "boats", label: "boats", icon: BoatsIcon },
-                                    { value: "camions", label: "camions", icon: CamionsIcon },
-                                    { value: "caravans", label: "caravans", icon: CaravansIcon },
-                                    { value: "cars", label: "cars", icon: CarsIcon },
-                                    { value: "engins", label: "engins", icon: EnginsIcon },
-                                    { value: "motos", label: "motos", icon: MotosIcon },
-                                    { value: "scooters", label: "scooters", icon: ScootersIcon },
-                                    { value: "taxiaeroports", label: "taxiaeroports", icon: TaxiaeroportsIcon },
-                                    { value: "transportations", label: "transportations", icon: TransportationsIcon },
-                                    { value: "velos", label: "velos", icon: VelosIcon },
-                                    { value: "apartments", label: "apartments", icon: ApartmentsIcon },
-                                    { value: "bureauxs", label: "bureauxs", icon: BureauxsIcon },
-                                    { value: "magasins", label: "magasins", icon: MagasinsIcon },
-                                    { value: "maisons", label: "maisons", icon: MaisonsIcon },
-                                    { value: "riads", label: "riads", icon: RiadsIcon },
-                                    { value: "terrains", label: "terrains", icon: TerrainsIcon },
-                                    { value: "villas", label: "villas", icon: VillasIcon },
-                                    { value: "services", label: "services", icon: ServicesIcon },
-                                    { value: "audios", label: "audios", icon: AudiosIcon },
-                                    { value: "cameras", label: "cameras", icon: CamerasIcon },
-                                    { value: "chargers", label: "chargers", icon: ChargersIcon },
-                                    { value: "drones", label: "drones", icon: DronesIcon },
-                                    { value: "gamings", label: "gamings", icon: GamingsIcon },
-                                    { value: "laptops", label: "laptops", icon: LaptopsIcon },
-                                    { value: "lightings", label: "lightings", icon: LightingsIcon },
-                                    { value: "printers", label: "printers", icon: PrintersIcon },
-                                    { value: "routers", label: "routers", icon: RoutersIcon },
-                                    { value: "tablettes", label: "tablettes", icon: TablettesIcon },
-                                    { value: "electricaltools", label: "electricaltools", icon: ElectricaltoolsIcon },
-                                    { value: "ladders", label: "ladders", icon: LaddersIcon },
-                                    { value: "mechanicaltools", label: "mechanicaltools", icon: MechanicaltoolsIcon },
-                                    { value: "powertools", label: "powertools", icon: PowertoolsIcon },
-                                    { value: "pressurewashers", label: "pressurewashers", icon: PressurewashersIcon },
-                                    { value: "billiards", label: "billiards", icon: BilliardsIcon },
-                                    { value: "boxings", label: "boxings", icon: BoxingsIcon },
-                                    { value: "divings", label: "divings", icon: DivingsIcon },
-                                    { value: "footballs", label: "footballs", icon: FootballsIcon },
-                                    { value: "golfs", label: "golfs", icon: GolfsIcon },
-                                    { value: "huntings", label: "huntings", icon: HuntingsIcon },
-                                    { value: "musculations", label: "musculations", icon: MusculationsIcon },
-                                    { value: "surfs", label: "surfs", icon: SurfsIcon },
-                                    { value: "tennis", label: "tennis", icon: TennisIcon },
-                                    { value: "clothes", label: "clothes", icon: ClothesIcon },
-                                    { value: "jewelrys", label: "jewelrys", icon: JewelrysIcon },
-                                    { value: "activities", label: "activities", icon: ActivitiesIcon },
-                                    { value: "livres", label: "livres", icon: LivresIcon },
-                                    { value: "musicals", label: "musicals", icon: MusicalsIcon },
-                                    { value: "furnitures", label: "furnitures", icon: FurnituresIcon },
-                                    { value: "houseappliances", label: "houseappliances", icon: HouseappliancesIcon },
-                                    { value: "eclairages", label: "eclairages", icon: EclairagesIcon },
-                                    { value: "mobiliers", label: "mobiliers", icon: MobiliersIcon },
-                                    { value: "photographies", label: "photographies", icon: PhotographiesIcon },
-                                    { value: "sonorisations", label: "sonorisations", icon: SonorisationsIcon },
-                                    { value: "tentes", label: "tentes", icon: TentesIcon }
-                                  ]}
-
-
-
-
-                                  onChange={handleCategoryChange}
-                                />
-                              </SoftBox>
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                              <SoftBox p={1}>
-                                <FormField
-                                  type="text"
-                                  placeholder="apartment for rent..."
-                                  label="Title"
-                                  name="title"
-                                  value={title.text}
-                                  onChange={changeTitleHandler}
-                                  error={title.error}
-                                />
-                                {title.error && (
+                                <SoftEditor value={description} onChange={setDescription} />
+                                {descError && (
                                   <SoftTypography variant="caption" color="error" fontWeight="light">
-                                    {title.textError}
+                                    The Collection description is required
                                   </SoftTypography>
                                 )}
                               </SoftBox>
-                            </Grid>
-                          </Grid>
-                        </SoftBox>
-                        <SoftBox mt={3}>
-                          <SoftBox mt={2}>
-                            <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                              <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                                Description&nbsp;&nbsp;
-                              </SoftTypography>
                             </SoftBox>
-                            <SoftEditor value={description} onChange={setDescription} />
-                            {descError && (
-                              <SoftTypography variant="caption" color="error" fontWeight="light">
-                                The Collection description is required
-                              </SoftTypography>
-                            )}
-                          </SoftBox>
-                        </SoftBox>
-                        <SoftBox mt={8}>
-                          
-                            
-                                <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                  <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                                      Availability
-                                  </SoftTypography>
-                                </SoftBox>
-                                <SoftBox mt={2}>
-                                  <DateRange value={dateRange} onChange={setDateRange} />
-                                </SoftBox>
-                          
-                        </SoftBox>
-                      </SoftBox>
-                    </Card>
-
-
-
-
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-
-
-                      <SoftBox p={3}>
-
-                          <SoftTypography variant="h5">Listing Details</SoftTypography>
-
-
-                            {getCategory(
-                              selectedCategory,
-                              updateBilliardsData,
-                              updateBoxingsData,
-                              updateDivingsData,
-                              updateFootballsData,
-                              updateGolfsData,
-                              updateHuntingsData,
-                              updateMusculationsData,
-                              updateSurfsData,
-                              updateTennisData,
-                              updateAudiosData,
-                              updateCamerasData,
-                              updateChargersData,
-                              updateDronesData,
-                              updateGamingsData,
-                              updateLaptopsData,
-                              updateLightingsData,
-                              updatePrintersData,
-                              updateRoutersData,
-                              updateTablettesData,
-                              updateEclairagesData,
-                              updateMobiliersData,
-                              updatePhotographiesData,
-                              updateSonorisationsData,
-                              updateTentesData,
-                              updateClothesData,
-                              updateJewelrysData,
-                              updateApartmentsData,
-                              updateBureauxsData,
-                              updateMagasinsData,
-                              updateMaisonsData,
-                              updateRiadsData,
-                              updateTerrainsData,
-                              updateVillasData,
-                              updateActivitiesData,
-                              updateLivresData,
-                              updateMusicalsData,
-                              updateFurnituresData,
-                              updateHouseappliancesData,
-                              updateElectricaltoolsData,
-                              updateLaddersData,
-                              updateMechanicaltoolsData,
-                              updatePowertoolsData,
-                              updatePressurewashersData,
-                              updateServicesData,
-                              updateBoatsData,
-                              updateCamionsData,
-                              updateCaravansData,
-                              updateCarsData,
-                              updateEnginsData,
-                              updateMotosData,
-                              updateScootersData,
-                              updateTaxiaeroportsData,
-                              updateTransportationsData,
-                              updateVelosData
-                            )}
-
-
-
-
-
-
-                      </SoftBox>
-                    </Card>
-
-
-
-
-
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-
-                        <SoftTypography variant="h5">Listing Images</SoftTypography>
-
-                        <SoftBox mt={3}>
-                          
-                          <CustomFileInput onFilesChange={handleFilesChange} />
-                        </SoftBox>
-                      </SoftBox>
-                    </Card>
-
-
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-
-                      <SoftTypography variant="h5">Listing Address </SoftTypography>
-
-                        <Address address={address} onAddressChange={handleAddressChange} />
-                      </SoftBox>
-                    </Card>
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-                        <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
-                      </SoftBox>
-                    </Card>
-
-
-
-
-                    <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
-                      <SoftButton variant="gradient" color="dark" size="small" type="submit">
-                        Save
-                      </SoftButton>
-                    </SoftBox>
-              </Grid>
-
-
-              <Grid item xs={12} lg={4}>
-
-
-                        <Grid item xs={12}>
-                          <SoftBox mb={3}>
-
-
-
-                          <Card sx={{ overflow: "visible", mt: 2 }}>
-                            <SoftBox mb={3} sx={{ p: 2 }} >
-                              <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                <SoftTypography
-                                  component="label"
-                                  variant="caption"
-                                  fontWeight="bold"
-                                  textTransform="capitalize"
-                                >
-                                  Status
-                                </SoftTypography>
-                              </SoftBox>
-                              <SoftSelect
-                                defaultValue={{ value: selectedStatus, label: selectedStatus }}
-                                options={[
-                                 
-                                  { value: "active", label: "Active" },
-                                  { value: "draft", label: "Draft" },
-                                ]}
-                                onChange={handleStatusChange}
-                              />
-                            </SoftBox>
-                          </Card>
-
-
-
-
-
-                          </SoftBox>
-                        </Grid>
-
-
-                        <Grid item xs={12}>
-                          <SoftBox mb={3}>
-                            <TeamProfileCard
-                              title="design"
-                              description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
-                              industry="design team"
-                              rating={5}
+                            <SoftBox mt={8}>
                               
-                              dropdown={{
-                                action: openDesignMenu,
-                                menu: renderDesignMenu,
-                              }}
-                            />
+                                
+                                    <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                                          Availability
+                                      </SoftTypography>
+                                    </SoftBox>
+                                    <SoftBox mt={2}>
+                                      <DateRange value={dateRange} onChange={setDateRange} />
+                                    </SoftBox>
+                              
+                            </SoftBox>
                           </SoftBox>
-                        </Grid>
-                        
-              </Grid>
+                        </Card>
 
-              
-        </Grid>
+
+
+
+                        <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+
+
+                          <SoftBox p={3}>
+
+
+
+                                {getCategory(
+                                  selectedCategory,
+                                  updateBilliardsData,
+                                  updateBoxingsData,
+                                  updateDivingsData,
+                                  updateFootballsData,
+                                  updateGolfsData,
+                                  updateHuntingsData,
+                                  updateMusculationsData,
+                                  updateSurfsData,
+                                  updateTennisData,
+                                  updateAudiosData,
+                                  updateCamerasData,
+                                  updateChargersData,
+                                  updateDronesData,
+                                  updateGamingsData,
+                                  updateLaptopsData,
+                                  updateLightingsData,
+                                  updatePrintersData,
+                                  updateRoutersData,
+                                  updateTablettesData,
+                                  updateEclairagesData,
+                                  updateMobiliersData,
+                                  updatePhotographiesData,
+                                  updateSonorisationsData,
+                                  updateTentesData,
+                                  updateClothesData,
+                                  updateJewelrysData,
+                                  updateApartmentsData,
+                                  updateBureauxsData,
+                                  updateMagasinsData,
+                                  updateMaisonsData,
+                                  updateRiadsData,
+                                  updateTerrainsData,
+                                  updateVillasData,
+                                  updateActivitiesData,
+                                  updateLivresData,
+                                  updateMusicalsData,
+                                  updateFurnituresData,
+                                  updateHouseappliancesData,
+                                  updateElectricaltoolsData,
+                                  updateLaddersData,
+                                  updateMechanicaltoolsData,
+                                  updatePowertoolsData,
+                                  updatePressurewashersData,
+                                  updateServicesData,
+                                  updateBoatsData,
+                                  updateCamionsData,
+                                  updateCaravansData,
+                                  updateCarsData,
+                                  updateEnginsData,
+                                  updateMotosData,
+                                  updateScootersData,
+                                  updateTaxiaeroportsData,
+                                  updateTransportationsData,
+                                  updateVelosData
+                                )}
+
+
+
+
+
+
+                          </SoftBox>
+                        </Card>
+
+
+
+
+
+                        <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                          <SoftBox p={3}>
+
+
+                            <SoftBox mt={3}>
+                              
+                              <CustomFileInput onFilesChange={handleFilesChange} />
+                            </SoftBox>
+                          </SoftBox>
+                        </Card>
+
+
+                        <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                          <SoftBox p={3}>
+
+
+                            <Address address={address} onAddressChange={handleAddressChange} />
+                          </SoftBox>
+                        </Card>
+                        <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                          <SoftBox p={3}>
+                            <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
+                          </SoftBox>
+                        </Card>
+
+
+
+
+                        <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
+                          <SoftButton variant="gradient" color="dark" size="small" type="submit">
+                            Save
+                          </SoftButton>
+                        </SoftBox>
+                  </Grid>
+
+
+                  <Grid item xs={12} lg={4}>
+
+
+                            <Grid item xs={12}>
+                              <SoftBox mb={3}>
+
+
+
+                              <Card sx={{ overflow: "visible", mt: 2 }}>
+                                <SoftBox mb={3} sx={{ p: 2 }} >
+                                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                    <SoftTypography
+                                      component="label"
+                                      variant="caption"
+                                      fontWeight="bold"
+                                      textTransform="capitalize"
+                                    >
+                                      Status
+                                    </SoftTypography>
+                                  </SoftBox>
+                                  <SoftSelect
+                                    defaultValue={{ value: selectedStatus, label: selectedStatus }}
+                                    options={[
+                                    
+                                      { value: "active", label: "Active" },
+                                      { value: "draft", label: "Draft" },
+                                    ]}
+                                    onChange={handleStatusChange}
+                                  />
+                                </SoftBox>
+                              </Card>
+
+
+
+
+
+                              </SoftBox>
+                            </Grid>
+
+
+                            <Grid item xs={12}>
+                              <SoftBox mb={3}>
+                                <TeamProfileCard
+                                  title="design"
+                                  description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
+                                  industry="design team"
+                                  rating={5}
+                                  
+                                  dropdown={{
+                                    action: openDesignMenu,
+                                    menu: renderDesignMenu,
+                                  }}
+                                />
+                              </SoftBox>
+                            </Grid>
+                            
+                  </Grid>
+
+                  
+            </Grid>
+
+          </SoftBox>
+
+
       </SoftBox>
     </DashboardLayout>
   );

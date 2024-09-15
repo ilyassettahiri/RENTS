@@ -30,6 +30,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import OrdersOverview from "admin/components/OrdersOverview";
 import ComplexStatisticsCard from "examples/Cards/StatisticsCards/ComplexStatisticsCard";
 
+import { CustomerDetailsToolbar } from "admin/components/CustomerDetailsToolbar/CustomerDetailsToolbar";
 
 
 function DetailCustomer() {
@@ -73,113 +74,45 @@ function DetailCustomer() {
 
 
 
-  const [menu, setMenu] = useState(null);
-
-  const openMenu = (event) => setMenu(event.currentTarget);
-  const closeMenu = () => setMenu(null);
-
-  const renderMenu = (
-    <Menu
-      anchorEl={menu}
-      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "left" }}
-      open={Boolean(menu)}
-      onClose={closeMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMenu}>Status: Paid</MenuItem>
-      <MenuItem onClick={closeMenu}>Status: Refunded</MenuItem>
-      <MenuItem onClick={closeMenu}>Status: Canceled</MenuItem>
-      <Divider sx={{ margin: "0.5rem 0" }} />
-      <MenuItem onClick={closeMenu}>
-        <SoftTypography variant="button" color="error" fontWeight="regular">
-          Remove Filter
-        </SoftTypography>
-      </MenuItem>
-    </Menu>
-  );
+  const clickAddHandler = () => {
+    navigate("/listing/create-listing");
+  };
 
 
 
 
-  // TeamProfileCard dropdown menu state
-  const [marketingMenu, setMarketingMenu] = useState(null);
-  const [designMenu, setDesignMenu] = useState(null);
+  
 
-  // TeamProfileCard dropdown menu handlers
-  const openMarketingMenu = (event) => setMarketingMenu(event.currentTarget);
-  const closeMarketingMenu = () => setMarketingMenu(null);
-  const openDesignMenu = (event) => setDesignMenu(event.currentTarget);
-  const closeDesignMenu = () => setDesignMenu(null);
-
-  // Dropdown menu for the digital marketing TeamProfileCard
-  const renderMarketingMenu = (
-    <Menu
-      anchorEl={marketingMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(marketingMenu)}
-      onClose={closeMarketingMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMarketingMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Something else here</MenuItem>
-    </Menu>
-  );
-
-  // Dropdown menu for the design TeamProfileCard
-  const renderDesignMenu = (
-    <Menu
-      anchorEl={designMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(designMenu)}
-      onClose={closeDesignMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeDesignMenu}>Action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Something else here</MenuItem>
-    </Menu>
-  );
 
   return (
     <DashboardLayout>
      
       
-      <SoftBox mb={5}>
+      <SoftBox my={3}>
 
 
 
 
 
 
-          <SoftBox display="flex" justifyContent="flex-end" my={3}>
-              
+        {data && (<CustomerDetailsToolbar
+            backLink="/reservation/list"
+            customerNumber={id}
+            createdAt={data?.attributes.created_at}
+            status={data?.attributes.status}
+            title="New Customer"
+            idname="Customer"
+            clickAddHandler={clickAddHandler}
+           
 
-
-              <SoftBox mr={2}>
-                <SoftButton variant="gradient" type="submit"  color="info">
-
-                  New Customer
-                </SoftButton>
-              </SoftBox>
-
-              <SoftBox display="flex">
-                <SoftButton variant="contained" color="white" onClick={openMenu}>
-                  More Action &nbsp;
-                  <Icon>keyboard_arrow_down</Icon>
-                </SoftButton>
-                {renderMenu}
-                
-              </SoftBox>
-          
-
-
-
-
-          </SoftBox>
+            statusOptions={[
+              { value: 'pending', label: 'Pending' },
+              { value: 'active', label: 'Active' },
+              { value: 'completed', label: 'Completed' },
+              { value: 'cancelled', label: 'Cancelled' }
+            ]}
+          />
+        )}
 
 
 
@@ -248,10 +181,7 @@ function DetailCustomer() {
                   industry="marketing team"
                   rating={4.5}
                   
-                  dropdown={{
-                    action: openMarketingMenu,
-                    menu: renderMarketingMenu,
-                  }}
+                  
                 />
               </SoftBox>
             </Grid>
@@ -265,10 +195,7 @@ function DetailCustomer() {
                   industry="design team"
                   rating={5}
                   
-                  dropdown={{
-                    action: openDesignMenu,
-                    menu: renderDesignMenu,
-                  }}
+                  
                 />
               </SoftBox>
             </Grid>

@@ -217,6 +217,11 @@ class EditListingController extends Controller
                             'address' => $this->listingcategory->address,
                             'city' => $this->listingcategory->city,
                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
+
                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                             'category' => $this->category,
                             'billiards' => [
@@ -261,6 +266,10 @@ class EditListingController extends Controller
                             'address' => $this->listingcategory->address,
                             'city' => $this->listingcategory->city,
                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                             'category' => $this->category,
                             'boxings' => [
@@ -305,6 +314,10 @@ class EditListingController extends Controller
                                 'address' => $this->listingcategory->address,
                                 'city' => $this->listingcategory->city,
                                 'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                 'zip' => $this->listingcategory->zip,'listingid' => $id,
                                 'category' => $this->category,
                                 'images' => Divingsimg::where('diving_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -345,6 +358,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Footballsimg::where('football_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -384,6 +401,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Golfsimg::where('golf_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -424,6 +445,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Huntingsimg::where('hunting_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -464,6 +489,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Musculationsimg::where('musculation_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -505,6 +534,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Surfsimg::where('surf_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -544,6 +577,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Tennisimg::where('tennis_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -584,6 +621,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Audiosimg::where('audio_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -624,6 +665,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Camerasimg::where('camera_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -662,6 +707,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Chargersimg::where('charger_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -702,6 +751,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Dronesimg::where('drone_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -744,6 +797,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Gamingsimg::where('gaming_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -784,6 +841,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Laptopsimg::where('laptop_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -825,6 +886,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Lightingsimg::where('lighting_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -866,6 +931,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Printersimg::where('printer_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -904,6 +973,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Routersimg::where('router_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -945,6 +1018,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Tablettesimg::where('tablette_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -986,6 +1063,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Eclairagesimg::where('eclairage_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1026,6 +1107,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Mobiliersimg::where('mobilier_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1066,6 +1151,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Photographiesimg::where('photographie_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1105,6 +1194,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Sonorisationsimg::where('sonorisation_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1146,6 +1239,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Tentesimg::where('tente_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1185,6 +1282,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Clothesimg::where('clothes_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1225,6 +1326,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Jewelrysimg::where('jewelry_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1264,6 +1369,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Apartmentsimg::where('apartment_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1304,6 +1413,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Bureauxsimg::where('bureaux_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1344,6 +1457,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Magasinsimg::where('magasin_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1383,6 +1500,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Maisonsimg::where('maison_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1421,6 +1542,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Riadsimg::where('riad_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1459,6 +1584,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Terrainsimg::where('terrain_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1499,6 +1628,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Villasimg::where('villa_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1538,6 +1671,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Activitiesimg::where('activity_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1577,6 +1714,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Livresimg::where('livre_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1615,6 +1756,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Musicalsimg::where('musical_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1654,6 +1799,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Furnituresimg::where('furniture_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1693,6 +1842,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Houseappliancesimg::where('houseappliance_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1732,6 +1885,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Electricaltoolsimg::where('electricaltool_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1772,6 +1929,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Laddersimg::where('ladder_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1810,6 +1971,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Mechanicaltoolsimg::where('mechanicaltool_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1848,6 +2013,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Powertoolsimg::where('powertool_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1886,6 +2055,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Pressurewashersimg::where('pressurewasher_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1924,6 +2097,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Servicesimg::where('service_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -1963,6 +2140,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Boatsimg::where('boat_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2001,6 +2182,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Camionsimg::where('camion_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2038,6 +2223,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Caravansimg::where('caravan_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2075,6 +2264,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Carsimg::where('car_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2114,6 +2307,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Enginsimg::where('engin_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2153,6 +2350,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Motosimg::where('moto_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2191,6 +2392,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Scootersimg::where('scooter_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2231,6 +2436,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Taxiaeroportsimg::where('taxiaeroport_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2270,6 +2479,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Transportationsimg::where('transportation_id', $this->listingcategory->id)->get()->map(function ($image) {
@@ -2310,6 +2523,10 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
+                            'id' => $this->listingcategory->id,
+                            'url' => $this->listingcategory->url,
+                            'created_at' => $this->listingcategory->created_at,
+
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
                                             'images' => Velosimg::where('velo_id', $this->listingcategory->id)->get()->map(function ($image) {

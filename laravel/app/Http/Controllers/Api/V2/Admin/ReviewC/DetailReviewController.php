@@ -47,6 +47,8 @@ class DetailReviewController extends JsonApiController
                         'rating' => $review->rating,
 
                         'title' => $review->listings_title,
+                        'id' => $review->id,
+
 
                         'title' => $review->listings_title,
                         'picture' => $review->listings_thumb,
