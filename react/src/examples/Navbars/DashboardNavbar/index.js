@@ -175,7 +175,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       }}
       open={Boolean(openMenu)}
       onClose={handleCloseMenu}
-      sx={{ mt: 2 }}
     >
       <NotificationItem
         image="/logo/admin.jpg"
@@ -211,7 +210,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       }}
       open={Boolean(openLanguage)}
       onClose={handleCloseLanguage}
-      sx={{ mt: 2 }}
     >
       <DefaultItem
         countryCode="GB"
@@ -243,11 +241,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
           <SoftBox/>
           
         {isMini ? null : (
-          <SoftBox sx={(theme) => navbarRow(theme, { isMini })}>
+          <SoftBox sx={(theme) => navbarRow(theme, { isMini })} >
             <SoftBox pr={1}/>
               
             
-            <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1}>
+            <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1} >
               
                 
               

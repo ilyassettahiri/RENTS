@@ -84,11 +84,11 @@ function Dashboard() {
                 <Globe
                   display={{ xs: "none", md: "block" }}
                   position="absolute"
-                  top="10%"
+                  top="0%"
                   right={0}
                   mt={{ xs: -12, lg: 1 }}
-                  mr={{ xs: 0, lg: 10 }}
-                  canvasStyle={{ marginTop: "3rem" }}
+                  mr={{ xs: 0, lg: 0 }}
+                  canvasStyle={{  }}
                 />
               </Grid>
             </Grid>
