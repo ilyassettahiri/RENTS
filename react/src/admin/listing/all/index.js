@@ -1,14 +1,16 @@
 /* eslint-disable react/prop-types */
 
 
-// react-router-dom components
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -34,6 +36,9 @@ import ProductCell from "admin/components/ProductCell";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
+
 
 import HTMLReactParser from "html-react-parser";
 
@@ -66,20 +71,37 @@ function ListListing() {
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [tableData, setTableData] = useState([]);
   const [notification, setNotification] = useState({
     value: false,
     text: "",
   });
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getListings();
-      console.log('data here', response.data);
- 
-      setData(response.data);
-    })();
-  }, []);
+
+    // Use React Query to fetch data
+    const { data: listingsData, isLoading, error } = useQuery({
+      queryKey: ['listings'],
+      queryFn: () => CrudService.getListings(),
+      onError: (error) => {
+        console.error('Failed to fetch listings:', error);
+      },
+    });
+  
+    // Memoize the table data
+    const tableData = useMemo(() => {
+      if (!listingsData) return [];
+  
+      return listingsData.data.map((row) => ({
+        product: { image: row.attributes.picture, name: row.attributes.title, checked: false, id: row.id },
+        price: row.attributes.price,
+        status: row.attributes.status,
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+        id: row.id,
+        category: row.attributes.category,
+        url: row.attributes.url,
+      }));
+    }, [listingsData]);
+
+
 
   useEffect(() => {
     if (!state) return;
@@ -89,10 +111,7 @@ function ListListing() {
     });
   }, [state]);
 
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
-
+ 
   useEffect(() => {
     if (notification.value === true) {
       let timer = setTimeout(() => {
@@ -242,15 +261,25 @@ function ListListing() {
         
 
         <Card>
-          <DataTable
-            table={dataTableData}
-            entriesPerPage={{
-              defaultValue: 30,
-              entries: [30, 50, 100, 200],
-            }}
-            canSearch
-          />
+
+          {isLoading ? (
+            <TableSkeleton rows={5} columns={5} />  
+          ) : (
+              <DataTable
+                table={dataTableData}
+                entriesPerPage={{
+                  defaultValue: 30,
+                  entries: [30, 50, 100, 200],
+                }}
+                canSearch
+              />
+          )}
+
+
         </Card>
+
+
+        
       </SoftBox>
     </DashboardLayout>
   );

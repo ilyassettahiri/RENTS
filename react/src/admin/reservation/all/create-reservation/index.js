@@ -19,6 +19,8 @@ import SoftButton from "components/SoftButton";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 
 // Data
 

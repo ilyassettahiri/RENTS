@@ -3,9 +3,8 @@
 
  
 
-// react-router-dom components
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 
 // @mui material components
@@ -22,6 +21,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { format } from 'date-fns';
 import ViewIcon from "@mui/icons-material/Visibility";
 
+import { useQuery } from '@tanstack/react-query';
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -43,6 +43,8 @@ import CustomerCell from "admin/components/CustomerCell";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
@@ -78,18 +80,41 @@ function ListUpcoming() {
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [tableData, setTableData] = useState([]);
+
   const [notification, setNotification] = useState({
     value: false,
     text: "",
   });
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getUpcomings();
-      setData(response.data);
-    })();
-  }, []);
+
+
+
+    // Use React Query to fetch data
+    const { data: upcomingData, isLoading, error } = useQuery({
+      queryKey: ['upcomings'],
+      queryFn: () => CrudService.getUpcomings(),
+      onError: (error) => {
+        console.error('Failed to fetch upcoming reservations:', error);
+      },
+    });
+  
+    // Memoize the table data
+    const tableData = useMemo(() => {
+      if (!upcomingData) return [];
+  
+      return upcomingData.data.map((row) => ({
+        id: { ID: row.attributes.id },
+        price: row.attributes.price,
+        customer: { image: team1, name: row.attributes.name, checked: false, id: row.id },
+        status: row.attributes.status,
+        title: row.attributes.title,
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+        id: row.id,
+      }));
+    }, [upcomingData]);
+
+
+
 
   useEffect(() => {
     if (!state) return;
@@ -99,9 +124,7 @@ function ListUpcoming() {
     });
   }, [state]);
 
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
+ 
 
   useEffect(() => {
     if (notification.value === true) {
@@ -268,16 +291,30 @@ function ListUpcoming() {
 
 
 
+
+
         <Card>
-          <DataTable
-            table={dataTableData}
-            entriesPerPage={{
-              defaultValue: 30,
-              entries: [30, 50, 100, 200],
-            }}
-            canSearch
-          />
+
+          {isLoading ? (
+            <TableSkeleton rows={5} columns={5} />  
+          ) : (
+              <DataTable
+                table={dataTableData}
+                entriesPerPage={{
+                  defaultValue: 30,
+                  entries: [30, 50, 100, 200],
+                }}
+                canSearch
+              />
+          )}
+
+
         </Card>
+
+
+
+
+
       </SoftBox>
     </DashboardLayout>
   );

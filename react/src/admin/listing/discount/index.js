@@ -2,12 +2,13 @@
 /* eslint-disable react/prop-types */
 
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
 import { format } from 'date-fns';
+import { useQuery } from '@tanstack/react-query';
 
 // Material Dashboard 2 PRO React components
 import SoftBox from "components/SoftBox";
@@ -21,6 +22,8 @@ import StatusCell from "admin/components/StatusCell";
 import ListActionHeader from "admin/components/ListActionHeader";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import SoftButton from "components/SoftButton";
 import SoftAlert from "components/SoftAlert";
 import { Tooltip, IconButton } from "@mui/material";
@@ -62,7 +65,8 @@ function ListDiscount() {
   let { state } = useLocation();
   const ability = useAbility(AbilityContext);
   const [data, setData] = useState([]);
-  const [tableData, setTableData] = useState([]);
+
+
   const [notification, setNotification] = useState({
     value: false,
     text: "",
@@ -72,13 +76,32 @@ function ListDiscount() {
 
 
 
+    // Use React Query to fetch data
+    const { data: discountsData, isLoading, error } = useQuery({
+      queryKey: ['discounts'],
+      queryFn: () => CrudService.getDiscounts(),
+      onError: (error) => {
+        console.error('Failed to fetch discounts:', error);
+      },
+    });
+  
+    // Memoize the table data
+    const tableData = useMemo(() => {
+      if (!discountsData) return [];
+  
+      return discountsData.data.map((row) => ({
+        id: { ID: row.attributes.id },
+        type: row.attributes.type,
+        applies: row.attributes.applies,
+        status: row.attributes.status,
+        code: row.attributes.code,
+        percentage: row.attributes.discountvalue,
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+        id: row.id,
+      }));
+    }, [discountsData]);
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getDiscounts();
-      setData(response.data);
-    })();
-  }, []);
+
 
   useEffect(() => {
     if (!state) return;
@@ -88,9 +111,6 @@ function ListDiscount() {
     });
   }, [state]);
 
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
 
 
 
@@ -257,22 +277,17 @@ function ListDiscount() {
 
 
           <Card>
-            <SoftBox  lineHeight={1} display="flex" justifyContent="space-between">
-              
-              {ability.can("create", "categories") && (
-                <SoftButton
-                  variant="gradient"
-                  
-                  size="small"
-                  type="submit"
-                  onClick={clickAddHandler}
-                  // disabled={isDemo}
-                >
-                  + Add discount
-                </SoftButton>
-              )}
-            </SoftBox>
-            <DataTable table={dataTableData} />
+            
+
+
+            {isLoading ? (
+              <TableSkeleton rows={5} columns={5} />  
+            ) : (
+              <DataTable table={dataTableData} />
+            )}
+
+
+
           </Card>
         
       </SoftBox>

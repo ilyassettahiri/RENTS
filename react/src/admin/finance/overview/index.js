@@ -33,6 +33,8 @@ import DefaultLineChart from "examples/Charts/LineCharts/DefaultLineChart";
 import HorizontalBarChart from "examples/Charts/BarCharts/HorizontalBarChart";
 import SalesTable from "examples/Tables/SalesTable";
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 
 // Overview page components
 import ChannelsChart from "admin/finance/overview/components/ChannelsChart";

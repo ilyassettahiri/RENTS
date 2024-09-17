@@ -40,6 +40,8 @@ import CustomerCell from "admin/components/CustomerCell";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";

@@ -17,6 +17,8 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import { format } from 'date-fns';
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import SoftButton from "components/SoftButton";
 import SoftAvatar from "components/SoftAvatar";
 import { Tooltip, IconButton } from "@mui/material";

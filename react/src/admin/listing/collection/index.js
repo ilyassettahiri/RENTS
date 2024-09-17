@@ -2,8 +2,10 @@
 /* eslint-disable react/prop-types */
 
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+
+
 import ViewIcon from "@mui/icons-material/Visibility";
 
 // @mui material components
@@ -14,11 +16,14 @@ import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 import ListActionHeader from "admin/components/ListActionHeader";
+import { useQuery } from '@tanstack/react-query';
 
 // Material Dashboard 2 PRO React examples
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import SoftButton from "components/SoftButton";
 import SoftAlert from "components/SoftAlert";
 import { Tooltip, IconButton } from "@mui/material";
@@ -57,7 +62,6 @@ function ListCollection() {
   let { state } = useLocation();
   const ability = useAbility(AbilityContext);
   const [data, setData] = useState([]);
-  const [tableData, setTableData] = useState([]);
   const [notification, setNotification] = useState({
     value: false,
     text: "",
@@ -65,12 +69,32 @@ function ListCollection() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getCollections();
-      setData(response.data);
-    })();
-  }, []);
+
+
+    // Use React Query to fetch data
+    const { data: collectionsData, isLoading, error } = useQuery({
+      queryKey: ['collections'],
+      queryFn: () => CrudService.getCollections(),
+      onError: (error) => {
+        console.error('Failed to fetch collections:', error);
+      },
+    });
+  
+    // Memoize the table data
+    const tableData = useMemo(() => {
+      if (!collectionsData) return [];
+  
+      return collectionsData.data.map((row) => ({
+        type: "collections",
+        id: row.id,
+        name: row.attributes.name,
+        product: { image: row.attributes.picture, name: row.attributes.name, checked: false, id: row.id },
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+      }));
+    }, [collectionsData]);
+
+
+
 
   useEffect(() => {
     if (!state) return;
@@ -80,9 +104,7 @@ function ListCollection() {
     });
   }, [state]);
 
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
+ 
 
   useEffect(() => {
     if (notification.value === true) {
@@ -207,12 +229,14 @@ function ListCollection() {
 
 
           <Card>
-            <SoftBox  lineHeight={1} display="flex" justifyContent="space-between">
-              
+            
+            {isLoading ? (
+              <TableSkeleton rows={5} columns={5} />  
+            ) : (
+              <DataTable table={dataTableData} />
+            )}
 
-             
-            </SoftBox>
-            <DataTable table={dataTableData} />
+
           </Card>
         </SoftBox>
       </SoftBox>

@@ -1,8 +1,8 @@
 
 /* eslint-disable react/prop-types */
 
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
 
 
 // @mui material components
@@ -10,6 +10,7 @@ import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
 import ViewIcon from "@mui/icons-material/Visibility";
 import ListActionHeader from "admin/components/ListActionHeader";
+import { useQuery } from '@tanstack/react-query';
 
 import Icon from "@mui/material/Icon";
 import SoftAlert from "components/SoftAlert";
@@ -40,6 +41,8 @@ import CustomerCell from "admin/components/CustomerCell";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
 import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
@@ -75,18 +78,39 @@ function ListCustomer() {
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
   const [data, setData] = useState([]);
-  const [tableData, setTableData] = useState([]);
   const [notification, setNotification] = useState({
     value: false,
     text: "",
   });
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getCustomers();
-      setData(response.data);
-    })();
-  }, []);
+
+
+
+    // Use React Query to fetch data
+    const { data: customersData, isLoading, error } = useQuery({
+      queryKey: ['customers'],
+      queryFn: () => CrudService.getCustomers(),
+      onError: (error) => {
+        console.error('Failed to fetch customers:', error);
+      },
+    });
+  
+    // Memoize the table data
+    const tableData = useMemo(() => {
+      if (!customersData) return [];
+  
+      return customersData.data.map((row) => ({
+        id: { ID: row.attributes.id },
+        price: row.attributes.price,
+        customer: { image: team1, name: row.attributes.name, checked: false, id: row.id },
+        status: row.attributes.status,
+        title: row.attributes.title,
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+        id: row.id,
+      }));
+    }, [customersData]);
+
+
 
   useEffect(() => {
     if (!state) return;
@@ -96,9 +120,7 @@ function ListCustomer() {
     });
   }, [state]);
 
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
+
 
   useEffect(() => {
     if (notification.value === true) {
@@ -262,14 +284,18 @@ function ListCustomer() {
 
 
         <Card>
-          <DataTable
-            table={dataTableData}
-            entriesPerPage={{
-              defaultValue: 30,
-              entries: [30, 50, 100, 200],
-            }}
-            canSearch
-          />
+          {isLoading ? (
+            <TableSkeleton rows={5} columns={5} />  
+          ) : (
+              <DataTable
+                table={dataTableData}
+                entriesPerPage={{
+                  defaultValue: 30,
+                  entries: [30, 50, 100, 200],
+                }}
+                canSearch
+              />
+          )}
         </Card>
       </SoftBox>
     </DashboardLayout>

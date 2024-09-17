@@ -39,12 +39,6 @@ export default function DashboardReservationPage({ params }) {
 
 
 
-  // Log orderData whenever it changes
-  useEffect(() => {
-    if (orderData) {
-      console.log('Fetched Order Data:', orderData);
-    }
-  }, [orderData]);
 
   // Memorize processed orderData
   const memoizedOrderData = useMemo(() => {
