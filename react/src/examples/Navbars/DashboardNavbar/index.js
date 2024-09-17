@@ -68,7 +68,7 @@ import {
  
  
 
-function DashboardNavbar({ absolute, light, isMini }) {
+function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   
   const authContext = useContext(AuthContext);
   const { t, i18n } = useTranslation(); 
@@ -298,7 +298,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 <SoftAvatar src={"/team-1.jpg"} alt="profile-image" size="xs" shadow="sm" />
 
               </IconButton>
-              <Nav open={navOpen} onClose={handleCloseNav} />
+              <Nav open={navOpen} onClose={handleCloseNav} userDetails={userDetails}/>
 
 
               {renderMenu()}
@@ -324,6 +324,11 @@ DashboardNavbar.propTypes = {
   absolute: PropTypes.bool,
   light: PropTypes.bool,
   isMini: PropTypes.bool,
+  userDetails: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    image: PropTypes.string,
+  }).isRequired,
 };
 
 export default DashboardNavbar;

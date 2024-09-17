@@ -82,7 +82,7 @@ export default function App({ ability }) {
   
 
   const authContext = useContext(AuthContext);
-  const [userDetails, setUserDetails] = useState({ name: "", image: "" });
+  const [userDetails, setUserDetails] = useState({ name: "",email:"", image: "" });
 
 
   const [listingAll, setListingAll] = useState(0);
@@ -267,7 +267,7 @@ useEffect(() => {
                   {layout === "dashboard" && (
                     <>
 
-                      <DashboardNavbar />
+                      <DashboardNavbar userDetails={userDetails}/>
 
                       <Sidenav
                         color="info"
@@ -316,7 +316,7 @@ useEffect(() => {
                 {layout === "dashboard" && (
                   <>
 
-                    <DashboardNavbar />
+                    <DashboardNavbar userDetails={userDetails}/>
 
                     <Sidenav
                       color="info"
