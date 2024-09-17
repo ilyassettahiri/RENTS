@@ -34,7 +34,7 @@ function SidenavItem({ name, active, nested, children, count, open, ...rest }) {
             variant="caption"
             fontWeight="bold"
             sx={{
-              ml: 2,
+              ml: 1,
               backgroundColor: 'lightblue', // Add light blue background color
               padding: '2px 8px', // Add padding for better appearance
               borderRadius: '4px', // Round the corners

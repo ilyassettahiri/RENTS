@@ -9,7 +9,7 @@ function SidenavList({ children }) {
     <List
       sx={{
         pl: 2,
-        ml: 3,
+        ml: 2,
       }}
     >
       {children}

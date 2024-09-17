@@ -303,8 +303,7 @@ class UploadController extends Controller
 
 
 
-        $relativePathlarge = '/collectionimages/' . $fileNamelarge;
-        $relativePath = $relativePathlarge;
+        $relativePath = $fileNamelarge;
 
 
 

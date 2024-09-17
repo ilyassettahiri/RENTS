@@ -16,6 +16,15 @@ use App\Enums\ItemStatus;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 
+use Illuminate\Support\Str;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\GifEncoder;
+
 
 
 use App\Models\Listing;
@@ -64,7 +73,14 @@ class CollectionController extends JsonApiController
             }),
         ]);
     }
+    function generateUniqueFileName($extension = 'jpg')
+    {
 
+        $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
+        $shuffledString = str_shuffle($randomString); // Shuffle the string for added randomness
+        return $shuffledString . '.' . $extension;
+
+    }
 
 
     public function store(JsonApiRoute $route, Store $store)
@@ -86,7 +102,46 @@ class CollectionController extends JsonApiController
         // Initialize an array to hold the image paths
         $picturerelativePath = null;
 
-                // Handle image uploads
+
+
+        $manager = new ImageManager(new Driver());
+
+        $file = $request->file('data.attributes.picture');
+        $imagelarge = $manager->read($file->getRealPath());
+
+
+
+
+        $imagelarge->scaleDown(width: 400);
+
+
+
+
+        $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+
+
+
+
+        $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+        $filePathlarge = Storage::disk('spaces')->put('storage/collectionimages/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+        $picturerelativePath = $fileNamelarge;
+
+
+                /*
                 if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
                     $filePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
@@ -95,7 +150,7 @@ class CollectionController extends JsonApiController
                     $picturerelativePath = '/' . $relativePath;
 
 
-                }
+                }*/
 
 
         $name = $request->input('data.attributes.name');
@@ -158,6 +213,14 @@ class CollectionController extends JsonApiController
         ]);
 
         $collection = Collection::findOrFail($id);
+
+        $oldPicturePath = $collection->picture;
+
+        // Delete the old picture from DigitalOcean Spaces if it exists
+        if ($oldPicturePath && Storage::disk('spaces')->exists('storage/collectionimages/' . $oldPicturePath)) {
+            Storage::disk('spaces')->delete('storage/collectionimages/' . $oldPicturePath);
+        }
+
 
         // Store picture variable without handling image uploads
         $collection->name = $request->input('name');

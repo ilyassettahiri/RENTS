@@ -30,7 +30,7 @@ function SidenavCollapse({ icon, name, count, children, active, noCollapse, open
 
   return (
     <>
-      <ListItem component="li" sx={{ marginTop: '10px' }}>
+      <ListItem component="li" sx={{ marginTop: '15px' }}>
         <SoftBox {...rest} sx={(theme) => collapseItem(theme, { active, transparentSidenav })}>
           <ListItemIcon
             sx={(theme) => collapseIconBox(theme, { active, transparentSidenav,  sidenavColor: "info" })}
