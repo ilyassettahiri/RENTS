@@ -1200,6 +1200,8 @@ function EditListing() {
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [editSelectedFiles, setEditSelectedFiles] = useState([]);
+
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'day')]);
@@ -1285,7 +1287,8 @@ function EditListing() {
         setSelectedCategory(category);
         setPricing({ price, currency, sku, tags: JSON.parse(tags) });
 
-        setSelectedFiles(images.map(img => `${imageFetchedPath}/${img}`));
+        
+        setEditSelectedFiles(images);
 
         if (category === "billiards") {
           setBilliardsData(billiards);
@@ -2295,8 +2298,8 @@ function EditListing() {
 
 
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                          <SoftBox p={3}>
-                            <SoftBox mt={3}>
+                          <SoftBox p={2}>
+                            <SoftBox>
                               <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6} mt={1}>
                                   <SoftBox mb={3}>
@@ -2430,7 +2433,7 @@ function EditListing() {
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
 
 
-                          <SoftBox p={3}>
+                          <SoftBox p={2}>
 
 
 
@@ -2505,26 +2508,26 @@ function EditListing() {
 
 
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                          <SoftBox p={3}>
+                          <SoftBox p={2}>
 
 
-                            <SoftBox mt={3}>
+                            <SoftBox >
                               
-                              <CustomFileInput onFilesChange={handleFilesChange} />
+                              <CustomFileInput onFilesChange={handleFilesChange} editSelectedFiles={editSelectedFiles}/>
                             </SoftBox>
                           </SoftBox>
                         </Card>
 
 
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                          <SoftBox p={3}>
+                          <SoftBox p={2}>
 
 
                             <Address address={address} onAddressChange={handleAddressChange} />
                           </SoftBox>
                         </Card>
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                          <SoftBox p={3}>
+                          <SoftBox p={2}>
                             <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
                           </SoftBox>
                         </Card>
