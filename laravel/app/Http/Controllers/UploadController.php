@@ -266,17 +266,46 @@ class UploadController extends Controller
 
 
 
-            $file = $request->file('attachment');
+
+
+
+        $manager = new ImageManager(new Driver());
+
+        $file = $request->file('attachment');
+        $imagelarge = $manager->read($file->getRealPath());
+
+
+
+
+        $imagelarge->scaleDown(width: 400);
+
+
+
+
+        $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+
+
+
+
+        $encodedImagelarge->save($fileNamelarge);
 
 
 
 
 
 
-                $filePath = Storage::disk('spaces')->put('storage/userimages', $file, 'public');
+        $filePathlarge = Storage::disk('spaces')->put('storage/collectionimages/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
 
-                $relativePath = str_replace('storage/', '', $filePath);
-                $relativePath = '/' . $relativePath;
+
+
+
+        $relativePathlarge = '/collectionimages/' . $fileNamelarge;
+        $relativePath = $relativePathlarge;
+
 
 
 
@@ -297,36 +326,139 @@ class UploadController extends Controller
 
 
 
-        $imagePaths = [];
-        $thumb = null;
 
 
-        $hasFile = $request->hasFile('attachment');
 
 
-        if ($hasFile) {
-            $files = $request->file('attachment');
+                // Initialize an array to hold the image paths
+                $imagePathslarge = [];
+                $imagePathssmall = [];
+
+                $imagePathsxlarge = [];
+
+                $thumb = null;
 
 
-            foreach ($files as $index => $file) {
+                $category = $request->input('selectedCategory');
 
-                $filePath = Storage::disk('spaces')->put('storage/images', $file, 'public');
-                $relativePath = str_replace('storage/', '', $filePath);
-                $relativePath = '/' . $relativePath; // Ensure the path is relative
 
-                $imagePaths[] = $relativePath;
+                $manager = new ImageManager(new Driver());
 
-                // Set the first uploaded image as the thumbnail
-                if ($index === 0) {
-                    $thumb = $relativePath;
+                if ($request->hasFile('attachment')) {
+                    $files = $request->file('attachment');
+
+                    foreach ($files as $index => $file) {
+                        try {
+
+
+                            $imagelarge = $manager->read($file->getRealPath());
+
+                            $imagexlarge = $manager->read($file->getRealPath());
+
+
+                            $imagesmall = $manager->read($file->getRealPath());
+
+
+
+
+                            $imagelarge->scaleDown(height: 500);
+
+                            $imagexlarge->scaleDown(width: 1000);
+
+
+                            $imagesmall->scaleDown(width: 400);
+
+
+
+
+
+                            $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+                            $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
+
+                            $fileNamexlarge = str_replace('.jpg', 'xl.jpg', $fileNamelarge);
+
+
+
+
+                            $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+
+                            $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+
+
+                            $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+
+
+
+
+                            $encodedImagelarge->save($fileNamelarge);
+
+                            $encodedImagexlarge->save($fileNamexlarge);
+
+
+                            $encodedImagesmall->save($fileNamesmall);
+
+
+
+
+                            $filePathlarge = Storage::disk('spaces')->put( 'storage/listinglarge/' . $category . '/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+                            $filePathxlarge = Storage::disk('spaces')->put( 'storage/listingxlarge/' . $category . '/' . $fileNamexlarge, file_get_contents($fileNamexlarge), 'public');
+
+
+                            $filePathsmall = Storage::disk('spaces')->put( 'storage/listingsmall/' . $category . '/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
+
+
+
+
+                            $imagePathslarge[] = $category . '/' . $fileNamelarge;
+
+
+                            $imagePathsxlarge[] = $category . '/' . $fileNamexlarge;
+
+                            $relativePathsmall = $category . '/' . $fileNamesmall;
+                            $imagePathssmall[] = $relativePathsmall;
+
+
+                            if ($index === 0) {
+                                $thumb = $relativePathsmall;
+                            }
+
+                        } catch (\Exception $e) {
+                            Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                        }
+                    }
                 }
 
-            }
-        }
+
+
+
+                /*if ($request->hasFile('attachment')) {
+                    $files = $request->file('attachment');
+
+                    foreach ($files as $index => $file) {
+                        $filePath = Storage::disk('public')->put('images', $file);
+                        $relativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+                        $imagePathslarge[] = $relativePath;
+                        $imagePathssmall[] = $relativePath;
+                        $imagePathsxlarge[] = $relativePath;
+
+                        // Save the first image path to the Billiard table
+                        if ($index === 0) {
+                            $thumb = $relativePath;
+                        }
+                    }
+                }*/
+
+
+
+
 
 
         return response()->json([
-            'imagePaths' => $imagePaths,
+            'imagePathslarge' => $imagePathslarge,
+            'imagePathssmall' => $imagePathssmall,
+            'imagePathsxlarge' => $imagePathsxlarge,
             'thumb' => $thumb
         ], 201);
 

@@ -2036,7 +2036,8 @@ function EditListing() {
           console.log('Appending file:', file.name);
       });
 
-      
+      formData.append('selectedCategory', selectedCategory);
+
 
       // Send the file upload request
       const response = await CrudService.imageUploadListing(formData);
@@ -2044,12 +2045,17 @@ function EditListing() {
       
 
       
-      const imagePaths = response.imagePaths; 
+      const imagePathslarge = response.imagePathslarge; 
+      const imagePathssmall = response.imagePathssmall;
+
+      const imagePathsxlarge = response.imagePathsxlarge; 
       const thumb = response.thumb;
 
-      // Log imagePaths and thumb
-      console.log('Uploaded Images:', imagePaths);
-      console.log('Thumbnail:', thumb);
+
+      console.log('Appending imagePathslarge:', imagePathslarge);
+      console.log('Appending imagePathssmall:', imagePathssmall);
+      console.log('Appending imagePathsxlarge:', imagePathsxlarge);
+      console.log('Appending thumb:', thumb);
 
 
 
@@ -2071,8 +2077,10 @@ function EditListing() {
           currency: pricing.currency,
           sku: pricing.sku,
           tags: pricing.tags,
-          imagePaths: response.imagePaths, // Add image paths
-          thumb: response.thumb,  
+          imagePathslarge: response.imagePathslarge, 
+          imagePathssmall: response.imagePathssmall,  
+          imagePathsxlarge: response.imagePathsxlarge, 
+          thumb: response.thumb, 
           
         ...(selectedCategory === 'billiards' && { billiards: billiardsData }),
         ...(selectedCategory === 'boxings' && { boxings: boxingsData }),
@@ -2256,7 +2264,7 @@ function EditListing() {
             listingNumber={data?.id}
             createdAt={data?.created_at}
             status={data?.status}
-            title="New Listing"
+            title="createListing"
             clickAddHandler={clickAddHandler}
             
             clickOpenHandler={() => clickOpenHandler(category, url)}

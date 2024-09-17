@@ -88,7 +88,7 @@ function ListCollection() {
         type: "collections",
         id: row.id,
         name: row.attributes.name,
-        product: { image: row.attributes.picture, name: row.attributes.name, checked: false, id: row.id },
+        product: { image: `${process.env.REACT_APP_IMAGE_COLLECTION}${row.attributes.picture}`, name: row.attributes.name, checked: false, id: row.id },
         created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
       }));
     }, [collectionsData]);

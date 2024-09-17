@@ -17,7 +17,7 @@ const imagePath = process.env.REACT_APP_IMAGE_PATH;
 
 
 function Header({ profileImage, backgroundImage, onProfileImageChange, onBackgroundImageChange }) {
-  const defaultImage = `${imagePath}/curved-images/curved0.jpg`;
+  const defaultImage = `${imagePath}/curved-images/curved9.jpg`;
 
   const profileImgSrc = profileImage ? URL.createObjectURL(profileImage) : defaultImage;
   const backgroundImgSrc = backgroundImage ? URL.createObjectURL(backgroundImage) : defaultImage;

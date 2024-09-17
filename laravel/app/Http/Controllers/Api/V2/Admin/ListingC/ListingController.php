@@ -263,14 +263,8 @@ class ListingController extends JsonApiController
 
         $userstore = Onlinestore::where('user_id', $user->id)->first();
 
-        if ($userstore) {
+        $onlinestore_id = $userstore ? $userstore->id : 0;
 
-            $onlinestore_id = $userstore->id;
-
-        } else {
-            $onlinestore_id = 0;
-
-        }
         // Validate the request
         $request->validate([
             'data.attributes.category' => 'required|string',
@@ -293,7 +287,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -379,12 +373,12 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -399,13 +393,13 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
 
 
-        $category = $request->input('data.attributes.category');
+
         $description = $request->input('data.attributes.description');
         $title = $request->input('data.attributes.title');
         $address = $request->input('data.attributes.address');
@@ -4334,6 +4328,11 @@ class ListingController extends JsonApiController
     {
         $user = Auth::user();
 
+        $userstore = Onlinestore::where('user_id', $user->id)->first();
+
+        $onlinestore_id = $userstore ? $userstore->id : 0;
+
+
 
         $request = app('request'); // Retrieve the current request
 
@@ -4367,8 +4366,12 @@ class ListingController extends JsonApiController
         $phone = $request->input('data.attributes.phone');
 
         $url = $this->generateUrl($title);
-        // Extract imagePaths and thumb from the request
-        $imagePaths = $request->input('attributes.imagePaths');
+
+
+
+        $imagePathslarge = $request->input('attributes.imagePathslarge');
+        $imagePathssmall = $request->input('attributes.imagePathssmall');
+        $imagePathsxlarge = $request->input('attributes.imagePathsxlarge');
         $thumb = $request->input('attributes.thumb');
 
 
@@ -4405,6 +4408,42 @@ class ListingController extends JsonApiController
         $listing->onlinestore_id = $onlinestore_id;
 
         $listing->save();
+
+
+        $existingImages = Listingsimg::where('listing_id', $listing->id)->get();
+
+
+            // Delete images from DigitalOcean Spaces
+        foreach ($existingImages as $image) {
+            if (Storage::disk('spaces')->exists('storage/listinglarge/' . $image->picture)) {
+                Storage::disk('spaces')->delete('storage/listinglarge/' . $image->picture);
+            }
+            if (Storage::disk('spaces')->exists('storage/listingsmall/' . $image->picturesmall)) {
+                Storage::disk('spaces')->delete('storage/listingsmall/' . $image->picturesmall);
+            }
+            if (Storage::disk('spaces')->exists('storage/listingxlarge/' . $image->picturesxlarge)) {
+                Storage::disk('spaces')->delete('storage/listingxlarge/' . $image->picturesxlarge);
+            }
+        }
+
+        Listingsimg::where('listing_id', $listing->id)->delete();
+
+
+        foreach ($imagePathslarge as $index => $largePath) {
+
+            $smallPath = $imagePathssmall[$index];
+                        $xlargePath = $imagePathsxlarge[$index];
+
+
+            $listingsimg = new Listingsimg();
+            $listingsimg->listing_id = $listing->id;
+            $listingsimg->picture = $largePath;
+            $listingsimg->picturesmall = $smallPath;
+            $listingsimg->picturesxlarge = $xlargePath;
+            $listingsimg->save();
+        }
+
+
 
 
         switch ($category) {

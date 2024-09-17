@@ -91,7 +91,7 @@ function ListListing() {
       if (!listingsData) return [];
   
       return listingsData.data.map((row) => ({
-        product: { image: row.attributes.picture, name: row.attributes.title, checked: false, id: row.id },
+        product: { image: `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${row.attributes.picture}`, name: row.attributes.title, checked: false, id: row.id },
         price: row.attributes.price,
         status: row.attributes.status,
         created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),

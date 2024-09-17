@@ -14,7 +14,7 @@ function ProductCell({ image, name, checked, linkPath }) {
       
       <SoftBox mx={2} width="4rem" component={NavLink}  to={linkPath}>
         <Image
-          src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`}
+          src={image}
           alt={name}
           ratio="1/1"
           width="100%"
