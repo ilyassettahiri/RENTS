@@ -7,7 +7,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Icon from "@mui/material/Icon";
-
+import SoftTypography from "components/SoftTypography";
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
@@ -24,7 +24,7 @@ import {
 // Soft UI Dashboard PRO React context
 import { useSoftUIController } from "context";
 
-function SidenavCollapse({ icon, name, children, active, noCollapse, open, ...rest }) {
+function SidenavCollapse({ icon, name, count, children, active, noCollapse, open, ...rest }) {
   const [controller] = useSoftUIController();
   const { miniSidenav, transparentSidenav } = controller;
 
@@ -46,6 +46,14 @@ function SidenavCollapse({ icon, name, children, active, noCollapse, open, ...re
             primary={name}
             sx={(theme) => collapseText(theme, { miniSidenav, transparentSidenav, active })}
           />
+
+          {count !== undefined && (
+            <SoftTypography variant="caption" fontWeight="bold" sx={{ ml: 2 }}>
+              {count}
+            </SoftTypography>
+          )}
+
+
 
           <Icon
             sx={(theme) =>
@@ -83,6 +91,7 @@ SidenavCollapse.propTypes = {
   active: PropTypes.bool,
   noCollapse: PropTypes.bool,
   open: PropTypes.bool,
+  count: PropTypes.number, 
 };
 
 export default SidenavCollapse;

@@ -31,7 +31,19 @@ import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 // Soft UI Dashboard PRO React context
 import { useSoftUIController,setMiniSidenav } from "context";
 
-function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
+function Sidenav({ color, brand, brandName, routes, hasStore,
+  
+  listingAll, 
+  listingCompleted, 
+  listingDraft, 
+  listingBoosted, 
+  reservationUpcoming, 
+  reservationCheckout, 
+  reservationCurrently, 
+  reservationAll,
+  
+  
+  ...rest }) {
 
   const { t } = useTranslation();
 
@@ -64,6 +76,33 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleMiniSidenav);
   }, [dispatch, location]);
+
+
+
+
+  // Function to get count based on key
+  const getCount = (key) => {
+    switch (key) {
+      case "All":
+        return listingAll;
+      case "Completed":
+        return listingCompleted;
+      case "Draft":
+        return listingDraft;
+      case "Boosted":
+        return listingBoosted;
+      case "Upcoming":
+        return reservationUpcoming;
+      case "Checking out":
+        return reservationCheckout;
+      case "Currently hosting":
+        return reservationCurrently;
+      case "All":
+        return reservationAll;
+      default:
+        return undefined;
+    }
+  };
   
 
     // Filter the routes based on the hasStore prop
@@ -93,7 +132,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
           rel="noreferrer"
           sx={{ textDecoration: "none" }}
         >
-          <SidenavItem name={t(name)}  nested />
+          <SidenavItem name={t(name)}  nested  />
         </Link>
       ) : (
         <NavLink to={route} key={key} sx={{ textDecoration: "none" }}>
@@ -117,6 +156,8 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
             name={t(name)}
             active={key === itemName}
             open={openNestedCollapse === name}
+            count={getCount(name)} // Pass the count here
+
             onClick={() =>
               openNestedCollapse === name
                 ? setOpenNestedCollapse(false)
@@ -135,11 +176,11 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
             rel="noreferrer"
             sx={{ textDecoration: "none" }}
           >
-            <SidenavItem name={t(name)} active={key === itemName} />
+            <SidenavItem name={t(name)} active={key === itemName} count={getCount(name)} />
           </Link>
         ) : (
           <NavLink to={route} key={key} sx={{ textDecoration: "none" }}>
-            <SidenavItem name={t(name)} active={key === itemName} />
+            <SidenavItem name={t(name)} active={key === itemName} count={getCount(name)}/>
           </NavLink>
         );
       }
@@ -166,6 +207,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
                 icon={icon}
                 active={key === collapseName}
                 noCollapse={noCollapse}
+                count={getCount(name)}
               />
             </Link>
           );
@@ -177,6 +219,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
                 icon={icon}
                 noCollapse={noCollapse}
                 active={key === collapseName}
+                count={getCount(name)}
               >
                 {collapse ? renderCollapse(collapse) : null}
               </SidenavCollapse>
@@ -191,6 +234,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore, ...rest }) {
               active={key === collapseName}
               open={openCollapse === key}
               onClick={() => (openCollapse === key ? setOpenCollapse(false) : setOpenCollapse(key))}
+              count={getCount(name)}
             >
               {collapse ? renderCollapse(collapse) : null}
             </SidenavCollapse>
@@ -256,8 +300,19 @@ Sidenav.propTypes = {
   brand: PropTypes.string,
   brandName: PropTypes.string.isRequired,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,
-  hasStore: PropTypes.bool.isRequired, // Add hasStore as a required prop
+  hasStore: PropTypes.bool.isRequired, 
+
+  listingAll: PropTypes.number.isRequired,
+  listingCompleted: PropTypes.number.isRequired,
+  listingDraft: PropTypes.number.isRequired,
+  listingBoosted: PropTypes.number.isRequired,
+  reservationUpcoming: PropTypes.number.isRequired,
+  reservationCheckout: PropTypes.number.isRequired,
+  reservationCurrently: PropTypes.number.isRequired,
+  reservationAll: PropTypes.number.isRequired,
 
 };
 
 export default Sidenav;
+
+

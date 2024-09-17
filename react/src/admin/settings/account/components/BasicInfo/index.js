@@ -162,7 +162,11 @@ function BasicInfo({ user }) {
                       { value: "male", label: "Male" },
                       { value: "female", label: "Female" },
                     ]}
-                    value={{ value: info.gender, label: info.gender.charAt(0).toUpperCase() + info.gender.slice(1) }}
+                    value={
+                      info.gender
+                        ? { value: info.gender, label: info.gender.charAt(0).toUpperCase() + info.gender.slice(1) }
+                        : { value: "", label: "Select Gender" } // Provide a default value when gender is null or undefined
+                    }                    
                     onChange={(selectedOption) => setInfo({ ...info, gender: selectedOption.value })}
                   />
                 </SoftBox>

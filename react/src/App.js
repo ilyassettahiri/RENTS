@@ -84,6 +84,76 @@ export default function App({ ability }) {
   const authContext = useContext(AuthContext);
   const [userDetails, setUserDetails] = useState({ name: "", image: "" });
 
+
+  const [listingAll, setListingAll] = useState(0);
+  const [listingCompleted, setListingCompleted] = useState(0);
+  const [listingDraft, setListingDraft] = useState(0);
+  const [listingBoosted, setListingBoosted] = useState(0);
+
+
+  const [reservationUpcoming, setReservationUpcoming] = useState(0);
+  const [reservationCheckout, setReservationCheckout] = useState(0);
+  const [reservationCurrently, setReservationCurrently] = useState(0);
+  const [reservationAll, setReservationAll] = useState(0);
+
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await CrudService.getListings();
+        const listings = response.data; // Assuming response.data is an array of listings
+  
+        // Set total count for each status
+        const allCount = listings.length; // Total count of all listings
+        const completedCount = listings.filter((listing) => listing.attributes.status === 'completed').length;
+        const draftCount = listings.filter((listing) => listing.attributes.status === 'inactive').length;
+        const boostedCount = listings.filter((listing) => listing.attributes.status === 'boosted').length;
+  
+       
+
+        // Update state with the counts
+        setListingAll(allCount);
+        setListingCompleted(completedCount);
+        setListingDraft(draftCount);
+        setListingBoosted(boostedCount);
+  
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+      }
+    })();
+  }, []);
+
+
+
+
+useEffect(() => {
+  (async () => {
+    try {
+      const response = await CrudService.getReservations();
+      const reservations = response.data; // Assuming response.data is an array of reservations
+      
+      // Set total count for each status
+      const upcomingCount = reservations.filter((res) => res.attributes.status === 'pending').length;
+      const currentlyCount = reservations.filter((res) => res.attributes.status === 'active').length;
+      const checkoutCount = reservations.filter((res) => res.attributes.status === 'completed').length;
+      const allCount = reservations.length; // Total count of all reservations
+
+      
+      // Update state with the counts
+      setReservationUpcoming(upcomingCount);
+      setReservationCurrently(currentlyCount);
+      setReservationCheckout(checkoutCount);
+      setReservationAll(allCount);
+      
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    }
+  })();
+}, []);
+
+
+
+
   const [hasStore, setHasStore] = useState(undefined); // Initialize hasStore state
 
 
@@ -150,6 +220,8 @@ export default function App({ ability }) {
 
 
 
+
+
  
 
   const getRoutes = (allRoutes) =>
@@ -178,7 +250,6 @@ export default function App({ ability }) {
 
 
  
-    console.log('Current Text Direction:', textDirection); // Debugging log
 
 
 
@@ -203,8 +274,18 @@ export default function App({ ability }) {
                         brand={brand}
                         brandName="Rents.ma"
                         routes={routes}
-                        hasStore={hasStore}  // Make sure hasStore is being passed correctly
+                        hasStore={hasStore}  
 
+                          // Listing counts
+                        listingAll={listingAll}
+                        listingCompleted={listingCompleted}
+                        listingDraft={listingDraft}
+                        listingBoosted={listingBoosted}
+                        // Reservation counts
+                        reservationUpcoming={reservationUpcoming}
+                        reservationCheckout={reservationCheckout}
+                        reservationCurrently={reservationCurrently}
+                        reservationAll={reservationAll}
                       
                       />
                       
@@ -242,7 +323,17 @@ export default function App({ ability }) {
                       brand={brand}
                       brandName="Rents.ma"
                       routes={routes}
-                      hasStore={hasStore}  // Make sure hasStore is being passed correctly
+                      hasStore={hasStore}  
+                        // Listing counts
+                      listingAll={listingAll}
+                      listingCompleted={listingCompleted}
+                      listingDraft={listingDraft}
+                      listingBoosted={listingBoosted}
+                      // Reservation counts
+                      reservationUpcoming={reservationUpcoming}
+                      reservationCheckout={reservationCheckout}
+                      reservationCurrently={reservationCurrently}
+                      reservationAll={reservationAll}
 
                     />
                     

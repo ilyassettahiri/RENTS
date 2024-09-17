@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useMemo  } from "react";
+import { useState, useEffect, useCallback, useRef  } from "react";
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -207,90 +207,72 @@ function PhotoItem({ photo,  id , params }) {
   const isMdUp = useResponsive('up', 'md');
 
 
+  const lightbox = useLightbox([]);
 
-  const [fetchedImages, setFetchedImages] = useState([]);
+  const fetchedImagesRef = useRef(null); // Using ref to store fetched images
+
+
+
   const [isLightboxOpened, setIsLightboxOpened] = useState(false);
   const [imageToOpen, setImageToOpen] = useState(null);
   const [slides, setSlides] = useState([]);
-  const lightbox = useLightbox(slides);
+
+
 
   useEffect(() => {
     if (isLightboxOpened) {
-
-      // Attempt to open the lightbox immediately on the first click
-      lightbox.onOpen('');
-      lightbox.setSelected(imageToOpen);
-
-      if (fetchedImages.length === 0) {
-        console.log("Fetching images...");
-
+      if (!fetchedImagesRefff.current) { // Check if images are already fetched
         CrudService.getListingpic(params.category, params.url)
           .then((listingpicData) => {
-            console.log("Fetched images:", listingpicData);
-
             const dataImages = listingpicData.images.map((image) => ({
               src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_XLARGE}${image}`,
             }));
 
-            setFetchedImages(dataImages);
+            fetchedImagesRef.current = dataImages; // Store fetched images in ref
             setSlides(dataImages);
 
-            console.log("Set fetched images and slides:", { dataImages });
-
-            if (imageToOpen !== null) {
-              const selectedIndex = imageToOpen;
-              if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
-                lightbox.setSlides(dataImages);
-                lightbox.setSelected(selectedIndex);
-                lightbox.onOpen(dataImages[selectedIndex].src);
-                console.log("Opened lightbox with fetched image:", dataImages[selectedIndex].src);
-              } else {
-                console.warn('Image to open not found in fetched images.');
-              }
+            if (imageToOpen >= 0 && imageToOpen < dataImages.length) {
+              lightbox.onOpen(dataImages[imageToOpen].src);
+              lightbox.setSelected(imageToOpen);
+            } else {
+              console.warn('Image to open not found in fetched images.');
             }
           })
           .catch((error) => {
             console.error('Failed to fetch listing:', error);
           })
           .finally(() => {
-            console.log("Resetting states after fetching images.");
             setIsLightboxOpened(false);
             setImageToOpen(null);
           });
       } else {
-        console.log("Using already fetched images.");
+        // Use already fetched images
+        const fetchedImages = fetchedImagesRef.current;
         setSlides(fetchedImages);
-        lightbox.setSelected(imageToOpen);
 
-        if (imageToOpen !== null) {
-          const selectedIndex = imageToOpen;
-          if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
-            lightbox.setSlides(fetchedImages);
-            lightbox.setSelected(selectedIndex);
-            lightbox.onOpen(fetchedImages[selectedIndex].src);
-            console.log("Opened lightbox with already fetched image:", fetchedImages[selectedIndex].src);
-          } else {
-            console.warn('Image to open not found in fetched images.');
-          }
+        if (imageToOpen >= 0 && imageToOpen < fetchedImages.length) {
+          lightbox.onOpen(fetchedImages[imageToOpen].src);
+          lightbox.setSelected(imageToOpen);
+        } else {
+          console.warn('Image to open not found in fetched images.');
         }
 
-        console.log("Resetting states after opening lightbox with fetched images.");
         setIsLightboxOpened(false);
         setImageToOpen(null);
       }
     }
-  }, [isLightboxOpened, params.category, params.url, lightbox, imageToOpen, fetchedImages]);
+  }, [isLightboxOpened, params.category, params.url, lightbox, imageToOpen]);
 
   const handleImageClick = () => {
-    console.log("Clicked item ID:", id);
     setImageToOpen(id);
     setIsLightboxOpened(true);
   };
 
   const handleLightboxClose = () => {
     lightbox.onClose();
-    lightbox.setSelected(-1); //
+    lightbox.setSelected(-1);
   };
+
 
 
   return (

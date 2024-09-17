@@ -86,6 +86,7 @@ function ListReservation() {
   useEffect(() => {
     (async () => {
       const response = await CrudService.getReservations();
+      console.log('data here', response.data);
       setData(response.data);
     })();
   }, []);

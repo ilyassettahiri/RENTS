@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -88,6 +88,8 @@ ServicesDetailsHero.propTypes = {
 
 
 function CarouselBasic3({ data , jobUrl }) {
+
+
   const theme = useTheme();
   const isMdUp = useResponsive('up', 'md');
 
@@ -98,10 +100,11 @@ function CarouselBasic3({ data , jobUrl }) {
     }))
   );
 
-  const [fetchedImages, setFetchedImages] = useState([]);
+  const fetchedImagesRef = useRef(null);
   const [isLightboxOpened, setIsLightboxOpened] = useState(false);
   const [imageToOpen, setImageToOpen] = useState(null);
-  const lightbox = useLightbox(slides);
+
+  const lightbox = useLightbox(data);
 
 
   const carousel = useCarousel({
@@ -115,35 +118,23 @@ function CarouselBasic3({ data , jobUrl }) {
 
 
 
-   useEffect(() => {
+  useEffect(() => {
     if (isLightboxOpened) {
-
-      lightbox.onOpen('');
-      lightbox.setSelected(imageToOpen);
-
-      if (fetchedImages.length === 0) {
+      if (!fetchedImagesRef.current) { // Check if images are already fetched
         CrudService.getServicepic(jobUrl)
           .then((listingpicData) => {
             const dataImages = listingpicData.images.map((image) => ({
               src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_XLARGE}${image}`,
             }));
 
-
-
-            setFetchedImages(dataImages);
+            fetchedImagesRef.current = dataImages; // Store fetched images in ref
             setSlides(dataImages);
 
-
-
-            if (imageToOpen !== null) {
-              const selectedIndex = imageToOpen;
-              if (selectedIndex >= 0 && selectedIndex < dataImages.length) {
-                lightbox.setSlides(dataImages);
-                lightbox.setSelected(selectedIndex);
-                lightbox.onOpen(dataImages[selectedIndex].src);
-              } else {
-                console.warn('Image to open not found in fetched images.');
-              }
+            if (imageToOpen >= 0 && imageToOpen < dataImages.length) {
+              lightbox.onOpen(dataImages[imageToOpen].src);
+              lightbox.setSelected(imageToOpen);
+            } else {
+              console.warn('Image to open not found in fetched images.');
             }
           })
           .catch((error) => {
@@ -154,29 +145,22 @@ function CarouselBasic3({ data , jobUrl }) {
             setImageToOpen(null);
           });
       } else {
-
+        // Use already fetched images
+        const fetchedImages = fetchedImagesRef.current;
         setSlides(fetchedImages);
-        lightbox.setSelected(imageToOpen);
 
-
-        if (imageToOpen !== null) {
-          const selectedIndex = imageToOpen;
-          if (selectedIndex >= 0 && selectedIndex < fetchedImages.length) {
-            lightbox.setSlides(fetchedImages);
-
-            lightbox.setSelected(selectedIndex);
-            lightbox.onOpen(fetchedImages[selectedIndex].src);
-          } else {
-            console.warn('Image to open not found in fetched images.');
-          }
+        if (imageToOpen >= 0 && imageToOpen < fetchedImages.length) {
+          lightbox.onOpen(fetchedImages[imageToOpen].src);
+          lightbox.setSelected(imageToOpen);
+        } else {
+          console.warn('Image to open not found in fetched images.');
         }
 
         setIsLightboxOpened(false);
         setImageToOpen(null);
       }
     }
-  }, [isLightboxOpened, jobUrl, lightbox, imageToOpen, fetchedImages]);
-
+  }, [isLightboxOpened, jobUrl, lightbox, imageToOpen]);
 
   const handleImageClick = (item) => {
 

@@ -75,6 +75,8 @@ function ListListing() {
   useEffect(() => {
     (async () => {
       const response = await CrudService.getListings();
+      console.log('data here', response.data);
+ 
       setData(response.data);
     })();
   }, []);
