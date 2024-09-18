@@ -314,16 +314,34 @@ class EditListingController extends Controller
                                 'address' => $this->listingcategory->address,
                                 'city' => $this->listingcategory->city,
                                 'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                'id' => $this->listingcategory->id,
+                                'url' => $this->listingcategory->url,
+                                'created_at' => $this->listingcategory->created_at,
 
-                                'zip' => $this->listingcategory->zip,'listingid' => $id,
-                                'category' => $this->category,
-                                'images' => Divingsimg::where('diving_id', $this->listingcategory->id)->get()->map(function ($image) {
-                                    return $image->picture;
-                                }),
-                            ],
+                                'divings' => [
+                                    'brandName' => $this->listingcategory->brand_name,
+                                    'material' => $this->listingcategory->material,
+                                    'otherEquipment' => explode(', ', $this->listingcategory->other_equipment),
+                                    'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                ],
+
+
+                                    'zip' => $this->listingcategory->zip,'listingid' => $id,
+                                    'category' => $this->category,
+
+
+                                    'divings' => [
+                                        'brandName' => $this->listingcategory->brand_name,
+                                        'material' => $this->listingcategory->material,
+                                        'otherEquipment' => explode(', ', $this->listingcategory->other_equipment),
+                                        'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                    ],
+
+
+                                    'images' => Divingsimg::where('diving_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                        return $image->picture;
+                                    }),
+                                ],
                         ],
                     ]);
 
@@ -358,9 +376,16 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'footballs' => [
+                                                'type' => $this->listingcategory->type,
+                                                'equipment' => explode(', ', $this->listingcategory->equipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -401,9 +426,19 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'golfs' => [
+                                                'clothing' => explode(', ', $this->listingcategory->clothing),
+                                                'golf_cars' => $this->listingcategory->cars,
+                                                'otherEquipment' => explode(', ', $this->listingcategory->other_equipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -445,9 +480,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'huntings' => [
+                                                'bowArrow' => $this->listingcategory->bow_arrow,
+                                                'crossbow' => $this->listingcategory->crossbow,
+                                                'decoy' => explode(', ', $this->listingcategory->decoy),
+                                                'gameCall' => explode(', ', $this->listingcategory->game_call),
+                                                'binoculars' => explode(', ', $this->listingcategory->binoculars),
+                                                'clothing' => explode(', ', $this->listingcategory->clothing),
+                                                'equipment' => explode(', ', $this->listingcategory->equipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -489,9 +537,26 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'musculations' => [
+                                                'brand' => explode(', ', $this->listingcategory->brand_name),
+                                                'arms' => explode(', ', $this->listingcategory->arms),
+                                                'back' => explode(', ', $this->listingcategory->back),
+                                                'shoulders' => explode(', ', $this->listingcategory->shoulders),
+                                                'glutes' => explode(', ', $this->listingcategory->glutes),
+                                                'legs' => explode(', ', $this->listingcategory->legs),
+                                                'chest' => explode(', ', $this->listingcategory->chest),
+                                                'abs' => explode(', ', $this->listingcategory->abs),
+                                                'cardio' => explode(', ', $this->listingcategory->cardio_machines),
+                                                'other' => explode(', ', $this->listingcategory->dumbbells),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -534,9 +599,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'surfs' => [
+                                                'surfCategory' => $this->listingcategory->surf_category,
+                                                'surfTypes' => $this->listingcategory->board_types,
+                                                'surfingSize' => $this->listingcategory->board_size,
+                                                'surfWetsuits' => explode(', ', $this->listingcategory->wetsuits),
+                                                'surfOther' => explode(', ', $this->listingcategory->surf_other),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -577,9 +655,18 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'tennis' => [
+                                                'tennisTerrain' => $this->listingcategory->terrain_dimensions,
+                                                'brandName' => $this->listingcategory->brand,
+                                                'clothing' => explode(', ', $this->listingcategory->clothing),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -621,9 +708,24 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+
+                                            'audios' => [
+                                                'audioType' => $this->listingcategory->audio_type,
+                                                'soundQuality' => $this->listingcategory->sound_quality,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'maxWirelessRange' => $this->listingcategory->max_wireless_range,
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'chargingTime' => $this->listingcategory->charging_time,
+                                                'condition' => $this->listingcategory->condition,
+                                                'compatibility' => explode(', ', $this->listingcategory->compatibility),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -665,9 +767,26 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+                                            'cameras' => [
+                                                'photoSize' => $this->listingcategory->photo_size,
+                                                'sensorSize' => $this->listingcategory->sensor_size,
+                                                'imageStabilization' => $this->listingcategory->image_stabilization,
+                                                'shutterSpeed' => $this->listingcategory->shutter_speed,
+                                                'exposureControl' => $this->listingcategory->exposure_control,
+                                                'imageResolution' => $this->listingcategory->image_resolution,
+                                                'condition' => $this->listingcategory->condition,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'memory' => $this->listingcategory->memory,
+                                                'lens' => $this->listingcategory->lens,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -707,9 +826,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'chargers' => [
+                                                'compatibility' => explode(', ', $this->listingcategory->compatibility),
+                                                'numberOfPorts' => $this->listingcategory->number_of_ports,
+                                                'length' => $this->listingcategory->length,
+                                                'inputVoltage' => $this->listingcategory->input_voltage,
+                                                'wattage' => $this->listingcategory->wattage,
+                                                'condition' => $this->listingcategory->condition,
+                                                'connectorType' => $this->listingcategory->connector_type,
+                                                'amperage' => $this->listingcategory->amperage,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -751,9 +884,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'drones' => [
+                                                'flightTime' => $this->listingcategory->flight_time,
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'condition' => $this->listingcategory->condition,
+                                                'videoResolution' => $this->listingcategory->video_resolution,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'batteryCapacity' => $this->listingcategory->battery_capacity,
+                                                'memory' => $this->listingcategory->memory,
+                                                'imageResolution' => $this->listingcategory->image_resolution,
+                                                'includedComponents' => explode(', ', $this->listingcategory->included_components),
+                                                'remoteControl' => $this->listingcategory->remote_control,
+                                                'maxDistance' => $this->listingcategory->max_distance,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -797,9 +946,24 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'gamings' => [
+                                                'storage' => $this->listingcategory->storage,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'ports' => explode(', ', $this->listingcategory->ports),
+                                                'onlineServices' => $this->listingcategory->online_services,
+                                                'condition' => $this->listingcategory->condition,
+                                                'games' => explode(', ', $this->listingcategory->games),
+                                                'controller' => explode(', ', $this->listingcategory->controllers),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -841,9 +1005,27 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'laptops' => [
+                                                'ram' => $this->listingcategory->ram,
+                                                'graphicsCard' => $this->listingcategory->graphics_card,
+                                                'operatingSystem' => $this->listingcategory->operating_system,
+                                                'numberPorts' => explode(', ', $this->listingcategory->number_ports),
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'storage' => $this->listingcategory->drive_storage,
+                                                'resolution' => $this->listingcategory->resolution,
+                                                'weight' => $this->listingcategory->weight,
+                                                'screenSize' => $this->listingcategory->screen_size,
+                                                'cpu' => $this->listingcategory->cpu,
+                                                'condition' => $this->listingcategory->condition,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -886,9 +1068,21 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'lightings' => [
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'includedAccessories' => explode(', ', $this->listingcategory->included_accessories),
+                                                'condition' => $this->listingcategory->condition,
+                                                'colorTemperature' => explode(', ', $this->listingcategory->color_temperature),
+                                                'compatibility' => explode(', ', $this->listingcategory->compatibility),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -931,9 +1125,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'printers' => [
+                                                'printSpeed' => $this->listingcategory->print_speed,
+                                                'printResolution' => explode(', ', $this->listingcategory->print_resolution),
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'paperSize' => explode(', ', $this->listingcategory->paper_size),
+                                                'compatibleInk' => explode(', ', $this->listingcategory->compatible),
+                                                'condition' => $this->listingcategory->condition,
+                                                'inputSheets' => $this->listingcategory->input_sheets,
+                                                'printMedia' => explode(', ', $this->listingcategory->print_media),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -973,9 +1181,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+                                            'routers' => [
+                                                'gbpsSpeed' => $this->listingcategory->gbps_speed,
+                                                'wireless' => $this->listingcategory->wireless,
+                                                'frequency' => $this->listingcategory->frequency,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'antennas' => $this->listingcategory->antennas,
+                                                'condition' => $this->listingcategory->condition,
+                                                'compatible' => explode(', ', $this->listingcategory->compatible),
+                                                'signalCoverage' => $this->listingcategory->signal_coverage,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1018,9 +1240,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'tablettes' => [
+                                                'operatingSystem' => $this->listingcategory->operating_system,
+                                                'ram' => $this->listingcategory->ram,
+                                                'storage' => $this->listingcategory->storage,
+                                                'displaySize' => $this->listingcategory->display_size,
+                                                'displayResolution' => $this->listingcategory->display_resolution,
+                                                'connectivity' => explode(', ', $this->listingcategory->connectivity),
+                                                'condition' => $this->listingcategory->condition,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1063,9 +1298,28 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'eclairages' => [
+                                                'brandName' => $this->listingcategory->brand_name,
+                                                'size' => $this->listingcategory->size,
+                                                'voltage' => $this->listingcategory->voltage,
+                                                'chandeliers' => explode(', ', $this->listingcategory->chandeliers),
+                                                'lamps' => explode(', ', $this->listingcategory->lamps),
+                                                'light' => explode(', ', $this->listingcategory->light_fixtures),
+                                                'projectors' => explode(', ', $this->listingcategory->projectors),
+                                                'led' => explode(', ', $this->listingcategory->leds),
+                                                'power' => $this->listingcategory->power_source,
+                                                'lightSourceType' => $this->listingcategory->light_source,
+                                                'lightColor' => explode(', ', $this->listingcategory->light_color),
+                                                'lightingMethod' => explode(', ', $this->listingcategory->lighting_method),
+                                                'controller' => $this->listingcategory->controller,
+                                                'other' => explode(', ', $this->listingcategory->other),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1107,9 +1361,21 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'mobiliers' => [
+                                                'material' => explode(', ', $this->listingcategory->material),
+                                                'theme' => $this->listingcategory->theme,
+                                                'plantDecorations' => explode(', ', $this->listingcategory->plant_decorations),
+                                                'lightDecorations' => explode(', ', $this->listingcategory->light_decorations),
+                                                'festiveDecorations' => $this->listingcategory->festive_decorations,
+                                                'otherEquipment' => explode(', ', $this->listingcategory->others),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1151,9 +1417,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'photographies' => [
+                                                'size' => $this->listingcategory->size,
+                                                'battery' => $this->listingcategory->battery,
+                                                'brand' => $this->listingcategory->brand_name,
+                                                'camera' => explode(', ', $this->listingcategory->camera),
+                                                'sensor' => explode(', ', $this->listingcategory->sensor),
+                                                'wideAngle' => explode(', ', $this->listingcategory->angle),
+                                                'lcd' => explode(', ', $this->listingcategory->lcd),
+                                                'otherEquipment' => explode(', ', $this->listingcategory->other_equipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1194,9 +1476,32 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'sonorisations' => [
+                                                'brand' => $this->listingcategory->brand_name,
+                                                'size' => $this->listingcategory->size,
+                                                'connectivityTechnology' => $this->listingcategory->connectivity,
+                                                'fastenerType' => $this->listingcategory->fastener_type,
+                                                'powerSource' => $this->listingcategory->power_source,
+                                                'outputPower' => $this->listingcategory->output_power,
+                                                'numberOfChannels' => $this->listingcategory->number_of_channels,
+                                                'deviceCompatibility' => $this->listingcategory->compatibility,
+                                                'powerInWatts' => $this->listingcategory->power_watts,
+                                                'powerType' => explode(', ', $this->listingcategory->power_type),
+                                                'battery' => explode(', ', $this->listingcategory->battery),
+                                                'weight' => $this->listingcategory->weight,
+                                                'microphone' => explode(', ', $this->listingcategory->microphone),
+                                                'mixageTable' => $this->listingcategory->mixage_table,
+                                                'amplifier' => $this->listingcategory->amplifier,
+                                                'cablesAndConnectors' => explode(', ', $this->listingcategory->cables_connectors),
+                                                'speaker' => explode(', ', $this->listingcategory->speaker),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1239,9 +1544,19 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'tentes' => [
+                                                'material' => $this->listingcategory->material,
+                                                'style' => $this->listingcategory->style,
+                                                'fabric' => $this->listingcategory->fabric_type,
+                                                'otherEquipment' => explode(', ', $this->listingcategory->otherEquipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1282,9 +1597,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'clothes' => [
+                                                'numberOfPieces' => $this->listingcategory->number_of_pieces,
+                                                'closureType' => $this->listingcategory->closure_type,
+                                                'strapType' => explode(', ', $this->listingcategory->strap_type),
+                                                'numberOfPockets' => $this->listingcategory->number_of_pockets,
+                                                'heelHeight' => $this->listingcategory->heel_height,
+                                                'condition' => $this->listingcategory->condition,
+                                                'color' => $this->listingcategory->color,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1326,9 +1654,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+
+                                            'jewelrys' => [
+                                                'type' => $this->listingcategory->type,
+                                                'material' => $this->listingcategory->materials,
+                                                'occasion' => $this->listingcategory->occasion,
+                                                'chainType' => $this->listingcategory->chain_type,
+                                                'gemType' => $this->listingcategory->gem_type,
+                                                'color' => $this->listingcategory->color,
+                                                'closureType' => explode(', ', $this->listingcategory->closure_type),
+                                                'condition' => $this->listingcategory->condition,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1369,9 +1711,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+                                            'apartments' => [
+                                                'rooms' => $this->listingcategory->rooms,
+                                                'livingRooms' => $this->listingcategory->living_rooms,
+                                                'bathrooms' => $this->listingcategory->bathrooms,
+                                                'bedrooms' => $this->listingcategory->bedrooms,
+                                                'securitySystem' => explode(', ', $this->listingcategory->security_system),
+                                                'kitchen' => explode(', ', $this->listingcategory->equipped_kitchen),
+                                                'service' => explode(', ', $this->listingcategory->service),
+                                                'facilities' => explode(', ', $this->listingcategory->facilities),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1413,9 +1769,29 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'bureauxs' => [
+                                                'propertyType' => $this->listingcategory->property_type,
+                                                'security' => explode(', ', $this->listingcategory->security),
+                                                'soilType' => explode(', ', $this->listingcategory->soil_type),
+                                                'parking' => $this->listingcategory->parking,
+                                                'bathrooms' => $this->listingcategory->bathrooms,
+                                                'conferenceRoom' => $this->listingcategory->conference_room,
+                                                'buildingSize' => $this->listingcategory->building_size,
+                                                'lighting' => $this->listingcategory->lighting,
+                                                'capacity' => $this->listingcategory->capacity,
+                                                'bailType' => $this->listingcategory->bail_type,
+                                                'securityDeposit' => $this->listingcategory->security_deposit,
+                                                'officeTaxes' => $this->listingcategory->office_taxes,
+                                                'facilities' => explode(', ', $this->listingcategory->facilities),
+                                                'amenities' => explode(', ', $this->listingcategory->amenities),
+                                                'services' => explode(', ', $this->listingcategory->services),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1457,9 +1833,29 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'magasins' => [
+                                                'propertyType' => $this->listingcategory->property_type,
+                                                'surfaceArea' => $this->listingcategory->surface_area,
+                                                'capacity' => $this->listingcategory->capacity,
+                                                'officeNumber' => $this->listingcategory->offices_number,
+                                                'individualOffices' => $this->listingcategory->individual_offices,
+                                                'numberOfFloors' => $this->listingcategory->floors,
+                                                'garage' => $this->listingcategory->garage,
+                                                'approvedUses' => explode(', ', $this->listingcategory->approved_uses),
+                                                'totalFacilitySize' => explode(', ', $this->listingcategory->facility_size),
+                                                'operatingDays' => explode(', ', $this->listingcategory->operating_days),
+                                                'lighting' => $this->listingcategory->lighting,
+                                                'transports' => explode(', ', $this->listingcategory->transports),
+                                                'facilities' => explode(', ', $this->listingcategory->facilities),
+                                                'amenities' => explode(', ', $this->listingcategory->amenities),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1500,9 +1896,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'maisons' => [
+                                                'securitySystem' => explode(', ', $this->listingcategory->security_system),
+                                                'rooms' => $this->listingcategory->rooms,
+                                                'livingRooms' => $this->listingcategory->living_rooms,
+                                                'bedrooms' => $this->listingcategory->bedrooms,
+                                                'bathrooms' => $this->listingcategory->bathrooms,
+                                                'floors' => $this->listingcategory->floors,
+                                                'amenities' => explode(', ', $this->listingcategory->amenities),
+                                                'facilities' => explode(', ', $this->listingcategory->facilities),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1542,9 +1952,52 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'riads' => [
+                                                'entire_home' => $this->listingcategory->entire_home,
+                                                'doorkeeper' => $this->listingcategory->doorkeeper,
+                                                'securitySystem' => explode(', ', $this->listingcategory->security_system),
+                                                'equipped_kitchen' => $this->listingcategory->equipped_kitchen,
+                                                'wifi' => $this->listingcategory->wifi,
+                                                'tv' => $this->listingcategory->tv,
+                                                'heating' => $this->listingcategory->heating,
+                                                'furniture' => $this->listingcategory->furniture,
+                                                'balcony' => $this->listingcategory->balcony,
+                                                'air_conditioner' => $this->listingcategory->air_conditioner,
+                                                'washing_machine' => $this->listingcategory->washing_machine,
+                                                'pool' => $this->listingcategory->pool,
+                                                'rooms' => $this->listingcategory->rooms,
+                                                'livingRooms' => $this->listingcategory->living_rooms,
+                                                'surface' => $this->listingcategory->surface,
+                                                'floors' => $this->listingcategory->floors,
+                                                'year_construction' => $this->listingcategory->year_construction,
+                                                'bedrooms' => $this->listingcategory->bedrooms,
+                                                'bathrooms' => $this->listingcategory->bathrooms,
+                                                'garden' => $this->listingcategory->garden,
+                                                'terrace' => $this->listingcategory->terrace,
+                                                'housekeeping' => $this->listingcategory->housekeeping,
+                                                'dishwasher' => $this->listingcategory->dishwasher,
+                                                'barbecue' => $this->listingcategory->barbecue,
+                                                'refrigerator' => $this->listingcategory->refrigerator,
+                                                'microwave' => $this->listingcategory->microwave,
+                                                'outdoor_furniture' => $this->listingcategory->outdoor_furniture,
+                                                'private_entrance' => $this->listingcategory->private_entrance,
+                                                'hammam' => $this->listingcategory->hammam,
+                                                'jacuzzi' => $this->listingcategory->jacuzzi,
+                                                'gym' => $this->listingcategory->gym,
+                                                'architecture' => $this->listingcategory->architecture,
+                                                'view' => $this->listingcategory->view,
+                                                'restaurant' => $this->listingcategory->restaurant,
+                                                'spa' => $this->listingcategory->spa,
+                                                'airport' => $this->listingcategory->airport,
+                                                'smoking_rooms' => $this->listingcategory->smoking_rooms,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1584,9 +2037,32 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+
+                                            'terrains' => [
+                                                'propertyType' => $this->listingcategory->property_type,
+                                                'propertySubtype' => $this->listingcategory->property_subtype,
+                                                'totalLotSize' => $this->listingcategory->total_lot_size,
+                                                'landValuation' => $this->listingcategory->land_valuation,
+                                                'totalRating' => $this->listingcategory->total_rating,
+                                                'roadAccess' => $this->listingcategory->road_access,
+                                                'slopeDescription' => $this->listingcategory->slope_description,
+                                                'propertyUsage' => $this->listingcategory->property_usage,
+                                                'annualTaxes' => $this->listingcategory->annual_taxes,
+                                                'deededAcres' => $this->listingcategory->deeded_acres,
+                                                'leasedAcres' => $this->listingcategory->leased_acres,
+                                                'elevation' => $this->listingcategory->elevation,
+                                                'vegetation' => $this->listingcategory->vegetation,
+                                                'nearbyUsage' => explode(', ', $this->listingcategory->nearby_usage),
+                                                'topography' => explode(', ', $this->listingcategory->topography),
+                                                'zoning' => $this->listingcategory->zoning,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1628,9 +2104,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+                                            'villas' => [
+                                                'rooms' => $this->listingcategory->rooms,
+                                                'livingRooms' => $this->listingcategory->living_rooms,
+                                                'bedrooms' => $this->listingcategory->bedrooms,
+                                                'bathrooms' => $this->listingcategory->bathrooms,
+                                                'view' => $this->listingcategory->view,
+                                                'securitySystem' => explode(', ', $this->listingcategory->security_system),
+                                                'facilities' => explode(', ', $this->listingcategory->facilities),
+                                                'amenities' => explode(', ', $this->listingcategory->amenities),
+                                                'services' => explode(', ', $this->listingcategory->services),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1671,9 +2163,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'activities' => [
+                                                'type' => $this->listingcategory->type,
+                                                'equipment' => explode(', ', $this->listingcategory->equipment),
+                                                'ageRequirement' => $this->listingcategory->age_requirement,
+                                                'duration' => $this->listingcategory->duration,
+                                                'language' => $this->listingcategory->language,
+                                                'cancellation' => $this->listingcategory->cancellation,
+                                                'safetyEquipment' => explode(', ', $this->listingcategory->safety_equipment),
+                                                'monitor' => $this->listingcategory->monitor,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1714,9 +2222,20 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'livres' => [
+                                                'genre' => $this->listingcategory->genre,
+                                                'type' => $this->listingcategory->type,
+                                                'language' => explode(', ', $this->listingcategory->language),
+                                                'format' => $this->listingcategory->format,
+                                                'duration' => explode(', ', $this->listingcategory->duration),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1756,9 +2275,21 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+
+
+                                            'musicals' => [
+                                                'musicType' => $this->listingcategory->music_type,
+                                                'material' => $this->listingcategory->material,
+                                                'style' => $this->listingcategory->style,
+                                                'finishType' => $this->listingcategory->finish_type,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1799,9 +2330,26 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+
+                                            'furnitures' => [
+                                                'type' => $this->listingcategory->furniture_type,
+                                                'material' => $this->listingcategory->material,
+                                                'shape' => $this->listingcategory->shape,
+                                                'cushionThickness' => $this->listingcategory->cushion_thickness,
+                                                'capacity' => $this->listingcategory->capacity,
+                                                'fillMaterial' => $this->listingcategory->fill_material,
+                                                'condition' => $this->listingcategory->condition,
+                                                'color' => explode(', ', $this->listingcategory->color),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1842,9 +2390,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'houseappliances' => [
+                                                'accessLocation' => $this->listingcategory->access_location,
+                                                'finishType' => $this->listingcategory->finish_type,
+                                                'cycleOptions' => $this->listingcategory->cycle_options,
+                                                'inletWater' => explode(', ', $this->listingcategory->inlet_water),
+                                                'installationMethod' => $this->listingcategory->installation_method,
+                                                'components' => explode(', ', $this->listingcategory->components),
+                                                'controlType' => $this->listingcategory->control_type,
+                                                'certification' => $this->listingcategory->certification,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1885,9 +2446,32 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'electricaltools' => [
+                                                'toolType' => $this->listingcategory->tool_type,
+                                                'condition' => $this->listingcategory->condition,
+                                                'voltage' => $this->listingcategory->voltage,
+                                                'amperage' => explode(', ', $this->listingcategory->amperage),
+                                                'cordLength' => explode(', ', $this->listingcategory->cord_length),
+                                                'batteryLife' => explode(', ', $this->listingcategory->battery_life),
+                                                'display' => $this->listingcategory->display,
+                                                'frequency' => $this->listingcategory->frequency,
+                                                'temperature' => explode(', ', $this->listingcategory->temperature),
+                                                'voltageSensingRanges' => $this->listingcategory->voltage_sensing_ranges,
+                                                'detector' => $this->listingcategory->detector,
+                                                'operatingAltitude' => $this->listingcategory->operating_altitude,
+                                                'compatible' => $this->listingcategory->compatible,
+                                                'bindingAngle' => explode(', ', $this->listingcategory->bending_angle),
+                                                'accessories' => $this->listingcategory->accessories,
+                                                'style' => $this->listingcategory->style,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1929,9 +2513,27 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'ladders' => [
+                                                'toolType' => $this->listingcategory->tool_type,
+                                                'condition' => $this->listingcategory->condition,
+                                                'powerSource' => $this->listingcategory->power_source,
+                                                'material' => $this->listingcategory->material,
+                                                'height' => $this->listingcategory->height,
+                                                'weight' => $this->listingcategory->weight,
+                                                'numberOfSteps' => $this->listingcategory->number_of_steps,
+                                                'loadCapacity' => $this->listingcategory->load_capacity,
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'style' => explode(', ', $this->listingcategory->style),
+                                                'wheelSize' => $this->listingcategory->wheel_size,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -1971,9 +2573,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'mechanicaltools' => [
+                                                'toolType' => $this->listingcategory->tool_type,
+                                                'condition' => $this->listingcategory->condition,
+                                                'powerSource' => $this->listingcategory->power_source,
+                                                'voltage' => $this->listingcategory->voltage,
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'bladeDiameter' => $this->listingcategory->blade_diameter,
+                                                'material' => $this->listingcategory->material,
+                                                'style' => $this->listingcategory->style,
+                                                'cuttingWidth' => $this->listingcategory->cutting_width,
+                                                'carburetorType' => $this->listingcategory->carburetor_type,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2013,9 +2631,29 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+
+                                            'powertools' => [
+                                                'toolType' => $this->listingcategory->tool_type,
+                                                'condition' => $this->listingcategory->condition,
+                                                'powerSource' => $this->listingcategory->power_source,
+                                                'voltage' => $this->listingcategory->voltage,
+                                                'batteryLife' => $this->listingcategory->battery_life,
+                                                'material' => $this->listingcategory->material,
+                                                'noiseLevel' => $this->listingcategory->noise_level,
+                                                'gritNumber' => $this->listingcategory->grit_number,
+                                                'rotationalSpeed' => $this->listingcategory->rotational_speed,
+                                                'bladeMaterial' => $this->listingcategory->blade_material,
+                                                'surface' => $this->listingcategory->surface,
+                                                'style' => $this->listingcategory->style,
+                                                'amperage' => $this->listingcategory->amperage,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2055,9 +2693,31 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'pressurewashers' => [
+                                                'toolType' => $this->listingcategory->tool_type,
+                                                'condition' => $this->listingcategory->condition,
+                                                'powerSource' => $this->listingcategory->power_source,
+                                                'powerOutput' => $this->listingcategory->power_output,
+                                                'enginePower' => $this->listingcategory->engine_power,
+                                                'hoseLength' => $this->listingcategory->hose_length,
+                                                'cordLength' => $this->listingcategory->cord_length,
+                                                'weight' => $this->listingcategory->weight,
+                                                'maximumFlowRate' => explode(', ', $this->listingcategory->maximum_flow_rate),
+                                                'specificationMet' => explode(', ', $this->listingcategory->specification_met),
+                                                'inletConnectionType' => explode(', ', $this->listingcategory->inlet_connection_type),
+                                                'outletConnectionSize' => $this->listingcategory->outlet_connection_size,
+                                                'maxWorkingTemperature' => $this->listingcategory->max_working_temperature,
+                                                'connectionType' => $this->listingcategory->connection_type,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2097,9 +2757,27 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'services' => [
+                                                'languages' => explode(', ', $this->listingcategory->languages),
+                                                'experience' => $this->listingcategory->experience,
+                                                'responseTime' => $this->listingcategory->response_time,
+                                                'package' => $this->listingcategory->package,
+                                                'revisions' => explode(', ', $this->listingcategory->revisions),
+                                                'level' => $this->listingcategory->level,
+                                                'ordersQueue' => $this->listingcategory->orders_queue,
+                                                'jobsCompleted' => $this->listingcategory->jobs_completed,
+                                                'repeatHireRate' => $this->listingcategory->repeat_hire_rate,
+                                                'education' => $this->listingcategory->education,
+                                                'onTime' => explode(', ', $this->listingcategory->on_time),
+                                                'deliveryTime' => $this->listingcategory->delivery_time,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2140,9 +2818,25 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'boats' => [
+                                                'boatType' => $this->listingcategory->boat_type,
+                                                'cruiseCapacity' => $this->listingcategory->capacity,
+                                                'numberOfCabins' => $this->listingcategory->cabins,
+                                                'berthsInCabin' => $this->listingcategory->berths_in_cabin,
+                                                'dailyCruisingTime' => $this->listingcategory->cruising_time,
+                                                'length' => $this->listingcategory->length,
+                                                'security' => explode(', ', $this->listingcategory->security),
+                                                'navigation' => explode(', ', $this->listingcategory->navigation),
+                                                'kitchenEquipment' => explode(', ', $this->listingcategory->kitchen_equipment),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2182,9 +2876,21 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'camions' => [
+                                                    'type' => $this->listingcategory->type,
+                                                    'fuelType' => $this->listingcategory->fuel_type,
+                                                    'condition' => $this->listingcategory->condition,
+                                                    'transmission' => $this->listingcategory->transmission,
+                                                    'insurance' => $this->listingcategory->insurance,
+                                                    'navigation' => $this->listingcategory->navigation_system,
+                                                    'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                                ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2223,9 +2929,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'caravans' => [
+                                                'gearbox' => $this->listingcategory->gearbox,
+                                                'fuelType' => $this->listingcategory->fuel_type,
+                                                'kitchenEquipment' => explode(', ', $this->listingcategory->kitchen_equipment),
+                                                'toilet' => $this->listingcategory->toilet,
+                                                'furniture' => explode(', ', $this->listingcategory->furniture),
+                                                'accessories' => explode(', ', $this->listingcategory->accessories),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2264,9 +2983,20 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'cars' => [
+                                                'transmission' => $this->listingcategory->transmission,
+                                                'fuelType' => $this->listingcategory->fuel_type,
+                                                'numberOfDoors' => $this->listingcategory->number_of_doors,
+                                                'condition' => $this->listingcategory->condition,
+                                                'seats' => $this->listingcategory->seats,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2307,9 +3037,27 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+
+
+                                            'engins' => [
+                                                'type' => $this->listingcategory->type,
+                                                'mechanicalCondition' => $this->listingcategory->mechanical_condition,
+                                                'transmissionType' => $this->listingcategory->transmission,
+                                                'cabType' => $this->listingcategory->cab,
+                                                'cabCondition' => $this->listingcategory->cab_condition,
+                                                'couplerType' => $this->listingcategory->coupler,
+                                                'hydraulicsType' => $this->listingcategory->hydraulics,
+                                                'seats' => $this->listingcategory->seats,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2350,9 +3098,23 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'motos' => [
+                                                    'condition' => $this->listingcategory->condition,
+                                                    'gearbox' => $this->listingcategory->gearbox,
+                                                    'insurance' => $this->listingcategory->insurance,
+                                                    'power' => $this->listingcategory->power,
+                                                    'speed' => $this->listingcategory->speed,
+                                                    'toolkit' => $this->listingcategory->toolkit,
+                                                    'intercom' => $this->listingcategory->intercom,
+                                                    'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                                ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2392,9 +3154,15 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+                                            'scooters' => [
+                                                'condition' => $this->listingcategory->condition,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2436,9 +3204,19 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'taxiaeroports' => [
+                                                'passengers' => $this->listingcategory->passengers,
+                                                'luggage' => $this->listingcategory->luggage,
+                                                'storage' => $this->listingcategory->storage,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2479,9 +3257,20 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'transportations' => [
+                                                'passengers' => $this->listingcategory->passengers,
+                                                'luggage' => $this->listingcategory->luggage,
+                                                'condition' => $this->listingcategory->condition,
+                                                'duration' => explode(', ', $this->listingcategory->duration),
+                                                'gearbox' => $this->listingcategory->gearbox,
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2523,9 +3312,22 @@ class EditListingController extends Controller
                                             'address' => $this->listingcategory->address,
                                             'city' => $this->listingcategory->city,
                                             'country' => $this->listingcategory->country,
-                            'id' => $this->listingcategory->id,
-                            'url' => $this->listingcategory->url,
-                            'created_at' => $this->listingcategory->created_at,
+                                            'id' => $this->listingcategory->id,
+                                            'url' => $this->listingcategory->url,
+                                            'created_at' => $this->listingcategory->created_at,
+
+
+                                            'velos' => [
+                                                'bikeType' => $this->listingcategory->bike_type,
+                                                'seatpost' => $this->listingcategory->seatpost,
+                                                'condition' => explode(', ', $this->listingcategory->condition),
+                                                'storage' => explode(', ', $this->listingcategory->storage),
+                                                'fork' => explode(', ', $this->listingcategory->fork),
+                                                'gear' => explode(', ', $this->listingcategory->gear),
+                                                'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                            ],
+
+
 
                                             'zip' => $this->listingcategory->zip,'listingid' => $id,
                                             'category' => $this->category,
@@ -2559,1906 +3361,6 @@ class EditListingController extends Controller
 
 
 
-
-
-    public function updateListing(Request $request, $id)
-    {
-
-
-        $data = $request->input('data.attributes');
-
-        $this->listing->update([
-            'title' => $data['title'] ?? $this->listing->title,
-            'price' => $data['price'] ?? $this->listing->price,
-            'status' => $data['status'] ?? $this->listing->status,
-            'category' => $data['category'] ?? $this->listing->category,
-            'url' => $data['url'] ?? $this->listing->url,
-        ]);
-
-
-
-
-
-        switch ($this->category) {
-
-
-
-            case 'billiards':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Billiardsimg::where('billiard_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Billiardsimg::create([
-                                        'billiard_id' => $this->billiard->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'boxings':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Boxingsimg::where('boxing_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Boxingsimg::create([
-                                        'boxing_id' => $this->boxing->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'divings':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Divingsimg::where('diving_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Divingsimg::create([
-                                        'diving_id' => $this->diving->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'footballs':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Footballsimg::where('football_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Footballsimg::create([
-                                        'football_id' => $this->football->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'golfs':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Golfsimg::where('golf_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Golfsimg::create([
-                                        'golf_id' => $this->golf->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-
-            case 'huntings':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Huntingsimg::where('hunting_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Huntingsimg::create([
-                                        'hunting_id' => $this->hunting->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'musculations':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Musculationsimg::where('musculation_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Musculationsimg::create([
-                                        'musculation_id' => $this->musculation->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-
-            case 'surfs':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Surfsimg::where('surf_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Surfsimg::create([
-                                        'surf_id' => $this->surf->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'tennis':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Tennissimg::where('tennis_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Tennissimg::create([
-                                        'tennis_id' => $this->tennis->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'audios':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Audiosimg::where('audio_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Audiosimg::create([
-                                        'audio_id' => $this->audio->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'cameras':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Camerasimg::where('camera_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Camerasimg::create([
-                                        'camera_id' => $this->camera->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'chargers':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Chargersimg::where('charger_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Chargersimg::create([
-                                        'charger_id' => $this->charger->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-            case 'drones':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Dronesimg::where('drone_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Dronesimg::create([
-                                        'drone_id' => $this->drone->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-
-
-            case 'gamings':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Gamingsimg::where('gaming_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Gamingsimg::create([
-                                        'gaming_id' => $this->gaming->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'laptops':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Laptopsimg::where('laptop_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Laptopsimg::create([
-                                        'laptop_id' => $this->laptop->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-
-            case 'lightings':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Lightingsimg::where('lighting_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Lightingsimg::create([
-                                        'lighting_id' => $this->lighting->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-
-            case 'printers':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Printersimg::where('printer_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Printersimg::create([
-                                        'printer_id' => $this->printer->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'routers':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Routersimg::where('router_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Routersimg::create([
-                                        'router_id' => $this->router->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'tablettes':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Tablettesimg::where('tablette_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Tablettesimg::create([
-                                        'tablette_id' => $this->tablette->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'eclairages':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Eclairagesimg::where('eclairage_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Eclairagesimg::create([
-                                        'eclairage_id' => $this->eclairage->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'mobiliers':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Mobiliersimg::where('mobilier_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Mobiliersimg::create([
-                                        'mobilier_id' => $this->mobilier->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'photographies':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Photographiesimg::where('photographie_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Photographiesimg::create([
-                                        'photographie_id' => $this->photographie->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'sonorisations':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Sonorisationsimg::where('sonorisation_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Sonorisationsimg::create([
-                                        'sonorisation_id' => $this->sonorisation->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'tentes':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Tentesimg::where('tente_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Tentesimg::create([
-                                        'tente_id' => $this->tente->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'clothes':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Clothessimg::where('clothess_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Clothessimg::create([
-                                        'clothess_id' => $this->clothes->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-
-            case 'jewelrys':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Jewelrysimg::where('jewelry_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Jewelrysimg::create([
-                                        'jewelry_id' => $this->jewelry->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'apartments':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Apartmentsimg::where('apartment_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Apartmentsimg::create([
-                                        'apartment_id' => $this->apartment->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'bureauxs':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Bureauxsimg::where('bureaux_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Bureauxsimg::create([
-                                        'bureaux_id' => $this->bureaux->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-            case 'magasins':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Magasinsimg::where('magasin_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Magasinsimg::create([
-                                        'magasin_id' => $this->magasin->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'maisons':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Maisonsimg::where('maison_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Maisonsimg::create([
-                                        'maison_id' => $this->maison->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'riads':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Riadsimg::where('riad_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Riadsimg::create([
-                                        'riad_id' => $this->riad->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'terrains':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Terrainsimg::where('terrain_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Terrainsimg::create([
-                                        'terrain_id' => $this->terrain->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'villas':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Villasimg::where('villa_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Villasimg::create([
-                                        'villa_id' => $this->villa->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'activities':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Activitiesimg::where('activity_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Activitiesimg::create([
-                                        'activity_id' => $this->activitie->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'livres':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Livresimg::where('livre_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Livresimg::create([
-                                        'livre_id' => $this->livre->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'musicals':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Musicalsimg::where('musical_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Musicalsimg::create([
-                                        'musical_id' => $this->musical->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'furnitures':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Furnituresimg::where('furniture_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Furnituresimg::create([
-                                        'furniture_id' => $this->furniture->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'houseappliances':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Houseappliancesimg::where('houseappliance_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Houseappliancesimg::create([
-                                        'houseappliance_id' => $this->houseappliance->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'electricaltools':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Electricaltoolsimg::where('electricaltool_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Electricaltoolsimg::create([
-                                        'electricaltool_id' => $this->electricaltool->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-
-            case 'ladders':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Laddersimg::where('ladder_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Laddersimg::create([
-                                        'ladder_id' => $this->ladder->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'mechanicaltools':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Mechanicaltoolsimg::where('mechanicaltool_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Mechanicaltoolsimg::create([
-                                        'mechanicaltool_id' => $this->mechanicaltool->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'powertools':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Powertoolsimg::where('powertool_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Powertoolsimg::create([
-                                        'powertool_id' => $this->powertool->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'pressurewashers':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Pressurewashersimg::where('pressurewasher_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Pressurewashersimg::create([
-                                        'pressurewasher_id' => $this->pressurewasher->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'services':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Servicesimg::where('service_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Servicesimg::create([
-                                        'service_id' => $this->service->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'boats':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Boatsimg::where('boat_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Boatsimg::create([
-                                        'boat_id' => $this->boat->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-
-            case 'camions':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Camionsimg::where('camion_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Camionsimg::create([
-                                        'camion_id' => $this->camion->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-            case 'caravans':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Caravansimg::where('caravan_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Caravansimg::create([
-                                        'caravan_id' => $this->caravan->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-                break;
-
-
-
-
-
-            case 'cars':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Carsimg::where('car_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Carsimg::create([
-                                        'car_id' => $this->car->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'engins':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Enginsimg::where('engin_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Enginsimg::create([
-                                        'engin_id' => $this->engin->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-
-                break;
-
-
-
-
-
-            case 'motos':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Motosimg::where('moto_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Motosimg::create([
-                                        'moto_id' => $this->moto->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'scooters':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Scootersimg::where('scooter_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Scootersimg::create([
-                                        'scooter_id' => $this->scooter->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            case 'taxiaeroports':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Taxiaeroportsimg::where('taxiaeroport_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Taxiaeroportsimg::create([
-                                        'taxiaeroport_id' => $this->taxiaeroport->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-            case 'transportations':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Transportationsimg::where('transportation_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Transportationsimg::create([
-                                        'transportation_id' => $this->transportation->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-
-            case 'velos':
-
-                $this->listingcategory->update([
-                                'title' => $data['title'] ?? $this->listingcategory->title,
-                                'price' => $data['price'] ?? $this->listingcategory->price,
-                                'description' => $data['description'] ?? $this->listingcategory->description,
-                                'startdate' => $data['startdate'] ?? $this->listingcategory->startdate,
-                                'enddate' => $data['enddate'] ?? $this->listingcategory->enddate,
-                                'address' => $data['address'] ?? $this->listingcategory->address,
-                                'city' => $data['city'] ?? $this->listingcategory->city,
-                                'country' => $data['country'] ?? $this->listingcategory->country,
-                                'zip' => $data['zip'] ?? $this->listingcategory->zip,
-                            ]);
-
-
-                            if (isset($data['images'])) {
-                                Velosimg::where('velo_id', $this->listingcategory->id)->delete();
-                                foreach ($data['images'] as $image) {
-                                    Velosimg::create([
-                                        'velo_id' => $this->velo->id,
-                                        'picture' => $image,
-                                    ]);
-                                }
-                            }
-
-
-
-                break;
-
-
-
-
-
-
-            default:
-                // Default code
-                break;
-        }
-
-
-
-
-
-
-
-
-        return response()->json([
-            'data' => [
-                'type' => $this->category,
-                'id' => $this->listing->id,
-                'attributes' => [
-                    'title' => $this->listing->title,
-                    'price' => $this->listing->price,
-                    'status' => $this->listing->status,
-                    'category' => $this->listing->category,
-                    'url' => $this->listing->url,
-                ],
-            ],
-        ]);
-    }
 
 
 

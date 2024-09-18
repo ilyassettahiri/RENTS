@@ -282,120 +282,179 @@ function getCategory(
   updateScootersData,
   updateTaxiaeroportsData,
   updateTransportationsData,
-  updateVelosData
+  updateVelosData,
+
+
+
+  billiardsData,
+  boxingsData,
+  divingsData,
+  footballsData,
+  golfsData,
+  huntingsData,
+  musculationsData,
+  surfsData,
+  tennisData,
+  audiosData,
+  camerasData,
+  chargersData,
+  dronesData,
+  gamingsData,
+  laptopsData,
+  lightingsData,
+  printersData,
+  routersData,
+  tablettesData,
+  eclairagesData,
+  mobiliersData,
+  photographiesData,
+  sonorisationsData,
+  tentesData,
+  clothesData,
+  jewelrysData,
+  apartmentsData,
+  bureauxsData,
+  magasinsData,
+  maisonsData,
+  riadsData,
+  terrainsData,
+  villasData,
+  activitiesData,
+  livresData,
+  musicalsData,
+  furnituresData,
+  houseappliancesData,
+  electricaltoolsData,
+  laddersData,
+  mechanicaltoolsData,
+  powertoolsData,
+  pressurewashersData,
+  servicesData,
+  boatsData,
+  camionsData,
+  caravansData,
+  carsData,
+  enginsData,
+  motosData,
+  scootersData,
+  taxiaeroportsData,
+  transportationsData,
+  velosData
+
 ) {
   switch (category) {
     case 'billiards':
-      return <Billiards onDataChange={updateBilliardsData} />;
+      return <Billiards onDataChange={updateBilliardsData} billiardsData={billiardsData} />;
     case 'boxings':
-      return <Boxings onDataChange={updateBoxingsData} />;
+      return <Boxings onDataChange={updateBoxingsData} boxingsData={boxingsData} />;
     case 'divings':
-      return <Divings onDataChange={updateDivingsData} />;
+      return <Divings onDataChange={updateDivingsData} divingsData={divingsData} />;
     case 'footballs':
-      return <Footballs onDataChange={updateFootballsData} />;
+      return <Footballs onDataChange={updateFootballsData} footballsData={footballsData} />;
     case 'golfs':
-      return <Golfs onDataChange={updateGolfsData} />;
+      return <Golfs onDataChange={updateGolfsData} golfsData={golfsData} />;
     case 'huntings':
-      return <Huntings onDataChange={updateHuntingsData} />;
+      return <Huntings onDataChange={updateHuntingsData} huntingsData={huntingsData} />;
     case 'musculations':
-      return <Musculations onDataChange={updateMusculationsData} />;
+      return <Musculations onDataChange={updateMusculationsData} musculationsData={musculationsData} />;
     case 'surfs':
-      return <Surfs onDataChange={updateSurfsData} />;
+      return <Surfs onDataChange={updateSurfsData} surfsData={surfsData} />;
     case 'tennis':
-      return <Tennis onDataChange={updateTennisData} />;
+      return <Tennis onDataChange={updateTennisData} tennisData={tennisData} />;
     case 'audios':
-      return <Audios onDataChange={updateAudiosData} />;
+      return <Audios onDataChange={updateAudiosData} audiosData={audiosData} />;
     case 'cameras':
-      return <Cameras onDataChange={updateCamerasData} />;
+      return <Cameras onDataChange={updateCamerasData} camerasData={camerasData} />;
     case 'chargers':
-      return <Chargers onDataChange={updateChargersData} />;
+      return <Chargers onDataChange={updateChargersData} chargersData={chargersData} />;
     case 'drones':
-      return <Drones onDataChange={updateDronesData} />;
+      return <Drones onDataChange={updateDronesData} dronesData={dronesData} />;
     case 'gamings':
-      return <Gamings onDataChange={updateGamingsData} />;
+      return <Gamings onDataChange={updateGamingsData} gamingsData={gamingsData} />;
     case 'laptops':
-      return <Laptops onDataChange={updateLaptopsData} />;
+      return <Laptops onDataChange={updateLaptopsData} laptopsData={laptopsData} />;
     case 'lightings':
-      return <Lightings onDataChange={updateLightingsData} />;
+      return <Lightings onDataChange={updateLightingsData} lightingsData={lightingsData} />;
     case 'printers':
-      return <Printers onDataChange={updatePrintersData} />;
+      return <Printers onDataChange={updatePrintersData} printersData={printersData} />;
     case 'routers':
-      return <Routers onDataChange={updateRoutersData} />;
+      return <Routers onDataChange={updateRoutersData} routersData={routersData} />;
     case 'tablettes':
-      return <Tablettes onDataChange={updateTablettesData} />;
+      return <Tablettes onDataChange={updateTablettesData} tablettesData={tablettesData} />;
     case 'eclairages':
-      return <Eclairages onDataChange={updateEclairagesData} />;
+      return <Eclairages onDataChange={updateEclairagesData} eclairagesData={eclairagesData} />;
     case 'mobiliers':
-      return <Mobiliers onDataChange={updateMobiliersData} />;
+      return <Mobiliers onDataChange={updateMobiliersData} mobiliersData={mobiliersData} />;
     case 'photographies':
-      return <Photographies onDataChange={updatePhotographiesData} />;
+      return <Photographies onDataChange={updatePhotographiesData} photographiesData={photographiesData} />;
     case 'sonorisations':
-      return <Sonorisations onDataChange={updateSonorisationsData} />;
+      return <Sonorisations onDataChange={updateSonorisationsData} sonorisationsData={sonorisationsData} />;
     case 'tentes':
-      return <Tentes onDataChange={updateTentesData} />;
+      return <Tentes onDataChange={updateTentesData} tentesData={tentesData} />;
     case 'clothes':
-      return <Clothes onDataChange={updateClothesData} />;
+      return <Clothes onDataChange={updateClothesData} clothesData={clothesData} />;
     case 'jewelrys':
-      return <Jewelrys onDataChange={updateJewelrysData} />;
+      return <Jewelrys onDataChange={updateJewelrysData} jewelrysData={jewelrysData} />;
     case 'apartments':
-      return <Apartments onDataChange={updateApartmentsData} />;
+      return <Apartments onDataChange={updateApartmentsData} apartmentsData={apartmentsData} />;
     case 'bureauxs':
-      return <Bureauxs onDataChange={updateBureauxsData} />;
+      return <Bureauxs onDataChange={updateBureauxsData} bureauxsData={bureauxsData} />;
     case 'magasins':
-      return <Magasins onDataChange={updateMagasinsData} />;
+      return <Magasins onDataChange={updateMagasinsData} magasinsData={magasinsData} />;
     case 'maisons':
-      return <Maisons onDataChange={updateMaisonsData} />;
+      return <Maisons onDataChange={updateMaisonsData} maisonsData={maisonsData} />;
     case 'riads':
-      return <Riads onDataChange={updateRiadsData} />;
+      return <Riads onDataChange={updateRiadsData} riadsData={riadsData} />;
     case 'terrains':
-      return <Terrains onDataChange={updateTerrainsData} />;
+      return <Terrains onDataChange={updateTerrainsData} terrainsData={terrainsData} />;
     case 'villas':
-      return <Villas onDataChange={updateVillasData} />;
+      return <Villas onDataChange={updateVillasData} villasData={villasData} />;
     case 'activities':
-      return <Activities onDataChange={updateActivitiesData} />;
+      return <Activities onDataChange={updateActivitiesData} activitiesData={activitiesData} />;
     case 'livres':
-      return <Livres onDataChange={updateLivresData} />;
+      return <Livres onDataChange={updateLivresData} livresData={livresData} />;
     case 'musicals':
-      return <Musicals onDataChange={updateMusicalsData} />;
+      return <Musicals onDataChange={updateMusicalsData} musicalsData={musicalsData} />;
     case 'furnitures':
-      return <Furnitures onDataChange={updateFurnituresData} />;
+      return <Furnitures onDataChange={updateFurnituresData} furnituresData={furnituresData} />;
     case 'houseappliances':
-      return <Houseappliances onDataChange={updateHouseappliancesData} />;
+      return <Houseappliances onDataChange={updateHouseappliancesData} houseappliancesData={houseappliancesData} />;
     case 'electricaltools':
-      return <Electricaltools onDataChange={updateElectricaltoolsData} />;
+      return <Electricaltools onDataChange={updateElectricaltoolsData} electricaltoolsData={electricaltoolsData} />;
     case 'ladders':
-      return <Ladders onDataChange={updateLaddersData} />;
+      return <Ladders onDataChange={updateLaddersData} laddersData={laddersData} />;
     case 'mechanicaltools':
-      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} />;
+      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} mechanicaltoolsData={mechanicaltoolsData} />;
     case 'powertools':
-      return <Powertools onDataChange={updatePowertoolsData} />;
+      return <Powertools onDataChange={updatePowertoolsData} powertoolsData={powertoolsData} />;
     case 'pressurewashers':
-      return <Pressurewashers onDataChange={updatePressurewashersData} />;
+      return <Pressurewashers onDataChange={updatePressurewashersData} pressurewashersData={pressurewashersData} />;
     case 'services':
-      return <Services onDataChange={updateServicesData} />;
+      return <Services onDataChange={updateServicesData} servicesData={servicesData} />;
     case 'boats':
-      return <Boats onDataChange={updateBoatsData} />;
+      return <Boats onDataChange={updateBoatsData} boatsData={boatsData} />;
     case 'camions':
-      return <Camions onDataChange={updateCamionsData} />;
+      return <Camions onDataChange={updateCamionsData} camionsData={camionsData} />;
     case 'caravans':
-      return <Caravans onDataChange={updateCaravansData} />;
+      return <Caravans onDataChange={updateCaravansData} caravansData={caravansData} />;
     case 'cars':
-      return <Cars onDataChange={updateCarsData} />;
+      return <Cars onDataChange={updateCarsData} carsData={carsData} />;
     case 'engins':
-      return <Engins onDataChange={updateEnginsData} />;
+      return <Engins onDataChange={updateEnginsData} enginsData={enginsData} />;
     case 'motos':
-      return <Motos onDataChange={updateMotosData} />;
+      return <Motos onDataChange={updateMotosData} motosData={motosData} />;
     case 'scooters':
-      return <Scooters onDataChange={updateScootersData} />;
+      return <Scooters onDataChange={updateScootersData} scootersData={scootersData} />;
     case 'taxiaeroports':
-      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} />;
+      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} taxiaeroportsData={taxiaeroportsData} />;
     case 'transportations':
-      return <Transportations onDataChange={updateTransportationsData} />;
+      return <Transportations onDataChange={updateTransportationsData} transportationsData={transportationsData} />;
     case 'velos':
-      return <Velos onDataChange={updateVelosData} />;
+      return <Velos onDataChange={updateVelosData} velosData={velosData} />;
     default:
       return null;
   }
+  
 }
 
 
@@ -1200,7 +1259,6 @@ function EditListing() {
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
-  const [editSelectedFiles, setEditSelectedFiles] = useState([]);
 
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
@@ -1235,14 +1293,14 @@ function EditListing() {
 
 
 
-
   useEffect(() => {
     if (!id) return;
     (async () => {
       try {
         const res = await CrudService.getListing(id);
-
-        setData(res.data.attributes);
+        const data = res.data.attributes;
+        
+        // Common fields
         const {
           title,
           description,
@@ -1250,26 +1308,23 @@ function EditListing() {
           enddate,
           address,
           listingid,
-          
           city,
           country,
           zip,
           category,
-          billiards,
-          boxings,
           price,
           currency = null,
           sku = null,
           tags = "[]",
           images = [],
-        } = res.data.attributes;
+        } = data;
+  
         console.log("Fetched Data:", {
           title,
           description,
           address,
           city,
           listingid,
-          
           country,
           zip,
           price,
@@ -1278,7 +1333,8 @@ function EditListing() {
           tags,
           images,
         });
-
+  
+        // Set common data
         setTitle({ text: title, error: false, textError: "" });
         setDescription(description);
         setAddress({ address, city, country, zip });
@@ -1286,24 +1342,299 @@ function EditListing() {
         setDateRange([dayjs(startdate), dayjs(enddate)]);
         setSelectedCategory(category);
         setPricing({ price, currency, sku, tags: JSON.parse(tags) });
+        console.log("Fetched images:", images);
 
+        setSelectedFiles(images);
         
-        setEditSelectedFiles(images);
+  
+        // Switch statement to handle category-specific data
+        switch (category) {
+          case 'billiards': {
+            const { billiards } = data;
+            console.log("Fetched billiards:", billiards);
 
-        if (category === "billiards") {
-          setBilliardsData(billiards);
-          console.log("Fetched billiards:", billiards);
-        } else if (category === "boxings") {
-          setBoxingsData(boxings);
-          console.log("Fetched boxings:", boxings);
+            setBilliardsData(billiards);
+            break;
+          }
+          case 'boxings': {
+            const { boxings } = data;
+            setBoxingsData(boxings);
+            break;
+          }
+          case 'divings': {
+            const { divings } = data;
+            setDivingsData(divings);
+            break;
+          }
+          case 'footballs': {
+            const { footballs } = data;
+            setFootballsData(footballs);
+            break;
+          }
+          case 'golfs': {
+            const { golfs } = data;
+            setGolfsData(golfs);
+            break;
+          }
+          case 'huntings': {
+            const { huntings } = data;
+            setHuntingsData(huntings);
+            break;
+          }
+          case 'musculations': {
+            const { musculations } = data;
+            setMusculationsData(musculations);
+            break;
+          }
+          case 'surfs': {
+            const { surfs } = data;
+            setSurfsData(surfs);
+            break;
+          }
+          case 'tennis': {
+            const { tennis } = data;
+            setTennisData(tennis);
+            break;
+          }
+          case 'audios': {
+            const { audios } = data;
+            setAudiosData(audios);
+            break;
+          }
+          case 'cameras': {
+            const { cameras } = data;
+            setCamerasData(cameras);
+            break;
+          }
+          case 'chargers': {
+            const { chargers } = data;
+            setChargersData(chargers);
+            break;
+          }
+          case 'drones': {
+            const { drones } = data;
+            setDronesData(drones);
+            break;
+          }
+          case 'gamings': {
+            const { gamings } = data;
+            setGamingsData(gamings);
+            break;
+          }
+          case 'laptops': {
+            const { laptops } = data;
+            setLaptopsData(laptops);
+            break;
+          }
+          case 'lightings': {
+            const { lightings } = data;
+            setLightingsData(lightings);
+            break;
+          }
+          case 'printers': {
+            const { printers } = data;
+            setPrintersData(printers);
+            break;
+          }
+          case 'routers': {
+            const { routers } = data;
+            setRoutersData(routers);
+            break;
+          }
+          case 'tablettes': {
+            const { tablettes } = data;
+            setTablettesData(tablettes);
+            break;
+          }
+          case 'eclairages': {
+            const { eclairages } = data;
+            setEclairagesData(eclairages);
+            break;
+          }
+          case 'mobiliers': {
+            const { mobiliers } = data;
+            setMobiliersData(mobiliers);
+            break;
+          }
+          case 'photographies': {
+            const { photographies } = data;
+            setPhotographiesData(photographies);
+            break;
+          }
+          case 'sonorisations': {
+            const { sonorisations } = data;
+            setSonorisationsData(sonorisations);
+            break;
+          }
+          case 'tentes': {
+            const { tentes } = data;
+            setTentesData(tentes);
+            break;
+          }
+          case 'clothes': {
+            const { clothes } = data;
+            setClothesData(clothes);
+            break;
+          }
+          case 'jewelrys': {
+            const { jewelrys } = data;
+            setJewelrysData(jewelrys);
+            break;
+          }
+          case 'apartments': {
+            const { apartments } = data;
+            setApartmentsData(apartments);
+            break;
+          }
+          case 'bureauxs': {
+            const { bureauxs } = data;
+            setBureauxsData(bureauxs);
+            break;
+          }
+          case 'magasins': {
+            const { magasins } = data;
+            setMagasinsData(magasins);
+            break;
+          }
+          case 'maisons': {
+            const { maisons } = data;
+            setMaisonsData(maisons);
+            break;
+          }
+          case 'riads': {
+            const { riads } = data;
+            setRiadsData(riads);
+            break;
+          }
+          case 'terrains': {
+            const { terrains } = data;
+            setTerrainsData(terrains);
+            break;
+          }
+          case 'villas': {
+            const { villas } = data;
+            setVillasData(villas);
+            break;
+          }
+          case 'activities': {
+            const { activities } = data;
+            setActivitiesData(activities);
+            break;
+          }
+          case 'livres': {
+            const { livres } = data;
+            setLivresData(livres);
+            break;
+          }
+          case 'musicals': {
+            const { musicals } = data;
+            setMusicalsData(musicals);
+            break;
+          }
+          case 'furnitures': {
+            const { furnitures } = data;
+            setFurnituresData(furnitures);
+            break;
+          }
+          case 'houseappliances': {
+            const { houseappliances } = data;
+            setHouseappliancesData(houseappliances);
+            break;
+          }
+          case 'electricaltools': {
+            const { electricaltools } = data;
+            setElectricaltoolsData(electricaltools);
+            break;
+          }
+          case 'ladders': {
+            const { ladders } = data;
+            setLaddersData(ladders);
+            break;
+          }
+          case 'mechanicaltools': {
+            const { mechanicaltools } = data;
+            setMechanicaltoolsData(mechanicaltools);
+            break;
+          }
+          case 'powertools': {
+            const { powertools } = data;
+            setPowertoolsData(powertools);
+            break;
+          }
+          case 'pressurewashers': {
+            const { pressurewashers } = data;
+            setPressurewashersData(pressurewashers);
+            break;
+          }
+          case 'services': {
+            const { services } = data;
+            setServicesData(services);
+            break;
+          }
+          case 'boats': {
+            const { boats } = data;
+            console.log("Fetched boats:", boats);
+
+            setBoatsData(boats);
+            break;
+          }
+          case 'camions': {
+            const { camions } = data;
+            setCamionsData(camions);
+            break;
+          }
+          case 'caravans': {
+            const { caravans } = data;
+            setCaravansData(caravans);
+            break;
+          }
+          case 'cars': {
+            const { cars } = data;
+            setCarsData(cars);
+            break;
+          }
+          case 'engins': {
+            const { engins } = data;
+            setEnginsData(engins);
+            break;
+          }
+          case 'motos': {
+            const { motos } = data;
+            setMotosData(motos);
+            break;
+          }
+          case 'scooters': {
+            const { scooters } = data;
+            setScootersData(scooters);
+            break;
+          }
+          case 'taxiaeroports': {
+            const { taxiaeroports } = data;
+            setTaxiaeroportsData(taxiaeroports);
+            break;
+          }
+          case 'transportations': {
+            const { transportations } = data;
+            setTransportationsData(transportations);
+            break;
+          }
+          case 'velos': {
+            const { velos } = data;
+            setVelosData(velos);
+            break;
+          }
+          default:
+            // Handle the case where no matching category is found
+            break;
         }
+        
+  
       } catch (err) {
         console.error(err);
       }
     })();
   }, [id]);
-
-
+  
 
 
 
@@ -2513,7 +2844,7 @@ function EditListing() {
 
                             <SoftBox >
                               
-                              <CustomFileInput onFilesChange={handleFilesChange} editSelectedFiles={editSelectedFiles}/>
+                              <CustomFileInput onFilesChange={handleFilesChange} oldFiles={selectedFiles}/>
                             </SoftBox>
                           </SoftBox>
                         </Card>
