@@ -33,7 +33,7 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 // Custom components
 import Pricing from "admin/listing/all/create-listing/components/Pricing";
 import Address from "components/Address"; // Correct import statement
-import CustomFileInput from "admin/listing/all/create-listing/components/CustomFileInput";
+import CustomFileInput from "admin/listing/all/create-listing/components/EditFileInput";
 
 
 
