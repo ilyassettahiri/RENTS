@@ -4376,8 +4376,17 @@ class ListingController extends JsonApiController
 
 
 
+        $oldimagePathslarge = $request->input('attributes.oldimagePathslarge');
 
 
+        // Log the values for debugging
+        Log::info('Update Listing - Image Paths:', [
+            'imagePathslarge' => $imagePathslarge,
+            'imagePathssmall' => $imagePathssmall,
+            'imagePathsxlarge' => $imagePathsxlarge,
+            'thumb' => $thumb,
+            'oldimagePathslarge' => $oldimagePathslarge
+        ]);
 
 
             // Find the existing listing
@@ -4414,19 +4423,48 @@ class ListingController extends JsonApiController
 
 
             // Delete images from DigitalOcean Spaces
-        foreach ($existingImages as $image) {
-            if (Storage::disk('spaces')->exists('storage/listinglarge/' . $image->picture)) {
-                Storage::disk('spaces')->delete('storage/listinglarge/' . $image->picture);
-            }
-            if (Storage::disk('spaces')->exists('storage/listingsmall/' . $image->picturesmall)) {
-                Storage::disk('spaces')->delete('storage/listingsmall/' . $image->picturesmall);
-            }
-            if (Storage::disk('spaces')->exists('storage/listingxlarge/' . $image->picturesxlarge)) {
-                Storage::disk('spaces')->delete('storage/listingxlarge/' . $image->picturesxlarge);
-            }
-        }
+            foreach ($existingImages as $image) {
+                // Check if the image is in the oldimagePathslarge array
+                if (!in_array($image->picture, $oldimagePathslarge)) {
+                    // The image is not in the oldimagePathslarge array, so delete it
 
-        Listingsimg::where('listing_id', $listing->id)->delete();
+                    // Delete from DigitalOcean Spaces (Large)
+                    if (Storage::disk('spaces')->exists('storage/listinglarge/' . $image->picture)) {
+                        Storage::disk('spaces')->delete('storage/listinglarge/' . $image->picture);
+                    }
+
+                    // Delete from DigitalOcean Spaces (Small)
+                    if (Storage::disk('spaces')->exists('storage/listingsmall/' . $image->picturesmall)) {
+                        Storage::disk('spaces')->delete('storage/listingsmall/' . $image->picturesmall);
+                    }
+
+                    // Delete from DigitalOcean Spaces (X-Large)
+                    if (Storage::disk('spaces')->exists('storage/listingxlarge/' . $image->picturesxlarge)) {
+                        Storage::disk('spaces')->delete('storage/listingxlarge/' . $image->picturesxlarge);
+                    }
+
+                    // Optionally, delete the image record from the database
+                    $image->delete();
+                }
+            }
+
+
+        Listingsimg::where('listing_id', $listing->id)
+            ->whereNotIn('picture', $oldimagePathslarge) // Images not in oldimagePathslarge
+            ->delete();
+
+        // Fetch the remaining images in the database that match the oldimagePathslarge
+        $remainingImages = Listingsimg::where('listing_id', $listing->id)
+            ->whereIn('picture', $oldimagePathslarge) // Only keep images that are in oldimagePathslarge
+            ->get();
+
+
+            foreach ($remainingImages as $image) {
+                // Update the actual arrays by appending values
+                $imagePathslarge = array_merge($imagePathslarge, [$image->picture]);
+                $imagePathssmall = array_merge($imagePathssmall, [$image->picturesmall]);
+                $imagePathsxlarge = array_merge($imagePathsxlarge, [$image->picturesxlarge]);
+            }
 
 
         foreach ($imagePathslarge as $index => $largePath) {

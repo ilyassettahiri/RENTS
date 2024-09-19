@@ -1,40 +1,51 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SoftBox from "components/SoftBox";
+import { useTranslation } from 'react-i18next';
 import "./CustomFileInput.css"; // Import the custom styles
 
 function CustomFileInput({ onFilesChange, oldFiles = [] }) {
-  const [selectedFiles, setSelectedFiles] = useState([]); // New uploaded files
-  const [existingFiles, setExistingFiles] = useState(oldFiles); // Old files (URLs)
+  const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
+  const [existingFiles, setExistingFiles] = useState([]);
 
-  // Handle new file uploads
+  useEffect(() => {
+    if (oldFiles.length) {
+      setExistingFiles(oldFiles);
+    }
+  }, [oldFiles]);
+
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
-    setSelectedFiles(prevFiles => [...prevFiles, ...files]);
-    onFilesChange([...existingFiles, ...selectedFiles, ...files]); // Send both old and new files
+    const updatedSelectedFiles = [...selectedFiles, ...files];
+    setSelectedFiles(updatedSelectedFiles);
+    onFilesChange({ existingFiles, updatedSelectedFiles });
   };
 
-  // Handle removing files (either old or new)
-  const handleRemoveFile = (index, isExisting) => {
-    if (isExisting) {
-      const updatedExistingFiles = [...existingFiles];
-      updatedExistingFiles.splice(index, 1); // Remove the old file from the list
-      setExistingFiles(updatedExistingFiles);
-      onFilesChange([...updatedExistingFiles, ...selectedFiles]); // Send the updated list
+  const handleRemoveFile = (index, isOldFile = false, event) => {
+
+    event.stopPropagation(); 
+
+
+    if (isOldFile) {
+      const updatedOldFiles = [...existingFiles];
+      updatedOldFiles.splice(index, 1);
+      setExistingFiles(updatedOldFiles);
+      onFilesChange({ existingFiles: updatedOldFiles, selectedFiles });
     } else {
-      const updatedNewFiles = [...selectedFiles];
-      updatedNewFiles.splice(index, 1); // Remove the new file
-      setSelectedFiles(updatedNewFiles);
-      onFilesChange([...existingFiles, ...updatedNewFiles]); // Send the updated list
+      const updatedFiles = [...selectedFiles];
+      updatedFiles.splice(index, 1);
+      setSelectedFiles(updatedFiles);
+      onFilesChange({ existingFiles, selectedFiles: updatedFiles });
     }
   };
 
   const handleDrop = (e) => {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files);
-    setSelectedFiles(prevFiles => [...prevFiles, ...files]);
-    onFilesChange([...existingFiles, ...selectedFiles, ...files]); // Update on drop
+    const updatedSelectedFiles = [...selectedFiles, ...files];
+    setSelectedFiles(updatedSelectedFiles);
+    onFilesChange({ existingFiles, updatedSelectedFiles });
   };
 
   const handleClick = () => {
@@ -43,6 +54,9 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
 
   return (
     <SoftBox className="file-input-container">
+      {/* Old Files Section */}
+      
+
       <input
         type="file"
         multiple
@@ -50,15 +64,22 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
         ref={fileInputRef}
         className="custom-file-input"
       />
-
-      <SoftBox className="file-drop-area" onClick={handleClick} onDrop={handleDrop} onDragOver={(e) => e.preventDefault()}>
-        {/* Old Files Section */}
+      <SoftBox
+        className="file-drop-area"
+        onClick={handleClick}
+        onDrop={handleDrop}
+        onDragOver={(e) => e.preventDefault()}
+      >
+        {!selectedFiles.length && (
+          <SoftBox className="file-drop-text">
+            <span>Drag and drop some files here, or click to select files</span>
+          </SoftBox>
+        )}
         <SoftBox className="file-preview-container">
-          <h3>Existing Files</h3>
+
           {existingFiles.map((file, index) => (
             <div key={`old-${index}`} className="file-preview-wrapper">
               <img
-                
                 src={`${process.env.REACT_APP_IMAGE_LISTING_LARGE}${file}`}
                 alt={`Old file preview ${index}`}
                 className="file-preview-image"
@@ -66,28 +87,31 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
               <button
                 type="button"
                 className="remove-file-button"
-                onClick={() => handleRemoveFile(index, true)} // Removing an old image
+                onClick={(e) => handleRemoveFile(index, true, e)} // Removing an old image
               >
                 X
               </button>
             </div>
           ))}
-        </SoftBox>
 
-        {/* New Files Section */}
-        <SoftBox className="file-preview-container">
-          <h3>New Files</h3>
           {selectedFiles.map((file, index) => (
-            <div key={`new-${index}`} className="file-preview-wrapper">
+            <div
+              key={index}
+              className="file-preview-wrapper"
+              onClick={(e) => e.stopPropagation()} // Prevents file input click
+            >
               <img
                 src={URL.createObjectURL(file)}
-                alt={`New file preview ${index}`}
+                alt={`preview ${index}`}
                 className="file-preview-image"
               />
               <button
                 type="button"
                 className="remove-file-button"
-                onClick={() => handleRemoveFile(index, false)} // Removing a new image
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleRemoveFile(index);
+                }}
               >
                 X
               </button>
@@ -101,7 +125,9 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
 
 CustomFileInput.propTypes = {
   onFilesChange: PropTypes.func.isRequired,
+
   oldFiles: PropTypes.arrayOf(PropTypes.string),
+
 };
 
 export default CustomFileInput;

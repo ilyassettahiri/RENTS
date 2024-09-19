@@ -1260,6 +1260,9 @@ function EditListing() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedFiles, setSelectedFiles] = useState([]);
 
+  const [oldFiles, setOldFiles] = useState([]);
+
+
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'day')]);
@@ -1288,9 +1291,16 @@ function EditListing() {
   };
 
   const handleFilesChange = (files) => {
-    setSelectedFiles(files);
-  };
+    // Extract old and new files from the object
+    const { existingFiles, updatedSelectedFiles } = files;
+  
 
+   
+
+    // Update the state for both old and new files
+    setOldFiles(existingFiles); // Update old files
+    setSelectedFiles(updatedSelectedFiles); // Update new selected files
+  };
 
 
   useEffect(() => {
@@ -1342,9 +1352,9 @@ function EditListing() {
         setDateRange([dayjs(startdate), dayjs(enddate)]);
         setSelectedCategory(category);
         setPricing({ price, currency, sku, tags: JSON.parse(tags) });
-        console.log("Fetched images:", images);
+       
 
-        setSelectedFiles(images);
+        setOldFiles(images);
         
   
         // Switch statement to handle category-specific data
@@ -2379,19 +2389,8 @@ function EditListing() {
       
 
       
-      const imagePathslarge = response.imagePathslarge; 
-      const imagePathssmall = response.imagePathssmall;
-
-      const imagePathsxlarge = response.imagePathsxlarge; 
-      const thumb = response.thumb;
-
-
-      console.log('Appending imagePathslarge:', imagePathslarge);
-      console.log('Appending imagePathssmall:', imagePathssmall);
-      console.log('Appending imagePathsxlarge:', imagePathsxlarge);
-      console.log('Appending thumb:', thumb);
-
-
+      
+    
 
 
 
@@ -2415,6 +2414,7 @@ function EditListing() {
           imagePathssmall: response.imagePathssmall,  
           imagePathsxlarge: response.imagePathsxlarge, 
           thumb: response.thumb, 
+          oldimagePathslarge: oldFiles, 
           
         ...(selectedCategory === 'billiards' && { billiards: billiardsData }),
         ...(selectedCategory === 'boxings' && { boxings: boxingsData }),
@@ -2844,7 +2844,7 @@ function EditListing() {
 
                             <SoftBox >
                               
-                              <CustomFileInput onFilesChange={handleFilesChange} oldFiles={selectedFiles}/>
+                              <CustomFileInput onFilesChange={handleFilesChange} oldFiles={oldFiles}/>
                             </SoftBox>
                           </SoftBox>
                         </Card>
