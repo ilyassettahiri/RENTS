@@ -37,6 +37,10 @@ return new class extends Migration
 
             $table->string('picture')->nullable();
 
+            $table->boolean('verified')->default(false);
+            $table->enum('status', ['active', 'pending', 'inactive'])->default('pending');
+            $table->boolean('featured')->default(false);
+
 
             $table->timestamps();
         });

@@ -122,6 +122,9 @@ function Billiards({ onDataChange, initialState, isOpen }) {
 
 
   useEffect(() => {
+
+    //console.log('Initial State:', initialState);
+
     setInitiallistingsData(initialState);
   }, [initialState]);
 

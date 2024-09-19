@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // @mui material components
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import SoftSelect from "components/SoftSelect";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -33,11 +34,7 @@ function CreateStore() {
     zip: "",
   });
 
-  const [title, setTitle] = useState({
-    text: "",
-    error: false,
-    textError: "",
-  });
+
 
   const [name, setName] = useState({
     text: "",
@@ -45,18 +42,42 @@ function CreateStore() {
     textError: "",
   });
 
+
+  const [phone, setPhone] = useState({
+    text: "",
+    error: false,
+    textError: "",
+  });
+
+
+  const [email, setEmail] = useState({
+    text: "",
+    error: false,
+    textError: "",
+  });
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
 
   const [profileImage, setProfileImage] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
 
-  const changeTitleHandler = (e) => {
-    setTitle({ ...title, text: e.target.value });
-  };
+ 
 
   const changeNameHandler = (e) => {
     setName({ ...name, text: e.target.value });
+  };
+
+
+  const changePhoneHandler = (e) => {
+    setName({ ...phone, text: e.target.value });
+  };
+
+  const changeEmailHandler = (e) => {
+    setName({ ...email, text: e.target.value });
   };
 
   const handleAddressChange = (e) => {
@@ -68,6 +89,10 @@ function CreateStore() {
     setProfileImage(file);
   };
 
+  const handleCategoryChange = (selectedOption) => {
+    setSelectedCategory(selectedOption.value);
+  };
+
   const handleBackgroundImageChange = (event) => {
     const file = event.target.files[0];
     setBackgroundImage(file);
@@ -76,13 +101,21 @@ function CreateStore() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    if (title.text.trim().length < 1) {
-      setTitle({ ...title, error: true, textError: "The Title is required" });
-      return;
-    }
+    
 
     if (name.text.trim().length < 1) {
       setName({ ...name, error: true, textError: "The Name is required" });
+      return;
+    }
+
+
+    if (phone.text.trim().length < 1) {
+      setPhone({ ...phone, error: true, textError: "The Phone is required" });
+      return;
+    }
+
+    if (email.text.trim().length < 1) {
+      setEmail({ ...email, error: true, textError: "The Email is required" });
       return;
     }
 
@@ -93,8 +126,13 @@ function CreateStore() {
     }
 
     const formData = new FormData();
-    formData.append("data[attributes][title]", title.text);
     formData.append("data[attributes][name]", name.text);
+    formData.append('data[attributes][category]', selectedCategory);
+
+    formData.append("data[attributes][phone]", phone.text);
+
+    formData.append("data[attributes][email]", email.text);
+
     formData.append("data[attributes][description]", description);
     formData.append("data[attributes][address]", address.address);
     formData.append("data[attributes][city]", address.city);
@@ -123,7 +161,7 @@ function CreateStore() {
     <DashboardLayout>
       <SoftBox mt={1} mb={20} component="form" method="POST" onSubmit={submitHandler}>
         <Grid container justifyContent="center">
-          <Grid item xs={12} lg={8}>
+          <Grid item xs={12} lg={10}>
             <Header 
               profileImage={profileImage} 
               backgroundImage={backgroundImage}
@@ -140,6 +178,7 @@ function CreateStore() {
                         <FormField
                           type="text"
                           label="Store Name"
+                          placeholder="name"
                           name="name"
                           value={name.text}
                           onChange={changeNameHandler}
@@ -154,23 +193,88 @@ function CreateStore() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <SoftBox p={1}>
+
+
+                        <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                          <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                            Type
+                          </SoftTypography>
+                        </SoftBox>
+                        
+                          <SoftSelect
+
+                            placeholder="Select Category"
+                            options={[
+                              
+                              { value: "boats", label: "boats" },
+                              { value: "camions", label: "camions" },
+                              { value: "caravans", label: "caravans"  },
+                              { value: "cars", label: "cars"},
+                              { value: "engins", label: "engins" },
+                              { value: "motos", label: "motos" },
+                            
+                            ]}
+
+
+
+
+                            onChange={handleCategoryChange}
+                          />
+
+                      </SoftBox>
+                    </Grid>
+                  </Grid>
+                </SoftBox>
+
+
+
+
+
+
+                <SoftBox mt={3}>
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={6}>
+                      <SoftBox p={1}>
                         <FormField
                           type="text"
-                          label="Title"
-                          name="title"
-                          value={title.text}
-                          onChange={changeTitleHandler}
-                          error={title.error}
+                          label="phone"
+                          placeholder="phone"
+                          name="phone"
+                          value={phone.text}
+                          onChange={changePhoneHandler}
+                          error={phone.error}
                         />
-                        {title.error && (
+                        {phone.error && (
                           <SoftTypography variant="caption" color="error" fontWeight="light">
-                            {title.textError}
+                            {phone.textError}
+                          </SoftTypography>
+                        )}
+                      </SoftBox>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <SoftBox p={1}>
+                        <FormField
+                          type="text"
+                          label="email"
+                          name="email"
+                          placeholder="example@gmail.com"
+
+                          value={email.text}
+                          onChange={changeEmailHandler}
+                          error={email.error}
+                        />
+                        {email.error && (
+                          <SoftTypography variant="caption" color="error" fontWeight="light">
+                            {email.textError}
                           </SoftTypography>
                         )}
                       </SoftBox>
                     </Grid>
                   </Grid>
                 </SoftBox>
+
+
+
                 <SoftBox mt={2}>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">

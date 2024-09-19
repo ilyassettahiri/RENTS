@@ -287,7 +287,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            $manager = new ImageManager(new Driver());
+            /*$manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -373,12 +373,12 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }
+            }*/
 
 
 
 
-            /*if ($request->hasFile('data.attributes.images')) {
+            if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -393,7 +393,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }*/
+            }
 
 
 

@@ -103,7 +103,7 @@ class Onlinestore extends Model
 {
 
 
-    protected $fillable = ['typea','url','profile_picture','user_id','name','email','phone','type','description' ,'picture','address','city','zip','country'];
+    protected $fillable = ['verified','status','featured','typea','url','profile_picture','user_id','name','email','phone','type','description' ,'picture','address','city','zip','country'];
 
 
 

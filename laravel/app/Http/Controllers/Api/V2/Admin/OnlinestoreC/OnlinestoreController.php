@@ -97,7 +97,7 @@ class OnlinestoreController extends JsonApiController
         // Validate the request
         $request->validate([
             'data.attributes.name' => 'required|string',
-            'data.attributes.title' => 'required|string',
+            'data.attributes.email' => 'required|string',
             'data.attributes.description' => 'required|string',
             'data.attributes.picture' => 'sometimes|image|max:6048', // Validate images if present
             'data.attributes.profil_picture' => 'sometimes|image|max:6048', // Validate images if present
@@ -248,17 +248,25 @@ class OnlinestoreController extends JsonApiController
         // Retrieve other input values
         $name = $request->input('data.attributes.name');
         $description = $request->input('data.attributes.description');
-        $title = $request->input('data.attributes.title');
+        $phone = $request->input('data.attributes.phone');
+        $email = $request->input('data.attributes.email');
+        $type = $request->input('data.attributes.category');
+
         $address = $request->input('data.attributes.address');
         $city = $request->input('data.attributes.city');
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
-        $url = $this->generateUrl($title);
+        $url = $this->generateUrl($name);
 
 
         // Create a new Onlinestore instance
         $onlinestore = new Onlinestore();
         $onlinestore->name = $name;
+        $onlinestore->phone = $phone;
+        $onlinestore->email = $email;
+        $onlinestore->type = $type;
+
+
         $onlinestore->picture = $picturerelativePath;
         $onlinestore->profile_picture = $profil_picturerelativePath;
         $onlinestore->url = $url;

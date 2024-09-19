@@ -344,113 +344,113 @@ function getCategory(
 ) {
   switch (category) {
     case 'billiards':
-      return <Billiards onDataChange={updateBilliardsData} billiardsData={billiardsData} />;
+      return <Billiards onDataChange={updateBilliardsData} initialState={billiardsData} isOpen={true}/>;
     case 'boxings':
-      return <Boxings onDataChange={updateBoxingsData} boxingsData={boxingsData} />;
+      return <Boxings onDataChange={updateBoxingsData} initialState={boxingsData} />;
     case 'divings':
-      return <Divings onDataChange={updateDivingsData} divingsData={divingsData} />;
+      return <Divings onDataChange={updateDivingsData} initialState={divingsData} />;
     case 'footballs':
-      return <Footballs onDataChange={updateFootballsData} footballsData={footballsData} />;
+      return <Footballs onDataChange={updateFootballsData} initialState={footballsData} />;
     case 'golfs':
-      return <Golfs onDataChange={updateGolfsData} golfsData={golfsData} />;
+      return <Golfs onDataChange={updateGolfsData} initialState={golfsData} />;
     case 'huntings':
-      return <Huntings onDataChange={updateHuntingsData} huntingsData={huntingsData} />;
+      return <Huntings onDataChange={updateHuntingsData} initialState={huntingsData} />;
     case 'musculations':
-      return <Musculations onDataChange={updateMusculationsData} musculationsData={musculationsData} />;
+      return <Musculations onDataChange={updateMusculationsData} initialState={musculationsData} />;
     case 'surfs':
-      return <Surfs onDataChange={updateSurfsData} surfsData={surfsData} />;
+      return <Surfs onDataChange={updateSurfsData} initialState={surfsData} />;
     case 'tennis':
-      return <Tennis onDataChange={updateTennisData} tennisData={tennisData} />;
+      return <Tennis onDataChange={updateTennisData} initialState={tennisData} />;
     case 'audios':
-      return <Audios onDataChange={updateAudiosData} audiosData={audiosData} />;
+      return <Audios onDataChange={updateAudiosData} initialState={audiosData} />;
     case 'cameras':
-      return <Cameras onDataChange={updateCamerasData} camerasData={camerasData} />;
+      return <Cameras onDataChange={updateCamerasData} initialState={camerasData} />;
     case 'chargers':
-      return <Chargers onDataChange={updateChargersData} chargersData={chargersData} />;
+      return <Chargers onDataChange={updateChargersData} initialState={chargersData} />;
     case 'drones':
-      return <Drones onDataChange={updateDronesData} dronesData={dronesData} />;
+      return <Drones onDataChange={updateDronesData} initialState={dronesData} />;
     case 'gamings':
-      return <Gamings onDataChange={updateGamingsData} gamingsData={gamingsData} />;
+      return <Gamings onDataChange={updateGamingsData} initialState={gamingsData} />;
     case 'laptops':
-      return <Laptops onDataChange={updateLaptopsData} laptopsData={laptopsData} />;
+      return <Laptops onDataChange={updateLaptopsData} initialState={laptopsData} />;
     case 'lightings':
-      return <Lightings onDataChange={updateLightingsData} lightingsData={lightingsData} />;
+      return <Lightings onDataChange={updateLightingsData} initialState={lightingsData} />;
     case 'printers':
-      return <Printers onDataChange={updatePrintersData} printersData={printersData} />;
+      return <Printers onDataChange={updatePrintersData} initialState={printersData} />;
     case 'routers':
-      return <Routers onDataChange={updateRoutersData} routersData={routersData} />;
+      return <Routers onDataChange={updateRoutersData} initialState={routersData} />;
     case 'tablettes':
-      return <Tablettes onDataChange={updateTablettesData} tablettesData={tablettesData} />;
+      return <Tablettes onDataChange={updateTablettesData} initialState={tablettesData} />;
     case 'eclairages':
-      return <Eclairages onDataChange={updateEclairagesData} eclairagesData={eclairagesData} />;
+      return <Eclairages onDataChange={updateEclairagesData} initialState={eclairagesData} />;
     case 'mobiliers':
-      return <Mobiliers onDataChange={updateMobiliersData} mobiliersData={mobiliersData} />;
+      return <Mobiliers onDataChange={updateMobiliersData} initialState={mobiliersData} />;
     case 'photographies':
-      return <Photographies onDataChange={updatePhotographiesData} photographiesData={photographiesData} />;
+      return <Photographies onDataChange={updatePhotographiesData} initialState={photographiesData} />;
     case 'sonorisations':
-      return <Sonorisations onDataChange={updateSonorisationsData} sonorisationsData={sonorisationsData} />;
+      return <Sonorisations onDataChange={updateSonorisationsData} initialState={sonorisationsData} />;
     case 'tentes':
-      return <Tentes onDataChange={updateTentesData} tentesData={tentesData} />;
+      return <Tentes onDataChange={updateTentesData} initialState={tentesData} />;
     case 'clothes':
-      return <Clothes onDataChange={updateClothesData} clothesData={clothesData} />;
+      return <Clothes onDataChange={updateClothesData} initialState={clothesData} />;
     case 'jewelrys':
-      return <Jewelrys onDataChange={updateJewelrysData} jewelrysData={jewelrysData} />;
+      return <Jewelrys onDataChange={updateJewelrysData} initialState={jewelrysData} />;
     case 'apartments':
-      return <Apartments onDataChange={updateApartmentsData} apartmentsData={apartmentsData} />;
+      return <Apartments onDataChange={updateApartmentsData} initialState={apartmentsData} />;
     case 'bureauxs':
-      return <Bureauxs onDataChange={updateBureauxsData} bureauxsData={bureauxsData} />;
+      return <Bureauxs onDataChange={updateBureauxsData} initialState={bureauxsData} />;
     case 'magasins':
-      return <Magasins onDataChange={updateMagasinsData} magasinsData={magasinsData} />;
+      return <Magasins onDataChange={updateMagasinsData} initialState={magasinsData} />;
     case 'maisons':
-      return <Maisons onDataChange={updateMaisonsData} maisonsData={maisonsData} />;
+      return <Maisons onDataChange={updateMaisonsData} initialState={maisonsData} />;
     case 'riads':
-      return <Riads onDataChange={updateRiadsData} riadsData={riadsData} />;
+      return <Riads onDataChange={updateRiadsData} initialState={riadsData} />;
     case 'terrains':
-      return <Terrains onDataChange={updateTerrainsData} terrainsData={terrainsData} />;
+      return <Terrains onDataChange={updateTerrainsData} initialState={terrainsData} />;
     case 'villas':
-      return <Villas onDataChange={updateVillasData} villasData={villasData} />;
+      return <Villas onDataChange={updateVillasData} initialState={villasData} />;
     case 'activities':
-      return <Activities onDataChange={updateActivitiesData} activitiesData={activitiesData} />;
+      return <Activities onDataChange={updateActivitiesData} initialState={activitiesData} />;
     case 'livres':
-      return <Livres onDataChange={updateLivresData} livresData={livresData} />;
+      return <Livres onDataChange={updateLivresData} initialState={livresData} />;
     case 'musicals':
-      return <Musicals onDataChange={updateMusicalsData} musicalsData={musicalsData} />;
+      return <Musicals onDataChange={updateMusicalsData} initialState={musicalsData} />;
     case 'furnitures':
-      return <Furnitures onDataChange={updateFurnituresData} furnituresData={furnituresData} />;
+      return <Furnitures onDataChange={updateFurnituresData} initialState={furnituresData} />;
     case 'houseappliances':
-      return <Houseappliances onDataChange={updateHouseappliancesData} houseappliancesData={houseappliancesData} />;
+      return <Houseappliances onDataChange={updateHouseappliancesData} initialState={houseappliancesData} />;
     case 'electricaltools':
-      return <Electricaltools onDataChange={updateElectricaltoolsData} electricaltoolsData={electricaltoolsData} />;
+      return <Electricaltools onDataChange={updateElectricaltoolsData} initialState={electricaltoolsData} />;
     case 'ladders':
-      return <Ladders onDataChange={updateLaddersData} laddersData={laddersData} />;
+      return <Ladders onDataChange={updateLaddersData} initialState={laddersData} />;
     case 'mechanicaltools':
-      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} mechanicaltoolsData={mechanicaltoolsData} />;
+      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} initialState={mechanicaltoolsData} />;
     case 'powertools':
-      return <Powertools onDataChange={updatePowertoolsData} powertoolsData={powertoolsData} />;
+      return <Powertools onDataChange={updatePowertoolsData} initialState={powertoolsData} />;
     case 'pressurewashers':
-      return <Pressurewashers onDataChange={updatePressurewashersData} pressurewashersData={pressurewashersData} />;
+      return <Pressurewashers onDataChange={updatePressurewashersData} initialState={pressurewashersData} />;
     case 'services':
-      return <Services onDataChange={updateServicesData} servicesData={servicesData} />;
+      return <Services onDataChange={updateServicesData} initialState={servicesData} />;
     case 'boats':
-      return <Boats onDataChange={updateBoatsData} boatsData={boatsData} />;
+      return <Boats onDataChange={updateBoatsData} initialState={boatsData} />;
     case 'camions':
-      return <Camions onDataChange={updateCamionsData} camionsData={camionsData} />;
+      return <Camions onDataChange={updateCamionsData} initialState={camionsData} />;
     case 'caravans':
-      return <Caravans onDataChange={updateCaravansData} caravansData={caravansData} />;
+      return <Caravans onDataChange={updateCaravansData} initialState={caravansData} />;
     case 'cars':
-      return <Cars onDataChange={updateCarsData} carsData={carsData} />;
+      return <Cars onDataChange={updateCarsData} initialState={carsData} />;
     case 'engins':
-      return <Engins onDataChange={updateEnginsData} enginsData={enginsData} />;
+      return <Engins onDataChange={updateEnginsData} initialState={enginsData} />;
     case 'motos':
-      return <Motos onDataChange={updateMotosData} motosData={motosData} />;
+      return <Motos onDataChange={updateMotosData} initialState={motosData} />;
     case 'scooters':
-      return <Scooters onDataChange={updateScootersData} scootersData={scootersData} />;
+      return <Scooters onDataChange={updateScootersData} initialState={scootersData} />;
     case 'taxiaeroports':
-      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} taxiaeroportsData={taxiaeroportsData} />;
+      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} initialState={taxiaeroportsData} />;
     case 'transportations':
-      return <Transportations onDataChange={updateTransportationsData} transportationsData={transportationsData} />;
+      return <Transportations onDataChange={updateTransportationsData} initialState={transportationsData} />;
     case 'velos':
-      return <Velos onDataChange={updateVelosData} velosData={velosData} />;
+      return <Velos onDataChange={updateVelosData} initialState={velosData} />;
     default:
       return null;
   }
@@ -474,7 +474,10 @@ function EditListing() {
   const clickAddHandler = () => {
     navigate("/listing/create-listing");
   };
+  const [data, setData] = useState(null);
 
+  const category= data?.category;
+  const url= data?.url;
 
 
   const clickOpenHandler = (category, url) => {
@@ -1308,8 +1311,10 @@ function EditListing() {
     (async () => {
       try {
         const res = await CrudService.getListing(id);
-        const data = res.data.attributes;
         
+        const fetchedData = res.data.attributes;
+        setData(fetchedData);
+
         // Common fields
         const {
           title,
@@ -1327,22 +1332,9 @@ function EditListing() {
           sku = null,
           tags = "[]",
           images = [],
-        } = data;
+        } = fetchedData;
   
-        console.log("Fetched Data:", {
-          title,
-          description,
-          address,
-          city,
-          listingid,
-          country,
-          zip,
-          price,
-          currency,
-          sku,
-          tags,
-          images,
-        });
+        
   
         // Set common data
         setTitle({ text: title, error: false, textError: "" });
@@ -1361,7 +1353,6 @@ function EditListing() {
         switch (category) {
           case 'billiards': {
             const { billiards } = data;
-            console.log("Fetched billiards:", billiards);
 
             setBilliardsData(billiards);
             break;
@@ -1645,7 +1636,9 @@ function EditListing() {
     })();
   }, [id]);
   
+  //console.log("Initial billiardsData:", billiardsData);  // This should log your initial state
 
+  
 
 
   const updateBilliardsData = (field, value) => {
@@ -2493,10 +2486,7 @@ function EditListing() {
   };
 
 
-  const [data, setData] = useState(null);
 
-  const category= data?.category;
-  const url= data?.url;
 
 
 
@@ -2506,79 +2496,6 @@ function EditListing() {
   const handleStatusChange = (selectedOption) => {
     setSelectedStatus(selectedOption.value);
   };
-
-
-
-  const [menu, setMenu] = useState(null);
-
-  const openMenu = (event) => setMenu(event.currentTarget);
-  const closeMenu = () => setMenu(null);
-
-  const renderMenu = (
-    <Menu
-      anchorEl={menu}
-      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "left" }}
-      open={Boolean(menu)}
-      onClose={closeMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMenu}>Status: Paid</MenuItem>
-      <MenuItem onClick={closeMenu}>Status: Refunded</MenuItem>
-      <MenuItem onClick={closeMenu}>Status: Canceled</MenuItem>
-      <Divider sx={{ margin: "0.5rem 0" }} />
-      <MenuItem onClick={closeMenu}>
-        <SoftTypography variant="button" color="error" fontWeight="regular">
-          Remove Filter
-        </SoftTypography>
-      </MenuItem>
-    </Menu>
-  );
-
-
-
-
-  // TeamProfileCard dropdown menu state
-  const [marketingMenu, setMarketingMenu] = useState(null);
-  const [designMenu, setDesignMenu] = useState(null);
-
-  // TeamProfileCard dropdown menu handlers
-  const openMarketingMenu = (event) => setMarketingMenu(event.currentTarget);
-  const closeMarketingMenu = () => setMarketingMenu(null);
-  const openDesignMenu = (event) => setDesignMenu(event.currentTarget);
-  const closeDesignMenu = () => setDesignMenu(null);
-
-  // Dropdown menu for the digital marketing TeamProfileCard
-  const renderMarketingMenu = (
-    <Menu
-      anchorEl={marketingMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(marketingMenu)}
-      onClose={closeMarketingMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMarketingMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Something else here</MenuItem>
-    </Menu>
-  );
-
-  // Dropdown menu for the design TeamProfileCard
-  const renderDesignMenu = (
-    <Menu
-      anchorEl={designMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(designMenu)}
-      onClose={closeDesignMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeDesignMenu}>Action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Something else here</MenuItem>
-    </Menu>
-  );
 
 
 
@@ -2823,7 +2740,64 @@ function EditListing() {
                                   updateScootersData,
                                   updateTaxiaeroportsData,
                                   updateTransportationsData,
-                                  updateVelosData
+                                  updateVelosData,
+
+
+                                  billiardsData,
+                                  boxingsData,
+                                  divingsData,
+                                  footballsData,
+                                  golfsData,
+                                  huntingsData,
+                                  musculationsData,
+                                  surfsData,
+                                  tennisData,
+                                  audiosData,
+                                  camerasData,
+                                  chargersData,
+                                  dronesData,
+                                  gamingsData,
+                                  laptopsData,
+                                  lightingsData,
+                                  printersData,
+                                  routersData,
+                                  tablettesData,
+                                  eclairagesData,
+                                  mobiliersData,
+                                  photographiesData,
+                                  sonorisationsData,
+                                  tentesData,
+                                  clothesData,
+                                  jewelrysData,
+                                  apartmentsData,
+                                  bureauxsData,
+                                  magasinsData,
+                                  maisonsData,
+                                  riadsData,
+                                  terrainsData,
+                                  villasData,
+                                  activitiesData,
+                                  livresData,
+                                  musicalsData,
+                                  furnituresData,
+                                  houseappliancesData,
+                                  electricaltoolsData,
+                                  laddersData,
+                                  mechanicaltoolsData,
+                                  powertoolsData,
+                                  pressurewashersData,
+                                  servicesData,
+                                  boatsData,
+                                  camionsData,
+                                  caravansData,
+                                  carsData,
+                                  enginsData,
+                                  motosData,
+                                  scootersData,
+                                  taxiaeroportsData,
+                                  transportationsData,
+                                  velosData
+                                  
                                 )}
 
 
@@ -2922,10 +2896,7 @@ function EditListing() {
                                   industry="design team"
                                   rating={5}
                                   
-                                  dropdown={{
-                                    action: openDesignMenu,
-                                    menu: renderDesignMenu,
-                                  }}
+                                  
                                 />
                               </SoftBox>
                             </Grid>

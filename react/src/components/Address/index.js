@@ -17,7 +17,7 @@ function Address({ address, onAddressChange }) {
               name="address"
               value={address.address}
               onChange={onAddressChange}
-              placeholder="Eg. Soft"
+              placeholder="Eg. Casablanca"
             />
           </Grid>
           <Grid item xs={12} md={5}>
