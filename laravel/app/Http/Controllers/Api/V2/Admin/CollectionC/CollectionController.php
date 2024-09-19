@@ -73,6 +73,8 @@ class CollectionController extends JsonApiController
             }),
         ]);
     }
+
+
     function generateUniqueFileName($extension = 'jpg')
     {
 

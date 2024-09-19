@@ -73,11 +73,11 @@ function CreateStore() {
 
 
   const changePhoneHandler = (e) => {
-    setName({ ...phone, text: e.target.value });
+    setPhone({ ...phone, text: e.target.value });
   };
 
   const changeEmailHandler = (e) => {
-    setName({ ...email, text: e.target.value });
+    setEmail({ ...email, text: e.target.value });
   };
 
   const handleAddressChange = (e) => {
@@ -278,12 +278,7 @@ function CreateStore() {
                 <SoftBox mt={2}>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                      <SoftTypography
-                        component="label"
-                        variant="button"
-                        fontWeight="regular"
-                        color="text"
-                      >
+                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                         Description&nbsp;&nbsp;
                       </SoftTypography>
                     </SoftBox>
@@ -303,11 +298,11 @@ function CreateStore() {
           </Grid>
           
         </Grid>
-        <SoftBox  mt={4} mb={2} display="flex" justifyContent="flex-end">
+        <SoftBox  mt={2} mb={2} display="flex" justifyContent="center">
             <SoftButton variant="gradient" color="dark" size="small" type="submit">
               Save
             </SoftButton>
-          </SoftBox>
+        </SoftBox>
       </SoftBox>
     </DashboardLayout>
   );

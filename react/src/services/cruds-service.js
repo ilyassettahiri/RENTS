@@ -92,15 +92,15 @@ class CrudService {
   };
 
 
-  getDetailOnlinestore = async (id) => {
-    const onlinestoresEndpoint = `onlinestores/detail-onlinestore/${id}`;
+  getDetailOnlinestore = async () => {
+    const onlinestoresEndpoint = `onlinestores`;
     return await HttpService.get(onlinestoresEndpoint);
   };
 
 
-  updateOnlinestore = async (payload, id) => {
-    const onlinestoresEndpoint = `onlinestores/edit-onlinestore/${id}`;
-    return await HttpService.patch(onlinestoresEndpoint, payload);
+  updateOnlinestore = async (payload) => {
+    const uponlinestoresEndpoint = `onlinestores`;
+    return await HttpService.patch(uponlinestoresEndpoint, payload);
   };
 
 

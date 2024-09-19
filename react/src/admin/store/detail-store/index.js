@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 // @mui material components
@@ -25,35 +25,15 @@ import CrudService from "services/cruds-service";
 function DetailStore() {
 
 
+  const { t } = useTranslation();
 
+  const navigate = useNavigate();
 
-
-
-   let { state } = useLocation();
   
    const [data, setData] = useState([]);
 
 
 
-
-
-   useEffect(() => {
-     (async () => {
-       const response = await CrudService.getDetailOnlinestore();
-
-       console.log(' fetched:', response.data);
-
-
-       setData(response.data);
-     })();
-   }, []);
-
-
-
-   const { t } = useTranslation();
-
-   const navigate = useNavigate();
- 
    const [address, setAddress] = useState({
      address: "",
      city: "",
@@ -93,6 +73,41 @@ function DetailStore() {
    const [backgroundImage, setBackgroundImage] = useState(null);
  
   
+
+   useEffect(() => {
+    (async () => {
+      try {
+        const response = await CrudService.getDetailOnlinestore();
+        const storeData = response.data[0].attributes; // Assuming it's the first element of the array
+        
+        // Log the fetched data
+        console.log('Fetched:', storeData);
+  
+        // Set individual state variables based on the fetched data
+        setData(storeData);
+        setName({ text: storeData.name, error: false, textError: "" });
+        setPhone({ text: storeData.phone, error: false, textError: "" });
+        setEmail({ text: storeData.email, error: false, textError: "" });
+        setSelectedCategory(storeData.category || '');
+        setDescription(storeData.description || '');
+        setAddress({
+          address: storeData.address || "",
+          city: storeData.city || "",
+          country: storeData.country || "",
+          zip: storeData.zip || "",
+        });
+        setProfileImage(storeData.profile_picture || null);
+        setBackgroundImage(storeData.picture || null);
+        
+      } catch (error) {
+        console.error('Error fetching store details:', error);
+      }
+    })();
+  }, []);
+  
+
+
+
  
    const changeNameHandler = (e) => {
      setName({ ...name, text: e.target.value });
@@ -100,11 +115,11 @@ function DetailStore() {
  
  
    const changePhoneHandler = (e) => {
-     setName({ ...phone, text: e.target.value });
+     setPhone({ ...phone, text: e.target.value });
    };
  
    const changeEmailHandler = (e) => {
-     setName({ ...email, text: e.target.value });
+     setEmail({ ...email, text: e.target.value });
    };
  
    const handleAddressChange = (e) => {
@@ -174,7 +189,7 @@ function DetailStore() {
      }
  
      try {
-       await CrudService.createOnlinestore(formData);
+       await CrudService.updateOnlinestore(formData);
        navigate("/listing/all", {
          state: { value: true, text: "The Store was successfully created" },
        });

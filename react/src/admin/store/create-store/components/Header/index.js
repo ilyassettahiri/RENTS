@@ -13,14 +13,14 @@ import EditIcon from "@mui/icons-material/Edit";
 
 // Images
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH;
+const imagePath = process.env.REACT_APP_IMAGE_BASE_URL;
 
 
 function Header({ profileImage, backgroundImage, onProfileImageChange, onBackgroundImageChange }) {
-  const defaultImage = `${imagePath}/curved-images/curved9.jpg`;
+  const defaultImage = `${imagePath}/curved9.jpg`;
 
-  const profileImgSrc = profileImage ? URL.createObjectURL(profileImage) : defaultImage;
-  const backgroundImgSrc = backgroundImage ? URL.createObjectURL(backgroundImage) : defaultImage;
+  const profileImgSrc = profileImage ? (typeof profileImage === 'object' ? URL.createObjectURL(profileImage) : `${imagePath}${profileImage}`) : defaultImage;
+  const backgroundImgSrc = backgroundImage ? (typeof backgroundImage === 'object' ? URL.createObjectURL(backgroundImage) : `${imagePath}${backgroundImage}`) : defaultImage;
 
   return (
     <SoftBox position="relative">
