@@ -251,15 +251,17 @@ function DetailStore() {
 
   return (
     <DashboardLayout>
-      <SoftBox mt={1} mb={20} component="form" method="POST" onSubmit={submitHandler}>
+      <SoftBox mt={1} mb={3} component="form" method="POST" onSubmit={submitHandler}>
 
 
-      <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
 
 
 
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={10}>
+
+            <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
+
             <Header 
               profileImage={profileImage} 
               backgroundImage={backgroundImage}
@@ -397,11 +399,22 @@ function DetailStore() {
           </Grid>
           
         </Grid>
-        <SoftBox  mt={4} mb={2} display="flex" justifyContent="flex-end">
-            <SoftButton variant="gradient" color="dark" size="small" type="submit">
-              Save
-            </SoftButton>
-          </SoftBox>
+
+        <Grid container justifyContent="center">
+
+            <Grid item xs={12} lg={10}>
+                <SoftBox display="flex" justifyContent="center" mb={5}>
+
+                  <SoftButton variant="gradient" color="info" size="small" type="submit">
+                    Save
+                  </SoftButton>
+                </SoftBox>
+
+            </Grid>
+
+        </Grid>
+
+
       </SoftBox>
     </DashboardLayout>
   );

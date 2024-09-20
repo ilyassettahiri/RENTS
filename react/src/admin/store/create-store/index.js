@@ -298,11 +298,27 @@ function CreateStore() {
           </Grid>
           
         </Grid>
-        <SoftBox  mt={2} mb={2} display="flex" justifyContent="center">
-            <SoftButton variant="gradient" color="dark" size="small" type="submit">
-              Save
-            </SoftButton>
-        </SoftBox>
+        
+
+
+
+        <Grid container justifyContent="center">
+
+            <Grid item xs={12} lg={10}>
+                <SoftBox display="flex" justifyContent="center" mb={5}>
+
+                  <SoftButton variant="gradient" color="info" size="small" type="submit">
+                    Save
+                  </SoftButton>
+                </SoftBox>
+
+            </Grid>
+
+        </Grid>
+
+
+
+
       </SoftBox>
     </DashboardLayout>
   );
