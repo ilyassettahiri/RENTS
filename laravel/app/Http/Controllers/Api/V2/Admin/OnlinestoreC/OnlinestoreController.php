@@ -44,6 +44,7 @@ class OnlinestoreController extends JsonApiController
                     'attributes' => [
                         'name' => $onlinestore->name,
                         'phone' => $onlinestore->phone,
+                        'id' => $onlinestore->id,
 
                         'email' => $onlinestore->email,
                         'category' => $onlinestore->type,
@@ -120,7 +121,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         if ($request->hasFile('data.attributes.picture')) {
             $file = $request->file('data.attributes.picture');
@@ -221,13 +222,13 @@ class OnlinestoreController extends JsonApiController
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }*/
+        }
 
 
 
 
         // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
+        /*if ($request->hasFile('data.attributes.picture')) {
             $picturefile = $request->file('data.attributes.picture');
             $picturePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
             $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
@@ -237,7 +238,7 @@ class OnlinestoreController extends JsonApiController
             $profil_picturefile = $request->file('data.attributes.profil_picture');
             $profil_picturePath = Storage::disk('spaces')->put('storage/images', $profil_picturefile, 'public');
             $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
-        }
+        }*/
 
 
 
@@ -263,6 +264,7 @@ class OnlinestoreController extends JsonApiController
         $onlinestore->phone = $phone;
         $onlinestore->email = $email;
         $onlinestore->type = $type;
+        $onlinestore->description = $description;
 
 
         $onlinestore->picture = $picturerelativePath;
@@ -308,7 +310,7 @@ class OnlinestoreController extends JsonApiController
     {
         $user = Auth::user();
 
-        $userstore = Onlinestore::where('user_id', $user->id)->first();
+        $onlinestore = Onlinestore::where('user_id', $user->id)->first();
 
         $request = app('request');
 
@@ -317,134 +319,11 @@ class OnlinestoreController extends JsonApiController
             'data.attributes.name' => 'required|string',
             'data.attributes.email' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:6048', // Validate images if present
-            'data.attributes.profil_picture' => 'sometimes|image|max:6048', // Validate images if present
         ]);
 
-        // Initialize variables for image paths
-        $picturerelativePath = null;
-        $profil_picturerelativePath = null;
 
 
 
-        /*$manager = new ImageManager(new Driver());
-
-        if ($request->hasFile('data.attributes.picture')) {
-            $file = $request->file('data.attributes.picture');
-
-
-                try {
-
-
-                    $imagelarge = $manager->read($file->getRealPath());
-
-
-
-                    $imagelarge->scaleDown(width: 1500);
-
-
-
-
-                    $fileNamelarge = $this->generateUniqueFileName('jpg');
-
-
-
-                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
-
-
-
-
-                    $encodedImagelarge->save($fileNamelarge);
-
-
-
-
-
-
-                    $filePathlarge = Storage::disk('spaces')->put('storage/storelarge/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
-
-
-
-
-                    $relativePathlarge = '/storelarge/' . $fileNamelarge;
-                    $picturerelativePath = $relativePathlarge;
-
-
-
-
-
-                } catch (\Exception $e) {
-                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
-                }
-
-        }
-
-
-        if ($request->hasFile('data.attributes.profil_picture')) {
-            $file = $request->file('data.attributes.profil_picture');
-
-
-                try {
-
-
-                    $imagesmall = $manager->read($file->getRealPath());
-
-
-
-                    $imagesmall->scaleDown(width: 100);
-
-
-
-
-                    $fileNamesmall = $this->generateUniqueFileName('jpg');
-
-
-
-                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
-
-
-
-
-                    $encodedImagesmall->save($fileNamesmall);
-
-
-
-
-
-
-                    $filePathsmall = Storage::disk('spaces')->put('storage/storesmall/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
-
-
-
-
-                    $relativePathsmall = '/storesmall/' . $fileNamesmall;
-                    $profil_picturerelativePath = $relativePathsmall;
-
-
-
-
-
-                } catch (\Exception $e) {
-                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
-                }
-
-        }*/
-
-
-
-
-        // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
-            $picturefile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
-            $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
-        }
-
-        if ($request->hasFile('data.attributes.profil_picture')) {
-            $profil_picturefile = $request->file('data.attributes.profil_picture');
-            $profil_picturePath = Storage::disk('spaces')->put('storage/images', $profil_picturefile, 'public');
-            $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
-        }
 
 
 
@@ -462,10 +341,12 @@ class OnlinestoreController extends JsonApiController
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
         $url = $this->generateUrl($name);
+        $picturerelativePath = $request->input('data.attributes.picture');
+        $profil_picturerelativePath = $request->input('data.attributes.profil_picture');
 
 
-        // Create a new Onlinestore instance
-        $onlinestore = new Onlinestore();
+
+
         $onlinestore->name = $name;
         $onlinestore->phone = $phone;
         $onlinestore->email = $email;
@@ -479,11 +360,9 @@ class OnlinestoreController extends JsonApiController
         $onlinestore->city = $city;
         $onlinestore->country = $country;
         $onlinestore->zip = $zip;
-        $onlinestore->user_id = $user->id;
+
         $onlinestore->save();
 
-        // Update all listings of the user to have the onlinestore_id set to the newly created store's ID
-        Listing::where('user_id', $user->id)->update(['onlinestore_id' => $onlinestore->id]);
 
 
         // Return a JSON:API compliant response

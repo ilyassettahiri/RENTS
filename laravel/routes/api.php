@@ -319,6 +319,10 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::post('/uploads/listings', [UploadController::class, 'uploadlisting']);
 
+    Route::post('/uploads/store', [UploadController::class, 'uploadstore']);
+
+
+
 
 
     Route::get('listings/edit-listing/{id}', [EditListingController::class, 'getListing']);

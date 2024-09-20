@@ -12,6 +12,15 @@ class CrudService {
     const imageUpdateCollection = `uploads/collections`;
     return await HttpService.post(imageUpdateCollection, formData);
   };
+
+
+
+  imageUploadStore = async (formData) => {
+    
+    const imageUploadStore = `uploads/store`;
+    return await HttpService.post(imageUploadStore, formData);
+  };
+  
   
 
   imageUploadListing = async (formData) => {
@@ -98,8 +107,8 @@ class CrudService {
   };
 
 
-  updateOnlinestore = async (payload) => {
-    const uponlinestoresEndpoint = `onlinestores`;
+  updateOnlinestore = async (payload, id) => {
+    const uponlinestoresEndpoint = `onlinestores/${id}`;
     return await HttpService.patch(uponlinestoresEndpoint, payload);
   };
 

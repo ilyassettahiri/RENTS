@@ -181,15 +181,42 @@ function DetailStore() {
      formData.append("data[attributes][country]", address.country);
      formData.append("data[attributes][zip]", address.zip);
  
-     if (profileImage) {
-       formData.append("data[attributes][profil_picture]", profileImage);
-     }
-     if (backgroundImage) {
-       formData.append("data[attributes][picture]", backgroundImage);
-     }
+     
  
      try {
-       await CrudService.updateOnlinestore(formData);
+
+
+      let pictureUrl = backgroundImage;
+
+      let profileUrl = profileImage;
+
+  
+      console.log("Initial picture URL:", pictureUrl);
+      console.log("Initial picture URL:", profileUrl);
+
+      
+  
+        // Upload the picture separately if present
+        if (backgroundImage && profileImage) {
+          const formData = new FormData();
+          formData.append('attachmentpicture', backgroundImage);
+          formData.append('attachmentprofile', profileImage);
+
+    
+          const pictureUploadResponse = await CrudService.imageUploadStore(formData);
+          pictureUrl = pictureUploadResponse.data.picturerelativePath;
+          profileUrl = pictureUploadResponse.data.profil_picturerelativePath;
+          
+        }
+
+       
+          formData.append("data[attributes][profil_picture]", pictureUrl);
+        
+        
+          formData.append("data[attributes][picture]", profileUrl);
+        
+
+       await CrudService.updateOnlinestore(formData, data.id);
        navigate("/listing/all", {
          state: { value: true, text: "The Store was successfully created" },
        });
@@ -322,12 +349,8 @@ function DetailStore() {
                 <SoftBox mt={2}>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                      <SoftTypography
-                        component="label"
-                        variant="button"
-                        fontWeight="regular"
-                        color="text"
-                      >
+                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+
                         Description&nbsp;&nbsp;
                       </SoftTypography>
                     </SoftBox>

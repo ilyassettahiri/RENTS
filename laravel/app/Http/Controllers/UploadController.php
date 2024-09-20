@@ -313,6 +313,145 @@ class UploadController extends Controller
     }
 
 
+
+
+    public function uploadstore(Request $request)
+    {
+
+
+
+
+            $request->validate([
+                'attachmentpicture' => 'required|image|max:6048',
+                'attachmentprofile' => 'required|image|max:6048',
+
+            ]);
+
+
+
+
+        // Initialize variables for image paths
+        $picturerelativePath = null;
+        $profil_picturerelativePath = null;
+
+
+
+        $manager = new ImageManager(new Driver());
+
+        if ($request->hasFile('attachmentpicture')) {
+            $file = $request->file('attachmentprofile');
+
+
+                try {
+
+
+                    $imagelarge = $manager->read($file->getRealPath());
+
+
+
+                    $imagelarge->scaleDown(width: 1500);
+
+
+
+
+                    $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+
+
+
+
+                    $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+                    $filePathlarge = Storage::disk('spaces')->put('storage/storelarge/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+                    $relativePathlarge = '/storelarge/' . $fileNamelarge;
+                    $picturerelativePath = $relativePathlarge;
+
+
+
+
+
+                } catch (\Exception $e) {
+                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                }
+
+        }
+
+
+        if ($request->hasFile('data.attributes.profil_picture')) {
+            $file = $request->file('data.attributes.profil_picture');
+
+
+                try {
+
+
+                    $imagesmall = $manager->read($file->getRealPath());
+
+
+
+                    $imagesmall->scaleDown(width: 100);
+
+
+
+
+                    $fileNamesmall = $this->generateUniqueFileName('jpg');
+
+
+
+                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+
+
+
+
+                    $encodedImagesmall->save($fileNamesmall);
+
+
+
+
+
+
+                    $filePathsmall = Storage::disk('spaces')->put('storage/storesmall/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
+
+
+
+
+                    $relativePathsmall = '/storesmall/' . $fileNamesmall;
+                    $profil_picturerelativePath = $relativePathsmall;
+
+
+
+
+
+                } catch (\Exception $e) {
+                    Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                }
+
+        }
+
+
+
+
+
+
+        return response()->json([
+            'picturerelativePath' => $picturerelativePath,
+            'profil_picturerelativePath' => $profil_picturerelativePath,
+        ], 201);
+
+    }
+
+
     public function uploadlisting(Request $request)
     {
 
