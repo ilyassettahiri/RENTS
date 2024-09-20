@@ -213,4 +213,29 @@ class TeamController extends JsonApiController
 
 
 
+    public function delete(JsonApiRoute $route, Store $store )
+    {
+
+
+
+        $request = app('request');
+
+
+        $id = $route->resourceId();
+
+
+            $listing = User::find($id);
+
+            // Check if listing exists
+            if ($listing) {
+                $listing->delete(); // Delete the listing
+                return response()->json(['message' => 'Listing deleted successfully'], 200);
+            }
+
+            // Return error if listing not found
+            return response()->json(['message' => 'Listing not found'], 404);
+
+    }
+
+
 }

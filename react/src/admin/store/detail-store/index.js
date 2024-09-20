@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import SoftSelect from "components/SoftSelect";
+import ListActionHeader from "admin/components/ListActionHeader";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -227,9 +228,36 @@ function DetailStore() {
 
 
 
+  const clickDeleteHandler = async () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this listing?");
+  
+    if (!isConfirmed) {
+      // If the user cancels, stop the function execution
+      return;
+    }
+  
+    try {
+      // Send delete request
+      await CrudService.deleteOnlinestore(data.id);
+      
+      // Navigate after successful deletion
+      navigate("/listing/create-listing");
+    } catch (error) {
+      console.error('Failed to delete listing:', error);
+      // You can show an error message here if needed
+    }
+  };
+
+
   return (
     <DashboardLayout>
       <SoftBox mt={1} mb={20} component="form" method="POST" onSubmit={submitHandler}>
+
+
+      <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
+
+
+
         <Grid container justifyContent="center">
           <Grid item xs={12} lg={10}>
             <Header 

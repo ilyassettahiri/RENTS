@@ -311,12 +311,12 @@ class OnlinestoreController extends JsonApiController
     {
         $request = app('request');
 
-    // Log the start of the update process
-    Log::info('Starting update process.', ['route_parameters' => $route->parameters()]);
+        // Log the start of the update process
+        Log::info('Starting update process.', ['route_parameters' => $route->parameters()]);
 
-    // Get the ID from the route parameters and log it
-    $id = $route->resourceId();
-    Log::info('Fetched resource ID from route.', ['id' => $id]);
+        // Get the ID from the route parameters and log it
+        $id = $route->resourceId();
+        Log::info('Fetched resource ID from route.', ['id' => $id]);
 
 
         $request->validate([
@@ -383,6 +383,32 @@ class OnlinestoreController extends JsonApiController
 
             ]
         ], 201); // 201 Created status code
+    }
+
+
+
+    public function delete(JsonApiRoute $route, Store $store )
+    {
+
+
+
+        $request = app('request');
+
+
+        $id = $route->resourceId();
+
+
+            $listing = Onlinestore::find($id);
+
+            // Check if listing exists
+            if ($listing) {
+                $listing->delete(); // Delete the listing
+                return response()->json(['message' => 'Listing deleted successfully'], 200);
+            }
+
+            // Return error if listing not found
+            return response()->json(['message' => 'Listing not found'], 404);
+
     }
 
 

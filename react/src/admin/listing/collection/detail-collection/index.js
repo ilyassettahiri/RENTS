@@ -141,10 +141,26 @@ const DetailCollection = () => {
   
 
 
-  const clickAddHandler = () => {
-    navigate("/listing/create-listing");
+  
+  const clickDeleteHandler = async () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this listing?");
+  
+    if (!isConfirmed) {
+      // If the user cancels, stop the function execution
+      return;
+    }
+  
+    try {
+      // Send delete request
+      await CrudService.deleteCollection(id);
+      
+      // Navigate after successful deletion
+      navigate("/listing/create-listing");
+    } catch (error) {
+      console.error('Failed to delete listing:', error);
+      // You can show an error message here if needed
+    }
   };
-
   
 
 
@@ -159,9 +175,9 @@ const DetailCollection = () => {
             customerNumber={id}
             createdAt={data?.created_at}
             status={data?.status}
-            title="New Collection"
+            title="Delete Collection"
             idname="Collection"
-            clickAddHandler={clickAddHandler}
+            clickAddHandler={clickDeleteHandler}
            
 
             statusOptions={[
