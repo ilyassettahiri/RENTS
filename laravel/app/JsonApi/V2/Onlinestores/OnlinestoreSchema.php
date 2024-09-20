@@ -2,7 +2,7 @@
 
 namespace App\JsonApi\V2\Onlinestores;
 
-use App\Models\Category;
+use App\Models\Onlinestore;
 use Carbon\Carbon;
 use LaravelJsonApi\Eloquent\Contracts\Paginator;
 use LaravelJsonApi\Eloquent\Fields\DateTime;

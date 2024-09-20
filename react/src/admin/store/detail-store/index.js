@@ -167,20 +167,7 @@ function DetailStore() {
        return;
      }
  
-     const formData = new FormData();
-     formData.append("data[attributes][name]", name.text);
-     formData.append('data[attributes][category]', selectedCategory);
- 
-     formData.append("data[attributes][phone]", phone.text);
- 
-     formData.append("data[attributes][email]", email.text);
- 
-     formData.append("data[attributes][description]", description);
-     formData.append("data[attributes][address]", address.address);
-     formData.append("data[attributes][city]", address.city);
-     formData.append("data[attributes][country]", address.country);
-     formData.append("data[attributes][zip]", address.zip);
- 
+
      
  
      try {
@@ -191,32 +178,44 @@ function DetailStore() {
       let profileUrl = profileImage;
 
   
-      console.log("Initial picture URL:", pictureUrl);
-      console.log("Initial picture URL:", profileUrl);
-
       
   
         // Upload the picture separately if present
-        if (backgroundImage && profileImage) {
+        if (backgroundImage) {
           const formData = new FormData();
           formData.append('attachmentpicture', backgroundImage);
           formData.append('attachmentprofile', profileImage);
 
     
           const pictureUploadResponse = await CrudService.imageUploadStore(formData);
-          pictureUrl = pictureUploadResponse.data.picturerelativePath;
-          profileUrl = pictureUploadResponse.data.profil_picturerelativePath;
+          pictureUrl = pictureUploadResponse.picturerelativePath;
+          profileUrl = pictureUploadResponse.profil_picturerelativePath;
           
         }
 
+
+        const updatedStore = {
+          type: 'stores',
+          attributes: {
+            name: name.text,
+            category: selectedCategory,
+            phone: phone.text,
+            email: email.text,
+            description: description,
+            address: address.address,
+            city: address.city,
+            country: address.country,
+            zip: address.zip,
+            profil_picture: profileUrl, // Use the uploaded profile picture URL
+            picture: pictureUrl, // Use the uploaded background picture URL
+          },
+        };
+
+
        
-          formData.append("data[attributes][profil_picture]", pictureUrl);
-        
-        
-          formData.append("data[attributes][picture]", profileUrl);
         
 
-       await CrudService.updateOnlinestore(formData, data.id);
+       await CrudService.updateOnlinestore(updatedStore, data.id);
        navigate("/listing/all", {
          state: { value: true, text: "The Store was successfully created" },
        });

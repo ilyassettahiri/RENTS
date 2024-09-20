@@ -336,7 +336,34 @@ class UploadController extends Controller
 
 
 
-        $manager = new ImageManager(new Driver());
+        if ($request->hasFile('attachmentpicture')) {
+            $files = $request->file('attachmentpicture');
+
+
+                $filePath = Storage::disk('public')->put('images', $files);
+                $picturerelativePath = '/' . $filePath; // Prepend '/' to make it a relative path
+
+
+
+
+        }
+
+
+
+        if ($request->hasFile('attachmentprofile')) {
+            $files = $request->file('attachmentprofile');
+
+
+                $filePathaa = Storage::disk('public')->put('images', $files);
+                $profil_picturerelativePath = '/' . $filePathaa; // Prepend '/' to make it a relative path
+
+
+        }
+
+
+
+
+        /*$manager = new ImageManager(new Driver());
 
         if ($request->hasFile('attachmentpicture')) {
             $file = $request->file('attachmentprofile');
@@ -389,8 +416,8 @@ class UploadController extends Controller
         }
 
 
-        if ($request->hasFile('data.attributes.profil_picture')) {
-            $file = $request->file('data.attributes.profil_picture');
+        if ($request->hasFile('attachmentprofile')) {
+            $file = $request->file('attachmentprofile');
 
 
                 try {
@@ -437,7 +464,7 @@ class UploadController extends Controller
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }
+        }*/
 
 
 

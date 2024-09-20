@@ -12,6 +12,7 @@ use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
+use Illuminate\Support\Facades\Log;
 
 use Illuminate\Support\Str;
 
@@ -308,21 +309,25 @@ class OnlinestoreController extends JsonApiController
 
     public function update(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-
-        $onlinestore = Onlinestore::where('user_id', $user->id)->first();
-
         $request = app('request');
 
-        // Validate the request
+    // Log the start of the update process
+    Log::info('Starting update process.', ['route_parameters' => $route->parameters()]);
+
+    // Get the ID from the route parameters and log it
+    $id = $route->resourceId();
+    Log::info('Fetched resource ID from route.', ['id' => $id]);
+
+
         $request->validate([
-            'data.attributes.name' => 'required|string',
-            'data.attributes.email' => 'required|string',
-            'data.attributes.description' => 'required|string',
+            'attributes.name' => 'required|string',
+            'attributes.email' => 'required|string',
+            'attributes.description' => 'required|string',
         ]);
 
 
 
+        $onlinestore = Onlinestore::findOrFail($id);
 
 
 
@@ -330,19 +335,19 @@ class OnlinestoreController extends JsonApiController
 
 
         // Retrieve other input values
-        $name = $request->input('data.attributes.name');
-        $description = $request->input('data.attributes.description');
-        $phone = $request->input('data.attributes.phone');
-        $email = $request->input('data.attributes.email');
-        $type = $request->input('data.attributes.category');
+        $name = $request->input('attributes.name');
+        $description = $request->input('attributes.description');
+        $phone = $request->input('attributes.phone');
+        $email = $request->input('attributes.email');
+        $type = $request->input('attributes.category');
 
-        $address = $request->input('data.attributes.address');
-        $city = $request->input('data.attributes.city');
-        $country = $request->input('data.attributes.country');
-        $zip = $request->input('data.attributes.zip');
+        $address = $request->input('attributes.address');
+        $city = $request->input('attributes.city');
+        $country = $request->input('attributes.country');
+        $zip = $request->input('attributes.zip');
         $url = $this->generateUrl($name);
-        $picturerelativePath = $request->input('data.attributes.picture');
-        $profil_picturerelativePath = $request->input('data.attributes.profil_picture');
+        $picturerelativePath = $request->input('attributes.picture');
+        $profil_picturerelativePath = $request->input('attributes.profil_picture');
 
 
 
@@ -372,17 +377,10 @@ class OnlinestoreController extends JsonApiController
                 'id' => $onlinestore->id,
                 'attributes' => [
                     'name' => $onlinestore->name,
-                    'user_id' => $onlinestore->user_id,
+
                     'created_at' => $onlinestore->created_at,
                 ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
+
             ]
         ], 201); // 201 Created status code
     }
