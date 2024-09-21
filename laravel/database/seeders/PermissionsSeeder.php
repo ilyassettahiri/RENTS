@@ -49,6 +49,12 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit categories']);
         Permission::create(['name' => 'delete categories']);
 
+
+        Permission::create(['name' => 'view onlinestores']);
+        Permission::create(['name' => 'create onlinestores']);
+        Permission::create(['name' => 'edit onlinestores']);
+        Permission::create(['name' => 'delete onlinestores']);
+
         // Reservation permissions
         Permission::create(['name' => 'view reservations']);
         Permission::create(['name' => 'create reservations']);
@@ -463,6 +469,12 @@ class PermissionsSeeder extends Seeder
             'edit collections',
             'delete collections',
 
+
+            'view onlinestores',
+            'create onlinestores',
+            'edit onlinestores',
+            'delete onlinestores',
+
             'view reservations',
             'create reservations',
             'edit reservations',
@@ -803,6 +815,9 @@ class PermissionsSeeder extends Seeder
             'view discounts',
             'view tags',
             'view items',
+
+            'view onlinestores',
+
 
             'view billiards',
 

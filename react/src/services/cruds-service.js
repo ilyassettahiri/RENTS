@@ -82,8 +82,8 @@ class CrudService {
   };
 
   deleteOnlinestore = async (id) => {
-    const endpoint = `onlinestores/${id}`;
-    return await HttpService.delete(endpoint);
+    const onlinestoresEndpoint = `onlinestores/${id}`;
+    return await HttpService.delete(onlinestoresEndpoint);
   };
 
   createOnlinestore = async (payload) => {

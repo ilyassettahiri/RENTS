@@ -58,10 +58,10 @@ function Dashboard() {
     (async () => {
       const response = await CrudService.getDashboard();
 
-      console.log(' fetched:', response.data);
+      console.log(' fetched:', response.data.attributes);
 
 
-      setData(response.data);
+      setData(response.data.attributes);
     })();
   }, []);
 
@@ -97,15 +97,15 @@ function Dashboard() {
               <Grid item xs={12} sm={5}>
                 <SoftBox mb={3}>
                   <MiniStatisticsCard
-                    title={{ text: "today's money", fontWeight: "bold" }}
-                    count="$53,000"
+                    title={{ text: "Today Revenue ", fontWeight: "bold" }}
+                    count={data.totalRevenueToday}
                     percentage={{ color: "success", text: "+55%" }}
                     icon={{ color: "info", component: "paid" }}
                   />
                 </SoftBox>
                 <MiniStatisticsCard
-                  title={{ text: "today's users", fontWeight: "bold" }}
-                  count="2,300"
+                  title={{ text: "Today Reservations", fontWeight: "bold" }}
+                  count={data.totalReservationsToday}
                   percentage={{ color: "success", text: "+3%" }}
                   icon={{ color: "info", component: "public" }}
                 />
@@ -113,16 +113,16 @@ function Dashboard() {
               <Grid item xs={12} sm={5}>
                 <SoftBox mb={3}>
                   <MiniStatisticsCard
-                    title={{ text: "new clients", fontWeight: "bold" }}
-                    count="+3,462"
+                    title={{ text: "Today Visitors", fontWeight: "bold" }}
+                    count="3,462"
                     percentage={{ color: "error", text: "-2%" }}
                     icon={{ color: "info", component: "emoji_events" }}
                   />
                 </SoftBox>
                 <SoftBox mb={3}>
                   <MiniStatisticsCard
-                    title={{ text: "sales", fontWeight: "bold" }}
-                    count="$103,430"
+                    title={{ text: "This Month Revenue", fontWeight: "bold" }}
+                    count={data.totalRevenueThisMonth}
                     percentage={{ color: "success", text: "+5%" }}
                     icon={{
                       color: "info",
@@ -136,7 +136,7 @@ function Dashboard() {
           <Grid item xs={12} md={10} lg={7}>
             <Grid item xs={12} lg={10}>
               <SoftBox mb={3} position="relative">
-                <SalesTable title="Sales by Country" rows={salesTableData} />
+                <SalesTable title="Top 5 Listings" rows={salesTableData} />
               </SoftBox>
             </Grid>
           </Grid>

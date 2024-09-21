@@ -7,17 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+
 use LaravelJsonApi\Core\Document\Error;
 use LaravelJsonApi\Core\Responses\ErrorResponse;
 use LaravelJsonApi\Core\Responses\DataResponse;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
+use Carbon\Carbon;
 
 
 
 use App\Models\Listing;
-use App\Models\Collection;
+
+use App\Models\Reservation;
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -35,29 +39,65 @@ class DashboardController extends JsonApiController
     public function index(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
 
+        // Get the total number of reservations made today
+        $totalReservationsToday = Reservation::where('user_id', $user->id)
+            ->whereDate('created_at', Carbon::today())
+            ->count();
+
+        // Get the total number of reservations made this month
+        $totalReservationsThisMonth = Reservation::where('user_id', $user->id)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->count();
+
+        // Calculate the total revenue from reservations today
+        $totalRevenueToday = Reservation::where('user_id', $user->id)
+            ->whereDate('created_at', Carbon::today())
+            ->sum('listings_price');
+
+        // Calculate the total revenue from reservations this month
+        $totalRevenueThisMonth = Reservation::where('user_id', $user->id)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->sum('listings_price');
+
+        // Get the top listings for this month based on reservation count
+        $topListingsThisMonths = Reservation::getTopListingsOfMonth();
+
+        // Map over the top listings and get their details
+        $topListingsDetails = $topListingsThisMonths->map(function ($topListing) {
+            $listing = Listing::find($topListing->listing_id);
+
+            if ($listing) {
+                return [
+                    'category' => $listing->category,
+                    'url' => $listing->url,
+                    'id' => $listing->id,
+                    'title' => $listing->title,
+                    'price' => $listing->price,
+                    'status' => $listing->status,
+                    'picture' => $listing->picture,
+                    'user_id' => $listing->user_id,
+                    'created_at' => $listing->created_at,
+                    'updated_at' => $listing->updated_at,
+                    'reservation_count' => $topListing->reservation_count, // Add reservation count
+                ];
+            }
+
+            return null; // If listing not found
+        })->filter(); // Remove null values if a listing is not found
 
         return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
-                return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
-                    'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
-                    ],
-                    'relationships' => [
-                        'user' => [
-                            'data' => [
-                                'type' => 'users',
-                                'id' => $user->id,
-                            ],
-                        ],
-                    ],
-                ];
-            }),
+            'data' => [
+                'attributes' => [
+                    'totalReservationsToday' => $totalReservationsToday,
+                    'totalReservationsThisMonth' => $totalReservationsThisMonth,
+                    'totalRevenueToday' => $totalRevenueToday,
+                    'totalRevenueThisMonth' => $totalRevenueThisMonth,
+                    'topListingsThisMonths' => $topListingsDetails,
+                ],
+            ],
         ]);
     }
 

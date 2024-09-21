@@ -231,13 +231,13 @@ class OnlinestoreController extends JsonApiController
         // Handle image uploads
         /*if ($request->hasFile('data.attributes.picture')) {
             $picturefile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
+            $picturePath = Storage::disk('public')->put('images', $picturefile, 'public');
             $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
         }
 
         if ($request->hasFile('data.attributes.profil_picture')) {
             $profil_picturefile = $request->file('data.attributes.profil_picture');
-            $profil_picturePath = Storage::disk('spaces')->put('storage/images', $profil_picturefile, 'public');
+            $profil_picturePath = Storage::disk('public')->put('images', $profil_picturefile, 'public');
             $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
         }*/
 
@@ -396,6 +396,7 @@ class OnlinestoreController extends JsonApiController
 
 
         $id = $route->resourceId();
+        Log::info('Deleting listing with ID: ' . $id);
 
 
             $listing = Onlinestore::find($id);
