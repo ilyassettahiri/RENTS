@@ -44,6 +44,7 @@ function Dashboard() {
   const [topListingsRows, setTopListingsRows] = useState([]);
   const [currentMonthReservations, setCurrentMonthReservations] = useState([]);
   const [lastMonthReservations, setLastMonthReservations] = useState([]);
+  const [reservationsPerMonth, setReservationsPerMonth] = useState([]);
 
 
 
@@ -92,6 +93,14 @@ function Dashboard() {
       setCurrentMonthReservations(currentMonth);
       setLastMonthReservations(lastMonth);
 
+
+            // Store reservation counts per month for the current year
+      const reservationsPerMonthData = attributes.reservationsPerMonthThisYear.map(month => ({
+        month: month.month,  // 1 = Jan, 2 = Feb, etc.
+        count: month.count,  // Number of reservations
+      }));
+      setReservationsPerMonth(reservationsPerMonthData);
+
     })();
   }, []);
 
@@ -113,6 +122,19 @@ function Dashboard() {
       },
     ],
   };
+
+
+
+    // Prepare data for the bar chart (reservations per month for this year)
+    const barChartData = {
+      labels: reservationsPerMonth.map(item => format(new Date(2024, item.month - 1), "MMM")),
+      datasets: [
+        {
+          label: "Reservations",
+          data: reservationsPerMonth.map(item => item.count),
+        },
+      ],
+    };
 
 
 
@@ -202,7 +224,7 @@ function Dashboard() {
                     (<strong>+23%</strong>) than last week
                   </>
                 }
-                chart={chart}
+                chart={barChartData}
                 items={items}
               />
             </Grid>

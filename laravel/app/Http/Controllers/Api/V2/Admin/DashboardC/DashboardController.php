@@ -82,6 +82,14 @@ class DashboardController extends JsonApiController
             ->get();
 
 
+                // Get the number of reservations for each month in the current year
+        $reservationsPerMonthThisYear = Reservation::select(DB::raw('MONTH(created_at) as month'), DB::raw('COUNT(*) as count'))
+        ->where('user_id', $user->id)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->groupBy(DB::raw('MONTH(created_at)'))
+        ->get();
+
+
         $listings = Listing::where('user_id', $user->id)
         ->limit(5)
         ->get();
@@ -112,6 +120,13 @@ class DashboardController extends JsonApiController
                         ];
                     }),
 
+
+                    'reservationsPerMonthThisYear' => $reservationsPerMonthThisYear->map(function ($reservation) {
+                        return [
+                            'month' => $reservation->month,  // Month number (1 = January, 12 = December)
+                            'count' => $reservation->count,  // Number of reservations
+                        ];
+                    }),
 
 
                     'topListingsThisMonths' => $listings->map(function ($listing)  {

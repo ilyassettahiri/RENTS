@@ -65,7 +65,7 @@ function Tracking() {
                           <Grid item xs={12} sm={2} >
 
                             <SoftBox mt={6} >
-                              <SoftButton variant="gradient" color="dark" size="small" type="submit">
+                              <SoftButton variant="gradient" color="info" size="small" type="submit">
                                 Save
                               </SoftButton>
                             </SoftBox>

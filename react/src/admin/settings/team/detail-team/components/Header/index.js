@@ -157,7 +157,7 @@ function Header({ user, isDemo }) {
                 >
                   change
                 </SoftButton>
-                <SoftButton variant="gradient" color="dark" size="small" type="submit">
+                <SoftButton variant="gradient" color="info" size="small" type="submit">
                   save
                 </SoftButton>
               </SoftBox>

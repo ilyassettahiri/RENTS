@@ -282,7 +282,7 @@ const CreateDiscount = () => {
                   Back
                 </SoftButton>
               </SoftBox>
-              <SoftButton variant="gradient" color="dark" size="small" type="submit" onClick={submitHandler}>
+              <SoftButton variant="gradient" color="info" size="small" type="submit" onClick={submitHandler}>
                 Save
               </SoftButton>
             </SoftBox>

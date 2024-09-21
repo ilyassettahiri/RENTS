@@ -267,7 +267,7 @@ function BasicInfo({ user }) {
         <Grid item xs={12} mt={8}>
           <Grid container spacing={3}>
             <SoftBox ml="auto" display="flex" flexDirection="column">
-              <SoftButton variant="gradient" color="dark" size="small" type="submit">
+              <SoftButton variant="gradient" color="info" size="small" type="submit">
                 save changes
               </SoftButton>
             </SoftBox>

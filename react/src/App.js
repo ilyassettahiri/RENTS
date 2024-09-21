@@ -13,6 +13,7 @@ import { setupAxiosInterceptors } from "services/interceptor";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import CrudService from "services/cruds-service";
 
 import SoftBox from "components/SoftBox";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
@@ -97,59 +98,6 @@ export default function App({ ability }) {
   const [reservationAll, setReservationAll] = useState(0);
 
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getListings();
-        const listings = response.data; // Assuming response.data is an array of listings
-  
-        // Set total count for each status
-        const allCount = listings.length; // Total count of all listings
-        const completedCount = listings.filter((listing) => listing.attributes.status === 'completed').length;
-        const draftCount = listings.filter((listing) => listing.attributes.status === 'inactive').length;
-        const boostedCount = listings.filter((listing) => listing.attributes.status === 'boosted').length;
-  
-       
-
-        // Update state with the counts
-        setListingAll(allCount);
-        setListingCompleted(completedCount);
-        setListingDraft(draftCount);
-        setListingBoosted(boostedCount);
-  
-      } catch (error) {
-        console.error('Error fetching listings:', error);
-      }
-    })();
-  }, []);
-
-
-
-
-useEffect(() => {
-  (async () => {
-    try {
-      const response = await CrudService.getReservations();
-      const reservations = response.data; // Assuming response.data is an array of reservations
-      
-      // Set total count for each status
-      const upcomingCount = reservations.filter((res) => res.attributes.status === 'pending').length;
-      const currentlyCount = reservations.filter((res) => res.attributes.status === 'active').length;
-      const checkoutCount = reservations.filter((res) => res.attributes.status === 'completed').length;
-      const allCount = reservations.length; // Total count of all reservations
-
-      
-      // Update state with the counts
-      setReservationUpcoming(upcomingCount);
-      setReservationCurrently(currentlyCount);
-      setReservationCheckout(checkoutCount);
-      setReservationAll(allCount);
-      
-    } catch (error) {
-      console.error('Error fetching reservations:', error);
-    }
-  })();
-}, []);
 
 
 
@@ -218,6 +166,62 @@ useEffect(() => {
     })();
   }, [authContext.isAuthenticated]);
 
+
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await CrudService.getListings();
+        const listings = response.data; // Assuming response.data is an array of listings
+        console.log(' fetched listings app:', listings);
+
+        // Set total count for each status
+        const allCount = listings.length; // Total count of all listings
+        const completedCount = listings.filter((listing) => listing.attributes.status === 'completed').length;
+        const draftCount = listings.filter((listing) => listing.attributes.status === 'inactive').length;
+        const boostedCount = listings.filter((listing) => listing.attributes.status === 'boosted').length;
+  
+       
+
+        // Update state with the counts
+        setListingAll(allCount);
+        setListingCompleted(completedCount);
+        setListingDraft(draftCount);
+        setListingBoosted(boostedCount);
+  
+      } catch (error) {
+        console.error('Error fetching listings:', error);
+      }
+    })();
+  }, []);
+
+
+
+
+useEffect(() => {
+  (async () => {
+    try {
+      const response = await CrudService.getReservations();
+      const reservations = response.data; // Assuming response.data is an array of reservations
+      
+      // Set total count for each status
+      const upcomingCount = reservations.filter((res) => res.attributes.status === 'pending').length;
+      const currentlyCount = reservations.filter((res) => res.attributes.status === 'active').length;
+      const checkoutCount = reservations.filter((res) => res.attributes.status === 'completed').length;
+      const allCount = reservations.length; // Total count of all reservations
+
+      
+      // Update state with the counts
+      setReservationUpcoming(upcomingCount);
+      setReservationCurrently(currentlyCount);
+      setReservationCheckout(checkoutCount);
+      setReservationAll(allCount);
+      
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+    }
+  })();
+}, []);
 
 
 

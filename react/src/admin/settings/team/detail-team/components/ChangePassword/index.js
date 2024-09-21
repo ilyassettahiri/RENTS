@@ -178,7 +178,7 @@ function ChangePassword({ user, isDemo }) {
               {renderPasswordRequirements}
             </SoftBox>
             <SoftBox ml="auto" display="flex" flexDirection="column">
-              <SoftButton variant="gradient" color="dark" size="small" type="submit">
+              <SoftButton variant="gradient" color="info" size="small" type="submit">
                 update password
               </SoftButton>
             </SoftBox>

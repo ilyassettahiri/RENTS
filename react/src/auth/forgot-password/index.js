@@ -50,7 +50,7 @@ function Basic() {
                     <SoftInput type="email" placeholder="Email" />
                   </SoftBox>
                   <SoftBox mt={5} mb={1}>
-                    <SoftButton variant="gradient" color="dark" size="large" fullWidth>
+                    <SoftButton variant="gradient" color="info" size="large" fullWidth>
                       send
                     </SoftButton>
                   </SoftBox>

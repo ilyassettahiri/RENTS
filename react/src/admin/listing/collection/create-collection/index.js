@@ -153,7 +153,7 @@ const CreateCollection = () => {
                         Back
                       </SoftButton>
                     </SoftBox>
-                    <SoftButton variant="gradient" color="dark" size="small" type="submit">
+                    <SoftButton variant="gradient" color="info" size="small" type="submit">
                       Save
                     </SoftButton>
                   </SoftBox>

@@ -31,7 +31,7 @@ function Authentication() {
         <SoftTypography variant="h6" fontWeight="medium">
           Two factor authentication
         </SoftTypography>
-        <SoftButton variant="gradient" color="dark" size="small">
+        <SoftButton variant="gradient" color="info" size="small">
           enable
         </SoftButton>
       </SoftBox>

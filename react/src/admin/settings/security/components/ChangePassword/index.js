@@ -64,7 +64,7 @@ function ChangePassword() {
           </Grid>
         </Grid>
         <SoftBox mt={2}>
-          <SoftButton variant="gradient" color="dark" fullWidth>
+          <SoftButton variant="gradient" color="info" fullWidth>
             update password
           </SoftButton>
         </SoftBox>

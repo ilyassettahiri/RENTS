@@ -141,7 +141,7 @@ function BasicInfo({ user, isDemo }) {
             </Grid>
           </Grid>
           <SoftBox ml="auto" mt={2} display="flex" justifyContent="flex-end">
-            <SoftButton variant="gradient" color="dark" size="small" type="submit">
+            <SoftButton variant="gradient" color="info" size="small" type="submit">
               update
             </SoftButton>
           </SoftBox>

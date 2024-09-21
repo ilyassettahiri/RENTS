@@ -118,7 +118,7 @@ function Header({ user, isDemo }) {
                 <SoftButton variant="gradient" color="info" size="small" component="label" htmlFor="avatar" sx={{ marginRight: "1rem" }}>
                   Change
                 </SoftButton>
-                <SoftButton variant="gradient" color="dark" size="small" type="submit">
+                <SoftButton variant="gradient" color="info" size="small" type="submit">
                   Save
                 </SoftButton>
               </SoftBox>
