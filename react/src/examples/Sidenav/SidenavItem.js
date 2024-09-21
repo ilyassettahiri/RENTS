@@ -35,7 +35,7 @@ function SidenavItem({ name, active, nested, children, count, open, ...rest }) {
             fontWeight="bold"
             sx={{
               ml: 1,
-              backgroundColor: 'lightblue', // Add light blue background color
+              backgroundColor: '#87CEFA', // Add light blue background color
               padding: '2px 8px', // Add padding for better appearance
               borderRadius: '4px', // Round the corners
               display: 'inline-block' // Ensure it displays correctly

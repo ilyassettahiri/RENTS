@@ -97,7 +97,7 @@ function Sidenav({ color, brand, brandName, routes, hasStore,
         return reservationCheckout;
       case "Currently hosting":
         return reservationCurrently;
-      case "All":
+      case "All Reservations":
         return reservationAll;
       default:
         return undefined;

@@ -223,8 +223,8 @@ const routes = [
         component: <ListCurrentlyHosting />,
       },
       {
-        name: "All",
-        key: "all",
+        name: "All Reservations",
+        key: "all reservations",
         route: "/reservation/all",
         component: <ListReservation />,
       },

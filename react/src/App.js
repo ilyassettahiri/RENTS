@@ -173,10 +173,9 @@ export default function App({ ability }) {
       try {
         const response = await CrudService.getListings();
         const listings = response.data; // Assuming response.data is an array of listings
-        console.log(' fetched listings app:', listings);
 
         // Set total count for each status
-        const allCount = listings.length; // Total count of all listings
+        const allistingCount = listings.length; // Total count of all listings
         const completedCount = listings.filter((listing) => listing.attributes.status === 'completed').length;
         const draftCount = listings.filter((listing) => listing.attributes.status === 'inactive').length;
         const boostedCount = listings.filter((listing) => listing.attributes.status === 'boosted').length;
@@ -184,7 +183,7 @@ export default function App({ ability }) {
        
 
         // Update state with the counts
-        setListingAll(allCount);
+        setListingAll(allistingCount);
         setListingCompleted(completedCount);
         setListingDraft(draftCount);
         setListingBoosted(boostedCount);
@@ -203,19 +202,20 @@ useEffect(() => {
     try {
       const response = await CrudService.getReservations();
       const reservations = response.data; // Assuming response.data is an array of reservations
-      
+      console.log(' fetched reservations app:', reservations);
+
       // Set total count for each status
       const upcomingCount = reservations.filter((res) => res.attributes.status === 'pending').length;
       const currentlyCount = reservations.filter((res) => res.attributes.status === 'active').length;
       const checkoutCount = reservations.filter((res) => res.attributes.status === 'completed').length;
-      const allCount = reservations.length; // Total count of all reservations
+      const allreservationCount = reservations.length; // Total count of all reservations
 
       
       // Update state with the counts
       setReservationUpcoming(upcomingCount);
       setReservationCurrently(currentlyCount);
       setReservationCheckout(checkoutCount);
-      setReservationAll(allCount);
+      setReservationAll(allreservationCount);
       
     } catch (error) {
       console.error('Error fetching reservations:', error);
