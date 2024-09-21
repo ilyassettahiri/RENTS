@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 use Carbon\Carbon;
 
+use Illuminate\Support\Facades\DB;
 
 
 use App\Models\Listing;
@@ -63,6 +64,24 @@ class DashboardController extends JsonApiController
         ->sum('listings_price');
 
 
+
+        // Get the number of reservations for each day this month
+        $currentMonthReservations = Reservation::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as count'))
+            ->where('user_id', $user->id)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->month)
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->get();
+
+        // Get the number of reservations for each day last month
+        $lastMonthReservations = Reservation::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as count'))
+            ->where('user_id', $user->id)
+            ->whereYear('created_at', Carbon::now()->year)
+            ->whereMonth('created_at', Carbon::now()->subMonth()->month)
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->get();
+
+
         $listings = Listing::where('user_id', $user->id)
         ->limit(5)
         ->get();
@@ -77,6 +96,23 @@ class DashboardController extends JsonApiController
                     'totalReservationsThisMonth' => $totalReservationsThisMonth,
                     'totalRevenueToday' => $totalRevenueToday,
                     'totalRevenueThisMonth' => $totalRevenueThisMonth,
+
+
+                    'currentMonthReservationHistory' => $currentMonthReservations->map(function ($reservation) {
+                        return [
+                            'date' => $reservation->date,
+                            'count' => $reservation->count,
+                        ];
+                    }),
+
+                    'lastMonthReservationHistory' => $lastMonthReservations->map(function ($reservation) {
+                        return [
+                            'date' => $reservation->date,
+                            'count' => $reservation->count,
+                        ];
+                    }),
+
+
 
                     'topListingsThisMonths' => $listings->map(function ($listing)  {
                         return [

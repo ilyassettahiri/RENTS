@@ -58,6 +58,7 @@ function SalesTable({ title, rows }) {
               {title}
             </SoftTypography>
           </SoftBox>
+          
         </TableHead>
         <TableBody>{useMemo(() => renderTableCells, [rows])}</TableBody>
       </Table>

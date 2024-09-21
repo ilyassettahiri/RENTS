@@ -31,7 +31,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 // Data
 import salesTableData from "admin/dashboard/data/salesTableData";
 import reportsBarChartData from "admin/dashboard//data/reportsBarChartData";
-import gradientLineChartData from "admin/dashboard//data/gradientLineChartData";
+import gradientLineChartData from "admin/dashboard/data/gradientLineChartData";
 
 function Dashboard() {
   const { t } = useTranslation();
@@ -42,6 +42,8 @@ function Dashboard() {
 
 
   const [topListingsRows, setTopListingsRows] = useState([]);
+  const [currentMonthReservations, setCurrentMonthReservations] = useState([]);
+  const [lastMonthReservations, setLastMonthReservations] = useState([]);
 
 
 
@@ -67,8 +69,8 @@ function Dashboard() {
 
       // Transform top listings into rows for the SalesTable
       const listingsRows = attributes.topListingsThisMonths.map(listing => ({
-        category: [listing.picture, listing.category],  // If picture is null, it will handle no image
-        title: listing.title,
+        title: [listing.picture, listing.title],  // If picture is null, it will handle no image
+        
         price: `$${listing.price}`,          // Add price formatting
         status: listing.status,
       }));
@@ -76,6 +78,19 @@ function Dashboard() {
       setTopListingsRows(listingsRows);
 
 
+            // Store current and last month's reservation history for chart comparison
+      const currentMonth = attributes.currentMonthReservationHistory.map(day => ({
+        date: day.date,
+        count: day.count,
+      }));
+
+      const lastMonth = attributes.lastMonthReservationHistory.map(day => ({
+        date: day.date,
+        count: day.count,
+      }));
+
+      setCurrentMonthReservations(currentMonth);
+      setLastMonthReservations(lastMonth);
 
     })();
   }, []);
@@ -83,8 +98,21 @@ function Dashboard() {
 
 
 
-
-
+  const chartData = {
+    labels: currentMonthReservations.map(item => format(new Date(item.date), "dd MMM")),
+    datasets: [
+      {
+        label: "Current Month",
+        color: "info",
+        data: currentMonthReservations.map(item => item.count),
+      },
+      {
+        label: "Last Month",
+        color: "dark",
+        data: lastMonthReservations.map(item => item.count),
+      },
+    ],
+  };
 
 
 
@@ -113,28 +141,36 @@ function Dashboard() {
             <Grid container spacing={3}>
               <Grid item xs={12} sm={5}>
                 <SoftBox mb={3}>
+                  
                   <MiniStatisticsCard
-                    title={{ text: "Today Revenue ", fontWeight: "bold" }}
-                    count={data.totalRevenueToday}
-                    percentage={{ color: "success", text: "+55%" }}
-                    icon={{ color: "info", component: "paid" }}
+                    title={{ text: "Today Reservations", fontWeight: "bold" }}
+                    count={data.totalReservationsToday}
+                    percentage={{ color: "success", text: "+3%" }}
+                    icon={{ color: "info", component: "public" }}
                   />
+
+
                 </SoftBox>
-                <MiniStatisticsCard
-                  title={{ text: "Today Reservations", fontWeight: "bold" }}
-                  count={data.totalReservationsToday}
-                  percentage={{ color: "success", text: "+3%" }}
-                  icon={{ color: "info", component: "public" }}
-                />
-              </Grid>
-              <Grid item xs={12} sm={5}>
-                <SoftBox mb={3}>
+
                   <MiniStatisticsCard
                     title={{ text: "Today Visitors", fontWeight: "bold" }}
                     count="3,462"
                     percentage={{ color: "error", text: "-2%" }}
                     icon={{ color: "info", component: "emoji_events" }}
                   />
+
+
+              </Grid>
+              <Grid item xs={12} sm={5}>
+                <SoftBox mb={3}>
+
+                  <MiniStatisticsCard
+                    title={{ text: "Today Revenue ", fontWeight: "bold" }}
+                    count={data.totalRevenueToday}
+                    percentage={{ color: "success", text: "+55%" }}
+                    icon={{ color: "info", component: "paid" }}
+                  />
+
                 </SoftBox>
                 <SoftBox mb={3}>
                   <MiniStatisticsCard
@@ -181,12 +217,13 @@ function Dashboard() {
                     <SoftTypography variant="button" color="text" fontWeight="medium">
                       4% more{" "}
                       <SoftTypography variant="button" color="text" fontWeight="regular">
-                        in 2021
+                      (Current vs. Last Month)
+
                       </SoftTypography>
                     </SoftTypography>
                   </SoftBox>
                 }
-                chart={gradientLineChartData}
+                chart={chartData}
               />
             </Grid>
           </Grid>

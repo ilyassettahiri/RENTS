@@ -8,43 +8,53 @@ import TableCell from "@mui/material/TableCell";
 import SoftTypography from "components/SoftTypography";
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
+import  Image  from 'components/image';
+
 
 function SalesTableCell({ title, content, image, noBorder, ...rest }) {
   let template;
 
   if (image) {
     template = (
-      <TableCell {...rest} align="left" width="30%" sx={{ border: noBorder && 0 }}>
-        <SoftBox display="flex" alignItems="center" width="max-content">
-          <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`}  alt={content} width="1.5rem" height="auto" />{" "}
-          <SoftBox display="flex" flexDirection="column" ml={3}>
-            <SoftTypography
-              variant="caption"
-              color="text"
-              fontWeight="medium"
-              textTransform="capitalize"
-            >
-              {title}:
-            </SoftTypography>
-            <SoftTypography variant="button" fontWeight="medium" textTransform="capitalize">
-              {content}
-            </SoftTypography>
+      <TableCell {...rest} align="left" width="60%" sx={{ border: noBorder && 0 }}>
+        
+
+
+
+
+        <SoftBox display="flex" alignItems="center">
+      
+          <SoftBox mx={2} width="2.5rem" >
+            <Image
+              src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`}
+             
+              ratio="1/1"
+              width="100%"
+              sx={{ borderRadius: '6px' }}
+              
+            />
           </SoftBox>
+          <SoftTypography variant="button" fontWeight="medium" 
+              sx={{
+                whiteSpace: 'nowrap',      // Keep text on one line
+                overflow: 'hidden',        // Hide overflow
+                textOverflow: 'ellipsis',  // Add "..." when text overflows
+                maxWidth: '200px',         // Set a max width to control where the ellipsis appears (adjust as needed)
+              }}
+          >
+          {content}
+          </SoftTypography>
         </SoftBox>
+
+
+        
       </TableCell>
     );
   } else {
     template = (
       <TableCell {...rest} align="center" sx={{ border: noBorder && 0 }}>
         <SoftBox display="flex" flexDirection="column">
-          <SoftTypography
-            variant="caption"
-            color="text"
-            fontWeight="medium"
-            textTransform="capitalize"
-          >
-            {title}:
-          </SoftTypography>
+          
           <SoftTypography variant="button" fontWeight="medium" textTransform="capitalize">
             {content}
           </SoftTypography>
