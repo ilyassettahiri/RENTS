@@ -1,19 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-types is a library for typechecking of props
 import PropTypes from "prop-types";
 
 // @mui material components
@@ -31,7 +16,7 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }) {
     template = (
       <TableCell {...rest} align="left" width="30%" sx={{ border: noBorder && 0 }}>
         <SoftBox display="flex" alignItems="center" width="max-content">
-          <SoftBox component="img" src={image} alt={content} width="1.5rem" height="auto" />{" "}
+          <SoftBox component="img" src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${image}`}  alt={content} width="1.5rem" height="auto" />{" "}
           <SoftBox display="flex" flexDirection="column" ml={3}>
             <SoftTypography
               variant="caption"

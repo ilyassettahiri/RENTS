@@ -29,7 +29,7 @@ import typography from "assets/theme/base/typography";
 import breakpoints from "assets/theme/base/breakpoints";
 
 // Data
-import salesTableData from "admin/dashboard//data/salesTableData";
+import salesTableData from "admin/dashboard/data/salesTableData";
 import reportsBarChartData from "admin/dashboard//data/reportsBarChartData";
 import gradientLineChartData from "admin/dashboard//data/gradientLineChartData";
 
@@ -41,6 +41,7 @@ function Dashboard() {
   const { chart, items } = reportsBarChartData;
 
 
+  const [topListingsRows, setTopListingsRows] = useState([]);
 
 
 
@@ -61,9 +62,25 @@ function Dashboard() {
       console.log(' fetched:', response.data.attributes);
 
 
-      setData(response.data.attributes);
+      const { attributes } = response.data;
+      setData(attributes);
+
+      // Transform top listings into rows for the SalesTable
+      const listingsRows = attributes.topListingsThisMonths.map(listing => ({
+        category: [listing.picture, listing.category],  // If picture is null, it will handle no image
+        title: listing.title,
+        price: `$${listing.price}`,          // Add price formatting
+        status: listing.status,
+      }));
+
+      setTopListingsRows(listingsRows);
+
+
+
     })();
   }, []);
+
+
 
 
 
@@ -136,7 +153,7 @@ function Dashboard() {
           <Grid item xs={12} md={10} lg={7}>
             <Grid item xs={12} lg={10}>
               <SoftBox mb={3} position="relative">
-                <SalesTable title="Top 5 Listings" rows={salesTableData} />
+                <SalesTable title="Top 5 Listings" rows={topListingsRows} />
               </SoftBox>
             </Grid>
           </Grid>

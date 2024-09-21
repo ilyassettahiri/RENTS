@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
-
 use LaravelJsonApi\Core\Document\Error;
 use LaravelJsonApi\Core\Responses\ErrorResponse;
 use LaravelJsonApi\Core\Responses\DataResponse;
@@ -42,8 +40,9 @@ class DashboardController extends JsonApiController
 
         // Get the total number of reservations made today
         $totalReservationsToday = Reservation::where('user_id', $user->id)
-            ->whereDate('created_at', Carbon::today())
-            ->count();
+        ->whereDate('created_at', Carbon::today())
+        ->count();
+
 
         // Get the total number of reservations made this month
         $totalReservationsThisMonth = Reservation::where('user_id', $user->id)
@@ -51,54 +50,57 @@ class DashboardController extends JsonApiController
             ->whereMonth('created_at', Carbon::now()->month)
             ->count();
 
-        // Calculate the total revenue from reservations today
+
+            // Calculate the total revenue from reservations today
         $totalRevenueToday = Reservation::where('user_id', $user->id)
-            ->whereDate('created_at', Carbon::today())
-            ->sum('listings_price');
+        ->whereDate('created_at', Carbon::today())
+        ->sum('listings_price');
 
         // Calculate the total revenue from reservations this month
         $totalRevenueThisMonth = Reservation::where('user_id', $user->id)
-            ->whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)
-            ->sum('listings_price');
+        ->whereYear('created_at', Carbon::now()->year)
+        ->whereMonth('created_at', Carbon::now()->month)
+        ->sum('listings_price');
 
-        // Get the top listings for this month based on reservation count
-        $topListingsThisMonths = Reservation::getTopListingsOfMonth();
 
-        // Map over the top listings and get their details
-        $topListingsDetails = $topListingsThisMonths->map(function ($topListing) {
-            $listing = Listing::find($topListing->listing_id);
+        $listings = Listing::where('user_id', $user->id)
+        ->limit(5)
+        ->get();
 
-            if ($listing) {
-                return [
-                    'category' => $listing->category,
-                    'url' => $listing->url,
-                    'id' => $listing->id,
-                    'title' => $listing->title,
-                    'price' => $listing->price,
-                    'status' => $listing->status,
-                    'picture' => $listing->picture,
-                    'user_id' => $listing->user_id,
-                    'created_at' => $listing->created_at,
-                    'updated_at' => $listing->updated_at,
-                    'reservation_count' => $topListing->reservation_count, // Add reservation count
-                ];
-            }
-
-            return null; // If listing not found
-        })->filter(); // Remove null values if a listing is not found
 
         return response()->json([
             'data' => [
+
                 'attributes' => [
+
                     'totalReservationsToday' => $totalReservationsToday,
                     'totalReservationsThisMonth' => $totalReservationsThisMonth,
                     'totalRevenueToday' => $totalRevenueToday,
                     'totalRevenueThisMonth' => $totalRevenueThisMonth,
-                    'topListingsThisMonths' => $topListingsDetails,
+
+                    'topListingsThisMonths' => $listings->map(function ($listing)  {
+                        return [
+                        'category' => $listing->category,
+                        'url' => $listing->url,
+                        'id' => $listing->id,
+                        'title' => $listing->title,
+                        'price' => $listing->price,
+                        'status' => $listing->status,
+                        'picture' => $listing->picture,
+                        'user_id' => $listing->user_id,
+                        'created_at' => $listing->created_at,
+                        'updated_at' => $listing->updated_at,
+                        ];
+
+                    })
+
                 ],
-            ],
+
+            ]
         ]);
+
+
+
     }
 
 

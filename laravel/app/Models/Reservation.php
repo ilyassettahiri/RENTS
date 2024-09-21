@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-
 
 use App\Enums\Status;
 
@@ -57,16 +54,6 @@ class Reservation extends Model
 
     }
 
-    public static function getTopListingsOfMonth($limit = 5)
-    {
-        return self::select('listing_id', DB::raw('COUNT(listing_id) as reservation_count'))
-            ->whereYear('created_at', Carbon::now()->year)
-            ->whereMonth('created_at', Carbon::now()->month)
-            ->groupBy('listing_id')
-            ->orderBy('reservation_count', 'desc')
-            ->limit($limit)
-            ->get();
-    }
 
 
     public function onlinestore(): belongsTo {
