@@ -113,26 +113,22 @@ function ListActionHeader({ title, clickAddHandler }) {
                     <SoftBox display="flex" alignItems="center">
 
                         <SoftBox mr={2}>
-                            <SoftButton   sx={{ px:3, py: 1.5 }} variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+                            <SoftButton    variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
                             
-                            <SoftTypography color="white" variant="caption" fontWeight="medium" >
                                 {t(title)} 
-                            </SoftTypography>
 
                             </SoftButton>
                         </SoftBox>
 
                         <SoftBox display="flex">
-                            <SoftButton sx={{ px:3, py: 1.5 }} variant="outlined" color="white" onClick={openMenu}>
+                            <SoftButton  variant="outlined" color="white" onClick={openMenu}>
                             
                             
 
 
                                 <SoftBox display="flex" alignItems="center" gap={1}> {/* Flexbox to align icon and text */}
-                                <SoftTypography color="dark" variant="caption" fontWeight="medium">
                                 {t('More Action')} 
-                                </SoftTypography>
                                 <Icon>keyboard_arrow_down</Icon>
                                 </SoftBox>
                             </SoftButton>

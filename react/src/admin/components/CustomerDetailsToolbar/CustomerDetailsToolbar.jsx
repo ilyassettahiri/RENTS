@@ -87,7 +87,7 @@ export function CustomerDetailsToolbar({
         >
           
 
-          <SoftButton   sx={{ px:3, py: 1.5 }} variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+          <SoftButton   variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
                             
             <SoftTypography color="white" variant="caption" fontWeight="medium" >
@@ -97,7 +97,7 @@ export function CustomerDetailsToolbar({
           </SoftButton>
 
 
-          <SoftButton  sx={{ px:3, py: 1.5 }} variant="outlined" color="white" type="submit"  >
+          <SoftButton  variant="outlined" color="white" type="submit"  >
           
             <SoftTypography color="black" variant="caption" fontWeight="medium" >
                 {t('Print')} 

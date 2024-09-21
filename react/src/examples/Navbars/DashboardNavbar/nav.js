@@ -22,7 +22,7 @@ import { Box } from '@mui/system';
 
 export const paths = {
   nav: {
-    reservation: '/reservation/all',
+    reservation: '/reservation/all-reservations',
   },
 };
 

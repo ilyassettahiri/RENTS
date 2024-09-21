@@ -238,7 +238,7 @@ function DataTable({
                 />
 
                 {/* Apply Button */}
-                <SoftButton onClick={applyFilter} sx={{ px: 3 , py: 2 }} variant="gradient" type="submit" color="info">
+                <SoftButton onClick={applyFilter}  variant="gradient" type="submit" color="info">
                   <SoftTypography color="white" variant="caption" fontWeight="medium">
                     {t('Apply')}
                   </SoftTypography>

@@ -20,7 +20,7 @@ const SoftButton = forwardRef(
       ownerState={{ color, variant, size, circular, iconOnly }}
     >
 
-      <SoftTypography color="white" variant="caption" fontWeight="medium" textTransform="capitalize">
+      <SoftTypography sx={{  py: 0.4 }} color="white" variant="caption" fontWeight="medium" textTransform="capitalize">
 
          {children}
       </SoftTypography>

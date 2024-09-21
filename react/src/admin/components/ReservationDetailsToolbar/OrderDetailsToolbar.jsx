@@ -113,11 +113,9 @@ export function OrderDetailsToolbar({
           {renderStatusButton()}
 
 
-          <SoftButton  sx={{ px:3, py: 1.5 }} variant="outlined" color="white" >
+          <SoftButton   variant="outlined" color="white" >
           
-            <SoftTypography color="black" variant="caption" fontWeight="medium" >
                 {t('Print')} 
-            </SoftTypography>
           
             
           </SoftButton>

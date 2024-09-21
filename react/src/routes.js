@@ -224,8 +224,8 @@ const routes = [
       },
       {
         name: "All Reservations",
-        key: "all reservations",
-        route: "/reservation/all",
+        key: "all-reservations",
+        route: "/reservation/all-reservations",
         component: <ListReservation />,
       },
       {
@@ -475,8 +475,8 @@ const routes = [
     collapse: [
       {
         name: "Customers",
-        key: "customer",
-        route: "/customer",
+        key: "all-customers",
+        route: "/customers/all-customers",
         component: <ListCustomer />,
       },
       {
