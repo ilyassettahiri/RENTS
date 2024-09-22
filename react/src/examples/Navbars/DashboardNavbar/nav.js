@@ -4,6 +4,9 @@ import Drawer from '@mui/material/Drawer';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Divider from '@mui/material/Divider';
+import  Image  from 'components/image';
+import SoftBox from "components/SoftBox";
+
 import { alpha } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -71,7 +74,21 @@ export default function Nav({ open, onClose, userDetails }) {
     >
       <Stack spacing={2} sx={{ p: 3, pb: 2 }} alignItems="center">
         <Stack spacing={2} direction="row" alignItems="center">
-          <Avatar src={userDetails.image} sx={{ width: 64, height: 64 }} />
+          
+
+          <SoftBox width="2.7rem" >
+
+            <Image
+                src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
+              
+                ratio="1/1"
+                width="100%"
+                sx={{ borderRadius: '25px' }}
+                
+            />
+          </SoftBox>
+
+
           <Stack direction="row" alignItems="center" sx={{ typography: 'caption', cursor: 'pointer', '&:hover': { opacity: 0.72 } }}>
             
           </Stack>

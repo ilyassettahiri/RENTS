@@ -199,7 +199,7 @@ function ListCurrentlyHosting() {
 
       
 
-      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId",width: "10%", Cell: ({ value }) => <IdCell id={value} /> },
 
 
       { Header: "Created at", accessor: "created_at", Cell: ({ row, value }) => (

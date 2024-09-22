@@ -193,7 +193,7 @@ function ListReview() {
 
       
 
-      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId",width: "10%", Cell: ({ value }) => <IdCell id={value} /> },
 
       
 

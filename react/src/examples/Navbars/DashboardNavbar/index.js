@@ -18,6 +18,7 @@ import Icon from "@mui/material/Icon";
 import SoftAvatar from "components/SoftAvatar";
 import Nav from 'examples/Navbars/DashboardNavbar/nav';
 
+import  Image  from 'components/image';
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -295,7 +296,19 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
                 sx={navbarIconButton}
                 onClick={handleNavOpen} 
               >
-                <SoftAvatar src={userDetails.image} alt="profile-image" size="xs" shadow="sm" />
+
+
+                <SoftBox  width="2.5rem" >
+
+                  <Image
+                      src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
+                    
+                      ratio="1/1"
+                      width="100%"
+                      sx={{ borderRadius: '25px' }}
+                      
+                  />
+                </SoftBox>
 
               </IconButton>
               <Nav open={navOpen} onClose={handleCloseNav} userDetails={userDetails}/>

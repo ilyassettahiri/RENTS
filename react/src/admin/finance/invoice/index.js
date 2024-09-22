@@ -171,7 +171,7 @@ function ListInvoice() {
 
       
 
-      { Header: "ID", accessor: "id", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "id",width: "10%", Cell: ({ value }) => <IdCell id={value} /> },
 
       
 
