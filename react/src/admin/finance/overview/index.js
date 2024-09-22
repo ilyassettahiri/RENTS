@@ -1,13 +1,15 @@
 /* eslint-disable react/prop-types */
 
 
-// react-router-dom components
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 import { format } from 'date-fns';
+import { useQuery } from '@tanstack/react-query';
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -32,7 +34,7 @@ import DefaultStatisticsCard from "examples/Cards/StatisticsCards/DefaultStatist
 import DefaultLineChart from "examples/Charts/LineCharts/DefaultLineChart";
 import HorizontalBarChart from "examples/Charts/BarCharts/HorizontalBarChart";
 import SalesTable from "examples/Tables/SalesTable";
-import DataTable from "examples/Tables/DataTable";
+import DataTable from "examples/Tables/DataTable/StatsTable";
 import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
 
 
@@ -56,85 +58,62 @@ function Overview() {
   let { state } = useLocation();
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
-
-  const [tableData, setTableData] = useState([]);
 
 
-
-
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getFinances();
-
-      console.log(' fetched:', response.data);
-
-
-      setData(response.data);
-    })();
-  }, []);
-
-
-  useEffect(() => {
-    setTableData(getRows(data));
-  }, [data]);
-
-  const handleRowClick = (row) => {
-    clickViewHandler(row.original.id);
-  };
-
-  const clickViewHandler = (id) => {
-    navigate(`/listing/detail-listing/${id}`);
-  };
-
-
-  const getRows = (info) => {
-    return info.map((row) => ({
-      product: { image: row.attributes.picture, name: row.attributes.title, checked: false, id: row.id  },
-      price: row.attributes.price,
-      status: row.attributes.status,
-      created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'), // Format the date here
-      id: row.id,
-    }));
-  };
-
-  const dataTableData = {
-    columns: [
-      {
-        Header: "product",
-        accessor: "product",
-        width: "40%",
-        Cell: ({ cell: { value } }) => (
-          <ProductCell image={value.image} name={value.name} checked={value.checked} 
-          id={value.id} 
-          linkPath={`/listing/detail-listing/${value.id}`}
-
-          />
-        ),
+    // Use React Query to fetch data
+    const { data: financesData, isLoading, error } = useQuery({
+      queryKey: ['finances'],
+      queryFn: () => CrudService.getFinances(),
+      onError: (error) => {
+        console.error('Failed to fetch finances:', error);
       },
-      
-
-    
-      { Header: "price", accessor: "price", Cell: ({ row, value }) => (
-        <div onClick={() => clickViewHandler(row.original.id)} style={{ cursor: "pointer" }}>
-          {value}
-        </div>
-      )},
-      { Header: "created at", accessor: "created_at", Cell: ({ row, value }) => (
-        <div onClick={() => clickViewHandler(row.original.id)} style={{ cursor: "pointer" }}>
-          {value}
-        </div>
-      )},
-      
-    ],
-    
-
-    rows: tableData,
-    onRowClick : {handleRowClick},  // Add this line
-  };
-
-
-
+    });
+  
+    // Memoize the table data for better performance
+    const tableData = useMemo(() => {
+      if (!financesData) return [];
+  
+      return financesData.data.map((row) => ({
+        product: { image: `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${row.attributes.picture}`, name: row.attributes.title, checked: false, id: row.id },
+        price: row.attributes.price,
+        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
+        id: row.id,
+      }));
+    }, [financesData]);
+  
+    const handleRowClick = (row) => {
+      navigate(`/listing/detail-listing/${row.original.id}`);
+    };
+  
+    const dataTableData = {
+      columns: [
+        {
+          Header: "Product",
+          accessor: "product",
+          width: "40%",
+          Cell: ({ cell: { value } }) => (
+            <ProductCell
+              image={value.image}
+              name={value.name}
+              checked={value.checked}
+              id={value.id}
+              linkPath={`/listing/detail-listing/${value.id}`}
+            />
+          ),
+        },
+        { Header: "Price", accessor: "price", Cell: ({ row, value }) => (
+          <div onClick={() => handleRowClick(row)} style={{ cursor: "pointer" }}>
+            {value}
+          </div>
+        )},
+        { Header: "Created at", accessor: "created_at", Cell: ({ row, value }) => (
+          <div onClick={() => handleRowClick(row)} style={{ cursor: "pointer" }}>
+            {value}
+          </div>
+        )},
+      ],
+      rows: tableData,
+    };
 
 
   // DefaultStatisticsCard state for the dropdown value

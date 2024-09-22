@@ -133,6 +133,8 @@ function ChangePassword({ user, isDemo }) {
                 label="New Password"
                 inputProps={{ type: "password", autoComplete: "" }}
                 name="newPassword"
+                placeholder="**********"
+
                 value={info.newPassword}
                 onChange={changeHandler}
                 error={errors.newPassError}
@@ -149,6 +151,8 @@ function ChangePassword({ user, isDemo }) {
                 label="Confirm New Password"
                 inputProps={{ type: "password", autoComplete: "" }}
                 name="confirmPassword"
+                placeholder="**********"
+
                 value={info.confirmPassword}
                 onChange={changeHandler}
                 error={errors.confirmPassError}

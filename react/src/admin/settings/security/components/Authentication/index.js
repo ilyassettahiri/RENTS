@@ -28,7 +28,7 @@ function Authentication() {
           </SoftTypography>
         </SoftBox>
         <SoftBox
-          bgColor="dark"
+          bgColor="info"
           borderRadius="lg"
           shadow="lg"
           p={2}

@@ -8,6 +8,9 @@ import { useState, useEffect, useContext } from "react";
 // @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import Avatar from "@mui/material/Avatar";
+import Iconify from 'components/iconify';
 
 // Material Dashboard 2 PRO React components
 import SoftBox from "components/SoftBox";
@@ -17,7 +20,7 @@ import SoftAvatar from "components/SoftAvatar";
 import SoftButton from "components/SoftButton";
 import SoftAlert from "components/SoftAlert";
 import SoftInput from "components/SoftInput";
-
+import  Image  from 'components/image';
 // Services and Context
 import AuthService from "services/auth-service";
 import CrudService from "services/cruds-service";
@@ -31,6 +34,8 @@ function Header({ user, isDemo }) {
   const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
   const [error, setError] = useState(null);
   const [role, setRole] = useState("");
+  const [isImageSelected, setIsImageSelected] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (user) {
@@ -62,7 +67,8 @@ function Header({ user, isDemo }) {
     formData.append("attachment", e.target.files[0]);
     setFileState(formData);
     setImageUrl(URL.createObjectURL(e.target.files[0])); // Display selected image immediately
-    console.log("File selected:", URL.createObjectURL(e.target.files[0]));
+    setIsImageSelected(true);
+
   };
 
   const submitHandler = async (e) => {
@@ -94,40 +100,95 @@ function Header({ user, isDemo }) {
       const profileImageUrl = `${process.env.REACT_APP_IMAGE_BASE_URL}${url}`;
       setImage(profileImageUrl); // Update the image state with the new URL
       setImageUrl(null); // Clear the imageUrl to fallback to image
+      setIsImageSelected(false);
+
     } catch (err) {
       setError(err.errors ? err.errors[0].detail : err.message);
     }
   };
 
+
+
+    // Conditional rendering for Edit and Save buttons
+    const renderEditOrSaveButton = isImageSelected ? (
+      <>
+        <Stack
+          direction="row"
+          alignItems="center"
+          onClick={() => document.getElementById('profile-image-upload').click()}
+          sx={{
+            typography: 'caption',
+            cursor: 'pointer',
+            '&:hover': { opacity: 0.72 },
+          }}
+        >
+          <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
+          {t('Edit')}
+        </Stack>
+  
+        <SoftButton
+          color="info"
+          size="small"
+          type="submit"
+          variant="gradient"
+          onClick={submitHandler}
+          sx={{ ml: 2 }}
+        >
+          {t('Save')}
+        </SoftButton>
+      </>
+    ) : (
+      <Stack
+        direction="row"
+        alignItems="center"
+        onClick={() => document.getElementById('profile-image-upload').click()}
+        sx={{
+          typography: 'caption',
+          cursor: 'pointer',
+          '&:hover': { opacity: 0.72 },
+        }}
+      >
+        <Iconify icon="carbon:edit" sx={{ mr: 1 }} />
+        {t('Edit')}
+      </Stack>
+    );
+  
+  
+
   return (
     <>
       <Card id="profile">
         <SoftBox p={2} component="form" onSubmit={submitHandler} encType="multipart/form-data">
-          <Grid container spacing={3} display="flex" justifyContent="space-between" alignItems="center" marginTop="0" marginLeft="0" width="100%">
-            <Grid item position="relative" style={{ paddingLeft: "0", paddingTop: "0" }}>
-              <SoftAvatar src={imageUrl ?? image} alt="profile-image" size="xl" shadow="sm" />
-            </Grid>
-            <SoftInput type="file" onChange={changeHandler} id="avatar" name="attachment" accept="image/*" sx={{ display: "none", cursor: "pointer" }} />
-            <Grid item style={{ paddingTop: "0" }}>
-              <SoftBox height="100%" mt={0.5} lineHeight={1}>
+          <Grid container spacing={3} display="flex" alignItems="center">
+            <Grid item>
 
+
+
+              <SoftBox width="4rem" >
+
+                  <Image
+                      src={imageUrl ?? image}
+                    
+                      ratio="1/1"
+                      width="100%"
+                      sx={{ borderRadius: '10px' }}
+                      
+                  />
               </SoftBox>
+
+              <input
+                type="file"
+                accept="image/*"
+                onChange={changeHandler}
+                id="profile-image-upload"
+                style={{ display: 'none' }}
+              />
             </Grid>
-            <SoftBox sx={{ ml: "auto" }} display="flex" flexDirection="column">
-              <SoftBox display="flex" justifyContent="flex-end" flexDirection="row">
-                <SoftButton variant="gradient" color="info" size="small" component="label" htmlFor="avatar" sx={{ marginRight: "1rem", py: 1.7 }}>
-                  Change
-                </SoftButton>
-                <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
-                  Save
-                </SoftButton>
-              </SoftBox>
-              {error && (
-                <SoftTypography variant="caption" color="error" fontWeight="light" pt={2}>
-                  {error}
-                </SoftTypography>
-              )}
-            </SoftBox>
+            <Grid item xs>
+              <Stack direction="row" alignItems="center" justifyContent="flex-start" sx={{ ml: 2 }}>
+                {renderEditOrSaveButton}
+              </Stack>
+            </Grid>
           </Grid>
         </SoftBox>
       </Card>
