@@ -98,16 +98,10 @@ function Account() {
                 <Grid item xs={12}>
                   <BasicInfo user={user}  />
                 </Grid>
-                <Grid item xs={12}>
-                  <ChangePassword user={user}  />
-                </Grid>
-                <Grid item xs={12}>
-                  <Authentication />
-                </Grid>
                 
-                <Grid item xs={12}>
-                  <Notifications />
-                </Grid>
+                
+                
+                
                 <Grid item xs={12}>
                   <Sessions />
                 </Grid>

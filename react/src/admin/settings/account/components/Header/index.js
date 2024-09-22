@@ -97,7 +97,7 @@ function Header({ user, isDemo }) {
         color: "info",
         message: "Your profile has been updated",
       });
-      const profileImageUrl = `${process.env.REACT_APP_IMAGE_BASE_URL}${url}`;
+      const profileImageUrl = url;
       setImage(profileImageUrl); // Update the image state with the new URL
       setImageUrl(null); // Clear the imageUrl to fallback to image
       setIsImageSelected(false);
@@ -167,7 +167,7 @@ function Header({ user, isDemo }) {
               <SoftBox width="4rem" >
 
                   <Image
-                      src={imageUrl ?? image}
+                      src={imageUrl ?? `${process.env.REACT_APP_IMAGE_BASE_URL}${image}`}
                     
                       ratio="1/1"
                       width="100%"
