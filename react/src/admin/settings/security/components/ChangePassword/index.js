@@ -1,19 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 
@@ -64,7 +49,7 @@ function ChangePassword() {
           </Grid>
         </Grid>
         <SoftBox mt={2}>
-          <SoftButton variant="gradient" color="info" fullWidth>
+          <SoftButton sx={{ py: 1.8 }} variant="gradient" color="info" fullWidth>
             update password
           </SoftButton>
         </SoftBox>

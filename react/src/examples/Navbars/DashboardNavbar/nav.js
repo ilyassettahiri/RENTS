@@ -76,7 +76,7 @@ export default function Nav({ open, onClose, userDetails }) {
         <Stack spacing={2} direction="row" alignItems="center">
           
 
-          <SoftBox width="2.7rem" >
+          <SoftBox width="3.2rem" >
 
             <Image
                 src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
@@ -95,7 +95,7 @@ export default function Nav({ open, onClose, userDetails }) {
         </Stack>
 
         <Stack spacing={0.5} alignItems="center">
-          <Typography variant="subtitle1" noWrap>
+          <Typography variant="subtitle2" noWrap>
             {userDetails ? `${userDetails.name} ` : 'Loading...'}
             
           </Typography>

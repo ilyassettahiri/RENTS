@@ -2202,7 +2202,7 @@ function CreateListing() {
             </Card>
           </Grid>
           <SoftBox   display="flex" justifyContent="center" alignItems="center">
-            <SoftButton sx={{ px:5, py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
+            <SoftButton sx={{ py: 1.5 }}  variant="gradient" color="info" size="small" type="submit">
               Save
             </SoftButton>
           </SoftBox>

@@ -2859,7 +2859,7 @@ function EditListing() {
 
 
                         <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
-                          <SoftButton variant="gradient" color="info" size="small" type="submit">
+                          <SoftButton sx={{ py: 1.5 }}  variant="gradient" color="info" size="small" type="submit">
                             Save
                           </SoftButton>
                         </SoftBox>

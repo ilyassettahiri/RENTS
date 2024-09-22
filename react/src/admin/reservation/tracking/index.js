@@ -34,7 +34,7 @@ function Tracking() {
     <DashboardLayout>
       
 
-      <SoftBox my={7}>
+      <SoftBox my={3}>
         <Grid container spacing={3} justifyContent="center">
           <Grid item xs={12} lg={8} justifyContent="center">
 
@@ -65,8 +65,8 @@ function Tracking() {
                           <Grid item xs={12} sm={2} >
 
                             <SoftBox mt={6} >
-                              <SoftButton variant="gradient" color="info" size="small" type="submit">
-                                Save
+                              <SoftButton sx={{ py: 1.8 }}  variant="gradient" color="info" size="small" type="submit">
+                                Track
                               </SoftButton>
                             </SoftBox>
 

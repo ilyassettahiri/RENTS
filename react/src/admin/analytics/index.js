@@ -142,7 +142,7 @@ function Analytics() {
                   type: "internal",
                   route: "/",
                   color: "secondary",
-                  label: "see all referrals",
+                  
                 }}
               />
             </Grid>

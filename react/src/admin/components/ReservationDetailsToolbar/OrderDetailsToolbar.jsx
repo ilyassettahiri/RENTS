@@ -113,7 +113,7 @@ export function OrderDetailsToolbar({
           {renderStatusButton()}
 
 
-          <SoftButton   variant="outlined" color="white" >
+          <SoftButton color="black"  variant="outlined"  >
           
                 {t('Print')} 
           

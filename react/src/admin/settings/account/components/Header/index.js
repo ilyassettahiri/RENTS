@@ -115,10 +115,10 @@ function Header({ user, isDemo }) {
             </Grid>
             <SoftBox sx={{ ml: "auto" }} display="flex" flexDirection="column">
               <SoftBox display="flex" justifyContent="flex-end" flexDirection="row">
-                <SoftButton variant="gradient" color="info" size="small" component="label" htmlFor="avatar" sx={{ marginRight: "1rem" }}>
+                <SoftButton variant="gradient" color="info" size="small" component="label" htmlFor="avatar" sx={{ marginRight: "1rem", py: 1.7 }}>
                   Change
                 </SoftButton>
-                <SoftButton variant="gradient" color="info" size="small" type="submit">
+                <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
                   Save
                 </SoftButton>
               </SoftBox>

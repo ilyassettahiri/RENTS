@@ -90,18 +90,18 @@ export function CustomerDetailsToolbar({
           <SoftButton   variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
                             
-            <SoftTypography color="white" variant="caption" fontWeight="medium" >
+            
                 {t(title)} 
-            </SoftTypography>
+            
 
           </SoftButton>
 
 
-          <SoftButton  variant="outlined" color="white" type="submit"  >
+          <SoftButton  variant="outlined" color="black" type="submit"  >
           
-            <SoftTypography color="black" variant="caption" fontWeight="medium" >
+            
                 {t('Print')} 
-            </SoftTypography>
+            
           
             
           </SoftButton>

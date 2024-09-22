@@ -101,7 +101,7 @@ export function ListingDetailsToolbar({
           </SoftButton>
 
 
-          <SoftButton   variant="outlined" color="white" type="submit" onClick={clickEditHandler}  >
+          <SoftButton   variant="outlined" color="black" type="submit" onClick={clickEditHandler}  >
           
                 {t('Edit')} 
           

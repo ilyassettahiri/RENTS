@@ -1,17 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 import { useMemo } from "react";
 
@@ -57,43 +43,7 @@ function ComplexReportsDoughnutChart({ title, chart, tooltip, action }) {
       ))
     : null;
 
-  const renderButton = () => {
-    let template;
-
-    if (action) {
-      template =
-        action.type === "internal" ? (
-          <SoftBox mt={3} mb={2}>
-            <SoftButton
-              component={Link}
-              to={action.route}
-              variant="gradient"
-              color={action.color}
-              size="small"
-            >
-              {action.label}
-            </SoftButton>
-          </SoftBox>
-        ) : (
-          <SoftBox mt={3} mb={2}>
-            <SoftButton
-              component="a"
-              href={action.route}
-              target="_blank"
-              rel="noreferrer"
-              variant="gradient"
-              color={action.color}
-              size="small"
-            >
-              {action.label}
-            </SoftButton>
-          </SoftBox>
-        );
-    }
-
-    return template;
-  };
-
+  
   return (
     <Card sx={{ height: "100%" }}>
       <SoftBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -116,7 +66,7 @@ function ComplexReportsDoughnutChart({ title, chart, tooltip, action }) {
                   [chart]
                 )}
               </SoftBox>
-              {renderButton()}
+              
             </SoftBox>
           </Grid>
           <Grid item xs={12} lg={7}>

@@ -34,7 +34,7 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
         sx={({ typography: { size, fontWeightBold } }) => ({
           fontSize: size.xxs,
           fontWeight: fontWeightBold,
-          textTransform: "uppercase",
+          textTransform: "capitalize",
           cursor: sorted && "pointer",
           userSelect: sorted && "none",
         })}
@@ -51,7 +51,7 @@ function DataTableHeadCell({ width, children, sorted, align, ...rest }) {
             sx={({ typography: { size, fontWeightBold } }) => ({
               fontSize: size.xl,
               fontWeight: fontWeightBold,
-              textTransform: "uppercase",
+              textTransform: "capitalize",
               cursor: sorted && "pointer",
               userSelect: sorted && "none",
             })}

@@ -1,19 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
 
@@ -120,11 +105,11 @@ function SecuritySettings() {
         </SoftBox>
         <SoftBox display="flex" justifyContent="flex-end" mt={6}>
           <SoftBox mr={1}>
-            <SoftButton variant="outlined" color="info" size="small">
+            <SoftButton sx={{ py: 1.5 }} variant="outlined" color="info" size="small">
               cancel
             </SoftButton>
           </SoftBox>
-          <SoftButton variant="gradient" color="info" size="small">
+          <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small">
             save changes
           </SoftButton>
         </SoftBox>
