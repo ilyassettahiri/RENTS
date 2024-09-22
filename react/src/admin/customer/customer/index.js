@@ -99,7 +99,9 @@ function ListCustomer() {
     const tableData = useMemo(() => {
       if (!customersData) return [];
   
-      return customersData.data.map((row) => ({
+      return customersData.data.map((row, index) => ({
+        sequentialId: index + 1,
+
         id: { ID: row.attributes.id },
         price: row.attributes.price,
         customer: { image: team1, name: row.attributes.name, checked: false, id: row.id },
@@ -188,7 +190,7 @@ function ListCustomer() {
 
       
 
-      { Header: "ID", accessor: "id", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
 
       
 

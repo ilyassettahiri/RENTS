@@ -12,7 +12,7 @@ function CustomerCell({ image, name, color, linkPath }) {
   return (
     <SoftBox display="flex" alignItems="center" component={NavLink} to={linkPath}>
       <SoftBox mr={1}>
-        <SoftAvatar bgColor={color} src={image} alt={name} size="xs" />
+        <SoftAvatar bgColor={color} src={`${process.env.REACT_APP_IMAGE_BASE_URL}${image}`} alt={name} size="xs" />
       </SoftBox>
       <SoftTypography variant="caption" fontWeight="medium" color="text" sx={{ lineHeight: 0 }}>
         {name}
@@ -23,8 +23,8 @@ function CustomerCell({ image, name, color, linkPath }) {
 
 // settings default value for the props of CustomerCell
 CustomerCell.defaultProps = {
-  image: "/member.jpg",
-  color: "dark",
+  image: "/team-1.jpg",
+  color: "info",
 };
 
 // Typechecking props for the CustomerCell

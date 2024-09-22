@@ -14,16 +14,15 @@ const SoftButton = forwardRef(
     <SoftButtonRoot
       {...rest}
       ref={ref}
-      color="primary"
+      color={color}
       variant={variant === "gradient" ? "contained" : variant}
       size={size}
       ownerState={{ color, variant, size, circular, iconOnly }}
     >
 
-      <SoftTypography sx={{  py: 0.4 }} color="white" variant="caption" fontWeight="medium" textTransform="capitalize">
 
          {children}
-      </SoftTypography>
+      
 
 
     </SoftButtonRoot>

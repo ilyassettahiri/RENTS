@@ -101,7 +101,10 @@ function ListReview() {
     const tableData = useMemo(() => {
       if (!reviewsData) return [];
   
-      return reviewsData.data.map((row) => ({
+      return reviewsData.data.map((row, index) => ({
+
+        sequentialId: index + 1,
+
         id: { ID: row.attributes.id },
         rating: row.attributes.rating,
         customer: { image: team1, name: row.attributes.name, checked: false, id: row.id },
@@ -190,7 +193,7 @@ function ListReview() {
 
       
 
-      { Header: "ID", accessor: "id", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
 
       
 

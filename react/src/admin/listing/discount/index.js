@@ -89,7 +89,10 @@ function ListDiscount() {
     const tableData = useMemo(() => {
       if (!discountsData) return [];
   
-      return discountsData.data.map((row) => ({
+      return discountsData.data.map((row, index) => ({
+
+        sequentialId: index + 1,
+
         id: { ID: row.attributes.id },
         type: row.attributes.type,
         applies: row.attributes.applies,
@@ -197,7 +200,7 @@ function ListDiscount() {
   const dataTableData = {
     columns: [
 
-      { Header: "ID", accessor: "id", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
 
       
       

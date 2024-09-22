@@ -46,7 +46,7 @@ export default styled(Button)(({ theme, ownerState }) => {
     return {
       background: backgroundValue,
       color: colorValue,
-
+      textTransform: "capitalize", 
       "&:hover": {
         backgroundColor: backgroundValue,
       },
@@ -213,5 +213,7 @@ export default styled(Button)(({ theme, ownerState }) => {
     ...(variant === "text" && textStyles()),
     ...(circular && circularStyles()),
     ...(iconOnly && iconOnlyStyles()),
+    textTransform: "capitalize", 
+    
   };
 });

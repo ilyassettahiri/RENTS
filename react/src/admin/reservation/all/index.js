@@ -99,7 +99,9 @@ function ListReservation() {
   const tableData = useMemo(() => {
     if (!reservationsData) return [];
 
-    return reservationsData.data.map((row) => ({
+    return reservationsData.data.map((row, index) => ({
+
+      sequentialId: index + 1,
       id: { ID: row.attributes.id },
       price: row.attributes.price,
       customer: { image: team1, name: row.attributes.name, checked: false, id: row.id },
@@ -193,7 +195,7 @@ function ListReservation() {
 
       
 
-      { Header: "ID", accessor: "id", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
 
 
       { Header: "Created at", accessor: "created_at", Cell: ({ row, value }) => (
