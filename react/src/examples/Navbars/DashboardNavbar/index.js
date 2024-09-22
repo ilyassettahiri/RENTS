@@ -295,7 +295,7 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
                 sx={navbarIconButton}
                 onClick={handleNavOpen} 
               >
-                <SoftAvatar src={"/team-1.jpg"} alt="profile-image" size="xs" shadow="sm" />
+                <SoftAvatar src={userDetails.image} alt="profile-image" size="xs" shadow="sm" />
 
               </IconButton>
               <Nav open={navOpen} onClose={handleCloseNav} userDetails={userDetails}/>

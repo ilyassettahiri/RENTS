@@ -14,7 +14,7 @@ function IdCell({ id, checked }) {
   return (
     <SoftBox display="flex" alignItems="center">
       
-      <SoftBox ml={1}>
+      <SoftBox ml={1} maxWidth= "50px">
         <SoftTypography variant="caption" fontWeight="medium" color="text">
           {id}
         </SoftTypography>

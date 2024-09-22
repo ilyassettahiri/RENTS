@@ -51,7 +51,7 @@ export function CustomerDetailsToolbar({
         <Stack spacing={1} direction="row" alignItems="flex-start">
           {/* Use Link from react-router-dom for navigation */}
           <IconButton component={Link} to={backLink}>
-            <ArrowBackIcon />
+            <ArrowBackIcon color="secondary"/>
           </IconButton>
 
           <Stack spacing={0.5}>
@@ -69,7 +69,7 @@ export function CustomerDetailsToolbar({
               />
             </Stack>
 
-            <Typography variant="body2" sx={{ color: 'text.disabled' }}>
+            <Typography variant="body2" color="secondary">
              
             {format(parseISO(createdAt), 'd MMM, h:mm a')}
             </Typography>

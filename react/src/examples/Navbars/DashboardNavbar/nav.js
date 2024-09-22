@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Drawer from '@mui/material/Drawer';
 import Avatar from '@mui/material/Avatar';
@@ -9,7 +8,7 @@ import { alpha } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
-import { useNavigate, useLocation } from "react-router-dom";  // Import useLocation
+import { Link, useNavigate, useLocation } from "react-router-dom";  // Import useLocation
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';  // Replacement for useResponsive
 import { useTranslation } from 'react-i18next';
@@ -19,17 +18,21 @@ import { AuthContext } from 'context';
 import CrudService from 'services/cruds-service';
 import AuthService from 'services/auth-service';
 import { Box } from '@mui/system';
+import SoftTypography from "components/SoftTypography";
 
 export const paths = {
   nav: {
-    reservation: '/reservation/all-reservations',
+    account: '/settings/account',
+    team: '/settings/team',
+    security: '/settings/security',
+
   },
 };
 
 const navigations = [
-  { title: 'Account', path: paths.nav.reservation, icon: <Iconify icon="carbon:user" /> },
-  { title: 'Team', path: paths.nav.reservation, icon: <Iconify icon="carbon:favorite" /> },
-  { title: 'Security', path: paths.nav.reservation, icon: <Iconify icon="carbon:chat" /> },
+  { title: 'Account', path: paths.nav.account, icon: <Iconify icon="carbon:user" /> },
+  { title: 'Team', path: paths.nav.team, icon: <Iconify icon="carbon:favorite" /> },
+  { title: 'Security', path: paths.nav.security, icon: <Iconify icon="carbon:chat" /> },
 ];
 
 export default function Nav({ open, onClose, userDetails }) {
@@ -152,13 +155,20 @@ function NavItem({ item, onClose }) {
     >
       <ListItemButton sx={{ px: 1, height: 44, borderRadius: 1 }}>
         <ListItemIcon>{item.icon}</ListItemIcon>
-        <ListItemText
-          primary={t(item.title)}
-          primaryTypographyProps={{
-            typography: 'body2',
-            ...(active && { typography: 'subtitle2' }),
-          }}
-        />
+
+        <SoftTypography variant="button" color="dark" fontWeight="regular">
+
+            <ListItemText
+              primary={t(item.title)}
+              
+              primaryTypographyProps={{
+                typography: 'body2',
+                ...(active && { typography: 'subtitle2' }),
+              }}
+            />
+        </SoftTypography>
+
+
       </ListItemButton>
     </Link>
   );

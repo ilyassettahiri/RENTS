@@ -151,7 +151,7 @@ export default function App({ ability }) {
         name: response.data.attributes.name,
         email: response.data.attributes.email,
 
-        profile_image: response.data.attributes.profile_image,
+        image: response.data.attributes.profile_image,
       });
 
       // Set hasStore state based on user profile

@@ -195,7 +195,7 @@ function ListReservation() {
 
       
 
-      { Header: "ID", accessor: "sequentialId", Cell: ({ value }) => <IdCell id={value} /> },
+      { Header: "ID", accessor: "sequentialId",width: "5%", Cell: ({ value }) => <IdCell id={value} /> },
 
 
       { Header: "Created at", accessor: "created_at", Cell: ({ row, value }) => (
@@ -233,6 +233,7 @@ function ListReservation() {
       {
         Header: "Customer",
         accessor: "customer",
+        
         Cell: ({ cell: { value } }) => (
           <CustomerCell image={value.team1} color={"dark"} name={value.name} 
           
