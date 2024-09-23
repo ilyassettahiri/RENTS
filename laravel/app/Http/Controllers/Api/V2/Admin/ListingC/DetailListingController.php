@@ -230,7 +230,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -289,7 +289,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -347,7 +347,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -405,7 +405,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -464,7 +464,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -525,7 +525,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -583,7 +583,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -643,7 +643,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -703,7 +703,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -762,7 +762,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -820,7 +820,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -878,7 +878,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -936,7 +936,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -998,7 +998,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1057,7 +1057,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1117,7 +1117,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1177,7 +1177,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1235,7 +1235,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1295,7 +1295,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1355,7 +1355,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1414,7 +1414,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1473,7 +1473,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1531,7 +1531,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1591,7 +1591,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1649,7 +1649,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1707,7 +1707,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1765,7 +1765,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1826,7 +1826,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1884,7 +1884,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1941,7 +1941,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -1998,7 +1998,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2056,7 +2056,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2115,7 +2115,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2172,7 +2172,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2230,7 +2230,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2288,7 +2288,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2346,7 +2346,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2405,7 +2405,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2463,7 +2463,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2520,7 +2520,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2577,7 +2577,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2635,7 +2635,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2691,7 +2691,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2749,7 +2749,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2806,7 +2806,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2863,7 +2863,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2920,7 +2920,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -2977,7 +2977,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3033,7 +3033,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3091,7 +3091,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3148,7 +3148,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3206,7 +3206,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3263,7 +3263,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];
@@ -3322,7 +3322,7 @@ class DetailListingController extends Controller
                                                         'reservations' => $this->reservations->map(function ($reservation) {
                                                             return [
                                                                 'start' => $reservation->reservationstart,
-                                                                'end' => $reservation->reservationsend,
+                                                                'end' => $reservation->reservationsend, 'id' => $reservation->id,
                                                                 'name' => $reservation->name,  // Include reservation name
 
                                                             ];

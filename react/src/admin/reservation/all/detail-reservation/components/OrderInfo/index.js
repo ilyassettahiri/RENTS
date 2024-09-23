@@ -21,7 +21,7 @@ function OrderInfo({ title, picture }) {
             
 
             <Image
-              src={`${process.env.REACT_APP_IMAGE_BASE_URL}${picture}`}
+              src={`${process.env.REACT_APP_IMAGE_LISTING_SMALL}${picture}`}
               alt={title}
               ratio="1/1"
               width="100%"

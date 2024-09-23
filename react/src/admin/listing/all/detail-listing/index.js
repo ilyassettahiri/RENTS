@@ -57,7 +57,6 @@ function DetailListing() {
         const res = await CrudService.getDetailListing(id);
         const listingData = res.data.attributes;
 
-        console.log('Listing Data:', listingData);
 
         setData(listingData);
         setCalendarEvents(
@@ -80,49 +79,7 @@ function DetailListing() {
 
 
 
-  // TeamProfileCard dropdown menu state
-  const [marketingMenu, setMarketingMenu] = useState(null);
-  const [designMenu, setDesignMenu] = useState(null);
-
-  // TeamProfileCard dropdown menu handlers
-  const openMarketingMenu = (event) => setMarketingMenu(event.currentTarget);
-  const closeMarketingMenu = () => setMarketingMenu(null);
-  const openDesignMenu = (event) => setDesignMenu(event.currentTarget);
-  const closeDesignMenu = () => setDesignMenu(null);
-
-  // Dropdown menu for the digital marketing TeamProfileCard
-  const renderMarketingMenu = (
-    <Menu
-      anchorEl={marketingMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(marketingMenu)}
-      onClose={closeMarketingMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeMarketingMenu}>Action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeMarketingMenu}>Something else here</MenuItem>
-    </Menu>
-  );
-
-  // Dropdown menu for the design TeamProfileCard
-  const renderDesignMenu = (
-    <Menu
-      anchorEl={designMenu}
-      anchorOrigin={{ vertical: "top", horizontal: "left" }}
-      transformOrigin={{ vertical: "top", horizontal: "right" }}
-      open={Boolean(designMenu)}
-      onClose={closeDesignMenu}
-      keepMounted
-    >
-      <MenuItem onClick={closeDesignMenu}>Action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Another action</MenuItem>
-      <MenuItem onClick={closeDesignMenu}>Something else here</MenuItem>
-    </Menu>
-  );
-
-
+  
 
 
   const eventCalendar = useMemo(
@@ -187,24 +144,10 @@ function DetailListing() {
           <Grid item xs={12} lg={4}>
             <Grid item xs={12}>
               <SoftBox mb={3}>
-                <NextEvents />
+                {data && <NextEvents reservations={data.reservations} />}
               </SoftBox>
             </Grid>
 
-            <Grid item xs={12}>
-              <SoftBox mb={3}>
-                <TeamProfileCard
-                  title="design"
-                  description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
-                  industry="design team"
-                  rating={5}
-                  dropdown={{
-                    action: openDesignMenu,
-                    menu: renderDesignMenu,
-                  }}
-                />
-              </SoftBox>
-            </Grid>
           </Grid>
         </Grid>
       </SoftBox>
