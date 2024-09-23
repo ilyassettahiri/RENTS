@@ -33,7 +33,7 @@ function NextEvents({ reservations }) {
           <NotificationItem
             image="/logo/admin.jpg"
             title={[nextReservation.name,  ]}
-            date={`${formattedDate}`}
+            date={`${t('check in:')} ${formattedDate}`}
             onClick={() => clickViewHandler(nextReservation.id)}  // Pass the reservation ID
 
           />
