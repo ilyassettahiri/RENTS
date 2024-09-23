@@ -9,6 +9,11 @@ import MenuItem from "@mui/material/MenuItem";
 import TeamProfileCard from "examples/Cards/TeamCards/TeamProfileCard";
 import { useParams } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router-dom";
+import EditDialog from "admin/components/EditDialog";
+import Card from "@mui/material/Card";
+import EditIcon from "@mui/icons-material/Edit";
+import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+import { Tooltip, IconButton } from "@mui/material";
 
 import SoftButton from "components/SoftButton";
 
@@ -55,17 +60,7 @@ function DetailCustomer() {
         const response = await CrudService.getCustomer(id);
         setData(response.data);
 
-        if (response.data && response.data.attributes) {
-          setCalendarEvents([
-            {
-              title: response.data.attributes.name, // Use name instead of title
-              start: response.data.attributes.reservationstart,
-              end: response.data.attributes.reservationsend,
-              className: response.data.attributes.status === "active" ? "success" : "warning",
-            },
-          ]);
-          setInitialDate(response.data.attributes.reservationstart);
-        }
+       
       } catch (error) {
         console.error("Error fetching reservation data:", error);
       }
@@ -80,6 +75,15 @@ function DetailCustomer() {
 
 
 
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const handleOpenDialog = () => {
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
 
   
 
@@ -161,10 +165,17 @@ function DetailCustomer() {
                   />
                 </Grid>
               </Grid>
+
+              <SoftBox mt={3}>
+
+                  <OrdersOverview  />
+
+
+              </SoftBox>
+
             </Grid>
 
 
-            <OrdersOverview />
           </Grid>
 
 
@@ -175,28 +186,37 @@ function DetailCustomer() {
 
             <Grid item xs={12}>
               <SoftBox mb={3}>
-                <TeamProfileCard
-                  title="digital marketing"
-                  description="A group of people who collectively are responsible for all of the work necessary to produce working, validated assets."
-                  industry="marketing team"
-                  rating={4.5}
+                <Card sx={{ overflow: "visible" }}>
                   
-                  
-                />
-              </SoftBox>
-            </Grid>
 
 
-            <Grid item xs={12}>
-              <SoftBox mb={3}>
-                <TeamProfileCard
-                  title="design"
-                  description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
-                  industry="design team"
-                  rating={5}
-                  
-                  
-                />
+
+                  <SoftBox sx={{ p: 2 }} display="flex" justifyContent="space-between" alignItems="center">
+                    <SoftTypography variant="h6" fontWeight="medium" textTransform="capitalize">
+                      Customer Info
+                    </SoftTypography>
+                    
+                    <SoftTypography  variant="body2" color="secondary">
+                      <Tooltip title="edit" placement="top" onClick={handleOpenDialog}>
+                        <Icon>edit</Icon>
+                      </Tooltip>
+                    </SoftTypography>
+                  </SoftBox>
+
+
+
+                  {data && (<ProfileInfoCard
+                    
+                    info={{
+                      fullName: data.attributes.name,
+                      mobile: data.attributes.phone,
+                      email: data.attributes.email,
+                      city: data.attributes.city,
+                    }}
+                    
+                    
+                  />)}
+                </Card>
               </SoftBox>
             </Grid>
             
@@ -204,7 +224,12 @@ function DetailCustomer() {
 
 
         </Grid>
+
+
       </SoftBox>
+
+      <EditDialog onClose={handleCloseDialog} open={dialogOpen} />
+
       
     </DashboardLayout>
   );
