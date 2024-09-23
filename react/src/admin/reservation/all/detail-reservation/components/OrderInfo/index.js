@@ -10,12 +10,14 @@ import SoftBadge from "components/SoftBadge";
 import  Image  from 'components/image';
 
 
-function OrderInfo({ title, status, description, picture }) {
+function OrderInfo({ title, picture }) {
+
+
   return (
     <Grid container spacing={3} alignItems="center">
       <Grid item xs={12} md={6}>
         <SoftBox display="flex" alignItems="center">
-          <SoftBox mr={2}>
+          <SoftBox mr={2} width="4rem" >
             
 
             <Image
@@ -32,9 +34,7 @@ function OrderInfo({ title, status, description, picture }) {
               {title}
             </SoftTypography>
             <SoftBox mb={2}>
-              <SoftTypography variant="button" fontWeight="regular" color="text">
-                {description}
-              </SoftTypography>
+              
             </SoftBox>
             
           </SoftBox>

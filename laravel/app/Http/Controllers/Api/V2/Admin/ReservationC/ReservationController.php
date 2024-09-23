@@ -98,6 +98,14 @@ class ReservationController extends JsonApiController
                     'price' => $reservation->listings_price,
                     'status' => $reservation->status,
                     'created_at' => $reservation->created_at->toIso8601String(),
+
+                    'email' => $reservation->email,
+                    'address' => $reservation->address,
+                    'city' => $reservation->city,
+                    'zip' => $reservation->zip,
+                    'country' => $reservation->country,
+                    'phone' => $reservation->phone,
+
                 ],
                 'relationships' => [
                     'user' => [

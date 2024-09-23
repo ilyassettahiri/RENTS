@@ -67,6 +67,7 @@ function DetailReservation() {
         const response = await CrudService.getReservation(id);
         setData(response.data);
 
+
         if (response.data && response.data.attributes) {
           setCalendarEvents([
             {
@@ -167,9 +168,9 @@ function DetailReservation() {
                   {data && (
                     <OrderInfo
                       title={data.attributes.title}
-                      status={data.attributes.status}
+                      
                       picture={data.attributes.picture}
-                      description={`Order was placed on ${data.attributes.created_at}`}
+                      
                     />
                   )}
                 </SoftBox>
@@ -179,11 +180,11 @@ function DetailReservation() {
                     <Grid item xs={12} md={6} lg={5}>
                       <PaymentDetails />
                       <SoftBox mt={3}>
-                        <BillingInformation />
+                      {data && (<BillingInformation billing={data.attributes}/>)}
                       </SoftBox>
                     </Grid>
                     <Grid item xs={12} lg={5} sx={{ ml: "auto" }}>
-                      <OrderSummary />
+                      {data && (<OrderSummary summary={data.attributes}/>)}
                     </Grid>
                   </Grid>
                 </SoftBox>
@@ -198,92 +199,40 @@ function DetailReservation() {
           </Grid>
 
           <Grid item xs={12} lg={4}>
-            <Grid item xs={12}>
-              <SoftBox mb={3}>
-                <Card sx={{ overflow: "visible" }}>
-                  <SoftBox mb={3} sx={{ p: 2 }} display="flex" justifyContent="space-between" alignItems="center">
-                    <SoftTypography fontWeight="regular" color="text">
-                      Customer
-                    </SoftTypography>
-                    <Tooltip title="Edit listing" placement="top">
-                      <IconButton onClick={handleOpenDialog}>
-                        <EditIcon color="secondary" />
-                      </IconButton>
-                    </Tooltip>
-                  </SoftBox>
-                  <ProfileInfoCard
-                    title="profile information"
-                    description=""
-                    info={{
-                      fullName: "Alec M. Thompson",
-                      mobile: "(44) 123 1234 123",
-                      email: "alecthompson@mail.com",
-                      location: "USA",
-                    }}
-                    social={[
-                      {
-                        link: "https://www.facebook.com/CreativeTim/",
-                        icon: <FacebookIcon />,
-                        color: "facebook",
-                      },
-                      {
-                        link: "https://twitter.com/creativetim",
-                        icon: <TwitterIcon />,
-                        color: "twitter",
-                      },
-                      {
-                        link: "https://www.instagram.com/creativetimofficial/",
-                        icon: <InstagramIcon />,
-                        color: "instagram",
-                      },
-                    ]}
-                    action={{ route: "", tooltip: "Edit Profile" }}
-                  />
-                </Card>
-              </SoftBox>
-            </Grid>
+            
 
             <Grid item xs={12}>
               <SoftBox mb={3}>
                 <Card sx={{ overflow: "visible" }}>
-                  <SoftBox mb={3} sx={{ p: 2 }} display="flex" justifyContent="space-between" alignItems="center">
-                    <SoftTypography fontWeight="regular" color="text">
+                  
+
+
+
+                  <SoftBox sx={{ p: 2 }} display="flex" justifyContent="space-between" alignItems="center">
+                    <SoftTypography variant="h6" fontWeight="medium" textTransform="capitalize">
                       Shipping address
                     </SoftTypography>
-                    <Tooltip title="Edit listing" placement="top">
-                      <IconButton onClick={handleOpenDialog}>
-                        <EditIcon color="secondary" />
-                      </IconButton>
-                    </Tooltip>
+                    
+                    <SoftTypography  variant="body2" color="secondary">
+                      <Tooltip title="edit" placement="top" onClick={handleOpenDialog}>
+                        <Icon>edit</Icon>
+                      </Tooltip>
+                    </SoftTypography>
                   </SoftBox>
-                  <ProfileInfoCard
-                    title="profile information"
-                    description=""
+
+
+
+                  {data && (<ProfileInfoCard
+                    
                     info={{
-                      fullName: "Alec M. Thompson",
-                      mobile: "(44) 123 1234 123",
-                      email: "alecthompson@mail.com",
-                      location: "USA",
+                      fullName: data.attributes.name,
+                      mobile: data.attributes.phone,
+                      email: data.attributes.email,
+                      city: data.attributes.city,
                     }}
-                    social={[
-                      {
-                        link: "https://www.facebook.com/CreativeTim/",
-                        icon: <FacebookIcon />,
-                        color: "facebook",
-                      },
-                      {
-                        link: "https://twitter.com/creativetim",
-                        icon: <TwitterIcon />,
-                        color: "twitter",
-                      },
-                      {
-                        link: "https://www.instagram.com/creativetimofficial/",
-                        icon: <InstagramIcon />,
-                        color: "instagram",
-                      },
-                    ]}
-                    action={{ route: "", tooltip: "Edit Profile" }}
-                  />
+                    
+                    
+                  />)}
                 </Card>
               </SoftBox>
             </Grid>
