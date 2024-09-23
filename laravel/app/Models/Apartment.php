@@ -19,7 +19,7 @@ class Apartment extends Model
 {
 
 
-    protected $fillable = ['typea','address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','elevator'];
+    protected $fillable = ['collection_id','discount_id','typea','address','city','zip','country','phone','onlinestore_id','startdate','enddate','title','description','price','url','user_id','picture','elevator'];
 
 
     public function servicesimg(): HasMany {
@@ -29,6 +29,18 @@ class Apartment extends Model
     }
 
 
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
     public function user(): BelongsTo {
 

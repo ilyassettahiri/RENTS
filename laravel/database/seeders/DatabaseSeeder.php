@@ -15,10 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionsSeeder::class);
         $this->call(UsersSeeder::class);
-        $this->call(CategoriesSeeder::class);
-        $this->call(CollectionsSeeder::class);
+
         $this->call(TagsSeeder::class);
-        $this->call(ItemsSeeder::class);
         $this->call(BlogsSeeder::class);
 
         $this->command->call('passport:install', ['--force' => true]);

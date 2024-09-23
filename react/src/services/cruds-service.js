@@ -8,7 +8,7 @@ class CrudService {
   };
 
   imageUploadCollection = async (formData, id) => {
-    formData.append('collection_id', id); // Add collection_id to FormData
+    formData.append('collection_id','discount_id', id); // Add collection_id to FormData
     const imageUpdateCollection = `uploads/collections`;
     return await HttpService.post(imageUpdateCollection, formData);
   };

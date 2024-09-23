@@ -188,25 +188,25 @@ class TeamController extends JsonApiController
     public function show(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
+        $team = User::where('user_id', $user->id)->findOrFail($route->resourceId());
 
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'type' => 'team',
+                'id' => $team->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'profile_image' => $user->profile_image,
+                    'created_at' => $user->created_at,
                 ],
                 'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
+                    'roles' => $user->roles->map(function ($role) {
+                        return [
+                            'id' => $role->id,
+                            'name' => $role->name,
+                        ];
+                    }),
                 ],
             ]
         ]);

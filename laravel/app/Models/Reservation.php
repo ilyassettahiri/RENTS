@@ -15,7 +15,7 @@ class Reservation extends Model
 {
 
 
-    protected $fillable = ['name','email','address','city','zip','country','phone','reservationstart' ,'reservationsend' ,'status','user_id','onlinestore_id','checkout_id','category','listings_thumb','listings_title','listings_price','url',
+    protected $fillable = ['collection_id','discount_id','name','email','address','city','zip','country','phone','reservationstart' ,'reservationsend' ,'status','user_id','onlinestore_id','checkout_id','category','listings_thumb','listings_title','listings_price','url',
 
     'listing_id','billiard_id','boxing_id','diving_id','football_id','golf_id','hunting_id','musculation_id','surf_id','tennis_id',
 
@@ -54,6 +54,19 @@ class Reservation extends Model
 
     }
 
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
 
     public function onlinestore(): belongsTo {

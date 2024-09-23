@@ -18,7 +18,8 @@ return new class extends Migration
 
             $table->string('name')->nullable();
             $table->string('email')->nullable();
-            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+
             $table->date('reservationstart')->nullable();
             $table->date('reservationsend')->nullable();
             $table->string('checkout_id')->nullable();
@@ -38,7 +39,9 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('onlinestore_id');
+            $table->foreignId('discount_id');
 
+            $table->foreignId('collection_id');
 
             $table->foreignId('listing_id')->nullable();
 

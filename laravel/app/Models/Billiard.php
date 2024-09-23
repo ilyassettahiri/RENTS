@@ -19,7 +19,7 @@ use App\Models\Billiardsimg;
 class Billiard extends Model
 {
 
-    protected $fillable = ['typea','startdate','enddate','address','city','zip','country','phone','title','description','price','url','user_id','onlinestore_id','picture','table_brand','year_model','table_dimensions','table_weight','table_type','condition'];
+    protected $fillable = ['collection_id','discount_id','typea','startdate','enddate','address','city','zip','country','phone','title','description','price','url','user_id','onlinestore_id','picture','table_brand','year_model','table_dimensions','table_weight','table_type','condition'];
 
 
     public function user(): BelongsTo {
@@ -28,6 +28,18 @@ class Billiard extends Model
 
     }
 
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
     public function onlinestore(): BelongsTo {
 

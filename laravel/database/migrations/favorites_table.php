@@ -28,7 +28,8 @@ return new class extends Migration
 
             $table->decimal('price', 10, 2)->nullable();
             $table->string('url');
-            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+
 
             $table->foreignId('billiard_id')->nullable();
 

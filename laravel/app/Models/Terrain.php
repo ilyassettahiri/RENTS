@@ -19,13 +19,29 @@ class Terrain extends Model
 {
 
 
-    protected $fillable = ['typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','property_type'];
+    protected $fillable = ['collection_id','discount_id','typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','property_type'];
 
 
     public function servicesimg(): HasMany {
 
 
         return $this->hasMany(Terrainsimg::class);
+    }
+
+
+
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
     }
 
 

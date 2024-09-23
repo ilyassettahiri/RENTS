@@ -19,7 +19,7 @@ class Activity extends Model
 {
 
 
-    protected $fillable = ['typea','address','city','zip','country','phone','startdate','enddate','onlinestore_id','title','description','price','url','user_id','picture','type'];
+    protected $fillable = ['typea','address','city','zip','country','phone','startdate','enddate','collection_id','discount_id', 'onlinestore_id','title','description','price','url','user_id','picture','type'];
 
 
 
@@ -36,6 +36,21 @@ class Activity extends Model
         return $this->belongsTo(User::class);
 
     }
+
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
+
 
     public function reservation(): HasMany {
 

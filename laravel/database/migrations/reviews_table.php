@@ -33,11 +33,13 @@ return new class extends Migration
 
 
 
-            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('onlinestore_id');
-
+            $table->foreignId('discount_id');
+            $table->foreignId('collection_id');
             $table->foreignId('billiard_id')->nullable();
 
             $table->foreignId('listing_id')->nullable();

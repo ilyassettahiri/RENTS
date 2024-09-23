@@ -21,7 +21,7 @@ class Boxing extends Model
 {
 
 
-    protected $fillable = ['typea','title','address','city','zip','onlinestore_id','country','phone','description','price','url','user_id','picture','brand_name','startdate','enddate'];
+    protected $fillable = ['collection_id','discount_id','typea','title','address','city','zip','onlinestore_id','country','phone','description','price','url','user_id','picture','brand_name','startdate','enddate'];
 
 
     public function user(): BelongsTo {
@@ -35,6 +35,20 @@ class Boxing extends Model
 
 
         return $this->hasMany(Boxingsimg::class);
+    }
+
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
     }
 
 

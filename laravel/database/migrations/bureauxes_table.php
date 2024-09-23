@@ -23,10 +23,14 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->foreignId('onlinestore_id');
-
+            $table->foreignId('discount_id');
+            $table->foreignId('collection_id');
             $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();
             $table->string('typea')->nullable();
+
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->boolean('featured')->default(false);
 
             $table->string('phone', 15)->nullable();
 

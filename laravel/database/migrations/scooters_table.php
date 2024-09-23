@@ -28,9 +28,13 @@ return new class extends Migration
 
             $table->string('phone', 15)->nullable();
             $table->foreignId('onlinestore_id');
-
+            $table->foreignId('discount_id');
+            $table->foreignId('collection_id');
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
+
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->boolean('featured')->default(false);
 
             $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

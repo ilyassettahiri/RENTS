@@ -17,6 +17,10 @@ return new class extends Migration
 
             $table->foreignId('review_id');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+
+
             $table->text('message')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->nullable();

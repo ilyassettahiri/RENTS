@@ -19,7 +19,7 @@ class Listing extends Model
 {
 
 
-    protected $fillable = [ 'typea','onlinestore_id','user_id','title','status','picture','phone','price','category','url'];
+    protected $fillable = ['collection_id','discount_id', 'typea','onlinestore_id','user_id','title','status','picture','phone','price','category','url'];
 
 
 
@@ -38,11 +38,30 @@ class Listing extends Model
     }
 
 
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
+
+
     public function user(): belongsTo {
 
         return $this->belongsTo(User::class);
 
     }
+
+
+
+
 
     public function discounts()
     {

@@ -27,8 +27,13 @@ return new class extends Migration
             $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();
             $table->foreignId('onlinestore_id');
-
+            $table->foreignId('discount_id');
+            $table->foreignId('collection_id');
             $table->string('phone', 15)->nullable();
+
+
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->boolean('featured')->default(false);
 
             $table->string('entire_home')->nullable();
             $table->string('outdoor_dining_area')->nullable();

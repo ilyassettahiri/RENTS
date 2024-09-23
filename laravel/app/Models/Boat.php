@@ -20,7 +20,7 @@ class Boat extends Model
 
 
 
-    protected $fillable = ['typea','address','city','onlinestore_id','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
+    protected $fillable = ['collection_id','discount_id','typea','address','city','onlinestore_id','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','brand_name'];
 
 
     public function servicesimg(): HasMany {
@@ -29,7 +29,18 @@ class Boat extends Model
         return $this->hasMany(Boatsimg::class);
     }
 
+    public function collection(): BelongsTo {
 
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
 
     public function user(): BelongsTo {

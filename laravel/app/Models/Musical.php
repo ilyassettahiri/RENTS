@@ -19,7 +19,7 @@ class Musical extends Model
 {
 
 
-    protected $fillable = ['typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','music_type'];
+    protected $fillable = ['collection_id','discount_id','typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','music_type'];
 
 
     public function servicesimg(): HasMany {
@@ -28,6 +28,20 @@ class Musical extends Model
         return $this->hasMany(Musicalsimg::class);
     }
 
+
+
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
 
     public function user(): BelongsTo {

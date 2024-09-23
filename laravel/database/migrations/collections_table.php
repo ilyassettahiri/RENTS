@@ -15,10 +15,15 @@ return new class extends Migration
     {
         Schema::create('collections', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name')->nullable();;
-            $table->string('picture')->nullable();;
+            $table->string('name')->nullable();
+            $table->string('picture')->nullable();
+            $table->string('typea')->nullable();
+            $table->string('typeb')->nullable();
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('onlinestore_id');
+
 
             $table->text('description')->nullable();
             $table->timestamps();

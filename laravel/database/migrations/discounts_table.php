@@ -20,10 +20,12 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('code');
             $table->string('discountvalue');
+            $table->string('typea')->nullable();
+            $table->string('typeb')->nullable();
             $table->string('applies_to')->nullable();
             $table->string('requirements')->nullable();
             $table->string('purchaseamount')->nullable();
-            $table->enum('status', ['active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->timestamps();
         });

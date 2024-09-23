@@ -19,7 +19,7 @@ class Riad extends Model
 {
 
 
-    protected $fillable = ['typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','doorkeeper'];
+    protected $fillable = ['collection_id','discount_id','typea','onlinestore_id','address','city','zip','country','phone','startdate','enddate','title','description','price','url','user_id','picture','doorkeeper'];
 
 
     public function servicesimg(): HasMany {
@@ -29,6 +29,18 @@ class Riad extends Model
     }
 
 
+    public function collection(): BelongsTo {
+
+        return $this->belongsTo(Collection::class);
+
+    }
+
+
+    public function discount(): BelongsTo {
+
+        return $this->belongsTo(Discount::class);
+
+    }
 
 
     public function user(): BelongsTo {

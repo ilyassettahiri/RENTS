@@ -19,6 +19,9 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->foreignId('onlinestore_id');
+            $table->foreignId('discount_id');
+            $table->foreignId('collection_id');
+
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();
@@ -49,6 +52,8 @@ return new class extends Migration
             $table->string('monitor')->nullable();
             $table->string('more_details')->nullable();
 
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->boolean('featured')->default(false);
 
 
             $table->timestamps();

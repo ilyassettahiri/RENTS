@@ -165,32 +165,23 @@ class DiscountController extends JsonApiController
             'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
         ]);
 
-        $collection = Collection::findOrFail($route->resourceId());
+        $discount = Discount::findOrFail($route->resourceId());
 
-        // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
-            // Delete the old picture if exists
-            if ($collection->picture) {
-                Storage::disk('public')->delete(str_replace('/storage/', '', $collection->picture));
-            }
-            $pictureFile = $request->file('data.attributes.picture');
-            $picturePath = Storage::disk('public')->put('images', $pictureFile);
-            $collection->picture = '/' . $picturePath; // Prepend '/' to make it a relative path
-        }
 
-        $collection->name = $request->input('data.attributes.name');
-        $collection->description = $request->input('data.attributes.description');
-        $collection->save();
+
+        $discount->name = $request->input('data.attributes.name');
+        $discount->description = $request->input('data.attributes.description');
+        $discount->save();
 
         // Return a JSON:API compliant response
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'type' => 'discounts',
+                'id' => $discount->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'created_at' => $collection->created_at,
+                    'name' => $discount->name,
+                    'picture' => $discount->picture,
+                    'created_at' => $discount->created_at,
                 ],
                 'relationships' => [
                     'user' => [
@@ -207,17 +198,25 @@ class DiscountController extends JsonApiController
     public function show(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
+        $discount = Discount::where('user_id', $user->id)->findOrFail($route->resourceId());
 
         return response()->json([
             'data' => [
                 'type' => 'collections',
                 'id' => $collection->id,
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
+                    'id' => $discount->id,
+
+                    'code' => $discount->code,
+                    'percentage' => $discount->discountvalue,
+                    'applies' => $discount->applies_to,
+                    'type' => $discount->requirements,
+
+                    'status' => $discount->status,
+
+
+
+                    'created_at' => $discount->created_at,
                 ],
                 'relationships' => [
                     'user' => [
