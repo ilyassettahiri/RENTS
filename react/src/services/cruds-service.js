@@ -122,6 +122,11 @@ class CrudService {
 
 
 
+  getTeams = async () => {
+    const usersEndpoint = "teams?include=roles";
+    return await HttpService.get(usersEndpoint);
+  };
+
 
 
   getUsers = async () => {

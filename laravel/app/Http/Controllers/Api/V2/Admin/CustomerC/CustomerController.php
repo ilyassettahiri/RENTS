@@ -66,6 +66,50 @@ class CustomerController extends JsonApiController
 
 
 
+    public function show(JsonApiRoute $route, Store $store)
+    {
+        $user = Auth::user();
+        $request = app('request'); // Retrieve the current request
+
+        $customer = Customer::findOrFail($route->resourceId());
+
+
+        return response()->json([
+            'data' => [
+                'type' => 'customers',
+                'id' => $customer->id,
+                'attributes' => [
+
+
+                    'picture' => $customer->listings_thumb,
+                    'name' => $customer->name,
+                    'email' => $customer->email,
+                    'title' => $customer->listings_title,
+                    'price' => $customer->listings_price,
+
+                    'id' => $customer->id,
+
+
+
+                    'user_id' => $customer->user_id,
+                    'created_at' => $customer->created_at,
+                    'updated_at' => $customer->updated_at,
+                ],
+                'relationships' => [
+                    'user' => [
+                        'data' => [
+                            'type' => 'users',
+                            'id' => $user->id,
+                        ],
+                    ],
+                ],
+            ]
+        ]);
+
+
+    }
+
+
 
     public function delete(JsonApiRoute $route, Store $store )
     {

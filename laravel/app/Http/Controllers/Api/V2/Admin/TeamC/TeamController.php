@@ -17,7 +17,7 @@ use App\Enums\ItemStatus;
 
 
 use App\Models\Listing;
-use App\Models\Collection;
+use App\Models\User;
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -34,32 +34,33 @@ class TeamController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
-
+        // Get all users with their roles
+        $users = User::with('roles')->get();
 
         return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
+            'data' => $users->map(function ($user) {
                 return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
+                    'type' => 'users',
+                    'id' => $user->id,
                     'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
+                        'name' => $user->name,
+                        'email' => $user->email,
+                        'profile_image' => $user->profile_image,
+                        'created_at' => $user->created_at,
                     ],
                     'relationships' => [
-                        'user' => [
-                            'data' => [
-                                'type' => 'users',
-                                'id' => $user->id,
-                            ],
-                        ],
+                        'roles' => $user->roles->map(function ($role) {
+                            return [
+                                'id' => $role->id,
+                                'name' => $role->name,
+                            ];
+                        }),
                     ],
                 ];
             }),
         ]);
     }
+
 
 
 
