@@ -38,8 +38,8 @@ return new class extends Migration
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
             $table->foreignId('billiard_id')->nullable();
 
             $table->foreignId('listing_id')->nullable();

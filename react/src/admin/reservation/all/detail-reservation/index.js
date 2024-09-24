@@ -10,6 +10,7 @@ import MenuItem from "@mui/material/MenuItem";
 import SoftAlert from "components/SoftAlert";
 import { Tooltip, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import { useQuery } from '@tanstack/react-query';
 
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 // @mui icons
@@ -53,37 +54,13 @@ function DetailReservation() {
   const { id } = useParams();
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
-  const [data, setData] = useState(null);
-  const [calendarEvents, setCalendarEvents] = useState([]);
   const [initialDate, setInitialDate] = useState("2021-08-10"); // Default initial date
   const [notification, setNotification] = useState({
     value: false,
     text: "",
   });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getReservation(id);
-        setData(response.data);
-
-
-        if (response.data && response.data.attributes) {
-          setCalendarEvents([
-            {
-              title: response.data.attributes.name, // Use name instead of title
-              start: response.data.attributes.reservationstart,
-              end: response.data.attributes.reservationsend,
-              className: response.data.attributes.status === "active" ? "success" : "warning",
-            },
-          ]);
-          setInitialDate(response.data.attributes.reservationstart);
-        }
-      } catch (error) {
-        console.error("Error fetching reservation data:", error);
-      }
-    })();
-  }, [id]);
+  
 
   const [menu, setMenu] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -98,8 +75,33 @@ function DetailReservation() {
 
  
 
-  const eventCalendar = useMemo(
-    () => (
+    // Fetch reservation data using React Query
+    const { data: reservationData, isLoading, error } = useQuery({
+      queryKey: ['reservation', id],
+      queryFn: () => CrudService.getReservation(id),
+      onError: (error) => {
+        console.error("Error fetching reservation data:", error);
+      },
+      enabled: !!id,
+    });
+  
+    const data = reservationData?.data;
+  
+    // Memoize calendar events
+    const calendarEvents = useMemo(() => {
+      if (!data || !data.attributes) return [];
+  
+      return [
+        {
+          title: data.attributes.name, // Use name instead of title
+          start: data.attributes.reservationstart,
+          end: data.attributes.reservationsend,
+          className: data.attributes.status === "active" ? "success" : "warning",
+        },
+      ];
+    }, [data]);
+  
+    const eventCalendar = useMemo(() => (
       <EventCalendar
         initialView="dayGridMonth"
         initialDate={initialDate}
@@ -107,9 +109,8 @@ function DetailReservation() {
         selectable
         editable
       />
-    ),
-    [calendarEvents, initialDate]
-  );
+    ), [calendarEvents, initialDate]);
+
 
 
   const handleStatusChange = async (newStatus) => {
@@ -147,10 +148,10 @@ function DetailReservation() {
             status={data?.attributes.status}
             onChangeStatus={handleStatusChange}
             statusOptions={[
-              { value: 'pending', label: 'Pending' },
-              { value: 'active', label: 'Active' },
-              { value: 'completed', label: 'Completed' },
-              { value: 'cancelled', label: 'Cancelled' }
+              { value: 'pending', label: t('Pending') },
+              { value: 'active', label: t('Active') },
+              { value: 'completed', label: t('Completed') },
+              { value: 'cancelled', label: t('Cancelled') }
             ]}
           />
         )}

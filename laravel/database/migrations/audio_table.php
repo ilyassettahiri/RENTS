@@ -23,8 +23,8 @@ return new class extends Migration
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
 

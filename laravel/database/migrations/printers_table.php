@@ -30,8 +30,8 @@ return new class extends Migration
             $table->string('city')->nullable();
 
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);

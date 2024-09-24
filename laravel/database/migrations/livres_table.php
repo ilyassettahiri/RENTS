@@ -28,8 +28,8 @@ return new class extends Migration
 
             $table->string('phone', 15)->nullable();
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
             $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();

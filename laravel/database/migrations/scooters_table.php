@@ -28,8 +28,8 @@ return new class extends Migration
 
             $table->string('phone', 15)->nullable();
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
             $table->date('startdate')->nullable();
             $table->date('enddate')->nullable();
 

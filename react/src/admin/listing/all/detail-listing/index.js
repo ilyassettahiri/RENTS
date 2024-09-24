@@ -4,6 +4,10 @@ import Grid from "@mui/material/Grid";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import SoftButton from "components/SoftButton";
+
+import { useQuery } from '@tanstack/react-query';
+
+
 import EventCalendar from "examples/Calendar";
 import Card from "@mui/material/Card";
 import Icon from "@mui/material/Icon";
@@ -26,14 +30,47 @@ function DetailListing() {
   const { t } = useTranslation();
 
   const { id } = useParams();
-  const [data, setData] = useState(null);
-  const [calendarEvents, setCalendarEvents] = useState([]);
 
+
+
+
+  // Use React Query to fetch listing details
+  const { data: listingData, isLoading, error } = useQuery({
+    queryKey: ['listingDetail', id],
+    queryFn: () => CrudService.getDetailListing(id),
+    enabled: !!id,
+    onError: (error) => {
+      console.error('Failed to fetch listing details:', error);
+    },
+  });
+
+  const data = listingData?.data.attributes;
+
+  // Memoize calendar events
+  const calendarEvents = useMemo(() => {
+    if (!data) return [];
+
+    return data.reservations.map((reservation) => ({
+      title: reservation.name,  // Use reservation name
+      start: reservation.start,
+      end: reservation.end,
+      backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,  // Random color for event
+    }));
+  }, [data]);
+
+  const eventCalendar = useMemo(() => (
+    <EventCalendar
+      initialView="dayGridMonth"
+      initialDate={new Date()}
+      events={calendarEvents}
+      selectable
+      editable
+    />
+  ), [calendarEvents]);
 
   const clickAddHandler = () => {
     navigate("/listing/create-listing");
   };
-
 
   const clickEditHandler = (id) => {
     navigate(`/listing/edit-listing/${id}`);
@@ -47,53 +84,18 @@ function DetailListing() {
     window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };
 
-  
+  if (isLoading) {
+    return <div>{t("Loading...")}</div>;
+  }
+
+  if (error) {
+    return <div>{t("Error loading data")}</div>;
+  }
+
+  const category = data?.category;
+  const url = data?.url;
 
 
-  useEffect(() => {
-    if (!id) return;
-    (async () => {
-      try {
-        const res = await CrudService.getDetailListing(id);
-        const listingData = res.data.attributes;
-
-
-        setData(listingData);
-        setCalendarEvents(
-          listingData.reservations.map((reservation) => ({
-            title: reservation.name,  // Use reservation name
-            start: reservation.start,
-            end: reservation.end,
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-          }))
-        );
-      } catch (err) {
-        console.error(err);
-      }
-    })();
-  }, [id]);
-
-
-  const category= data?.category;
-  const url= data?.url;
-
-
-
-  
-
-
-  const eventCalendar = useMemo(
-    () => (
-      <EventCalendar
-        initialView="dayGridMonth"
-        initialDate={new Date()}
-        events={calendarEvents}
-        selectable
-        editable
-      />
-    ),
-    [calendarEvents]
-  );
 
   return (
     <DashboardLayout>
@@ -113,10 +115,10 @@ function DetailListing() {
             clickOpenHandler={() => clickOpenHandler(category, url)}
 
             statusOptions={[
-              { value: 'pending', label: 'Pending' },
-              { value: 'active', label: 'Active' },
-              { value: 'completed', label: 'Completed' },
-              { value: 'cancelled', label: 'Cancelled' }
+              { value: 'pending', label: t('Pending') },
+              { value: 'active', label: t('Active') },
+              { value: 'completed', label: t('Completed') },
+              { value: 'cancelled', label: t('Cancelled') }
             ]}
           />
         )}

@@ -1,10 +1,13 @@
 // react-router-dom components
-import { useNavigate, useLocation, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+
 import CrudService from "services/cruds-service";
 import { AbilityContext } from "Can";
 import { useAbility } from "@casl/react";
 import { format } from 'date-fns';
+import { useQuery } from '@tanstack/react-query';
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -41,100 +44,96 @@ function Dashboard() {
   const { chart, items } = reportsBarChartData;
 
 
-  const [topListingsRows, setTopListingsRows] = useState([]);
-  const [currentMonthReservations, setCurrentMonthReservations] = useState([]);
-  const [lastMonthReservations, setLastMonthReservations] = useState([]);
-  const [reservationsPerMonth, setReservationsPerMonth] = useState([]);
-
-
+  
 
 
   let { state } = useLocation();
   const ability = useAbility(AbilityContext);
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
 
 
 
+  // Use React Query to fetch dashboard data
+  const { data: dashboardData, isLoading, error } = useQuery({
+    queryKey: ['dashboard'],
+    queryFn: () => CrudService.getDashboard(),
+    onError: (error) => {
+      console.error('Failed to fetch dashboard:', error);
+    },
+  });
 
+  // Memoize data from the dashboard
+  const topListingsRows = useMemo(() => {
+    if (!dashboardData) return [];
 
-  useEffect(() => {
-    (async () => {
-      const response = await CrudService.getDashboard();
+    return dashboardData.data.attributes.topListingsThisMonths.map(listing => ({
+      title: [listing.picture, listing.title],
+      price: `$${listing.price}`,
+      status: listing.status,
+    }));
+  }, [dashboardData]);
 
-      console.log(' fetched:', response.data.attributes);
+  const currentMonthReservations = useMemo(() => {
+    if (!dashboardData) return [];
 
+    return dashboardData.data.attributes.currentMonthReservationHistory.map(day => ({
+      date: day.date,
+      count: day.count,
+    }));
+  }, [dashboardData]);
 
-      const { attributes } = response.data;
-      setData(attributes);
+  const lastMonthReservations = useMemo(() => {
+    if (!dashboardData) return [];
 
-      // Transform top listings into rows for the SalesTable
-      const listingsRows = attributes.topListingsThisMonths.map(listing => ({
-        title: [listing.picture, listing.title],  // If picture is null, it will handle no image
-        
-        price: `$${listing.price}`,          // Add price formatting
-        status: listing.status,
-      }));
+    return dashboardData.data.attributes.lastMonthReservationHistory.map(day => ({
+      date: day.date,
+      count: day.count,
+    }));
+  }, [dashboardData]);
 
-      setTopListingsRows(listingsRows);
+  const reservationsPerMonth = useMemo(() => {
+    if (!dashboardData) return [];
 
+    return dashboardData.data.attributes.reservationsPerMonthThisYear.map(month => ({
+      month: month.month,
+      count: month.count,
+    }));
+  }, [dashboardData]);
 
-            // Store current and last month's reservation history for chart comparison
-      const currentMonth = attributes.currentMonthReservationHistory.map(day => ({
-        date: day.date,
-        count: day.count,
-      }));
-
-      const lastMonth = attributes.lastMonthReservationHistory.map(day => ({
-        date: day.date,
-        count: day.count,
-      }));
-
-      setCurrentMonthReservations(currentMonth);
-      setLastMonthReservations(lastMonth);
-
-
-            // Store reservation counts per month for the current year
-      const reservationsPerMonthData = attributes.reservationsPerMonthThisYear.map(month => ({
-        month: month.month,  // 1 = Jan, 2 = Feb, etc.
-        count: month.count,  // Number of reservations
-      }));
-      setReservationsPerMonth(reservationsPerMonthData);
-
-    })();
-  }, []);
-
-
-
-
-  const chartData = {
+  const chartData = useMemo(() => ({
     labels: currentMonthReservations.map(item => format(new Date(item.date), "dd MMM")),
     datasets: [
       {
-        label: "Current Month",
+        label: t("Current Month"),
         color: "info",
         data: currentMonthReservations.map(item => item.count),
       },
       {
-        label: "Last Month",
+        label: t("Last Month"),
         color: "dark",
         data: lastMonthReservations.map(item => item.count),
       },
     ],
-  };
+  }), [currentMonthReservations, lastMonthReservations, t]);
 
+  const barChartData = useMemo(() => ({
+    labels: reservationsPerMonth.map(item => format(new Date(2024, item.month - 1), "MMM")),
+    datasets: [
+      {
+        label: t("Reservations"),
+        data: reservationsPerMonth.map(item => item.count),
+      },
+    ],
+  }), [reservationsPerMonth, t]);
 
+  if (isLoading) {
+    return <div>{t("Loading...")}</div>;
+  }
 
-    // Prepare data for the bar chart (reservations per month for this year)
-    const barChartData = {
-      labels: reservationsPerMonth.map(item => format(new Date(2024, item.month - 1), "MMM")),
-      datasets: [
-        {
-          label: "Reservations",
-          data: reservationsPerMonth.map(item => item.count),
-        },
-      ],
-    };
+  if (error) {
+    return <div>{t("Error loading data")}</div>;
+  }
+
 
 
 
@@ -165,8 +164,8 @@ function Dashboard() {
                 <SoftBox mb={3}>
                   
                   <MiniStatisticsCard
-                    title={{ text: "Today Reservations", fontWeight: "bold" }}
-                    count={data.totalReservationsToday}
+                    title={{ text: t("Today Reservations"), fontWeight: "bold" }}
+                    count={dashboardData.data.attributes.totalReservationsToday}
                     percentage={{ color: "success", text: "+3%" }}
                     icon={{ color: "info", component: "public" }}
                   />
@@ -175,7 +174,7 @@ function Dashboard() {
                 </SoftBox>
 
                   <MiniStatisticsCard
-                    title={{ text: "Today Visitors", fontWeight: "bold" }}
+                    title={{ text: t("Today Visitors"), fontWeight: "bold" }}
                     count="3,462"
                     percentage={{ color: "error", text: "-2%" }}
                     icon={{ color: "info", component: "emoji_events" }}
@@ -187,8 +186,8 @@ function Dashboard() {
                 <SoftBox mb={3}>
 
                   <MiniStatisticsCard
-                    title={{ text: "Today Revenue ", fontWeight: "bold" }}
-                    count={data.totalRevenueToday}
+                    title={{ text: t("Today Revenue"), fontWeight: "bold" }}
+                    count={dashboardData.data.attributes.totalRevenueToday}
                     percentage={{ color: "success", text: "+55%" }}
                     icon={{ color: "info", component: "paid" }}
                   />
@@ -196,8 +195,8 @@ function Dashboard() {
                 </SoftBox>
                 <SoftBox mb={3}>
                   <MiniStatisticsCard
-                    title={{ text: "This Month Revenue", fontWeight: "bold" }}
-                    count={data.totalRevenueThisMonth}
+                    title={{ text: t("This Month Revenue"), fontWeight: "bold" }}
+                    count={dashboardData.data.attributes.totalRevenueThisMonth}
                     percentage={{ color: "success", text: "+5%" }}
                     icon={{
                       color: "info",
@@ -221,7 +220,7 @@ function Dashboard() {
                 title="active users"
                 description={
                   <>
-                    (<strong>+23%</strong>) than last week
+                    (<strong>+23%</strong>) {t("than last week")}
                   </>
                 }
                 chart={barChartData}
@@ -230,16 +229,18 @@ function Dashboard() {
             </Grid>
             <Grid item xs={12} lg={7}>
               <GradientLineChart
-                title="Sales Overview"
+                title={t("Sales Overview")}
+
                 description={
                   <SoftBox display="flex" alignItems="center">
                     <SoftBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
                       <Icon sx={{ fontWeight: "bold" }}>arrow_upward</Icon>
                     </SoftBox>
                     <SoftTypography variant="button" color="text" fontWeight="medium">
-                      4% more{" "}
+                      4% {t("more")}{" "}
                       <SoftTypography variant="button" color="text" fontWeight="regular">
-                      (Current vs. Last Month)
+                      ({t("Current vs. Last Month")})
+
 
                       </SoftTypography>
                     </SoftTypography>

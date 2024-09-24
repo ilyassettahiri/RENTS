@@ -37,8 +37,8 @@ return new class extends Migration
             $table->string('url');
 
             $table->foreignId('onlinestore_id');
-            $table->foreignId('discount_id');
-            $table->foreignId('collection_id');
+            $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
 
 
 
