@@ -22,7 +22,8 @@ return new class extends Migration
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('onlinestore_id');
+            $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('discount_id')->nullable();
 
 
             $table->text('description')->nullable();

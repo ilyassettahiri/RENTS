@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
-            $table->foreignId('onlinestore_id');
+            $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 

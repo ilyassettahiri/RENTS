@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('garden_view')->nullable();
             $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('onlinestore_id');
+            $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
             $table->string('picture')->nullable();

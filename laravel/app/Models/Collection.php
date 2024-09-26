@@ -32,16 +32,19 @@ class Collection extends Model
         return $this->hasMany(Item::class);
     }
 
-    public function discounts()
-    {
-        return $this->belongsToMany(Discount::class, 'collection_discount');
-    }
 
 
 
     public function user(): belongsTo {
 
         return $this->belongsTo(User::class);
+
+    }
+
+
+    public function discount(): belongsTo {
+
+        return $this->belongsTo(Discount::class);
 
     }
 
@@ -104,11 +107,7 @@ class Collection extends Model
     }
 
 
-    public function discount(): HasMany {
 
-
-        return $this->hasMany(Discount::class);
-    }
 
 
 

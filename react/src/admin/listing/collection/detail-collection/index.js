@@ -1,4 +1,7 @@
-import { useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+
+
+import { useState, useEffect, useMemo } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -10,6 +13,8 @@ import { useTranslation } from 'react-i18next';
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
 import SoftEditor from "components/MDEditor";
+import { useQuery } from '@tanstack/react-query';
+import { format } from 'date-fns';
 
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -29,6 +34,26 @@ import FormField from "admin/components/FormField";
 import { useNavigate, useParams } from "react-router-dom";
 
 import CrudService from "services/cruds-service";
+
+
+import ProductCell from "admin/components/ProductCell";
+
+
+import DataTable from "examples/Tables/DataTable";
+import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
+
+
+
+import HTMLReactParser from "html-react-parser";
+
+import IdCell from "admin/components/IdCell";
+import DefaultCell from "admin/components/DefaultCell";
+import StatusCell from "admin/components/StatusCell";
+import CustomerCell from "admin/components/CustomerCell";
+
+
+
+
 
 const DetailCollection = () => {
   const { id } = useParams();
@@ -54,25 +79,102 @@ const DetailCollection = () => {
     textError: "",
   });
 
-  useEffect(() => {
-    if (!id) return;
-    (async () => {
-      try {
-        const res = await CrudService.getCollection(id);
-        setCollection({
-          id: res.data.id,
-          name: res.data.attributes.name,
-          
-          picture: res.data.attributes.picture,
-        });
-        setData(res.data.attributes);
 
-        setDescription(res.data.attributes.description);
-      } catch (err) {
-        console.error(err);
+
+
+  // Fetch collection data (including listings) using React Query
+  const { data: collectionData, isLoading: isCollectionLoading, error: collectionError } = useQuery({
+    queryKey: ['collection', id],
+    queryFn: () => CrudService.getCollection(id),
+    
+  });
+
+
+    // Use useEffect to set collection and description when collectionData is fetched
+    useEffect(() => {
+      if (collectionData) {
+        const collectionAttributes = collectionData.data.attributes;
+        setCollection({
+          id: collectionData.data.id,
+          name: collectionAttributes.name,
+          picture: collectionAttributes.picture,
+        });
+        setDescription(collectionAttributes.description);
       }
-    })();
-  }, [id]);
+    }, [collectionData]);
+
+  // Memoize the table data for listings
+  const tableData = useMemo(() => {
+    if (!collectionData) return [];
+
+    return collectionData.data.attributes.listings.map((listing) => ({
+      product: {
+        image: `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${listing.picture}`,
+        name: listing.title,
+        checked: false,
+        id: listing.id,
+      },
+      price: listing.price,
+      status: listing.status,
+      created_at: format(new Date(listing.created_at), 'd MMM, h:mm a'),
+      id: listing.id,
+      category: listing.category,
+      url: listing.url,
+    }));
+  }, [collectionData]);
+
+  const dataTableData = {
+    columns: [
+      {
+        Header: "product",
+        accessor: "product",
+        width: "40%",
+        Cell: ({ cell: { value } }) => (
+          <ProductCell
+            image={value.image}
+            name={value.name}
+            checked={value.checked}
+            id={value.id}
+            linkPath={`/listing/detail-listing/${value.id}`}
+          />
+        ),
+      },
+      {
+        Header: "Status",
+        accessor: "status",
+        Cell: ({ row }) => {
+          const value = row.original.status;
+          return (
+            <div style={{ cursor: "pointer" }}>
+              <StatusCell icon={value === "active" ? "done" : "close"} color={value === "active" ? "success" : "error"} status={value} />
+            </div>
+          );
+        },
+      },
+      { Header: "price", accessor: "price" },
+      { Header: "created at", accessor: "created_at" },
+    ],
+    rows: tableData,
+  };
+
+
+
+  const clickEditHandler = (id) => {
+    navigate(`/listing/edit-listing/${id}`);
+  };
+
+  const clickDeleteHandler = async () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this listing?");
+    if (!isConfirmed) return;
+
+    try {
+      await CrudService.deleteCollection(id);
+      navigate("/listing/collection");
+    } catch (error) {
+      console.error('Failed to delete listing:', error);
+    }
+  };
+
 
   const changePictureHandler = (e) => {
     const file = e.target.files[0];
@@ -141,27 +243,7 @@ const DetailCollection = () => {
   
 
 
-  
-  const clickDeleteHandler = async () => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this listing?");
-  
-    if (!isConfirmed) {
-      // If the user cancels, stop the function execution
-      return;
-    }
-  
-    try {
-      // Send delete request
-      await CrudService.deleteCollection(id);
-      
-      // Navigate after successful deletion
-      navigate("/listing/create-listing");
-    } catch (error) {
-      console.error('Failed to delete listing:', error);
-      // You can show an error message here if needed
-    }
-  };
-  
+
 
 
   return (
@@ -191,6 +273,8 @@ const DetailCollection = () => {
 
 
         <Grid container spacing={3}>
+
+
           <Grid item xs={12} lg={8}>
             <Card>
               <SoftBox component="form" method="POST" onSubmit={submitHandler}>
@@ -252,7 +336,35 @@ const DetailCollection = () => {
                 </SoftBox>
               </SoftBox>
             </Card>
+
+
+
+
+            <Card sx={{ mt:5 }}>
+
+              {isCollectionLoading ? (
+                <TableSkeleton rows={5} columns={5} />  
+              ) : (
+                  <DataTable
+                    table={dataTableData}
+                    entriesPerPage={{
+                      defaultValue: 30,
+                      entries: [30, 50, 100, 200],
+                    }}
+                    canSearch
+                  />
+              )}
+
+
+            </Card>
+
+
+
+
           </Grid>
+
+
+
 
           <Grid item xs={12} lg={4}>
             <Grid item xs={12}>
@@ -326,6 +438,8 @@ const DetailCollection = () => {
               </SoftBox>
             </Grid>
           </Grid>
+
+
         </Grid>
       </SoftBox>
     </DashboardLayout>

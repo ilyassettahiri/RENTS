@@ -23,7 +23,7 @@ return new class extends Migration
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->foreignId('onlinestore_id');
+            $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
              $table->string('typea')->nullable();

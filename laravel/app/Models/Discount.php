@@ -27,11 +27,6 @@ class Discount extends Model
 
 
 
-    public function collections()
-    {
-        return $this->belongsToMany(Collection::class, 'collection_discount');
-    }
-
 
 
 

@@ -195,15 +195,21 @@ class DiscountController extends JsonApiController
         ], 200); // 200 OK status code
     }
 
+
+
     public function show(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
         $discount = Discount::where('user_id', $user->id)->findOrFail($route->resourceId());
 
+        $listings = $discount->listing()->get();
+        $collections = $discount->collection()->get();
+
+
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'type' => 'discount',
+                'id' => $discount->id,
                 'attributes' => [
                     'id' => $discount->id,
 
@@ -215,6 +221,41 @@ class DiscountController extends JsonApiController
                     'status' => $discount->status,
 
 
+                    'listings' => $listings->map(function ($listing) {
+
+                        return [
+
+                            'category' => $listing->category,
+                            'url' => $listing->url,
+                            'id' => $listing->id,
+                            'title' => $listing->title,
+                            'price' => $listing->price,
+                            'status' => $listing->status,
+                            'picture' => $listing->picture,
+                            'user_id' => $listing->user_id,
+                            'created_at' => $listing->created_at,
+                            'updated_at' => $listing->updated_at,
+
+                        ];
+
+                    }),
+
+                    'collections' => $collections->map(function ($listing) {
+
+                        return [
+
+                            'id' => $collection->id,
+
+                            'name' => $collection->name,
+                            'picture' => $collection->picture,
+                            'description' => $collection->description,
+                            'created_at' => $collection->created_at,
+
+
+
+                        ];
+
+                    }),
 
                     'created_at' => $discount->created_at,
                 ],
@@ -229,6 +270,7 @@ class DiscountController extends JsonApiController
             ]
         ]);
     }
+
 
 
 

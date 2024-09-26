@@ -2906,18 +2906,7 @@ function EditListing() {
                             </Grid>
 
 
-                            <Grid item xs={12}>
-                              <SoftBox mb={3}>
-                                <TeamProfileCard
-                                  title="design"
-                                  description="Because it's about motivating the doers. Because I’m here to follow my dreams and inspire other people to follow their dreams, too."
-                                  industry="design team"
-                                  rating={5}
-                                  
-                                  
-                                />
-                              </SoftBox>
-                            </Grid>
+                            
                             
                   </Grid>
 

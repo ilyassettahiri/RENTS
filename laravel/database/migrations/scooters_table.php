@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('typea')->nullable();
 
             $table->string('phone', 15)->nullable();
-            $table->foreignId('onlinestore_id');
+            $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
             $table->date('startdate')->nullable();

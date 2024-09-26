@@ -143,17 +143,17 @@ class CollectionController extends JsonApiController
         $picturerelativePath = $fileNamelarge;
 
 
-                /*
-                if ($request->hasFile('data.attributes.picture')) {
+
+        /*        if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
-                    $filePath = Storage::disk('spaces')->put('storage/images', $picturefile, 'public');
+                    $filePath = Storage::disk('public')->put('storage/images', $picturefile, 'public');
 
                     $relativePath = str_replace('storage/', '', $filePath);
                     $picturerelativePath = '/' . $relativePath;
 
 
-                }*/
-
+                }
+        */
 
         $name = $request->input('data.attributes.name');
         $description = $request->input('data.attributes.description');
@@ -163,6 +163,8 @@ class CollectionController extends JsonApiController
         $collection = new Collection();
         $collection->description = $description;
         $collection->name = $name;
+        $collection->onlinestore_id = 0;
+
 
         $collection->picture = $picturerelativePath;
 
@@ -257,6 +259,9 @@ class CollectionController extends JsonApiController
         $user = Auth::user();
         $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
 
+        $listings = $collection->listing()->get();
+
+
         return response()->json([
             'data' => [
                 'type' => 'collections',
@@ -266,6 +271,27 @@ class CollectionController extends JsonApiController
                     'picture' => $collection->picture,
                     'description' => $collection->description,
                     'created_at' => $collection->created_at,
+
+
+                    'listings' => $listings->map(function ($listing) {
+
+                        return [
+
+                            'category' => $listing->category,
+                            'url' => $listing->url,
+                            'id' => $listing->id,
+                            'title' => $listing->title,
+                            'price' => $listing->price,
+                            'status' => $listing->status,
+                            'picture' => $listing->picture,
+                            'user_id' => $listing->user_id,
+                            'created_at' => $listing->created_at,
+                            'updated_at' => $listing->updated_at,
+
+                        ];
+
+                    }),
+
                 ],
                 'relationships' => [
                     'user' => [
