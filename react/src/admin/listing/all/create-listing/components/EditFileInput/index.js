@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import "./CustomFileInput.css"; // Import the custom styles
+import SoftButton from "components/SoftButton";
 
 function CustomFileInput({ onFilesChange, oldFiles = [] }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -72,7 +73,12 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
       >
         {!selectedFiles.length && (
           <SoftBox className="file-drop-text">
-            <span>Drag and drop some files here, or click to select files</span>
+              <SoftButton  variant="gradient"  color="info">
+
+                            
+                upload  more 
+
+              </SoftButton>
           </SoftBox>
         )}
         <SoftBox className="file-preview-container">

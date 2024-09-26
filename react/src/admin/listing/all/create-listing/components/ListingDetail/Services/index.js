@@ -6,6 +6,8 @@ import CollapseList from "admin/components/CollapseList";
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import OneSelect from "admin/components/OneSelect";
+import { Incrementer } from 'admin/components/Quantity/Incrementer';
+
 import MultSelect from "admin/components/MultSelect";
 
 

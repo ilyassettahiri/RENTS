@@ -6,6 +6,9 @@ import CollapseList from "admin/components/CollapseList";
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import OneSelect from "admin/components/OneSelect";
+import { Incrementer } from 'admin/components/Quantity/Incrementer';
+
+
 import MultSelect from "admin/components/MultSelect";
 
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';
@@ -158,6 +161,23 @@ function Activities({ onDataChange, initialState, isOpen }) {
     onDataChange(name, value);
   };
 
+  const [duration, setDuration] = useState(0);  // Default to 0 initially
+
+
+  const handleIncrease = (name) => {
+    const newDuration = duration + 1;
+    setDuration(newDuration);
+    handleSelectChange('duration', `${newDuration} ${name}`);  // Store as "X Hours"
+  };
+  
+  const handleDecrease = (name) => {
+    if (duration > 0) {
+      const newDuration = duration - 1;
+      setDuration(newDuration);
+      handleSelectChange('duration', `${newDuration} ${name}`);  // Store as "X Hours"
+    }
+  };
+
 
   return (
     <SoftBox mt={3}>
@@ -206,11 +226,13 @@ function Activities({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="duration"
-          options={ActivityDuration}
-          value={initiallistingsData.duration}
-          onChange={(option) => handleSelectChange("duration", option.value)}
+        <Incrementer
+          name="hours"
+
+          quantity={duration}
+          onIncrease={handleIncrease}
+          onDecrease={handleDecrease}
+          disabledDecrease={duration <= 0} // Disable decrease if duration is 0
         />
       </CollapseList>
       <CollapseList

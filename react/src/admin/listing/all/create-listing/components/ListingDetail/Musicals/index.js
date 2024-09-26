@@ -9,6 +9,8 @@ import MultSelect from "admin/components/MultSelect";
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import OneSelect from "admin/components/OneSelect";
+import { Incrementer } from 'admin/components/Quantity/Incrementer';
+
 
 
 const imagePath = process.env.REACT_APP_IMAGE_BASE_URL || '';

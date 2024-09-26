@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Radio, RadioGroup, FormControlLabel, Box } from '@mui/material';
+import SoftTypography from "components/SoftTypography";
 
 const OneSelect = ({ name, options, onChange }) => {
   const [selectedOption, setSelectedOption] = useState('');
@@ -28,11 +29,11 @@ const OneSelect = ({ name, options, onChange }) => {
                 onClick={() => handleOptionChange(option.value)}
                 sx={{
                   border: 1,
-                  borderColor: isChecked(option.value) ? 'skyblue' : 'gray',
-                  bgcolor: isChecked(option.value) ? 'skyblue' : 'transparent',
-                  color: isChecked(option.value) ? 'black' : 'inherit',
-                  px: 3,
-                  py: 2,
+                  borderColor: isChecked(option.value) ? '#1e90ff' : 'gray',
+                  bgcolor: isChecked(option.value) ? '#1e90ff' : 'transparent',
+                  px: 2,
+                  py: 1.5,
+                  m:0.3,
                   borderRadius: 2,
                   cursor: 'pointer',
                   fontWeight: 'bold',
@@ -40,7 +41,14 @@ const OneSelect = ({ name, options, onChange }) => {
                   textAlign: 'center',
                 }}
               >
-                {option.label}
+                <SoftTypography component="label" variant="caption"  textTransform="capitalize"
+                color={isChecked(option.value) ? 'white' : 'inherit'}
+                >
+
+                    {option.label}
+
+                </SoftTypography>
+
               </Box>
             }
           />

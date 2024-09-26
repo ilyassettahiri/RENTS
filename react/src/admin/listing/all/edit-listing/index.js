@@ -346,111 +346,111 @@ function getCategory(
     case 'billiards':
       return <Billiards onDataChange={updateBilliardsData} initialState={billiardsData} isOpen={true}/>;
     case 'boxings':
-      return <Boxings onDataChange={updateBoxingsData} initialState={boxingsData} />;
+      return <Boxings onDataChange={updateBoxingsData} initialState={boxingsData} isOpen={true}/>;
     case 'divings':
-      return <Divings onDataChange={updateDivingsData} initialState={divingsData} />;
+      return <Divings onDataChange={updateDivingsData} initialState={divingsData} isOpen={true}/>;
     case 'footballs':
-      return <Footballs onDataChange={updateFootballsData} initialState={footballsData} />;
+      return <Footballs onDataChange={updateFootballsData} initialState={footballsData} isOpen={true}/>;
     case 'golfs':
-      return <Golfs onDataChange={updateGolfsData} initialState={golfsData} />;
+      return <Golfs onDataChange={updateGolfsData} initialState={golfsData} isOpen={true}/>;
     case 'huntings':
-      return <Huntings onDataChange={updateHuntingsData} initialState={huntingsData} />;
+      return <Huntings onDataChange={updateHuntingsData} initialState={huntingsData} isOpen={true}/>;
     case 'musculations':
-      return <Musculations onDataChange={updateMusculationsData} initialState={musculationsData} />;
+      return <Musculations onDataChange={updateMusculationsData} initialState={musculationsData} isOpen={true}/>;
     case 'surfs':
-      return <Surfs onDataChange={updateSurfsData} initialState={surfsData} />;
+      return <Surfs onDataChange={updateSurfsData} initialState={surfsData} isOpen={true}/>;
     case 'tennis':
-      return <Tennis onDataChange={updateTennisData} initialState={tennisData} />;
+      return <Tennis onDataChange={updateTennisData} initialState={tennisData} isOpen={true}/>;
     case 'audios':
-      return <Audios onDataChange={updateAudiosData} initialState={audiosData} />;
+      return <Audios onDataChange={updateAudiosData} initialState={audiosData} isOpen={true}/>;
     case 'cameras':
-      return <Cameras onDataChange={updateCamerasData} initialState={camerasData} />;
+      return <Cameras onDataChange={updateCamerasData} initialState={camerasData} isOpen={true}/>;
     case 'chargers':
-      return <Chargers onDataChange={updateChargersData} initialState={chargersData} />;
+      return <Chargers onDataChange={updateChargersData} initialState={chargersData} isOpen={true}/>;
     case 'drones':
-      return <Drones onDataChange={updateDronesData} initialState={dronesData} />;
+      return <Drones onDataChange={updateDronesData} initialState={dronesData} isOpen={true}/>;
     case 'gamings':
-      return <Gamings onDataChange={updateGamingsData} initialState={gamingsData} />;
+      return <Gamings onDataChange={updateGamingsData} initialState={gamingsData} isOpen={true}/>;
     case 'laptops':
-      return <Laptops onDataChange={updateLaptopsData} initialState={laptopsData} />;
+      return <Laptops onDataChange={updateLaptopsData} initialState={laptopsData} isOpen={true}/>;
     case 'lightings':
-      return <Lightings onDataChange={updateLightingsData} initialState={lightingsData} />;
+      return <Lightings onDataChange={updateLightingsData} initialState={lightingsData} isOpen={true}/>;
     case 'printers':
-      return <Printers onDataChange={updatePrintersData} initialState={printersData} />;
+      return <Printers onDataChange={updatePrintersData} initialState={printersData} isOpen={true}/>;
     case 'routers':
-      return <Routers onDataChange={updateRoutersData} initialState={routersData} />;
+      return <Routers onDataChange={updateRoutersData} initialState={routersData} isOpen={true}/>;
     case 'tablettes':
-      return <Tablettes onDataChange={updateTablettesData} initialState={tablettesData} />;
+      return <Tablettes onDataChange={updateTablettesData} initialState={tablettesData} isOpen={true}/>;
     case 'eclairages':
-      return <Eclairages onDataChange={updateEclairagesData} initialState={eclairagesData} />;
+      return <Eclairages onDataChange={updateEclairagesData} initialState={eclairagesData} isOpen={true}/>;
     case 'mobiliers':
-      return <Mobiliers onDataChange={updateMobiliersData} initialState={mobiliersData} />;
+      return <Mobiliers onDataChange={updateMobiliersData} initialState={mobiliersData} isOpen={true}/>;
     case 'photographies':
-      return <Photographies onDataChange={updatePhotographiesData} initialState={photographiesData} />;
+      return <Photographies onDataChange={updatePhotographiesData} initialState={photographiesData} isOpen={true}/>;
     case 'sonorisations':
-      return <Sonorisations onDataChange={updateSonorisationsData} initialState={sonorisationsData} />;
+      return <Sonorisations onDataChange={updateSonorisationsData} initialState={sonorisationsData} isOpen={true}/>;
     case 'tentes':
-      return <Tentes onDataChange={updateTentesData} initialState={tentesData} />;
+      return <Tentes onDataChange={updateTentesData} initialState={tentesData} isOpen={true} />;
     case 'clothes':
-      return <Clothes onDataChange={updateClothesData} initialState={clothesData} />;
+      return <Clothes onDataChange={updateClothesData} initialState={clothesData} isOpen={true}/>;
     case 'jewelrys':
-      return <Jewelrys onDataChange={updateJewelrysData} initialState={jewelrysData} />;
+      return <Jewelrys onDataChange={updateJewelrysData} initialState={jewelrysData} isOpen={true}/>;
     case 'apartments':
-      return <Apartments onDataChange={updateApartmentsData} initialState={apartmentsData} />;
+      return <Apartments onDataChange={updateApartmentsData} initialState={apartmentsData} isOpen={true}/>;
     case 'bureauxs':
-      return <Bureauxs onDataChange={updateBureauxsData} initialState={bureauxsData} />;
+      return <Bureauxs onDataChange={updateBureauxsData} initialState={bureauxsData} isOpen={true}/>;
     case 'magasins':
-      return <Magasins onDataChange={updateMagasinsData} initialState={magasinsData} />;
+      return <Magasins onDataChange={updateMagasinsData} initialState={magasinsData} isOpen={true}/>;
     case 'maisons':
-      return <Maisons onDataChange={updateMaisonsData} initialState={maisonsData} />;
+      return <Maisons onDataChange={updateMaisonsData} initialState={maisonsData} isOpen={true}/>;
     case 'riads':
-      return <Riads onDataChange={updateRiadsData} initialState={riadsData} />;
+      return <Riads onDataChange={updateRiadsData} initialState={riadsData} isOpen={true}/>;
     case 'terrains':
-      return <Terrains onDataChange={updateTerrainsData} initialState={terrainsData} />;
+      return <Terrains onDataChange={updateTerrainsData} initialState={terrainsData} isOpen={true}/>;
     case 'villas':
-      return <Villas onDataChange={updateVillasData} initialState={villasData} />;
+      return <Villas onDataChange={updateVillasData} initialState={villasData} isOpen={true}/>;
     case 'activities':
-      return <Activities onDataChange={updateActivitiesData} initialState={activitiesData} />;
+      return <Activities onDataChange={updateActivitiesData} initialState={activitiesData} isOpen={true}/>;
     case 'livres':
-      return <Livres onDataChange={updateLivresData} initialState={livresData} />;
+      return <Livres onDataChange={updateLivresData} initialState={livresData} isOpen={true}/>;
     case 'musicals':
-      return <Musicals onDataChange={updateMusicalsData} initialState={musicalsData} />;
+      return <Musicals onDataChange={updateMusicalsData} initialState={musicalsData} isOpen={true}/>;
     case 'furnitures':
-      return <Furnitures onDataChange={updateFurnituresData} initialState={furnituresData} />;
+      return <Furnitures onDataChange={updateFurnituresData} initialState={furnituresData} isOpen={true}/>;
     case 'houseappliances':
-      return <Houseappliances onDataChange={updateHouseappliancesData} initialState={houseappliancesData} />;
+      return <Houseappliances onDataChange={updateHouseappliancesData} initialState={houseappliancesData} isOpen={true}/>;
     case 'electricaltools':
-      return <Electricaltools onDataChange={updateElectricaltoolsData} initialState={electricaltoolsData} />;
+      return <Electricaltools onDataChange={updateElectricaltoolsData} initialState={electricaltoolsData} isOpen={true}/>;
     case 'ladders':
-      return <Ladders onDataChange={updateLaddersData} initialState={laddersData} />;
+      return <Ladders onDataChange={updateLaddersData} initialState={laddersData} isOpen={true}/>;
     case 'mechanicaltools':
-      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} initialState={mechanicaltoolsData} />;
+      return <Mechanicaltools onDataChange={updateMechanicaltoolsData} initialState={mechanicaltoolsData} isOpen={true}/>;
     case 'powertools':
-      return <Powertools onDataChange={updatePowertoolsData} initialState={powertoolsData} />;
+      return <Powertools onDataChange={updatePowertoolsData} initialState={powertoolsData} isOpen={true}/>;
     case 'pressurewashers':
-      return <Pressurewashers onDataChange={updatePressurewashersData} initialState={pressurewashersData} />;
+      return <Pressurewashers onDataChange={updatePressurewashersData} initialState={pressurewashersData} isOpen={true}/>;
     case 'services':
-      return <Services onDataChange={updateServicesData} initialState={servicesData} />;
+      return <Services onDataChange={updateServicesData} initialState={servicesData} isOpen={true}/>;
     case 'boats':
-      return <Boats onDataChange={updateBoatsData} initialState={boatsData} />;
+      return <Boats onDataChange={updateBoatsData} initialState={boatsData} isOpen={true}/>;
     case 'camions':
-      return <Camions onDataChange={updateCamionsData} initialState={camionsData} />;
+      return <Camions onDataChange={updateCamionsData} initialState={camionsData} isOpen={true}/>;
     case 'caravans':
-      return <Caravans onDataChange={updateCaravansData} initialState={caravansData} />;
+      return <Caravans onDataChange={updateCaravansData} initialState={caravansData} isOpen={true}/>;
     case 'cars':
-      return <Cars onDataChange={updateCarsData} initialState={carsData} />;
+      return <Cars onDataChange={updateCarsData} initialState={carsData} isOpen={true}/>;
     case 'engins':
-      return <Engins onDataChange={updateEnginsData} initialState={enginsData} />;
+      return <Engins onDataChange={updateEnginsData} initialState={enginsData} isOpen={true}/>;
     case 'motos':
-      return <Motos onDataChange={updateMotosData} initialState={motosData} />;
+      return <Motos onDataChange={updateMotosData} initialState={motosData} isOpen={true}/>;
     case 'scooters':
-      return <Scooters onDataChange={updateScootersData} initialState={scootersData} />;
+      return <Scooters onDataChange={updateScootersData} initialState={scootersData} isOpen={true}/>;
     case 'taxiaeroports':
-      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} initialState={taxiaeroportsData} />;
+      return <Taxiaeroports onDataChange={updateTaxiaeroportsData} initialState={taxiaeroportsData} isOpen={true}/>;
     case 'transportations':
-      return <Transportations onDataChange={updateTransportationsData} initialState={transportationsData} />;
+      return <Transportations onDataChange={updateTransportationsData} initialState={transportationsData} isOpen={true}/>;
     case 'velos':
-      return <Velos onDataChange={updateVelosData} initialState={velosData} />;
+      return <Velos onDataChange={updateVelosData} initialState={velosData} isOpen={true}/>;
     default:
       return null;
   }

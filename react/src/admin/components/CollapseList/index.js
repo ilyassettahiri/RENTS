@@ -53,8 +53,8 @@ function CollapseList({ title, open, image, children, ...rest }) {
           </Icon>
         </SoftBox>
       </SoftBox>
-      <Collapse timeout={100} in={open} >
-        <SoftBox p={2} lineHeight={1} >
+      <Collapse timeout={10} in={open} >
+        <SoftBox p={1} lineHeight={1} >
           <SoftTypography variant="button" color="text" opacity={0.8} fontWeight="regular" >
             {children}
           </SoftTypography>

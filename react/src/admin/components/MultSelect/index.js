@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Checkbox, FormControlLabel, Box } from '@mui/material';
+import SoftTypography from "components/SoftTypography";
 
 const MultSelect = ({ name, options, onChange }) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -23,7 +24,9 @@ const MultSelect = ({ name, options, onChange }) => {
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', py: 5, px: 2 }}>
       {options.map((option) => (
-        <Box key={option.value} sx={{ maxWidth: '100%', px: 2, py: 2 }}>
+        <Box key={option.value} sx={{ maxWidth: '100%' }}
+        onClick={() => updateSelectedOptions(option.value)}
+        >
           <FormControlLabel
             control={
               <Checkbox
@@ -36,11 +39,12 @@ const MultSelect = ({ name, options, onChange }) => {
               <Box
                 sx={{
                   border: 1,
-                  borderColor: isChecked(option.value) ? 'skyblue' : 'gray',
-                  bgcolor: isChecked(option.value) ? 'skyblue' : 'transparent',
-                  color: isChecked(option.value) ? 'black' : 'inherit',
-                  px: 3,
-                  py: 2,
+                  borderColor: isChecked(option.value) ? '#1e90ff' : 'gray',
+                  bgcolor: isChecked(option.value) ? '#1e90ff' : 'transparent',
+                  px: 2,
+                  py: 1.5,
+                  m:0.5,
+
                   borderRadius: 2,
                   cursor: 'pointer',
                   fontWeight: 'bold',
@@ -48,7 +52,16 @@ const MultSelect = ({ name, options, onChange }) => {
                   textAlign: 'center',
                 }}
               >
-                {option.label}
+
+                  <SoftTypography component="label" variant="caption"  textTransform="capitalize"
+                  color={isChecked(option.value) ? 'white' : 'inherit'}
+                  >
+
+                    {option.label}
+
+
+                  </SoftTypography>
+
               </Box>
             }
           />
