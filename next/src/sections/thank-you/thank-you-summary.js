@@ -64,6 +64,9 @@ ThankYouSummary.propTypes = {
     attributes: PropTypes.shape({
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
+      startdate: PropTypes.string.isRequired,
+      enddate: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };

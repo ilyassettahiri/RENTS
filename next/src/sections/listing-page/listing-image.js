@@ -221,7 +221,7 @@ function PhotoItem({ photo,  id , params }) {
 
   useEffect(() => {
     if (isLightboxOpened) {
-      if (!fetchedImagesRefff.current) { // Check if images are already fetched
+      if (!fetchedImagesRef.current) { // Check if images are already fetched
         CrudService.getListingpic(params.category, params.url)
           .then((listingpicData) => {
             const dataImages = listingpicData.images.map((image) => ({

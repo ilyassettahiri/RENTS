@@ -35,14 +35,8 @@ import DefaultItem from "examples/Items/DefaultItem";
 import { useTextDirection, setTextDirection } from "context/useTextDirection"; // Import TextDirectionContext
 
 
-const imagePath = process.env.REACT_APP_IMAGE_PATH || '';
 
-// Define the dynamic path for the image
-const team1 = `${imagePath}/team-1.jpg`;
 
-export {
-  team1
-};
 
 
 // Custom styles for DashboardNavbar
@@ -301,7 +295,7 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
                 <SoftBox  width="2.5rem" >
 
                   <Image
-                      src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
+                      src={`${userDetails.image}`}
                     
                       ratio="1/1"
                       width="100%"

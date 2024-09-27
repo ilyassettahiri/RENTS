@@ -377,6 +377,70 @@ class ListingController extends JsonApiController
 
 
 
+            /*$category = strtolower($request->input('data.attributes.category'));
+
+            $manager = new ImageManager(new Driver());
+
+            if ($request->hasFile('data.attributes.images')) {
+                $files = $request->file('data.attributes.images');
+
+                foreach ($files as $index => $file) {
+                    try {
+                        // Check if the category folder exists in the main storage path and create it if necessary
+                        $disk = Storage::disk('spaces');
+
+                        $categoryPath = 'storage/' . $category;
+
+                        if (!$disk->exists($categoryPath)) {
+                            $disk->makeDirectory($categoryPath, 0755, true, 'public');
+                        }
+
+                        // Image processing and scaling
+                        $imagelarge = $manager->read($file->getRealPath());
+                        $imagexlarge = $manager->read($file->getRealPath());
+                        $imagesmall = $manager->read($file->getRealPath());
+
+                        $imagelarge->scaleDown(height: 500);
+                        $imagexlarge->scaleDown(width: 1000);
+                        $imagesmall->scaleDown(width: 400);
+
+                        // Generate unique filenames
+                        $fileNamelarge = $this->generateUniqueFileName('jpg');
+                        $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
+                        $fileNamexlarge = str_replace('.jpg', 'xl.jpg', $fileNamelarge);
+
+                        // Encode the images with quality 90
+                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+                        $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+
+                        // Save encoded images to local filesystem
+                        $encodedImagelarge->save($fileNamelarge);
+                        $encodedImagexlarge->save($fileNamexlarge);
+                        $encodedImagesmall->save($fileNamesmall);
+
+                        // Upload images to DigitalOcean Spaces in the correct subfolders
+                        $filePathlarge = $disk->put('storage/listinglarge/' . $category . '/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+                        $filePathxlarge = $disk->put('storage/listingxlarge/' . $category . '/' . $fileNamexlarge, file_get_contents($fileNamexlarge), 'public');
+                        $filePathsmall = $disk->put('storage/listingsmall/' . $category . '/' . $fileNamesmall, file_get_contents($fileNamesmall), 'public');
+
+                        // Store image paths
+                        $imagePathslarge[] = $category . '/' . $fileNamelarge;
+                        $imagePathsxlarge[] = $category . '/' . $fileNamexlarge;
+                        $relativePathsmall = $category . '/' . $fileNamesmall;
+                        $imagePathssmall[] = $relativePathsmall;
+
+                        // Set the first image as the thumbnail
+                        if ($index === 0) {
+                            $thumb = $relativePathsmall;
+                        }
+
+                    } catch (\Exception $e) {
+                        Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
+                    }
+                }
+            }*/
+
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');

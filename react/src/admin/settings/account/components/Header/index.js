@@ -167,7 +167,7 @@ function Header({ user, isDemo }) {
               <SoftBox width="4rem" >
 
                   <Image
-                      src={imageUrl ?? `${process.env.REACT_APP_IMAGE_BASE_URL}${image}`}
+                      src={imageUrl ?? `${image}`}
                     
                       ratio="1/1"
                       width="100%"
