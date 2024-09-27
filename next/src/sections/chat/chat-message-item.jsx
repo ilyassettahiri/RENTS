@@ -47,7 +47,14 @@ export function ChatMessageItem({ message, participants, sender, onOpenLightbox 
         borderRadius: 1,
         typography: 'body2',
         bgcolor: 'background.neutral',
-        ...(isMessageFromCurrentUser && { color: 'grey.800', bgcolor: 'primary.lighter' }),
+
+        ...(isMessageFromCurrentUser
+          ?  { color: 'white',bgcolor: 'primary.lighter' } // Sender's message styles
+          :  { color: 'grey.800',  }           // Receiver's message styles
+        ),
+
+
+
         ...(false && { p: 0, bgcolor: 'transparent' }), // hasImage is set to false since we don't have image logic here
       }}
     >

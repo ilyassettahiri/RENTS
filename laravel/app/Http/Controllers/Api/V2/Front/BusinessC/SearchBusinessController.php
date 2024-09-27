@@ -237,6 +237,8 @@ class SearchBusinessController extends JsonApiController
 
             $businessData = $businesslist->map(function ($business) {
 
+                $user = User::where('id', $business->user_id)->first();
+
                 $storereviews = $business->review()->orderBy('created_at')->get();
 
                 $totalReviews = $storereviews->count();
@@ -261,6 +263,14 @@ class SearchBusinessController extends JsonApiController
 
                         'profile' => $business->profile_picture,
 
+                        'seller' => [
+                            'name' => $user->name,
+                            'profile_image' => $user->profile_image,
+                            'id' => $user->id,
+
+                            'created_at' => $user->created_at->toIso8601String(),
+
+                        ],
 
 
                     ],
@@ -308,6 +318,8 @@ class SearchBusinessController extends JsonApiController
 
             $businessData = $businesslist->map(function ($business) {
 
+                $user = User::where('id', $business->user_id)->first();
+
                 $storereviews = $business->review()->orderBy('created_at')->get();
 
                 $totalReviews = $storereviews->count();
@@ -333,7 +345,14 @@ class SearchBusinessController extends JsonApiController
                         'url' => $business->url,
                         'created_at' => $business->created_at,
 
+                        'seller' => [
+                            'name' => $user->name,
+                            'profile_image' => $user->profile_image,
+                            'id' => $user->id,
 
+                            'created_at' => $user->created_at->toIso8601String(),
+
+                        ],
 
                     ],
                 ];

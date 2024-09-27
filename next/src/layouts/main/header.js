@@ -169,7 +169,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
           <LanguagePopover data-slot="localization" data={allLangs} />
 
 
-            <Badge badgeContent={4} color="error" >
+            <Badge badgeContent={1} color="error" >
               <IconButton
 
                 onClick={handleChatClick}
@@ -182,7 +182,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
               </IconButton>
             </Badge>
 
-            <Badge badgeContent={2} color="info">
+            <Badge badgeContent={0} color="info">
                 <IconButton
                   onClick={onOpenNav} // This will open the Nav drawer or redirect to login
                   size="small"

@@ -521,6 +521,8 @@ class SearchController extends JsonApiController
                             'seller' => [
                                 'name' => $user->name,
                                 'profile_image' => $user->profile_image,
+                                'id' => $user->id,
+
                                 'created_at' => $user->created_at->toIso8601String(),
 
                             ],
@@ -606,6 +608,8 @@ class SearchController extends JsonApiController
                             'seller' => [
                                 'name' => $user->name,
                                 'profile_image' => $user->profile_image,
+                                'id' => $user->id,
+
                                 'created_at' => $user->created_at->toIso8601String(),
 
                             ],

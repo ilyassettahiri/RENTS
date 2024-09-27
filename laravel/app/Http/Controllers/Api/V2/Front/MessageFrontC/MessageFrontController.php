@@ -41,7 +41,6 @@ class MessageFrontController extends JsonApiController
 
 
 
-
     public function getConversations(JsonApiRoute $route, Store $store)
     {
         $authuser = Auth::user();
@@ -50,6 +49,7 @@ class MessageFrontController extends JsonApiController
 
         // Eager load messages with each conversation
         $conversations = Conversation::where('sender_id', $authuser->id)
+            ->orWhere('receiver_id', $authuser->id)  // Add this line to include conversations where the user is the receiver
             ->with('messages')
             ->get();
 
@@ -80,9 +80,10 @@ class MessageFrontController extends JsonApiController
         }
 
         $conversationsData = $conversations->map(function ($conversation) use ($authuser) {
-            $receiver = $conversation->getReceiver();
-
-            $sender = $authuser; // The sender is the authenticated user
+            // Check if the auth user is the sender or the receiver
+            $isSender = $conversation->sender_id === $authuser->id;
+            $receiver = $isSender ? $conversation->getReceiver() : $conversation->getSender();  // Get the correct receiver
+            $sender = $isSender ? $authuser : $conversation->getSender();  // Auth user might be the receiver, not just the sender
 
             return [
                 'type' => 'conversations',
@@ -102,13 +103,13 @@ class MessageFrontController extends JsonApiController
                     }),
                     'receiver' => [
                         'id' => $receiver->id,
-                        'role' => 'admin', // Assuming role is a field in the users table
+                        'role' => $receiver->role,
                         'email' => $receiver->email,
                         'address' => $receiver->address,
                         'name' => $receiver->name,
                         'lastActivity' => $receiver->updated_at->toIso8601String(),
                         'avatarUrl' => $receiver->profile_image,
-                        'phoneNumber' => $receiver->phone_number, // Assuming you have a phone_number field
+                        'phoneNumber' => $receiver->phone_number,
                         'status' => 'online', // Assuming you determine the user's status
                         'created_at' => $receiver->created_at->toIso8601String(),
                     ],
