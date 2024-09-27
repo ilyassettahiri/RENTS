@@ -252,24 +252,26 @@ const DetailCollection = () => {
 
 
 
-        {data && (<CustomerDetailsToolbar
+        {collectionData ? (
+          <CustomerDetailsToolbar
             backLink="/reservation/list"
             customerNumber={id}
-            createdAt={data?.created_at}
-            status={data?.status}
+            createdAt={collectionData?.data?.attributes?.created_at || ''}
+            status={collectionData?.data?.attributes?.status || ''}
             title="Delete Collection"
             idname="Collection"
             clickAddHandler={clickDeleteHandler}
-           
-
             statusOptions={[
               { value: 'pending', label: 'Pending' },
               { value: 'active', label: 'Active' },
               { value: 'completed', label: 'Completed' },
-              { value: 'cancelled', label: 'Cancelled' }
+              { value: 'cancelled', label: 'Cancelled' },
             ]}
           />
+        ) : (
+          <div>Loading...</div> // You can replace this with a loader component if needed
         )}
+        
 
 
         <Grid container spacing={3}>

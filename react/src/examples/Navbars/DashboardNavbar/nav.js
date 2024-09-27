@@ -79,7 +79,7 @@ export default function Nav({ open, onClose, userDetails }) {
           <SoftBox width="3.2rem" >
 
             <Image
-                src={`${userDetails.image}`}
+                src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
               
                 ratio="1/1"
                 width="100%"

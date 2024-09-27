@@ -43,6 +43,7 @@ const DetailDiscount = () => {
   const [selectedListings, setSelectedListings] = useState([]);
   const [purchaseAmount, setPurchaseAmount] = useState("");
 
+  const [data, setData] = useState(null);
 
 
 
@@ -158,9 +159,14 @@ const DetailDiscount = () => {
       (async () => {
         try {
           const res = await CrudService.getDiscount(id);
+
+          
           const discount = res.data.attributes;
+
+          console.log('Fetched discount:', discount);
+
   
-  
+          setData(discount);
           // Set fetched values to the state
           setCode({ text: discount.code, error: false });
           setDiscountValue({ text: discount.percentage, error: false });
@@ -224,6 +230,27 @@ const DetailDiscount = () => {
       <SoftBox my={3}>
 
 
+
+          {data ? (
+          <CustomerDetailsToolbar
+            backLink="/reservation/list"
+            customerNumber={id}
+            createdAt={data.created_at || ''}
+            status={data.status || ''}
+            title="Delete Discount"
+            idname="Discount"
+            clickAddHandler={clickDeleteHandler}
+            statusOptions={[
+              { value: 'pending', label: 'Pending' },
+              { value: 'active', label: 'Active' },
+              { value: 'completed', label: 'Completed' },
+              { value: 'cancelled', label: 'Cancelled' },
+            ]}
+          />
+        ) : (
+          <div>Loading...</div> // You can replace this with a loader component if needed
+        )}
+        
        
 
         <Grid container spacing={3}>

@@ -67,6 +67,7 @@ const Image = forwardRef(
         effect={disabledEffect ? undefined : effect}
         useIntersectionObserver={useIntersectionObserver}
         wrapperClassName={wrapperClassName || 'component-image-wrapper'}
+        placeholderSrc={disabledEffect ? `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/assets/transparent.png` : `${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/assets/placeholder.svg`}
         //
         sx={{
           width: 1,
