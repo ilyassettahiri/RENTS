@@ -72,6 +72,10 @@ export default function CheckoutView({ params }) {
   const CheckoutSchema = Yup.object().shape({
     billingAddress: Yup.object().shape({
       name: Yup.string().required('Name is required'),
+      lastName: Yup.string().required('Last name is required'),
+      phoneNumber: Yup.string().required('Phone number is required'),
+      city: Yup.string().required('City is required'),
+      zipCode: Yup.string().required('Zip code is required'),
       email: Yup.string().required('Email is required').email('Email is invalid'),
       fullAddress: Yup.string().required('Full address is required'),
     }),
@@ -83,6 +87,12 @@ export default function CheckoutView({ params }) {
       email: '',
       fullAddress: '',
       fullAddress2: '',
+      zipCode: '',
+      city: '',
+      phoneNumber: '',
+      lastName: '',
+
+
     },
     shippingAddress: {
       firstName: '',

@@ -49,7 +49,7 @@ export default function ThankYouInfo({ tour }) {
       <Avatar
         variant="rounded"
         alt={title}
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`}
+        src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${picture}`}
         sx={{ width: 80, height: 80 }}
       />
 

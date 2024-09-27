@@ -12,7 +12,22 @@ import ThankYouInfo from './thank-you-info';
 
 // ----------------------------------------------------------------------
 
+// Helper function to calculate the difference in days between two dates
+function calculateDays(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+  const diffTime = Math.abs(end - start);
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convert milliseconds to days
+  return diffDays;
+}
+
 export default function ThankYouSummary({ tour }) {
+
+
+  const totalDays = calculateDays(tour.attributes.startdate, tour.attributes.enddate);
+  const totalPrice = totalDays * tour.attributes.price;
+
+
   return (
     <Stack
       spacing={3}
@@ -27,17 +42,17 @@ export default function ThankYouSummary({ tour }) {
 
       <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <LineItem icon="carbon:calendar" label="Departure day" value={fDate(new Date())} />
+      <LineItem icon="carbon:calendar" label="Departure day" value={fDate(tour.attributes.startdate)}  />
 
       <LineItem icon="carbon:events" label="Guests" value="2 guest" />
 
       <Divider sx={{ borderStyle: 'dashed' }} />
 
-      <LineItem icon="carbon:cube" label="Booking code" value="KU_H8SDM" />
+      <LineItem icon="carbon:cube" label="Full name" value={tour.attributes.name} />
 
-      <LineItem icon="carbon:calendar" label="Booking day" value={fDate(new Date())} />
+      <LineItem icon="carbon:calendar" label="Booking days" value={`${totalDays} days`} />
 
-      <LineItem icon="carbon:receipt" label="Total" value={fCurrency(1112)} />
+      <LineItem icon="carbon:receipt" label="Total" value={fCurrency(totalPrice)} />
 
       <LineItem icon="carbon:purchase" label="Payment method" value="Paypal" />
     </Stack>
