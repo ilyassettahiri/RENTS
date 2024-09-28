@@ -22,8 +22,7 @@ export default function ThankYouInfo({ tour }) {
 
   const { title, price,picture } = attributes;
 
-  const ratingNumber = 5;
-  const totalReviews = 100;
+
 
   return (
 
@@ -59,25 +58,7 @@ export default function ThankYouInfo({ tour }) {
 
         </Typography>
 
-        <Stack
-          direction="row"
-          alignItems="center"
-          sx={{ typography: 'body2', color: 'text.secondary' }}
-        >
-              <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
 
-              <Box sx={{ typography: 'h6' }}>
-                {Number.isInteger(ratingNumber) ? `${ratingNumber}.0` : ratingNumber}
-              </Box>
-
-              {totalReviews && (
-                <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                  ({fShortenNumber(totalReviews)} reviews)
-                </Link>
-              )}
-
-
-        </Stack>
       </Stack>
 
     </Stack>

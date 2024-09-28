@@ -31,6 +31,7 @@ use App\Models\Reservation;
 use App\Models\Customer;
 
 
+use App\Models\Discount;
 
 
 
@@ -7489,6 +7490,43 @@ class ReservationFrontController extends JsonApiController
 
 
     }
+
+
+
+    public function checkDiscount(Request $request)
+    {
+        // Validate the incoming request to ensure 'discount_code' and 'url' are provided
+        $validatedData = $request->validate([
+            'discount_code' => 'required|string',
+            'url' => 'required|string',
+        ]);
+
+
+
+        // Find the listing by URL
+        $listing = Listing::where('url', $validatedData['url'])->first();
+
+
+
+        // Find the discount by code
+        $discount = Discount::where('code', $validatedData['discount_code'])->first();
+
+        // If no discount is found, return an error
+        if (!$discount) {
+            return response()->json(['error' => 'Invalid discount code.'], 400);
+        }
+
+        // Check if the discount is associated with the listing
+        if ($listing->discount_id !== $discount->id) {
+            return response()->json(['error' => 'Discount code not applicable to this listing.'], 400);
+        }
+
+        // Return the discount value
+        return response()->json([
+            'discount_value' => $discount->discountvalue, // Discount percentage
+        ]);
+    }
+
 
 
 

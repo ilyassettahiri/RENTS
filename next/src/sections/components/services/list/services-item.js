@@ -241,7 +241,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                       <Stack spacing={0}>
                           <Link variant="subtitle2" color="inherit" >
 
-                          {capitalizeFirstLetter(seller.name)}
+                          {capitalizeFirstLetter(seller.name.split(' ')[0])}
                           </Link>
 
 

@@ -274,7 +274,9 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                     <Stack spacing={0}>
                         <Link variant="subtitle2" color="inherit" >
 
-                        {capitalizeFirstLetter(name)}
+
+                        {capitalizeFirstLetter(name.split(' ')[0])}
+
                         </Link>
                       <Stack
                         direction="row"

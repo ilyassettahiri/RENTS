@@ -421,6 +421,7 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
     // Reservation Front
     Route::get('checkout/{category}/{url}', [ReservationFrontController::class, 'getReservation']);
     Route::post('checkout/{category}/{url}', [ReservationFrontController::class, 'createReservation']);
+    Route::post('checkout/discount', [ReservationFrontController::class, 'checkDiscount']);
 
 
     // Thank You

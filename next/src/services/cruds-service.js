@@ -349,6 +349,15 @@ class CrudService {
       return  HttpService.get(reservationsEndpoint);
     };
 
+
+
+
+
+    checkDiscountFront = async (formData) => {
+      const discountFrontEndpoint = "checkout/discount";
+      return HttpService.post(discountFrontEndpoint, formData);  // Use POST here
+    };
+
     // Reservation requests
     getReservationFront = async (category, url) => {
       const reservationfrontEndpoint = `checkout/${category}/${url}`;

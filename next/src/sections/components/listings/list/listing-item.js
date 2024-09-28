@@ -295,7 +295,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                       <Link variant="subtitle2" color="inherit" >
 
 
-                      {capitalizeFirstLetter(seller.name)}
+                      {capitalizeFirstLetter(seller.name.split(' ')[0])}
 
                       </Link>
 

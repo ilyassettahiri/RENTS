@@ -189,8 +189,7 @@ export default function CheckoutView({ params }) {
               ) : (
                 <CheckOutSummary
                   tour={memoizedReservationData}
-                  discount={5}
-                  onApplyDiscount
+
                   departureDay={departureDay}
                   isSubmitting={isSubmitting}
                   onChangeDepartureDay={handleChangeDepartureDay}

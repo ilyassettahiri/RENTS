@@ -1,4 +1,9 @@
+'use client';
+
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
 import PropTypes from 'prop-types';
+import CrudService from 'src/services/cruds-service';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -28,29 +33,56 @@ import FilterTime from 'src/sections/components/listings/filters/filter-time';
 
 export default function TravelCheckOutSummary({
   tour,
-  discount,
   departureDay,
   isSubmitting,
   onChangeDepartureDay,
-  onApplyDiscount
+
 }) {
   const smUp = useResponsive('up', 'sm');
 
-  console.log('Tour data:', tour); // Log the tour data to verify
+
+  const { attributes } = tour || {};
+  const { title, price, picture, url } = attributes || {};
+
+  const [discountCode, setDiscountCode] = useState(''); // State for the discount code input
+  const [discountValue, setDiscountValue] = useState(0); // State to store the discount percentage
+  const [error, setError] = useState(null); // State to store any errors
+
+  const applyDiscount = async () => {
+
+
+    const formData = new FormData();
+    formData.append('discount_code', discountCode);
+    formData.append('url', url);
+
+
+
+
+    try {
+
+      const response = await CrudService.checkDiscountFront(formData);
+      setDiscountValue(response.discount_value); // Update the discount value
+      setError(null); // Clear any previous errors
+    } catch (err) {
+      setError(err.response?.data?.error || 'An error occurred'); // Set error message if discount is invalid
+      setDiscountValue(0); // Reset the discount value in case of an error
+    }
+  };
+
+  const discountedPrice = price - (price * discountValue) / 100; // Calculate the discounted price
+
+
 
   if (!tour) {
     return <div>Loading...</div>; // Add a loading state
   }
 
-  const { attributes } = tour;
   if (!attributes) {
     return <div>Loading...</div>; // Add a loading state if attributes is not yet available
   }
 
-  const { title, price, picture, category, url } = attributes;
 
-  const ratingNumber = 5;
-  const totalReviews = 100;
+
 
   return (
     <Card>
@@ -85,25 +117,7 @@ export default function TravelCheckOutSummary({
 
             </Typography>
 
-            <Stack
-              direction="row"
-              alignItems="center"
-              sx={{ typography: 'body2', color: 'text.secondary' }}
-            >
-                  <Iconify icon="carbon:star-filled" sx={{ color: 'warning.main' }} />
 
-                  <Box sx={{ typography: 'h6' }}>
-                    {Number.isInteger(ratingNumber) ? `${ratingNumber}.0` : ratingNumber}
-                  </Box>
-
-                  {totalReviews && (
-                    <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                      ({fShortenNumber(totalReviews)} reviews)
-                    </Link>
-                  )}
-
-
-            </Stack>
           </Stack>
 
         </Stack>
@@ -170,58 +184,53 @@ export default function TravelCheckOutSummary({
           </Typography>
         </Box>
 
-        <Box display="flex">
-          <Typography
-            component="span"
-            variant="body2"
-            sx={{ flexGrow: 1, color: 'text.secondary' }}
-          >
-            Discount
-          </Typography>
-          <Typography component="span" variant="subtitle2">
-            {discount ? fCurrency(-discount) : '-'}
-          </Typography>
-        </Box>
-
-
-
-        <Divider sx={{ borderStyle: 'dashed' }} />
-
-        <Box display="flex">
-          <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
-            Total
-          </Typography>
-
-          <Box sx={{ textAlign: 'right' }}>
-            <Typography
-              component="span"
-              variant="subtitle1"
-              sx={{ display: 'block', color: 'error.main' }}
-            >
-              {fCurrency(price - discount)}
+          <Box display="flex">
+            <Typography component="span" variant="body2" sx={{ flexGrow: 1, color: 'text.secondary' }}>
+              Discount
             </Typography>
-            <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
-              (VAT included if applicable)
+            <Typography component="span" variant="subtitle2">
+              {discountValue ? `${discountValue}%` : '-'}
             </Typography>
           </Box>
-        </Box>
 
-        {onApplyDiscount && (
+          <Divider sx={{ borderStyle: 'dashed' }} />
+
+          <Box display="flex">
+            <Typography component="span" variant="subtitle1" sx={{ flexGrow: 1 }}>
+              Total
+            </Typography>
+            <Box sx={{ textAlign: 'right' }}>
+              <Typography
+                component="span"
+                variant="subtitle1"
+                sx={{ display: 'block', color: 'error.main' }}
+              >
+                {fCurrency(discountedPrice)} {/* Show the discounted price */}
+              </Typography>
+            </Box>
+          </Box>
+
           <TextField
             fullWidth
             placeholder="Discount codes / Gifts"
-            value="DISCOUNT5"
+            value={discountCode}
+            onChange={(e) => setDiscountCode(e.target.value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <Button color="primary" onClick={() => onApplyDiscount(5)} sx={{ mr: -0.5 }}>
+                  <Button color="primary" onClick={applyDiscount}>
                     Apply
                   </Button>
                 </InputAdornment>
               ),
             }}
           />
-        )}
+
+          {error && (
+            <Typography variant="body2" color="error">
+              {error}
+            </Typography>
+          )}
         </Stack>
 
 
@@ -253,8 +262,6 @@ export default function TravelCheckOutSummary({
 TravelCheckOutSummary.propTypes = {
   isSubmitting: PropTypes.bool,
   onChangeDepartureDay: PropTypes.func,
-  onApplyDiscount: PropTypes.func,
-  discount: PropTypes.number.isRequired,
 
   departureDay: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   tour: PropTypes.shape({
