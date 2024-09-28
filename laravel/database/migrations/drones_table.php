@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreignId('collection_id')->nullable();
 
             $table->string('typea')->nullable();
+            $table->string('currency')->nullable();
 
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('code');
             $table->string('discountvalue');
             $table->string('typea')->nullable();
+            $table->string('currency')->nullable();
             $table->string('typeb')->nullable();
             $table->string('applies_to')->nullable();
             $table->string('requirements')->nullable();

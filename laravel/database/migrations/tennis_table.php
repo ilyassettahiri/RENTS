@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('racket')->nullable();
             $table->string('url');
             $table->string('typea')->nullable();
+            $table->string('currency')->nullable();
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();

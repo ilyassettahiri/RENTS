@@ -23,6 +23,7 @@ return new class extends Migration
 
             $table->string('phone', 15)->nullable();
             $table->string('typea')->nullable();
+            $table->string('currency')->nullable();
 
             $table->string('zip', 10)->nullable();
             $table->string('country')->nullable();

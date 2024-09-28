@@ -28,6 +28,7 @@ return new class extends Migration
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
             $table->string('typea')->nullable();
+            $table->string('currency')->nullable();
 
 
 
