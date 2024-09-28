@@ -35,7 +35,7 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
               </SoftTypography>
             </SoftBox>
             <SoftSelect
-              defaultValue={{ value: "usd", label: "USD" }}
+              defaultValue={{ value: "dh", label: "DH" }}
               options={[
                 { value: "dh", label: "DH" },
                 { value: "eur", label: "EUR" },

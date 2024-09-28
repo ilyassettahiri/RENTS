@@ -2511,8 +2511,27 @@ function EditListing() {
 
 
   const [selectedStatus, setSelectedStatus] = useState("");
-  const handleStatusChange = (selectedOption) => {
-    setSelectedStatus(selectedOption.value);
+  
+
+
+
+  const handleStatusChange = async (newStatus) => {
+    try {
+      const payload = { status: newStatus };
+      const response = await CrudService.updateListingStatus(payload, data.id);
+      if (response.data) {
+        setData((prevData) => ({
+          ...prevData,
+          attributes: {
+            ...prevData.attributes,
+            status: newStatus,
+          },
+        }));
+        
+      }
+    } catch (error) {
+      console.error(`Error updating reservation status to ${newStatus}:`, error);
+    }
   };
 
 

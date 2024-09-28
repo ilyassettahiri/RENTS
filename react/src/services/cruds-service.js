@@ -252,7 +252,31 @@ class CrudService {
     };
 
 
+    updateCollectionStatus = async (payload, id) => {
+      const reservationsEndpoint = `collections/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
 
+    updateDiscountStatus = async (payload, id) => {
+      const reservationsEndpoint = `discounts/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
+
+    updateCustomerStatus = async (payload, id) => {
+      const reservationsEndpoint = `customers/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
+
+
+    updateReviewStatus = async (payload, id) => {
+      const reservationsEndpoint = `reviews/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
+
+    updateListingStatus = async (payload, id) => {
+      const reservationsEndpoint = `listings/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
 
 
 

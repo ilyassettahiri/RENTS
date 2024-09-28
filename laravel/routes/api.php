@@ -303,6 +303,15 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::patch('reservations/{id}/status', [ReservationController::class, 'updateStatus']);
 
+    Route::patch('collections/{id}/status', [CollectionController::class, 'updateStatus']);
+
+    Route::patch('listings/{id}/status', [DetailListingController::class, 'updateStatus']);
+
+    Route::patch('discounts/{id}/status', [DiscountController::class, 'updateStatus']);
+
+    Route::patch('customers/{id}/status', [CustomerController::class, 'updateStatus']);
+
+    Route::patch('reviews/{id}/status', [ReviewController::class, 'updateStatus']);
 
 
 

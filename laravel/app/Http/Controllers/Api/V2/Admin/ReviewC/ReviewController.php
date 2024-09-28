@@ -90,6 +90,7 @@ class ReviewController extends JsonApiController
 
                     'name' => $review->name,
                     'rating' => $review->rating,
+                    'status' => $review->status,
 
                     'title' => $review->listings_title,
 

@@ -70,6 +70,25 @@ function DetailReview() {
 
 
 
+  const handleStatusChange = async (newStatus) => {
+    try {
+      const payload = { status: newStatus };
+      const response = await CrudService.updateReviewStatus(payload, data.id);
+      if (response.data) {
+        setData((prevData) => ({
+          ...prevData,
+          attributes: {
+            ...prevData.attributes,
+            status: newStatus,
+          },
+        }));
+        
+      }
+    } catch (error) {
+      console.error(`Error updating reservation status to ${newStatus}:`, error);
+    }
+  };
+
 
 
 

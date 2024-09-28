@@ -497,7 +497,7 @@ class ListingController extends JsonApiController
 
         $listing->picture = $thumb;
         $listing->url = $url;
-        $listing->status = ItemStatus::Active->value;
+
         $listing->user_id = $user->id;
 
 

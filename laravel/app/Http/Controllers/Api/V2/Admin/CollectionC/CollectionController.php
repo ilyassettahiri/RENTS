@@ -269,6 +269,8 @@ class CollectionController extends JsonApiController
                 'attributes' => [
                     'name' => $collection->name,
                     'picture' => $collection->picture,
+                    'status' => $collection->status,
+
                     'description' => $collection->description,
                     'created_at' => $collection->created_at,
 

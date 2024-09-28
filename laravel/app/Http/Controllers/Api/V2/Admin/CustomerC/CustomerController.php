@@ -87,6 +87,9 @@ class CustomerController extends JsonApiController
                     'title' => $customer->listings_title,
                     'price' => $customer->listings_price,
 
+                    'status' => $customer->status,
+
+
                     'id' => $customer->id,
 
 
