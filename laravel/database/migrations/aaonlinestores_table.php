@@ -31,7 +31,8 @@ return new class extends Migration
 
 
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
 
             $table->text('description')->nullable();
 

@@ -29,7 +29,8 @@ return new class extends Migration
             $table->string('city')->nullable();
 
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
 
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
@@ -42,7 +43,8 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
             $table->string('typea')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('currency')->default('DH')->nullable();
+
 
 
             $table->string('sound_quality')->nullable();

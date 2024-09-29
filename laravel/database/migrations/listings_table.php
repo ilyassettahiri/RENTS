@@ -26,7 +26,8 @@ return new class extends Migration
 
             $table->string('city')->nullable();
             $table->string('typea')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('currency')->default('DH')->nullable();
+
 
 
             $table->string('zip', 10)->nullable();

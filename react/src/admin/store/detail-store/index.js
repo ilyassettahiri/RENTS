@@ -293,6 +293,7 @@ function DetailStore() {
       <SoftBox mt={1} mb={8} component="form" method="POST" onSubmit={submitHandler}>
 
 
+          <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
 
           <Grid container spacing={3}>
 
@@ -301,9 +302,8 @@ function DetailStore() {
               <Grid item xs={12} lg={8}>
 
                   <Grid container justifyContent="center">
-                    <Grid item xs={12} lg={10}>
+                    <Grid item xs={12} lg={12}>
 
-                      <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
 
                       <Header 
                         profileImage={profileImage} 

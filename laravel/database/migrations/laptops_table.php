@@ -27,10 +27,12 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('typea')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('currency')->default('DH')->nullable();
+
 
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
 
             $table->string('phone', 15)->nullable();
 

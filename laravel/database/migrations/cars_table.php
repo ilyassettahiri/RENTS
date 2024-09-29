@@ -27,7 +27,8 @@ return new class extends Migration
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
              $table->string('typea')->nullable();
-            $table->string('currency')->nullable();
+            $table->string('currency')->default('DH')->nullable();
+
 
 
              $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
@@ -35,7 +36,8 @@ return new class extends Migration
 
 
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
 
             $table->string('phone', 15)->nullable();
 

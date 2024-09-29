@@ -24,7 +24,8 @@ return new class extends Migration
 
             $table->string('address')->nullable();
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
             $table->string('profile_picture')->nullable();
 
 

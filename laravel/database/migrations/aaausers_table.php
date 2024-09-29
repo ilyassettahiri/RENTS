@@ -30,7 +30,8 @@ return new class extends Migration
             $table->string('city')->nullable();
 
             $table->string('zip', 10)->nullable();
-            $table->string('country')->nullable();
+            $table->string('country')->default('Morocco')->nullable();
+
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
