@@ -336,5 +336,26 @@ class CollectionController extends JsonApiController
 
 
 
+    public function updateStatus(Request $request, $id)
+    {
+        $reservation = Collection::where('user_id', Auth::id())->findOrFail($id);
+        $status = $request->input('status');
+        if (in_array($status, ['active', 'pending'])) {
+            $reservation->status = $status;
+            $reservation->save();
+        }
+
+        return response()->json([
+            'data' => [
+                'type' => 'reservations',
+
+                'attributes' => [
+                    'status' => $reservation->status,
+                ],
+            ],
+        ]);
+    }
+
+
 
 }

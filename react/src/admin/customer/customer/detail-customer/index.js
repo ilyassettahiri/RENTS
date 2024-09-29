@@ -14,6 +14,7 @@ import Card from "@mui/material/Card";
 import EditIcon from "@mui/icons-material/Edit";
 import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import { Tooltip, IconButton } from "@mui/material";
+import SoftSelect from "components/SoftSelect";
 
 import SoftButton from "components/SoftButton";
 
@@ -60,6 +61,8 @@ function DetailCustomer() {
         const response = await CrudService.getCustomer(id);
         setData(response.data);
 
+        setSelectedStatus(response.data.attributes.status);
+        setInitialStatus(response.data.attributes.status);
        
       } catch (error) {
         console.error("Error fetching reservation data:", error);
@@ -87,24 +90,41 @@ function DetailCustomer() {
 
 
 
-  const handleStatusChange = async (newStatus) => {
+
+
+
+
+  const [selectedStatus, setSelectedStatus] = useState(data?.attributes?.status || "");
+  const [initialStatus, setInitialStatus] = useState(data?.attributes?.status || "");
+  
+  // Update the selected status and track changes
+  const handleStatusChange = (newStatus) => {
+    setSelectedStatus(newStatus.value);
+  };
+  
+  // Handle the status update when the save button is clicked
+  const handleSave = async () => {
     try {
-      const payload = { status: newStatus };
-      const response = await CrudService.updateCustomerStatus(payload, data.id);
+      const payload = { status: selectedStatus };
+      const response = await CrudService.updateCustomerStatus(payload, id);
       if (response.data) {
         setData((prevData) => ({
           ...prevData,
           attributes: {
             ...prevData.attributes,
-            status: newStatus,
+            status: selectedStatus,
           },
         }));
-        
+        // Reset the initial status to the newly saved status
+        setInitialStatus(selectedStatus);
       }
     } catch (error) {
-      console.error(`Error updating reservation status to ${newStatus}:`, error);
+      console.error(`Error updating reservation status to ${selectedStatus}:`, error);
     }
   };
+
+
+
 
   
 
@@ -240,6 +260,60 @@ function DetailCustomer() {
                 </Card>
               </SoftBox>
             </Grid>
+
+
+
+              <Grid item xs={12}>
+                <SoftBox mb={3}>
+
+
+
+                    <Card sx={{ overflow: "visible", mt: 2 }}>
+                      <SoftBox mb={3} sx={{ p: 2 }} >
+                        <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                          <SoftTypography
+                            component="label"
+                            variant="caption"
+                            fontWeight="bold"
+                            textTransform="capitalize"
+                          >
+                            Status
+                          </SoftTypography>
+                        </SoftBox>
+                        <SoftSelect
+                          
+                          value={{ value: selectedStatus, label: selectedStatus || "Select Status" }}
+
+                          options={[
+                          
+                            { value: "active", label: "Active" },
+                            { value: "draft", label: "Draft" },
+                            { value: "pending", label: "Pending" },
+
+                          ]}
+                          onChange={handleStatusChange}
+                        />
+                      </SoftBox>
+
+                        {/* Only show the save button if the status has changed */}
+                        {selectedStatus !== initialStatus && (
+                          <SoftBox mb={2} display="flex" justifyContent="center">
+                            <SoftButton onClick={handleSave} variant="gradient" color="info" size="small">
+                              save
+                            </SoftButton>
+                          </SoftBox>
+                        )}
+
+
+                    </Card>
+
+
+
+
+
+                </SoftBox>
+              </Grid>
+
             
           </Grid>
 

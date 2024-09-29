@@ -183,6 +183,28 @@ class DetailListingController extends Controller
 
 
 
+
+    public function updateStatus(Request $request, $id)
+    {
+        $reservation = Listing::where('user_id', Auth::id())->findOrFail($id);
+        $status = $request->input('status');
+        if (in_array($status, ['active', 'pending'])) {
+            $reservation->status = $status;
+            $reservation->save();
+        }
+
+        return response()->json([
+            'data' => [
+                'type' => 'reservations',
+
+                'attributes' => [
+                    'status' => $reservation->status,
+                ],
+            ],
+        ]);
+    }
+
+
     public function showDetailListing(Request $request, $id)
     {
         $this->listing = Listing::where('id', $id)->first();

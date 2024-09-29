@@ -1344,6 +1344,7 @@ function EditListing() {
           city,
           country,
           zip,
+          status,
           category,
           price,
           currency = null,
@@ -1362,7 +1363,8 @@ function EditListing() {
         setDateRange([dayjs(startdate), dayjs(enddate)]);
         setSelectedCategory(category);
         setPricing({ price, currency, sku, tags: JSON.parse(tags) });
-       
+        setSelectedStatus(status);
+        setInitialStatus(status);
 
         setOldFiles(images);
         
@@ -2510,30 +2512,34 @@ function EditListing() {
 
 
 
-  const [selectedStatus, setSelectedStatus] = useState("");
+  const [selectedStatus, setSelectedStatus] = useState(data?.attributes?.status || "");
+  const [initialStatus, setInitialStatus] = useState(data?.attributes?.status || "");
   
-
-
-
-  const handleStatusChange = async (newStatus) => {
+  // Update the selected status and track changes
+  const handleStatusChange = (newStatus) => {
+    setSelectedStatus(newStatus.value);
+  };
+  
+  // Handle the status update when the save button is clicked
+  const handleSave = async () => {
     try {
-      const payload = { status: newStatus };
-      const response = await CrudService.updateListingStatus(payload, data.id);
+      const payload = { status: selectedStatus };
+      const response = await CrudService.updateListingStatus(payload, id);
       if (response.data) {
         setData((prevData) => ({
           ...prevData,
           attributes: {
             ...prevData.attributes,
-            status: newStatus,
+            status: selectedStatus,
           },
         }));
-        
+        // Reset the initial status to the newly saved status
+        setInitialStatus(selectedStatus);
       }
     } catch (error) {
-      console.error(`Error updating reservation status to ${newStatus}:`, error);
+      console.error(`Error updating reservation status to ${selectedStatus}:`, error);
     }
   };
-
 
 
 
@@ -2570,7 +2576,7 @@ function EditListing() {
 
           
 
-          <SoftBox  component="form" method="POST" onSubmit={submitHandler}>
+          <SoftBox  >
 
 
             <Grid container spacing={3}>
@@ -2578,7 +2584,7 @@ function EditListing() {
                   
                   
                   
-                  <Grid item xs={12} lg={8}>
+                  <Grid item xs={12} lg={8} component="form" method="POST" onSubmit={submitHandler}>
 
 
 
@@ -2893,29 +2899,44 @@ function EditListing() {
 
 
 
-                              <Card sx={{ overflow: "visible", mt: 2 }}>
-                                <SoftBox mb={3} sx={{ p: 2 }} >
-                                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                    <SoftTypography
-                                      component="label"
-                                      variant="caption"
-                                      fontWeight="bold"
-                                      textTransform="capitalize"
-                                    >
-                                      Status
-                                    </SoftTypography>
-                                  </SoftBox>
-                                  <SoftSelect
-                                    defaultValue={{ value: selectedStatus, label: selectedStatus }}
-                                    options={[
-                                    
-                                      { value: "active", label: "Active" },
-                                      { value: "draft", label: "Draft" },
-                                    ]}
-                                    onChange={handleStatusChange}
-                                  />
-                                </SoftBox>
-                              </Card>
+                                  <Card sx={{ overflow: "visible", mt: 2 }}>
+                                    <SoftBox mb={3} sx={{ p: 2 }} >
+                                      <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                        <SoftTypography
+                                          component="label"
+                                          variant="caption"
+                                          fontWeight="bold"
+                                          textTransform="capitalize"
+                                        >
+                                          Status
+                                        </SoftTypography>
+                                      </SoftBox>
+                                      <SoftSelect
+                                        
+                                        value={{ value: selectedStatus, label: selectedStatus || "Select Status" }}
+
+                                        options={[
+                                        
+                                          { value: "active", label: "Active" },
+                                          { value: "draft", label: "Draft" },
+                                          { value: "pending", label: "Pending" },
+
+                                        ]}
+                                        onChange={handleStatusChange}
+                                      />
+                                    </SoftBox>
+
+                                      {/* Only show the save button if the status has changed */}
+                                      {selectedStatus !== initialStatus && (
+                                        <SoftBox mb={2} display="flex" justifyContent="center">
+                                          <SoftButton onClick={handleSave} variant="gradient" color="info" size="small">
+                                            save
+                                          </SoftButton>
+                                        </SoftBox>
+                                      )}
+
+
+                                  </Card>
 
 
 

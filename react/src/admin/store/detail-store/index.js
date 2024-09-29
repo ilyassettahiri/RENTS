@@ -81,11 +81,13 @@ function DetailStore() {
         const response = await CrudService.getDetailOnlinestore();
         const storeData = response.data[0].attributes; // Assuming it's the first element of the array
         
-        // Log the fetched data
-        console.log('Fetched:', storeData);
+        
   
         // Set individual state variables based on the fetched data
         setData(storeData);
+        setSelectedStatus(storeData.status);
+        setInitialStatus(storeData.status);
+
         setName({ text: storeData.name, error: false, textError: "" });
         setPhone({ text: storeData.phone, error: false, textError: "" });
         setEmail({ text: storeData.email, error: false, textError: "" });
@@ -249,170 +251,285 @@ function DetailStore() {
   };
 
 
+
+
+
+
+  const [selectedStatus, setSelectedStatus] = useState(data?.attributes?.status || "");
+  const [initialStatus, setInitialStatus] = useState(data?.attributes?.status || "");
+  
+  // Update the selected status and track changes
+  const handleStatusChange = (newStatus) => {
+    setSelectedStatus(newStatus.value);
+  };
+  
+  // Handle the status update when the save button is clicked
+  const handleSave = async () => {
+    try {
+      const payload = { status: selectedStatus };
+      const response = await CrudService.updateStoreStatus(payload, id);
+      if (response.data) {
+        setData((prevData) => ({
+          ...prevData,
+          attributes: {
+            ...prevData.attributes,
+            status: selectedStatus,
+          },
+        }));
+        // Reset the initial status to the newly saved status
+        setInitialStatus(selectedStatus);
+      }
+    } catch (error) {
+      console.error(`Error updating reservation status to ${selectedStatus}:`, error);
+    }
+  };
+
+
+
+
+
   return (
     <DashboardLayout>
       <SoftBox mt={1} mb={8} component="form" method="POST" onSubmit={submitHandler}>
 
 
 
+          <Grid container spacing={3}>
 
 
-        <Grid container justifyContent="center">
-          <Grid item xs={12} lg={10}>
 
-            <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
+              <Grid item xs={12} lg={8}>
 
-            <Header 
-              profileImage={profileImage} 
-              backgroundImage={backgroundImage}
-              onProfileImageChange={handleProfileImageChange}
-              onBackgroundImageChange={handleBackgroundImageChange}
-            />
-            <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-              <SoftBox p={3}>
-                <SoftTypography variant="h5">Store Information</SoftTypography>
-                <SoftBox mt={3}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <SoftBox p={1}>
-                        <FormField
-                          type="text"
-                          label="Store Name"
-                          placeholder="name"
-                          name="name"
-                          value={name.text}
-                          onChange={changeNameHandler}
-                          error={name.error}
-                        />
-                        {name.error && (
-                          <SoftTypography variant="caption" color="error" fontWeight="light">
-                            {name.textError}
-                          </SoftTypography>
-                        )}
-                      </SoftBox>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <SoftBox p={1}>
+                  <Grid container justifyContent="center">
+                    <Grid item xs={12} lg={10}>
+
+                      <ListActionHeader title="Delete Store" clickAddHandler={clickDeleteHandler} />
+
+                      <Header 
+                        profileImage={profileImage} 
+                        backgroundImage={backgroundImage}
+                        onProfileImageChange={handleProfileImageChange}
+                        onBackgroundImageChange={handleBackgroundImageChange}
+                      />
+                      <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                        <SoftBox p={3}>
+                          <SoftTypography variant="h5">Store Information</SoftTypography>
+                          <SoftBox mt={3}>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox p={1}>
+                                  <FormField
+                                    type="text"
+                                    label="Store Name"
+                                    placeholder="name"
+                                    name="name"
+                                    value={name.text}
+                                    onChange={changeNameHandler}
+                                    error={name.error}
+                                  />
+                                  {name.error && (
+                                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                                      {name.textError}
+                                    </SoftTypography>
+                                  )}
+                                </SoftBox>
+                              </Grid>
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox p={1}>
 
 
-                        <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                          <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                            Type
-                          </SoftTypography>
+                                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                    <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                                      Type
+                                    </SoftTypography>
+                                  </SoftBox>
+                                  
+                                    <SoftSelect
+
+                                      value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
+                                      options={[
+                                        
+                                        { value: "boats", label: "boats" },
+                                        { value: "camions", label: "camions" },
+                                        { value: "caravans", label: "caravans"  },
+                                        { value: "cars", label: "cars"},
+                                        { value: "engins", label: "engins" },
+                                        { value: "motos", label: "motos" },
+                                      
+                                      ]}
+
+
+
+
+                                      onChange={handleCategoryChange}
+                                    />
+
+                                </SoftBox>
+                              </Grid>
+                            </Grid>
+                          </SoftBox>
+
+
+
+
+
+
+                          <SoftBox mt={3}>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox p={1}>
+                                  <FormField
+                                    type="text"
+                                    label="phone"
+                                    placeholder="phone"
+                                    name="phone"
+                                    value={phone.text}
+                                    onChange={changePhoneHandler}
+                                    error={phone.error}
+                                  />
+                                  {phone.error && (
+                                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                                      {phone.textError}
+                                    </SoftTypography>
+                                  )}
+                                </SoftBox>
+                              </Grid>
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox p={1}>
+                                  <FormField
+                                    type="text"
+                                    label="email"
+                                    name="email"
+                                    placeholder="example@gmail.com"
+
+                                    value={email.text}
+                                    onChange={changeEmailHandler}
+                                    error={email.error}
+                                  />
+                                  {email.error && (
+                                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                                      {email.textError}
+                                    </SoftTypography>
+                                  )}
+                                </SoftBox>
+                              </Grid>
+                            </Grid>
+                          </SoftBox>
+
+
+
+                          <SoftBox mt={2}>
+                            <SoftBox mt={2}>
+                              <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+
+                                  Description&nbsp;&nbsp;
+                                </SoftTypography>
+                              </SoftBox>
+                              <SoftEditor value={description} onChange={setDescription} />
+                              {descError && (
+                                <SoftTypography variant="caption" color="error" fontWeight="light">
+                                  The Store description is required
+                                </SoftTypography>
+                              )}
+                            </SoftBox>
+                          </SoftBox>
+                          <SoftBox mt={2}>
+                            <Address address={address} onAddressChange={handleAddressChange} />
+                          </SoftBox>
                         </SoftBox>
-                        
+                      </Card>
+                    </Grid>
+                    
+                  </Grid>
+
+                  <Grid container justifyContent="center">
+
+                      <Grid item xs={12} lg={10}>
+                          <SoftBox display="flex" justifyContent="center" mb={5}>
+
+                            <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
+                              Save
+                            </SoftButton>
+                          </SoftBox>
+
+                      </Grid>
+
+                  </Grid>
+
+
+              </Grid>
+
+
+
+
+
+              <Grid item xs={12} lg={4}>
+
+
+                <Grid item xs={12}>
+                  <SoftBox mb={3}>
+
+
+
+                      <Card sx={{ overflow: "visible", mt: 2 }}>
+                        <SoftBox mb={3} sx={{ p: 2 }} >
+                          <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                            <SoftTypography
+                              component="label"
+                              variant="caption"
+                              fontWeight="bold"
+                              textTransform="capitalize"
+                            >
+                              Status
+                            </SoftTypography>
+                          </SoftBox>
                           <SoftSelect
-
-                            placeholder="Select Category"
-                            options={[
-                              
-                              { value: "boats", label: "boats" },
-                              { value: "camions", label: "camions" },
-                              { value: "caravans", label: "caravans"  },
-                              { value: "cars", label: "cars"},
-                              { value: "engins", label: "engins" },
-                              { value: "motos", label: "motos" },
                             
+                            value={{ value: selectedStatus, label: selectedStatus || "Select Status" }}
+
+                            options={[
+                            
+                              { value: "active", label: "Active" },
+                              { value: "draft", label: "Draft" },
+                              { value: "pending", label: "Pending" },
+
                             ]}
-
-
-
-
-                            onChange={handleCategoryChange}
+                            onChange={handleStatusChange}
                           />
+                        </SoftBox>
 
-                      </SoftBox>
-                    </Grid>
-                  </Grid>
-                </SoftBox>
+                          {/* Only show the save button if the status has changed */}
+                          {selectedStatus !== initialStatus && (
+                            <SoftBox mb={2} display="flex" justifyContent="center">
+                              <SoftButton onClick={handleSave} variant="gradient" color="info" size="small">
+                                save
+                              </SoftButton>
+                            </SoftBox>
+                          )}
 
 
-
-
-
-
-                <SoftBox mt={3}>
-                  <Grid container spacing={3}>
-                    <Grid item xs={12} sm={6}>
-                      <SoftBox p={1}>
-                        <FormField
-                          type="text"
-                          label="phone"
-                          placeholder="phone"
-                          name="phone"
-                          value={phone.text}
-                          onChange={changePhoneHandler}
-                          error={phone.error}
-                        />
-                        {phone.error && (
-                          <SoftTypography variant="caption" color="error" fontWeight="light">
-                            {phone.textError}
-                          </SoftTypography>
-                        )}
-                      </SoftBox>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <SoftBox p={1}>
-                        <FormField
-                          type="text"
-                          label="email"
-                          name="email"
-                          placeholder="example@gmail.com"
-
-                          value={email.text}
-                          onChange={changeEmailHandler}
-                          error={email.error}
-                        />
-                        {email.error && (
-                          <SoftTypography variant="caption" color="error" fontWeight="light">
-                            {email.textError}
-                          </SoftTypography>
-                        )}
-                      </SoftBox>
-                    </Grid>
-                  </Grid>
-                </SoftBox>
+                      </Card>
 
 
 
-                <SoftBox mt={2}>
-                  <SoftBox mt={2}>
-                    <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
 
-                        Description&nbsp;&nbsp;
-                      </SoftTypography>
-                    </SoftBox>
-                    <SoftEditor value={description} onChange={setDescription} />
-                    {descError && (
-                      <SoftTypography variant="caption" color="error" fontWeight="light">
-                        The Store description is required
-                      </SoftTypography>
-                    )}
+
                   </SoftBox>
-                </SoftBox>
-                <SoftBox mt={2}>
-                  <Address address={address} onAddressChange={handleAddressChange} />
-                </SoftBox>
-              </SoftBox>
-            </Card>
+                </Grid>
+
+
+
+
+              </Grid>
+
+
+
+
+
           </Grid>
-          
-        </Grid>
 
-        <Grid container justifyContent="center">
 
-            <Grid item xs={12} lg={10}>
-                <SoftBox display="flex" justifyContent="center" mb={5}>
-
-                  <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
-                    Save
-                  </SoftButton>
-                </SoftBox>
-
-            </Grid>
-
-        </Grid>
 
 
       </SoftBox>

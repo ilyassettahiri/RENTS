@@ -163,8 +163,8 @@ const DetailDiscount = () => {
           
           const discount = res.data.attributes;
 
-          console.log('Fetched discount:', discount);
-
+          setSelectedStatus(discount.status);
+          setInitialStatus(discount.status);
   
           setData(discount);
           // Set fetched values to the state
@@ -217,30 +217,41 @@ const DetailDiscount = () => {
   };
 
 
-  const [selectedStatus, setSelectedStatus] = useState("");
 
 
 
-
-
-  const handleStatusChange = async (newStatus) => {
+  const [selectedStatus, setSelectedStatus] = useState(data?.attributes?.status || "");
+  const [initialStatus, setInitialStatus] = useState(data?.attributes?.status || "");
+  
+  // Update the selected status and track changes
+  const handleStatusChange = (newStatus) => {
+    setSelectedStatus(newStatus.value);
+  };
+  
+  // Handle the status update when the save button is clicked
+  const handleSave = async () => {
     try {
-      const payload = { status: newStatus };
-      const response = await CrudService.updateDiscountStatus(payload, data.id);
+      const payload = { status: selectedStatus };
+      const response = await CrudService.updateDiscountStatus(payload, id);
       if (response.data) {
         setData((prevData) => ({
           ...prevData,
           attributes: {
             ...prevData.attributes,
-            status: newStatus,
+            status: selectedStatus,
           },
         }));
-        
+        // Reset the initial status to the newly saved status
+        setInitialStatus(selectedStatus);
       }
     } catch (error) {
-      console.error(`Error updating reservation status to ${newStatus}:`, error);
+      console.error(`Error updating reservation status to ${selectedStatus}:`, error);
     }
   };
+
+
+
+
 
 
 
@@ -277,204 +288,60 @@ const DetailDiscount = () => {
 
 
 
-          <Grid item xs={12} lg={8}>
-           
-
-
-              <SoftBox  mb={10} component="form" method="POST" onSubmit={submitHandler}>
-                <Grid container justifyContent="center">
-                  <Grid item xs={12} lg={12}>
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-                        <SoftTypography variant="h5">Create Discount</SoftTypography>
-                        <SoftBox mt={4}>
-                          <Grid container spacing={3}>
-                            <Grid item xs={12} sm={6}>
-                              <SoftBox>
-                                <FormField placeholder ="discount code"
-                                  type="text"
-                                  label="Code"
-                                  name="code"
-                                  value={code.text}
-                                  onChange={changeCodeHandler}
-                                  error={code.error}
-                                />
-                                {code.error && (
-                                  <SoftTypography variant="caption" color="error" fontWeight="light">
-                                    {code.textError}
-                                  </SoftTypography>
-                                )}
-                              </SoftBox>
-                            </Grid>
-
-                            <Grid item xs={12} sm={6}>
-                              <SoftBox>
-                                <FormField placeholder ="percentage"
-                                  type="text"
-                                  label="Discount Value"
-                                  name="discountvalue"
-                                  value={discountValue.text}
-                                  onChange={changeDiscountValueHandler}
-                                  error={discountValue.error}
-                                />
-                                {discountValue.error && (
-                                  <SoftTypography variant="caption" color="error" fontWeight="light">
-                                    {discountValue.textError}
-                                  </SoftTypography>
-                                )}
-                              </SoftBox>
-                            </Grid>
-                          </Grid>
-                        </SoftBox>
-
-                        <SoftBox mt={4}>
-                          <Grid container spacing={3}>
-                            <Grid item xs={12}>
-                              <SoftBox mb={3}>
-                                <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                  <SoftTypography
-                                    component="label"
-                                    variant="caption"
-                                    fontWeight="bold"
-                                    textTransform="capitalize"
-                                  >
-                                    Applies to
-                                  </SoftTypography>
-                                </SoftBox>
-                                <SoftSelect
-                                  options={[
-                                    { value: "collection", label: "Specific Collection" },
-                                    { value: "product", label: "Specific Product" },
-                                  ]}
-                                  value={{ value: appliesTo, label: appliesTo === "collection" ? "Specific Collection" : "Specific Product" }}
-                                  onChange={(selectedOption) => setAppliesTo(selectedOption.value)}
-                                />
-                              </SoftBox>
-                            </Grid>
-                          </Grid>
-                        </SoftBox>
-
-                        {appliesTo === "collection" && (
-                          <SoftBox mt={4}>
-                            <Grid container spacing={3}>
-                              <Grid item xs={12}>
-                                <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                                    Select Specific Collection
-                                  </SoftTypography>
-                                </SoftBox>
-                                <SoftSelect
-                                  options={collectionOptions}
-                                  isMulti
-                                  value={selectedCollections}
-
-                                  onChange={(selectedOptions) => setSelectedCollections(selectedOptions)}
-                                />
-                              </Grid>
-                            </Grid>
-                          </SoftBox>
-                        )}
-
-                        {appliesTo === "product" && (
-                          <SoftBox mt={4}>
-                            <Grid container spacing={3}>
-                              <Grid item xs={12}>
-                                <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                                  <SoftTypography component="label" variant="caption" fontWeight="bold">
-                                    Select Specific Product
-                                  </SoftTypography>
-                                </SoftBox>
-                                <SoftSelect
-                                  options={listingOptions}
-                                  isMulti
-                                  value={selectedListings}
-
-                                  onChange={(selectedOptions) => setSelectedListings(selectedOptions)}
-                                />
-                              </Grid>
-                            </Grid>
-                          </SoftBox>
-                        )}
-                      </SoftBox>
-                    </Card>
-
-                    <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
-                      <SoftBox p={3}>
-                        <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                          <SoftTypography
-                            component="label"
-                            variant="caption"
-                            fontWeight="bold"
-                            textTransform="capitalize"
-                          >
-                            Minimum purchase requirements
-                          </SoftTypography>
-                        </SoftBox>
-                        <SoftSelect
-                          options={[
-                            { value: "nominimum", label: "No minimum requirements" },
-                            { value: "purchaseamount", label: "Minimum purchase amount" },
-                          ]}
-                          value={{ value: purchaseRequirement, label: purchaseRequirement === "nominimum" ? "No minimum requirements" : "Minimum purchase amount" }}
-                          onChange={(selectedOption) => setPurchaseRequirement(selectedOption.value)}
-                        />
-                      </SoftBox>
-
-                      {purchaseRequirement === "purchaseamount" && (
-                        <SoftBox p={3}>
-                          <FormField
-                            type="text"
-                            placeholder="Minimum purchase amount"
-                            label="Minimum purchase amount"
-                            name="purchaseamount"
-                            value={purchaseAmount}
-                            onChange={(e) => setPurchaseAmount(e.target.value)}
-                          />
-                        </SoftBox>
-                      )}
-                    </Card>
-
-                    <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
-                      <SoftBox mx={2}>
-                        <SoftButton
-                          variant="gradient"
-                          color="dark"
-                          size="small"
-                          px={2}
-                          mx={2}
-                          onClick={() =>
-                            navigate("/listing/discount", {
-                              state: { value: false, text: "" },
-                            })
-                          }
-                        >
-                          Back
-                        </SoftButton>
-                      </SoftBox>
-                      <SoftButton variant="gradient" color="info" size="small" type="submit" onClick={submitHandler}>
-                        Save
-                      </SoftButton>
-                    </SoftBox>
-                  </Grid>
-                </Grid>
-              </SoftBox>
-
-
-              
+            <Grid item xs={12} lg={8}>
             
-          </Grid>
 
 
-          <Grid item xs={12} lg={4}>
+                <SoftBox  mb={10} component="form" method="POST" onSubmit={submitHandler}>
+                  <Grid container justifyContent="center">
+                    <Grid item xs={12} lg={12}>
+                      <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                        <SoftBox p={3}>
+                          <SoftTypography variant="h5">Create Discount</SoftTypography>
+                          <SoftBox mt={4}>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox>
+                                  <FormField placeholder ="discount code"
+                                    type="text"
+                                    label="Code"
+                                    name="code"
+                                    value={code.text}
+                                    onChange={changeCodeHandler}
+                                    error={code.error}
+                                  />
+                                  {code.error && (
+                                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                                      {code.textError}
+                                    </SoftTypography>
+                                  )}
+                                </SoftBox>
+                              </Grid>
 
+                              <Grid item xs={12} sm={6}>
+                                <SoftBox>
+                                  <FormField placeholder ="percentage"
+                                    type="text"
+                                    label="Discount Value"
+                                    name="discountvalue"
+                                    value={discountValue.text}
+                                    onChange={changeDiscountValueHandler}
+                                    error={discountValue.error}
+                                  />
+                                  {discountValue.error && (
+                                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                                      {discountValue.textError}
+                                    </SoftTypography>
+                                  )}
+                                </SoftBox>
+                              </Grid>
+                            </Grid>
+                          </SoftBox>
 
-                            <Grid item xs={12}>
-                              <SoftBox mb={3}>
-
-
-
-                              <Card sx={{ overflow: "visible", mt: 2 }}>
-                                <SoftBox mb={3} sx={{ p: 2 }} >
+                          <SoftBox mt={4}>
+                            <Grid container spacing={3}>
+                              <Grid item xs={12}>
+                                <SoftBox mb={3}>
                                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                                     <SoftTypography
                                       component="label"
@@ -482,33 +349,197 @@ const DetailDiscount = () => {
                                       fontWeight="bold"
                                       textTransform="capitalize"
                                     >
-                                      Status
+                                      Applies to
                                     </SoftTypography>
                                   </SoftBox>
                                   <SoftSelect
-                                    defaultValue={{ value: selectedStatus, label: selectedStatus }}
                                     options={[
-                                    
-                                      { value: "active", label: "Active" },
-                                      { value: "draft", label: "Draft" },
+                                      { value: "collection", label: "Specific Collection" },
+                                      { value: "product", label: "Specific Product" },
                                     ]}
-                                    onChange={handleStatusChange}
+                                    value={{ value: appliesTo, label: appliesTo === "collection" ? "Specific Collection" : "Specific Product" }}
+                                    onChange={(selectedOption) => setAppliesTo(selectedOption.value)}
                                   />
                                 </SoftBox>
-                              </Card>
-
-
-
-
-
-                              </SoftBox>
+                              </Grid>
                             </Grid>
+                          </SoftBox>
+
+                          {appliesTo === "collection" && (
+                            <SoftBox mt={4}>
+                              <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                    <SoftTypography component="label" variant="caption" fontWeight="bold">
+                                      Select Specific Collection
+                                    </SoftTypography>
+                                  </SoftBox>
+                                  <SoftSelect
+                                    options={collectionOptions}
+                                    isMulti
+                                    value={selectedCollections}
+
+                                    onChange={(selectedOptions) => setSelectedCollections(selectedOptions)}
+                                  />
+                                </Grid>
+                              </Grid>
+                            </SoftBox>
+                          )}
+
+                          {appliesTo === "product" && (
+                            <SoftBox mt={4}>
+                              <Grid container spacing={3}>
+                                <Grid item xs={12}>
+                                  <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                                    <SoftTypography component="label" variant="caption" fontWeight="bold">
+                                      Select Specific Product
+                                    </SoftTypography>
+                                  </SoftBox>
+                                  <SoftSelect
+                                    options={listingOptions}
+                                    isMulti
+                                    value={selectedListings}
+
+                                    onChange={(selectedOptions) => setSelectedListings(selectedOptions)}
+                                  />
+                                </Grid>
+                              </Grid>
+                            </SoftBox>
+                          )}
+                        </SoftBox>
+                      </Card>
+
+                      <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
+                        <SoftBox p={3}>
+                          <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                            <SoftTypography
+                              component="label"
+                              variant="caption"
+                              fontWeight="bold"
+                              textTransform="capitalize"
+                            >
+                              Minimum purchase requirements
+                            </SoftTypography>
+                          </SoftBox>
+                          <SoftSelect
+                            options={[
+                              { value: "nominimum", label: "No minimum requirements" },
+                              { value: "purchaseamount", label: "Minimum purchase amount" },
+                            ]}
+                            value={{ value: purchaseRequirement, label: purchaseRequirement === "nominimum" ? "No minimum requirements" : "Minimum purchase amount" }}
+                            onChange={(selectedOption) => setPurchaseRequirement(selectedOption.value)}
+                          />
+                        </SoftBox>
+
+                        {purchaseRequirement === "purchaseamount" && (
+                          <SoftBox p={3}>
+                            <FormField
+                              type="text"
+                              placeholder="Minimum purchase amount"
+                              label="Minimum purchase amount"
+                              name="purchaseamount"
+                              value={purchaseAmount}
+                              onChange={(e) => setPurchaseAmount(e.target.value)}
+                            />
+                          </SoftBox>
+                        )}
+                      </Card>
+
+                      <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
+                        <SoftBox mx={2}>
+                          <SoftButton
+                            variant="gradient"
+                            color="dark"
+                            size="small"
+                            px={2}
+                            mx={2}
+                            onClick={() =>
+                              navigate("/listing/discount", {
+                                state: { value: false, text: "" },
+                              })
+                            }
+                          >
+                            Back
+                          </SoftButton>
+                        </SoftBox>
+                        <SoftButton variant="gradient" color="info" size="small" type="submit" onClick={submitHandler}>
+                          Save
+                        </SoftButton>
+                      </SoftBox>
+                    </Grid>
+                  </Grid>
+                </SoftBox>
 
 
-
+                
               
-            
-          </Grid>
+            </Grid>
+
+
+
+
+
+
+
+            <Grid item xs={12} lg={4}>
+
+
+              <Grid item xs={12}>
+                <SoftBox mb={3}>
+
+
+
+                    <Card sx={{ overflow: "visible", mt: 2 }}>
+                      <SoftBox mb={3} sx={{ p: 2 }} >
+                        <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+                          <SoftTypography
+                            component="label"
+                            variant="caption"
+                            fontWeight="bold"
+                            textTransform="capitalize"
+                          >
+                            Status
+                          </SoftTypography>
+                        </SoftBox>
+                        <SoftSelect
+                          
+                          value={{ value: selectedStatus, label: selectedStatus || "Select Status" }}
+
+                          options={[
+                          
+                            { value: "active", label: "Active" },
+                            { value: "draft", label: "Draft" },
+                            { value: "pending", label: "Pending" },
+
+                          ]}
+                          onChange={handleStatusChange}
+                        />
+                      </SoftBox>
+
+                        {/* Only show the save button if the status has changed */}
+                        {selectedStatus !== initialStatus && (
+                          <SoftBox mb={2} display="flex" justifyContent="center">
+                            <SoftButton onClick={handleSave} variant="gradient" color="info" size="small">
+                              save
+                            </SoftButton>
+                          </SoftBox>
+                        )}
+
+
+                    </Card>
+
+
+
+
+
+                </SoftBox>
+              </Grid>
+
+
+
+
+            </Grid>
+
 
 
 
