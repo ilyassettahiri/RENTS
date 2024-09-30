@@ -8,16 +8,14 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('villasimgs', function (Blueprint $table) {
+        Schema::create('landingpageimgs', function (Blueprint $table) {
             $table->id();
 
 
-            $table->foreignId('villa_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('landingpage_id')->constrained()->cascadeOnDelete();
             $table->string('picture')->nullable();
                         $table->string('alttext')->nullable();
                         $table->string('picturesxlarge')->nullable();
@@ -31,17 +29,17 @@ return new class extends Migration
 
 
 
+
+
             $table->timestamps();
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('villasimgs');
+        Schema::dropIfExists('landingpageimgs');
     }
 };

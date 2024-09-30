@@ -24,6 +24,12 @@ return new class extends Migration
                         $table->string('picturesxlarge')->nullable();
 
             $table->string('picturesmall')->nullable();
+            $table->string('videosmall')->nullable();
+            $table->string('videolarge')->nullable();
+            $table->string('videoxlarge')->nullable();
+            $table->string('victor')->nullable();
+            $table->string('victora')->nullable();
+            $table->string('victorb')->nullable();
 
 
             $table->timestamps();
