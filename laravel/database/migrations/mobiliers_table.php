@@ -29,6 +29,7 @@ return new class extends Migration
             $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('shipping_id')->nullable();
+            $table->foreignId('vat_id')->nullable();
             $table->foreignId('collection_id')->nullable();
             $table->string('typea')->nullable();
             $table->string('currency')->default('DH')->nullable();
