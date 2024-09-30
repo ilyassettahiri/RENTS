@@ -18,7 +18,8 @@ return new class extends Migration
 
 
             $table->string('name')->nullable();
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
             $table->string('picture')->nullable();
 

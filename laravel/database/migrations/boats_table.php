@@ -37,15 +37,17 @@ return new class extends Migration
             $table->date('enddate')->nullable();
 
 
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
             $table->string('url');
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 
+            $table->string('secteur')->nullable();
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
 

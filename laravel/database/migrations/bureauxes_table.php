@@ -23,9 +23,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 
+            $table->string('secteur')->nullable();
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
 
@@ -59,7 +61,7 @@ return new class extends Migration
             $table->string('currency')->default('DH')->nullable();
 
 
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
             $table->string('phone', 15)->nullable();
@@ -86,21 +88,21 @@ return new class extends Migration
             $table->string('surface')->nullable();
             $table->string('shared_space')->nullable();
             $table->string('private_workspace')->nullable();
-            $table->string('furniture')->nullable();
+            //$table->string('furniture')->nullable();
             $table->string('cafeteria')->nullable();
             $table->string('restaurant')->nullable();
             $table->string('conference_room')->nullable();
-            $table->string('terrace')->nullable();
+            //$table->string('terrace')->nullable();
             $table->string('reception')->nullable();
             $table->string('smoking_room')->nullable();
             $table->string('metro_subway')->nullable();
             $table->string('bus_line')->nullable();
             $table->string('building_size')->nullable();
-            $table->string('year_built')->nullable();
-            $table->string('year_renovated')->nullable();
-            $table->string('administrative_support')->nullable();
-            $table->string('virtual_office')->nullable();
-            $table->string('lighting')->nullable();
+            //$table->string('year_built')->nullable();
+            //$table->string('year_renovated')->nullable();
+            //$table->string('administrative_support')->nullable();
+            //$table->string('virtual_office')->nullable();
+            //$table->string('lighting')->nullable();
             $table->string('capacity')->nullable();
             $table->string('bail_type')->nullable();
             $table->string('security_deposit')->nullable();

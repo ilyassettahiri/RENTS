@@ -39,7 +39,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
 
             $table->boolean('verified')->default(false);
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
 

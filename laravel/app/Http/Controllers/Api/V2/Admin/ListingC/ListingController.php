@@ -2670,7 +2670,6 @@ class ListingController extends JsonApiController
                                 $riad->living_rooms = $riadsData['livingRooms'] ?? null;
                                 $riad->surface = $riadsData['surface'] ?? null;
                                 $riad->floors = $riadsData['floors'] ?? null;
-                                $riad->year_construction = $riadsData['year_construction'] ?? null;
                                 $riad->bedrooms = $riadsData['bedrooms'] ?? null;
                                 $riad->bathrooms = $riadsData['bathrooms'] ?? null;
                                 $riad->garden = $riadsData['garden'] ?? null;
@@ -6790,7 +6789,6 @@ class ListingController extends JsonApiController
                                 $riad->living_rooms = $riadsData['livingRooms'] ?? null;
                                 $riad->surface = $riadsData['surface'] ?? null;
                                 $riad->floors = $riadsData['floors'] ?? null;
-                                $riad->year_construction = $riadsData['year_construction'] ?? null;
                                 $riad->bedrooms = $riadsData['bedrooms'] ?? null;
                                 $riad->bathrooms = $riadsData['bathrooms'] ?? null;
                                 $riad->garden = $riadsData['garden'] ?? null;

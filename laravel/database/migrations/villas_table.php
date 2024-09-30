@@ -30,9 +30,11 @@ return new class extends Migration
             $table->string('country')->default('Morocco')->nullable();
 
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 
+            $table->string('secteur')->nullable();
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
 
@@ -62,7 +64,7 @@ return new class extends Migration
             $table->string('phone', 15)->nullable();
 
 
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
             $table->string('entire_home')->nullable();
@@ -79,10 +81,10 @@ return new class extends Migration
             $table->string('security_system')->nullable();
             $table->string('equipped_kitchen')->nullable();
             $table->string('wifi')->nullable();
-            $table->string('tv')->nullable();
-            $table->string('heating')->nullable();
+            //$table->string('tv')->nullable();
+            //$table->string('heating')->nullable();
             $table->string('furniture')->nullable();
-            $table->string('balcony')->nullable();
+            //$table->string('balcony')->nullable();
             $table->string('air_conditioner')->nullable();
             $table->string('washing_machine')->nullable();
             $table->string('pool')->nullable();
@@ -90,19 +92,19 @@ return new class extends Migration
             $table->string('living_rooms')->nullable();
             $table->string('surface')->nullable();
             $table->string('floors')->nullable();
-            $table->string('year_construction')->nullable();
+            //$table->string('year_construction')->nullable();
             $table->string('bedrooms')->nullable();
             $table->string('bathrooms')->nullable();
-            $table->string('garden')->nullable();
-            $table->string('terrace')->nullable();
+            //$table->string('garden')->nullable();
+            //$table->string('terrace')->nullable();
             $table->string('housekeeping')->nullable();
             $table->string('dishwasher')->nullable();
             $table->string('barbecue')->nullable();
             $table->string('fireplace')->nullable();
             $table->string('refrigerator')->nullable();
             $table->string('microwave')->nullable();
-            $table->string('outdoor_furniture')->nullable();
-            $table->string('ground_floor')->nullable();
+            //$table->string('outdoor_furniture')->nullable();
+            //$table->string('ground_floor')->nullable();
             $table->string('private_entrance')->nullable();
             $table->string('hammam')->nullable();
             $table->string('jacuzzi')->nullable();

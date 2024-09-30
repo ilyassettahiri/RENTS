@@ -8,20 +8,16 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('securities', function (Blueprint $table) {
+        Schema::create('teams', function (Blueprint $table) {
             $table->id();
 
 
             $table->string('name')->nullable();
-            $table->string('password')->nullable();
-
-
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
 
 
 
@@ -31,11 +27,9 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('securities');
+        Schema::dropIfExists('teams');
     }
 };

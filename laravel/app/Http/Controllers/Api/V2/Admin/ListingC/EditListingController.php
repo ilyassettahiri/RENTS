@@ -2006,7 +2006,6 @@ class EditListingController extends Controller
                                                 'livingRooms' => $this->listingcategory->living_rooms,
                                                 'surface' => $this->listingcategory->surface,
                                                 'floors' => $this->listingcategory->floors,
-                                                'year_construction' => $this->listingcategory->year_construction,
                                                 'bedrooms' => $this->listingcategory->bedrooms,
                                                 'bathrooms' => $this->listingcategory->bathrooms,
                                                 'garden' => $this->listingcategory->garden,

@@ -31,9 +31,11 @@ return new class extends Migration
             $table->string('country')->default('Morocco')->nullable();
 
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 
+            $table->string('secteur')->nullable();
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
 
@@ -67,7 +69,7 @@ return new class extends Migration
             $table->string('picture')->nullable();
 
 
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
 
@@ -77,7 +79,7 @@ return new class extends Migration
             $table->string('property_type')->nullable();
             $table->string('surface_area')->nullable();
             $table->string('capacity')->nullable();
-            $table->string('dock_high')->nullable();
+            //$table->string('dock_high')->nullable();
             $table->string('offices_number')->nullable();
             $table->string('storage_space')->nullable();
             $table->string('sales_area')->nullable();
@@ -86,13 +88,13 @@ return new class extends Migration
             $table->string('ceiling_height')->nullable();
             $table->string('floors')->nullable();
             $table->string('rollup_door')->nullable();
-            $table->string('elevator')->nullable();
+            //$table->string('elevator')->nullable();
             $table->string('garage')->nullable();
-            $table->string('furniture')->nullable();
-            $table->string('heating')->nullable();
-            $table->string('air_conditioning')->nullable();
+            //$table->string('furniture')->nullable();
+            //$table->string('heating')->nullable();
+            //$table->string('air_conditioning')->nullable();
             $table->string('office_space')->nullable();
-            $table->string('internet')->nullable();
+            //$table->string('internet')->nullable();
             $table->string('water_and_drains')->nullable();
             $table->string('security_camera')->nullable();
             $table->string('speciality_power')->nullable();
@@ -105,10 +107,10 @@ return new class extends Migration
             $table->string('operating_days')->nullable();
             $table->string('operating_hours')->nullable();
             $table->string('on_the_road')->nullable();
-            $table->string('reception')->nullable();
-            $table->string('telephone_wiring')->nullable();
-            $table->string('lighting')->nullable();
-            $table->string('transports')->nullable();
+            //$table->string('reception')->nullable();
+            //$table->string('telephone_wiring')->nullable();
+            //$table->string('lighting')->nullable();
+            //$table->string('transports')->nullable();
             $table->string('bathrooms')->nullable();
             $table->string('more_details')->nullable();
             $table->string('amenities')->nullable();

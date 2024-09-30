@@ -19,8 +19,12 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->nullable();
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
+
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
+
+            $table->string('secteur')->nullable();
 
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
@@ -84,7 +88,7 @@ return new class extends Migration
             $table->string('monitor')->nullable();
             $table->string('more_details')->nullable();
 
-            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+            $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 
 

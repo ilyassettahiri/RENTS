@@ -18793,7 +18793,6 @@ class ListingFrontController extends JsonApiController
                                         'living_rooms' => $listingcategory->living_rooms,
                                         'surface' => $listingcategory->surface,
                                         'floors' => $listingcategory->floors,
-                                        'year_construction' => $listingcategory->year_construction,
                                         'bedrooms' => $listingcategory->bedrooms,
                                         'bathrooms' => $listingcategory->bathrooms,
                                         'garden' => $listingcategory->garden,

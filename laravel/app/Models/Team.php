@@ -9,9 +9,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Facades\Auth;
 
-class Invoice extends Model
+class Team extends Model
 {
-
 
 
 
@@ -29,7 +28,6 @@ class Invoice extends Model
         return $this->belongsTo(User::class);
 
     }
-
 
 
 

@@ -24,9 +24,11 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->foreignId('onlinestore_id')->nullable();
+            $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
 
+            $table->string('secteur')->nullable();
             $table->string('adults_count')->nullable();
             $table->string('children_count')->nullable();
 
@@ -58,7 +60,7 @@ return new class extends Migration
 
 
 
-             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled', 'completed'])->default('pending');
+             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
              $table->boolean('featured')->default(false);
 
 
