@@ -41,6 +41,8 @@ return new class extends Migration
 
             $table->string('total_vat')->nullable();
 
+            $table->string('adults')->nullable();
+            $table->string('children')->nullable();
 
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();

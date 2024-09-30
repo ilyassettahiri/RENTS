@@ -44,6 +44,12 @@ return new class extends Migration
             $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
+
+            $table->string('adults_count')->nullable();
+            $table->string('children_count')->nullable();
+
+            $table->string('adults_price')->nullable();
+            $table->string('children_price')->nullable();
             $table->foreignId('shipping_id')->nullable();
             $table->foreignId('vat_id')->nullable();
             $table->string('policiea')->nullable();
