@@ -279,6 +279,11 @@ class CrudService {
     };
 
 
+    updateStoreStatus = async (payload, id) => {
+      const reservationsEndpoint = `stores/${id}/status`;
+      return await HttpService.patch(reservationsEndpoint, payload);
+    };
+
 
   
        // Reservation requests

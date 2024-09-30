@@ -12,7 +12,7 @@ import boxShadow from "assets/theme/functions/boxShadow";
 import { keyframes } from "@emotion/react";
 
 export default (selectSize, selectError, selectSuccess) => {
-  const { dark, white, text, light, inputColors, gradients, transparent } = colors;
+  const { dark, white, text, light, inputColors, gradients, transparent, grey  } = colors;
   const { size, fontWeightRegular } = typography;
   const { borderWidth, borderRadius } = borders;
   const { inputBoxShadow, lg } = boxShadows;
@@ -70,8 +70,9 @@ export default (selectSize, selectError, selectSuccess) => {
       padding: 0,
       fontSize: selectSize === "small" ? size.xs : size.sm,
       fontWeight: fontWeightRegular,
-      backgroundColor: transparent.main,
+      
       backgroundClip: "padding-box",
+      backgroundColor: state.isFocused ? grey[100] : grey[100], 
       border: `${borderWidth[1]} solid ${inputColors.borderColor.main}`,
       appearance: "none",
       borderRadius: borderRadius.md,

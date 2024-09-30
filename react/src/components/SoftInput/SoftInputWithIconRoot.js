@@ -23,7 +23,7 @@ export default styled("div")(({ theme, ownerState }) => {
   return {
     display: "flex",
     alignItems: "center",
-    backgroundColor: disabled ? grey[200] : white.main,
+    backgroundColor: disabled ? grey[200] : `${grey[100]} !important`,
     border: `${borderWidth[1]} solid`,
     borderRadius: borderRadius.md,
     borderColor: borderColorValue,

@@ -313,6 +313,7 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::patch('reviews/{id}/status', [ReviewController::class, 'updateStatus']);
 
+    Route::patch('stores/{id}/status', [OnlinestoreController::class, 'updateStatus']);
 
 
 

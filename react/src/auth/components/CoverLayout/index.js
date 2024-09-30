@@ -24,67 +24,13 @@ function CoverLayout({ image, color, header, title, description, illustration, c
       <Grid container>
 
 
-        
-        <Grid item xs={12} lg={6}>
-          <SoftBox
-            display={{ xs: "none", lg: "flex" }}
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
-            position="relative"
-            borderRadius="lg"
-            textAlign="center"
-            bgColor={color}
-            variant="gradient"
-            m={2}
-            px={13}
-            sx={{ overflow: "hidden" }}
-          >
-            <SoftBox
-              component="img"
-              src={image}
-              alt="pattern-lines"
-              width="120rem"
-              position="absolute"
-              topl={0}
-              left={0}
-              opacity={0.4}
-            />
-            {illustration.image && (
-              <SoftBox
-                component="img"
-                src={illustration.image}
-                alt="chat-illustration"
-                width="100%"
-                maxWidth="31.25rem"
-              />
-            )}
-            {illustration.title && (
-              <SoftBox mt={6} mb={1}>
-                <SoftTypography variant="h4" color="white" fontWeight="bold">
-                  {illustration.title}
-                </SoftTypography>
-              </SoftBox>
-            )}
-            {illustration.description && (
-              <SoftBox mb={1}>
-                <SoftTypography variant="body2" color="white">
-                  {illustration.description}
-                </SoftTypography>
-              </SoftBox>
-            )}
-          </SoftBox>
-        </Grid>
-
 
 
         <Grid item xs={11} sm={8} md={6} lg={5} xl={4} sx={{ mx: "auto" }}>
-          <SoftBox display="flex" flexDirection="column" justifyContent="center" height="100%">
+          
             
-            <SoftBox sx={{pt: {xs: 11, md:4 }}}>{children}</SoftBox>
-          </SoftBox>
+            <SoftBox sx={{pt: {xs: 11, md:11 }}}>{children}</SoftBox>
+          
         </Grid>
 
 

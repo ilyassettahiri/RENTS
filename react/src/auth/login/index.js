@@ -160,7 +160,7 @@ function Login() {
                   label="Email"
                   fullWidth
                   name="email"
-                  placeholder="example@domain.com"
+                  placeholder="Example@domain.com"
                   onChange={changeHandler}
                   error={errors.emailError} />
               </SoftBox>
