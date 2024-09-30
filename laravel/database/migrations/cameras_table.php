@@ -37,16 +37,21 @@ return new class extends Migration
             $table->string('policieb')->nullable();
             $table->string('policiec')->nullable();
             $table->string('policied')->nullable();
-            $table->string('policiee')->nullable();
+            $table->string('detaila')->nullable();
+            $table->string('detailb')->nullable();
+            $table->string('detailc')->nullable();
+            $table->string('answerdetaila')->nullable();
+            $table->string('answerdetailb')->nullable();
+            $table->string('answerdetailc')->nullable();
 
             $table->string('questiona')->nullable();
             $table->string('questionb')->nullable();
             $table->string('questionc')->nullable();
-            $table->string('questiond')->nullable();
+
             $table->text('answera')->nullable();
             $table->text('answerb')->nullable();
             $table->text('answerc')->nullable();
-            $table->text('answerd')->nullable();
+
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('typea')->nullable();
