@@ -33,9 +33,23 @@ return new class extends Migration
 
             $table->foreignId('onlinestore_id')->nullable();
             $table->foreignId('discount_id')->nullable();
+            $table->foreignId('collection_id')->nullable();
             $table->foreignId('shipping_id')->nullable();
             $table->foreignId('vat_id')->nullable();
-            $table->foreignId('collection_id')->nullable();
+            $table->string('policiea')->nullable();
+            $table->string('policieb')->nullable();
+            $table->string('policiec')->nullable();
+            $table->string('policied')->nullable();
+            $table->string('policiee')->nullable();
+
+            $table->string('questiona')->nullable();
+            $table->string('questionb')->nullable();
+            $table->string('questionc')->nullable();
+            $table->string('questiond')->nullable();
+            $table->text('answera')->nullable();
+            $table->text('answerb')->nullable();
+            $table->text('answerc')->nullable();
+            $table->text('answerd')->nullable();
             $table->string('phone', 15)->nullable();
 
 
