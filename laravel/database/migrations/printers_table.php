@@ -36,6 +36,8 @@ return new class extends Migration
             $table->foreignId('landingpage_id')->nullable();
             $table->foreignId('discount_id')->nullable();
             $table->foreignId('collection_id')->nullable();
+            $table->foreignId('guarantee_id')->nullable();
+
 
             $table->string('secteur')->nullable();
 
