@@ -3,7 +3,6 @@
 import 'src/global.css';
 
 // ----------------------------------------------------------------------
-import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 import PropTypes from 'prop-types';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -28,7 +27,6 @@ export default function ClientLayout({ children }) {
             <AuthContextProvider>
               <ThemeProvider>
                 <MotionLazy>
-                  <GoogleAnalytics trackPageViews />
 
 
                   <ProgressBar />

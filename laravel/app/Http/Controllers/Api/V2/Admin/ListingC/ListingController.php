@@ -287,7 +287,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -373,7 +373,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
@@ -442,7 +442,7 @@ class ListingController extends JsonApiController
             }*/
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -457,7 +457,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
@@ -2439,7 +2439,6 @@ class ListingController extends JsonApiController
                                 $bureaux->bathrooms = $bureauxsData['bathrooms'] ?? null;
                                 $bureaux->conference_room = $bureauxsData['conferenceRoom'] ?? null;
                                 $bureaux->building_size = $bureauxsData['buildingSize'] ?? null;
-                                $bureaux->lighting = $bureauxsData['lighting'] ?? null;
                                 $bureaux->capacity = $bureauxsData['capacity'] ?? null;
                                 $bureaux->bail_type = $bureauxsData['bailType'] ?? null;
                                 $bureaux->security_deposit = $bureauxsData['securityDeposit'] ?? null;
@@ -2518,8 +2517,7 @@ class ListingController extends JsonApiController
                                 $magasin->approved_uses = is_array($magasinsData['approvedUses']) ? implode(', ', $magasinsData['approvedUses']) : $magasinsData['approvedUses'];
                                 $magasin->facility_size = is_array($magasinsData['totalFacilitySize']) ? implode(', ', $magasinsData['totalFacilitySize']) : $magasinsData['totalFacilitySize'];
                                 $magasin->operating_days = is_array($magasinsData['operatingDays']) ? implode(', ', $magasinsData['operatingDays']) : $magasinsData['operatingDays'];
-                                $magasin->lighting = $magasinsData['lighting'] ?? null;
-                                $magasin->transports = is_array($magasinsData['transports']) ? implode(', ', $magasinsData['transports']) : $magasinsData['transports'];
+
                                 $magasin->facilities = is_array($magasinsData['facilities']) ? implode(', ', $magasinsData['facilities']) : $magasinsData['facilities'];
                                 $magasin->amenities = is_array($magasinsData['amenities']) ? implode(', ', $magasinsData['amenities']) : $magasinsData['amenities'];
 
@@ -2662,14 +2660,13 @@ class ListingController extends JsonApiController
                                 $riad->tv = $riadsData['tv'] ?? null;
                                 $riad->heating = $riadsData['heating'] ?? null;
                                 $riad->furniture = $riadsData['furniture'] ?? null;
-                                $riad->balcony = $riadsData['balcony'] ?? null;
                                 $riad->air_conditioner = $riadsData['air_conditioner'] ?? null;
                                 $riad->washing_machine = $riadsData['washing_machine'] ?? null;
                                 $riad->pool = $riadsData['pool'] ?? null;
                                 $riad->rooms = $riadsData['rooms'] ?? null;
                                 $riad->living_rooms = $riadsData['livingRooms'] ?? null;
                                 $riad->surface = $riadsData['surface'] ?? null;
-                                $riad->floors = $riadsData['floors'] ?? null;
+
                                 $riad->bedrooms = $riadsData['bedrooms'] ?? null;
                                 $riad->bathrooms = $riadsData['bathrooms'] ?? null;
                                 $riad->garden = $riadsData['garden'] ?? null;
@@ -2679,17 +2676,14 @@ class ListingController extends JsonApiController
                                 $riad->barbecue = $riadsData['barbecue'] ?? null;
                                 $riad->refrigerator = $riadsData['refrigerator'] ?? null;
                                 $riad->microwave = $riadsData['microwave'] ?? null;
-                                $riad->outdoor_furniture = $riadsData['outdoor_furniture'] ?? null;
                                 $riad->private_entrance = $riadsData['private_entrance'] ?? null;
                                 $riad->hammam = $riadsData['hammam'] ?? null;
                                 $riad->jacuzzi = $riadsData['jacuzzi'] ?? null;
                                 $riad->gym = $riadsData['gym'] ?? null;
-                                $riad->architecture = $riadsData['architecture'] ?? null;
-                                $riad->view = $riadsData['view'] ?? null;
+
                                 $riad->restaurant = $riadsData['restaurant'] ?? null;
                                 $riad->spa = $riadsData['spa'] ?? null;
-                                $riad->airport = $riadsData['airport'] ?? null;
-                                $riad->smoking_rooms = $riadsData['smoking_rooms'] ?? null;
+
 
 
                                 $riad->more_details = is_array($riadsData['moreDetails']) ? implode(', ', $riadsData['moreDetails']) : $riadsData['moreDetails'];
@@ -6552,7 +6546,6 @@ class ListingController extends JsonApiController
                                 $bureaux->bathrooms = $bureauxsData['bathrooms'] ?? null;
                                 $bureaux->conference_room = $bureauxsData['conferenceRoom'] ?? null;
                                 $bureaux->building_size = $bureauxsData['buildingSize'] ?? null;
-                                $bureaux->lighting = $bureauxsData['lighting'] ?? null;
                                 $bureaux->capacity = $bureauxsData['capacity'] ?? null;
                                 $bureaux->bail_type = $bureauxsData['bailType'] ?? null;
                                 $bureaux->security_deposit = $bureauxsData['securityDeposit'] ?? null;
@@ -6634,8 +6627,7 @@ class ListingController extends JsonApiController
                                 $magasin->approved_uses = is_array($magasinsData['approvedUses']) ? implode(', ', $magasinsData['approvedUses']) : $magasinsData['approvedUses'];
                                 $magasin->facility_size = is_array($magasinsData['totalFacilitySize']) ? implode(', ', $magasinsData['totalFacilitySize']) : $magasinsData['totalFacilitySize'];
                                 $magasin->operating_days = is_array($magasinsData['operatingDays']) ? implode(', ', $magasinsData['operatingDays']) : $magasinsData['operatingDays'];
-                                $magasin->lighting = $magasinsData['lighting'] ?? null;
-                                $magasin->transports = is_array($magasinsData['transports']) ? implode(', ', $magasinsData['transports']) : $magasinsData['transports'];
+
                                 $magasin->facilities = is_array($magasinsData['facilities']) ? implode(', ', $magasinsData['facilities']) : $magasinsData['facilities'];
                                 $magasin->amenities = is_array($magasinsData['amenities']) ? implode(', ', $magasinsData['amenities']) : $magasinsData['amenities'];
 
@@ -6781,14 +6773,13 @@ class ListingController extends JsonApiController
                                 $riad->tv = $riadsData['tv'] ?? null;
                                 $riad->heating = $riadsData['heating'] ?? null;
                                 $riad->furniture = $riadsData['furniture'] ?? null;
-                                $riad->balcony = $riadsData['balcony'] ?? null;
                                 $riad->air_conditioner = $riadsData['air_conditioner'] ?? null;
                                 $riad->washing_machine = $riadsData['washing_machine'] ?? null;
                                 $riad->pool = $riadsData['pool'] ?? null;
                                 $riad->rooms = $riadsData['rooms'] ?? null;
                                 $riad->living_rooms = $riadsData['livingRooms'] ?? null;
                                 $riad->surface = $riadsData['surface'] ?? null;
-                                $riad->floors = $riadsData['floors'] ?? null;
+
                                 $riad->bedrooms = $riadsData['bedrooms'] ?? null;
                                 $riad->bathrooms = $riadsData['bathrooms'] ?? null;
                                 $riad->garden = $riadsData['garden'] ?? null;
@@ -6798,17 +6789,14 @@ class ListingController extends JsonApiController
                                 $riad->barbecue = $riadsData['barbecue'] ?? null;
                                 $riad->refrigerator = $riadsData['refrigerator'] ?? null;
                                 $riad->microwave = $riadsData['microwave'] ?? null;
-                                $riad->outdoor_furniture = $riadsData['outdoor_furniture'] ?? null;
                                 $riad->private_entrance = $riadsData['private_entrance'] ?? null;
                                 $riad->hammam = $riadsData['hammam'] ?? null;
                                 $riad->jacuzzi = $riadsData['jacuzzi'] ?? null;
                                 $riad->gym = $riadsData['gym'] ?? null;
-                                $riad->architecture = $riadsData['architecture'] ?? null;
-                                $riad->view = $riadsData['view'] ?? null;
+
                                 $riad->restaurant = $riadsData['restaurant'] ?? null;
                                 $riad->spa = $riadsData['spa'] ?? null;
-                                $riad->airport = $riadsData['airport'] ?? null;
-                                $riad->smoking_rooms = $riadsData['smoking_rooms'] ?? null;
+
 
 
                                 $riad->more_details = is_array($riadsData['moreDetails']) ? implode(', ', $riadsData['moreDetails']) : $riadsData['moreDetails'];

@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 
 import ClientLayout from './client-layout';
+import ClientAnalytics from './client-analytics';
 
 
 export const metadata = {
@@ -32,6 +33,9 @@ export default function RootLayout({ children }) {
         <meta name="description" content={metadata.description} />
       </head>
       <body>
+
+        <ClientAnalytics />
+
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
