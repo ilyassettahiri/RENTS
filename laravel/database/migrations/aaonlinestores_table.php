@@ -20,8 +20,11 @@ return new class extends Migration
             $table->string('profile_picture')->nullable();
             $table->string('name')->nullable();
 
+
+
             $table->string('address')->nullable();
             $table->string('city')->nullable();
+            $table->boolean('verified')->default(false)->nullable();
 
             $table->string('type')->nullable();
             $table->string('phone', 15)->nullable();
@@ -38,7 +41,7 @@ return new class extends Migration
 
             $table->string('picture')->nullable();
 
-            $table->boolean('verified')->default(false);
+
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
             $table->boolean('featured')->default(false);
 

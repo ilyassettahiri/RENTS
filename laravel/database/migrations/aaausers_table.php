@@ -25,12 +25,19 @@ return new class extends Migration
             $table->string('phone_number')->nullable();
             $table->date('birthday')->nullable();
             $table->string('gender')->nullable();
+            $table->boolean('verified')->default(false)->nullable();
+
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();
+            $table->string('type')->nullable();
 
             $table->string('zip', 10)->nullable();
             $table->string('country')->default('Morocco')->nullable();
+            $table->enum('status', ['pending', 'active','verified', 'suspended'])->default('pending')->nullable();
+
+            $table->timestamp('last_login_at')->nullable();
+            $table->ipAddress('last_login_ip')->nullable();
 
 
             $table->timestamp('email_verified_at')->nullable();
