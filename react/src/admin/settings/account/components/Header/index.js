@@ -171,7 +171,7 @@ function Header({ user, isDemo }) {
                     
                       ratio="1/1"
                       width="100%"
-                      sx={{ borderRadius: '10px' }}
+                      sx={{ borderRadius: '50px' }}
                       
                   />
               </SoftBox>

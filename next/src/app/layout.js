@@ -1,6 +1,8 @@
 
 import PropTypes from 'prop-types';
 
+import Script from 'next/script';
+
 import ClientLayout from './client-layout';
 import ClientAnalytics from './client-analytics';
 
@@ -31,6 +33,25 @@ export default function RootLayout({ children }) {
         <link rel="manifest" href={metadata.manifest} />
         <meta name="theme-color" content={metadata.themeColor} />
         <meta name="description" content={metadata.description} />
+
+
+
+        {/* Add Google Analytics script here */}
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-ZYRNGEDF1C"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-ZYRNGEDF1C');
+          `}
+        </Script>
+
+
       </head>
       <body>
 

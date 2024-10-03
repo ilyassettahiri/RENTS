@@ -181,10 +181,10 @@ function ListListing() {
         Cell: ({ row }) => {
           const value = row.original.status;
           let status;
-          if (value === "paid") {
-            status = <StatusCell icon="done" color="success" status="Paid" />;
-          } else if (value === "refunded") {
-            status = <StatusCell icon="replay" color="dark" status="Refunded" />;
+          if (value === "pending") {
+            status = <StatusCell icon="done" color="success" status="Active" />;
+          } else if (value === "active") {
+            status = <StatusCell icon="done" color="success" status="Active" />;
           } else {
             status = <StatusCell icon="close" color="error" status="Canceled" />;
           }

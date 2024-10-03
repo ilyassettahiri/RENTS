@@ -43,7 +43,6 @@ import HomeHero from './home-hero';
 import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 
-import OurClients from '../components/listings/our-clients';
 import ListingList from '../components/listings/list/listings-list';
 
 // ----------------------------------------------------------------------
@@ -1651,8 +1650,13 @@ export default function HomeView() {
 
 
       </Container>
-      <OurClients brands={memoizedHomeData.ourclients} />
-      <BlogHomeLatestPosts posts={memoizedHomeData.recentarticles.slice(2, 6)} />
+
+
+      <Stack sx={{ mt: 10 }} >
+        <BlogHomeLatestPosts posts={memoizedHomeData.recentarticles.slice(2, 6)} />
+
+      </Stack>
+
     </>
   );
 }

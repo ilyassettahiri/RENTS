@@ -202,7 +202,7 @@ const routes = [
     type: "collapse",
     name: "Reservations",
     key: "reservation",
-    icon: <SettingsIcon size="12px" />,
+    icon: <Basket size="12px" />,
     collapse: [
       {
         name: "Upcoming",
@@ -247,7 +247,7 @@ const routes = [
     type: "collapse",
     name: "Listings",
     key: "listing",
-    icon: <SettingsIcon size="12px" />,
+    icon: <Document size="12px" />,
     collapse: [
       {
         name: "All",
@@ -471,7 +471,7 @@ const routes = [
     type: "collapse",
     name: "Customers",
     key: "customers",
-    icon: <SettingsIcon size="12px" />,
+    icon: <CustomerSupport size="12px" />,
     collapse: [
       {
         name: "Customers",
@@ -498,7 +498,7 @@ const routes = [
     type: "collapse",
     name: "Analytics",
     key: "analytics",
-    icon: <SettingsIcon size="12px" />,
+    icon: <SpaceShip size="12px" />,
     route: "/analytics",
     component: <Analytics />,
     noCollapse: true,
@@ -515,7 +515,7 @@ const routes = [
     type: "collapse",
     name: "Finances",
     key: "finance",
-    icon: <SettingsIcon size="12px" />,
+    icon: <CreditCard size="12px" />,
     collapse: [
       {
         name: "Overview",
@@ -549,7 +549,7 @@ const routes = [
     type: "collapse",
     name: "Store",
     key: "store",
-    icon: <SettingsIcon size="12px" />,
+    icon: <Office size="12px" />,
     collapse: [
       {
         name: "Create Store",

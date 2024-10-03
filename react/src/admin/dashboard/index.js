@@ -127,11 +127,11 @@ function Dashboard() {
   }), [reservationsPerMonth, t]);
 
   if (isLoading) {
-    return <div>{t("Loading...")}</div>;
+    return <div></div>;
   }
 
   if (error) {
-    return <div>{t("Error loading data")}</div>;
+    return <div></div>;
   }
 
 
