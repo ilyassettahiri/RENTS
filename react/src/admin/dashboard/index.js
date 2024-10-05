@@ -68,7 +68,7 @@ function Dashboard() {
 
     return dashboardData.data.attributes.topListingsThisMonths.map(listing => ({
       title: [listing.picture, listing.title],
-      price: `$${listing.price}`,
+      price: `${listing.price} dh`,
       status: listing.status,
     }));
   }, [dashboardData]);
@@ -166,7 +166,7 @@ function Dashboard() {
                   <MiniStatisticsCard
                     title={{ text: t("Today Reservations"), fontWeight: "bold" }}
                     count={dashboardData.data.attributes.totalReservationsToday}
-                    percentage={{ color: "success", text: "+3%" }}
+                    percentage={{ color: "success", text: "0%" }}
                     icon={{ color: "info", component: "public" }}
                   />
 
@@ -175,8 +175,8 @@ function Dashboard() {
 
                   <MiniStatisticsCard
                     title={{ text: t("Today Visitors"), fontWeight: "bold" }}
-                    count="3,462"
-                    percentage={{ color: "error", text: "-2%" }}
+                    count="0"
+                    percentage={{ color: "error", text: "0%" }}
                     icon={{ color: "info", component: "emoji_events" }}
                   />
 
@@ -188,7 +188,7 @@ function Dashboard() {
                   <MiniStatisticsCard
                     title={{ text: t("Today Revenue"), fontWeight: "bold" }}
                     count={dashboardData.data.attributes.totalRevenueToday}
-                    percentage={{ color: "success", text: "+55%" }}
+                    percentage={{ color: "success", text: "0%" }}
                     icon={{ color: "info", component: "paid" }}
                   />
 
@@ -197,7 +197,7 @@ function Dashboard() {
                   <MiniStatisticsCard
                     title={{ text: t("This Month Revenue"), fontWeight: "bold" }}
                     count={dashboardData.data.attributes.totalRevenueThisMonth}
-                    percentage={{ color: "success", text: "+5%" }}
+                    percentage={{ color: "success", text: "0%" }}
                     icon={{
                       color: "info",
                       component: "shopping_cart",

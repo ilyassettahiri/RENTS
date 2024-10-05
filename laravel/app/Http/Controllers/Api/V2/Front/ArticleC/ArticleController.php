@@ -112,12 +112,7 @@ class ArticleController extends JsonApiController
                     'picture' => $article->author->picture, // Assuming you have a profile_picture attribute in the Author model
                 ],
 
-                'images' => $article->articleimgs->map(function ($image) {
-                return [
-                    'url' => $image->picture, // Assuming you have a url attribute in the Articleimg model
-                    'caption' => $image->alttext, // Assuming you have a caption attribute in the Articleimg model
-                ];
-                }),
+
 
 
             ],

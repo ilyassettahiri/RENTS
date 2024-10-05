@@ -82,7 +82,7 @@ function ListDraft() {
       if (!listingsData) return [];
   
       return listingsData.data.map((row) => ({
-        product: { image: row.attributes.picture, name: row.attributes.title, checked: false, id: row.id },
+        product: { image: `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${row.attributes.picture}`, name: row.attributes.title, checked: false, id: row.id },
         price: row.attributes.price,
         status: row.attributes.status,
         created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
@@ -170,8 +170,8 @@ function ListDraft() {
         Cell: ({ row }) => {
           const value = row.original.status;
           let status;
-          if (value === "paid") {
-            status = <StatusCell icon="done" color="success" status="Paid" />;
+          if (value === "draft") {
+            status = <StatusCell icon="done" color="dark" status="Draft" />;
           } else if (value === "refunded") {
             status = <StatusCell icon="replay" color="dark" status="Refunded" />;
           } else {

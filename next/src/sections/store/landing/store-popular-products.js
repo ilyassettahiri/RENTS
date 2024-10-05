@@ -86,7 +86,7 @@ export default function StorePopularProducts({
   const currentListings = listingsMap[tab] || [];
 
   return (
-    <Container
+    <Box
       sx={{
         py: { xs: 5, md: 8 },
       }}
@@ -126,7 +126,7 @@ export default function StorePopularProducts({
           <StoreItemBestSellers key={listing.id} product={listing.attributes} />
         ))}
       </Box>
-    </Container>
+    </Box>
   );
 }
 

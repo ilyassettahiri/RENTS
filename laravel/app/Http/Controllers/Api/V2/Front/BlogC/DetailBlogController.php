@@ -14,6 +14,17 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
+use Illuminate\Support\Str;
+
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+use Intervention\Image\Encoders\AutoEncoder;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\Encoders\GifEncoder;
+
+
+
 use App\Models\Blogcategory;
 use App\Models\Blogtag;
 use App\Models\Author;
@@ -43,7 +54,14 @@ class DetailBlogController extends JsonApiController
 
 
 
+    function generateUniqueFileName($extension = 'jpg')
+    {
 
+        $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
+        $shuffledString = str_shuffle($randomString); // Shuffle the string for added randomness
+        return $shuffledString . '.' . $extension;
+
+    }
 
 
     public function index(JsonApiRoute $route, Store $store)
@@ -125,14 +143,15 @@ class DetailBlogController extends JsonApiController
 
 
 
-            // Handle multiple image uploads
+
             if ($request->hasFile('thumb')) {
                 $file = $request->file('thumb');
 
 
 
 
-                    $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+                    $filePath = Storage::disk('public')->put('storage/images', $file, 'public');
+
 
                     $relativePath = str_replace('storage/', '', $filePath);
                     $imagePaths = '/' . $relativePath;
@@ -141,6 +160,50 @@ class DetailBlogController extends JsonApiController
 
 
             }
+
+
+
+
+            /*$manager = new ImageManager(new Driver());
+
+            $file = $request->file('thumb');
+            $imagelarge = $manager->read($file->getRealPath());
+
+
+
+
+            $imagelarge->scaleDown(width: 400);
+
+
+
+
+            $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+            $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+
+
+
+
+            $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+            $filePathlarge = Storage::disk('spaces')->put('storage/blogcategoryimg/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+            $imagePaths = $fileNamelarge;*/
+
+
+
+
+
 
             $blogCategory = new Blogcategory();
 
@@ -196,14 +259,14 @@ class DetailBlogController extends JsonApiController
 
 
 
-        // Handle multiple image uploads
+
         if ($request->hasFile('thumb')) {
             $file = $request->file('thumb');
 
 
 
 
-            $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+            $filePath = Storage::disk('public')->put('storage/images', $file, 'public');
 
             $relativePath = str_replace('storage/', '', $filePath);
             $imagePaths = '/' . $relativePath;
@@ -213,6 +276,47 @@ class DetailBlogController extends JsonApiController
 
 
         }
+
+
+
+        /*$manager = new ImageManager(new Driver());
+
+        $file = $request->file('thumb');
+        $imagelarge = $manager->read($file->getRealPath());
+
+
+
+
+        $imagelarge->scaleDown(width: 200);
+
+
+
+
+        $fileNamelarge = $this->generateUniqueFileName('jpg');
+
+
+
+        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+
+
+
+
+        $encodedImagelarge->save($fileNamelarge);
+
+
+
+
+
+
+        $filePathlarge = Storage::disk('spaces')->put('storage/authorimg/' . $fileNamelarge, file_get_contents($fileNamelarge), 'public');
+
+
+
+
+        $imagePaths = $fileNamelarge;*/
+
+
+
 
         $blogCategory = new Author();
 

@@ -270,7 +270,7 @@ class ListingController extends JsonApiController
             'data.attributes.category' => 'required|string',
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.images.*' => 'sometimes|image|max:6048', // Validate images if present
+            'data.attributes.images.*' => 'sometimes|image|max:600048', // Validate images if present
         ]);
 
 

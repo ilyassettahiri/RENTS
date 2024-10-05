@@ -122,7 +122,10 @@ class BlogController extends JsonApiController
 
 
 
-        $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+        //$filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+
+         $filePath = Storage::disk('public')->put('storage/images', $file, 'public');
+
 
         $relativePath = str_replace('storage/', '', $filePath);
         $relativePath = '/' . $relativePath;

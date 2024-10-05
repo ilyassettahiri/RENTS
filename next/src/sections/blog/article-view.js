@@ -47,15 +47,7 @@ export default function ArticleView({ params }) {
 
 
 
-    // Insert images into the content
-    if (article.attributes.content && article.attributes.images) {
-      let contentWithImages = article.attributes.content;
-      article.attributes.images.forEach((image, index) => {
-        const imgTag = `<img src="${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${image.url}" alt="${image.caption}" />`;
-        contentWithImages = contentWithImages.replace(`<!-- img ${index + 1} here -->`, imgTag);
-      });
-      article.attributes.content = contentWithImages;
-    }
+
 
     return { article, recentArticles, blogCategories };
   }, [articleData]);
