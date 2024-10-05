@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
 
+use App\Models\Onlinestore;
 
 use App\Models\Listing;
 
@@ -331,8 +332,9 @@ class ServicePageController extends JsonApiController
 
         $reservations = $service->reservation()->orderBy('reservationstart')->get();
         $reviewslistings = $service->review()->orderBy('created_at')->get();
-        $seller = User::where('id', $service->user_id)->first();
+        $user = User::where('id', $service->user_id)->first();
 
+        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
             // Calculate total reviews and average rating
             $totalReviews = $reviewslistings->count();
@@ -431,11 +433,13 @@ class ServicePageController extends JsonApiController
                     }),
 
                     'seller' => [
-                        'name' => $seller->name,
-                        'id' => $seller->id,
+                        'name' => $userStore ? $userStore->name : $user->name,
+                        'id' => $user->id,
 
-                        'profile_image' => $seller->profile_image,
-                        'created_at' => $seller->created_at->toIso8601String(),
+                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
+                        'created_at' => $user->created_at->toIso8601String(),
+                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                     ],
 
@@ -450,6 +454,7 @@ class ServicePageController extends JsonApiController
 
                         $user = User::where('id', $recentlisting->user_id)->first();
 
+                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                         return [
 
@@ -474,10 +479,11 @@ class ServicePageController extends JsonApiController
                             }),
 
                             'seller' => [
-                                'name' => $user->name,
+                                'name' => $userStore ? $userStore->name : $user->name,
                                 'id' => $user->id,
 
-                                'profile_image' => $user->profile_image,
+                                'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                 'created_at' => $user->created_at->toIso8601String(),
 
                             ],

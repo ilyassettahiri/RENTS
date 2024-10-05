@@ -49,7 +49,10 @@ class BlogController extends JsonApiController
         $blogcategories = Blogcategory::with('articles')->get();
 
         // Get all articles for the blog
-        $articles = $blog->articles()->with('author', 'blogtags')->get();
+        $articles = $blog->articles()
+        ->with('author', 'blogtags')
+        ->orderBy('created_at', 'desc') // Order by most recent
+        ->get();
 
         // Map articles to their JSON:API structure
         $articlesData = $articles->map(function ($article) {
@@ -122,9 +125,9 @@ class BlogController extends JsonApiController
 
 
 
-        //$filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
+        $filePath = Storage::disk('spaces')->put('storage/blog', $file, 'public');
 
-         $filePath = Storage::disk('public')->put('storage/images', $file, 'public');
+         //$filePath = Storage::disk('public')->put('storage/images', $file, 'public');
 
 
         $relativePath = str_replace('storage/', '', $filePath);

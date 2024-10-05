@@ -19,6 +19,7 @@ use App\Enums\ItemStatus;
 use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
+use App\Models\Onlinestore;
 
 
 use App\Models\Listing;
@@ -244,6 +245,7 @@ class SearchServiceController extends JsonApiController
 
             $servicesData = $services->map(function ($service) {
                 $user = User::where('id', $service->user_id)->first();
+                $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                 $reviews = $service->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
@@ -278,9 +280,10 @@ class SearchServiceController extends JsonApiController
                         }),
 
                         'seller' => [
-                            'name' => $user->name,
-                            'profile_image' => $user->profile_image,
+                            'name' => $userStore ? $userStore->name : $user->name,
                             'id' => $user->id,
+
+                            'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
 
                             'created_at' => $user->created_at->toIso8601String(),
 
@@ -335,6 +338,7 @@ class SearchServiceController extends JsonApiController
 
                 $user = User::where('id', $service->user_id)->first();
 
+                $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                 $reviews = $service->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
                 $totalReviews = $reviews->count();
@@ -368,9 +372,10 @@ class SearchServiceController extends JsonApiController
                         }),
 
                         'seller' => [
-                            'name' => $user->name,
-                            'profile_image' => $user->profile_image,
+                            'name' => $userStore ? $userStore->name : $user->name,
                             'id' => $user->id,
+
+                            'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
 
                             'created_at' => $user->created_at->toIso8601String(),
 

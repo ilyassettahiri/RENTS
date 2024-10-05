@@ -22,6 +22,8 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
 use App\Models\Listing;
+use App\Models\Onlinestore;
+
 
 use App\Models\Favorite;
 use App\Models\User;
@@ -194,7 +196,7 @@ class HomeController extends JsonApiController
         $apartments = Apartment::orderBy('created_at', 'desc')->get();
 
 
-        $billiards = Billiard::orderBy('created_at', 'desc')->get();
+        $billiards = Car::orderBy('created_at', 'desc')->get();
 
 
 
@@ -297,6 +299,7 @@ class HomeController extends JsonApiController
             $reviews = $apartment->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
             $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+            $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
             return [
@@ -326,10 +329,13 @@ class HomeController extends JsonApiController
                         ];
                     }),
 
+
                     'seller' => [
-                        'name' => $user->name,
+                        'name' => $userStore ? $userStore->name : $user->name,
                         'id' => $user->id,
-                        'profile_image' => $user->profile_image,
+
+                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                         'created_at' => $user->created_at->toIso8601String(),
 
                     ],
@@ -349,6 +355,7 @@ class HomeController extends JsonApiController
             $reviews = $billiard->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
             $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
+            $userStore = Onlinestore::where('user_id', $user->id)->first();
 
             return [
                 'type' => 'billiards',
@@ -364,7 +371,7 @@ class HomeController extends JsonApiController
 
 
 
-                    'category' => 'billiards',
+                    'category' => 'cars',
                     'url' => $billiard->url,
                     'created_at' => $billiard->created_at,
                     'picture' => $billiard->picture,
@@ -378,10 +385,13 @@ class HomeController extends JsonApiController
 
                     }),
 
+
                     'seller' => [
-                        'name' => $user->name,
+                        'name' => $userStore ? $userStore->name : $user->name,
                         'id' => $user->id,
-                        'profile_image' => $user->profile_image,
+
+                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                         'created_at' => $user->created_at->toIso8601String(),
 
                     ],
@@ -397,6 +407,7 @@ class HomeController extends JsonApiController
         $velosData = $velos->map(function ($velo) {
 
             $user = User::where('id', $velo->user_id)->first();
+            $userStore = Onlinestore::where('user_id', $user->id)->first();
 
             $reviews = $velo->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
@@ -430,10 +441,13 @@ class HomeController extends JsonApiController
                     'created_at' => $velo->created_at,
                     'picture' => $velo->picture,
 
+
                     'seller' => [
-                        'name' => $user->name,
+                        'name' => $userStore ? $userStore->name : $user->name,
                         'id' => $user->id,
-                        'profile_image' => $user->profile_image,
+
+                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                         'created_at' => $user->created_at->toIso8601String(),
 
                     ],

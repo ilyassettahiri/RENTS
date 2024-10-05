@@ -91,7 +91,7 @@ function ListBoosted() {
     // Use React Query to fetch data
     const { data: listingsData, isLoading, error } = useQuery({
       queryKey: ['boostedListings'],
-      queryFn: () => CrudService.getListings(),
+      queryFn: () => CrudService.getBoosteds(),
       onError: (error) => {
         console.error('Failed to fetch listings:', error);
       },

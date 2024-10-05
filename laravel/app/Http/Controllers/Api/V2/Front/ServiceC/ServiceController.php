@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 use App\Models\Servicesimg;
 
+use App\Models\Onlinestore;
 
 
 use App\Models\Listing;
@@ -75,6 +76,7 @@ class ServiceController extends JsonApiController
 
         $servicesData = $services->map(function ($service) {
             $user = User::where('id', $service->user_id)->first();
+            $userStore = Onlinestore::where('user_id', $user->id)->first();
 
             $reviews = $service->review()->orderBy('created_at')->get();
             $totalReviews = $reviews->count();
@@ -108,10 +110,11 @@ class ServiceController extends JsonApiController
                     }),
 
                     'seller' => [
-                        'name' => $user->name,
+                        'name' => $userStore ? $userStore->name : $user->name,
                         'id' => $user->id,
 
-                        'profile_image' => $user->profile_image,
+                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                         'created_at' => $user->created_at->toIso8601String(),
 
                     ],

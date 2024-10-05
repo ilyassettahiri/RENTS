@@ -71,7 +71,7 @@ function ListDraft() {
     // Use React Query to fetch data
     const { data: listingsData, isLoading, error } = useQuery({
       queryKey: ['draftListings'],
-      queryFn: () => CrudService.getListings(),
+      queryFn: () => CrudService.getDrafts(),
       onError: (error) => {
         console.error('Failed to fetch listings:', error);
       },

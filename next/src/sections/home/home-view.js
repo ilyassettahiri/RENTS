@@ -48,24 +48,26 @@ import ListingList from '../components/listings/list/listings-list';
 // ----------------------------------------------------------------------
 const heroUrl = [
   'categoriescover/apartments.jpg',
-
-  'categoriescover/billiards.jpg',
+  'categoriescover/cars.jpg',
+  'categoriescover/bureauxs.jpg',
   'categoriescover/activities.jpg',
+  'categoriescover/engins.jpg',
+  'categoriescover/terrains.jpg',
+  'categoriescover/transportations.jpg',
+  'categoriescover/velos.jpg',
+  'categoriescover/villas.jpg',
   'categoriescover/audios.jpg',
   'categoriescover/boats.jpg',
   'categoriescover/boxings.jpg',
-  'categoriescover/bureauxs.jpg',
   'categoriescover/cameras.jpg',
   'categoriescover/camions.jpg',
   'categoriescover/caravans.jpg',
-  'categoriescover/cars.jpg',
   'categoriescover/chargers.jpg',
   'categoriescover/clothes.jpg',
   'categoriescover/divings.jpg',
   'categoriescover/drones.jpg',
   'categoriescover/eclairages.jpg',
   'categoriescover/electricaltools.jpg',
-  'categoriescover/engins.jpg',
   'categoriescover/footballs.jpg',
   'categoriescover/furnitures.jpg',
   'categoriescover/gamings.jpg',
@@ -98,33 +100,32 @@ const heroUrl = [
   'categoriescover/taxiaeroports.jpg',
   'categoriescover/tennis.jpg',
   'categoriescover/tentes.jpg',
-  'categoriescover/terrains.jpg',
-  'categoriescover/transportations.jpg',
-  'categoriescover/velos.jpg',
-  'categoriescover/villas.jpg'
+  'categoriescover/billiards.jpg'
 ];
 
 
 const heroUrlicon = [
   'categoryiconcover/apartments.svg',
-
-  'categoryiconcover/billiards.svg',
+  'categoryiconcover/cars.svg',
+  'categoryiconcover/bureauxs.svg',
   'categoryiconcover/activities.svg',
+  'categoryiconcover/engins.svg',
+  'categoryiconcover/terrains.svg',
+  'categoryiconcover/transportations.svg',
+  'categoryiconcover/velos.svg',
+  'categoryiconcover/villas.svg',
   'categoryiconcover/audios.svg',
   'categoryiconcover/boats.svg',
   'categoryiconcover/boxings.svg',
-  'categoryiconcover/bureauxs.svg',
   'categoryiconcover/cameras.svg',
   'categoryiconcover/camions.svg',
   'categoryiconcover/caravans.svg',
-  'categoryiconcover/cars.svg',
   'categoryiconcover/chargers.svg',
   'categoryiconcover/clothes.svg',
   'categoryiconcover/divings.svg',
   'categoryiconcover/drones.svg',
   'categoryiconcover/eclairages.svg',
   'categoryiconcover/electricaltools.svg',
-  'categoryiconcover/engins.svg',
   'categoryiconcover/footballs.svg',
   'categoryiconcover/furnitures.svg',
   'categoryiconcover/gamings.svg',
@@ -157,32 +158,32 @@ const heroUrlicon = [
   'categoryiconcover/taxiaeroports.svg',
   'categoryiconcover/tennis.svg',
   'categoryiconcover/tentes.svg',
-  'categoryiconcover/terrains.svg',
-  'categoryiconcover/transportations.svg',
-  'categoryiconcover/velos.svg',
-  'categoryiconcover/villas.svg'
+  'categoryiconcover/billiards.svg'
 ];
+
 
 const categories = [
   'Apartments',
-
-  'Billiards',
+  'Cars',
+  'Bureauxs',
   'Activities',
+  'Engins',
+  'Terrains',
+  'Transportations',
+  'Velos',
+  'Villas',
   'Audios',
   'Boats',
   'Boxings',
-  'Bureauxs',
   'Cameras',
   'Camions',
   'Caravans',
-  'Cars',
   'Chargers',
   'Clothes',
   'Divings',
   'Drones',
   'Eclairages',
   'Electricaltools',
-  'Engins',
   'Footballs',
   'Furnitures',
   'Gamings',
@@ -215,10 +216,9 @@ const categories = [
   'Taxiaeroports',
   'Tennis',
   'Tentes',
-  'Terrains',
-  'Transportations',
-  'Velos',
-  'Villas'
+
+  'Billiards',
+
 ];
 
 
@@ -1636,7 +1636,7 @@ export default function HomeView() {
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newBilliardsListings')}/>}
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('new Car Listings')}/>}
 
         </Stack>
 

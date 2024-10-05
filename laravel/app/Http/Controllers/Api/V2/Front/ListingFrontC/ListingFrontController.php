@@ -471,10 +471,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
 
-                                        'profile_image' => $user->profile_image,
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -495,6 +496,9 @@ class ListingFrontController extends JsonApiController
 
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
+
 
                                         return [
 
@@ -524,12 +528,15 @@ class ListingFrontController extends JsonApiController
 
 
                                             'seller' => [
-                                                'name' => $user->name,
+                                                'name' => $userStore ? $userStore->name : $user->name,
                                                 'id' => $user->id,
-                                                'profile_image' => $user->profile_image,
+
+                                                'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                 'created_at' => $user->created_at->toIso8601String(),
 
                                             ],
+
 
                                             ],
 
@@ -1079,9 +1086,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -1103,6 +1112,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Boxing::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -1116,10 +1126,13 @@ class ListingFrontController extends JsonApiController
                                                 'averageRating' => $averageRating,
 
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -1695,14 +1708,15 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
-
 
                                     'total_reviews' => $totalReviews,
                                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
@@ -1719,6 +1733,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Diving::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -1732,10 +1747,13 @@ class ListingFrontController extends JsonApiController
 
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -2312,9 +2330,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -2335,6 +2355,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Football::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -2347,10 +2368,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -2922,9 +2946,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -2946,6 +2972,7 @@ class ListingFrontController extends JsonApiController
 
                                     'recentlistings' => Golf::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -2958,10 +2985,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -3539,9 +3569,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -3563,6 +3595,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Hunting::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -3575,10 +3608,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -4157,9 +4193,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -4180,6 +4218,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Musculation::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -4192,10 +4231,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -4764,9 +4806,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -4789,6 +4833,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Surf::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -4801,10 +4846,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -5366,9 +5414,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -5391,6 +5441,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Tennis::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -5403,10 +5454,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -5984,9 +6038,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -6009,6 +6065,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Audio::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -6021,10 +6078,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -6602,9 +6662,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -6629,6 +6691,7 @@ class ListingFrontController extends JsonApiController
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
                                         $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
                                         return [
@@ -6638,10 +6701,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -7219,9 +7285,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -7243,6 +7311,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Charger::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -7255,10 +7324,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -7838,9 +7910,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -7861,6 +7935,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Drone::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -7873,10 +7948,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -8456,9 +8534,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -8480,6 +8560,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Gaming::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -8493,9 +8574,11 @@ class ListingFrontController extends JsonApiController
                                                 'averageRating' => $averageRating,
 
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -9077,9 +9160,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -9100,6 +9185,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Laptop::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -9112,10 +9198,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -9683,9 +9772,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -9707,6 +9798,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Lighting::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -9719,10 +9811,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -10298,9 +10393,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -10323,6 +10420,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Printer::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -10335,10 +10433,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -10912,9 +11013,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -10936,6 +11039,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Router::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -10948,10 +11052,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -11524,9 +11631,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -11548,6 +11657,7 @@ class ListingFrontController extends JsonApiController
 
                                     'recentlistings' => Tablette::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -11560,10 +11670,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -12145,9 +12258,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -12169,6 +12284,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Eclairage::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -12181,10 +12297,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -12758,9 +12877,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -12782,6 +12903,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Mobilier::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -12795,10 +12917,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -13362,9 +13487,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -13386,6 +13513,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Photographie::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -13398,10 +13526,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -13980,9 +14111,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -14003,6 +14136,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Sonorisation::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -14015,10 +14149,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -14590,9 +14727,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -14614,6 +14753,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Tente::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -14627,10 +14767,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -15198,9 +15341,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -15221,6 +15366,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Clothes::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -15233,10 +15379,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -15809,9 +15958,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -15832,6 +15983,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Jewelry::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -15845,10 +15997,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -16415,9 +16570,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -16438,6 +16595,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Apartment::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -16451,9 +16609,11 @@ class ListingFrontController extends JsonApiController
                                                 'averageRating' => $averageRating,
 
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -17028,9 +17188,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -17052,6 +17214,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Bureaux::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -17065,10 +17228,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -17641,9 +17807,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -17665,6 +17833,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Magasin::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -17679,9 +17848,11 @@ class ListingFrontController extends JsonApiController
                                                 'averageRating' => $averageRating,
 
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -18241,9 +18412,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -18265,6 +18438,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Maison::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -18277,10 +18451,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -18873,9 +19050,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -18897,6 +19076,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Riad::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -18910,13 +19090,16 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
-                                                'seller' => [
-                                                    'name' => $user->name,
-                                                    'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
-                                                    'created_at' => $user->created_at->toIso8601String(),
 
-                                                ],
+                                            'seller' => [
+                                                'name' => $userStore ? $userStore->name : $user->name,
+                                                'id' => $user->id,
+
+                                                'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
+                                                'created_at' => $user->created_at->toIso8601String(),
+
+                                            ],
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
@@ -19480,9 +19663,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -19503,6 +19688,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Terrain::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -19516,10 +19702,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -20082,9 +20271,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -20107,6 +20298,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Villa::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -20119,10 +20311,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -20685,9 +20880,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -20708,6 +20905,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Activity::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -20720,10 +20918,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -21285,9 +21486,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -21309,6 +21512,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Livre::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -21321,10 +21525,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -21883,9 +22090,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -21906,6 +22115,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Musical::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -21918,10 +22128,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -22479,9 +22692,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -22502,6 +22717,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Furniture::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -22514,10 +22730,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -23077,9 +23296,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -23102,6 +23323,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Houseappliance::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -23114,10 +23336,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -23683,9 +23908,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -23707,6 +23934,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Electricaltool::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -23719,10 +23947,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -24288,9 +24519,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -24311,6 +24544,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Ladder::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -24323,10 +24557,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -24886,9 +25123,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -24909,6 +25148,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Mechanicaltool::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -24921,10 +25161,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -25488,9 +25731,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -25511,6 +25756,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Powertool::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -25523,10 +25769,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -26094,9 +26343,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -26117,6 +26368,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Pressurewasher::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -26129,10 +26381,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -26697,9 +26952,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -26721,6 +26978,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Service::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -26733,10 +26991,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -27296,9 +27557,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -27319,6 +27582,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Boat::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -27331,10 +27595,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -27893,9 +28160,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -27917,6 +28186,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Camion::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -27929,10 +28199,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -28491,9 +28764,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -28514,6 +28789,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Caravan::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -28526,10 +28802,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -29087,9 +29366,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -29111,6 +29392,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Car::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -29123,10 +29405,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -29690,14 +29975,15 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
-
 
                                     'total_reviews' => $totalReviews,
                                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
@@ -29713,6 +29999,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Engin::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -29725,10 +30012,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -30289,9 +30579,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -30312,6 +30604,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Moto::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -30324,10 +30617,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -30882,14 +31178,15 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
                                     ],
-
 
                                     'total_reviews' => $totalReviews,
                                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
@@ -30905,6 +31202,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Scooter::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -30917,10 +31215,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -31474,9 +31775,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -31498,6 +31801,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Taxiaeroport::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -31510,10 +31814,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -32070,9 +32377,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -32092,6 +32401,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Transportation::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -32104,10 +32414,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
 
                                                 'averageRating' => $averageRating,
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],
@@ -32664,9 +32977,11 @@ class ListingFrontController extends JsonApiController
                                     }),
 
                                     'seller' => [
-                                        'name' => $user->name,
+                                        'name' => $userStore ? $userStore->name : $user->name,
                                         'id' => $user->id,
-                                        'profile_image' => $user->profile_image,
+
+                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                         'created_at' => $user->created_at->toIso8601String(),
                                         'url' => $userStore ? $userStore->url : null,  // Add the store URL here
 
@@ -32687,6 +33002,7 @@ class ListingFrontController extends JsonApiController
                                     'recentlistings' => Velo::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                                         $user = User::where('id', $recentlisting->user_id)->first();
+                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
 
                                         $reviews = $recentlisting->review()->orderBy('created_at')->get();
                                         $totalReviews = $reviews->count();
@@ -32699,10 +33015,13 @@ class ListingFrontController extends JsonApiController
                                                 'phone' => $recentlisting->phone,
                                                 'averageRating' => $averageRating,
 
+
                                                 'seller' => [
-                                                    'name' => $user->name,
+                                                    'name' => $userStore ? $userStore->name : $user->name,
                                                     'id' => $user->id,
-                                                    'profile_image' => $user->profile_image,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
                                                     'created_at' => $user->created_at->toIso8601String(),
 
                                                 ],

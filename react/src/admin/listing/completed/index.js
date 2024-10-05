@@ -85,7 +85,7 @@ function ListCompleted() {
     // Use React Query to fetch data
     const { data: listingsData, isLoading, error } = useQuery({
       queryKey: ['completedListings'],
-      queryFn: () => CrudService.getListings(),
+      queryFn: () => CrudService.getCompleteds(),
       onError: (error) => {
         console.error('Failed to fetch listings:', error);
       },
