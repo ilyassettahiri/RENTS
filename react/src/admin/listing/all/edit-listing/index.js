@@ -1286,7 +1286,7 @@ function EditListing() {
 
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
-  const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'day')]);
+  const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
   const handlePricingChange = (e) => {
     setPricing({ ...pricing, [e.target.name]: e.target.value });

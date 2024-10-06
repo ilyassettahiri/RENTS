@@ -238,7 +238,7 @@ function CreateStore() {
                         <FormField
                           type="text"
                           label="phone"
-                          placeholder="phone"
+                          placeholder="0611111111"
                           name="phone"
                           value={phone.text}
                           onChange={changePhoneHandler}

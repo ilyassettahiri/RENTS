@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import PropTypes from 'prop-types';
 
 // @mui material components
@@ -19,16 +19,25 @@ const imagePath = process.env.REACT_APP_IMAGE_BASE_URL;
 function Header({ profileImage, backgroundImage, onProfileImageChange, onBackgroundImageChange }) {
   const defaultImage = `${imagePath}/curved9.jpg`;
 
-  const profileImgSrc = profileImage ? (typeof profileImage === 'object' ? URL.createObjectURL(profileImage) : `${imagePath}${profileImage}`) : defaultImage;
-  const backgroundImgSrc = backgroundImage ? (typeof backgroundImage === 'object' ? URL.createObjectURL(backgroundImage) : `${imagePath}${backgroundImage}`) : defaultImage;
 
+    // Memoize the profile and background image sources
+    const profileImgSrc = useMemo(() => {
+      return profileImage ? (typeof profileImage === 'object' ? URL.createObjectURL(profileImage) : `${imagePath}${profileImage}`) : defaultImage;
+    }, [profileImage]);
+
+    
+
+    const backgroundImgSrc = useMemo(() => {
+      return backgroundImage ? (typeof backgroundImage === 'object' ? URL.createObjectURL(backgroundImage) : `${imagePath}${backgroundImage}`) : defaultImage;
+    }, [backgroundImage]);
+  
   return (
     <SoftBox position="relative">
       <SoftBox
         display="flex"
         alignItems="center"
         position="relative"
-        minHeight="18.75rem"
+        minHeight="24rem"
         borderRadius="xl"
         sx={{
           backgroundImage: `url(${backgroundImgSrc})`,
@@ -60,10 +69,12 @@ function Header({ profileImage, backgroundImage, onProfileImageChange, onBackgro
           backgroundColor: ({ functions: { rgba }, palette: { white } }) => rgba(white.main, 0.8),
           boxShadow: ({ boxShadows: { navbarBoxShadow } }) => navbarBoxShadow,
           position: "relative",
-          mt: -8,
+          mt: -5,
           mx: 3,
-          py: 2,
-          px: 2,
+          pt: 1,
+          
+
+          px: 1,
         }}
       >
         <Grid container spacing={3} alignItems="center">
@@ -78,9 +89,9 @@ function Header({ profileImage, backgroundImage, onProfileImageChange, onBackgro
                 src={profileImgSrc}
                 alt="profile-image"
                 style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: '8px',
+                  width: 70,
+                  height: 70,
+                  borderRadius: '15px',
                   objectFit: 'cover',
                 }}
               />

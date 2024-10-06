@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next';
 import FormField from "admin/components/FormField";
 
 function Address({ address, onAddressChange }) {
+
+  const defaultCountry = address.country || "Morocco";
+
   return (
     <SoftBox>
       <SoftBox mt={2}>
@@ -17,7 +20,7 @@ function Address({ address, onAddressChange }) {
               name="address"
               value={address.address}
               onChange={onAddressChange}
-              placeholder="Eg. Casablanca"
+              placeholder="Eg. Center Ville "
             />
           </Grid>
           <Grid item xs={12} md={5}>
@@ -27,7 +30,7 @@ function Address({ address, onAddressChange }) {
               name="city"
               value={address.city}
               onChange={onAddressChange}
-              placeholder="Eg. Tokyo"
+              placeholder="Eg. Marrakech"
             />
           </Grid>
           <Grid item xs={12} md={5}>
@@ -35,7 +38,7 @@ function Address({ address, onAddressChange }) {
               type="text"
               label="Country"
               name="country"
-              value={address.country}
+              value={defaultCountry} 
               onChange={onAddressChange}
               placeholder="Eg. Argentina"
             />

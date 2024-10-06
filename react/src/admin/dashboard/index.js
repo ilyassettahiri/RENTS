@@ -69,7 +69,9 @@ function Dashboard() {
     return dashboardData.data.attributes.topListingsThisMonths.map(listing => ({
       title: [listing.picture, listing.title],
       price: `${listing.price} dh`,
-      status: listing.status,
+      //status: listing.status,
+      status: "Active",
+
     }));
   }, [dashboardData]);
 
