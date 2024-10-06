@@ -319,6 +319,9 @@ class StoreController extends JsonApiController
                         'city' => $store->city,
                         'id' => $store->id,
 
+                        'phone' => $store->phone,
+
+
 
                         'picture' => $store->picture,
 

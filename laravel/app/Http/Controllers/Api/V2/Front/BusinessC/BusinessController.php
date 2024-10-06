@@ -85,6 +85,8 @@ class BusinessController extends JsonApiController
                     'description' => $business->description,
                     'city' => $business->city,
                     'id' => $business->id,
+                    'phone' => $business->phone,
+
 
                     'totalReviews' => $totalReviews,
                     'averageRating' => round($averageRating, 1),

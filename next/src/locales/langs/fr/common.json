@@ -120,8 +120,10 @@
           "viewAll": "Voir tout",
           "newApartmentListings": "Nouvelles annonces d'Appartements",
           "newBicycleListings": "Nouvelles annonces de vélos",
-          "newBilliardsListings": "Nouvelles annonces de Voiture",
+          "newCarsListings": "Nouvelles annonces de Voiture",
           "latestPosts": "Derniers Articles",
+
+          "Other listings from this store": "Autres annonces de cette boutique",
 
           "searchPlaceholder": "Que cherchez vous...",
           "categoryPlaceholder": "Catégorie",

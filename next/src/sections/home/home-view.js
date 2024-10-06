@@ -1636,7 +1636,7 @@ export default function HomeView() {
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('new Car Listings')}/>}
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newCarsListings')}/>}
 
         </Stack>
 

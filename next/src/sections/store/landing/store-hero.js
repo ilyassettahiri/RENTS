@@ -361,6 +361,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
 
                 <Divider sx={{ borderStyle: 'dashed', my: 3 }} />
 
+                <StyledButton>
 
                   <Iconify icon="carbon:phone" width={24} />
                   <Typography variant="subtitle2">
@@ -370,6 +371,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                       {phone}
                     </Box>
                   </Typography>
+                </StyledButton>
 
             </Popover>
 

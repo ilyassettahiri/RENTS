@@ -113,12 +113,14 @@
               "enterYourEmail": "Enter your email",
               "signUp": "Sign Up",
 
+              "Other listings from this store": "Other listings from this store",
+
               "ourClients": "Our Clients",
               "filters": "Filters",
               "viewAll": "View all",
               "newApartmentListings": "New Apartment Listings",
               "newBicycleListings": "New Bicycle Listings",
-              "newBilliardsListings": "New Car Listings",
+              "newCarsListings": "New Car Listings",
               "latestPosts": "Latest Posts",
 
               "searchPlaceholder": "What are you looking for...",

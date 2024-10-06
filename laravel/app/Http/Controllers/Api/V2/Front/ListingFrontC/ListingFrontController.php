@@ -213,6 +213,11 @@ class ListingFrontController extends JsonApiController
 
 
 
+
+
+
+
+
         if ($authuser) {
 
 
@@ -368,6 +373,8 @@ class ListingFrontController extends JsonApiController
 
                         $userStore = Onlinestore::where('user_id', $user->id)->first();
 
+                        $sellerlistings = $user->listing()->take(20)->get();
+
 
                         $totalReviews = $reviewslistings->count();
                         $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
@@ -485,6 +492,509 @@ class ListingFrontController extends JsonApiController
                                     'total_reviews' => $totalReviews,
                                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
 
+
+
+                                    'sellerlistings' => $sellerlistings->map(function ($listing) {
+
+
+                                        $images = $listing->listingsimg->map(function ($image) {
+                                            return [
+                                                'picturesmall' => $image->picturesmall,
+                                                'alttext' => $image->alttext,
+                                            ];
+                                        });
+
+                                            $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                                            $totalReviews = $reviews->count();
+                                            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+                                            $getIdOnly = function ($listing) {
+                                                $result = ['id' => null]; // Initialize the result with default value
+
+                                                switch ($listing->category) {
+                                                    case 'billiards':
+                                                        $billiard = Billiard::where('url', $listing->url)->first();
+                                                        if ($billiard) {
+                                                            $listing->billiard_id = $billiard->id;
+                                                            $result['id'] = $billiard->id;
+                                                        }
+                                                        break;
+
+                                                    case 'boxings':
+                                                        $boxing = Boxing::where('url', $listing->url)->first();
+                                                        if ($boxing) {
+                                                            $listing->boxing_id = $boxing->id;
+                                                            $result['id'] = $boxing->id;
+                                                        }
+                                                        break;
+
+                                                    case 'divings':
+                                                        $diving = Diving::where('url', $listing->url)->first();
+                                                        if ($diving) {
+                                                            $listing->diving_id = $diving->id;
+                                                            $result['id'] = $diving->id;
+                                                        }
+                                                        break;
+
+                                                    case 'footballs':
+                                                        $football = Football::where('url', $listing->url)->first();
+                                                        if ($football) {
+                                                            $listing->football_id = $football->id;
+                                                            $result['id'] = $football->id;
+                                                        }
+                                                        break;
+
+                                                    case 'golfs':
+                                                        $golf = Golf::where('url', $listing->url)->first();
+                                                        if ($golf) {
+                                                            $listing->golf_id = $golf->id;
+                                                            $result['id'] = $golf->id;
+                                                        }
+                                                        break;
+
+                                                    case 'huntings':
+                                                        $hunting = Hunting::where('url', $listing->url)->first();
+                                                        if ($hunting) {
+                                                            $listing->hunting_id = $hunting->id;
+                                                            $result['id'] = $hunting->id;
+                                                        }
+                                                        break;
+
+                                                    case 'musculations':
+                                                        $musculation = Musculation::where('url', $listing->url)->first();
+                                                        if ($musculation) {
+                                                            $listing->musculation_id = $musculation->id;
+                                                            $result['id'] = $musculation->id;
+                                                        }
+                                                        break;
+
+                                                    case 'surfs':
+                                                        $surf = Surf::where('url', $listing->url)->first();
+                                                        if ($surf) {
+                                                            $listing->surf_id = $surf->id;
+                                                            $result['id'] = $surf->id;
+                                                        }
+                                                        break;
+
+                                                    case 'tennis':
+                                                        $tennis = Tennis::where('url', $listing->url)->first();
+                                                        if ($tennis) {
+                                                            $listing->tennis_id = $tennis->id;
+                                                            $result['id'] = $tennis->id;
+                                                        }
+                                                        break;
+
+                                                    case 'audios':
+                                                        $audio = Audio::where('url', $listing->url)->first();
+                                                        if ($audio) {
+                                                            $listing->audio_id = $audio->id;
+                                                            $result['id'] = $audio->id;
+                                                        }
+                                                        break;
+
+                                                    case 'cameras':
+                                                        $camera = Camera::where('url', $listing->url)->first();
+                                                        if ($camera) {
+                                                            $listing->camera_id = $camera->id;
+                                                            $result['id'] = $camera->id;
+                                                        }
+                                                        break;
+
+                                                    case 'chargers':
+                                                        $charger = Charger::where('url', $listing->url)->first();
+                                                        if ($charger) {
+                                                            $listing->charger_id = $charger->id;
+                                                            $result['id'] = $charger->id;
+                                                        }
+                                                        break;
+
+                                                    case 'drones':
+                                                        $drone = Drone::where('url', $listing->url)->first();
+                                                        if ($drone) {
+                                                            $listing->drone_id = $drone->id;
+                                                            $result['id'] = $drone->id;
+                                                        }
+                                                        break;
+
+                                                    case 'gamings':
+                                                        $gaming = Gaming::where('url', $listing->url)->first();
+                                                        if ($gaming) {
+                                                            $listing->gaming_id = $gaming->id;
+                                                            $result['id'] = $gaming->id;
+                                                        }
+                                                        break;
+
+                                                    case 'laptops':
+                                                        $laptop = Laptop::where('url', $listing->url)->first();
+                                                        if ($laptop) {
+                                                            $listing->laptop_id = $laptop->id;
+                                                            $result['id'] = $laptop->id;
+                                                        }
+                                                        break;
+
+                                                    case 'lightings':
+                                                        $lighting = Lighting::where('url', $listing->url)->first();
+                                                        if ($lighting) {
+                                                            $listing->lighting_id = $lighting->id;
+                                                            $result['id'] = $lighting->id;
+                                                        }
+                                                        break;
+
+                                                    case 'printers':
+                                                        $printer = Printer::where('url', $listing->url)->first();
+                                                        if ($printer) {
+                                                            $listing->printer_id = $printer->id;
+                                                            $result['id'] = $printer->id;
+                                                        }
+                                                        break;
+
+                                                    case 'routers':
+                                                        $router = Router::where('url', $listing->url)->first();
+                                                        if ($router) {
+                                                            $listing->router_id = $router->id;
+                                                            $result['id'] = $router->id;
+                                                        }
+                                                        break;
+
+                                                    case 'tablettes':
+                                                        $tablette = Tablette::where('url', $listing->url)->first();
+                                                        if ($tablette) {
+                                                            $listing->tablette_id = $tablette->id;
+                                                            $result['id'] = $tablette->id;
+                                                        }
+                                                        break;
+
+                                                    case 'eclairages':
+                                                        $eclairage = Eclairage::where('url', $listing->url)->first();
+                                                        if ($eclairage) {
+                                                            $listing->eclairage_id = $eclairage->id;
+                                                            $result['id'] = $eclairage->id;
+                                                        }
+                                                        break;
+
+                                                    case 'mobiliers':
+                                                        $mobilier = Mobilier::where('url', $listing->url)->first();
+                                                        if ($mobilier) {
+                                                            $listing->mobilier_id = $mobilier->id;
+                                                            $result['id'] = $mobilier->id;
+                                                        }
+                                                        break;
+
+                                                    case 'photographies':
+                                                        $photographie = Photographie::where('url', $listing->url)->first();
+                                                        if ($photographie) {
+                                                            $listing->photographie_id = $photographie->id;
+                                                            $result['id'] = $photographie->id;
+                                                        }
+                                                        break;
+
+                                                    case 'sonorisations':
+                                                        $sonorisation = Sonorisation::where('url', $listing->url)->first();
+                                                        if ($sonorisation) {
+                                                            $listing->sonorisation_id = $sonorisation->id;
+                                                            $result['id'] = $sonorisation->id;
+                                                        }
+                                                        break;
+
+                                                    case 'tentes':
+                                                        $tente = Tente::where('url', $listing->url)->first();
+                                                        if ($tente) {
+                                                            $listing->tente_id = $tente->id;
+                                                            $result['id'] = $tente->id;
+                                                        }
+                                                        break;
+
+                                                    case 'clothes':
+                                                        $clothes = Clothes::where('url', $listing->url)->first();
+                                                        if ($clothes) {
+                                                            $listing->clothes_id = $clothes->id;
+                                                            $result['id'] = $clothes->id;
+                                                        }
+                                                        break;
+
+                                                    case 'jewelrys':
+                                                        $jewelry = Jewelry::where('url', $listing->url)->first();
+                                                        if ($jewelry) {
+                                                            $listing->jewelry_id = $jewelry->id;
+                                                            $result['id'] = $jewelry->id;
+                                                        }
+                                                        break;
+
+                                                    case 'apartments':
+                                                        $apartment = Apartment::where('url', $listing->url)->first();
+                                                        if ($apartment) {
+                                                            $listing->apartment_id = $apartment->id;
+                                                            $result['id'] = $apartment->id;
+                                                        }
+                                                        break;
+
+                                                    case 'bureauxs':
+                                                        $bureaux = Bureaux::where('url', $listing->url)->first();
+                                                        if ($bureaux) {
+                                                            $listing->bureaux_id = $bureaux->id;
+                                                            $result['id'] = $bureaux->id;
+                                                        }
+                                                        break;
+
+                                                    case 'magasins':
+                                                        $magasin = Magasin::where('url', $listing->url)->first();
+                                                        if ($magasin) {
+                                                            $listing->magasin_id = $magasin->id;
+                                                            $result['id'] = $magasin->id;
+                                                        }
+                                                        break;
+
+                                                    case 'maisons':
+                                                        $maison = Maison::where('url', $listing->url)->first();
+                                                        if ($maison) {
+                                                            $listing->maison_id = $maison->id;
+                                                            $result['id'] = $maison->id;
+                                                        }
+                                                        break;
+
+                                                    case 'riads':
+                                                        $riad = Riad::where('url', $listing->url)->first();
+                                                        if ($riad) {
+                                                            $listing->riad_id = $riad->id;
+                                                            $result['id'] = $riad->id;
+                                                        }
+                                                        break;
+
+                                                    case 'terrains':
+                                                        $terrain = Terrain::where('url', $listing->url)->first();
+                                                        if ($terrain) {
+                                                            $listing->terrain_id = $terrain->id;
+                                                            $result['id'] = $terrain->id;
+                                                        }
+                                                        break;
+
+                                                    case 'villas':
+                                                        $villa = Villa::where('url', $listing->url)->first();
+                                                        if ($villa) {
+                                                            $listing->villa_id = $villa->id;
+                                                            $result['id'] = $villa->id;
+                                                        }
+                                                        break;
+
+                                                    case 'activities':
+                                                        $activity = Activity::where('url', $listing->url)->first();
+                                                        if ($activity) {
+                                                            $listing->activity_id = $activity->id;
+                                                            $result['id'] = $activity->id;
+                                                        }
+                                                        break;
+
+                                                    case 'livres':
+                                                        $livre = Livre::where('url', $listing->url)->first();
+                                                        if ($livre) {
+                                                            $listing->livre_id = $livre->id;
+                                                            $result['id'] = $livre->id;
+                                                        }
+                                                        break;
+
+                                                    case 'musicals':
+                                                        $musical = Musical::where('url', $listing->url)->first();
+                                                        if ($musical) {
+                                                            $listing->musical_id = $musical->id;
+                                                            $result['id'] = $musical->id;
+                                                        }
+                                                        break;
+
+                                                    case 'furnitures':
+                                                        $furniture = Furniture::where('url', $listing->url)->first();
+                                                        if ($furniture) {
+                                                            $listing->furniture_id = $furniture->id;
+                                                            $result['id'] = $furniture->id;
+                                                        }
+                                                        break;
+
+                                                    case 'houseappliances':
+                                                        $houseappliance = Houseappliance::where('url', $listing->url)->first();
+                                                        if ($houseappliance) {
+                                                            $listing->houseappliance_id = $houseappliance->id;
+                                                            $result['id'] = $houseappliance->id;
+                                                        }
+                                                        break;
+
+                                                    case 'electricaltools':
+                                                        $electricaltool = Electricaltool::where('url', $listing->url)->first();
+                                                        if ($electricaltool) {
+                                                            $listing->electricaltool_id = $electricaltool->id;
+                                                            $result['id'] = $electricaltool->id;
+                                                        }
+                                                        break;
+
+                                                    case 'ladders':
+                                                        $ladder = Ladder::where('url', $listing->url)->first();
+                                                        if ($ladder) {
+                                                            $listing->ladder_id = $ladder->id;
+                                                            $result['id'] = $ladder->id;
+                                                        }
+                                                        break;
+
+                                                    case 'mechanicaltools':
+                                                        $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
+                                                        if ($mechanicaltool) {
+                                                            $listing->mechanicaltool_id = $mechanicaltool->id;
+                                                            $result['id'] = $mechanicaltool->id;
+                                                        }
+                                                        break;
+
+                                                    case 'powertools':
+                                                        $powertool = Powertool::where('url', $listing->url)->first();
+                                                        if ($powertool) {
+                                                            $listing->powertool_id = $powertool->id;
+                                                            $result['id'] = $powertool->id;
+                                                        }
+                                                        break;
+
+                                                    case 'pressurewashers':
+                                                        $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
+                                                        if ($pressurewasher) {
+                                                            $listing->pressurewasher_id = $pressurewasher->id;
+                                                            $result['id'] = $pressurewasher->id;
+                                                        }
+                                                        break;
+
+                                                    case 'services':
+                                                        $service = Service::where('url', $listing->url)->first();
+                                                        if ($service) {
+                                                            $listing->service_id = $service->id;
+                                                            $result['id'] = $service->id;
+                                                        }
+                                                        break;
+
+                                                    case 'boats':
+                                                        $boat = Boat::where('url', $listing->url)->first();
+                                                        if ($boat) {
+                                                            $listing->boat_id = $boat->id;
+                                                            $result['id'] = $boat->id;
+                                                        }
+                                                        break;
+
+                                                    case 'camions':
+                                                        $camion = Camion::where('url', $listing->url)->first();
+                                                        if ($camion) {
+                                                            $listing->camion_id = $camion->id;
+                                                            $result['id'] = $camion->id;
+                                                        }
+                                                        break;
+
+                                                    case 'caravans':
+                                                        $caravan = Caravan::where('url', $listing->url)->first();
+                                                        if ($caravan) {
+                                                            $listing->caravan_id = $caravan->id;
+                                                            $result['id'] = $caravan->id;
+                                                        }
+                                                        break;
+
+                                                    case 'cars':
+                                                        $car = Car::where('url', $listing->url)->first();
+                                                        if ($car) {
+                                                            $listing->car_id = $car->id;
+                                                            $result['id'] = $car->id;
+                                                        }
+                                                        break;
+
+                                                    case 'engins':
+                                                        $engin = Engin::where('url', $listing->url)->first();
+                                                        if ($engin) {
+                                                            $listing->engin_id = $engin->id;
+                                                            $result['id'] = $engin->id;
+                                                        }
+                                                        break;
+
+                                                    case 'motos':
+                                                        $moto = Moto::where('url', $listing->url)->first();
+                                                        if ($moto) {
+                                                            $listing->moto_id = $moto->id;
+                                                            $result['id'] = $moto->id;
+                                                        }
+                                                        break;
+
+                                                    case 'scooters':
+                                                        $scooter = Scooter::where('url', $listing->url)->first();
+                                                        if ($scooter) {
+                                                            $listing->scooter_id = $scooter->id;
+                                                            $result['id'] = $scooter->id;
+                                                        }
+                                                        break;
+
+                                                    case 'taxiaeroports':
+                                                        $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
+                                                        if ($taxiaeroport) {
+                                                            $listing->taxiaeroport_id = $taxiaeroport->id;
+                                                            $result['id'] = $taxiaeroport->id;
+                                                        }
+                                                        break;
+
+                                                    case 'transportations':
+                                                        $transportation = Transportation::where('url', $listing->url)->first();
+                                                        if ($transportation) {
+                                                            $listing->transportation_id = $transportation->id;
+                                                            $result['id'] = $transportation->id;
+                                                        }
+                                                        break;
+
+                                                    case 'velos':
+                                                        $velo = Velo::where('url', $listing->url)->first();
+                                                        if ($velo) {
+                                                            $listing->velo_id = $velo->id;
+                                                            $result['id'] = $velo->id;
+                                                        }
+                                                        break;
+
+                                                    default:
+                                                        $result['id'] = null; // Return null if no match
+                                                }
+
+                                                return $result; // Return the result containing id only
+                                            };
+
+                                            $idResult = $getIdOnly($listing);
+
+                                        return [
+
+                                            'type' => 'listings',
+
+                                            'id' => $listing->id, // Ensure id is included
+
+                                            'attributes' => [
+                                                'category' => $listing->category,
+                                                'title' => $listing->title,
+                                                'price' => $listing->price,
+                                                'url' => $listing->url,
+
+                                                'created_at' => $listing->created_at,
+                                                //'listing_city' => $listing->city,
+
+                                                'id' => $idResult['id'],
+
+                                                'images' => $images,
+
+                                                'status' => $listing->status,
+                                                'picture' => $listing->picture,
+                                                'user_id' => $listing->user_id,
+
+                                                'averageRating' => $averageRating,
+                                                'totalReviews' => $totalReviews,
+
+                                                'seller' => [
+                                                    'name' => $userStore ? $userStore->name : $user->name,
+                                                    'id' => $user->id,
+
+                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
+                                                    'created_at' => $user->created_at->toIso8601String(),
+                                                    'url' => $userStore ? $userStore->url : null,  // Add the store URL here
+
+                                                ],
+
+                                            ],
+
+
+                                        ];
+                                    }),
 
 
 
@@ -33484,3946 +33994,7 @@ class ListingFrontController extends JsonApiController
     }
 
 
-    public function getListingpic(Request $request, $category, $url)
-    {
 
-
-        switch ($category) {
-            case 'apartments':
-                $listingCategory = Apartment::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'billiards':
-                $listingCategory = Billiard::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'activities':
-                $listingCategory = Activity::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'audios':
-                $listingCategory = Audio::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'boats':
-                $listingCategory = Boat::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'boxings':
-                $listingCategory = Boxing::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'bureauxs':
-                $listingCategory = Bureaux::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'cameras':
-                $listingCategory = Camera::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'camions':
-                $listingCategory = Camion::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'caravans':
-                $listingCategory = Caravan::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'cars':
-                $listingCategory = Car::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'chargers':
-                $listingCategory = Charger::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'clothes':
-                $listingCategory = Clothes::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'divings':
-                $listingCategory = Diving::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'drones':
-                $listingCategory = Drone::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'eclairages':
-                $listingCategory = Eclairage::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'electricaltools':
-                $listingCategory = Electricaltool::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'engins':
-                $listingCategory = Engin::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'footballs':
-                $listingCategory = Football::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'furnitures':
-                $listingCategory = Furniture::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'gamings':
-                $listingCategory = Gaming::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'golfs':
-                $listingCategory = Golf::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'houseappliances':
-                $listingCategory = Houseappliance::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'huntings':
-                $listingCategory = Hunting::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'jewelrys':
-                $listingCategory = Jewelry::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'ladders':
-                $listingCategory = Ladder::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'laptops':
-                $listingCategory = Laptop::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'lightings':
-                $listingCategory = Lighting::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'livres':
-                $listingCategory = Livre::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'magasins':
-                $listingCategory = Magasin::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'maisons':
-                $listingCategory = Maison::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'mechanicaltools':
-                $listingCategory = Mechanicaltool::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'mobiliers':
-                $listingCategory = Mobilier::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'motos':
-                $listingCategory = Moto::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'musculations':
-                $listingCategory = Musculation::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'musicals':
-                $listingCategory = Musical::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'photographies':
-                $listingCategory = Photographie::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'powertools':
-                $listingCategory = Powertool::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'pressurewashers':
-                $listingCategory = Pressurewasher::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'printers':
-                $listingCategory = Printer::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'riads':
-                $listingCategory = Riad::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'routers':
-                $listingCategory = Router::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'scooters':
-                $listingCategory = Scooter::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'services':
-                $listingCategory = Service::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'sonorisations':
-                $listingCategory = Sonorisation::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'surfs':
-                $listingCategory = Surf::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'tablettes':
-                $listingCategory = Tablette::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'taxiaeroports':
-                $listingCategory = Taxiaeroport::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'tennis':
-                $listingCategory = Tennis::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'tentes':
-                $listingCategory = Tente::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'terrains':
-                $listingCategory = Terrain::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'transportations':
-                $listingCategory = Transportation::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'velos':
-                $listingCategory = Velo::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            case 'villas':
-                $listingCategory = Villa::where('url', $url)->first();
-                $images = $listingCategory->servicesimg->map(function ($image) {
-
-                    return $image->picturesxlarge;
-                });
-                break;
-
-            default:
-                $listingCategory = null; // Or handle the default case as needed
-                $images = [];
-                break;
-        }
-
-
-        if ($listingCategory) {
-            return response()->json([
-
-
-                'images' => $images,
-            ]);
-        } else {
-            return response()->json(['message' => 'Invalid category or no listing found'], 404);
-        }
-
-    }
-
-
-
-    public function createReview(Request $request, $category, $url)
-    {
-
-
-
-                // Validate the request data
-                $validatedData = $request->validate([
-                    'name' => 'required|string|max:255',
-                    'email' => 'required|email|max:255',
-                    'description' => 'required|string|max:255',
-                    'rating' => 'required|numeric|min:1|max:5',
-
-                ]);
-
-
-
-
-
-
-
-
-
-
-
-            switch ($category) {
-
-
-
-                        case 'billiards':
-
-
-
-                            $listingcategory = Billiard::where('url', $url)->first();
-
-
-
-                                $review = Review::create([
-                                    'name' => $validatedData['name'],
-                                    'rating' => $validatedData['rating'],
-                                    'email' => $validatedData['email'],
-                                    'url' =>$url ,
-                                    'category' =>$category ,
-                                    'listings_thumb' =>$listingcategory->picture ,
-                                    'listings_title' =>$listingcategory->title ,
-                                    'listings_price' =>$listingcategory->price ,
-
-                                    'description' =>$validatedData['description'],
-
-
-
-                                    'billiard_id' =>$listingcategory->id,
-                                    'user_id'=> $listingcategory->user_id,
-
-                                    'onlinestore_id'=> $listingcategory->user_id,
-
-
-                                ]);
-
-
-
-
-                                return response()->json([
-                                    'data' => [
-                                        'type' => $category,
-                                        'id' => $review->id,
-                                        'attributes' => [
-                                            'name' => $review->name,
-                                            'rating' => $review->rating,
-                                            'description' => $review->description,
-                                            'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                        ],
-                                    ],
-                                ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                        case 'boxings':
-
-
-
-                            $listingcategory = Boxing::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'boxing_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'divings':
-
-
-
-                            $listingcategory = Diving::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'diving_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'footballs':
-
-
-
-                            $listingcategory = Football::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'football_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'golfs':
-
-
-
-                            $listingcategory = Golf::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'golf_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-                        case 'huntings':
-
-
-
-                            $listingcategory = Hunting::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'hunting_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'musculations':
-
-
-
-                            $listingcategory = Musculation::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'musculation_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-                        case 'surfs':
-
-
-
-                            $listingcategory = Surf::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'surf_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'tennis':
-
-
-
-                            $listingcategory = Tennis::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'tennis_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'audios':
-
-
-
-                            $listingcategory = Audio::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'audio_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'cameras':
-
-
-
-                            $listingcategory = Camera::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'camera_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'chargers':
-
-
-
-                            $listingcategory = Charger::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'charger_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'drones':
-
-
-
-                            $listingcategory = Drone::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'drone_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-
-                        case 'gamings':
-
-
-
-                            $listingcategory = Gaming::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'gaming_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'laptops':
-
-
-
-                            $listingcategory = Laptop::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'laptop_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-                        case 'lightings':
-
-
-
-                            $listingcategory = Lighting::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'lighting_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-
-                        case 'printers':
-
-
-
-                            $listingcategory = Printer::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'printer_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'routers':
-
-
-
-                            $listingcategory = Router::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'router_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'tablettes':
-
-
-
-                            $listingcategory = Tablette::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'tablette_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'eclairages':
-
-
-
-                            $listingcategory = Eclairage::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'eclairage_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'mobiliers':
-
-
-
-                            $listingcategory = Mobilier::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'mobilier_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'photographies':
-
-
-
-                            $listingcategory = Photographie::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'photographie_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'sonorisations':
-
-
-
-                            $listingcategory = Sonorisation::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'sonorisation_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'tentes':
-
-
-
-                            $listingcategory = Tente::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'tente_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'clothes':
-
-
-
-                            $listingcategory = Clothes::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'clothes_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'jewelrys':
-
-
-
-                            $listingcategory = Jewelry::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'jewelry_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'apartments':
-
-
-
-                            $listingcategory = Apartment::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'apartment_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'bureauxs':
-
-
-
-                            $listingcategory = Bureaux::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'bureaux_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'magasins':
-
-
-
-                            $listingcategory = Magasin::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'magasin_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'maisons':
-
-
-
-                            $listingcategory = Maison::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'maison_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'riads':
-
-
-
-                            $listingcategory = Riad::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'riad_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-                        case 'terrains':
-
-
-
-                            $listingcategory = Terrain::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'terrain_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-
-                        case 'villas':
-
-
-
-                            $listingcategory = Villa::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'villa_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'activities':
-
-
-
-                            $listingcategory = Activity::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'activity_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'livres':
-
-
-
-                            $listingcategory = Livre::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'livre_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'musicals':
-
-
-
-                            $listingcategory = Musical::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'musical_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'furnitures':
-
-
-
-                            $listingcategory = Furniture::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'furniture_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'houseappliances':
-
-
-
-                            $listingcategory = Houseappliance::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'houseappliance_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'electricaltools':
-
-
-
-                            $listingcategory = Electricaltool::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'electricaltool_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'ladders':
-
-
-
-                            $listingcategory = Ladder::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'ladder_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'mechanicaltools':
-
-
-
-                            $listingcategory = Mechanicaltool::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'mechanicaltool_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-                        case 'powertools':
-
-
-
-                            $listingcategory = Powertool::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'powertool_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'pressurewashers':
-
-
-
-                            $listingcategory = Pressurewasher::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'pressurewasher_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'services':
-
-
-
-                            $listingcategory = Service::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'service_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'boats':
-
-
-
-                            $listingcategory = Boat::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'boat_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-
-                        case 'camions':
-
-
-
-                            $listingcategory = Camion::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'camion_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-                        case 'caravans':
-
-
-
-                            $listingcategory = Caravan::where('url', $url)->first();
-
-
-
-                            $review = Review::create([
-                                'name' => $validatedData['name'],
-                                'rating' => $validatedData['rating'],
-                                'email' => $validatedData['email'],
-                                'url' =>$url ,
-                                'category' =>$category ,
-                                'listings_thumb' =>$listingcategory->picture ,
-                                'listings_title' =>$listingcategory->title ,
-                                'listings_price' =>$listingcategory->price ,
-
-                                'description' =>$validatedData['description'],
-
-
-
-                                'caravan_id' =>$listingcategory->id,
-                                'user_id'=> $listingcategory->user_id,
-
-                                'onlinestore_id'=> $listingcategory->user_id,
-
-
-                            ]);
-
-
-
-
-                            return response()->json([
-                                'data' => [
-                                    'type' => $category,
-                                    'id' => $review->id,
-                                    'attributes' => [
-                                        'name' => $review->name,
-                                        'rating' => $review->rating,
-                                        'description' => $review->description,
-                                        'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                    ],
-                                ],
-                            ]);
-
-
-
-
-                            break;
-
-
-
-
-
-                        case 'cars':
-
-
-
-                        $listingcategory = Car::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'car_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'engins':
-
-
-
-                        $listingcategory = Engin::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'engin_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'motos':
-
-
-
-                        $listingcategory = Moto::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'moto_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'scooters':
-
-
-
-                        $listingcategory = Scooter::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'scooter_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    case 'taxiaeroports':
-
-
-
-                        $listingcategory = Taxiaeroport::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'taxiaeroport_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-                    case 'transportations':
-
-
-
-                        $listingcategory = Transportation::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'transportation_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-
-                    case 'velos':
-
-
-
-                        $listingcategory = Velo::where('url', $url)->first();
-
-
-
-                        $review = Review::create([
-                            'name' => $validatedData['name'],
-                            'rating' => $validatedData['rating'],
-                            'email' => $validatedData['email'],
-                            'url' =>$url ,
-                            'category' =>$category ,
-                            'listings_thumb' =>$listingcategory->picture ,
-                            'listings_title' =>$listingcategory->title ,
-                            'listings_price' =>$listingcategory->price ,
-
-                            'description' =>$validatedData['description'],
-
-
-
-                            'velo_id' =>$listingcategory->id,
-                            'user_id'=> $listingcategory->user_id,
-
-                            'onlinestore_id'=> $listingcategory->user_id,
-
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $review->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'rating' => $review->rating,
-                                    'description' => $review->description,
-                                    'created_at' => $review->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-
-
-                        break;
-
-
-
-
-
-
-                    default:
-                        // Default code
-                        break;
-            }
-
-
-
-
-
-
-    }
-
-
-
-
-    public function addToHelpful(Request $request, $category, $url, $reviewId)
-    {
-        $review = Review::find($reviewId);
-
-        if ($review) {
-            $review->like += 1;
-            $review->save();
-
-            return response()->json([
-                'success' => true,
-                'likes' => $review->like
-            ]);
-        }
-
-        return response()->json(['success' => false], 404);
-    }
-
-
-
-    public function createReviewReply(Request $request, $category, $url, $reviewId)
-    {
-                        $review = Review::find($reviewId);
-
-                        $user = Auth::user();
-
-                        // Validate the request data
-                        $validatedData = $request->validate([
-                            'message' => 'required|string|max:255',
-
-
-                        ]);
-
-
-
-
-                        $Reviewreply = Reviewreply::create([
-                            'message' => $validatedData['message'],
-
-
-                            'picture' => $user->profile_image ,
-                            'name' => $user->name ,
-                            'email' => $user->email ,
-
-
-
-
-                            'review_id' =>$reviewId,
-                            'user_id'=> $user->id,
-
-                        ]);
-
-
-
-
-                        return response()->json([
-                            'data' => [
-                                'type' => $category,
-                                'id' => $Reviewreply->id,
-                                'attributes' => [
-                                    'name' => $review->name,
-                                    'message' => $Reviewreply->message,
-                                    'picture' => $Reviewreply->picture,
-                                    'created_at' => $Reviewreply->created_at->toIso8601String(),
-
-
-
-
-
-                                ],
-                            ],
-                        ]);
-
-
-
-    }
 
 
 

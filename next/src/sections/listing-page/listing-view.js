@@ -201,11 +201,21 @@ export default function ListingView({ params }) {
 
           <Divider sx={{ my: 10 }} />
 
+
+                {listingData && (
+
+                <ListingsCarousel tours={listingData?.data?.attributes?.sellerlistings} title={t('Other listings from this store')} />
+
+                )}
+
+
                 {listingData && (
 
                   <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title={t('Recommendedforyou')} />
 
                 )}
+
+
 
                 {listingData && (
                   <StorePopularProducts

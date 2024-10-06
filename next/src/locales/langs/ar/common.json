@@ -122,8 +122,10 @@
             "viewAll": "عرض الكل",
             "newApartmentListings": "إعلانات الشقق الجديدة",
             "newBicycleListings": "إعلانات الدراجات الجديدة",
-            "newBilliardsListings": "إعلانات البلياردو الجديدة",
+            "newCarsListings": "إعلانات السيارات الجديدة",
             "latestPosts": "أحدث المنشورات",
+
+            "Other listings from this store": "إعلانات أخرى من هذا المتجر",
 
             "searchPlaceholder": "ما الذي تبحث عنه...",
             "categoryPlaceholder": "الفئة",
