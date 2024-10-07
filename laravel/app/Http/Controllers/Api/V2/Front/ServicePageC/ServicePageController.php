@@ -334,6 +334,13 @@ class ServicePageController extends JsonApiController
         $reviewslistings = $service->review()->orderBy('created_at')->get();
         $user = User::where('id', $service->user_id)->first();
 
+        $sellerlistings = $user->listing()
+        ->where('category', 'services') // Filter by category 'services'
+        ->orderBy('created_at', 'desc')  // Order by newest
+        ->take(20)                       // Limit to 20 results
+        ->get();
+
+
         $userStore = Onlinestore::where('user_id', $user->id)->first();
 
             // Calculate total reviews and average rating
@@ -356,6 +363,7 @@ class ServicePageController extends JsonApiController
                     'address' => $service->address,
                     'city' => $service->city,
 
+                    'phone' => $service->phone,
 
                     'picture' => $service->picture,
 
@@ -447,6 +455,96 @@ class ServicePageController extends JsonApiController
                     'total_reviews' => $totalReviews,
                     'average_rating' => round($averageRating, 1), // Rounded to one decimal place
 
+
+
+                    'sellerlistings' => $sellerlistings->map(function ($listing) {
+
+
+                        $images = $listing->listingsimg->map(function ($image) {
+                            return [
+                                'picturesmall' => $image->picturesmall,
+                                'alttext' => $image->alttext,
+                            ];
+                        });
+
+                            $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
+                            $totalReviews = $reviews->count();
+                            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
+
+                            $user = User::where('id', $listing->user_id)->first();
+
+                            $userStore = Onlinestore::where('user_id', $user->id)->first();
+
+
+                            $getIdOnly = function ($listing) {
+                                $result = ['id' => null]; // Initialize the result with default value
+
+                                switch ($listing->category) {
+
+
+
+
+
+                                    case 'services':
+                                        $service = Service::where('url', $listing->url)->first();
+                                        if ($service) {
+                                            $listing->service_id = $service->id;
+                                            $result['id'] = $service->id;
+                                        }
+                                        break;
+
+
+                                    default:
+                                        $result['id'] = null; // Return null if no match
+                                }
+
+                                return $result; // Return the result containing id only
+                            };
+
+                            $idResult = $getIdOnly($listing);
+
+                        return [
+
+                            'type' => 'listings',
+
+                            'id' => $listing->id, // Ensure id is included
+
+                            'attributes' => [
+                                'category' => $listing->category,
+                                'title' => $listing->title,
+                                'price' => $listing->price,
+                                'url' => $listing->url,
+
+                                'created_at' => $listing->created_at,
+                                'city' => $listing->city,
+
+                                'id' => $idResult['id'],
+
+                                'images' => $images,
+
+                                'status' => $listing->status,
+                                'picture' => $listing->picture,
+                                'user_id' => $listing->user_id,
+
+                                'averageRating' => $averageRating,
+                                'totalReviews' => $totalReviews,
+
+                                'seller' => [
+                                    'name' => $userStore ? $userStore->name : $user->name,
+                                    'id' => $user->id,
+
+                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
+
+                                    'created_at' => $user->created_at->toIso8601String(),
+                                    'url' => $userStore ? $userStore->url : null,  // Add the store URL here
+
+                                ],
+
+                            ],
+
+
+                        ];
+                    }),
 
 
 

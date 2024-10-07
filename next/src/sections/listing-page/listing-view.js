@@ -8,6 +8,7 @@ import { useResponsive } from 'src/hooks/use-responsive';
 import { useQuery } from '@tanstack/react-query';
 
 import { useTranslation } from 'react-i18next';
+import Box from '@mui/material/Box';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -64,7 +65,11 @@ export default function ListingView({ params }) {
   });
 
 
-
+  useEffect(() => {
+    if (listingData) {
+      console.log('Listing Data:', listingData);
+    }
+  }, [listingData]);
 
   useEffect(() => {
     if (listingData?.favorites) {
@@ -129,15 +134,23 @@ export default function ListingView({ params }) {
         >
 
           <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, }, }}>
-            <Grid xs={12} md={5} lg={4}>
 
 
-                {isListingLoading ? (
-                  <ListingFormSkeleton />
-                ) : (
-                  <ListingForm tour={listingData?.data} />
-                )}
-            </Grid>
+
+              {mdUp && (
+
+                <Grid xs={12} md={5} lg={4}>
+
+
+                    {isListingLoading ? (
+                      <ListingFormSkeleton />
+                    ) : (
+                      <ListingForm tour={listingData?.data} />
+                    )}
+                </Grid>
+
+              )}
+
 
             <Grid xs={12} md={7} lg={8}>
 
@@ -182,11 +195,32 @@ export default function ListingView({ params }) {
           </Grid>
 
 
+
+
           <Stack spacing={3} sx={{ my: 10 }}>
             <Typography variant="h5">{t('Location')}</Typography>
 
             {listingData && ( <Map offices={listingData?.data} sx={{ borderRadius: 2 }} />)}
           </Stack>
+
+
+
+
+            {!mdUp && (
+
+                <Box sx={{ my: 5 }}>
+
+
+
+                    {isListingLoading ? (
+                      <ListingFormSkeleton />
+                    ) : (
+                      <ListingForm tour={listingData?.data} />
+                    )}
+                </Box>
+
+            )}
+
 
           <Divider sx={{ my: 10 }} />
 
@@ -198,6 +232,9 @@ export default function ListingView({ params }) {
                     seller={listingData?.data?.attributes?.seller}
                   />
                 )}
+
+
+
 
           <Divider sx={{ my: 10 }} />
 

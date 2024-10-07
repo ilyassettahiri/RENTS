@@ -60,11 +60,15 @@ export default function ServicePageView({ params }) {
   const memoizedServiceData = useMemo(() => {
     const specifications = serviceData?.data?.attributes?.specifications || [];
     const recentListings = serviceData?.data?.attributes?.recentlistings || [];
+    const sellerlistings = serviceData?.data?.attributes?.sellerlistings || [];
+
     const serviceEmpty = !isServiceLoading && !recentListings.length;
 
     return {
       specifications,
       recentListings,
+      sellerlistings,
+
       favorites: serviceData?.favorites || [],
       serviceLoading: isServiceLoading,
       serviceError,
@@ -100,7 +104,7 @@ export default function ServicePageView({ params }) {
             overflow: 'hidden',
             paddingLeft: { lg: '80px' },
             paddingRight: { lg: '80px' },
-            pt: { xs: 2, md: 0 },
+
           }}
         >
 
@@ -108,7 +112,7 @@ export default function ServicePageView({ params }) {
 
             sx={{
               overflow: 'hidden',
-              pt: { xs: 5, md: 7 },
+              pt: { xs: 0, md: 7 },
               pb: 10,
 
             }}
@@ -119,10 +123,14 @@ export default function ServicePageView({ params }) {
 
 
 
-                {isServiceLoading ? (
-                  <ListingFormSkeleton />
-                ) : (
-                  <ListingForm tour={serviceData.data} />
+                {mdUp && (
+                  <Grid xs={12} md={5} lg={4}>
+                    {isServiceLoading ? (
+                      <ListingFormSkeleton />
+                    ) : (
+                      <ListingForm tour={serviceData.data} />
+                    )}
+                  </Grid>
                 )}
 
               </Grid>
@@ -145,11 +153,29 @@ export default function ServicePageView({ params }) {
             </Grid>
 
 
+
+
+
             <Stack spacing={3} sx={{ my: 10 }}>
               <Typography variant="h5">{t('Location')}</Typography>
 
               {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
             </Stack>
+
+
+
+
+            {!mdUp && (
+              <Box sx={{ my: 5 }}>
+                {isServiceLoading ? (
+                  <ListingFormSkeleton />
+                ) : (
+                  <ListingForm tour={serviceData.data} />
+                )}
+              </Box>
+            )}
+
+
 
             <Divider sx={{ my: 10 }} />
 
@@ -161,6 +187,10 @@ export default function ServicePageView({ params }) {
                 seller={serviceData.data.attributes.seller}
               />
             )}
+
+
+            {serviceData && <ListingsCarouselService tours={memoizedServiceData.sellerlistings} title={t('Other listings from this store')} />}
+
 
 
             {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}

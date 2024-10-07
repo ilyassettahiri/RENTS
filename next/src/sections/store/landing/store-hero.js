@@ -153,7 +153,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
             maxWidth={false}
 
             sx={{
-              pt: { xs: 5, md: 3 },
+              pt: { xs: 5, md: 0 },
               mb: {  md: -4 },
 
               position: 'relative',
@@ -168,7 +168,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                 }),
                 borderRadius: 3,
                 overflow: 'hidden',
-                height: '400px',
+                height: '500px',
                 display: { xs: 'none', sm: 'flex' }, // Hide on xs, show on sm and larger
 
                 alignItems: "center",
@@ -187,7 +187,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                 transform: 'translateX(-50%)', // Center horizontally
                 position: "relative",
                 mt: -12,
-                marginRight: { xs: -5, lg: '50px' },
+                marginRight: { xs: 0, lg: '50px' },
                 py: 2,
                 px: 2,
               }}

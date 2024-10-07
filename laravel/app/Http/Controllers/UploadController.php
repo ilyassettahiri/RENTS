@@ -336,7 +336,7 @@ class UploadController extends Controller
 
 
 
-        /*if ($request->hasFile('attachmentpicture')) {
+        if ($request->hasFile('attachmentpicture')) {
             $files = $request->file('attachmentpicture');
 
 
@@ -358,12 +358,12 @@ class UploadController extends Controller
                 $profil_picturerelativePath = '/' . $filePathaa; // Prepend '/' to make it a relative path
 
 
-        }*/
+        }
 
 
 
 
-        $manager = new ImageManager(new Driver());
+        /*$manager = new ImageManager(new Driver());
 
         if ($request->hasFile('attachmentpicture')) {
             $file = $request->file('attachmentpicture');
@@ -464,7 +464,7 @@ class UploadController extends Controller
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }
+        }*/
 
 
 

@@ -8,6 +8,7 @@ import Card from "@mui/material/Card";
 import { useTheme } from "@mui/material/styles";
 import Image from "src/components/image";
 import { useQuery } from '@tanstack/react-query';
+import Divider from '@mui/material/Divider';
 
 import CrudService from "src/services/cruds-service";
 import ListingHeader from "src/sections/listing-page/listing-header";
@@ -57,6 +58,9 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }
               onFavoriteToggle={onFavoriteToggle}
             />
           )}
+
+          <Divider sx={{ borderStyle: 'dashed', mt: 3 }} />
+
         </Box>
       </Container>
     </Box>

@@ -226,13 +226,7 @@ export default function StoreView({ params }) {
 
   return (
     <>
-      <Container
-        maxWidth={false}
-        sx={{
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
-        }}
-      >
+
 
         {memoizedStoreData.storeLoading ? (
           <StoreHeroSkeleton />
@@ -240,7 +234,13 @@ export default function StoreView({ params }) {
           <StoreHero StoreData={storeData?.data}  favorites={favoritestore} onFavoriteToggle={handleFavoriteTogglestore}/>
         )}
 
-
+      <Container
+        maxWidth={false}
+        sx={{
+          paddingLeft: { lg: '100px' },
+          paddingRight: { lg: '100px' },
+        }}
+      >
         <Stack
           direction="row"
           alignItems="center"
