@@ -168,7 +168,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                 }),
                 borderRadius: 3,
                 overflow: 'hidden',
-                height: '500px',
+                height: '550px',
                 display: { xs: 'none', sm: 'flex' }, // Hide on xs, show on sm and larger
 
                 alignItems: "center",

@@ -42,7 +42,7 @@ export default function ListingsCarousel({ tours, title }) {
 
     slideSpacing: '20px',
 
-    slidesToShow: { xs: 1.1, md: 4.1 },
+    slidesToShow: { xs: 1.4, md: 4.4 },
     slidesToScroll: { xs: 1, md: 3 },
 
 

@@ -18,6 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 import { useRouter } from 'src/routes/hooks';
 
+import Markdown from 'src/components/markdown';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
@@ -155,7 +156,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                         sx={{
                           height: 1,
                           objectFit: 'cover',
-                          width: { sm: 240 },
+                          width: { sm: 300 },
                           ...(vertical && {
                             width: { sm: 1 },
                           }),
@@ -206,6 +207,13 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                   </TextMaxLine>
                 </Link>
 
+
+                <TextMaxLine variant="h6" line={1}>
+
+
+                <Markdown content={description}  />
+
+                </TextMaxLine>
 
               </Stack>
             </Stack>
