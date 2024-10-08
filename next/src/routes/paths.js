@@ -52,6 +52,15 @@ export const paths = {
     job: `/service-page`,
 
   },
+
+
+  job: {
+    root: '/jobs',
+    jobbs: '/jobs-list',
+    jobb: `/job-page`,
+
+  },
+
   // E-learning
   eLearning: {
     root: '/business',

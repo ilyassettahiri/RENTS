@@ -198,6 +198,10 @@ export const navConfig = [
   { title: 'Home', path: '/' },
 
   { title: 'Services', path: paths.career.jobs },
+
+  { title: 'Jobs', path: paths.job.jobbs },
+
+
   { title: 'Business', path: paths.eLearning.courses },
   {
     title: 'Categories',
