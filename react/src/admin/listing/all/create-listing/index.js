@@ -81,6 +81,8 @@ import Powertools from 'admin/listing/all/create-listing/components/ListingDetai
 import Pressurewashers from 'admin/listing/all/create-listing/components/ListingDetail/Pressurewashers';
 
 import Services from 'admin/listing/all/create-listing/components/ListingDetail/Services';
+import Jobs from 'admin/listing/all/create-listing/components/ListingDetail/Jobs';
+
 
 import Boats from 'admin/listing/all/create-listing/components/ListingDetail/Boats';
 import Camions from 'admin/listing/all/create-listing/components/ListingDetail/Camions';
@@ -141,6 +143,8 @@ const MechanicaltoolsIcon = `${imagePath}/categories/Mechanicaltools.svg`;
 const PowertoolsIcon = `${imagePath}/categories/Powertools.svg`;
 const PressurewashersIcon = `${imagePath}/categories/Pressurewashers.svg`;
 const ServicesIcon = `${imagePath}/categories/Services.svg`;
+const JobsIcon = `${imagePath}/categoryicons/services/education.svg`;
+
 const BoatsIcon = `${imagePath}/categories/Boats.svg`;
 const CamionsIcon = `${imagePath}/categories/Camions.svg`;
 const CaravansIcon = `${imagePath}/categories/Caravans.svg`;
@@ -197,6 +201,8 @@ export {
   PowertoolsIcon,
   PressurewashersIcon,
   ServicesIcon,
+  JobsIcon,
+
   BoatsIcon,
   CamionsIcon,
   CaravansIcon,
@@ -260,6 +266,8 @@ function getCategory(
   updatePowertoolsData,
   updatePressurewashersData,
   updateServicesData,
+  updateJobsData,
+
   updateBoatsData,
   updateCamionsData,
   updateCaravansData,
@@ -360,6 +368,8 @@ function getCategory(
       return <Pressurewashers onDataChange={updatePressurewashersData} />;
     case 'services':
       return <Services onDataChange={updateServicesData} />;
+    case 'jobs':
+        return <Jobs onDataChange={updateJobsData} />;
     case 'boats':
       return <Boats onDataChange={updateBoatsData} />;
     case 'camions':
@@ -1005,6 +1015,25 @@ function CreateListing() {
 
     });
 
+
+    const [jobsData, setJobsData] = useState({
+      languages: [],
+      experience: '',
+      employmentType: '',
+      salary: '',
+      skills: [],
+      responsibilities: [],
+      
+      benefits: [],
+
+      
+      requirements: [],
+      
+      moreDetails: [],
+
+    });
+
+
     const [sonorisationsData, setSonorisationsData] = useState({
       brand: '',
       size: '',
@@ -1525,6 +1554,14 @@ function CreateListing() {
       [field]: value
     }));
   };
+
+
+  const updateJobsData = (field, value) => {
+    setJobsData(prevData => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
   
   const updateBoatsData = (field, value) => {
     setBoatsData(prevData => ({
@@ -1877,6 +1914,12 @@ function CreateListing() {
           formData.append(`data[attributes][services][${key}]`, servicesData[key]);
         });
         break;
+
+      case 'jobs':
+          Object.keys(jobsData).forEach(key => {
+            formData.append(`data[attributes][jobs][${key}]`, jobsData[key]);
+          });
+          break;
       case 'boats':
         Object.keys(boatsData).forEach(key => {
           formData.append(`data[attributes][boats][${key}]`, boatsData[key]);
@@ -1997,6 +2040,8 @@ function CreateListing() {
                             { value: "terrains", label: "terrains", icon: TerrainsIcon },
                             { value: "villas", label: "villas", icon: VillasIcon },
                             { value: "services", label: "services", icon: ServicesIcon },
+                            { value: "jobs", label: "jobs", icon: JobsIcon },
+
                             { value: "audios", label: "audios", icon: AudiosIcon },
                             { value: "cameras", label: "cameras", icon: CamerasIcon },
                             { value: "chargers", label: "chargers", icon: ChargersIcon },
@@ -2150,6 +2195,8 @@ function CreateListing() {
                       updatePowertoolsData,
                       updatePressurewashersData,
                       updateServicesData,
+                      updateJobsData,
+
                       updateBoatsData,
                       updateCamionsData,
                       updateCaravansData,

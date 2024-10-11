@@ -320,12 +320,11 @@ class UploadController extends Controller
 
 
 
-
-            $request->validate([
-                'attachmentpicture' => 'required|image|max:6048',
-                'attachmentprofile' => 'required|image|max:6048',
-
-            ]);
+        // Validate only if the fields are present in the request
+        $request->validate([
+            'attachmentpicture' => 'nullable|image|max:60048', // Validate only if attachmentpicture is present
+            'attachmentprofile' => 'nullable|image|max:60048', // Validate only if attachmentprofile is present
+        ]);
 
 
 

@@ -94,6 +94,7 @@ import Powertools from 'admin/listing/all/create-listing/components/ListingDetai
 import Pressurewashers from 'admin/listing/all/create-listing/components/ListingDetail/Pressurewashers';
 
 import Services from 'admin/listing/all/create-listing/components/ListingDetail/Services';
+import Jobs from 'admin/listing/all/create-listing/components/ListingDetail/Jobs';
 
 import Boats from 'admin/listing/all/create-listing/components/ListingDetail/Boats';
 import Camions from 'admin/listing/all/create-listing/components/ListingDetail/Camions';
@@ -154,6 +155,8 @@ const MechanicaltoolsIcon = `${imagePath}/categories/Mechanicaltools.svg`;
 const PowertoolsIcon = `${imagePath}/categories/Powertools.svg`;
 const PressurewashersIcon = `${imagePath}/categories/Pressurewashers.svg`;
 const ServicesIcon = `${imagePath}/categories/Services.svg`;
+const JobsIcon = `${imagePath}/categoryicons/services/education.svg`;
+
 const BoatsIcon = `${imagePath}/categories/Boats.svg`;
 const CamionsIcon = `${imagePath}/categories/Camions.svg`;
 const CaravansIcon = `${imagePath}/categories/Caravans.svg`;
@@ -210,6 +213,8 @@ export {
   PowertoolsIcon,
   PressurewashersIcon,
   ServicesIcon,
+  JobsIcon,
+
   BoatsIcon,
   CamionsIcon,
   CaravansIcon,
@@ -273,6 +278,8 @@ function getCategory(
   updatePowertoolsData,
   updatePressurewashersData,
   updateServicesData,
+  updateJobsData,
+
   updateBoatsData,
   updateCamionsData,
   updateCaravansData,
@@ -330,6 +337,8 @@ function getCategory(
   powertoolsData,
   pressurewashersData,
   servicesData,
+  jobsData,
+
   boatsData,
   camionsData,
   caravansData,
@@ -431,6 +440,10 @@ function getCategory(
       return <Pressurewashers onDataChange={updatePressurewashersData} initialState={pressurewashersData} isOpen={true}/>;
     case 'services':
       return <Services onDataChange={updateServicesData} initialState={servicesData} isOpen={true}/>;
+
+    case 'jobs':
+        return <Jobs onDataChange={updateJobsData} initialState={jobsData} isOpen={true}/>;
+  
     case 'boats':
       return <Boats onDataChange={updateBoatsData} initialState={boatsData} isOpen={true}/>;
     case 'camions':
@@ -501,11 +514,13 @@ function EditListing() {
   const clickOpenHandler = (category, url) => {
     const baseUrl = category === 'services' 
       ? `https://rents.ma/service-page/${url}`  // URL for services category
+      : category === 'jobs'
+      ? `https://rents.ma/job-page/${url}`  // URL for jobs category
       : `https://rents.ma/listing-page/${category}/${url}`;  // Default URL for other categories
-    
+  
     window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };
-
+  
 
 
   const [billiardsData, setBilliardsData] = useState({
@@ -1115,6 +1130,24 @@ function EditListing() {
 
   });
 
+  const [jobsData, setJobsData] = useState({
+    languages: [],
+    experience: '',
+    employmentType: '',
+    salary: '',
+    skills: [],
+    responsibilities: [],
+    
+    benefits: [],
+
+    
+    requirements: [],
+    
+    moreDetails: [],
+
+  });
+
+
   const [sonorisationsData, setSonorisationsData] = useState({
     brand: '',
     size: '',
@@ -1592,6 +1625,13 @@ function EditListing() {
             setServicesData(services);
             break;
           }
+
+          case 'jobs': {
+            const { jobs } = data;
+            setJobsData(jobs);
+            break;
+          }
+
           case 'boats': {
             const { boats } = data;
             console.log("Fetched boats:", boats);
@@ -1969,6 +2009,13 @@ function EditListing() {
       [field]: value
     }));
   };
+
+  const updateJobsData = (field, value) => {
+    setJobsData(prevData => ({
+      ...prevData,
+      [field]: value
+    }));
+  };
   
   const updateBoatsData = (field, value) => {
     setBoatsData(prevData => ({
@@ -2312,6 +2359,12 @@ function EditListing() {
           formData.append(`data[attributes][services][${key}]`, servicesData[key]);
         });
         break;
+
+      case 'jobs':
+          Object.keys(jobsData).forEach(key => {
+            formData.append(`data[attributes][jobs][${key}]`, jobsData[key]);
+          });
+          break;
       case 'boats':
         Object.keys(boatsData).forEach(key => {
           formData.append(`data[attributes][boats][${key}]`, boatsData[key]);
@@ -2473,6 +2526,8 @@ function EditListing() {
         ...(selectedCategory === 'powertools' && { powertools: powertoolsData }),
         ...(selectedCategory === 'pressurewashers' && { pressurewashers: pressurewashersData }),
         ...(selectedCategory === 'services' && { services: servicesData }),
+        ...(selectedCategory === 'jobs' && { jobs: jobsData }),
+
         ...(selectedCategory === 'boats' && { boats: boatsData }),
         ...(selectedCategory === 'camions' && { camions: camionsData }),
         ...(selectedCategory === 'caravans' && { caravans: caravansData }),
@@ -2622,6 +2677,8 @@ function EditListing() {
                                         { value: "terrains", label: "terrains", icon: TerrainsIcon },
                                         { value: "villas", label: "villas", icon: VillasIcon },
                                         { value: "services", label: "services", icon: ServicesIcon },
+                                        { value: "jobs", label: "jobs", icon: JobsIcon },
+
                                         { value: "audios", label: "audios", icon: AudiosIcon },
                                         { value: "cameras", label: "cameras", icon: CamerasIcon },
                                         { value: "chargers", label: "chargers", icon: ChargersIcon },
@@ -2774,6 +2831,8 @@ function EditListing() {
                                   updatePowertoolsData,
                                   updatePressurewashersData,
                                   updateServicesData,
+                                  updateJobsData,
+
                                   updateBoatsData,
                                   updateCamionsData,
                                   updateCaravansData,
@@ -2830,6 +2889,8 @@ function EditListing() {
                                   powertoolsData,
                                   pressurewashersData,
                                   servicesData,
+                                  jobsData,
+
                                   boatsData,
                                   camionsData,
                                   caravansData,

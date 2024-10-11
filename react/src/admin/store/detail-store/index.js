@@ -182,18 +182,30 @@ function DetailStore() {
 
   
       
-  
-        // Upload the picture separately if present
-        if (backgroundImage) {
-          const formData = new FormData();
-          formData.append('attachmentpicture', backgroundImage);
-          formData.append('attachmentprofile', profileImage);
+        // Create a new FormData object if either image has changed.
+        const formData = new FormData();
 
-    
-          const pictureUploadResponse = await CrudService.imageUploadStore(formData);
-          pictureUrl = pictureUploadResponse.picturerelativePath;
-          profileUrl = pictureUploadResponse.profil_picturerelativePath;
-          
+        // Check if `backgroundImage` is a file object (indicating it has been changed) and append it if so.
+        if (backgroundImage && typeof backgroundImage === 'object') {
+          formData.append('attachmentpicture', backgroundImage);
+        }
+
+        // Check if `profileImage` is a file object (indicating it has been changed) and append it if so.
+        if (profileImage && typeof profileImage === 'object') {
+          formData.append('attachmentprofile', profileImage);
+        }
+
+        // If at least one image has changed, upload the images.
+        if (formData.has('attachmentpicture') || formData.has('attachmentprofile')) {
+          const uploadResponse = await CrudService.imageUploadStore(formData);
+
+          // Update the URLs only if new images were uploaded
+          if (formData.has('attachmentpicture') && uploadResponse.picturerelativePath) {
+            pictureUrl = uploadResponse.picturerelativePath;
+          }
+          if (formData.has('attachmentprofile') && uploadResponse.profil_picturerelativePath) {
+            profileUrl = uploadResponse.profil_picturerelativePath;
+          }
         }
 
 

@@ -23,6 +23,8 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 use App\Models\Listing;
 
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 use App\Models\Billiard;
 use App\Models\Boxing;

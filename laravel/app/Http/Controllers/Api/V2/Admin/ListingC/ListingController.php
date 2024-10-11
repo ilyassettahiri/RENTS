@@ -47,6 +47,8 @@ use App\Models\Tennis  ;
 
 
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 
 use App\Models\Audio  ;

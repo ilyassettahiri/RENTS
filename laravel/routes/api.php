@@ -127,6 +127,14 @@ use App\Http\Controllers\Api\V2\Front\ServiceC\SearchServiceController;
 use App\Http\Controllers\Api\V2\Front\ServiceC\ServiceController;
 use App\Http\Controllers\Api\V2\Front\ServicePageC\DetailServicePageController;
 use App\Http\Controllers\Api\V2\Front\ServicePageC\ServicePageController;
+
+use App\Http\Controllers\Api\V2\Front\JobC\DetailJobController;
+use App\Http\Controllers\Api\V2\Front\JobC\SearchJobController;
+use App\Http\Controllers\Api\V2\Front\JobC\JobController;
+use App\Http\Controllers\Api\V2\Front\JobPageC\DetailJobPageController;
+use App\Http\Controllers\Api\V2\Front\JobPageC\JobPageController;
+
+
 use App\Http\Controllers\Api\V2\Front\StoreC\DetailStoreController;
 use App\Http\Controllers\Api\V2\Front\StoreC\StoreController;
 use App\Http\Controllers\Api\V2\Front\TermConditionC\DetailTermConditionController;
@@ -278,6 +286,9 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     $server->resource('services', ServiceController::class);
 
+    $server->resource('jobs', JobController::class);
+
+
     $server->resource('servicepages', ServicePageController::class);
 
     $server->resource('stores', StoreController::class);
@@ -360,10 +371,16 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::get('service/search', [SearchServiceController::class, 'getSearchServiceListings']);
 
+    Route::get('job/search', [SearchJobController::class, 'getSearchJobListings']);
+
+
     Route::get('business/search', [SearchBusinessController::class, 'getSearchBusinessListings']);
 
 
     Route::get('service', [ServiceController::class, 'index']);
+
+    Route::get('job', [JobController::class, 'index']);
+
 
     Route::get('business', [BusinessController::class, 'index']);
 
@@ -426,6 +443,10 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::get('servicepic/{url}', [ServicepageController::class, 'getServicepic']);
 
+    // Job page
+    Route::get('jobs/{url}', [JobpageController::class, 'getJob']);
+
+    Route::get('jobpic/{url}', [JobpageController::class, 'getJobpic']);
 
 
     // Reservation Front

@@ -81,6 +81,8 @@ use App\JsonApi\V2\Riads\RiadSchema;
 use App\JsonApi\V2\Routers\RouterSchema;
 use App\JsonApi\V2\Scooters\ScooterSchema;
 use App\JsonApi\V2\Services\ServiceSchema;
+use App\JsonApi\V2\Jobs\JobSchema;
+
 use App\JsonApi\V2\Sonorisations\SonorisationSchema;
 use App\JsonApi\V2\Surfs\SurfSchema;
 use App\JsonApi\V2\Tablettes\TabletteSchema;
@@ -305,6 +307,8 @@ class Server extends BaseServer
             RouterSchema::class,
             ScooterSchema::class,
             ServiceSchema::class,
+            JobSchema::class,
+
             SonorisationSchema::class,
             SurfSchema::class,
             TabletteSchema::class,
