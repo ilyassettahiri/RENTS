@@ -93,6 +93,8 @@ use App\Models\Pressurewasher  ;
 
 use App\Models\Service  ;
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 
 use App\Models\Boat  ;
@@ -183,7 +185,7 @@ class SearchJobController extends JsonApiController
 
 
 
-    public function getSearchServiceListings(Request $request)
+    public function getSearchJobListings(Request $request)
     {
 
 
@@ -200,9 +202,9 @@ class SearchJobController extends JsonApiController
             $favorites = Favorite::where('user_id', $authuser->id)->get();
 
             // Create an array of objects containing the category 'services' and the corresponding service IDs
-            $favoriteIds = $favorites->pluck('service_id')->filter()->map(function ($serviceId) {
+            $favoriteIds = $favorites->pluck('job_id')->filter()->map(function ($serviceId) {
                 return [
-                    'category' => 'services', // Hardcode 'services' as the category
+                    'category' => 'jobs', // Hardcode 'services' as the category
                     'id' => $serviceId,       // The ID of the service
                 ];
             })->values()->toArray(); // Use values() to reindex the array correctly
@@ -224,7 +226,7 @@ class SearchJobController extends JsonApiController
 
 
 
-            $query = Service::query();
+            $query = Job::query();
 
 
 
@@ -254,7 +256,7 @@ class SearchJobController extends JsonApiController
 
 
                 return [
-                    'type' => 'services',
+                    'type' => 'jobs',
                     'id' => $service->id,
                     'attributes' => [
                         'title' => $service->title,
@@ -266,12 +268,12 @@ class SearchJobController extends JsonApiController
                         'averageRating' => $averageRating, // Include average rating
 
 
-                        'category' => 'services',
+                        'category' => 'jobs',
                         'url' => $service->url,
                         'created_at' => $service->created_at,
                         'picture' => $service->picture,
 
-                        'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
+                        'images' => Jobsimg::where('job_id', $service->id)->get()->map(function ($image) {
                             return [
 
                                 'picturesmall' => $image->picturesmall,
@@ -317,7 +319,7 @@ class SearchJobController extends JsonApiController
         } else {
 
 
-            $query = Service::query();
+            $query = Job::query();
 
             if ($request->has('searchLocation') && $request->input('searchLocation') !== '' && $request->input('searchLocation') !== 'null') {
                 $query->where(function($q) use ($request) {
@@ -346,7 +348,7 @@ class SearchJobController extends JsonApiController
 
 
                 return [
-                    'type' => 'services',
+                    'type' => 'jobs',
                     'id' => $service->id,
                     'attributes' => [
                         'title' => $service->title,
@@ -358,7 +360,7 @@ class SearchJobController extends JsonApiController
                         'averageRating' => $averageRating, // Include average rating
 
 
-                        'category' => 'services',
+                        'category' => 'jobs',
                         'url' => $service->url,
                         'created_at' => $service->created_at,
                         'picture' => $service->picture,

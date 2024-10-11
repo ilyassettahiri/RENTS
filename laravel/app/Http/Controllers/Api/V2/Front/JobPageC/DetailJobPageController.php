@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 use App\Models\Listing;
 use App\Models\Collection;

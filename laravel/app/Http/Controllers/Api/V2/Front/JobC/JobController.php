@@ -17,6 +17,8 @@ use App\Models\Servicesimg;
 
 use App\Models\Onlinestore;
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 use App\Models\Listing;
 
@@ -47,7 +49,7 @@ class JobController extends JsonApiController
 
 
 
-        $services = Service::orderBy('created_at', 'desc')->get();
+        $services = Job::orderBy('created_at', 'desc')->get();
 
 
         $authuser = Auth::user();
@@ -58,7 +60,7 @@ class JobController extends JsonApiController
             $favorites = Favorite::where('user_id', $authuser->id)->get();
 
             // Create an array of objects containing the category 'services' and the corresponding service IDs
-            $favoriteIds = $favorites->pluck('service_id')->filter()->map(function ($serviceId) {
+            $favoriteIds = $favorites->pluck('job_id')->filter()->map(function ($serviceId) {
                 return [
                     'category' => 'services', // Hardcode 'services' as the category
                     'id' => $serviceId,       // The ID of the service
@@ -83,7 +85,7 @@ class JobController extends JsonApiController
             $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 0;
 
             return [
-                'type' => 'services',
+                'type' => 'jobs',
                 'id' => $service->id,
                 'attributes' => [
                     'title' => $service->title,
@@ -96,7 +98,7 @@ class JobController extends JsonApiController
                     'averageRating' => $averageRating, // Include average rating
 
 
-                    'category' => 'services',
+                    'category' => 'jobs',
                     'url' => $service->url,
                     'created_at' => $service->created_at,
                     'picture' => $service->picture,

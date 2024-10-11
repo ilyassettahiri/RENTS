@@ -45,7 +45,7 @@ export default function JobPageView({ params }) {
 
   const { data: serviceData, isLoading: isServiceLoading, error: serviceError } = useQuery({
     queryKey: ['service', url],
-    queryFn: () => CrudService.getService(url),
+    queryFn: () => CrudService.getJob(url),
     onError: (error) => {
       console.error('Failed to fetch service:', error);
     },

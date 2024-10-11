@@ -1121,7 +1121,7 @@ export default function JobsListView() {
   // Query for initial services
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
     queryKey: ['services'],
-    queryFn: () => CrudService.getSerice(),
+    queryFn: () => CrudService.getJobs(),
     onError: (error) => {
       console.error('Failed to fetch initial services:', error);
     },
@@ -1132,7 +1132,7 @@ export default function JobsListView() {
   // Query for search results
   const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
     queryKey: ['services', debouncedQuery],
-    queryFn: () => CrudService.getSearchServiceListings(debouncedQuery),
+    queryFn: () => CrudService.getSearchJobListings(debouncedQuery),
     enabled: !!debouncedQuery, // Only run query if debouncedQuery is not empty
     onError: (error) => {
       console.error('Failed to fetch search results:', error);

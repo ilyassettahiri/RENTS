@@ -2837,6 +2837,66 @@ class EditListingController extends Controller
 
 
 
+            case 'jobs':
+
+
+
+                                    $this->listingcategory = Job::where('url', $url)->first();
+
+                                    return response()->json([
+                                        'data' => [
+                                            'type' => $this->category,
+                                            'id' => $this->listingcategory->id,
+                                            'attributes' => [
+                                                'title' => $this->listingcategory->title,
+                                                'price' => $this->listingcategory->price,
+                                                'description' => $this->listingcategory->description,
+                                                'startdate' => $this->listingcategory->startdate,
+                                                'enddate' => $this->listingcategory->enddate,
+                                                'address' => $this->listingcategory->address,
+                                                'city' => $this->listingcategory->city,
+                                'status' => $this->listingcategory->status,
+                                                'country' => $this->listingcategory->country,
+                                                'id' => $this->listingcategory->id,
+                                                'url' => $this->listingcategory->url,
+                                                'created_at' => $this->listingcategory->created_at,
+
+
+                                                'jobs' => [
+                                                    'languages' => explode(', ', $this->listingcategory->language),
+                                                    'experience' => $this->listingcategory->experience_level,
+                                                    'employmentType' => $this->listingcategory->employment_type,
+                                                    'salary' => $this->listingcategory->salary,
+                                                    'skills' => explode(', ', $this->listingcategory->skills),
+                                                    'responsibilities' => explode(', ', $this->listingcategory->responsibilities),
+                                                    'benefits' => explode(', ', $this->listingcategory->benefits),
+                                                    'requirements' => explode(', ', $this->listingcategory->requirements),
+
+                                                    'moreDetails' => explode(', ', $this->listingcategory->more_details),
+                                                ],
+
+
+                                                'zip' => $this->listingcategory->zip,'listingid' => $id,
+                                                'category' => $this->category,
+                                                'images' => Jobsimg::where('job_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                                    return $image->picture;
+                                                }),
+                                            ],
+                                        ],
+                                    ]);
+
+
+
+
+
+                    break;
+
+
+
+
+
+
+
             case 'boats':
 
 

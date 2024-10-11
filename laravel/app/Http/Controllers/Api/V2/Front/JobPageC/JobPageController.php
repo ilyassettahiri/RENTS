@@ -31,6 +31,8 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 
 
@@ -190,7 +192,7 @@ class JobPageController extends JsonApiController
 {
 
 
-    public function getService(Request $request, $url)
+    public function getJob(Request $request, $url)
     {
 
         $authuser = Auth::user();
@@ -251,6 +253,8 @@ class JobPageController extends JsonApiController
             $powertool_ids = array_filter($favorites->pluck('powertool_id')->toArray());
             $pressurewasher_ids = array_filter($favorites->pluck('pressurewasher_id')->toArray());
             $service_ids = array_filter($favorites->pluck('service_id')->toArray());
+            $job_ids = array_filter($favorites->pluck('job_id')->toArray());
+
             $boat_ids = array_filter($favorites->pluck('boat_id')->toArray());
             $camion_ids = array_filter($favorites->pluck('camion_id')->toArray());
             $caravan_ids = array_filter($favorites->pluck('caravan_id')->toArray());
@@ -310,6 +314,8 @@ class JobPageController extends JsonApiController
                 $powertool_ids,
                 $pressurewasher_ids,
                 $service_ids,
+                $job_ids,
+
                 $boat_ids,
                 $camion_ids,
                 $caravan_ids,
@@ -328,14 +334,14 @@ class JobPageController extends JsonApiController
 
 
 
-        $service = Service::where('url', $url)->first();
+        $service = Job::where('url', $url)->first();
 
         $reservations = $service->reservation()->orderBy('reservationstart')->get();
         $reviewslistings = $service->review()->orderBy('created_at')->get();
         $user = User::where('id', $service->user_id)->first();
 
         $sellerlistings = $user->listing()
-        ->where('category', 'services') // Filter by category 'services'
+        ->where('category', 'jobs') // Filter by category 'services'
         ->orderBy('created_at', 'desc')  // Order by newest
         ->take(20)                       // Limit to 20 results
         ->get();
@@ -369,7 +375,7 @@ class JobPageController extends JsonApiController
 
                     'id' => $service->id,
 
-                    'category' => "services",
+                    'category' => "jobs",
 
 
 
@@ -436,7 +442,7 @@ class JobPageController extends JsonApiController
 
 
 
-                    'images' => Servicesimg::where('service_id', $service->id)->get()->map(function ($image) {
+                    'images' => Jobsimg::where('job_id', $service->id)->get()->map(function ($image) {
                         return $image->picture;
                     }),
 
@@ -485,10 +491,10 @@ class JobPageController extends JsonApiController
 
 
 
-                                    case 'services':
-                                        $service = Service::where('url', $listing->url)->first();
+                                    case 'jobs':
+                                        $service = Job::where('url', $listing->url)->first();
                                         if ($service) {
-                                            $listing->service_id = $service->id;
+                                            $listing->job_id = $service->id;
                                             $result['id'] = $service->id;
                                         }
                                         break;
@@ -548,7 +554,7 @@ class JobPageController extends JsonApiController
 
 
 
-                    'recentlistings' => Service::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
+                    'recentlistings' => Job::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
 
                         $user = User::where('id', $recentlisting->user_id)->first();
 
@@ -562,7 +568,7 @@ class JobPageController extends JsonApiController
                             'price' => $recentlisting->price,
                             'city' => $recentlisting->city,
                             'id' => $recentlisting->id,
-                            'category' => 'services',
+                            'category' => 'jobs',
                             'url' => $recentlisting->url,
                             'created_at' => $recentlisting->created_at->toIso8601String(),
                             'picture' => $recentlisting->picture,
@@ -623,10 +629,10 @@ class JobPageController extends JsonApiController
     }
 
 
-    public function getServicepic(Request $request, $url)
+    public function getJobpic(Request $request, $url)
     {
 
-        $listingCategory = Service::where('url', $url)->first();
+        $listingCategory = Job::where('url', $url)->first();
 
         $images = $listingCategory->servicesimg->map(function ($image) {
 

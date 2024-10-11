@@ -19,6 +19,9 @@ use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
+
 
 use App\Models\Listing;
 
@@ -2792,6 +2795,60 @@ class DetailListingController extends Controller
 
                 break;
 
+
+
+                case 'jobs':
+
+
+                    $this->listingcategory = Job::where('url', $url)->first();
+                                $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
+
+
+
+
+                                                return response()->json([
+                                                    'data' => [
+                                                        'type' => $this->category,
+                                                        'id' => $this->listingcategory->id,
+                                                        'attributes' => [
+                                                            'title' => $this->listingcategory->title,
+                                                            'price' => $this->listingcategory->price,
+                                                            'description' => $this->listingcategory->description,
+                                                            'startdate' => $this->listingcategory->startdate,
+                                                            'enddate' => $this->listingcategory->enddate,
+                                                            'address' => $this->listingcategory->address,
+                                                            'city' => $this->listingcategory->city,
+                                                            'country' => $this->listingcategory->country,
+                                                            'created_at' => $this->listingcategory->created_at,
+                                                            'status' => $this->listingcategory->status,
+                                                            'url' => $this->listingcategory->url,
+                                                            'id' => $this->listingcategory->id,
+
+                                                            'zip' => $this->listingcategory->zip,
+                                                            'category' => $this->category,
+                                                            'reservations' => $this->reservations->map(function ($reservation) {
+                                                                return [
+                                                                    'start' => $reservation->reservationstart,
+                                                                    'end' => $reservation->reservationsend, 'id' => $reservation->id,
+                                                                    'name' => $reservation->name,  // Include reservation name
+
+                                                                ];
+                                                            }),
+
+
+
+                                                            'images' => Jobsimg::where('job_id', $this->listingcategory->id)->get()->map(function ($image) {
+                                                                return $image->picture;
+                                                            }),
+                                                        ],
+                                                    ],
+                                                ]);
+
+
+
+
+
+                    break;
 
 
 

@@ -182,6 +182,15 @@ class CrudService {
     };
 
 
+
+        // Service requests
+        getJobs = async () => {
+          const serviceEndpoint = "job";
+          return HttpService.get(serviceEndpoint);
+        };
+
+
+
     // Business requests
     getBusiness = async () => {
       const businessEndpoint = "business";
@@ -333,6 +342,19 @@ class CrudService {
       return HttpService.get(serviceEndpoint);
     };
 
+
+
+              // Service Page requests
+              getJob = async (url) => {
+                const serviceEndpoint = `jobs/${url}`;
+                return HttpService.get(serviceEndpoint);
+              };
+
+
+              getJobpic = async (url) => {
+                const serviceEndpoint = `jobpic/${url}`;
+                return HttpService.get(serviceEndpoint);
+              };
 
 
 

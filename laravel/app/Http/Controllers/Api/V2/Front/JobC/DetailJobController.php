@@ -17,7 +17,8 @@ use App\Enums\ItemStatus;
 
 
 use App\Models\Listing;
-use App\Models\Job;
+use App\Models\Job  ;
+use App\Models\Jobsimg  ;
 
 
 use LaravelJsonApi\Contracts\Store\Store;

@@ -3672,6 +3672,75 @@ class ListingController extends JsonApiController
 
 
 
+            case 'jobs':
+
+
+
+                    $jobsData = $request->input('data.attributes.jobs');
+
+
+
+                                    $service = new Job();
+                                    $service->user_id = $user->id;
+                                    $service->onlinestore_id = $onlinestore_id;
+
+                                    $service->title = $title;
+                                    $service->price = $price;
+
+                                    $service->phone = $phone;
+
+                                    $service->address = $address;
+                                    $service->city = $city;
+                                    $service->country = $country;
+                                    $service->zip = $zip;
+                                    $service->description = $description;
+                                    $service->url = $url;
+                                    $service->picture = $thumb;
+                                    $service->startdate  = $startdate ;
+                                    $service->enddate = $enddate;
+                                    // Storing additional data from jobsData
+                                    $service->language = is_array($jobsData['languages']) ? implode(', ', $jobsData['languages']) : $jobsData['languages'];
+                                    $service->experience_level = $jobsData['experience'] ?? null;
+                                    $service->employment_type = $jobsData['employmentType'] ?? null;
+
+                                    $service->skills = is_array($jobsData['skills']) ? implode(', ', $jobsData['skills']) : $jobsData['skills'];
+                                    $service->salary = $jobsData['salary'] ?? null;
+                                    $service->responsibilities = is_array($jobsData['responsibilities']) ? implode(', ', $jobsData['responsibilities']) : $jobsData['responsibilities'];
+
+                                    $service->benefits = is_array($jobsData['benefits']) ? implode(', ', $jobsData['benefits']) : $jobsData['benefits'];
+
+                                    $service->requirements = is_array($jobsData['requirements']) ? implode(', ', $jobsData['requirements']) : $jobsData['requirements'];
+
+                                    $service->more_details = is_array($jobsData['moreDetails']) ? implode(', ', $jobsData['moreDetails']) : $jobsData['moreDetails'];
+
+
+
+                                    $service->save();
+
+
+
+
+
+                                    foreach ($imagePathslarge as $index => $largePath) {
+
+                                        $smallPath = $imagePathssmall[$index];
+                                        $xlargePath = $imagePathsxlarge[$index];
+
+
+                                        $servicesimg = new Jobsimg();
+                                        $servicesimg->job_id = $service->id;
+                                        $servicesimg->picture = $largePath;
+                                        $servicesimg->picturesmall = $smallPath;
+                                        $servicesimg->picturesxlarge = $xlargePath;
+                                        $servicesimg->save();
+                                    }
+
+
+
+                    break;
+
+
+
 
 
             case 'boats':
@@ -7741,7 +7810,6 @@ class ListingController extends JsonApiController
 
 
                 $servicesData = $request->input('attributes.services');
-                Log::info('Services Data:', $servicesData);
 
 
                 $service = Service::where('url', $oldurl)->first();
@@ -7807,6 +7875,80 @@ class ListingController extends JsonApiController
 
                 break;
 
+
+
+            case 'jobs':
+
+
+
+
+                $jobsData = $request->input('attributes.jobs');
+
+
+                $service = Job::where('url', $oldurl)->first();
+
+                                $service->user_id = $user->id;
+                                $service->onlinestore_id = $onlinestore_id;
+
+                                $service->title = $title;
+                                $service->price = $price;
+
+                                $service->phone = $phone;
+
+                                $service->address = $address;
+                                $service->city = $city;
+                                $service->country = $country;
+                                $service->zip = $zip;
+                                $service->description = $description;
+                                $service->url = $url;
+                                $service->picture = $thumb;
+                                $service->startdate  = $startdate ;
+                                $service->enddate = $enddate;
+                                // Storing additional data from jobsData
+
+                                $service->language = is_array($jobsData['languages']) ? implode(', ', $jobsData['languages']) : $jobsData['languages'];
+                                $service->experience_level = $jobsData['experience'] ?? null;
+                                $service->employment_type = $jobsData['employmentType'] ?? null;
+
+                                $service->skills = is_array($jobsData['skills']) ? implode(', ', $jobsData['skills']) : $jobsData['skills'];
+                                $service->salary = $jobsData['salary'] ?? null;
+                                $service->responsibilities = is_array($jobsData['responsibilities']) ? implode(', ', $jobsData['responsibilities']) : $jobsData['responsibilities'];
+
+                                $service->benefits = is_array($jobsData['benefits']) ? implode(', ', $jobsData['benefits']) : $jobsData['benefits'];
+
+                                $service->requirements = is_array($jobsData['requirements']) ? implode(', ', $jobsData['requirements']) : $jobsData['requirements'];
+
+                                $service->more_details = is_array($jobsData['moreDetails']) ? implode(', ', $jobsData['moreDetails']) : $jobsData['moreDetails'];
+
+
+
+
+                                $service->save();
+
+                                Jobsimg::where('job_id', $service->id)->delete();
+
+
+
+
+
+                                foreach ($imagePathslarge as $index => $largePath) {
+
+                                    $smallPath = $imagePathssmall[$index];
+                                    $xlargePath = $imagePathsxlarge[$index];
+
+
+                                    $servicesimg = new Jobsimg();
+                                    $servicesimg->job_id = $service->id;
+                                    $servicesimg->picture = $largePath;
+                                    $servicesimg->picturesmall = $smallPath;
+                                    $servicesimg->picturesxlarge = $xlargePath;
+                                    $servicesimg->save();
+                                }
+
+
+
+
+                break;
 
 
 
