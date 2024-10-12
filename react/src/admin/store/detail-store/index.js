@@ -483,7 +483,7 @@ function DetailStore() {
 
 
 
-                      <Card sx={{ overflow: "visible", mt: 2 }}>
+                      <Card sx={{ overflow: "visible", }}>
                         <SoftBox mb={3} sx={{ p: 2 }} >
                           <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                             <SoftTypography

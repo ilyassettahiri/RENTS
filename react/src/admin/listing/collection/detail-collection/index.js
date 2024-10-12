@@ -296,10 +296,10 @@ const DetailCollection = () => {
         <Grid container spacing={3}>
 
 
-          <Grid item xs={12} lg={8}>
+          <Grid item xs={12} lg={8} component="form" method="POST" onSubmit={submitHandler}>
             <Card>
-              <SoftBox component="form" method="POST" onSubmit={submitHandler}>
-                <SoftBox display="flex" flexDirection="column" px={3} my={2}>
+              <SoftBox >
+                <SoftBox display="flex" flexDirection="column" p={3} >
                   <SoftBox p={1}>
                     <FormField
                       type="text"
@@ -331,6 +331,11 @@ const DetailCollection = () => {
                       </SoftTypography>
                     )}
                   </SoftBox>
+
+                </SoftBox>
+              </SoftBox>
+            </Card>
+
                   <SoftBox ml="auto" mt={4} mb={2} display="flex" justifyContent="flex-end">
                     <SoftBox mx={2}>
                       <SoftButton
@@ -352,11 +357,6 @@ const DetailCollection = () => {
                       Save
                     </SoftButton>
                   </SoftBox>
-                </SoftBox>
-              </SoftBox>
-            </Card>
-
-
 
 
             <Card sx={{ mt:5 }}>
