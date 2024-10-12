@@ -248,7 +248,7 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-              Country
+              Country <span style={{ color: "red",}}> * </span>
             </SoftTypography>
             <SoftSelect
               label="Country"

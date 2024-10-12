@@ -317,13 +317,11 @@ const DetailCollection = () => {
                   </SoftBox>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                      <SoftTypography
-                        component="label"
-                        variant="button"
-                        fontWeight="regular"
-                        color="text"
-                      >
-                        Description&nbsp;&nbsp;
+                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                        Description
+
+                        <span style={{ color: "red",}}> * </span>
+
                       </SoftTypography>
                     </SoftBox>
                     <SoftEditor value={description} onChange={setDescription} />
@@ -392,9 +390,13 @@ const DetailCollection = () => {
               <SoftBox mb={3}>
                 <Card sx={{ overflow: "visible" }}>
                   <SoftBox p={1}>
-                    <SoftTypography variant="h6" fontWeight="bold">
+                    <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                       Image
+                      <span style={{ color: "red" }}> * </span>
+                        (JPEG, PNG, GIF, WEBP, TIFF. Max: 6MB)
+                        
                     </SoftTypography>
+
 
                     <SoftBox
                       sx={{

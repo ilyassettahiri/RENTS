@@ -170,8 +170,7 @@ function CreateStore() {
             />
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
-                <SoftTypography variant="h5">Store Information</SoftTypography>
-                <SoftBox mt={3}>
+                <SoftBox >
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                       <SoftBox p={1}>
@@ -197,7 +196,7 @@ function CreateStore() {
 
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                            Type
+                            Type <span style={{ color: "red",}}> * </span>
                           </SoftTypography>
                         </SoftBox>
                         
@@ -279,7 +278,7 @@ function CreateStore() {
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                       <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                        Description&nbsp;&nbsp;
+                        Description <span style={{ color: "red",}}> * </span>
                       </SoftTypography>
                     </SoftBox>
                     <SoftEditor value={description} onChange={setDescription} />

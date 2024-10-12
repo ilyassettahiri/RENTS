@@ -46,12 +46,52 @@ const CreateCollection = () => {
 
   const [picture, setPicture] = useState(null);
 
+  const [fileError, setFileError] = useState("");
+
+
+
   const changeNameHandler = (e) => {
-    setName({ ...name, text: e.target.value });
+    const newText = e.target.value;
+  
+    setName((prevName) => ({
+      ...prevName,
+      text: newText,
+      error: newText.trim().length === 0 ? prevName.error : false,
+      textError: newText.trim().length === 0 ? prevName.textError : "",
+    }));
   };
 
+  const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
+  const maxFileSize = 6 * 1024 * 1024; // 6 MB
+
+
   const changePictureHandler = (e) => {
-    setPicture(e.target.files[0]);
+    const file = e.target.files[0];
+  
+    // Check if a file is selected
+    if (!file) {
+      setFileError("Please select an image.");
+      setPicture(null); // Ensure no picture is set if no file is selected
+      return;
+    }
+  
+    // Check the file type
+    if (!acceptedTypes.includes(file.type)) {
+      setFileError("Only image files (JPEG, PNG, GIF, WEBP, TIFF) are allowed.");
+      setPicture(null); // Do not set the file if it is not a valid image
+      return;
+    }
+  
+    // Check the file size
+    if (file.size > maxFileSize) {
+      setFileError("Image must be less than 6MB.");
+      setPicture(null); // Do not set the file if it exceeds the size limit
+      return;
+    }
+  
+    // Clear any previous errors and set the picture
+    setFileError("");
+    setPicture(file);
   };
 
   const submitHandler = async (e) => {
@@ -65,6 +105,11 @@ const CreateCollection = () => {
     let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
     if (descNoTags.trim().length < 1) {
       setDescError(true);
+      return;
+    }
+
+    if (!picture) {
+      setFileError("Please select a valid image.");
       return;
     }
 
@@ -94,19 +139,21 @@ const CreateCollection = () => {
   return (
     <DashboardLayout>
       <SoftBox mt={5} mb={9}>
+
+
+
         <Grid container spacing={3}>
           <Grid item xs={12} lg={8}>
             <Card>
               <SoftBox component="form" method="POST" onSubmit={submitHandler} encType="multipart/form-data">
                 <SoftBox display="flex" flexDirection="column" px={3} my={2}>
-                  <SoftTypography variant="h5" fontWeight="bold">
-                    Create collection
-                  </SoftTypography>
-
+                  
                   <SoftBox p={1}>
                     <FormField
                       type="text"
                       label="Name"
+                      placeholder="Newest "
+
                       name="name"
                       value={name.text}
                       onChange={changeNameHandler}
@@ -120,16 +167,26 @@ const CreateCollection = () => {
                   </SoftBox>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
-                      <SoftTypography
-                        component="label"
-                        variant="button"
-                        fontWeight="regular"
-                        color="text"
-                      >
-                        Description&nbsp;&nbsp;
+                      <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                        Description
+
+                        <span style={{ color: "red",}}> * </span>
+
                       </SoftTypography>
                     </SoftBox>
-                    <SoftEditor value={description} onChange={setDescription} />
+                    <SoftEditor value={description} 
+                    
+                    
+                    onChange={(value) => {
+                      setDescription(value);
+
+                      // Remove error when description is not empty
+                      if (value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
+                        setDescError(false);
+                      }
+                    }}
+                    
+                    />
                     {descError && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
                         The Collection description is required
@@ -167,9 +224,12 @@ const CreateCollection = () => {
               <SoftBox mb={3}>
                 <Card sx={{ overflow: "visible" }}>
                   <SoftBox p={1}>
-                    <SoftTypography variant="h6" fontWeight="bold">
-                      Image
-                    </SoftTypography>
+                  <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                    Image
+                    <span style={{ color: "red" }}> * </span>
+                       (JPEG, PNG, GIF, WEBP, TIFF. Max: 6MB)
+                      
+                  </SoftTypography>
 
                     <SoftBox
                       sx={{
@@ -226,6 +286,13 @@ const CreateCollection = () => {
                       >
                         <EditIcon />
                       </IconButton>
+
+                      {fileError && (
+                        <SoftTypography variant="caption" color="error" fontWeight="light">
+                          {fileError}
+                        </SoftTypography>
+                      )}
+                      
                     </SoftBox>
                   </SoftBox>
                 </Card>

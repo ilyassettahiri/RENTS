@@ -2404,7 +2404,7 @@ function CreateListing() {
                   <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                     Images 
                     <span style={{ color: "red" }}> * </span>
-                       (Accepted formats: JPG, JPEG, PNG, GIF, WEBP, TIFF. Max size: 6MB)
+                       (JPG, JPEG, PNG, GIF, WEBP, TIFF. Max size: 6MB)
                       
                   </SoftTypography>
 

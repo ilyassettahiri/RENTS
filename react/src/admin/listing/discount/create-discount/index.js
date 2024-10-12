@@ -123,12 +123,12 @@ const CreateDiscount = () => {
           <Grid item xs={12} lg={10}>
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
-                <SoftTypography variant="h5">Create Discount</SoftTypography>
-                <SoftBox mt={4}>
+                
+                <SoftBox >
                   <Grid container spacing={3}>
                     <Grid item xs={12} sm={6}>
                       <SoftBox>
-                        <FormField placeholder ="discount code"
+                        <FormField placeholder ="EXAMPLE10"
                           type="text"
                           label="Code"
                           name="code"
@@ -146,7 +146,7 @@ const CreateDiscount = () => {
 
                     <Grid item xs={12} sm={6}>
                       <SoftBox>
-                        <FormField placeholder ="percentage"
+                        <FormField placeholder ="10%"
                           type="text"
                           label="Discount Value"
                           name="discountvalue"
@@ -175,7 +175,8 @@ const CreateDiscount = () => {
                             fontWeight="bold"
                             textTransform="capitalize"
                           >
-                            Applies to
+                            Applies to  <span style={{ color: "red",}}> * </span>
+
                           </SoftTypography>
                         </SoftBox>
                         <SoftSelect
@@ -196,7 +197,9 @@ const CreateDiscount = () => {
                       <Grid item xs={12}>
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold">
-                            Select Specific Collection
+                            Select Specific Collection 
+                            <span style={{ color: "red",}}> * </span>
+
                           </SoftTypography>
                         </SoftBox>
                         <SoftSelect
@@ -216,6 +219,8 @@ const CreateDiscount = () => {
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold">
                             Select Specific Product
+                            <span style={{ color: "red",}}> * </span>
+
                           </SoftTypography>
                         </SoftBox>
                         <SoftSelect
@@ -240,6 +245,8 @@ const CreateDiscount = () => {
                     textTransform="capitalize"
                   >
                     Minimum purchase requirements
+                    <span style={{ color: "red",}}> * </span>
+
                   </SoftTypography>
                 </SoftBox>
                 <SoftSelect
