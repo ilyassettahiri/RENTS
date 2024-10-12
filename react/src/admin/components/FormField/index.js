@@ -18,6 +18,8 @@ function FormField({ label, ...rest }) {
           textTransform="capitalize"
         >
           {label}
+          <span style={{ color: "red",}}> * </span>
+
         </SoftTypography>
       </SoftBox>
       <SoftInput {...rest} />

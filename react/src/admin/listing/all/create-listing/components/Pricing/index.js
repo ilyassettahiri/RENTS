@@ -12,7 +12,7 @@ import SoftSelect from "components/SoftSelect";
 // NewProduct page components
 import FormField from "admin/components/FormField";
 
-function Pricing({ pricing, onPricingChange, onSelectChange }) {
+function Pricing({ pricing, onPricingChange, onSelectChange, priceError, phoneError }) {
   return (
     <SoftBox>
       
@@ -26,7 +26,18 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
               name="price"
               value={pricing.price}
               onChange={onPricingChange}
+              error={priceError}
+
             />
+
+
+            {priceError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                Valid price is required
+              </SoftTypography>
+            )}
+
+
           </Grid>
           <Grid item xs={12} sm={4}>
             <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
@@ -52,7 +63,16 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
               name="phone"
               value={pricing.phone}
               onChange={onPricingChange}
+              error={phoneError}
+
             />
+
+            {phoneError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                Phone number is required
+              </SoftTypography>
+            )}
+
           </Grid>
         </Grid>
       </SoftBox>

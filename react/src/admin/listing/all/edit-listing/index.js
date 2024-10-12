@@ -1311,8 +1311,24 @@ function EditListing() {
   });
   
 
+  const [addressError, setAddressError] = useState(false);
+  const [cityError, setCityError] = useState(false);
+  const [zipError, setZipError] = useState(false);
+
+  const [priceError, setPriceError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
+
+
   const [selectedCategory, setSelectedCategory] = useState('');
+
+  const [categoryError, setCategoryError] = useState(false);
+
+
   const [selectedFiles, setSelectedFiles] = useState([]);
+  const [fileError, setFileError] = useState("");
+
+
 
   const [oldFiles, setOldFiles] = useState([]);
 
@@ -1323,39 +1339,105 @@ function EditListing() {
 
   const handlePricingChange = (e) => {
     setPricing({ ...pricing, [e.target.name]: e.target.value });
+
+
+          // Remove error when a valid price or phone is entered
+          if (e.target.name === "price" && e.target.value.trim().length > 0) {
+            setPriceError(false);
+          }
+          if (e.target.name === "phone" && e.target.value.trim().length > 0) {
+            setPhoneError(false);
+          }
+
   };
 
   const handleSelectChange = (name, value) => {
     setPricing({ ...pricing, [name]: value });
+
+
+          // Remove error when a valid price or phone is entered
+          if (name === "price" && value.trim().length > 0) {
+            setPriceError(false);
+          }
+
   };
 
 
   const handleAddressChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
+
+
+          // Remove error when a valid address, city, or zip is entered
+          if (e.target.name === "address" && e.target.value.trim().length > 0) {
+            setAddressError(false);
+          }
+          if (e.target.name === "city" && e.target.value.trim().length > 0) {
+            setCityError(false);
+          }
+          if (e.target.name === "zip" && e.target.value.trim().length > 0) {
+            setZipError(false);
+          }
+
   };
+
 
 
   const changeTitleHandler = (e) => {
-    setTitle({ ...title, text: e.target.value });
+    const newText = e.target.value;
+  
+    setTitle((prevTitle) => ({
+      ...prevTitle,
+      text: newText,
+      error: newText.trim().length === 0 ? prevTitle.error : false,
+      textError: newText.trim().length === 0 ? prevTitle.textError : "",
+    }));
   };
-
+  
  
   const handleCategoryChange = (selectedOption) => {
     setSelectedCategory(selectedOption.value);
+
+
+          // Remove error when a valid category is selected
+          if (selectedOption.value.trim().length > 0) {
+            setCategoryError(false);
+          }
+
   };
 
   const handleFilesChange = (files) => {
+    const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
+    
     // Extract old and new files from the object
     const { existingFiles, updatedSelectedFiles } = files;
   
-
-   
-
-    // Update the state for both old and new files
-    setOldFiles(existingFiles); // Update old files
+    // Ensure that at least one old or new file is selected
+    if (existingFiles.length === 0 && updatedSelectedFiles.length === 0) {
+      setFileError("Please select at least one image (old or new).");
+      setSelectedFiles([]); // Clear new selected files
+      return;
+    }
+  
+    // Validate only new selected files (updatedSelectedFiles)
+    for (let i = 0; i < updatedSelectedFiles.length; i++) {
+      const file = updatedSelectedFiles[i];
+  
+      // Check file type
+      if (!acceptedTypes.includes(file.type)) {
+        setFileError("Only image files (jpg, png, gif, tiff, webp) are allowed.");
+        setSelectedFiles([]); // Clear new selected files if validation fails
+        return;
+      }
+    }
+  
+    // Clear any existing file errors and update new files
+    setFileError("");
     setSelectedFiles(updatedSelectedFiles); // Update new selected files
+  
+    // Update the state for existing files
+    setOldFiles(existingFiles); // Update old files
   };
-
+  
 
   useEffect(() => {
     if (!id) return;
@@ -2088,11 +2170,22 @@ function EditListing() {
   };
   
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true);
+
+
+    if (selectedCategory.trim().length < 1) {
+      setCategoryError(true);
+      return;
+    }
+    setCategoryError(false); 
+  
 
     if (title.text.trim().length < 1) {
       setTitle({ ...title, error: true, textError: "The Title name is required" });
@@ -2106,6 +2199,43 @@ function EditListing() {
       setDescError(true);
       return;
     }
+
+    // Validate files
+    if (selectedFiles.length === 0) {
+      setFileError("Please select at least one image file.");
+     
+      return;
+    }
+  
+
+
+    // Validate address fields
+    if (address.address.trim().length < 1) {
+      setAddressError(true);
+      return;
+    }
+
+    if (address.city.trim().length < 1) {
+      setCityError(true);
+      return;
+    }
+
+    if (address.zip.trim().length < 1) {
+      setZipError(true);
+      return;
+    }
+
+    // Validate pricing fields
+    if (pricing.price.trim().length < 1 || isNaN(pricing.price)) {
+      setPriceError(true);
+      return;
+    }
+
+    if (pricing.phone.trim().length < 1) {
+      setPhoneError(true);
+      return;
+    }
+    
 
 
 
@@ -2558,6 +2688,9 @@ function EditListing() {
       console.error(err);
       // Handle error
     }
+
+    setIsSubmitting(false);
+
   };
 
 
@@ -2652,6 +2785,9 @@ function EditListing() {
                                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                                       <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                                         Category
+
+                                        <span style={{ color: "red",}}> * </span>
+
                                       </SoftTypography>
                                     </SoftBox>
                                     <SoftSelect
@@ -2721,7 +2857,17 @@ function EditListing() {
 
 
                                       onChange={handleCategoryChange}
+
+                                      error={categoryError}
+
                                     />
+
+                                      {categoryError && (
+                                        <SoftTypography variant="caption" color="error" fontWeight="light">
+                                          Please select a category
+                                        </SoftTypography>
+                                      )}
+
                                   </SoftBox>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
@@ -2748,13 +2894,30 @@ function EditListing() {
                               <SoftBox mt={2}>
                                 <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                                   <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                                    Description&nbsp;&nbsp;
+                                    Description 
+
+                                    <span style={{ color: "red",}}> * </span>
+
                                   </SoftTypography>
                                 </SoftBox>
-                                <SoftEditor value={description} onChange={setDescription} />
+                                <SoftEditor value={description} 
+
+
+                                    onChange={(value) => {
+                                      setDescription(value);
+
+                                      // Remove error when description is not empty
+                                      if (value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
+                                        setDescError(false);
+                                      }
+                                    }}
+                                
+                                
+                                
+                                />
                                 {descError && (
                                   <SoftTypography variant="caption" color="error" fontWeight="light">
-                                    The Collection description is required
+                                    The Description description is required
                                   </SoftTypography>
                                 )}
                               </SoftBox>
@@ -2765,6 +2928,9 @@ function EditListing() {
                                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                                       <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                                           Availability
+
+                                          <span style={{ color: "red",}}> * </span>
+
                                       </SoftTypography>
                                     </SoftBox>
                                     <SoftBox mt={2}>
@@ -2923,6 +3089,16 @@ function EditListing() {
                             <SoftBox >
                               
                               <CustomFileInput onFilesChange={handleFilesChange} oldFiles={oldFiles}/>
+
+
+                              {fileError && (
+                                <SoftTypography variant="caption" color="error" fontWeight="light">
+                                  {fileError}
+                                </SoftTypography>
+                              )}
+
+
+
                             </SoftBox>
                           </SoftBox>
                         </Card>
@@ -2932,12 +3108,21 @@ function EditListing() {
                           <SoftBox p={2}>
 
 
-                            <Address address={address} onAddressChange={handleAddressChange} />
+                            <Address address={address} onAddressChange={handleAddressChange} 
+                                            addressError={addressError} 
+                                            cityError={cityError} 
+                                            zipError={zipError} 
+                            
+                            />
                           </SoftBox>
                         </Card>
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
                           <SoftBox p={2}>
-                            <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
+                            <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} 
+                                            priceError={priceError} 
+                                            phoneError={phoneError} 
+                            
+                            />
                           </SoftBox>
                         </Card>
 
@@ -2990,8 +3175,14 @@ function EditListing() {
                                       {/* Only show the save button if the status has changed */}
                                       {selectedStatus !== initialStatus && (
                                         <SoftBox mb={2} display="flex" justifyContent="center">
-                                          <SoftButton onClick={handleSave} variant="gradient" color="info" size="small">
-                                            save
+                                          <SoftButton onClick={handleSave} variant="gradient" color="info" size="small"
+                                          
+                                          disabled={isSubmitting} // Disable the button when submitting
+
+
+                                          >
+                                                              {isSubmitting ? "Saving..." : "Save"} {/* Optional: show different text */}
+
                                           </SoftButton>
                                         </SoftBox>
                                       )}

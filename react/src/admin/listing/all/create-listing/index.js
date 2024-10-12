@@ -1202,41 +1202,131 @@ function CreateListing() {
     
   });
 
+
+  const [addressError, setAddressError] = useState(false);
+  const [cityError, setCityError] = useState(false);
+  const [zipError, setZipError] = useState(false);
+
+  const [priceError, setPriceError] = useState(false);
+  const [phoneError, setPhoneError] = useState(false);
+
+
+
   const [selectedCategory, setSelectedCategory] = useState('');
+
+  const [categoryError, setCategoryError] = useState(false);
+
+
   const [selectedFiles, setSelectedFiles] = useState([]);
+
+  const [fileError, setFileError] = useState("");
+
+
   const [description, setDescription] = useState("");
   const [descError, setDescError] = useState(false);
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
   const handlePricingChange = (e) => {
     setPricing({ ...pricing, [e.target.name]: e.target.value });
+
+      // Remove error when a valid price or phone is entered
+      if (e.target.name === "price" && e.target.value.trim().length > 0) {
+        setPriceError(false);
+      }
+      if (e.target.name === "phone" && e.target.value.trim().length > 0) {
+        setPhoneError(false);
+      }
+
   };
 
   const handleSelectChange = (name, value) => {
     setPricing({ ...pricing, [name]: value });
+
+      // Remove error when a valid price or phone is entered
+      if (name === "price" && value.trim().length > 0) {
+        setPriceError(false);
+      }
   };
 
 
   const handleAddressChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
+
+
+      // Remove error when a valid address, city, or zip is entered
+    if (e.target.name === "address" && e.target.value.trim().length > 0) {
+      setAddressError(false);
+    }
+    if (e.target.name === "city" && e.target.value.trim().length > 0) {
+      setCityError(false);
+    }
+    if (e.target.name === "zip" && e.target.value.trim().length > 0) {
+      setZipError(false);
+    }
+
+
   };
 
 
   const changeTitleHandler = (e) => {
-    setTitle({ ...title, text: e.target.value });
+    const newText = e.target.value;
+  
+    setTitle((prevTitle) => ({
+      ...prevTitle,
+      text: newText,
+      error: newText.trim().length === 0 ? prevTitle.error : false,
+      textError: newText.trim().length === 0 ? prevTitle.textError : "",
+    }));
   };
+  
 
  
   const handleCategoryChange = (selectedOption) => {
+
     setSelectedCategory(selectedOption.value);
+
+      // Remove error when a valid category is selected
+      if (selectedOption.value.trim().length > 0) {
+        setCategoryError(false);
+      }
+
   };
 
   const handleFilesChange = (files) => {
+    const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
+    const maxFileSize = 6 * 1024 * 1024; // 6 MB
+  
+    // Check if files are empty
+    if (files.length === 0) {
+      setFileError("Please select at least one file.");
+      setSelectedFiles([]);
+      return;
+    }
+  
+    // Validate each file
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+  
+      // Check file type
+      if (!acceptedTypes.includes(file.type)) {
+        setFileError(`Unsupported file type. Only the following types are allowed: jpg, png, gif, tiff, webp.`);
+        setSelectedFiles([]);
+        return;
+      }
+  
+      // Check file size
+      if (file.size > maxFileSize) {
+        setFileError(`File size must be less than 6MB. "${file.name}" is too large.`);
+        setSelectedFiles([]);
+        return;
+      }
+    }
+  
+    // If all validations pass, set the selected files and clear any errors
+    setFileError("");
     setSelectedFiles(files);
   };
-
-
-
+  
 
 
 
@@ -1636,6 +1726,7 @@ function CreateListing() {
 
 
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 
@@ -1651,6 +1742,17 @@ function CreateListing() {
   const submitHandler = async (e) => {
     e.preventDefault();
 
+      // Disable the save button during submission
+      setIsSubmitting(true);
+
+
+    if (selectedCategory.trim().length < 1) {
+      setCategoryError(true);
+      return;
+    }
+    setCategoryError(false); 
+  
+
     if (title.text.trim().length < 1) {
       setTitle({ ...title, error: true, textError: "The Title name is required" });
       return;
@@ -1663,6 +1765,43 @@ function CreateListing() {
       setDescError(true);
       return;
     }
+
+
+    // Validate files
+    if (selectedFiles.length === 0) {
+      setFileError("Please select at least one image file.");
+     
+      return;
+    }
+
+
+  // Validate address fields
+  if (address.address.trim().length < 1) {
+    setAddressError(true);
+    return;
+  }
+
+  if (address.city.trim().length < 1) {
+    setCityError(true);
+    return;
+  }
+
+  if (address.zip.trim().length < 1) {
+    setZipError(true);
+    return;
+  }
+
+  // Validate pricing fields
+  if (pricing.price.trim().length < 1 || isNaN(pricing.price)) {
+    setPriceError(true);
+    return;
+  }
+
+  if (pricing.phone.trim().length < 1) {
+    setPhoneError(true);
+    return;
+  }
+  
 
     const formattedStartDate = dateRange[0].format('YYYY-MM-DD HH:mm:ss');
     const formattedEndDate = dateRange[1].format('YYYY-MM-DD HH:mm:ss');
@@ -1998,6 +2137,10 @@ function CreateListing() {
       console.error(err);
       // Handle error
     }
+
+          // Enable the save button after submission
+      setIsSubmitting(false);
+
   };
 
   return (
@@ -2014,7 +2157,10 @@ function CreateListing() {
                       <SoftBox mb={3}>
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                            Category
+                            Category 
+                              <span style={{ color: "red",}}> * </span>
+
+                             
                           </SoftTypography>
                         </SoftBox>
                         <SoftSelect
@@ -2084,7 +2230,16 @@ function CreateListing() {
 
 
                           onChange={handleCategoryChange}
+
+                          error={categoryError}
+
                         />
+
+                          {categoryError && (
+                              <SoftTypography variant="caption" color="error" fontWeight="light">
+                                Please select a category
+                              </SoftTypography>
+                            )}
                       </SoftBox>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -2111,13 +2266,28 @@ function CreateListing() {
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                       <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                        Description&nbsp;&nbsp;
+                        Description
+
+                        <span style={{ color: "red",}}> * </span>
+
                       </SoftTypography>
                     </SoftBox>
-                    <SoftEditor value={description} onChange={setDescription} />
+                    <SoftEditor value={description} 
+
+                        onChange={(value) => {
+                          setDescription(value);
+
+                          // Remove error when description is not empty
+                          if (value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
+                            setDescError(false);
+                          }
+                        }}
+
+
+                    />
                     {descError && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
-                        The Collection description is required
+                        The  Description is required
                       </SoftTypography>
                     )}
                   </SoftBox>
@@ -2128,6 +2298,9 @@ function CreateListing() {
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                               Availability
+
+                              <span style={{ color: "red",}}> * </span>
+
                           </SoftTypography>
                         </SoftBox>
                         <SoftBox mt={2}>
@@ -2229,6 +2402,15 @@ function CreateListing() {
                 <SoftBox >
                   
                   <CustomFileInput onFilesChange={handleFilesChange} />
+
+
+                  {fileError && (
+                    <SoftTypography variant="caption" color="error" fontWeight="light">
+                      {fileError}
+                    </SoftTypography>
+                  )}
+
+
                 </SoftBox>
               </SoftBox>
             </Card>
@@ -2239,18 +2421,35 @@ function CreateListing() {
 
                
 
-                <Address address={address} onAddressChange={handleAddressChange} />
+                <Address address={address} onAddressChange={handleAddressChange} 
+                
+                addressError={addressError} 
+                cityError={cityError} 
+                zipError={zipError} 
+                
+                />
               </SoftBox>
             </Card>
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
-                <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
+                <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} 
+                
+                priceError={priceError} 
+                phoneError={phoneError} 
+                
+                />
               </SoftBox>
             </Card>
           </Grid>
           <SoftBox   display="flex" justifyContent="center" alignItems="center">
-            <SoftButton sx={{ py: 1.5 }}  variant="gradient" color="info" size="small" type="submit">
-              Save
+            <SoftButton sx={{ py: 1.5 }}  variant="gradient" color="info" size="small" type="submit"
+            
+            disabled={isSubmitting} // Disable the button when submitting
+
+            
+            >
+                  {isSubmitting ? "Saving..." : "Save"} {/* Optional: show different text */}
+
             </SoftButton>
           </SoftBox>
         </Grid>

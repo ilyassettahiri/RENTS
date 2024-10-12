@@ -76,9 +76,9 @@ const ServicesLanguages = [
 const ServicesExperience = [
   { value: '0 - 1 year', label: '0 - 1 year' },
   { value: '1 - 2 years', label: '1 - 2 years' },
-  { value: '2 - 3 year', label: '0 - 1 year' },
-  { value: '3 - 4 years', label: '1 - 2 years' },
-  { value: '4 - 5 years', label: '1 - 2 years' },
+  { value: '2 - 3 year', label: '2 - 3 year' },
+  { value: '3 - 4 years', label: '3 - 4 years' },
+  { value: '4 - 5 years', label: '4 - 5 years' },
 
   { value: '5+ years', label: '5+ years' }
 ];

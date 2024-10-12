@@ -4,8 +4,10 @@ import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import FormField from "admin/components/FormField";
+import SoftTypography from "components/SoftTypography";
 
-function Address({ address, onAddressChange }) {
+
+function Address({ address, onAddressChange, addressError, cityError, zipError }) {
 
   const defaultCountry = address.country || "Morocco";
 
@@ -21,7 +23,16 @@ function Address({ address, onAddressChange }) {
               value={address.address}
               onChange={onAddressChange}
               placeholder="Eg. Center Ville "
+              error={addressError}
+
             />
+
+            {addressError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                Address is required
+              </SoftTypography>
+            )}
+
           </Grid>
           <Grid item xs={12} md={5}>
             <FormField
@@ -31,7 +42,18 @@ function Address({ address, onAddressChange }) {
               value={address.city}
               onChange={onAddressChange}
               placeholder="Eg. Marrakech"
+              error={cityError}
+
             />
+
+
+            {cityError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                City is required
+              </SoftTypography>
+            )}
+
+
           </Grid>
           <Grid item xs={12} md={5}>
             <FormField
@@ -51,7 +73,17 @@ function Address({ address, onAddressChange }) {
               value={address.zip}
               onChange={onAddressChange}
               placeholder="Eg. 123456"
+              error={zipError}
+
             />
+
+            {zipError && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                Zip code is required
+              </SoftTypography>
+            )}
+
+
           </Grid>
         </Grid>
       </SoftBox>
