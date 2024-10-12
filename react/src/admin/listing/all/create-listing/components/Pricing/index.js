@@ -43,6 +43,9 @@ function Pricing({ pricing, onPricingChange, onSelectChange, priceError, phoneEr
             <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
               <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
                 Currency
+
+                <span style={{ color: "red",}}> * </span>
+
               </SoftTypography>
             </SoftBox>
             <SoftSelect
