@@ -31,10 +31,14 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Rangefinder', label: 'Rangefinder' },
+  { value: 'Golf Balls Marker', label: 'Golf Balls Marker' },
+  { value: 'Divot Tool', label: 'Divot Tool' },
+  { value: 'Ball Retriever', label: 'Ball Retriever' },
+  { value: 'Golf Umbrella', label: 'Golf Umbrella' },
+  { value: 'Towel', label: 'Towel' },
+  { value: 'Headcovers', label: 'Headcovers' },
+  { value: 'Golf Grip', label: 'Golf Grip' }
 ];
 
 

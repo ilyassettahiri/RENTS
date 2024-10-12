@@ -43,11 +43,28 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Anchor', label: 'Anchor' },
+  { value: 'Docking Ropes', label: 'Docking Ropes' },
+  { value: 'Boat Cover', label: 'Boat Cover' },
+  { value: 'Bimini Top', label: 'Bimini Top' },
+  { value: 'Fenders', label: 'Fenders' },
+  { value: 'Bilge Pump', label: 'Bilge Pump' },
+  { value: 'Navigation Lights', label: 'Navigation Lights' },
+  { value: 'VHF Radio', label: 'VHF Radio' },
+  { value: 'Marine Speakers', label: 'Marine Speakers' },
+  { value: 'Fish Finder', label: 'Fish Finder' },
+  { value: 'Boat Ladder', label: 'Boat Ladder' },
+  { value: 'Towing Hook', label: 'Towing Hook' },
+  { value: 'Swim Platform', label: 'Swim Platform' },
+  { value: 'Outboard Motor', label: 'Outboard Motor' },
+  { value: 'Depth Finder', label: 'Depth Finder' },
+  { value: 'Water Ski Equipment', label: 'Water Ski Equipment' },
+  { value: 'Wakeboard Rack', label: 'Wakeboard Rack' },
+  { value: 'Fuel Tank', label: 'Fuel Tank' },
+  { value: 'Windlass', label: 'Windlass' },
+  { value: 'Boat Grill', label: 'Boat Grill' }
 ];
+
 
 
 const BoatsType = [

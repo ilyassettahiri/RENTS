@@ -46,28 +46,7 @@ export {
 
 
 
-const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
-];
 
-
-const Benefits = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
-];
-
-
-const Requirements = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
-];
 
 
 
@@ -97,33 +76,79 @@ const ServicesLanguages = [
 const ServicesExperience = [
   { value: '0 - 1 year', label: '0 - 1 year' },
   { value: '1 - 2 years', label: '1 - 2 years' },
-  { value: '3+ years', label: '3+ years' }
+  { value: '2 - 3 year', label: '0 - 1 year' },
+  { value: '3 - 4 years', label: '1 - 2 years' },
+  { value: '4 - 5 years', label: '1 - 2 years' },
+
+  { value: '5+ years', label: '5+ years' }
+];
+
+const MoreDetails = [
+  { value: 'Remote Work', label: 'Remote Work' },
+  { value: 'Flexible Hours', label: 'Flexible Hours' },
+  { value: 'Full-Time', label: 'Full-Time' },
+  { value: 'Part-Time', label: 'Part-Time' },
+  { value: 'Internship', label: 'Internship' },
+  { value: 'Freelance', label: 'Freelance' },
+  { value: 'Temporary', label: 'Temporary' },
+  { value: 'Contract', label: 'Contract' },
+  { value: 'On-Site', label: 'On-Site' }
+];
+
+const Benefits = [
+  { value: 'Health Insurance', label: 'Health Insurance' },
+  { value: 'Retirement Plan', label: 'Retirement Plan' },
+  { value: 'Paid Time Off', label: 'Paid Time Off' },
+  { value: 'Parental Leave', label: 'Parental Leave' },
+  { value: 'Professional Development', label: 'Professional Development' },
+  { value: 'Performance Bonuses', label: 'Performance Bonuses' },
+  { value: 'Employee Discounts', label: 'Employee Discounts' },
+  { value: 'Wellness Programs', label: 'Wellness Programs' },
+  { value: 'Work from Home Stipend', label: 'Work from Home Stipend' }
+];
+
+const Requirements = [
+  { value: 'Bachelors Degree', label: 'Bachelors Degree' },
+  { value: 'Masters Degree', label: 'Masters Degree' },
+  { value: 'High School Diploma', label: 'High School Diploma' },
+  { value: 'Relevant Certifications', label: 'Relevant Certifications' },
+  { value: 'Strong Communication Skills', label: 'Strong Communication Skills' },
+  { value: 'Teamwork Ability', label: 'Teamwork Ability' },
+  { value: 'Problem-Solving Skills', label: 'Problem-Solving Skills' },
+  { value: 'Time Management Skills', label: 'Time Management Skills' },
+  { value: 'Technical Skills', label: 'Technical Skills' }
 ];
 
 const ServicesEmploymentType = [
-  { value: '1 - 2 hours', label: '1 - 2 hours' },
-  { value: '4 - 6 hours', label: '4 - 6 hours' },
-  { value: '24 hours', label: '24 hours' },
-  { value: '2 business days', label: '2 business days' }
+  { value: 'Full-Time', label: 'Full-Time' },
+  { value: 'Part-Time', label: 'Part-Time' },
+  { value: 'Temporary', label: 'Temporary' },
+  { value: 'Internship', label: 'Internship' },
+  { value: 'Freelance', label: 'Freelance' }
 ];
 
-
-
-
 const ServicesSkills = [
-  { value: 'Standard Package: Includes 2 rounds of revisions', label: 'Standard Package: Includes 2 rounds of revisions' },
-  { value: 'Premium Package: Includes 3 rounds of revisions', label: 'Premium Package: Includes 3 rounds of revisions' },
-  { value: 'Unlimited Revisions: Contact us for details on our unlimited revision option', label: 'Unlimited Revisions: Contact us for details on our unlimited revision option' }
+  { value: 'Communication', label: 'Communication' },
+  { value: 'Project Management', label: 'Project Management' },
+  { value: 'Leadership', label: 'Leadership' },
+  { value: 'Technical Skills', label: 'Technical Skills' },
+  { value: 'Analytical Thinking', label: 'Analytical Thinking' },
+  { value: 'Creativity', label: 'Creativity' },
+  { value: 'Adaptability', label: 'Adaptability' },
+  { value: 'Negotiation', label: 'Negotiation' },
+  { value: 'Customer Service', label: 'Customer Service' }
 ];
 
 const ServicesSalary = [
-  { value: 'Beginner', label: 'Beginner' },
-  { value: 'Intermediate', label: 'Intermediate' },
-  { value: 'Expert', label: 'Expert' }
+  { value: '$30,000 - $40,000', label: '$30,000 - $40,000' },
+  { value: '$40,001 - $50,000', label: '$40,001 - $50,000' },
+  { value: '$50,001 - $60,000', label: '$50,001 - $60,000' },
+  { value: '$60,001 - $70,000', label: '$60,001 - $70,000' },
+  { value: '$70,001 - $80,000', label: '$70,001 - $80,000' },
+  { value: '$80,001 - $90,000', label: '$80,001 - $90,000' },
+  { value: '$90,001 - $100,000', label: '$90,001 - $100,000' },
+  { value: '$100,001+', label: '$100,001+' }
 ];
-
-
-
 
 
 
@@ -131,10 +156,21 @@ const ServicesSalary = [
 
 
 const ServicesResponsibilities = [
-  { value: 'Consistently Meeting Deadlines', label: 'Consistently Meeting Deadlines' },
-  { value: 'Timely Results, Every Time', label: 'Timely Results, Every Time' },
-  { value: 'Meeting Deadlines', label: 'Meeting Deadlines' }
+  { value: 'Develop and implement project plans', label: 'Develop and implement project plans' },
+  { value: 'Conduct market research and analysis', label: 'Conduct market research and analysis' },
+  { value: 'Collaborate with team members and stakeholders', label: 'Collaborate with team members and stakeholders' },
+  { value: 'Prepare reports and presentations', label: 'Prepare reports and presentations' },
+  { value: 'Manage budgets and resources', label: 'Manage budgets and resources' },
+  { value: 'Provide excellent customer service', label: 'Provide excellent customer service' },
+  { value: 'Ensure compliance with company policies', label: 'Ensure compliance with company policies' },
+  { value: 'Train and mentor junior staff', label: 'Train and mentor junior staff' },
+  { value: 'Analyze data and provide insights', label: 'Analyze data and provide insights' },
+  { value: 'Assist in recruitment and hiring processes', label: 'Assist in recruitment and hiring processes' },
+  { value: 'Maintain project documentation', label: 'Maintain project documentation' },
+  { value: 'Oversee quality assurance and control', label: 'Oversee quality assurance and control' },
+  { value: 'Implement marketing strategies', label: 'Implement marketing strategies' }
 ];
+
 
 function Jobs({ onDataChange, initialState, isOpen }) {
 

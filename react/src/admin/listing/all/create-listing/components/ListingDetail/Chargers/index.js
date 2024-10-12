@@ -38,10 +38,18 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  
+  { value: 'Fast Charging', label: 'Fast Charging' },
+  { value: 'Overcharge Protection', label: 'Overcharge Protection' },
+  { value: 'LED Indicator', label: 'LED Indicator' },
+  { value: 'Smart Charging Technology', label: 'Smart Charging Technology' },
+  { value: 'Detachable Cable', label: 'Detachable Cable' },
+  { value: 'Universal Compatibility', label: 'Universal Compatibility' },
+  { value: 'Durable Materials', label: 'Durable Materials' },
+  { value: 'Wireless Charging Capability', label: 'Wireless Charging Capability' },
+  { value: 'Active Cooling', label: 'Active Cooling' },
+  { value: 'Short Circuit Protection', label: 'Short Circuit Protection' },
+  { value: 'Extended Warranty', label: 'Extended Warranty' }
 ];
 
 

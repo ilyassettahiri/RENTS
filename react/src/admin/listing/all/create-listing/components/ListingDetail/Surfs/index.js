@@ -31,10 +31,25 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'fin setup', label: 'Fin Setup' },
+  { value: 'leash', label: 'Leash' },
+  { value: 'board bag', label: 'Board Bag' },
+  { value: 'wax', label: 'Wax' },
+  { value: 'surfboard repair kit', label: 'Surfboard Repair Kit' },
+  { value: 'surfboard traction pad', label: 'Surfboard Traction Pad' },
+  { value: 'surfboard straps', label: 'Surfboard Straps' },
+  { value: 'swim fins', label: 'Swim Fins' },
+  { value: 'sunscreen', label: 'Sunscreen' },
+  { value: 'surf hat', label: 'Surf Hat' },
+  { value: 'surf watch', label: 'Surf Watch' },
+  { value: 'water camera', label: 'Water Camera' },
+  { value: 'dry bag', label: 'Dry Bag' },
+  { value: 'cooler', label: 'Cooler' },
+  { value: 'snorkel gear', label: 'Snorkel Gear' },
+  { value: 'beach towel', label: 'Beach Towel' },
+  { value: 'first aid kit', label: 'First Aid Kit' },
+  { value: 'water shoes', label: 'Water Shoes' },
+  { value: 'surf training equipment', label: 'Surf Training Equipment' }
 ];
 
 

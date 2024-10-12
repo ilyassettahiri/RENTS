@@ -59,11 +59,18 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Lightweight Design', label: 'Lightweight Design' },
+  { value: 'Compact Size', label: 'Compact Size' },
+  { value: 'Durable Construction', label: 'Durable Construction' },
+  { value: 'Versatile Applications', label: 'Versatile Applications' },
+  { value: 'Easy Storage', label: 'Easy Storage' },
+  { value: 'Ergonomic Handle', label: 'Ergonomic Handle' },
+  { value: 'Safety Features', label: 'Safety Features' },
+  { value: 'User-Friendly Controls', label: 'User-Friendly Controls' },
+  { value: 'Quick Assembly', label: 'Quick Assembly' },
+  { value: 'Low Maintenance', label: 'Low Maintenance' }
 ];
+
 
 
 const PressurewashersTooltype = [

@@ -83,8 +83,18 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
     setOpencall(null);
   }, []);
 
+  const getHref = () => {
+    if (category === 'services') {
+      return `${paths.career.job}/${url}`;  // Correct URL for services category
+    }
+
+    if (category === 'jobs') {
+      return `${paths.job.jobb}/${url}`;  // Correct URL for jobs category
+    }
+    return ''; // Default return value if no conditions are met
 
 
+  };
   const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
 
@@ -335,7 +345,10 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
                   <Link
                     component={RouterLink}
-                    href={`${paths.career.job}/${url}`}
+
+                    href={getHref()}
+
+
                     color="inherit"
                   >
                     <TextMaxLine variant="h6" line={1}>
@@ -503,6 +516,23 @@ function CarouselBasic1({ data, category, url }) {
     autoplay: false,
   });
 
+
+
+  const getHref = () => {
+    if (category === 'services') {
+      return `${paths.career.job}/${url}`;  // Correct URL for services category
+    }
+
+    if (category === 'jobs') {
+      return `${paths.job.jobb}/${url}`;  // Correct URL for jobs category
+    }
+
+    return ''; // Default return value if no conditions are met
+
+
+  };
+
+
   return (
     <>
       <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
@@ -511,7 +541,11 @@ function CarouselBasic1({ data, category, url }) {
 
             <Link
               key={index}
-              href={`${paths.career.job}/${url}`}
+
+
+              href={getHref()}
+
+
               component={RouterLink}
             >
 

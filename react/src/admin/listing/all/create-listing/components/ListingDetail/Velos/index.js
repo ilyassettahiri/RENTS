@@ -42,10 +42,21 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Helmet Included', label: 'Helmet Included' },
+  { value: 'Lock Included', label: 'Lock Included' },
+  { value: 'Lights Included', label: 'Lights Included' },
+  { value: 'Bell Included', label: 'Bell Included' },
+  { value: 'Bike Repair Kit', label: 'Bike Repair Kit' },
+  { value: 'Child Seat Available', label: 'Child Seat Available' },
+  { value: 'Tubeless Tires', label: 'Tubeless Tires' },
+  { value: 'Reflective Strips', label: 'Reflective Strips' },
+  { value: 'Adjustable Handlebar Height', label: 'Adjustable Handlebar Height' },
+  { value: 'Water Bottle Holder', label: 'Water Bottle Holder' },
+  { value: 'Mudguards', label: 'Mudguards' },
+  { value: 'Fenders', label: 'Fenders' },
+  { value: 'Kickstand', label: 'Kickstand' },
+  { value: 'Carrier Rack', label: 'Carrier Rack' },
+  { value: 'Puncture Repair Kit', label: 'Puncture Repair Kit' }
 ];
 
 

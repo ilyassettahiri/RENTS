@@ -50,11 +50,22 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Pet-Friendly Options', label: 'Pet-Friendly Options' },
+  { value: 'Furnished or Unfurnished', label: 'Furnished or Unfurnished' },
+  { value: 'Utilities Included', label: 'Utilities Included' },
+  { value: 'Private Outdoor Space', label: 'Private Outdoor Space' },
+  { value: 'Parking Availability', label: 'Parking Availability' },
+  { value: 'Lease Duration Options', label: 'Lease Duration Options' },
+  { value: 'Homeowner Association Rules', label: 'Homeowner Association Rules' },
+  { value: 'Neighborhood Amenities', label: 'Neighborhood Amenities' },
+  { value: 'Proximity to Public Transport', label: 'Proximity to Public Transport' },
+  { value: 'Local Schools and Hospitals', label: 'Local Schools and Hospitals' },
+  { value: 'Landlord Contact Information', label: 'Landlord Contact Information' },
+  { value: 'Emergency Maintenance Services', label: 'Emergency Maintenance Services' },
+  { value: 'Background Check Requirements', label: 'Background Check Requirements' },
+  { value: 'Security Deposit Amount', label: 'Security Deposit Amount' }
 ];
+
 
 
 const HousesSecuritySystem = [

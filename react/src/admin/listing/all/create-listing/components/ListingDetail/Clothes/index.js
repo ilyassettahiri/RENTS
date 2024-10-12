@@ -39,13 +39,24 @@ export {
 
 
 
-
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Breathable Fabric', label: 'Breathable Fabric' },
+  { value: 'Moisture-Wicking', label: 'Moisture-Wicking' },
+  { value: 'UV Protection', label: 'UV Protection' },
+  { value: 'Stretchable Material', label: 'Stretchable Material' },
+  { value: 'Reversible', label: 'Reversible' },
+  { value: 'Water-Resistant', label: 'Water-Resistant' },
+  { value: 'Machine Washable', label: 'Machine Washable' },
+  { value: 'Hand Wash Only', label: 'Hand Wash Only' },
+  { value: 'Eco-Friendly Materials', label: 'Eco-Friendly Materials' },
+  { value: 'Hypoallergenic', label: 'Hypoallergenic' },
+  { value: 'Thermal Insulation', label: 'Thermal Insulation' },
+  { value: 'Stain-Resistant', label: 'Stain-Resistant' },
+  { value: 'Lightweight', label: 'Lightweight' },
+  { value: 'Heavyweight', label: 'Heavyweight' },
+  { value: 'Limited Edition', label: 'Limited Edition' }
 ];
+
 
 
 const ClothesNumberofPieces = [

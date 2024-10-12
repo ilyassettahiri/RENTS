@@ -44,11 +44,23 @@ export {
 };
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Swimming Pool', label: 'Swimming Pool' },
+  { value: 'Outdoor BBQ Area', label: 'Outdoor BBQ Area' },
+  { value: 'Private Garden', label: 'Private Garden' },
+  { value: 'Fitness Center', label: 'Fitness Center' },
+  { value: 'Game Room', label: 'Game Room' },
+  { value: 'Tennis Court', label: 'Tennis Court' },
+  { value: 'Jacuzzi or Hot Tub', label: 'Jacuzzi or Hot Tub' },
+  { value: 'Play Area for Kids', label: 'Play Area for Kids' },
+  { value: 'Patio or Deck', label: 'Patio or Deck' },
+  { value: 'Home Office', label: 'Home Office' },
+  { value: 'Fire Pit', label: 'Fire Pit' },
+  { value: 'Gated Community', label: 'Gated Community' },
+  { value: 'Solar Panels', label: 'Solar Panels' },
+  { value: 'Sustainable Features', label: 'Sustainable Features' },
+  { value: 'Pet-Friendly', label: 'Pet-Friendly' }
 ];
+
 
 
 

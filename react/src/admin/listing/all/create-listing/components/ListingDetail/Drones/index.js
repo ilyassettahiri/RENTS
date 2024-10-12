@@ -50,11 +50,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'GPS Enabled', label: 'GPS Enabled' },
+  { value: 'Obstacle Avoidance', label: 'Obstacle Avoidance' },
+  { value: 'Follow Me Mode', label: 'Follow Me Mode' },
+  { value: 'Waypoints Navigation', label: 'Waypoints Navigation' },
+  { value: 'Return to Home Function', label: 'Return to Home Function' },
+  { value: 'FPV (First Person View)', label: 'FPV (First Person View)' },
+  { value: 'Live Video Streaming', label: 'Live Video Streaming' },
+  { value: 'Headless Mode', label: 'Headless Mode' },
+  { value: 'Customizable Flight Modes', label: 'Customizable Flight Modes' },
+  { value: 'Real-time Telemetry', label: 'Real-time Telemetry' },
+  { value: 'Durable Frame', label: 'Durable Frame' },
+  { value: 'Water Resistance', label: 'Water Resistance' },
+  { value: 'LED Indicators', label: 'LED Indicators' },
+  { value: 'Emergency Landing Function', label: 'Emergency Landing Function' },
+  { value: 'Foldable Design', label: 'Foldable Design' }
 ];
+
 
 
 const DroneFlightTime = [

@@ -47,11 +47,12 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Rental Manager', label: 'Rental Manager' },
+  
+  { value: 'Compliance Officer', label: 'Compliance Officer' },
+  { value: 'Training Coordinator', label: 'Training Coordinator' }
 ];
+
 
 
 
@@ -81,6 +82,10 @@ const ServicesLanguages = [
 const ServicesExperience = [
   { value: '0 - 1 year', label: '0 - 1 year' },
   { value: '1 - 2 years', label: '1 - 2 years' },
+  { value: '2 - 3 year', label: '0 - 1 year' },
+  { value: '3 - 4 years', label: '1 - 2 years' },
+  { value: '4 - 5 years', label: '1 - 2 years' },
+
   { value: '3+ years', label: '3+ years' }
 ];
 

@@ -44,11 +44,17 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Bluetooth stylus support', label: 'Bluetooth Stylus Support' },
+  { value: 'Detachable keyboard', label: 'Detachable Keyboard' },
+  { value: 'Face recognition', label: 'Face Recognition' },
+  { value: 'Fingerprint sensor', label: 'Fingerprint Sensor' },
+  { value: 'Expandable storage', label: 'Expandable Storage' },
+  { value: 'Dual SIM support', label: 'Dual SIM Support' },
+  { value: '4G LTE support', label: '4G LTE Support' },
+  { value: 'GPS navigation', label: 'GPS Navigation' },
+
 ];
+
 
 
 const TabletOperatingSystem = [

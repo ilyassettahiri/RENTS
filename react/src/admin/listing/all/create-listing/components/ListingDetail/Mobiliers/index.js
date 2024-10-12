@@ -50,13 +50,22 @@ export {
 };
 
 
-
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Adjustable Height', label: 'Adjustable Height' },
+  { value: 'Foldable', label: 'Foldable' },
+  { value: 'Water-resistant', label: 'Water-resistant' },
+  { value: 'Fire-retardant', label: 'Fire-retardant' },
+  { value: 'Eco-friendly', label: 'Eco-friendly' },
+  { value: 'Multi-functional', label: 'Multi-functional' },
+  { value: 'UV-resistant', label: 'UV-resistant' },
+  { value: 'Scratch-resistant', label: 'Scratch-resistant' },
+  { value: 'Easy to Clean', label: 'Easy to Clean' },
+  { value: 'Stackable', label: 'Stackable' },
+  { value: 'Customizable', label: 'Customizable' },
+  { value: 'Pet-friendly', label: 'Pet-friendly' },
+  { value: 'Ergonomic Design', label: 'Ergonomic Design' }
 ];
+
 
 
 const MobilierMaterial = [

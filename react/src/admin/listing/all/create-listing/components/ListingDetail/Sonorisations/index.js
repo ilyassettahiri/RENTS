@@ -60,11 +60,29 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'equalizer', label: 'Equalizer' },
+  { value: 'noise gate', label: 'Noise Gate' },
+  { value: 'compressor', label: 'Compressor' },
+  { value: 'effects processor', label: 'Effects Processor' },
+  { value: 'crossover', label: 'Crossover' },
+  { value: 'graphic equalizer', label: 'Graphic Equalizer' },
+  { value: 'limiters', label: 'Limiters' },
+  { value: 'patch bay', label: 'Patch Bay' },
+  { value: 'power conditioner', label: 'Power Conditioner' },
+  { value: 'microphone stand', label: 'Microphone Stand' },
+  { value: 'pop filter', label: 'Pop Filter' },
+  { value: 'windshield', label: 'Windshield' },
+  { value: 'monitor speakers', label: 'Monitor Speakers' },
+  { value: 'headphones', label: 'Headphones' },
+  { value: 'cables and connectors', label: 'Cables and Connectors' },
+  { value: 'racks and cases', label: 'Racks and Cases' },
+  { value: 'remote control', label: 'Remote Control' },
+  { value: 'software integration', label: 'Software Integration' },
+  { value: 'lighting control', label: 'Lighting Control' },
+  { value: 'acoustic treatment', label: 'Acoustic Treatment' },
+  { value: 'carrying case', label: 'Carrying Case' }
 ];
+
 
 
 const sonorizationBrand = [

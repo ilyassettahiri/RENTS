@@ -42,11 +42,25 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Noise Cancellation', label: 'Noise Cancellation' },
+  { value: 'Water Resistance', label: 'Water Resistance' },
+  { value: 'Surround Sound', label: 'Surround Sound' },
+  { value: 'Built-in Microphone', label: 'Built-in Microphone' },
+  { value: 'Bass Boost', label: 'Bass Boost' },
+  { value: 'Voice Assistant Support', label: 'Voice Assistant Support' },
+  { value: 'Touch Controls', label: 'Touch Controls' },
+  { value: 'Foldable Design', label: 'Foldable Design' },
+  { value: 'Wireless Charging', label: 'Wireless Charging' },
+  { value: 'Customizable Sound Profiles', label: 'Customizable Sound Profiles' },
+  { value: 'App Control', label: 'App Control' },
+  { value: 'EQ Settings', label: 'EQ Settings' },
+  { value: 'Lightweight', label: 'Lightweight' },
+  { value: 'Detachable Cable', label: 'Detachable Cable' },
+  { value: 'Quick Charge', label: 'Quick Charge' },
+  { value: 'Low Latency', label: 'Low Latency' },
+  { value: 'Multi-Device Pairing', label: 'Multi-Device Pairing' }
 ];
+
 
 
 const AudioType = [

@@ -46,8 +46,20 @@ const MoreDetails = [
   { value: 'GPS', label: 'GPS' },
   { value: 'Speed Regulator', label: 'Speed Regulator' },
   { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Board Computer', label: 'Board Computer' },
+  { value: 'HDR Capability', label: 'HDR Capability' },
+  { value: 'Face Detection', label: 'Face Detection' },
+  { value: 'Wi-Fi Connectivity', label: 'Wi-Fi Connectivity' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Live View', label: 'Live View' },
+  { value: 'Touchscreen', label: 'Touchscreen' },
+  { value: '4K Video Recording', label: '4K Video Recording' },
+  { value: 'Time-Lapse Functionality', label: 'Time-Lapse Functionality' },
+  { value: 'Panorama Mode', label: 'Panorama Mode' },
+  { value: 'Custom Shooting Modes', label: 'Custom Shooting Modes' },
+  { value: 'Weather Sealing', label: 'Weather Sealing' }
 ];
+
 
 
 const CameraPhotoSize = [

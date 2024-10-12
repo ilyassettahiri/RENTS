@@ -37,11 +37,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Acoustic', label: 'Acoustic' },
+  { value: 'Electric', label: 'Electric' },
+  { value: 'Portable', label: 'Portable' },
+  { value: 'Multi-Functional', label: 'Multi-Functional' },
+  { value: 'Built-in Tuner', label: 'Built-in Tuner' },
+  { value: 'Recording Capability', label: 'Recording Capability' },
+  { value: 'Customizable Sound', label: 'Customizable Sound' },
+  { value: 'Adjustable Volume', label: 'Adjustable Volume' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Headphone Jack', label: 'Headphone Jack' },
+  { value: 'LED Display', label: 'LED Display' },
+  { value: 'Integrated Metronome', label: 'Integrated Metronome' },
+  { value: 'Durable Case Included', label: 'Durable Case Included' },
+  { value: 'Warranty', label: 'Warranty' },
+  { value: 'User-friendly Interface', label: 'User-friendly Interface' }
 ];
+
 
 
 const MusicalsMusicType = [

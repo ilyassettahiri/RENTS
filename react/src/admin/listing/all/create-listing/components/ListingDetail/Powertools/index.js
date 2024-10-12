@@ -64,11 +64,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Safety Features', label: 'Safety Features' },
+  
+  { value: 'Dust Extraction', label: 'Dust Extraction' },
+  { value: 'LED Work Light', label: 'LED Work Light' },
+  { value: 'Variable Speed Control', label: 'Variable Speed Control' },
+  { value: 'Lock-On Switch', label: 'Lock-On Switch' },
+  { value: 'Portable', label: 'Portable' },
+  { value: 'Replaceable Parts', label: 'Replaceable Parts' },
+  { value: 'Overload Protection', label: 'Overload Protection' },
+  { value: 'Noise Reduction', label: 'Noise Reduction' },
+  { value: 'Vibration Control', label: 'Vibration Control' },
+  { value: 'Storage Case Included', label: 'Storage Case Included' },
+  { value: 'User Manual', label: 'User Manual' },
+  { value: 'Accessory Compatibility', label: 'Accessory Compatibility' },
+  { value: 'Maintenance Requirements', label: 'Maintenance Requirements' },
 ];
+
 
 const PowertoolsType = [
   { value: 'Drill', label: 'Drill' },

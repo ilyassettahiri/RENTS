@@ -144,7 +144,7 @@ export default function JobPageView({ params }) {
                   <ListingSummary
                   specifications={memoizedServiceData.specifications}
                   description={serviceData?.data?.attributes?.description}
-                  category="services"
+                  category="jobs"
                   />
                 )}
 

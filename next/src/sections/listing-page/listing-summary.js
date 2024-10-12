@@ -503,6 +503,17 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
+
+    case 'jobs':
+        return Object.entries(specifications).map(([key, value]) => (
+          <OverviewItem
+            key={key}
+            icon={`${imageBaseUrl}/categoryicons/jobs/${key}.svg`}
+            label={formatLabel(key)}
+            text={value}
+          />
+        ));
+
     case 'sonorisations':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem

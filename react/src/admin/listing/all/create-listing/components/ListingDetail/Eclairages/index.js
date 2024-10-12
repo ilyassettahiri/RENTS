@@ -65,11 +65,24 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Smart Connectivity', label: 'Smart Connectivity' },
+  { value: 'Remote Control', label: 'Remote Control' },
+  { value: 'Adjustable Color RGB', label: 'Adjustable Color RGB' },
+  { value: 'Motion Sensor', label: 'Motion Sensor' },
+  { value: 'Timer Function', label: 'Timer Function' },
+  { value: 'Dimming Capability', label: 'Dimming Capability' },
+  { value: 'Light Sensors', label: 'Light Sensors' },
+  { value: 'App Control', label: 'App Control' },
+  { value: 'Energy Efficient', label: 'Energy Efficient' },
+  { value: 'Weatherproof', label: 'Weatherproof' },
+  { value: 'Easy Installation', label: 'Easy Installation' },
+  { value: 'Multi-Function Remote', label: 'Multi-Function Remote' },
+  { value: 'Color Temperature Adjustment', label: 'Color Temperature Adjustment' },
+  { value: 'Overheat Protection', label: 'Overheat Protection' },
+  { value: 'Adjustable Mounting Bracket', label: 'Adjustable Mounting Bracket' },
+  { value: 'Integrated Speakers', label: 'Integrated Speakers' }
 ];
+
 
 
 const eclairageBrand = [

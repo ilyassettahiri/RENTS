@@ -35,11 +35,24 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Racket stringing services', label: 'Racket Stringing Services' },
+  { value: 'Ball rental available', label: 'Ball Rental Available' },
+  { value: 'Private coaching lessons', label: 'Private Coaching Lessons' },
+  { value: 'Group coaching sessions', label: 'Group Coaching Sessions' },
+  { value: 'Tennis clinics for beginners', label: 'Tennis Clinics for Beginners' },
+  { value: 'Tournaments and competitions', label: 'Tournaments and Competitions' },
+  { value: 'Access to practice courts', label: 'Access to Practice Courts' },
+  { value: 'Locker room facilities', label: 'Locker Room Facilities' },
+  { value: 'Shower facilities', label: 'Shower Facilities' },
+  { value: 'Tennis merchandise available', label: 'Tennis Merchandise Available' },
+  { value: 'Custom racket fitting', label: 'Custom Racket Fitting' },
+  { value: 'Discounts for members', label: 'Discounts for Members' },
+  { value: 'Ball machine rental', label: 'Ball Machine Rental' },
+  { value: 'Tennis gear sale', label: 'Tennis Gear Sale' },
+  { value: 'Kids programs and camps', label: 'Kids Programs and Camps' },
+  { value: 'Accessibility features for all', label: 'Accessibility Features for All' }
 ];
+
 
 
 const TennisTerrain = [

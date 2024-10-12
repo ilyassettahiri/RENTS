@@ -37,11 +37,25 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Child seat available', label: 'Child Seat Available' },
+  { value: 'Pet-friendly vehicle', label: 'Pet-Friendly Vehicle' },
+  { value: 'Wi-Fi on board', label: 'Wi-Fi On Board' },
+  { value: 'Wheelchair accessible', label: 'Wheelchair Accessible' },
+  { value: 'Air conditioning', label: 'Air Conditioning' },
+  { value: 'Complimentary water', label: 'Complimentary Water' },
+  { value: 'Meet and greet service', label: 'Meet and Greet Service' },
+  { value: 'Flight tracking', label: 'Flight Tracking' },
+  { value: '24/7 availability', label: '24/7 Availability' },
+  { value: 'Credit card payment accepted', label: 'Credit Card Payment Accepted' },
+  { value: 'GPS navigation', label: 'GPS Navigation' },
+  { value: 'Safety measures in place', label: 'Safety Measures In Place' },
+  { value: 'Multi-lingual driver', label: 'Multi-Lingual Driver' },
+  { value: 'Eco-friendly vehicle options', label: 'Eco-Friendly Vehicle Options' },
+  { value: 'Luggage assistance', label: 'Luggage Assistance' },
+  { value: 'Group bookings available', label: 'Group Bookings Available' },
+  { value: 'Child-friendly driver', label: 'Child-Friendly Driver' }
 ];
+
 
 
 const AirportTaxiPassengers = [

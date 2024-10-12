@@ -42,11 +42,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Color Printing', label: 'Color Printing' },
+  { value: 'Duplex Printing', label: 'Duplex Printing (Automatic/Manual)' },
+  { value: 'Wireless Connectivity', label: 'Wireless Connectivity (Wi-Fi, Bluetooth)' },
+  { value: 'Mobile Printing', label: 'Mobile Printing Support (AirPrint, Google Cloud Print)' },
+  { value: 'Scanner Functionality', label: 'Scanner Functionality (Flatbed/ADF)' },
+  { value: 'Copy Functionality', label: 'Copy Functionality (Single/Duplex)' },
+  { value: 'Fax Capability', label: 'Fax Capability' },
+  { value: 'Energy Efficient', label: 'Energy Efficient (Energy Star Certified)' },
+  { value: 'LCD Touchscreen', label: 'LCD Touchscreen Interface' },
+  { value: 'Noise Level', label: 'Low Noise Operation' },
+  { value: 'Warranty', label: 'Warranty Period (1 Year/2 Years)' },
+  { value: 'Dimensions', label: 'Compact Size (Dimensions)' },
+  { value: 'Weight', label: 'Lightweight Design (Weight)' },
+  { value: 'Compatible Operating Systems', label: 'Compatible Operating Systems (Windows, macOS, Linux)' },
+  { value: 'Security Features', label: 'Security Features (Password Protection, Data Encryption)' }
 ];
+
 
 
 const PrinterPrintSpeed = [

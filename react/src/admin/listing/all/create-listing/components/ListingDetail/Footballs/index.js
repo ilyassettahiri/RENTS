@@ -27,10 +27,21 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Scoreboard', label: 'Scoreboard' },
+  { value: 'Referee Whistle', label: 'Referee Whistle' },
+  { value: 'Training Cones', label: 'Training Cones' },
+  { value: 'First Aid Kit', label: 'First Aid Kit' },
+  { value: 'Water Bottles', label: 'Water Bottles' },
+  { value: 'Goal Posts', label: 'Goal Posts' },
+  { value: 'Protective Gear', label: 'Protective Gear' },
+  { value: 'Fitness Tracker', label: 'Fitness Tracker' },
+  { value: 'Jump Rope', label: 'Jump Rope' },
+  { value: 'Yoga Mat', label: 'Yoga Mat' },
+  { value: 'Agility Ladder', label: 'Agility Ladder' },
+  { value: 'Dumbbells', label: 'Dumbbells' },
+  { value: 'Kettlebells', label: 'Kettlebells' },
+  { value: 'Resistance Bands', label: 'Resistance Bands' },
+  { value: 'Tennis Racket', label: 'Tennis Racket' }
 ];
 
 

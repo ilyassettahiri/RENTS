@@ -143,7 +143,7 @@ const MechanicaltoolsIcon = `${imagePath}/categories/Mechanicaltools.svg`;
 const PowertoolsIcon = `${imagePath}/categories/Powertools.svg`;
 const PressurewashersIcon = `${imagePath}/categories/Pressurewashers.svg`;
 const ServicesIcon = `${imagePath}/categories/Services.svg`;
-const JobsIcon = `${imagePath}/categoryicons/services/education.svg`;
+const JobsIcon = `${imagePath}/categories/Jobs.svg`;
 
 const BoatsIcon = `${imagePath}/categories/Boats.svg`;
 const CamionsIcon = `${imagePath}/categories/Camions.svg`;

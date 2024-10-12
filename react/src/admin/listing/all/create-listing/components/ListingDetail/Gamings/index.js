@@ -35,10 +35,22 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Gaming Headset', label: 'Gaming Headset' },
+  { value: 'Webcam', label: 'Webcam' },
+  { value: 'VR Headset', label: 'VR Headset' },
+  { value: 'Gaming Chair', label: 'Gaming Chair' },
+  { value: 'Mouse Pad', label: 'Mouse Pad' },
+  { value: 'External Hard Drive', label: 'External Hard Drive' },
+  { value: 'Microphone', label: 'Microphone' },
+  { value: 'Game Capture Card', label: 'Game Capture Card' },
+  { value: 'Racing Wheel', label: 'Racing Wheel' },
+  { value: 'Arcade Cabinet', label: 'Arcade Cabinet' },
+  { value: 'Portable Gaming Console', label: 'Portable Gaming Console' },
+  { value: 'Charging Station', label: 'Charging Station' },
+  { value: 'Screen Cleaner Kit', label: 'Screen Cleaner Kit' },
+  { value: 'Controller Skins', label: 'Controller Skins' },
+  { value: 'Console Stand', label: 'Console Stand' },
+  { value: 'Game Storage Rack', label: 'Game Storage Rack' }
 ];
 
 

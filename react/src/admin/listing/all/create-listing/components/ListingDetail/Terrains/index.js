@@ -59,10 +59,22 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Fenced', label: 'Fenced' },
+  { value: 'Cleared', label: 'Cleared' },
+  { value: 'Partially cleared', label: 'Partially Cleared' },
+  { value: 'Access to water', label: 'Access to Water' },
+  { value: 'Near public roads', label: 'Near Public Roads' },
+  { value: 'Near power lines', label: 'Near Power Lines' },
+  { value: 'Soil quality tested', label: 'Soil Quality Tested' },
+  { value: 'Surveyed', label: 'Surveyed' },
+  { value: 'Available for farming', label: 'Available for Farming' },
+  { value: 'Nearby attractions', label: 'Nearby Attractions' },
+  { value: 'Compatible with building', label: 'Compatible with Building' },
+  { value: 'Access to utilities', label: 'Access to Utilities' },
+  { value: 'Zoning for multiple uses', label: 'Zoning for Multiple Uses' },
+  { value: 'Potential for leasing', label: 'Potential for Leasing' },
+  { value: 'Good drainage', label: 'Good Drainage' },
+  { value: 'Access to public transport', label: 'Access to Public Transport' }
 ];
 
 

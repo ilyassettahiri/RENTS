@@ -42,7 +42,18 @@ const MoreDetails = [
   { value: 'GPS', label: 'GPS' },
   { value: 'Speed Regulator', label: 'Speed Regulator' },
   { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Board Computer', label: 'Board Computer' },
+  { value: 'Air Conditioning', label: 'Air Conditioning' },
+  { value: 'Heating System', label: 'Heating System' },
+  { value: 'Solar Power System', label: 'Solar Power System' },
+  { value: 'Water Tank', label: 'Water Tank' },
+  { value: 'Sewer System', label: 'Sewer System' },
+  { value: 'Shower', label: 'Shower' },
+  { value: 'Propane System', label: 'Propane System' },
+  { value: 'Satellite TV', label: 'Satellite TV' },
+  { value: 'Awning', label: 'Awning' },
+  { value: 'Wi-Fi Booster', label: 'Wi-Fi Booster' },
+  { value: 'Sound System', label: 'Sound System' }
 ];
 
 

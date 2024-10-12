@@ -33,10 +33,25 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Speed Bag', label: 'Speed Bag' },
+  { value: 'Heavy Bag', label: 'Heavy Bag' },
+  { value: 'Focus Mitts', label: 'Focus Mitts' },
+  { value: 'Boxing Shoes', label: 'Boxing Shoes' },
+  { value: 'Boxing Mouthguard', label: 'Boxing Mouthguard' },
+  { value: 'Groin Protector', label: 'Groin Protector' },
+  { value: 'Boxing Helmet', label: 'Boxing Helmet' },
+  { value: 'Headgear', label: 'Headgear' },
+  { value: 'Hand Wraps', label: 'Hand Wraps' },
+  { value: 'Boxing Gloves', label: 'Boxing Gloves' },
+  { value: 'Punching Pads', label: 'Punching Pads' },
+  { value: 'Boxing Timer', label: 'Boxing Timer' },
+  { value: 'Reflex Ball', label: 'Reflex Ball' },
+  { value: 'Resistance Bands', label: 'Resistance Bands' },
+  { value: 'Corner Stool', label: 'Corner Stool' },
+  { value: 'Cutman Supplies', label: 'Cutman Supplies' },
+  { value: 'Body Protector', label: 'Body Protector' },
+  { value: 'Water Bag', label: 'Water Bag' },
+  { value: 'Boxing Mat', label: 'Boxing Mat' }
 ];
 
 

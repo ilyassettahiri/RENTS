@@ -37,11 +37,24 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Dual Band', label: 'Dual Band (2.4 GHz & 5 GHz)' },
+  { value: 'Tri Band', label: 'Tri Band (2.4 GHz & 2 x 5 GHz)' },
+  { value: 'MU-MIMO Technology', label: 'MU-MIMO Technology for Multiple Users' },
+  { value: 'QoS (Quality of Service)', label: 'Quality of Service (QoS) Management' },
+  { value: 'Guest Network', label: 'Guest Network Support' },
+  { value: 'VPN Support', label: 'VPN Support' },
+  { value: 'Beamforming Technology', label: 'Beamforming Technology' },
+  { value: 'Parental Controls', label: 'Parental Control Features' },
+  { value: 'Firewall Protection', label: 'Built-in Firewall Protection' },
+  { value: 'Mobile App Management', label: 'Mobile App for Easy Management' },
+  { value: 'Firmware Updates', label: 'Automatic Firmware Updates' },
+  { value: 'IPv6 Support', label: 'IPv6 Support' },
+  { value: 'Power over Ethernet (PoE)', label: 'Power over Ethernet (PoE) Capable' },
+  { value: 'Voice Control Compatibility', label: 'Voice Control Compatibility' },
+  { value: 'Customizable LED Lights', label: 'Customizable LED Lights' },
+  { value: 'Mesh Networking Capability', label: 'Mesh Networking Capability' }
 ];
+
 
 
 const RoutersGbpsSpeed = [

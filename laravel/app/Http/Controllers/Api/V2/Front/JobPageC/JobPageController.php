@@ -389,18 +389,16 @@ class JobPageController extends JsonApiController
 
 
                     'specifications' => [
-                        'languages' => $service->languages,
-                        'experience' => $service->experience,
-                        'response_time' => $service->response_time,
-                        'package' => $service->package,
-                        'revisions' => $service->revisions,
-                        'level' => $service->level,
-                        'orders_queue' => $service->orders_queue,
-                        'jobs_completed' => $service->jobs_completed,
-                        'repeat_hire_rate' => $service->repeat_hire_rate,
-                        'education' => $service->education,
-                        'on_time' => $service->on_time,
-                        'delivery_time' => $service->delivery_time,
+                        'languages' => $service->language,
+                        'experience' => $service->experience_level,
+                        'skills' => $service->skills,
+                        'employment_type' => $service->employment_type,
+                        'salary' => $service->salary,
+                        'requirements' => $service->requirements,
+                        'responsibilities' => $service->responsibilities,
+                        'benefits' => $service->benefits,
+
+                        'more_details' => $service->more_details,
                     ],
 
 

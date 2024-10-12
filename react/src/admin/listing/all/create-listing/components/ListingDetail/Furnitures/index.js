@@ -39,10 +39,27 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Cushions', label: 'Cushions' },
+  { value: 'Throw Pillows', label: 'Throw Pillows' },
+  { value: 'Table Linens', label: 'Table Linens' },
+  { value: 'Decorative Throws', label: 'Decorative Throws' },
+  { value: 'Coasters', label: 'Coasters' },
+  { value: 'Table Mats', label: 'Table Mats' },
+  { value: 'Storage Baskets', label: 'Storage Baskets' },
+  { value: 'Cabinet Handles', label: 'Cabinet Handles' },
+  { value: 'Furniture Legs', label: 'Furniture Legs' },
+  { value: 'Ottomans', label: 'Ottomans' },
+  { value: 'Wall Art', label: 'Wall Art' },
+  { value: 'Lighting Fixtures', label: 'Lighting Fixtures' },
+  { value: 'Area Rugs', label: 'Area Rugs' },
+  { value: 'Decorative Trays', label: 'Decorative Trays' },
+  { value: 'Bookshelves', label: 'Bookshelves' },
+  { value: 'Mirrors', label: 'Mirrors' },
+  { value: 'Plant Stands', label: 'Plant Stands' },
+  { value: 'Desk Organizers', label: 'Desk Organizers' },
+  { value: 'Furniture Sliders', label: 'Furniture Sliders' },
+  { value: 'Corner Protectors', label: 'Corner Protectors' },
+  { value: 'Furniture Covers', label: 'Furniture Covers' }
 ];
 
 

@@ -51,11 +51,18 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Touchscreen', label: 'Touchscreen' },
+  { value: 'Backlit Keyboard', label: 'Backlit Keyboard' },
+  { value: 'Fingerprint Reader', label: 'Fingerprint Reader' },
+  { value: 'Face Recognition', label: 'Face Recognition' },
+  { value: 'HDMI Output', label: 'HDMI Output' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Wi-Fi 6 Support', label: 'Wi-Fi 6 Support' },
+  { value: 'Webcam Resolution', label: 'Webcam Resolution' },
+  { value: 'Audio Quality', label: 'Audio Quality' },
+  { value: 'Warranty Period', label: 'Warranty Period' }
 ];
+
 
 
 const ComputerRam = [

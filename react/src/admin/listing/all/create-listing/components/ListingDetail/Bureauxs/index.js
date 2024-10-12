@@ -59,12 +59,26 @@ export {
   icon30
 };
 
-
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'High-Speed Internet', label: 'High-Speed Internet' },
+  { value: 'Ergonomic Furniture', label: 'Ergonomic Furniture' },
+  { value: 'Printer/Copier Access', label: 'Printer/Copier Access' },
+  { value: 'Conference Call Equipment', label: 'Conference Call Equipment' },
+  { value: 'Soundproof Rooms', label: 'Soundproof Rooms' },
+  { value: 'Flexible Workspaces', label: 'Flexible Workspaces' },
+  { value: 'Meeting Rooms', label: 'Meeting Rooms' },
+  { value: 'Networking Events', label: 'Networking Events' },
+  { value: 'Reception Services', label: 'Reception Services' },
+  { value: 'Mail Handling', label: 'Mail Handling' },
+  { value: 'Kitchen Facilities', label: 'Kitchen Facilities' },
+  { value: 'Cleaning Services', label: 'Cleaning Services' },
+  { value: 'On-Site Management', label: 'On-Site Management' },
+  { value: '24/7 Access', label: '24/7 Access' },
+  { value: 'Parking Availability', label: 'Parking Availability' },
+  { value: 'Event Space', label: 'Event Space' },
+  { value: 'Coffee/Tea Service', label: 'Coffee/Tea Service' },
+  { value: 'Security Services', label: 'Security Services' },
+  { value: 'Access to Public Transport', label: 'Access to Public Transport' }
 ];
 
 

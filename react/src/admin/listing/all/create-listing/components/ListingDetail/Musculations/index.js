@@ -50,10 +50,21 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Adjustable Weight', label: 'Adjustable Weight' },
+  { value: 'Compact Design', label: 'Compact Design' },
+  { value: 'Multiple Grip Positions', label: 'Multiple Grip Positions' },
+  { value: 'Built-in Safety Features', label: 'Built-in Safety Features' },
+  { value: 'Durable Frame Construction', label: 'Durable Frame Construction' },
+  { value: 'Ergonomic Design', label: 'Ergonomic Design' },
+  { value: 'Foldable for Easy Storage', label: 'Foldable for Easy Storage' },
+  { value: 'Integrated Workout Programs', label: 'Integrated Workout Programs' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Heart Rate Monitoring', label: 'Heart Rate Monitoring' },
+  { value: 'Water Bottle Holder', label: 'Water Bottle Holder' },
+  { value: 'Non-slip Foot Pads', label: 'Non-slip Foot Pads' },
+  { value: 'Built-in Speakers', label: 'Built-in Speakers' },
+  { value: 'User-friendly Display', label: 'User-friendly Display' },
+  { value: 'Lifetime Warranty', label: 'Lifetime Warranty' }
 ];
 
 

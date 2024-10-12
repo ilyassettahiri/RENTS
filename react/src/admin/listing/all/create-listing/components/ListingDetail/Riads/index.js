@@ -47,10 +47,22 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Fully Furnished', label: 'Fully Furnished' },
+  { value: 'Traditional Moroccan Decor', label: 'Traditional Moroccan Decor' },
+  { value: 'Air Conditioning', label: 'Air Conditioning' },
+  { value: 'Heating', label: 'Heating' },
+  { value: 'Wi-Fi', label: 'Wi-Fi Access' },
+  { value: 'Private Pool', label: 'Private Pool' },
+  { value: 'Outdoor Space', label: 'Outdoor Space (Terrace/Garden)' },
+  { value: 'Balcony', label: 'Balcony with Views' },
+  { value: 'Equipped Kitchen', label: 'Equipped Kitchen' },
+  { value: 'Laundry Facilities', label: 'Laundry Facilities' },
+  { value: 'Parking', label: 'Parking Available' },
+  { value: 'Child-friendly', label: 'Child-friendly Facilities' },
+  { value: 'Pet-friendly', label: 'Pet-friendly Options' },
+  { value: '24/7 Concierge Service', label: '24/7 Concierge Service' },
+  { value: 'Traditional Meals Available', label: 'Traditional Meals Available' },
+  { value: 'Tour and Travel Assistance', label: 'Tour and Travel Assistance' }
 ];
 
 

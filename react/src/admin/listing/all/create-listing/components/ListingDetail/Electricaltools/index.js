@@ -65,11 +65,25 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  
+  
+  { value: 'Rotating Head', label: 'Rotating Head' },
+  { value: 'Automatic Feed Mechanism', label: 'Automatic Feed Mechanism' },
+  { value: 'Included Carrying Case', label: 'Included Carrying Case' },
+  { value: 'Built-In Storage Compartments', label: 'Built-In Storage Compartments' },
+  { value: 'Hang Hook or Storage Loop', label: 'Hang Hook or Storage Loop' },
+  { value: 'Stackable Design', label: 'Stackable Design' },
+  { value: 'Calibration Tools Included', label: 'Calibration Tools Included' },
+  { value: 'Maintenance Alerts', label: 'Maintenance Alerts' },
+  { value: 'Self-Diagnostic Features', label: 'Self-Diagnostic Features' },
+  { value: 'Easy-to-Replace Parts', label: 'Easy-to-Replace Parts' },
+  { value: 'Tool Belt', label: 'Tool Belt' },
+  { value: 'Magnetic Tool Holder', label: 'Magnetic Tool Holder' },
+  { value: 'Quick-Release Clamps', label: 'Quick-Release Clamps' },
+  { value: 'Replacement Parts and Consumables', label: 'Replacement Parts and Consumables' },
+  { value: 'Extension Cords', label: 'Extension Cords' }
 ];
+
 
 
 

@@ -94,8 +94,20 @@ const TruckNavigationSystem = [
 const MoreDetails = [
   { value: 'Hydraulics', label: 'Hydraulics' },
   { value: 'Retarder', label: 'Retarder' },
-  { value: 'Obu Operation', label: 'Obu Operation' }
+  { value: 'Obu Operation', label: 'Obu Operation' },
+  { value: 'Cruise Control', label: 'Cruise Control' },
+  { value: 'Anti-lock Braking System (ABS)', label: 'Anti-lock Braking System (ABS)' },
+  { value: 'Lane Departure Warning', label: 'Lane Departure Warning' },
+  { value: 'Collision Mitigation System', label: 'Collision Mitigation System' },
+  { value: 'Blind Spot Monitoring', label: 'Blind Spot Monitoring' },
+  { value: 'Telematics System', label: 'Telematics System' },
+  { value: 'Onboard Diagnostics', label: 'Onboard Diagnostics' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Reverse Camera', label: 'Reverse Camera' },
+  { value: 'Air Suspension', label: 'Air Suspension' },
+  { value: 'Load Monitoring System', label: 'Load Monitoring System' }
 ];
+
 
 function Camions({ onDataChange, initialState, isOpen }) {
 

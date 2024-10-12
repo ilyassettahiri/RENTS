@@ -38,10 +38,21 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Top Speed', label: 'Top Speed (up to XX mph)' }, // Replace XX with actual speed
+  { value: 'Battery Life', label: 'Battery Life (up to XX miles)' }, // Replace XX with actual distance
+  { value: 'Weight Capacity', label: 'Weight Capacity (up to XX lbs/kg)' }, // Replace XX with weight
+  { value: 'Motor Power', label: 'Motor Power (e.g., 250W, 500W, etc.)' },
+  { value: 'Charging Time', label: 'Charging Time (e.g., 3-5 hours)' },
+  { value: 'Foldable Design', label: 'Foldable for Easy Storage' },
+  { value: 'LED Lights', label: 'Built-in LED Lights for Safety' },
+  { value: 'Shock Absorption', label: 'Front and Rear Shock Absorption' },
+  { value: 'Braking System', label: 'E-Brake and Rear Brake' },
+  { value: 'Tire Type', label: 'Pneumatic or Solid Tires' },
+  { value: 'Display Features', label: 'LCD Display for Speed and Battery Level' },
+  { value: 'App Connectivity', label: 'Mobile App for Tracking and Settings' },
+  { value: 'Cruise Control', label: 'Cruise Control Feature' },
+  { value: 'Regenerative Braking', label: 'Regenerative Braking System' },
+  { value: 'Warranty', label: 'Manufacturer Warranty Details' }
 ];
 
 

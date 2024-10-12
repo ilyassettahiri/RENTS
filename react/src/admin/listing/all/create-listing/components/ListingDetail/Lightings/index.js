@@ -46,11 +46,18 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Adjustable Brightness', label: 'Adjustable Brightness' },
+  { value: 'Color Changing', label: 'Color Changing' },
+  { value: 'Flicker-Free Technology', label: 'Flicker-Free Technology' },
+  { value: 'Dimmable', label: 'Dimmable' },
+  { value: 'Remote Control Functionality', label: 'Remote Control Functionality' },
+  { value: 'Built-in Effects', label: 'Built-in Effects' },
+  { value: 'Light Diffuser', label: 'Light Diffuser' },
+  { value: 'Battery Operated', label: 'Battery Operated' },
+  { value: 'Mounting Options', label: 'Mounting Options' },
+  { value: 'Safety Features', label: 'Safety Features' }
 ];
+
 
 
 const LightingConnectivity = [

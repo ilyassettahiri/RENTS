@@ -34,11 +34,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Adjustable Cue Stands', label: 'Adjustable Cue Stands' },
+  { value: 'Retractable Cue Sticks', label: 'Retractable Cue Sticks' },
+  { value: 'Cue Stick Extender', label: 'Cue Stick Extender' },
+  { value: 'Automatic Ball Return System', label: 'Automatic Ball Return System' },
+  { value: 'Ergonomic Bridge Handles', label: 'Ergonomic Bridge Handles' },
+  { value: 'Lightweight Cues', label: 'Lightweight Cues' },
+  { value: 'Slip-Resistant Cue Grips', label: 'Slip-Resistant Cue Grips' },
+  { value: 'Customizable Ball Set Colors', label: 'Customizable Ball Set Colors' },
+  { value: 'Non-Slip Floor Mats', label: 'Non-Slip Floor Mats' },
+  { value: 'Height-Adjustable Tables', label: 'Height-Adjustable Tables' },
+  { value: 'Table Covers with Handles', label: 'Table Covers with Handles' },
+  { value: 'Magnetic Chalk Holders', label: 'Magnetic Chalk Holders' },
+  { value: 'Portable Scoreboards', label: 'Portable Scoreboards' },
+  { value: 'LED Lighting Systems', label: 'LED Lighting Systems' },
+  { value: 'Anti-Skid Rubber Feet', label: 'Anti-Skid Rubber Feet' }
 ];
+
 
 
 const billiardsTable = [

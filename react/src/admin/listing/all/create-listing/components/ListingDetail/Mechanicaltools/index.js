@@ -50,10 +50,20 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Location Accessibility', label: 'Location Accessibility' },
+  { value: 'Foot Traffic Volume', label: 'Foot Traffic Volume' },
+  { value: 'Proximity to Competitors', label: 'Proximity to Competitors' },
+  { value: 'Parking Availability', label: 'Parking Availability' },
+  { value: 'Lease Terms', label: 'Lease Terms' },
+  { value: 'Shop Layout', label: 'Shop Layout' },
+  { value: 'Utilities Included', label: 'Utilities Included' },
+  { value: 'Security Features', label: 'Security Features' },
+  { value: 'Internet Connectivity', label: 'Internet Connectivity' },
+  { value: 'Signage Options', label: 'Signage Options' },
+  { value: 'Zoning Regulations', label: 'Zoning Regulations' },
+  { value: 'Renovation Possibilities', label: 'Renovation Possibilities' },
+  { value: 'Common Area Maintenance', label: 'Common Area Maintenance' },
+  { value: 'Nearby Amenities', label: 'Nearby Amenities' }
 ];
 
 

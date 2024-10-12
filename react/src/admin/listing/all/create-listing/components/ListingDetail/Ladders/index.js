@@ -55,11 +55,16 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Safety Features', label: 'Safety Features' },
+  { value: 'Weight Capacity', label: 'Weight Capacity' },
+  { value: 'Versatility', label: 'Versatility' },
+  { value: 'Portability', label: 'Portability' },
+  { value: 'Durability', label: 'Durability' },
+  { value: 'Easy Setup', label: 'Easy Setup' },
+  { value: 'Adjustable Height', label: 'Adjustable Height' },
+  { value: 'Maintenance Requirements', label: 'Maintenance Requirements' }
 ];
+
 
 
 const LaddersandScaffoldingToolType = [

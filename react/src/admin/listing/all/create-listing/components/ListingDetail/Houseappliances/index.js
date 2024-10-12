@@ -53,12 +53,11 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Smart Technology', label: 'Smart Technology' },
+  { value: 'Energy Efficient', label: 'Energy Efficient' },
+  { value: 'Quiet Operation', label: 'Quiet Operation' },
+  { value: 'Multiple Functions', label: 'Multiple Functions' }
 ];
-
 
 const AppliancesAccessLocation = [
   { value: 'Front-load', label: 'Front-load' },

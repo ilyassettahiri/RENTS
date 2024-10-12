@@ -41,11 +41,20 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Diamond', label: 'Diamond' },
+  { value: 'Gold Plated', label: 'Gold Plated' },
+  { value: 'Sterling Silver', label: 'Sterling Silver' },
+  { value: 'Platinum', label: 'Platinum' },
+  { value: 'Handmade', label: 'Handmade' },
+  { value: 'Customizable', label: 'Customizable' },
+  { value: 'Hypoallergenic', label: 'Hypoallergenic' },
+  { value: 'Adjustable', label: 'Adjustable' },
+  { value: 'Ethically Sourced', label: 'Ethically Sourced' },
+  { value: 'Limited Edition', label: 'Limited Edition' },
+  { value: 'Matching Set', label: 'Matching Set' },
+  { value: 'Gift-Ready', label: 'Gift-Ready' }
 ];
+
 
 
 const JewelsType = [

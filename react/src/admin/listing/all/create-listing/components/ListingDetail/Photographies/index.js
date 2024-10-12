@@ -44,10 +44,22 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'High Resolution', label: 'High Resolution' },
+  { value: 'Low Light Performance', label: 'Low Light Performance' },
+  { value: 'Image Stabilization', label: 'Image Stabilization' },
+  { value: 'Weather Sealed', label: 'Weather Sealed' },
+  { value: 'Wi-Fi Enabled', label: 'Wi-Fi Enabled' },
+  { value: 'Bluetooth Enabled', label: 'Bluetooth Enabled' },
+  { value: 'Interchangeable Lenses', label: 'Interchangeable Lenses' },
+  { value: 'Fast Autofocus', label: 'Fast Autofocus' },
+  { value: 'Continuous Shooting Mode', label: 'Continuous Shooting Mode' },
+  { value: '4K Video Capability', label: '4K Video Capability' },
+  { value: 'Touchscreen Functionality', label: 'Touchscreen Functionality' },
+  { value: 'Built-in Flash', label: 'Built-in Flash' },
+  { value: 'RAW Image Support', label: 'RAW Image Support' },
+  { value: 'Face Detection', label: 'Face Detection' },
+  { value: 'Panorama Mode', label: 'Panorama Mode' },
+  { value: 'Remote Control Capability', label: 'Remote Control Capability' }
 ];
 
 

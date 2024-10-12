@@ -35,10 +35,10 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Camouflage Patterns', label: 'Camouflage Patterns' },
+  { value: 'Waterproof Materials', label: 'Waterproof Materials' },
+  { value: 'Insulated Layers', label: 'Insulated Layers' },
+  { value: 'Breathable Fabrics', label: 'Breathable Fabrics' }
 ];
 
 

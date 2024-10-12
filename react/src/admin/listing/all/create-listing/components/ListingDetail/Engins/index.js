@@ -129,11 +129,22 @@ const MachineryHydraulicsType = [
 ];
 
 
-const EngineMoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+const MachineryMoreDetails = [
+  { value: 'Hydraulic System', label: 'Hydraulic System' },
+  { value: 'Air Conditioning', label: 'Air Conditioning' },
+  { value: 'LED Work Lights', label: 'LED Work Lights' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Automatic Lubrication', label: 'Automatic Lubrication' },
+  { value: 'Telematics System', label: 'Telematics System' },
+  { value: 'High-Visibility Paint', label: 'High-Visibility Paint' },
+  { value: 'Anti-theft System', label: 'Anti-theft System' },
+  { value: 'Data Logger', label: 'Data Logger' },
+  { value: 'Rearview Sensors', label: 'Rearview Sensors' },
+  { value: 'Front and Rear Cameras', label: 'Front and Rear Cameras' },
+  { value: 'Onboard Weighing System', label: 'Onboard Weighing System' },
+  { value: 'Load Management System', label: 'Load Management System' },
+  { value: 'Noise Reduction Features', label: 'Noise Reduction Features' },
+  { value: 'Dust Control System', label: 'Dust Control System' }
 ];
 
 

@@ -30,11 +30,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Adjustable Straps', label: 'Adjustable Straps' },
+  { value: 'Integrated Buoyancy Control', label: 'Integrated Buoyancy Control' },
+  { value: 'Quick-Release Buckles', label: 'Quick-Release Buckles' },
+  { value: 'Anti-Fog Lens', label: 'Anti-Fog Lens' },
+  { value: 'UV Protection', label: 'UV Protection' },
+  { value: 'Reinforced Seams', label: 'Reinforced Seams' },
+  { value: 'High Visibility', label: 'High Visibility' },
+  { value: 'Thermal Protection', label: 'Thermal Protection' },
+  { value: 'Eco-Friendly Materials', label: 'Eco-Friendly Materials' },
+  { value: 'Ergonomic Design', label: 'Ergonomic Design' },
+  { value: 'Lightweight Design', label: 'Lightweight Design' },
+  { value: 'Color-Coded Components', label: 'Color-Coded Components' },
+  { value: 'Modular Accessories', label: 'Modular Accessories' },
+  { value: 'Hydrodynamic Shape', label: 'Hydrodynamic Shape' },
+  { value: 'Storage Pockets', label: 'Storage Pockets' }
 ];
+
 
 
 const DivingBrand = [

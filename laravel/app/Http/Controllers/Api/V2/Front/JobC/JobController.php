@@ -62,7 +62,7 @@ class JobController extends JsonApiController
             // Create an array of objects containing the category 'services' and the corresponding service IDs
             $favoriteIds = $favorites->pluck('job_id')->filter()->map(function ($serviceId) {
                 return [
-                    'category' => 'services', // Hardcode 'services' as the category
+                    'category' => 'jobs', // Hardcode 'services' as the category
                     'id' => $serviceId,       // The ID of the service
                 ];
             })->values()->toArray(); // Use values() to reindex the array correctly

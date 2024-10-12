@@ -51,11 +51,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Air Conditioning', label: 'Air Conditioning' },
+  { value: 'Leather Seats', label: 'Leather Seats' },
+  { value: 'GPS Navigation', label: 'GPS Navigation' },
+  { value: 'Child Seat Available', label: 'Child Seat Available' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Sunroof', label: 'Sunroof' },
+  { value: 'Heated Seats', label: 'Heated Seats' },
+  { value: 'Backup Camera', label: 'Backup Camera' },
+  { value: 'Bluetooth Audio', label: 'Bluetooth Audio' },
+  { value: 'Premium Sound System', label: 'Premium Sound System' },
+  { value: 'Toll Pass Included', label: 'Toll Pass Included' },
+  { value: 'Insurance Coverage', label: 'Insurance Coverage' },
+  { value: 'Unlimited Mileage', label: 'Unlimited Mileage' },
+  { value: 'Roadside Assistance', label: 'Roadside Assistance' },
+  { value: 'Pet Friendly', label: 'Pet Friendly' }
 ];
+
 
 
 const PersonalTransportationPassengers = [

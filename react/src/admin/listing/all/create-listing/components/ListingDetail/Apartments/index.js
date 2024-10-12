@@ -39,11 +39,24 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Balcony', label: 'Balcony' },
+  { value: 'Elevator', label: 'Elevator' },
+  { value: 'Pet-Friendly', label: 'Pet-Friendly' },
+  { value: 'Wheelchair Accessible', label: 'Wheelchair Accessible' },
+  { value: 'Fully Furnished', label: 'Fully Furnished' },
+  { value: 'Energy Efficient', label: 'Energy Efficient' },
+  { value: 'City View', label: 'City View' },
+  { value: 'Private Entrance', label: 'Private Entrance' },
+  { value: 'Walk-in Closet', label: 'Walk-in Closet' },
+  { value: 'Storage Space', label: 'Storage Space' },
+  { value: 'Smart Home Features', label: 'Smart Home Features' },
+  { value: 'Soundproofing', label: 'Soundproofing' },
+  { value: 'Laundry Room', label: 'Laundry Room' },
+  { value: 'Gym Access', label: 'Gym Access' },
+  { value: 'Fireplace', label: 'Fireplace' },
+  { value: 'Floor-to-Ceiling Windows', label: 'Floor-to-Ceiling Windows' }
 ];
+
 
 
 const ApartmentFacilities = [

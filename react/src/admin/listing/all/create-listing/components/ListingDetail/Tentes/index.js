@@ -45,11 +45,24 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Waterproof', label: 'Waterproof' },
+  { value: 'UV resistant', label: 'UV Resistant' },
+  { value: 'Fire retardant', label: 'Fire Retardant' },
+  { value: 'Easy setup and takedown', label: 'Easy Setup and Takedown' },
+  { value: 'Custom sizes available', label: 'Custom Sizes Available' },
+  { value: 'Heavy-duty construction', label: 'Heavy-Duty Construction' },
+  { value: 'Available in multiple colors', label: 'Available in Multiple Colors' },
+  { value: 'Accessories included (stakes, ropes)', label: 'Accessories Included (Stakes, Ropes)' },
+  { value: 'Optional sidewalls for added privacy', label: 'Optional Sidewalls for Added Privacy' },
+  { value: 'Ground stakes and weights available', label: 'Ground Stakes and Weights Available' },
+  { value: 'Portable and lightweight', label: 'Portable and Lightweight' },
+  { value: 'Ideal for outdoor events', label: 'Ideal for Outdoor Events' },
+  { value: 'Custom branding options available', label: 'Custom Branding Options Available' },
+  { value: 'Tent lighting options available', label: 'Tent Lighting Options Available' },
+  { value: 'Climate control options (heaters, fans)', label: 'Climate Control Options (Heaters, Fans)' },
+  { value: 'Variety of styles (e.g., pagoda, marquee)', label: 'Variety of Styles (e.g., Pagoda, Marquee)' }
 ];
+
 
 
 const TentesetstructuresMaterial = [

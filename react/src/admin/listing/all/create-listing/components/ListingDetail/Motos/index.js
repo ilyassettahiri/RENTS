@@ -45,10 +45,21 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Anti-lock Braking System (ABS)', label: 'Anti-lock Braking System (ABS)' },
+  { value: 'Traction Control System', label: 'Traction Control System' },
+  { value: 'Cruise Control', label: 'Cruise Control' },
+  { value: 'Keyless Ignition', label: 'Keyless Ignition' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'GPS Navigation', label: 'GPS Navigation' },
+  { value: 'Heated Grips', label: 'Heated Grips' },
+  { value: 'LED Headlights', label: 'LED Headlights' },
+  { value: 'Adjustable Suspension', label: 'Adjustable Suspension' },
+  { value: 'Integrated Dash Cam', label: 'Integrated Dash Cam' },
+  { value: 'Alarm System', label: 'Alarm System' },
+  { value: 'Quick Shifter', label: 'Quick Shifter' },
+  { value: 'Custom Seat', label: 'Custom Seat' },
+  { value: 'Luggage System', label: 'Luggage System' },
+  { value: 'Carbon Fiber Components', label: 'Carbon Fiber Components' }
 ];
 
 

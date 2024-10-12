@@ -38,11 +38,23 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Elevation Gain', label: 'Elevation Gain' },
+  { value: 'Trail Difficulty', label: 'Trail Difficulty' },
+  { value: 'Water Depth', label: 'Water Depth' },
+  { value: 'Climbing Grade', label: 'Climbing Grade' },
+  { value: 'Wind Speed', label: 'Wind Speed' },
+  { value: 'River Rapids Class', label: 'River Rapids Class' },
+  { value: 'Wave Height', label: 'Wave Height' },
+  { value: 'Snow Depth', label: 'Snow Depth' },
+  { value: 'Wildlife Encounters', label: 'Wildlife Encounters' },
+  { value: 'Required Fitness Level', label: 'Required Fitness Level' },
+  { value: 'Instructor to Participant Ratio', label: 'Instructor to Participant Ratio' },
+  { value: 'Gear Rental Available', label: 'Gear Rental Available' },
+  { value: 'First Aid Station', label: 'First Aid Station' },
+  { value: 'Safety Certification', label: 'Safety Certification' },
+  { value: 'Local Permits Required', label: 'Local Permits Required' }
 ];
+
 
 const ActivityType = [
   { value: 'Hiking', label: 'Hiking' },

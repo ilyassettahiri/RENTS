@@ -66,7 +66,17 @@ const MoreDetails = [
   { value: 'GPS', label: 'GPS' },
   { value: 'Speed Regulator', label: 'Speed Regulator' },
   { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: 'Board Computer', label: 'Board Computer' },
+  { value: 'Air Conditioning', label: 'Air Conditioning' },
+  { value: 'Leather Seats', label: 'Leather Seats' },
+  { value: 'Sunroof', label: 'Sunroof' },
+  { value: 'Bluetooth Connectivity', label: 'Bluetooth Connectivity' },
+  { value: 'Cruise Control', label: 'Cruise Control' },
+  { value: 'Heated Seats', label: 'Heated Seats' },
+  { value: 'Parking Sensors', label: 'Parking Sensors' },
+  { value: 'Keyless Entry', label: 'Keyless Entry' },
+  { value: 'Remote Start', label: 'Remote Start' },
+  { value: 'Alloy Wheels', label: 'Alloy Wheels' }
 ];
 
 function Cars({ onDataChange, initialState, isOpen }) {

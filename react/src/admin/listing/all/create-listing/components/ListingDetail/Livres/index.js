@@ -37,10 +37,13 @@ export {
 
 
 const MoreDetails = [
-  { value: 'GPS', label: 'GPS' },
-  { value: 'Speed Regulator', label: 'Speed Regulator' },
-  { value: 'Rearview Camera', label: 'Rearview Camera' },
-  { value: 'Board Computer', label: 'Board Computer' }
+  { value: '30-day return policy', label: '30-day return policy' },
+  { value: 'Rental period: 1 month', label: 'Rental period: 1 month' },
+  { value: 'Late return fee: $1 per day', label: 'Late return fee: $1 per day' },
+  { value: 'Condition requirements: Like new', label: 'Condition requirements: Like new' },
+  { value: 'Refund only if returned within 7 days', label: 'Refund only if returned within 7 days' },
+  { value: 'Exchange available for damaged items', label: 'Exchange available for damaged items' },
+  { value: 'Rental extension option available', label: 'Rental extension option available' },
 ];
 
 
