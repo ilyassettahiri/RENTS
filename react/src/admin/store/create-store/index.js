@@ -98,10 +98,15 @@ function CreateStore() {
     setBackgroundImage(file);
   };
 
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
 
-    
+    setIsSubmitting(true);
+
 
     if (name.text.trim().length < 1) {
       setName({ ...name, error: true, textError: "The Name is required" });
@@ -155,6 +160,9 @@ function CreateStore() {
       console.error(err);
       // Handle error
     }
+
+    setIsSubmitting(false);
+
   };
 
   return (
@@ -306,8 +314,12 @@ function CreateStore() {
             <Grid item xs={12} lg={10}>
                 <SoftBox display="flex" justifyContent="center" mb={5}>
 
-                  <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
-                    Save
+                  <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit"
+                  
+                  disabled={isSubmitting}
+                  
+                  >
+                    {isSubmitting ? "Saving..." : "Save"}
                   </SoftButton>
                 </SoftBox>
 

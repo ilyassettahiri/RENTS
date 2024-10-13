@@ -39,7 +39,7 @@ class CrudService {
   };
 
   deleteListing = async (id) => {
-    const endpoint = `listings/${id}`;
+    const endpoint = `deletelistings/${id}`;
     return await HttpService.delete(endpoint);
   };
 

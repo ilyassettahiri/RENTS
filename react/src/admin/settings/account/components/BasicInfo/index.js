@@ -77,8 +77,14 @@ function BasicInfo({ user }) {
     });
   };
 
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true);
+
 
     const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -116,6 +122,9 @@ function BasicInfo({ user }) {
     } catch (error) {
       console.error("Failed to update profile:", error);
     }
+
+    setIsSubmitting(false);
+
   };
 
   return (
@@ -267,8 +276,12 @@ function BasicInfo({ user }) {
         <Grid item xs={12} mt={8}>
           <Grid container spacing={3}>
             <SoftBox ml="auto" display="flex" flexDirection="column">
-              <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
-                save changes
+              <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit"
+              
+              disabled={isSubmitting}
+              >
+                
+                {isSubmitting ? "Saving..." : "Save changes"}
               </SoftButton>
             </SoftBox>
           </Grid>

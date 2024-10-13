@@ -2456,7 +2456,7 @@ function CreateListing() {
 
             
             >
-                  {isSubmitting ? "Saving..." : "Save"} {/* Optional: show different text */}
+                  {isSubmitting ? "Saving..." : "Save"} 
 
             </SoftButton>
           </SoftBox>

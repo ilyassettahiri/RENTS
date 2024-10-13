@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 
 // @mui material components
@@ -6,6 +6,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import SoftSelect from "components/SoftSelect";
 import ListActionHeader from "admin/components/ListActionHeader";
+
+import { useQuery } from '@tanstack/react-query';
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -16,6 +18,9 @@ import SoftTypography from "components/SoftTypography";
 
 // Custom components
 import Header from "admin/store/create-store/components/Header";
+
+import Headerskeleton from "admin/store/create-store/components/Header/headerskeleton";
+
 import FormField from "admin/components/FormField";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Address from "components/Address";
@@ -75,40 +80,35 @@ function DetailStore() {
  
   
 
-   useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getDetailOnlinestore();
-        const storeData = response.data[0].attributes; // Assuming it's the first element of the array
-        
-        
-  
-        // Set individual state variables based on the fetched data
-        setData(storeData);
-        setSelectedStatus(storeData.status);
-        setInitialStatus(storeData.status);
+  // Fetch store data using React Query
+  const { data: storeData, isLoading, error } = useQuery({
+    queryKey: ['storeDetail'],
+    queryFn: CrudService.getDetailOnlinestore,
+  });
 
-        setName({ text: storeData.name, error: false, textError: "" });
-        setPhone({ text: storeData.phone, error: false, textError: "" });
-        setEmail({ text: storeData.email, error: false, textError: "" });
-        setSelectedCategory(storeData.category || '');
-        setDescription(storeData.description || '');
-        setAddress({
-          address: storeData.address || "",
-          city: storeData.city || "",
-          country: storeData.country || "",
-          zip: storeData.zip || "",
-        });
-        setProfileImage(storeData.profile_picture || null);
-        setBackgroundImage(storeData.picture || null);
-        
-      } catch (error) {
-        console.error('Error fetching store details:', error);
-      }
-    })();
-  }, []);
-  
+  // Use useEffect to set store details when storeData is fetched
+  useEffect(() => {
+    if (storeData) {
+      const storeAttributes = storeData.data[0].attributes;
+      
+      setName({ text: storeAttributes.name, error: false, textError: "" });
+      setPhone({ text: storeAttributes.phone, error: false, textError: "" });
+      setEmail({ text: storeAttributes.email, error: false, textError: "" });
+      setSelectedCategory(storeAttributes.category || '');
+      setDescription(storeAttributes.description || '');
+      setAddress({
+        address: storeAttributes.address || "",
+        city: storeAttributes.city || "",
+        country: storeAttributes.country || "",
+        zip: storeAttributes.zip || "",
+      });
+      setProfileImage(storeAttributes.profile_picture || null);
+      setBackgroundImage(storeAttributes.picture || null);
+    }
+  }, [storeData]);
 
+  // Memoize the fetched data to prevent unnecessary re-renders
+  const memoizedStoreData = useMemo(() => storeData, [storeData]);
 
 
  
@@ -142,11 +142,16 @@ function DetailStore() {
      const file = event.target.files[0];
      setBackgroundImage(file);
    };
+
+
+   const [isSubmitting, setIsSubmitting] = useState(false);
+
  
    const submitHandler = async (e) => {
      e.preventDefault();
  
-     
+     setIsSubmitting(true);
+
  
      if (name.text.trim().length < 1) {
        setName({ ...name, error: true, textError: "The Name is required" });
@@ -238,6 +243,10 @@ function DetailStore() {
        console.error(err);
        // Handle error
      }
+
+
+     setIsSubmitting(false);
+
    };
 
 
@@ -317,12 +326,21 @@ function DetailStore() {
                     <Grid item xs={12} lg={12}>
 
 
-                      <Header 
-                        profileImage={profileImage} 
-                        backgroundImage={backgroundImage}
-                        onProfileImageChange={handleProfileImageChange}
-                        onBackgroundImageChange={handleBackgroundImageChange}
-                      />
+
+
+
+                          {isLoading ? (
+                            <Headerskeleton rows={5} columns={5} />  
+                          ) : (
+                                <Header 
+                                profileImage={profileImage} 
+                                backgroundImage={backgroundImage}
+                                onProfileImageChange={handleProfileImageChange}
+                                onBackgroundImageChange={handleBackgroundImageChange}
+                              />
+                          )}
+
+
                       <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
                         <SoftBox p={3}>
                           <SoftBox >
@@ -459,8 +477,12 @@ function DetailStore() {
                       <Grid item xs={12} lg={10}>
                           <SoftBox display="flex" justifyContent="center" mb={5}>
 
-                            <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit">
-                              Save
+                            <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit"
+                            
+                            disabled={isSubmitting}
+                            
+                            >
+                              {isSubmitting ? "Saving..." : "Save"}
                             </SoftButton>
                           </SoftBox>
 

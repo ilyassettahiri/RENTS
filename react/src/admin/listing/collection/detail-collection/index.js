@@ -191,8 +191,15 @@ const DetailCollection = () => {
   };
 
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+
+    setIsSubmitting(true);
   
     if (collection.name.trim().length < 1) {
       setError({ ...error, name: true, textError: "The Collection name is required" });
@@ -239,6 +246,9 @@ const DetailCollection = () => {
       }
       console.error(err);
     }
+
+
+    setIsSubmitting(false);
   };
   
 
@@ -353,8 +363,11 @@ const DetailCollection = () => {
                         Back
                       </SoftButton>
                     </SoftBox>
-                    <SoftButton variant="gradient" color="info" size="small" type="submit">
-                      Save
+                    <SoftButton variant="gradient" color="info" size="small" type="submit"
+                                          disabled={isSubmitting}
+
+                    >
+                      {isSubmitting ? "Saving..." : "Save"}
                     </SoftButton>
                   </SoftBox>
 

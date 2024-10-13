@@ -66,9 +66,13 @@ function ChangePassword() {
     });
   };
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
-  
+    setIsSubmitting(true);
+
     // Validate input fields
     if (!user.oldPassword || !user.newPassword || !user.confirmNewPassword) {
       setErrors({
@@ -116,6 +120,9 @@ function ChangePassword() {
         message: "Failed to update password. Please try again.",
       });
     }
+
+    setIsSubmitting(false);
+
   };
   
 
@@ -167,8 +174,13 @@ function ChangePassword() {
           </Grid>
         </Grid>
         <SoftBox mt={2}>
-          <SoftButton sx={{ py: 1.8 }} variant="gradient" color="info" fullWidth type="submit">
-            {t("Update Password")}
+          <SoftButton sx={{ py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
+          disabled={isSubmitting}
+          
+          >
+            
+
+            {isSubmitting ? "Saving..." : "Update Password"}
           </SoftButton>
         </SoftBox>
         {notification.value && (

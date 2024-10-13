@@ -67,8 +67,15 @@ const CreateDiscount = () => {
     setPurchaseAmount(e.target.value);
   };
 
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true);
+
 
     if (code.text.trim().length < 1) {
       setCode({ ...code, error: true, textError: "The Discount name is required" });
@@ -101,6 +108,10 @@ const CreateDiscount = () => {
       }
       console.error(err);
     }
+
+
+    setIsSubmitting(false);
+
   };
 
   const collectionOptions = collectionsData.map((collection) => ({
@@ -289,8 +300,11 @@ const CreateDiscount = () => {
                   Back
                 </SoftButton>
               </SoftBox>
-              <SoftButton variant="gradient" color="info" size="small" type="submit" onClick={submitHandler}>
-                Save
+              <SoftButton variant="gradient" color="info" size="small" type="submit" onClick={submitHandler}
+              disabled={isSubmitting}
+              
+              >
+                {isSubmitting ? "Saving..." : "Save"}
               </SoftButton>
             </SoftBox>
           </Grid>

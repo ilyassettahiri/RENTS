@@ -32,6 +32,7 @@ use App\Models\Listing;
 use App\Models\Onlinestore;
 
 
+use App\Models\Jobsimg  ;
 
 
 use App\Models\Billiard;
@@ -48,7 +49,6 @@ use App\Models\Tennis  ;
 
 
 use App\Models\Job  ;
-use App\Models\Jobsimg  ;
 
 
 use App\Models\Audio  ;
@@ -8682,29 +8682,213 @@ class ListingController extends JsonApiController
     }
 
 
-    public function delete(JsonApiRoute $route, Store $store )
+    public function deleteListing(Request $request, $id)
     {
 
+        $listing = Listing::find($id);
 
 
-        $request = app('request');
+
+        $category = strtolower($listing->category);
+        $url = $listing->url;
 
 
-        $id = $route->resourceId();
+
+        if ($listing) {
+
+            switch ($category) {
 
 
-            $listing = Listing::find($id);
+                case 'billiards':
+                    $listingcategory = Billiard::where('url', $url)->first();
+                    break;
+                case 'boxings':
+                    $listingcategory = Boxing::where('url', $url)->first();
+                    break;
+                case 'divings':
+                    $listingcategory = Diving::where('url', $url)->first();
+                    break;
+                case 'footballs':
+                    $listingcategory = Football::where('url', $url)->first();
+                    break;
+                case 'golfs':
+                    $listingcategory = Golf::where('url', $url)->first();
+                    break;
+                case 'huntings':
+                    $listingcategory = Hunting::where('url', $url)->first();
+                    break;
+                case 'musculations':
+                    $listingcategory = Musculation::where('url', $url)->first();
+                    break;
+                case 'surfs':
+                    $listingcategory = Surf::where('url', $url)->first();
+                    break;
+                case 'tennis':
+                    $listingcategory = Tennis::where('url', $url)->first();
+                    break;
+                case 'jobs':
+                    $listingcategory = Job::where('url', $url)->first();
+                    break;
+                case 'audios':
+                    $listingcategory = Audio::where('url', $url)->first();
+                    break;
+                case 'cameras':
+                    $listingcategory = Camera::where('url', $url)->first();
+                    break;
+                case 'chargers':
+                    $listingcategory = Charger::where('url', $url)->first();
+                    break;
+                case 'drones':
+                    $listingcategory = Drone::where('url', $url)->first();
+                    break;
+                case 'gamings':
+                    $listingcategory = Gaming::where('url', $url)->first();
+                    break;
+                case 'laptops':
+                    $listingcategory = Laptop::where('url', $url)->first();
+                    break;
+                case 'lightings':
+                    $listingcategory = Lighting::where('url', $url)->first();
+                    break;
+                case 'printers':
+                    $listingcategory = Printer::where('url', $url)->first();
+                    break;
+                case 'routers':
+                    $listingcategory = Router::where('url', $url)->first();
+                    break;
+                case 'tablettes':
+                    $listingcategory = Tablette::where('url', $url)->first();
+                    break;
+                case 'eclairages':
+                    $listingcategory = Eclairage::where('url', $url)->first();
+                    break;
+                case 'mobiliers':
+                    $listingcategory = Mobilier::where('url', $url)->first();
+                    break;
+                case 'photographies':
+                    $listingcategory = Photographie::where('url', $url)->first();
+                    break;
+                case 'sonorisations':
+                    $listingcategory = Sonorisation::where('url', $url)->first();
+                    break;
+                case 'tentes':
+                    $listingcategory = Tente::where('url', $url)->first();
+                    break;
+                case 'clothes':
+                    $listingcategory = Clothes::where('url', $url)->first();
+                    break;
+                case 'jewelrys':
+                    $listingcategory = Jewelry::where('url', $url)->first();
+                    break;
+                case 'apartments':
+                    $listingcategory = Apartment::where('url', $url)->first();
 
-            // Check if listing exists
-            if ($listing) {
-                $listing->delete(); // Delete the listing
-                return response()->json(['message' => 'Listing deleted successfully'], 200);
+
+
+                    break;
+                case 'bureauxs':
+                    $listingcategory = Bureaux::where('url', $url)->first();
+                    break;
+                case 'magasins':
+                    $listingcategory = Magasin::where('url', $url)->first();
+                    break;
+                case 'maisons':
+                    $listingcategory = Maison::where('url', $url)->first();
+                    break;
+                case 'riads':
+                    $listingcategory = Riad::where('url', $url)->first();
+                    break;
+                case 'terrains':
+                    $listingcategory = Terrain::where('url', $url)->first();
+                    break;
+                case 'villas':
+                    $listingcategory = Villa::where('url', $url)->first();
+                    break;
+                case 'activities':
+                    $listingcategory = Activity::where('url', $url)->first();
+                    break;
+                case 'livres':
+                    $listingcategory = Livre::where('url', $url)->first();
+                    break;
+                case 'musicals':
+                    $listingcategory = Musical::where('url', $url)->first();
+                    break;
+                case 'furnitures':
+                    $listingcategory = Furniture::where('url', $url)->first();
+                    break;
+                case 'houseappliances':
+                    $listingcategory = Houseappliance::where('url', $url)->first();
+                    break;
+                case 'electricaltools':
+                    $listingcategory = Electricaltool::where('url', $url)->first();
+                    break;
+                case 'ladders':
+                    $listingcategory = Ladder::where('url', $url)->first();
+                    break;
+                case 'mechanicaltools':
+                    $listingcategory = Mechanicaltool::where('url', $url)->first();
+                    break;
+                case 'powertools':
+                    $listingcategory = Powertool::where('url', $url)->first();
+                    break;
+                case 'pressurewashers':
+                    $listingcategory = Pressurewasher::where('url', $url)->first();
+                    break;
+                case 'services':
+                    $listingcategory = Service::where('url', $url)->first();
+                    break;
+                case 'boats':
+                    $listingcategory = Boat::where('url', $url)->first();
+                    break;
+                case 'camions':
+                    $listingcategory = Camion::where('url', $url)->first();
+                    break;
+                case 'caravans':
+                    $listingcategory = Caravan::where('url', $url)->first();
+                    break;
+                case 'cars':
+                    $listingcategory = Car::where('url', $url)->first();
+                    break;
+                case 'engins':
+                    $listingcategory = Engin::where('url', $url)->first();
+                    break;
+                case 'motos':
+                    $listingcategory = Moto::where('url', $url)->first();
+                    break;
+                case 'scooters':
+                    $listingcategory = Scooter::where('url', $url)->first();
+                    break;
+                case 'taxiaeroports':
+                    $listingcategory = Taxiaeroport::where('url', $url)->first();
+                    break;
+                case 'transportations':
+                    $listingcategory = Transportation::where('url', $url)->first();
+                    break;
+                case 'velos':
+                    $listingcategory = Velo::where('url', $url)->first();
+                    break;
+                default:
+                    $listingcategory = null;
             }
 
-            // Return error if listing not found
-            return response()->json(['message' => 'Listing not found'], 404);
 
+
+
+                $listing->delete(); // Delete the listing
+
+
+                // Check if the listing category exists and delete
+                if ($listingcategory) {
+                    $listingcategory->delete();
+                }
+
+                return response()->json(['message' => 'Listing deleted successfully'], 200);
+        }
+
+        // Return error if listing not found
+        return response()->json(['message' => 'Listing not found'], 404);
     }
+
 
 
 
