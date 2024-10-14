@@ -1190,14 +1190,14 @@ function CreateListing() {
   const [address, setAddress] = useState({
     address: "",
     city: "",
-    country: "",
+    country: "Morocco",
     zip: "",
   });
 
 
   const [pricing, setPricing] = useState({
     price: "",
-    currency: "dh", // Default currency
+    currency: "DH", // Default currency
     phone: "",
     
   });

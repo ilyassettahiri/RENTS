@@ -320,6 +320,8 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
 
     Route::delete('deletelistings/{id}', [ListingController::class, 'deleteListing']);
+    Route::delete('deletecollections/{id}', [CollectionController::class, 'deleteCollection']);
+    Route::delete('deletestores/{id}', [OnlinestoreController::class, 'deleteStore']);
 
 
     Route::patch('discounts/{id}/status', [DiscountController::class, 'updateStatus']);

@@ -122,7 +122,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         if ($request->hasFile('data.attributes.picture')) {
             $file = $request->file('data.attributes.picture');
@@ -223,13 +223,13 @@ class OnlinestoreController extends JsonApiController
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }*/
+        }
 
 
 
 
         // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
+       /* if ($request->hasFile('data.attributes.picture')) {
             $picturefile = $request->file('data.attributes.picture');
             $picturePath = Storage::disk('public')->put('images', $picturefile, 'public');
             $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
@@ -239,7 +239,7 @@ class OnlinestoreController extends JsonApiController
             $profil_picturefile = $request->file('data.attributes.profil_picture');
             $profil_picturePath = Storage::disk('public')->put('images', $profil_picturefile, 'public');
             $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
-        }
+        }*/
 
 
 
@@ -311,12 +311,8 @@ class OnlinestoreController extends JsonApiController
     {
         $request = app('request');
 
-        // Log the start of the update process
-        Log::info('Starting update process.', ['route_parameters' => $route->parameters()]);
 
-        // Get the ID from the route parameters and log it
         $id = $route->resourceId();
-        Log::info('Fetched resource ID from route.', ['id' => $id]);
 
 
         $request->validate([
@@ -332,9 +328,27 @@ class OnlinestoreController extends JsonApiController
 
 
 
+        $oldPicturePath = $onlinestore->picture;
+        $oldProfilePicturePath = $onlinestore->profile_picture;
 
 
-        // Retrieve other input values
+
+        $newPicture = $request->input('attributes.picture');
+        $newProfilePicture = $request->input('attributes.profil_picture');
+
+        if ($oldPicturePath && $newPicture && $oldPicturePath !== $newPicture) {
+            if (Storage::disk('spaces')->exists('storage' . $oldPicturePath)) {
+                Storage::disk('spaces')->delete('storage' . $oldPicturePath);
+            }
+        }
+
+        if ($oldProfilePicturePath && $newProfilePicture && $oldProfilePicturePath !== $newProfilePicture) {
+            if (Storage::disk('spaces')->exists('storage' . $oldProfilePicturePath)) {
+                Storage::disk('spaces')->delete('storage' . $oldProfilePicturePath);
+            }
+        }
+
+
         $name = $request->input('attributes.name');
         $description = $request->input('attributes.description');
         $phone = $request->input('attributes.phone');
@@ -410,22 +424,35 @@ class OnlinestoreController extends JsonApiController
 
 
 
-    public function delete(JsonApiRoute $route, Store $store )
+    public function deleteStore(Request $request, $id )
     {
 
 
 
-        $request = app('request');
-
-
-        $id = $route->resourceId();
-        Log::info('Deleting listing with ID: ' . $id);
 
 
             $listing = Onlinestore::find($id);
 
-            // Check if listing exists
+
             if ($listing) {
+
+
+
+
+
+                    Storage::disk('spaces')->delete('storage/' . $listing->picture);
+
+
+
+
+
+
+
+                    Storage::disk('spaces')->delete('storage/' . $listing->profile_picture);
+
+
+
+
                 $listing->delete(); // Delete the listing
                 return response()->json(['message' => 'Listing deleted successfully'], 200);
             }

@@ -13,6 +13,16 @@ class CrudService {
     return await HttpService.post(imageUpdateCollection, formData);
   };
 
+  imageUploadCollection = async (formData, id) => {
+    formData.append('collection_id', id);  // Assuming 'id' is the collection ID
+    formData.append('discount_id', '');    // If discount_id is empty or fixed value
+  
+    const imageUpdateCollection = `uploads/collections`;
+    return await HttpService.post(imageUpdateCollection, formData);
+  };
+  
+
+
 
 
   imageUploadStore = async (formData) => {
@@ -82,7 +92,7 @@ class CrudService {
   };
 
   deleteOnlinestore = async (id) => {
-    const onlinestoresEndpoint = `onlinestores/${id}`;
+    const onlinestoresEndpoint = `deletestores/${id}`;
     return await HttpService.delete(onlinestoresEndpoint);
   };
 
@@ -316,7 +326,7 @@ class CrudService {
   };
 
   deleteCollection = async (id) => {
-    const endpoint = `collections/${id}`;
+    const endpoint = `deletecollections/${id}`;
     return await HttpService.delete(endpoint);
   };
 

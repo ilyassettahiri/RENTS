@@ -39,6 +39,7 @@ function DetailStore() {
    const [data, setData] = useState([]);
 
 
+   const [storeId, setStoreId] = useState(null);
 
    const [address, setAddress] = useState({
      address: "",
@@ -90,7 +91,7 @@ function DetailStore() {
   useEffect(() => {
     if (storeData) {
       const storeAttributes = storeData.data[0].attributes;
-      
+      const storeId = storeData.data[0].id;
       setName({ text: storeAttributes.name, error: false, textError: "" });
       setPhone({ text: storeAttributes.phone, error: false, textError: "" });
       setEmail({ text: storeAttributes.email, error: false, textError: "" });
@@ -104,6 +105,8 @@ function DetailStore() {
       });
       setProfileImage(storeAttributes.profile_picture || null);
       setBackgroundImage(storeAttributes.picture || null);
+
+      setStoreId(storeId);
     }
   }, [storeData]);
 
@@ -235,7 +238,7 @@ function DetailStore() {
        
         
 
-       await CrudService.updateOnlinestore(updatedStore, data.id);
+       await CrudService.updateOnlinestore(updatedStore, storeId);
        navigate("/listing/all", {
          state: { value: true, text: "The Store was successfully created" },
        });
@@ -261,7 +264,7 @@ function DetailStore() {
   
     try {
       // Send delete request
-      await CrudService.deleteOnlinestore(data.id);
+      await CrudService.deleteOnlinestore(storeId);
       
       // Navigate after successful deletion
       navigate("/listing/create-listing");

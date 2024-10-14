@@ -215,10 +215,12 @@ const DetailCollection = () => {
     try {
       let pictureUrl = collection.picture;
   
-      console.log("Initial picture URL:", pictureUrl);
   
-      // Upload the picture separately if present
+      
       if (picture) {
+
+        
+
         const formData = new FormData();
         formData.append('attachment', picture);
   

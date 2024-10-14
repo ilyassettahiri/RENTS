@@ -90,15 +90,14 @@ class CollectionController extends JsonApiController
         $user = Auth::user();
         $request = app('request'); // Retrieve the current request
 
-        // Log the raw request body
-        Log::info('Raw request body:', ['body' => $request->all()]);
+
 
 
         // Validate the request
         $request->validate([
             'data.attributes.name' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:2048', // Validate images if present
+            'data.attributes.picture' => 'sometimes|image|max:60048',
         ]);
 
         // Initialize an array to hold the image paths
@@ -106,7 +105,7 @@ class CollectionController extends JsonApiController
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         $file = $request->file('data.attributes.picture');
         $imagelarge = $manager->read($file->getRealPath());
@@ -140,11 +139,11 @@ class CollectionController extends JsonApiController
 
 
 
-        $picturerelativePath = $fileNamelarge; */
+        $picturerelativePath = $fileNamelarge;
 
 
 
-                if ($request->hasFile('data.attributes.picture')) {
+                /*if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
                     $filePath = Storage::disk('public')->put('storage/images', $picturefile, 'public');
 
@@ -152,7 +151,7 @@ class CollectionController extends JsonApiController
                     $picturerelativePath = '/' . $relativePath;
 
 
-                }
+                }*/
 
 
         $name = $request->input('data.attributes.name');
@@ -220,11 +219,15 @@ class CollectionController extends JsonApiController
 
         $oldPicturePath = $collection->picture;
 
-        // Delete the old picture from DigitalOcean Spaces if it exists
-        if ($oldPicturePath && Storage::disk('spaces')->exists('storage/collectionimages/' . $oldPicturePath)) {
-            Storage::disk('spaces')->delete('storage/collectionimages/' . $oldPicturePath);
-        }
+        $newPicture = $request->input('picture');
 
+
+        if ($oldPicturePath && $newPicture && $oldPicturePath !== $newPicture) {
+            // Delete the old picture from DigitalOcean Spaces if it exists
+            if (Storage::disk('spaces')->exists('storage/collectionimages/' . $oldPicturePath)) {
+                Storage::disk('spaces')->delete('storage/collectionimages/' . $oldPicturePath);
+            }
+        }
 
         // Store picture variable without handling image uploads
         $collection->name = $request->input('name');
@@ -310,21 +313,27 @@ class CollectionController extends JsonApiController
 
 
 
-    public function delete(JsonApiRoute $route, Store $store )
+    public function deleteCollection(Request $request, $id )
     {
 
 
 
-        $request = app('request');
 
-
-        $id = $route->resourceId();
 
 
             $listing = Collection::find($id);
 
             // Check if listing exists
             if ($listing) {
+
+
+                if ($listing->picture) {
+
+                    Storage::disk('spaces')->delete('storage/collectionimages/' . $listing->picture);
+                }
+
+
+
                 $listing->delete(); // Delete the listing
                 return response()->json(['message' => 'Listing deleted successfully'], 200);
             }

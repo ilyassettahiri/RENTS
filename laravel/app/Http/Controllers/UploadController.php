@@ -190,7 +190,7 @@ class UploadController extends Controller
     {
         // Validate the request
         $request->validate([
-            'attachment' => 'required|image|max:2048',
+            'attachment' => 'required|image|max:60048',
         ]);
 
         // Get the authenticated user
@@ -261,7 +261,7 @@ class UploadController extends Controller
 
 
             $request->validate([
-                'attachment' => 'required|image|max:2048',
+                'attachment' => 'required|image|max:60048',
             ]);
 
 
@@ -272,6 +272,8 @@ class UploadController extends Controller
         $manager = new ImageManager(new Driver());
 
         $file = $request->file('attachment');
+
+
         $imagelarge = $manager->read($file->getRealPath());
 
 
@@ -335,7 +337,7 @@ class UploadController extends Controller
 
 
 
-        if ($request->hasFile('attachmentpicture')) {
+        /*if ($request->hasFile('attachmentpicture')) {
             $files = $request->file('attachmentpicture');
 
 
@@ -357,12 +359,12 @@ class UploadController extends Controller
                 $profil_picturerelativePath = '/' . $filePathaa; // Prepend '/' to make it a relative path
 
 
-        }
+        }*/
 
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         if ($request->hasFile('attachmentpicture')) {
             $file = $request->file('attachmentpicture');
@@ -463,7 +465,7 @@ class UploadController extends Controller
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }*/
+        }
 
 
 
@@ -485,7 +487,7 @@ class UploadController extends Controller
 
         // Validate the files. Ensure 'data.attributes.images' contains an array of files.
         $request->validate([
-            'data.attributes.images.*' => 'required|image|max:2048', // Validate each file in the array
+            'data.attributes.images.*' => 'required|image|max:60048', // Validate each file in the array
         ]);
 
 

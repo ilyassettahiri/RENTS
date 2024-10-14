@@ -9,7 +9,6 @@ import SoftTypography from "components/SoftTypography";
 
 function Address({ address, onAddressChange, addressError, cityError, zipError }) {
 
-  const defaultCountry = address.country || "Morocco";
 
   return (
     <SoftBox>
@@ -60,7 +59,7 @@ function Address({ address, onAddressChange, addressError, cityError, zipError }
               type="text"
               label="Country"
               name="country"
-              value={defaultCountry} 
+              value={address.country}
               onChange={onAddressChange}
               placeholder="Eg. Argentina"
             />

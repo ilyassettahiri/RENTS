@@ -1305,9 +1305,9 @@ function EditListing() {
 
   const [pricing, setPricing] = useState({
     price: "",
-    currency: "dh", // Default currency
-    sku: "",
-    tags: [],
+    currency: "", // Default currency
+    phone: "",
+    
   });
   
 
@@ -1338,34 +1338,54 @@ function EditListing() {
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
   const handlePricingChange = (e) => {
-    setPricing({ ...pricing, [e.target.name]: e.target.value });
+    
 
 
-          // Remove error when a valid price or phone is entered
-          if (e.target.name === "price" && e.target.value.trim().length > 0) {
-            setPriceError(false);
-          }
-          if (e.target.name === "phone" && e.target.value.trim().length > 0) {
-            setPhoneError(false);
-          }
+    setPricing((prevPricing) => {
+      const newPricing = { ...prevPricing, [e.target.name]: e.target.value };
+      
+      
+      
+      return newPricing;
+    });
+
+    
+      // Remove error when a valid price or phone is entered
+      if (e.target.name === "price" && e.target.value.trim().length > 0) {
+        setPriceError(false);
+      }
+      if (e.target.name === "phone" && e.target.value.trim().length > 0) {
+        setPhoneError(false);
+      }
 
   };
 
   const handleSelectChange = (name, value) => {
-    setPricing({ ...pricing, [name]: value });
 
+   
 
-          // Remove error when a valid price or phone is entered
-          if (name === "price" && value.trim().length > 0) {
-            setPriceError(false);
-          }
-
+    setPricing((prevPricing) => {
+      const newPricing = { ...prevPricing, [name]: value };
+      
+     
+      
+      return newPricing;
+    });
+    
+      // Remove error when a valid price or phone is entered
+      if (name === "price" && value.trim().length > 0) {
+        setPriceError(false);
+      }
   };
 
-
   const handleAddressChange = (e) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
-
+    setAddress((prevAddress) => {
+      const newAddress = { ...prevAddress, [e.target.name]: e.target.value };
+  
+      
+  
+      return newAddress;
+    });
 
           // Remove error when a valid address, city, or zip is entered
           if (e.target.name === "address" && e.target.value.trim().length > 0) {
@@ -1409,15 +1429,14 @@ function EditListing() {
     const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
     
     // Extract old and new files from the object
-    const { existingFiles, updatedSelectedFiles } = files;
+    const { updatedSelectedFiles } = files;
   
-    // Ensure that at least one old or new file is selected
-    if (existingFiles.length === 0 && updatedSelectedFiles.length === 0) {
-      setFileError("Please select at least one image (old or new).");
+    
+    if (!updatedSelectedFiles || updatedSelectedFiles.length === 0) {
+      setFileError("Please select at least one image.");
       setSelectedFiles([]); // Clear new selected files
       return;
     }
-  
     // Validate only new selected files (updatedSelectedFiles)
     for (let i = 0; i < updatedSelectedFiles.length; i++) {
       const file = updatedSelectedFiles[i];
@@ -1434,8 +1453,7 @@ function EditListing() {
     setFileError("");
     setSelectedFiles(updatedSelectedFiles); // Update new selected files
   
-    // Update the state for existing files
-    setOldFiles(existingFiles); // Update old files
+    
   };
   
 
@@ -1462,9 +1480,9 @@ function EditListing() {
           status,
           category,
           price,
-          currency = null,
-          sku = null,
-          tags = "[]",
+          currency  ,
+          phone  ,
+          
           images = [],
         } = fetchedData;
   
@@ -1477,7 +1495,7 @@ function EditListing() {
         setIds({ listingid });
         setDateRange([dayjs(startdate), dayjs(enddate)]);
         setSelectedCategory(category);
-        setPricing({ price, currency, sku, tags: JSON.parse(tags) });
+        setPricing({ price, currency, phone });
         setSelectedStatus(status);
         setInitialStatus(status);
 
@@ -2201,11 +2219,11 @@ function EditListing() {
     }
 
     // Validate files
-    if (selectedFiles.length === 0) {
+    if (selectedFiles.length === 0 && oldFiles.length === 0) {
       setFileError("Please select at least one image file.");
-     
       return;
     }
+
   
 
 
@@ -2258,8 +2276,7 @@ function EditListing() {
    
     formData.append('data[attributes][price]', pricing.price);
     formData.append('data[attributes][currency]', pricing.currency);
-    formData.append('data[attributes][sku]', pricing.sku);
-    formData.append('data[attributes][tags]', JSON.stringify(pricing.tags));
+    formData.append('data[attributes][phone]', pricing.phone);
 
 
     
@@ -2566,116 +2583,129 @@ function EditListing() {
 
     try {
 
+          let response = null; 
 
         
-      const formData = new FormData();
-
-      
-      selectedFiles.forEach((file, index) => {
-          formData.append(`attachment[${index}]`, file);
-          console.log('Appending file:', file.name);
-      });
-
-      formData.append('selectedCategory', selectedCategory);
-
-
-      // Send the file upload request
-      const response = await CrudService.imageUploadListing(formData);
-
-      
-
+          if (selectedFiles && selectedFiles.some(file => file instanceof File)) {
+            const formData = new FormData();
+        
+            // Append only valid files (instances of File)
+            selectedFiles.forEach((file, index) => {
+                if (file instanceof File) {
+                    formData.append(`attachment[${index}]`, file);
+                    console.log('Appending file:', file.name);
+                }
+            });
+        
+            formData.append('selectedCategory', selectedCategory);
+        
+            // Send the file upload request only if there are valid files
+            const response = await CrudService.imageUploadListing(formData);
+            
+            // Handle the response if needed
+            console.log("Upload response:", response);
+          } 
+        
       
       
     
 
 
 
-    const updatedListing = {
-      type: 'listings',
-      attributes: {
-          category: selectedCategory,
-          title: title.text,
-          description: description,
-          startdate: formattedStartDate,
-          enddate: formattedEndDate,
-          address: address.address,
-          city: address.city,
-          country: address.country,
-          zip: address.zip,
-          price: pricing.price,
-          currency: pricing.currency,
-          sku: pricing.sku,
-          tags: pricing.tags,
-          imagePathslarge: response.imagePathslarge, 
-          imagePathssmall: response.imagePathssmall,  
-          imagePathsxlarge: response.imagePathsxlarge, 
-          thumb: response.thumb, 
-          oldimagePathslarge: oldFiles, 
-          
-        ...(selectedCategory === 'billiards' && { billiards: billiardsData }),
-        ...(selectedCategory === 'boxings' && { boxings: boxingsData }),
-        ...(selectedCategory === 'divings' && { divings: divingsData }),
-        ...(selectedCategory === 'footballs' && { footballs: footballsData }),
-        ...(selectedCategory === 'golfs' && { golfs: golfsData }),
-        ...(selectedCategory === 'huntings' && { huntings: huntingsData }),
-        ...(selectedCategory === 'musculations' && { musculations: musculationsData }),
-        ...(selectedCategory === 'surfs' && { surfs: surfsData }),
-        ...(selectedCategory === 'tennis' && { tennis: tennisData }),
-        ...(selectedCategory === 'audios' && { audios: audiosData }),
-        ...(selectedCategory === 'cameras' && { cameras: camerasData }),
-        ...(selectedCategory === 'chargers' && { chargers: chargersData }),
-        ...(selectedCategory === 'drones' && { drones: dronesData }),
-        ...(selectedCategory === 'gamings' && { gamings: gamingsData }),
-        ...(selectedCategory === 'laptops' && { laptops: laptopsData }),
-        ...(selectedCategory === 'lightings' && { lightings: lightingsData }),
-        ...(selectedCategory === 'printers' && { printers: printersData }),
-        ...(selectedCategory === 'routers' && { routers: routersData }),
-        ...(selectedCategory === 'tablettes' && { tablettes: tablettesData }),
-        ...(selectedCategory === 'eclairages' && { eclairages: eclairagesData }),
-        ...(selectedCategory === 'mobiliers' && { mobiliers: mobiliersData }),
-        ...(selectedCategory === 'photographies' && { photographies: photographiesData }),
-        ...(selectedCategory === 'sonorisations' && { sonorisations: sonorisationsData }),
-        ...(selectedCategory === 'tentes' && { tentes: tentesData }),
-        ...(selectedCategory === 'clothes' && { clothes: clothesData }),
-        ...(selectedCategory === 'jewelrys' && { jewelrys: jewelrysData }),
-        ...(selectedCategory === 'apartments' && { apartments: apartmentsData }),
-        ...(selectedCategory === 'bureauxs' && { bureauxs: bureauxsData }),
-        ...(selectedCategory === 'magasins' && { magasins: magasinsData }),
-        ...(selectedCategory === 'maisons' && { maisons: maisonsData }),
-        ...(selectedCategory === 'riads' && { riads: riadsData }),
-        ...(selectedCategory === 'terrains' && { terrains: terrainsData }),
-        ...(selectedCategory === 'villas' && { villas: villasData }),
-        ...(selectedCategory === 'activities' && { activities: activitiesData }),
-        ...(selectedCategory === 'livres' && { livres: livresData }),
-        ...(selectedCategory === 'musicals' && { musicals: musicalsData }),
-        ...(selectedCategory === 'furnitures' && { furnitures: furnituresData }),
-        ...(selectedCategory === 'houseappliances' && { houseappliances: houseappliancesData }),
-        ...(selectedCategory === 'electricaltools' && { electricaltools: electricaltoolsData }),
-        ...(selectedCategory === 'ladders' && { ladders: laddersData }),
-        ...(selectedCategory === 'mechanicaltools' && { mechanicaltools: mechanicaltoolsData }),
-        ...(selectedCategory === 'powertools' && { powertools: powertoolsData }),
-        ...(selectedCategory === 'pressurewashers' && { pressurewashers: pressurewashersData }),
-        ...(selectedCategory === 'services' && { services: servicesData }),
-        ...(selectedCategory === 'jobs' && { jobs: jobsData }),
+        const updatedListing = {
+          type: 'listings',
+          attributes: {
+              category: selectedCategory,
+              title: title.text,
+              description: description,
+              startdate: formattedStartDate,
+              enddate: formattedEndDate,
+              address: address.address,
+              city: address.city,
+              country: address.country,
+              zip: address.zip,
+              price: pricing.price,
+              currency: pricing.currency,
+              phone: pricing.phone,
+              
+              
+              oldimagePathslarge: oldFiles, 
+              
+            ...(selectedCategory === 'billiards' && { billiards: billiardsData }),
+            ...(selectedCategory === 'boxings' && { boxings: boxingsData }),
+            ...(selectedCategory === 'divings' && { divings: divingsData }),
+            ...(selectedCategory === 'footballs' && { footballs: footballsData }),
+            ...(selectedCategory === 'golfs' && { golfs: golfsData }),
+            ...(selectedCategory === 'huntings' && { huntings: huntingsData }),
+            ...(selectedCategory === 'musculations' && { musculations: musculationsData }),
+            ...(selectedCategory === 'surfs' && { surfs: surfsData }),
+            ...(selectedCategory === 'tennis' && { tennis: tennisData }),
+            ...(selectedCategory === 'audios' && { audios: audiosData }),
+            ...(selectedCategory === 'cameras' && { cameras: camerasData }),
+            ...(selectedCategory === 'chargers' && { chargers: chargersData }),
+            ...(selectedCategory === 'drones' && { drones: dronesData }),
+            ...(selectedCategory === 'gamings' && { gamings: gamingsData }),
+            ...(selectedCategory === 'laptops' && { laptops: laptopsData }),
+            ...(selectedCategory === 'lightings' && { lightings: lightingsData }),
+            ...(selectedCategory === 'printers' && { printers: printersData }),
+            ...(selectedCategory === 'routers' && { routers: routersData }),
+            ...(selectedCategory === 'tablettes' && { tablettes: tablettesData }),
+            ...(selectedCategory === 'eclairages' && { eclairages: eclairagesData }),
+            ...(selectedCategory === 'mobiliers' && { mobiliers: mobiliersData }),
+            ...(selectedCategory === 'photographies' && { photographies: photographiesData }),
+            ...(selectedCategory === 'sonorisations' && { sonorisations: sonorisationsData }),
+            ...(selectedCategory === 'tentes' && { tentes: tentesData }),
+            ...(selectedCategory === 'clothes' && { clothes: clothesData }),
+            ...(selectedCategory === 'jewelrys' && { jewelrys: jewelrysData }),
+            ...(selectedCategory === 'apartments' && { apartments: apartmentsData }),
+            ...(selectedCategory === 'bureauxs' && { bureauxs: bureauxsData }),
+            ...(selectedCategory === 'magasins' && { magasins: magasinsData }),
+            ...(selectedCategory === 'maisons' && { maisons: maisonsData }),
+            ...(selectedCategory === 'riads' && { riads: riadsData }),
+            ...(selectedCategory === 'terrains' && { terrains: terrainsData }),
+            ...(selectedCategory === 'villas' && { villas: villasData }),
+            ...(selectedCategory === 'activities' && { activities: activitiesData }),
+            ...(selectedCategory === 'livres' && { livres: livresData }),
+            ...(selectedCategory === 'musicals' && { musicals: musicalsData }),
+            ...(selectedCategory === 'furnitures' && { furnitures: furnituresData }),
+            ...(selectedCategory === 'houseappliances' && { houseappliances: houseappliancesData }),
+            ...(selectedCategory === 'electricaltools' && { electricaltools: electricaltoolsData }),
+            ...(selectedCategory === 'ladders' && { ladders: laddersData }),
+            ...(selectedCategory === 'mechanicaltools' && { mechanicaltools: mechanicaltoolsData }),
+            ...(selectedCategory === 'powertools' && { powertools: powertoolsData }),
+            ...(selectedCategory === 'pressurewashers' && { pressurewashers: pressurewashersData }),
+            ...(selectedCategory === 'services' && { services: servicesData }),
+            ...(selectedCategory === 'jobs' && { jobs: jobsData }),
 
-        ...(selectedCategory === 'boats' && { boats: boatsData }),
-        ...(selectedCategory === 'camions' && { camions: camionsData }),
-        ...(selectedCategory === 'caravans' && { caravans: caravansData }),
-        ...(selectedCategory === 'cars' && { cars: carsData }),
-        ...(selectedCategory === 'engins' && { engins: enginsData }),
-        ...(selectedCategory === 'motos' && { motos: motosData }),
-        ...(selectedCategory === 'scooters' && { scooters: scootersData }),
-        ...(selectedCategory === 'taxiaeroports' && { taxiaeroports: taxiaeroportsData }),
-        ...(selectedCategory === 'transportations' && { transportations: transportationsData }),
-        ...(selectedCategory === 'velos' && { velos: velosData }),  
-      }
-  };
-    
+            ...(selectedCategory === 'boats' && { boats: boatsData }),
+            ...(selectedCategory === 'camions' && { camions: camionsData }),
+            ...(selectedCategory === 'caravans' && { caravans: caravansData }),
+            ...(selectedCategory === 'cars' && { cars: carsData }),
+            ...(selectedCategory === 'engins' && { engins: enginsData }),
+            ...(selectedCategory === 'motos' && { motos: motosData }),
+            ...(selectedCategory === 'scooters' && { scooters: scootersData }),
+            ...(selectedCategory === 'taxiaeroports' && { taxiaeroports: taxiaeroportsData }),
+            ...(selectedCategory === 'transportations' && { transportations: transportationsData }),
+            ...(selectedCategory === 'velos' && { velos: velosData }),  
+          }
+        };
+        
 
 
-
-
-
+        if (response) {
+          if (response.imagePathslarge) {
+            updatedListing.attributes.imagePathslarge = response.imagePathslarge;
+          }
+          if (response.imagePathssmall) {
+            updatedListing.attributes.imagePathssmall = response.imagePathssmall;
+          }
+          if (response.imagePathsxlarge) {
+            updatedListing.attributes.imagePathsxlarge = response.imagePathsxlarge;
+          }
+          if (response.thumb) {
+            updatedListing.attributes.thumb = response.thumb;
+          }
+        }
 
 
 

@@ -49,13 +49,14 @@ function Pricing({ pricing, onPricingChange, onSelectChange, priceError, phoneEr
               </SoftTypography>
             </SoftBox>
             <SoftSelect
-              defaultValue={{ value: "dh", label: "DH" }}
+              defaultValue={{ value: pricing.currency, label: pricing.currency }} 
               options={[
-                { value: "dh", label: "DH" },
-                { value: "eur", label: "EUR" },
-                { value: "usd", label: "USD" },
+                { value: "DH", label: "DH" },
+                { value: "EUR", label: "EUR" },
+                { value: "USD", label: "USD" },
               ]}
               onChange={(option) => onSelectChange("currency", option.value)}
+              
             />
           </Grid>
           <Grid item xs={12} sm={5}>

@@ -289,7 +289,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -375,7 +375,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
@@ -444,7 +444,7 @@ class ListingController extends JsonApiController
             }*/
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -459,7 +459,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
@@ -4491,30 +4491,23 @@ class ListingController extends JsonApiController
         $enddate = $request->input('attributes.enddate');
         $price = $request->input('attributes.price');
 
-        $phone = $request->input('data.attributes.phone');
+        $phone = $request->input('attributes.phone');
+        $currency = $request->input('attributes.currency');
+
 
         $url = $this->generateUrl($title);
 
 
-
-        $imagePathslarge = $request->input('attributes.imagePathslarge');
-        $imagePathssmall = $request->input('attributes.imagePathssmall');
-        $imagePathsxlarge = $request->input('attributes.imagePathsxlarge');
-        $thumb = $request->input('attributes.thumb');
-
+        $imagePathslarge = $request->input('attributes.imagePathslarge') ?? null;
+        $imagePathssmall = $request->input('attributes.imagePathssmall') ?? null;
+        $imagePathsxlarge = $request->input('attributes.imagePathsxlarge') ?? null;
+        $thumb = $request->input('attributes.thumb') ?? null;
 
 
         $oldimagePathslarge = $request->input('attributes.oldimagePathslarge');
 
 
-        // Log the values for debugging
-        Log::info('Update Listing - Image Paths:', [
-            'imagePathslarge' => $imagePathslarge,
-            'imagePathssmall' => $imagePathssmall,
-            'imagePathsxlarge' => $imagePathsxlarge,
-            'thumb' => $thumb,
-            'oldimagePathslarge' => $oldimagePathslarge
-        ]);
+
 
 
             // Find the existing listing
@@ -4523,9 +4516,35 @@ class ListingController extends JsonApiController
         $oldurl = $listing->url;
 
 
+        Log::info('Updating listing:', [
+            'category' => $category,
+            'description' => $description,
+            'title' => $title,
+            'address' => $address,
+            'city' => $city,
+            'country' => $country,
+            'zip' => $zip,
+            'startdate' => $startdate,
+            'enddate' => $enddate,
+            'price' => $price,
+            'phone' => $phone,
+            'currency' => $currency,
+
+            'url' => $url,
+            'imagePathslarge' => $imagePathslarge,
+            'imagePathssmall' => $imagePathssmall,
+            'imagePathsxlarge' => $imagePathsxlarge,
+            'thumb' => $thumb,
+            'oldimagePathslarge' => $oldimagePathslarge,
+            'oldurl' => $oldurl,
+        ]);
 
 
-
+        // Break the process here
+        return response()->json([
+            'message' => 'Process stopped after retrieving the old URL',
+            'oldurl' => $oldurl,
+        ], 200); // You can adjust the response if needed
 
 
 
@@ -8874,18 +8893,39 @@ class ListingController extends JsonApiController
 
 
 
-                $listing->delete(); // Delete the listing
+                    $images = $listingcategory->servicesimg;
+                    if ($images) {
+                        foreach ($images as $image) {
 
 
-                // Check if the listing category exists and delete
+                            Storage::disk('spaces')->delete('storage/listinglarge/' . $image->picture);
+                            Storage::disk('spaces')->delete('storage/listingsmall/' . $image->picturesmall);
+                            Storage::disk('spaces')->delete('storage/listingxlarge/' . $image->picturesxlarge);
+
+
+                        }
+
+                        // Delete the image records from the database
+                        $listingcategory->servicesimg()->delete();
+                    }
+
+
+
+
+
+                $listing->delete();
+
+
+
                 if ($listingcategory) {
+
                     $listingcategory->delete();
                 }
 
                 return response()->json(['message' => 'Listing deleted successfully'], 200);
         }
 
-        // Return error if listing not found
+
         return response()->json(['message' => 'Listing not found'], 404);
     }
 
