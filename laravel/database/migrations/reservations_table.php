@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');
             $table->date('reservationstart')->nullable();
             $table->date('reservationsend')->nullable();
             $table->string('checkout_id')->nullable();
@@ -88,6 +88,8 @@ return new class extends Migration
 
             $table->foreignId('clothes_id')->nullable();
             $table->foreignId('jewelry_id')->nullable();
+
+            $table->foreignId('job_id')->nullable();
 
             $table->foreignId('apartment_id')->nullable();
             $table->foreignId('bureaux_id')->nullable();

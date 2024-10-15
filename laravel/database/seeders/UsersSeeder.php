@@ -21,24 +21,19 @@ class UsersSeeder extends Seeder
         Schema::enableForeignKeyConstraints();
 
         User::create([
-            'name' => 'Admin',
-            'email' => 'admin@jsonapi.com',
+            'name' => 'ilyass',
+            'email' => 'contact.us.forum@gmail.com',
             'password' => 'secret',
-            'profile_image' => env('APP_URL').'/images/admin.jpg'
-        ])->assignRole('admin');
+            'profile_image' => env('APP_URL').'logo/admin.jpg'
+        ])->assignRole('seller');
 
         User::create([
-            'name' => 'Creator',
-            'email' => 'creator@jsonapi.com',
+            'name' => 'ilyassett',
+            'email' => 'ilyass.ettahiri.20@gmail.com',
             'password' => 'secret',
-            'profile_image' => env('APP_URL').'/images/creator.jpg'
-        ])->assignRole('creator');
+            'profile_image' => env('APP_URL').'logo/creator.jpg'
+        ])->assignRole('super-admin');
 
-        User::create([
-            'name' => 'Member',
-            'email' => 'member@jsonapi.com',
-            'password' => 'secret',
-            'profile_image' => env('APP_URL').'/images/member.jpg'
-        ])->assignRole('member');
+
     }
 }

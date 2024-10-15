@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('requirements')->nullable();
             $table->string('purchaseamount')->nullable();
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });
 

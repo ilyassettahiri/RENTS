@@ -74,7 +74,7 @@ return new class extends Migration
 
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-            $table->boolean('featured')->default(false);
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');            $table->boolean('featured')->default(false);
 
             $table->string('livre_title')->nullable();
             $table->string('author')->nullable();

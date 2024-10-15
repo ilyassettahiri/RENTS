@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');
 
 
 
@@ -52,6 +52,9 @@ return new class extends Migration
             $table->foreignId('musculation_id')->nullable();
             $table->foreignId('surf_id')->nullable();
             $table->foreignId('tennis_id')->nullable();
+
+            $table->foreignId('job_id')->nullable();
+
 
             $table->foreignId('audio_id')->nullable();
             $table->foreignId('camera_id')->nullable();

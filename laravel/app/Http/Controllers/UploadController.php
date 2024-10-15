@@ -508,7 +508,7 @@ class UploadController extends Controller
                 $category = $request->input('selectedCategory');
 
 
-                $manager = new ImageManager(new Driver());
+                /*$manager = new ImageManager(new Driver());
 
                 if ($request->hasFile('attachment')) {
                     $files = $request->file('attachment');
@@ -594,12 +594,12 @@ class UploadController extends Controller
                             Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                         }
                     }
-                }
+                }*/
 
 
 
 
-                /*if ($request->hasFile('attachment')) {
+                if ($request->hasFile('attachment')) {
                     $files = $request->file('attachment');
 
                     foreach ($files as $index => $file) {
@@ -614,7 +614,7 @@ class UploadController extends Controller
                             $thumb = $relativePath;
                         }
                     }
-                }*/
+                }
 
 
 

@@ -34,44 +34,14 @@ return new class extends Migration
 
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');
 
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('onlinestore_id')->nullable();
-            $table->foreignId('landingpage_id')->nullable();
-            $table->foreignId('discount_id')->nullable();
+
+
             $table->foreignId('collection_id')->nullable();
-            $table->foreignId('detaillisting_id')->nullable();
-            $table->foreignId('featurelisting_id')->nullable();
-            $table->foreignId('guarantee_id')->nullable();
 
-
-            $table->string('secteur')->nullable();
-            $table->string('adults_count')->nullable();
-            $table->string('children_count')->nullable();
-
-            $table->string('adults_price')->nullable();
-            $table->string('children_price')->nullable();
-            $table->foreignId('shipping_id')->nullable();
-            $table->foreignId('vat_id')->nullable();
-            $table->string('policiea')->nullable();
-            $table->string('policieb')->nullable();
-            $table->string('policiec')->nullable();
-            $table->string('policied')->nullable();
-            $table->string('detaila')->nullable();
-            $table->string('detailb')->nullable();
-            $table->string('detailc')->nullable();
-            $table->string('answerdetaila')->nullable();
-            $table->string('answerdetailb')->nullable();
-            $table->string('answerdetailc')->nullable();
-
-            $table->string('questiona')->nullable();
-            $table->string('questionb')->nullable();
-            $table->string('questionc')->nullable();
-
-            $table->text('answera')->nullable();
-            $table->text('answerb')->nullable();
-            $table->text('answerc')->nullable();
 
             $table->foreignId('billiard_id')->nullable();
 
@@ -96,6 +66,9 @@ return new class extends Migration
             $table->foreignId('printer_id')->nullable();
             $table->foreignId('router_id')->nullable();
             $table->foreignId('tablette_id')->nullable();
+
+            $table->foreignId('job_id')->nullable();
+
 
             $table->foreignId('eclairage_id')->nullable();
             $table->foreignId('mobilier_id')->nullable();

@@ -13,6 +13,8 @@ import SoftSelect from "components/SoftSelect";
 import FormField from "admin/components/FormField";
 
 function Pricing({ pricing, onPricingChange, onSelectChange, priceError, phoneError }) {
+
+
   return (
     <SoftBox>
       
@@ -49,7 +51,7 @@ function Pricing({ pricing, onPricingChange, onSelectChange, priceError, phoneEr
               </SoftTypography>
             </SoftBox>
             <SoftSelect
-              defaultValue={{ value: pricing.currency, label: pricing.currency }} 
+              value={{ value: pricing.currency, label: pricing.currency }}
               options={[
                 { value: "DH", label: "DH" },
                 { value: "EUR", label: "EUR" },

@@ -34,6 +34,11 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'edit users']);
         Permission::create(['name' => 'delete users']);
 
+        Permission::create(['name' => 'view team']);
+        Permission::create(['name' => 'create team']);
+        Permission::create(['name' => 'edit team']);
+        Permission::create(['name' => 'delete team']);
+
         // Role permissions
         Permission::create(['name' => 'view roles']);
         Permission::create(['name' => 'create roles']);
@@ -42,6 +47,12 @@ class PermissionsSeeder extends Seeder
 
         // Permissions permissions
         Permission::create(['name' => 'view permissions']);
+        Permission::create(['name' => 'create permissions']);
+
+        Permission::create(['name' => 'edit permissions']);
+
+        Permission::create(['name' => 'delete permissions']);
+
 
         // Category permissions
         Permission::create(['name' => 'view categories']);
@@ -443,12 +454,736 @@ class PermissionsSeeder extends Seeder
 
 
 
-
+        /** @var \Spatie\Permission\Models\Role $role */
+        $role = Role::firstOrCreate(['name' => 'super-admin']);
+        $role->givePermissionTo(Permission::all());
 
 
         /** @var \Spatie\Permission\Models\Role $role */
         $role = Role::create(['name' => 'admin']);
-        $role->givePermissionTo(Permission::all());
+        $role->givePermissionTo([
+
+
+            'view roles',
+            'view permissions',
+
+            'view team',
+            'create team',
+            'edit team',
+            'delete team',
+
+            'view categories',
+            'create categories',
+            'edit categories',
+            'delete categories',
+
+            'view listings',
+            'create listings',
+            'edit listings',
+            'delete listings',
+
+
+            'view collections',
+            'create collections',
+            'edit collections',
+            'delete collections',
+
+
+            'view onlinestores',
+            'create onlinestores',
+            'edit onlinestores',
+            'delete onlinestores',
+
+            'view reservations',
+            'create reservations',
+            'edit reservations',
+            'delete reservations',
+
+            'view customers',
+            'create customers',
+            'edit customers',
+            'delete customers',
+
+
+            'view reviews',
+            'create reviews',
+            'edit reviews',
+            'delete reviews',
+
+
+            'view discounts',
+            'create discounts',
+            'edit discounts',
+            'delete discounts',
+
+            'view tags',
+            'create tags',
+            'edit tags',
+            'delete tags',
+
+            'view items',
+            'create items',
+            'edit items',
+            'delete items',
+
+
+            'view billiards',
+            'create billiards',
+            'edit billiards',
+            'delete billiards',
+
+            'view boxings',
+            'create boxings',
+            'edit boxings',
+            'delete boxings',
+
+            'view footballs',
+            'create footballs',
+            'edit footballs',
+            'delete footballs',
+
+            'view golfs',
+            'create golfs',
+            'edit golfs',
+            'delete golfs',
+
+            'view huntings',
+            'create huntings',
+            'edit huntings',
+            'delete huntings',
+
+            'view musculations',
+            'create musculations',
+            'edit musculations',
+            'delete musculations',
+
+            'view surfs',
+            'create surfs',
+            'edit surfs',
+            'delete surfs',
+
+            'view tennis',
+            'create tennis',
+            'edit tennis',
+            'delete tennis',
+
+
+
+
+            'view audios',
+            'create audios',
+            'edit audios',
+            'delete audios',
+
+            'view cameras',
+            'create cameras',
+            'edit cameras',
+            'delete cameras',
+
+            'view chargers',
+            'create chargers',
+            'edit chargers',
+            'delete chargers',
+
+            'view drones',
+            'create drones',
+            'edit drones',
+            'delete drones',
+
+            'view gamings',
+            'create gamings',
+            'edit gamings',
+            'delete gamings',
+
+            'view laptops',
+            'create laptops',
+            'edit laptops',
+            'delete laptops',
+
+            'view lightings',
+            'create lightings',
+            'edit lightings',
+            'delete lightings',
+
+            'view printers',
+            'create printers',
+            'edit printers',
+            'delete printers',
+
+            'view routers',
+            'create routers',
+            'edit routers',
+            'delete routers',
+
+            'view tablettes',
+            'create tablettes',
+            'edit tablettes',
+            'delete tablettes',
+
+
+
+
+            'view eclairages',
+            'create eclairages',
+            'edit eclairages',
+            'delete eclairages',
+
+            'view mobiliers',
+            'create mobiliers',
+            'edit mobiliers',
+            'delete mobiliers',
+
+            'view photographies',
+            'create photographies',
+            'edit photographies',
+            'delete photographies',
+
+            'view sonorisations',
+            'create sonorisations',
+            'edit sonorisations',
+            'delete sonorisations',
+
+            'view tentes',
+            'create tentes',
+            'edit tentes',
+            'delete tentes',
+
+
+            'view clothes',
+            'create clothes',
+            'edit clothes',
+            'delete clothes',
+
+            'view jewelrys',
+            'create jewelrys',
+            'edit jewelrys',
+            'delete jewelrys',
+
+
+
+            'view apartments',
+            'create apartments',
+            'edit apartments',
+            'delete apartments',
+
+            'view bureauxs',
+            'create bureauxs',
+            'edit bureauxs',
+            'delete bureauxs',
+
+            'view magasins',
+            'create magasins',
+            'edit magasins',
+            'delete magasins',
+
+            'view maisons',
+            'create maisons',
+            'edit maisons',
+            'delete maisons',
+
+            'view riads',
+            'create riads',
+            'edit riads',
+            'delete riads',
+
+            'view terrains',
+            'create terrains',
+            'edit terrains',
+            'delete terrains',
+
+            'view villas',
+            'create villas',
+            'edit villas',
+            'delete villas',
+
+
+
+
+            'view activities',
+            'create activities',
+            'edit activities',
+            'delete activities',
+
+            'view livres',
+            'create livres',
+            'edit livres',
+            'delete livres',
+
+            'view musicals',
+            'create musicals',
+            'edit musicals',
+            'delete musicals',
+
+
+            'view furnitures',
+            'create furnitures',
+            'edit furnitures',
+            'delete furnitures',
+
+            'view houseappliances',
+            'create houseappliances',
+            'edit houseappliances',
+            'delete houseappliances',
+
+
+            'view electricaltools',
+            'create electricaltools',
+            'edit electricaltools',
+            'delete electricaltools',
+
+            'view ladders',
+            'create ladders',
+            'edit ladders',
+            'delete ladders',
+
+            'view mechanicaltools',
+            'create mechanicaltools',
+            'edit mechanicaltools',
+            'delete mechanicaltools',
+
+            'view powertools',
+            'create powertools',
+            'edit powertools',
+            'delete powertools',
+
+            'view pressurewashers',
+            'create pressurewashers',
+            'edit pressurewashers',
+            'delete pressurewashers',
+
+
+            'view services',
+            'create services',
+            'edit services',
+            'delete services',
+
+
+
+            'view boats',
+            'create boats',
+            'edit boats',
+            'delete boats',
+
+            'view camions',
+            'create camions',
+            'edit camions',
+            'delete camions',
+
+            'view caravans',
+            'create caravans',
+            'edit caravans',
+            'delete caravans',
+
+            'view cars',
+            'create cars',
+            'edit cars',
+            'delete cars',
+
+            'view engins',
+            'create engins',
+            'edit engins',
+            'delete engins',
+
+            'view motos',
+            'create motos',
+            'edit motos',
+            'delete motos',
+
+            'view scooters',
+            'create scooters',
+            'edit scooters',
+            'delete scooters',
+
+            'view taxiaeroports',
+            'create taxiaeroports',
+            'edit taxiaeroports',
+            'delete taxiaeroports',
+
+            'view transportations',
+            'create transportations',
+            'edit transportations',
+            'delete transportations',
+
+            'view velos',
+            'create velos',
+            'edit velos',
+            'delete velos',
+
+
+
+
+
+
+
+
+
+
+
+
+        ]);
+
+
+        $role = Role::create(['name' => 'seller']);
+        $role->givePermissionTo([
+
+
+            'view roles',
+            'view permissions',
+
+            'view team',
+            'create team',
+            'edit team',
+            'delete team',
+
+            'view categories',
+            'create categories',
+            'edit categories',
+            'delete categories',
+
+            'view listings',
+            'create listings',
+            'edit listings',
+            'delete listings',
+
+
+            'view collections',
+            'create collections',
+            'edit collections',
+            'delete collections',
+
+
+            'view onlinestores',
+            'create onlinestores',
+            'edit onlinestores',
+            'delete onlinestores',
+
+            'view reservations',
+            'create reservations',
+            'edit reservations',
+            'delete reservations',
+
+            'view customers',
+            'create customers',
+            'edit customers',
+            'delete customers',
+
+
+            'view reviews',
+            'create reviews',
+            'edit reviews',
+            'delete reviews',
+
+
+            'view discounts',
+            'create discounts',
+            'edit discounts',
+            'delete discounts',
+
+            'view tags',
+            'create tags',
+            'edit tags',
+            'delete tags',
+
+            'view items',
+            'create items',
+            'edit items',
+            'delete items',
+
+
+            'view billiards',
+            'create billiards',
+            'edit billiards',
+            'delete billiards',
+
+            'view boxings',
+            'create boxings',
+            'edit boxings',
+            'delete boxings',
+
+            'view footballs',
+            'create footballs',
+            'edit footballs',
+            'delete footballs',
+
+            'view golfs',
+            'create golfs',
+            'edit golfs',
+            'delete golfs',
+
+            'view huntings',
+            'create huntings',
+            'edit huntings',
+            'delete huntings',
+
+            'view musculations',
+            'create musculations',
+            'edit musculations',
+            'delete musculations',
+
+            'view surfs',
+            'create surfs',
+            'edit surfs',
+            'delete surfs',
+
+            'view tennis',
+            'create tennis',
+            'edit tennis',
+            'delete tennis',
+
+
+
+
+            'view audios',
+            'create audios',
+            'edit audios',
+            'delete audios',
+
+            'view cameras',
+            'create cameras',
+            'edit cameras',
+            'delete cameras',
+
+            'view chargers',
+            'create chargers',
+            'edit chargers',
+            'delete chargers',
+
+            'view drones',
+            'create drones',
+            'edit drones',
+            'delete drones',
+
+            'view gamings',
+            'create gamings',
+            'edit gamings',
+            'delete gamings',
+
+            'view laptops',
+            'create laptops',
+            'edit laptops',
+            'delete laptops',
+
+            'view lightings',
+            'create lightings',
+            'edit lightings',
+            'delete lightings',
+
+            'view printers',
+            'create printers',
+            'edit printers',
+            'delete printers',
+
+            'view routers',
+            'create routers',
+            'edit routers',
+            'delete routers',
+
+            'view tablettes',
+            'create tablettes',
+            'edit tablettes',
+            'delete tablettes',
+
+
+
+
+            'view eclairages',
+            'create eclairages',
+            'edit eclairages',
+            'delete eclairages',
+
+            'view mobiliers',
+            'create mobiliers',
+            'edit mobiliers',
+            'delete mobiliers',
+
+            'view photographies',
+            'create photographies',
+            'edit photographies',
+            'delete photographies',
+
+            'view sonorisations',
+            'create sonorisations',
+            'edit sonorisations',
+            'delete sonorisations',
+
+            'view tentes',
+            'create tentes',
+            'edit tentes',
+            'delete tentes',
+
+
+            'view clothes',
+            'create clothes',
+            'edit clothes',
+            'delete clothes',
+
+            'view jewelrys',
+            'create jewelrys',
+            'edit jewelrys',
+            'delete jewelrys',
+
+
+
+            'view apartments',
+            'create apartments',
+            'edit apartments',
+            'delete apartments',
+
+            'view bureauxs',
+            'create bureauxs',
+            'edit bureauxs',
+            'delete bureauxs',
+
+            'view magasins',
+            'create magasins',
+            'edit magasins',
+            'delete magasins',
+
+            'view maisons',
+            'create maisons',
+            'edit maisons',
+            'delete maisons',
+
+            'view riads',
+            'create riads',
+            'edit riads',
+            'delete riads',
+
+            'view terrains',
+            'create terrains',
+            'edit terrains',
+            'delete terrains',
+
+            'view villas',
+            'create villas',
+            'edit villas',
+            'delete villas',
+
+
+
+
+            'view activities',
+            'create activities',
+            'edit activities',
+            'delete activities',
+
+            'view livres',
+            'create livres',
+            'edit livres',
+            'delete livres',
+
+            'view musicals',
+            'create musicals',
+            'edit musicals',
+            'delete musicals',
+
+
+            'view furnitures',
+            'create furnitures',
+            'edit furnitures',
+            'delete furnitures',
+
+            'view houseappliances',
+            'create houseappliances',
+            'edit houseappliances',
+            'delete houseappliances',
+
+
+            'view electricaltools',
+            'create electricaltools',
+            'edit electricaltools',
+            'delete electricaltools',
+
+            'view ladders',
+            'create ladders',
+            'edit ladders',
+            'delete ladders',
+
+            'view mechanicaltools',
+            'create mechanicaltools',
+            'edit mechanicaltools',
+            'delete mechanicaltools',
+
+            'view powertools',
+            'create powertools',
+            'edit powertools',
+            'delete powertools',
+
+            'view pressurewashers',
+            'create pressurewashers',
+            'edit pressurewashers',
+            'delete pressurewashers',
+
+
+            'view services',
+            'create services',
+            'edit services',
+            'delete services',
+
+
+
+            'view boats',
+            'create boats',
+            'edit boats',
+            'delete boats',
+
+            'view camions',
+            'create camions',
+            'edit camions',
+            'delete camions',
+
+            'view caravans',
+            'create caravans',
+            'edit caravans',
+            'delete caravans',
+
+            'view cars',
+            'create cars',
+            'edit cars',
+            'delete cars',
+
+            'view engins',
+            'create engins',
+            'edit engins',
+            'delete engins',
+
+            'view motos',
+            'create motos',
+            'edit motos',
+            'delete motos',
+
+            'view scooters',
+            'create scooters',
+            'edit scooters',
+            'delete scooters',
+
+            'view taxiaeroports',
+            'create taxiaeroports',
+            'edit taxiaeroports',
+            'delete taxiaeroports',
+
+            'view transportations',
+            'create transportations',
+            'edit transportations',
+            'delete transportations',
+
+            'view velos',
+            'create velos',
+            'edit velos',
+            'delete velos',
+
+
+
+
+
+
+
+
+
+
+
+
+        ]);
 
         /** @var \Spatie\Permission\Models\Role $role */
         $role = Role::create(['name' => 'creator']);

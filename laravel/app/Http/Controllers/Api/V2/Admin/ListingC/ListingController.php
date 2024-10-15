@@ -474,6 +474,9 @@ class ListingController extends JsonApiController
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
 
+        $currency = $request->input('data.attributes.currency');
+
+
         $startdate = $request->input('data.attributes.startdate');
         $enddate = $request->input('data.attributes.enddate');
         $price = $request->input('data.attributes.price');
@@ -491,6 +494,8 @@ class ListingController extends JsonApiController
         $listing->category = $category;
         $listing->title = $title;
         $listing->price = $price;
+        $listing->currency = $currency;
+
         $listing->phone = $phone;
 
         $listing->city = $city;
@@ -545,6 +550,7 @@ class ListingController extends JsonApiController
 
                 $billiard->title = $title;
                 $billiard->price = $price;
+                $billiard->currency = $currency;
                 $billiard->phone = $phone;
 
                 $billiard->address = $address;
@@ -608,6 +614,7 @@ class ListingController extends JsonApiController
 
                                 $boxing->title = $title;
                                 $boxing->price = $price;
+                                $boxing->currency = $currency;
 
                                 $boxing->phone = $phone;
 
@@ -671,6 +678,7 @@ class ListingController extends JsonApiController
 
                                 $diving->title = $title;
                                 $diving->price = $price;
+                                $diving->currency = $currency;
 
                                 $diving->phone = $phone;
 
@@ -736,6 +744,7 @@ class ListingController extends JsonApiController
 
                                 $football->title = $title;
                                 $football->price = $price;
+                                $football->currency = $currency;
 
                                 $football->phone = $phone;
 
@@ -799,6 +808,7 @@ class ListingController extends JsonApiController
 
                                 $golf->title = $title;
                                 $golf->price = $price;
+                                $golf->currency = $currency;
 
                                 $golf->phone = $phone;
 
@@ -865,6 +875,7 @@ class ListingController extends JsonApiController
 
                                 $hunting->title = $title;
                                 $hunting->price = $price;
+                                $hunting->currency = $currency;
 
                                 $hunting->phone = $phone;
 
@@ -934,6 +945,7 @@ class ListingController extends JsonApiController
 
                                 $musculation->title = $title;
                                 $musculation->price = $price;
+                                $musculation->currency = $currency;
 
                                 $musculation->phone = $phone;
 
@@ -1007,6 +1019,7 @@ class ListingController extends JsonApiController
 
                                 $surf->title = $title;
                                 $surf->price = $price;
+                                $surf->currency = $currency;
 
                                 $surf->phone = $phone;
 
@@ -1075,6 +1088,7 @@ class ListingController extends JsonApiController
 
                                 $tennis->title = $title;
                                 $tennis->price = $price;
+                                $tennis->currency = $currency;
                                 $tennis->phone = $phone;
 
                                 $tennis->address = $address;
@@ -1137,6 +1151,7 @@ class ListingController extends JsonApiController
 
                                 $audio->title = $title;
                                 $audio->price = $price;
+                                $audio->currency = $currency;
 
                                 $audio->phone = $phone;
 
@@ -1211,6 +1226,7 @@ class ListingController extends JsonApiController
 
                                 $camera->title = $title;
                                 $camera->price = $price;
+                                $camera->currency = $currency;
 
                                 $camera->phone = $phone;
 
@@ -1280,6 +1296,7 @@ class ListingController extends JsonApiController
 
                                 $charger->title = $title;
                                 $charger->price = $price;
+                                $charger->currency = $currency;
 
                                 $charger->phone = $phone;
 
@@ -1350,6 +1367,7 @@ class ListingController extends JsonApiController
 
                                 $drone->title = $title;
                                 $drone->price = $price;
+                                $drone->currency = $currency;
 
                                 $drone->phone = $phone;
 
@@ -1425,6 +1443,7 @@ class ListingController extends JsonApiController
 
                                 $gaming->title = $title;
                                 $gaming->price = $price;
+                                $gaming->currency = $currency;
 
                                 $gaming->phone = $phone;
 
@@ -1493,6 +1512,7 @@ class ListingController extends JsonApiController
 
                                 $laptop->title = $title;
                                 $laptop->price = $price;
+                                $laptop->currency = $currency;
 
                                 $laptop->phone = $phone;
 
@@ -1568,6 +1588,7 @@ class ListingController extends JsonApiController
 
                                 $lighting->title = $title;
                                 $lighting->price = $price;
+                                $lighting->currency = $currency;
                                 $lighting->phone = $phone;
 
                                 $lighting->address = $address;
@@ -1635,6 +1656,7 @@ class ListingController extends JsonApiController
 
                                 $printer->title = $title;
                                 $printer->price = $price;
+                                $printer->currency = $currency;
 
                                 $printer->phone = $phone;
 
@@ -1703,6 +1725,7 @@ class ListingController extends JsonApiController
 
                                 $router->title = $title;
                                 $router->price = $price;
+                                $router->currency = $currency;
 
                                 $router->phone = $phone;
 
@@ -1775,6 +1798,7 @@ class ListingController extends JsonApiController
 
                                 $tablette->title = $title;
                                 $tablette->price = $price;
+                                $tablette->currency = $currency;
 
                                 $tablette->phone = $phone;
 
@@ -1845,6 +1869,7 @@ class ListingController extends JsonApiController
 
                                 $eclairage->title = $title;
                                 $eclairage->price = $price;
+                                $eclairage->currency = $currency;
 
                                 $eclairage->phone = $phone;
 
@@ -1922,6 +1947,7 @@ class ListingController extends JsonApiController
 
                                 $mobilier->title = $title;
                                 $mobilier->price = $price;
+                                $mobilier->currency = $currency;
 
 
                                 $mobilier->phone = $phone;
@@ -1991,6 +2017,7 @@ class ListingController extends JsonApiController
 
                                 $photographie->title = $title;
                                 $photographie->price = $price;
+                                $photographie->currency = $currency;
 
 
                                 $photographie->phone = $phone;
@@ -2061,6 +2088,7 @@ class ListingController extends JsonApiController
 
                                 $sonorisation->title = $title;
                                 $sonorisation->price = $price;
+                                $sonorisation->currency = $currency;
 
                                 $sonorisation->phone = $phone;
 
@@ -2141,6 +2169,7 @@ class ListingController extends JsonApiController
 
                                 $tente->title = $title;
                                 $tente->price = $price;
+                                $tente->currency = $currency;
 
                                 $tente->phone = $phone;
 
@@ -2208,6 +2237,7 @@ class ListingController extends JsonApiController
 
                                 $clothes->title = $title;
                                 $clothes->price = $price;
+                                $clothes->currency = $currency;
 
                                 $clothes->phone = $phone;
 
@@ -2278,6 +2308,7 @@ class ListingController extends JsonApiController
 
                                 $jewelry->title = $title;
                                 $jewelry->price = $price;
+                                $jewelry->currency = $currency;
 
                                 $jewelry->phone = $phone;
 
@@ -2348,6 +2379,7 @@ class ListingController extends JsonApiController
 
                                 $apartment->title = $title;
                                 $apartment->price = $price;
+                                $apartment->currency = $currency;
 
                                 $apartment->phone = $phone;
 
@@ -2421,6 +2453,7 @@ class ListingController extends JsonApiController
 
                                 $bureaux->title = $title;
                                 $bureaux->price = $price;
+                                $bureaux->currency = $currency;
 
                                 $bureaux->phone = $phone;
 
@@ -2496,6 +2529,7 @@ class ListingController extends JsonApiController
 
                                 $magasin->title = $title;
                                 $magasin->price = $price;
+                                $magasin->currency = $currency;
 
                                 $magasin->phone = $phone;
 
@@ -2571,6 +2605,7 @@ class ListingController extends JsonApiController
 
                                 $maison->title = $title;
                                 $maison->price = $price;
+                                $maison->currency = $currency;
 
                                 $maison->phone = $phone;
 
@@ -2641,6 +2676,7 @@ class ListingController extends JsonApiController
 
                                 $riad->title = $title;
                                 $riad->price = $price;
+                                $riad->currency = $currency;
 
                                 $riad->phone = $phone;
 
@@ -2734,6 +2770,7 @@ class ListingController extends JsonApiController
 
                                 $terrain->title = $title;
                                 $terrain->price = $price;
+                                $terrain->currency = $currency;
 
                                 $terrain->phone = $phone;
 
@@ -2811,6 +2848,7 @@ class ListingController extends JsonApiController
 
                                 $villa->title = $title;
                                 $villa->price = $price;
+                                $villa->currency = $currency;
 
                                 $villa->phone = $phone;
 
@@ -2880,6 +2918,7 @@ class ListingController extends JsonApiController
 
                                 $activity->title = $title;
                                 $activity->price = $price;
+                                $activity->currency = $currency;
 
                                 $activity->phone = $phone;
 
@@ -2951,6 +2990,7 @@ class ListingController extends JsonApiController
 
                                 $livre->title = $title;
                                 $livre->price = $price;
+                                $livre->currency = $currency;
 
                                 $livre->phone = $phone;
 
@@ -3018,6 +3058,7 @@ class ListingController extends JsonApiController
 
                                 $musical->title = $title;
                                 $musical->price = $price;
+                                $musical->currency = $currency;
 
                                 $musical->phone = $phone;
 
@@ -3087,6 +3128,7 @@ class ListingController extends JsonApiController
 
                                 $furniture->title = $title;
                                 $furniture->price = $price;
+                                $furniture->currency = $currency;
 
                                 $furniture->phone = $phone;
 
@@ -3159,6 +3201,7 @@ class ListingController extends JsonApiController
 
                                 $houseappliance->title = $title;
                                 $houseappliance->price = $price;
+                                $houseappliance->currency = $currency;
 
                                 $houseappliance->phone = $phone;
 
@@ -3231,6 +3274,7 @@ class ListingController extends JsonApiController
 
                                 $electricaltool->title = $title;
                                 $electricaltool->price = $price;
+                                $electricaltool->currency = $currency;
 
                                 $electricaltool->phone = $phone;
 
@@ -3313,6 +3357,7 @@ class ListingController extends JsonApiController
 
                                 $ladder->title = $title;
                                 $ladder->price = $price;
+                                $ladder->currency = $currency;
 
                                 $ladder->phone = $phone;
 
@@ -3388,6 +3433,7 @@ class ListingController extends JsonApiController
 
                                 $mechanicaltool->title = $title;
                                 $mechanicaltool->price = $price;
+                                $mechanicaltool->currency = $currency;
 
                                 $mechanicaltool->phone = $phone;
 
@@ -3461,6 +3507,7 @@ class ListingController extends JsonApiController
 
                                 $powertool->title = $title;
                                 $powertool->price = $price;
+                                $powertool->currency = $currency;
 
                                 $powertool->phone = $phone;
 
@@ -3538,6 +3585,7 @@ class ListingController extends JsonApiController
 
                                 $pressurewasher->title = $title;
                                 $pressurewasher->price = $price;
+                                $pressurewasher->currency = $currency;
 
                                 $pressurewasher->phone = $phone;
 
@@ -3614,6 +3662,7 @@ class ListingController extends JsonApiController
 
                                 $service->title = $title;
                                 $service->price = $price;
+                                $service->currency = $currency;
 
                                 $service->phone = $phone;
 
@@ -3686,6 +3735,7 @@ class ListingController extends JsonApiController
 
                                     $service->title = $title;
                                     $service->price = $price;
+                                    $service->currency = $currency;
 
                                     $service->phone = $phone;
 
@@ -3758,6 +3808,7 @@ class ListingController extends JsonApiController
 
                                 $boat->title = $title;
                                 $boat->price = $price;
+                                $boat->currency = $currency;
 
                                 $boat->phone = $phone;
 
@@ -3829,6 +3880,7 @@ class ListingController extends JsonApiController
 
                                 $camion->title = $title;
                                 $camion->price = $price;
+                                $camion->currency = $currency;
 
                                 $camion->phone = $phone;
 
@@ -3895,6 +3947,7 @@ class ListingController extends JsonApiController
 
                                 $caravan->title = $title;
                                 $caravan->price = $price;
+                                $caravan->currency = $currency;
 
                                 $caravan->phone = $phone;
 
@@ -3963,6 +4016,7 @@ class ListingController extends JsonApiController
 
                                 $car->title = $title;
                                 $car->price = $price;
+                                $car->currency = $currency;
 
                                 $car->phone = $phone;
 
@@ -4031,6 +4085,7 @@ class ListingController extends JsonApiController
 
                                 $engin->title = $title;
                                 $engin->price = $price;
+                                $engin->currency = $currency;
 
                                 $engin->phone = $phone;
 
@@ -4100,6 +4155,7 @@ class ListingController extends JsonApiController
 
                                 $moto->title = $title;
                                 $moto->price = $price;
+                                $moto->currency = $currency;
 
                                 $moto->phone = $phone;
 
@@ -4171,6 +4227,7 @@ class ListingController extends JsonApiController
 
                                 $scooter->title = $title;
                                 $scooter->price = $price;
+                                $scooter->currency = $currency;
 
                                 $scooter->phone = $phone;
 
@@ -4237,6 +4294,7 @@ class ListingController extends JsonApiController
 
                                 $taxiaeroport->title = $title;
                                 $taxiaeroport->price = $price;
+                                $taxiaeroport->currency = $currency;
 
                                 $taxiaeroport->phone = $phone;
 
@@ -4302,6 +4360,7 @@ class ListingController extends JsonApiController
 
                                 $transportation->title = $title;
                                 $transportation->price = $price;
+                                $transportation->currency = $currency;
                                 $transportation->phone = $phone;
 
                                 $transportation->address = $address;
@@ -4368,6 +4427,7 @@ class ListingController extends JsonApiController
 
                                 $velo->title = $title;
                                 $velo->price = $price;
+                                $velo->currency = $currency;
 
                                 $velo->phone = $phone;
 
@@ -4464,6 +4524,8 @@ class ListingController extends JsonApiController
 
         $request = app('request'); // Retrieve the current request
 
+
+
         // Get the ID from the route parameters
         $id = $route->resourceId();
 
@@ -4495,13 +4557,16 @@ class ListingController extends JsonApiController
         $currency = $request->input('attributes.currency');
 
 
-        $url = $this->generateUrl($title);
 
 
-        $imagePathslarge = $request->input('attributes.imagePathslarge') ?? null;
-        $imagePathssmall = $request->input('attributes.imagePathssmall') ?? null;
-        $imagePathsxlarge = $request->input('attributes.imagePathsxlarge') ?? null;
-        $thumb = $request->input('attributes.thumb') ?? null;
+
+
+
+
+        $imagePathslarge = $request->input('attributes.imagePathslarge') ;
+        $imagePathssmall = $request->input('attributes.imagePathssmall') ;
+        $imagePathsxlarge = $request->input('attributes.imagePathsxlarge') ;
+        $thumb = $request->input('attributes.thumb') ;
 
 
         $oldimagePathslarge = $request->input('attributes.oldimagePathslarge');
@@ -4509,71 +4574,37 @@ class ListingController extends JsonApiController
 
 
 
-
             // Find the existing listing
         $listing = Listing::findOrFail($id);
 
-        $oldurl = $listing->url;
-
-
-        Log::info('Updating listing:', [
-            'category' => $category,
-            'description' => $description,
-            'title' => $title,
-            'address' => $address,
-            'city' => $city,
-            'country' => $country,
-            'zip' => $zip,
-            'startdate' => $startdate,
-            'enddate' => $enddate,
-            'price' => $price,
-            'phone' => $phone,
-            'currency' => $currency,
-
-            'url' => $url,
-            'imagePathslarge' => $imagePathslarge,
-            'imagePathssmall' => $imagePathssmall,
-            'imagePathsxlarge' => $imagePathsxlarge,
-            'thumb' => $thumb,
-            'oldimagePathslarge' => $oldimagePathslarge,
-            'oldurl' => $oldurl,
-        ]);
-
-
-        // Break the process here
-        return response()->json([
-            'message' => 'Process stopped after retrieving the old URL',
-            'oldurl' => $oldurl,
-        ], 200); // You can adjust the response if needed
 
 
 
-        $listing->category = $category;
-        $listing->title = $title;
-        $listing->price = $price;
-        $listing->phone = $phone;
-
-        $listing->city = $city;
-        $listing->zip = $zip;
-
-
-        $listing->picture = $thumb;
-        $listing->url = $url;
-        $listing->status = ItemStatus::Active->value;
-        $listing->user_id = $user->id;
-        $listing->onlinestore_id = $onlinestore_id;
-
-        $listing->save();
 
 
         $existingImages = Listingsimg::where('listing_id', $listing->id)->get();
 
 
-            // Delete images from DigitalOcean Spaces
+        // Log the existing images for the listing
+        Log::info('Existing Images:', $existingImages->toArray());
+
+        // Log the old image paths for comparison
+        Log::info('Old image paths large:', $oldimagePathslarge);
+
+
+
+
             foreach ($existingImages as $image) {
                 // Check if the image is in the oldimagePathslarge array
                 if (!in_array($image->picture, $oldimagePathslarge)) {
-                    // The image is not in the oldimagePathslarge array, so delete it
+
+
+                    Log::info('Deleting image from listing:', [
+                        'large_image' => $image->picture,
+                        'small_image' => $image->picturesmall,
+                        'xlarge_image' => $image->picturesxlarge,
+                    ]);
+
 
                     // Delete from DigitalOcean Spaces (Large)
                     if (Storage::disk('spaces')->exists('storage/listinglarge/' . $image->picture)) {
@@ -4596,9 +4627,7 @@ class ListingController extends JsonApiController
             }
 
 
-        Listingsimg::where('listing_id', $listing->id)
-            ->whereNotIn('picture', $oldimagePathslarge) // Images not in oldimagePathslarge
-            ->delete();
+
 
         // Fetch the remaining images in the database that match the oldimagePathslarge
         $remainingImages = Listingsimg::where('listing_id', $listing->id)
@@ -4606,12 +4635,41 @@ class ListingController extends JsonApiController
             ->get();
 
 
+            Listingsimg::where('listing_id', $listing->id)->delete();
+
+
+            $imagePathslarge = $imagePathslarge ?? [];
+            $imagePathssmall = $imagePathssmall ?? [];
+            $imagePathsxlarge = $imagePathsxlarge ?? [];
+
             foreach ($remainingImages as $image) {
                 // Update the actual arrays by appending values
                 $imagePathslarge = array_merge($imagePathslarge, [$image->picture]);
                 $imagePathssmall = array_merge($imagePathssmall, [$image->picturesmall]);
                 $imagePathsxlarge = array_merge($imagePathsxlarge, [$image->picturesxlarge]);
             }
+
+            $url = $listing->url;
+
+
+
+            $listing->category = $category;
+            $listing->title = $title;
+            $listing->price = $price;
+            $listing->currency = $currency;
+            $listing->phone = $phone;
+
+            $listing->city = $city;
+            $listing->zip = $zip;
+
+
+            $listing->picture = $imagePathssmall[0];
+
+
+            $listing->user_id = $user->id;
+            $listing->onlinestore_id = $onlinestore_id;
+
+            $listing->save();
 
 
         foreach ($imagePathslarge as $index => $largePath) {
@@ -4644,12 +4702,13 @@ class ListingController extends JsonApiController
 
 
 
-                $billiard = Billiard::where('url', $oldurl)->first();
+                $billiard = Billiard::where('url', $url)->first();
                 $billiard->user_id = $user->id;
                 $billiard->onlinestore_id = $onlinestore_id;
 
                 $billiard->title = $title;
                 $billiard->price = $price;
+                $billiard->currency = $currency;
                 $billiard->phone = $phone;
 
                 $billiard->address = $address;
@@ -4657,7 +4716,7 @@ class ListingController extends JsonApiController
                 $billiard->country = $country;
                 $billiard->zip = $zip;
                 $billiard->description = $description;
-                $billiard->url = $url;
+
                 $billiard->picture = $thumb;
                 $billiard->startdate  = $startdate ;
                 $billiard->enddate = $enddate;
@@ -4708,13 +4767,14 @@ class ListingController extends JsonApiController
                                 $boxingsData = $request->input('attributes.boxings');
                                 Log::info('Billiards Data:', $boxingsData);
 
-                                $boxing = Boxing::where('url', $oldurl)->first();
+                                $boxing = Boxing::where('url', $url)->first();
 
                                 $boxing->user_id = $user->id;
                                 $boxing->onlinestore_id = $onlinestore_id;
 
                                 $boxing->title = $title;
                                 $boxing->price = $price;
+                                $boxing->currency = $currency;
 
                                 $boxing->phone = $phone;
 
@@ -4723,7 +4783,7 @@ class ListingController extends JsonApiController
                                 $boxing->country = $country;
                                 $boxing->zip = $zip;
                                 $boxing->description = $description;
-                                $boxing->url = $url;
+
                                 $boxing->picture = $thumb;
                                 $boxing->startdate  = $startdate ;
                                 $boxing->enddate = $enddate;
@@ -4775,13 +4835,14 @@ class ListingController extends JsonApiController
                 $divingsData = $request->input('attributes.divings');
                 Log::info('Divings Data:', $divingsData);
 
-                $diving = Diving::where('url', $oldurl)->first();
+                $diving = Diving::where('url', $url)->first();
 
                                 $diving->user_id = $user->id;
                                 $diving->onlinestore_id = $onlinestore_id;
 
                                 $diving->title = $title;
                                 $diving->price = $price;
+                                $diving->currency = $currency;
 
                                 $diving->phone = $phone;
 
@@ -4790,7 +4851,7 @@ class ListingController extends JsonApiController
                                 $diving->country = $country;
                                 $diving->zip = $zip;
                                 $diving->description = $description;
-                                $diving->url = $url;
+
                                 $diving->picture = $thumb;
                                 $diving->startdate  = $startdate ;
                                 $diving->enddate = $enddate;
@@ -4844,13 +4905,14 @@ class ListingController extends JsonApiController
                 Log::info('Footballs Data:', $footballsData);
 
 
-                $football = Football::where('url', $oldurl)->first();
+                $football = Football::where('url', $url)->first();
 
                                 $football->user_id = $user->id;
                                 $football->onlinestore_id = $onlinestore_id;
 
                                 $football->title = $title;
                                 $football->price = $price;
+                                $football->currency = $currency;
 
                                 $football->phone = $phone;
 
@@ -4859,7 +4921,7 @@ class ListingController extends JsonApiController
                                 $football->country = $country;
                                 $football->zip = $zip;
                                 $football->description = $description;
-                                $football->url = $url;
+
                                 $football->picture = $thumb;
                                 $football->startdate  = $startdate ;
                                 $football->enddate = $enddate;
@@ -4911,13 +4973,14 @@ class ListingController extends JsonApiController
                 Log::info('Golfs Data:', $golfsData);
 
 
-                $golf = Golf::where('url', $oldurl)->first();
+                $golf = Golf::where('url', $url)->first();
 
                                 $golf->user_id = $user->id;
                                 $golf->onlinestore_id = $onlinestore_id;
 
                                 $golf->title = $title;
                                 $golf->price = $price;
+                                $golf->currency = $currency;
 
                                 $golf->phone = $phone;
 
@@ -4926,7 +4989,7 @@ class ListingController extends JsonApiController
                                 $golf->country = $country;
                                 $golf->zip = $zip;
                                 $golf->description = $description;
-                                $golf->url = $url;
+
                                 $golf->picture = $thumb;
                                 $golf->startdate  = $startdate ;
                                 $golf->enddate = $enddate;
@@ -4981,13 +5044,14 @@ class ListingController extends JsonApiController
                 Log::info('Huntings Data:', $huntingsData);
 
 
-                $hunting = Hunting::where('url', $oldurl)->first();
+                $hunting = Hunting::where('url', $url)->first();
 
                                 $hunting->user_id = $user->id;
                                 $hunting->onlinestore_id = $onlinestore_id;
 
                                 $hunting->title = $title;
                                 $hunting->price = $price;
+                                $hunting->currency = $currency;
 
                                 $hunting->phone = $phone;
 
@@ -4996,7 +5060,7 @@ class ListingController extends JsonApiController
                                 $hunting->country = $country;
                                 $hunting->zip = $zip;
                                 $hunting->description = $description;
-                                $hunting->url = $url;
+
                                 $hunting->picture = $thumb;
                                 $hunting->startdate  = $startdate ;
                                 $hunting->enddate = $enddate;
@@ -5053,13 +5117,14 @@ class ListingController extends JsonApiController
                 Log::info('Musculations Data:', $musculationsData);
 
 
-                $musculation = Musculation::where('url', $oldurl)->first();
+                $musculation = Musculation::where('url', $url)->first();
 
                                 $musculation->user_id = $user->id;
                                 $musculation->onlinestore_id = $onlinestore_id;
 
                                 $musculation->title = $title;
                                 $musculation->price = $price;
+                                $musculation->currency = $currency;
 
                                 $musculation->phone = $phone;
 
@@ -5068,7 +5133,7 @@ class ListingController extends JsonApiController
                                 $musculation->country = $country;
                                 $musculation->zip = $zip;
                                 $musculation->description = $description;
-                                $musculation->url = $url;
+
                                 $musculation->picture = $thumb;
                                 $musculation->startdate  = $startdate ;
                                 $musculation->enddate = $enddate;
@@ -5130,13 +5195,14 @@ class ListingController extends JsonApiController
 
 
 
-                $surf = Surf::where('url', $oldurl)->first();
+                $surf = Surf::where('url', $url)->first();
 
                                 $surf->user_id = $user->id;
                                 $surf->onlinestore_id = $onlinestore_id;
 
                                 $surf->title = $title;
                                 $surf->price = $price;
+                                $surf->currency = $currency;
 
                                 $surf->phone = $phone;
 
@@ -5145,7 +5211,7 @@ class ListingController extends JsonApiController
                                 $surf->country = $country;
                                 $surf->zip = $zip;
                                 $surf->description = $description;
-                                $surf->url = $url;
+
                                 $surf->picture = $thumb;
                                 $surf->startdate  = $startdate ;
                                 $surf->enddate = $enddate;
@@ -5202,13 +5268,14 @@ class ListingController extends JsonApiController
                 Log::info('Tennis Data:', $tennisData);
 
 
-                $tennis = Tennis::where('url', $oldurl)->first();
+                $tennis = Tennis::where('url', $url)->first();
 
                                 $tennis->user_id = $user->id;
                                 $tennis->onlinestore_id = $onlinestore_id;
 
                                 $tennis->title = $title;
                                 $tennis->price = $price;
+                                $tennis->currency = $currency;
 
                                 $tennis->phone = $phone;
 
@@ -5217,7 +5284,7 @@ class ListingController extends JsonApiController
                                 $tennis->country = $country;
                                 $tennis->zip = $zip;
                                 $tennis->description = $description;
-                                $tennis->url = $url;
+
                                 $tennis->picture = $thumb;
                                 $tennis->startdate  = $startdate ;
                                 $tennis->enddate = $enddate;
@@ -5269,13 +5336,14 @@ class ListingController extends JsonApiController
                 Log::info('Audios Data:', $audiosData);
 
 
-                $audio = Audio::where('url', $oldurl)->first();
+                $audio = Audio::where('url', $url)->first();
 
                                 $audio->user_id = $user->id;
                                 $audio->onlinestore_id = $onlinestore_id;
 
                                 $audio->title = $title;
                                 $audio->price = $price;
+                                $audio->currency = $currency;
 
                                 $audio->phone = $phone;
 
@@ -5284,7 +5352,7 @@ class ListingController extends JsonApiController
                                 $audio->country = $country;
                                 $audio->zip = $zip;
                                 $audio->description = $description;
-                                $audio->url = $url;
+
                                 $audio->picture = $thumb;
                                 $audio->startdate  = $startdate ;
                                 $audio->enddate = $enddate;
@@ -5347,13 +5415,14 @@ class ListingController extends JsonApiController
 
 
 
-                $camera = Camera::where('url', $oldurl)->first();
+                $camera = Camera::where('url', $url)->first();
 
                                 $camera->user_id = $user->id;
                                 $camera->onlinestore_id = $onlinestore_id;
 
                                 $camera->title = $title;
                                 $camera->price = $price;
+                                $camera->currency = $currency;
 
                                 $camera->phone = $phone;
 
@@ -5362,7 +5431,7 @@ class ListingController extends JsonApiController
                                 $camera->country = $country;
                                 $camera->zip = $zip;
                                 $camera->description = $description;
-                                $camera->url = $url;
+
                                 $camera->picture = $thumb;
                                 $camera->startdate  = $startdate ;
                                 $camera->enddate = $enddate;
@@ -5420,13 +5489,14 @@ class ListingController extends JsonApiController
                 $chargersData = $request->input('attributes.chargers');
                 Log::info('Chargers Data:', $chargersData);
 
-                $charger = Charger::where('url', $oldurl)->first();
+                $charger = Charger::where('url', $url)->first();
 
                                 $charger->user_id = $user->id;
                                 $charger->onlinestore_id = $onlinestore_id;
 
                                 $charger->title = $title;
                                 $charger->price = $price;
+                                $charger->currency = $currency;
 
                                 $charger->phone = $phone;
 
@@ -5435,7 +5505,7 @@ class ListingController extends JsonApiController
                                 $charger->country = $country;
                                 $charger->zip = $zip;
                                 $charger->description = $description;
-                                $charger->url = $url;
+
                                 $charger->picture = $thumb;
                                 $charger->startdate  = $startdate ;
                                 $charger->enddate = $enddate;
@@ -5494,13 +5564,14 @@ class ListingController extends JsonApiController
                 $dronesData = $request->input('attributes.drones');
                 Log::info('Drones Data:', $dronesData);
 
-                $drone = Drone::where('url', $oldurl)->first();
+                $drone = Drone::where('url', $url)->first();
 
                                 $drone->user_id = $user->id;
                                 $drone->onlinestore_id = $onlinestore_id;
 
                                 $drone->title = $title;
                                 $drone->price = $price;
+                                $drone->currency = $currency;
 
                                 $drone->phone = $phone;
 
@@ -5509,7 +5580,7 @@ class ListingController extends JsonApiController
                                 $drone->country = $country;
                                 $drone->zip = $zip;
                                 $drone->description = $description;
-                                $drone->url = $url;
+
                                 $drone->picture = $thumb;
                                 $drone->startdate  = $startdate ;
                                 $drone->enddate = $enddate;
@@ -5573,13 +5644,14 @@ class ListingController extends JsonApiController
                 $gamingsData = $request->input('attributes.gamings');
                 Log::info('Gamings Data:', $gamingsData);
 
-                $gaming = Gaming::where('url', $oldurl)->first();
+                $gaming = Gaming::where('url', $url)->first();
 
                                 $gaming->user_id = $user->id;
                                 $gaming->onlinestore_id = $onlinestore_id;
 
                                 $gaming->title = $title;
                                 $gaming->price = $price;
+                                $gaming->currency = $currency;
 
                                 $gaming->phone = $phone;
 
@@ -5588,7 +5660,7 @@ class ListingController extends JsonApiController
                                 $gaming->country = $country;
                                 $gaming->zip = $zip;
                                 $gaming->description = $description;
-                                $gaming->url = $url;
+
                                 $gaming->picture = $thumb;
                                 $gaming->startdate  = $startdate ;
                                 $gaming->enddate = $enddate;
@@ -5645,13 +5717,14 @@ class ListingController extends JsonApiController
                 $laptopsData = $request->input('attributes.laptops');
                 Log::info('Laptops Data:', $laptopsData);
 
-                $laptop = Laptop::where('url', $oldurl)->first();
+                $laptop = Laptop::where('url', $url)->first();
 
                                 $laptop->user_id = $user->id;
                                 $laptop->onlinestore_id = $onlinestore_id;
 
                                 $laptop->title = $title;
                                 $laptop->price = $price;
+                                $laptop->currency = $currency;
 
                                 $laptop->phone = $phone;
 
@@ -5660,7 +5733,7 @@ class ListingController extends JsonApiController
                                 $laptop->country = $country;
                                 $laptop->zip = $zip;
                                 $laptop->description = $description;
-                                $laptop->url = $url;
+
                                 $laptop->picture = $thumb;
                                 $laptop->startdate  = $startdate ;
                                 $laptop->enddate = $enddate;
@@ -5723,13 +5796,14 @@ class ListingController extends JsonApiController
                 Log::info('Lightings Data:', $lightingsData);
 
 
-                $lighting = Lighting::where('url', $oldurl)->first();
+                $lighting = Lighting::where('url', $url)->first();
 
                                 $lighting->user_id = $user->id;
                                 $lighting->onlinestore_id = $onlinestore_id;
 
                                 $lighting->title = $title;
                                 $lighting->price = $price;
+                                $lighting->currency = $currency;
 
                                 $lighting->phone = $phone;
 
@@ -5738,7 +5812,7 @@ class ListingController extends JsonApiController
                                 $lighting->country = $country;
                                 $lighting->zip = $zip;
                                 $lighting->description = $description;
-                                $lighting->url = $url;
+
                                 $lighting->picture = $thumb;
                                 $lighting->startdate  = $startdate ;
                                 $lighting->enddate = $enddate;
@@ -5795,13 +5869,14 @@ class ListingController extends JsonApiController
 
 
 
-                $printer = Printer::where('url', $oldurl)->first();
+                $printer = Printer::where('url', $url)->first();
 
                                 $printer->user_id = $user->id;
                                 $printer->onlinestore_id = $onlinestore_id;
 
                                 $printer->title = $title;
                                 $printer->price = $price;
+                                $printer->currency = $currency;
 
                                 $printer->phone = $phone;
 
@@ -5810,7 +5885,7 @@ class ListingController extends JsonApiController
                                 $printer->country = $country;
                                 $printer->zip = $zip;
                                 $printer->description = $description;
-                                $printer->url = $url;
+
                                 $printer->picture = $thumb;
                                 $printer->startdate  = $startdate ;
                                 $printer->enddate = $enddate;
@@ -5868,13 +5943,14 @@ class ListingController extends JsonApiController
                 Log::info('Routers Data:', $routersData);
 
 
-                $router = Router::where('url', $oldurl)->first();
+                $router = Router::where('url', $url)->first();
 
                                 $router->user_id = $user->id;
                                 $router->onlinestore_id = $onlinestore_id;
 
                                 $router->title = $title;
                                 $router->price = $price;
+                                $router->currency = $currency;
                                 $router->phone = $phone;
 
                                 $router->address = $address;
@@ -5882,7 +5958,7 @@ class ListingController extends JsonApiController
                                 $router->country = $country;
                                 $router->zip = $zip;
                                 $router->description = $description;
-                                $router->url = $url;
+
                                 $router->picture = $thumb;
                                 $router->startdate  = $startdate ;
                                 $router->enddate = $enddate;
@@ -5942,13 +6018,14 @@ class ListingController extends JsonApiController
                 Log::info('Tablettes Data:', $tablettesData);
 
 
-                $tablette = Tablette::where('url', $oldurl)->first();
+                $tablette = Tablette::where('url', $url)->first();
 
                                 $tablette->user_id = $user->id;
                                 $tablette->onlinestore_id = $onlinestore_id;
 
                                 $tablette->title = $title;
                                 $tablette->price = $price;
+                                $tablette->currency = $currency;
 
                                 $tablette->phone = $phone;
 
@@ -5957,7 +6034,7 @@ class ListingController extends JsonApiController
                                 $tablette->country = $country;
                                 $tablette->zip = $zip;
                                 $tablette->description = $description;
-                                $tablette->url = $url;
+
                                 $tablette->picture = $thumb;
                                 $tablette->startdate  = $startdate ;
                                 $tablette->enddate = $enddate;
@@ -6016,13 +6093,14 @@ class ListingController extends JsonApiController
                 Log::info('Eclairages Data:', $eclairagesData);
 
 
-                $eclairage = Eclairage::where('url', $oldurl)->first();
+                $eclairage = Eclairage::where('url', $url)->first();
 
                                 $eclairage->user_id = $user->id;
                                 $eclairage->onlinestore_id = $onlinestore_id;
 
                                 $eclairage->title = $title;
                                 $eclairage->price = $price;
+                                $eclairage->currency = $currency;
 
                                 $eclairage->phone = $phone;
 
@@ -6031,7 +6109,7 @@ class ListingController extends JsonApiController
                                 $eclairage->country = $country;
                                 $eclairage->zip = $zip;
                                 $eclairage->description = $description;
-                                $eclairage->url = $url;
+
                                 $eclairage->picture = $thumb;
                                 $eclairage->startdate  = $startdate ;
                                 $eclairage->enddate = $enddate;
@@ -6096,13 +6174,14 @@ class ListingController extends JsonApiController
                 Log::info('Mobiliers Data:', $mobiliersData);
 
 
-                $mobilier = Mobilier::where('url', $oldurl)->first();
+                $mobilier = Mobilier::where('url', $url)->first();
 
                                 $mobilier->user_id = $user->id;
                                 $mobilier->onlinestore_id = $onlinestore_id;
 
                                 $mobilier->title = $title;
                                 $mobilier->price = $price;
+                                $mobilier->currency = $currency;
 
                                 $mobilier->phone = $phone;
 
@@ -6111,7 +6190,7 @@ class ListingController extends JsonApiController
                                 $mobilier->country = $country;
                                 $mobilier->zip = $zip;
                                 $mobilier->description = $description;
-                                $mobilier->url = $url;
+
                                 $mobilier->picture = $thumb;
                                 $mobilier->startdate  = $startdate ;
                                 $mobilier->enddate = $enddate;
@@ -6167,13 +6246,14 @@ class ListingController extends JsonApiController
                 $photographiesData = $request->input('attributes.photographies');
                 Log::info('Photographies Data:', $photographiesData);
 
-                $photographie = Photographie::where('url', $oldurl)->first();
+                $photographie = Photographie::where('url', $url)->first();
 
                                 $photographie->user_id = $user->id;
                                 $photographie->onlinestore_id = $onlinestore_id;
 
                                 $photographie->title = $title;
                                 $photographie->price = $price;
+                                $photographie->currency = $currency;
 
                                 $photographie->phone = $phone;
 
@@ -6182,7 +6262,7 @@ class ListingController extends JsonApiController
                                 $photographie->country = $country;
                                 $photographie->zip = $zip;
                                 $photographie->description = $description;
-                                $photographie->url = $url;
+
                                 $photographie->picture = $thumb;
                                 $photographie->startdate  = $startdate ;
                                 $photographie->enddate = $enddate;
@@ -6240,13 +6320,14 @@ class ListingController extends JsonApiController
 
 
 
-                $sonorisation = Sonorisation::where('url', $oldurl)->first();
+                $sonorisation = Sonorisation::where('url', $url)->first();
 
                                 $sonorisation->user_id = $user->id;
                                 $sonorisation->onlinestore_id = $onlinestore_id;
 
                                 $sonorisation->title = $title;
                                 $sonorisation->price = $price;
+                                $sonorisation->currency = $currency;
 
                                 $sonorisation->phone = $phone;
 
@@ -6255,7 +6336,7 @@ class ListingController extends JsonApiController
                                 $sonorisation->country = $country;
                                 $sonorisation->zip = $zip;
                                 $sonorisation->description = $description;
-                                $sonorisation->url = $url;
+
                                 $sonorisation->picture = $thumb;
                                 $sonorisation->startdate  = $startdate ;
                                 $sonorisation->enddate = $enddate;
@@ -6323,13 +6404,14 @@ class ListingController extends JsonApiController
                 Log::info('Tentes Data:', $tentesData);
 
 
-                $tente = Tente::where('url', $oldurl)->first();
+                $tente = Tente::where('url', $url)->first();
 
                                 $tente->user_id = $user->id;
                                 $tente->onlinestore_id = $onlinestore_id;
 
                                 $tente->title = $title;
                                 $tente->price = $price;
+                                $tente->currency = $currency;
 
                                 $tente->phone = $phone;
 
@@ -6338,7 +6420,7 @@ class ListingController extends JsonApiController
                                 $tente->country = $country;
                                 $tente->zip = $zip;
                                 $tente->description = $description;
-                                $tente->url = $url;
+
                                 $tente->picture = $thumb;
                                 $tente->startdate  = $startdate ;
                                 $tente->enddate = $enddate;
@@ -6391,13 +6473,14 @@ class ListingController extends JsonApiController
 
 
 
-                $clothes = Clothes::where('url', $oldurl)->first();
+                $clothes = Clothes::where('url', $url)->first();
 
                                 $clothes->user_id = $user->id;
                                 $clothes->onlinestore_id = $onlinestore_id;
 
                                 $clothes->title = $title;
                                 $clothes->price = $price;
+                                $clothes->currency = $currency;
 
                                 $clothes->phone = $phone;
 
@@ -6406,7 +6489,7 @@ class ListingController extends JsonApiController
                                 $clothes->country = $country;
                                 $clothes->zip = $zip;
                                 $clothes->description = $description;
-                                $clothes->url = $url;
+
                                 $clothes->picture = $thumb;
                                 $clothes->startdate  = $startdate ;
                                 $clothes->enddate = $enddate;
@@ -6463,13 +6546,14 @@ class ListingController extends JsonApiController
 
 
 
-                $jewelry = Jewelry::where('url', $oldurl)->first();
+                $jewelry = Jewelry::where('url', $url)->first();
 
                                 $jewelry->user_id = $user->id;
                                 $jewelry->onlinestore_id = $onlinestore_id;
 
                                 $jewelry->title = $title;
                                 $jewelry->price = $price;
+                                $jewelry->currency = $currency;
 
                                 $jewelry->phone = $phone;
 
@@ -6478,7 +6562,7 @@ class ListingController extends JsonApiController
                                 $jewelry->country = $country;
                                 $jewelry->zip = $zip;
                                 $jewelry->description = $description;
-                                $jewelry->url = $url;
+
                                 $jewelry->picture = $thumb;
                                 $jewelry->startdate  = $startdate ;
                                 $jewelry->enddate = $enddate;
@@ -6535,13 +6619,14 @@ class ListingController extends JsonApiController
 
 
 
-                $apartment = Apartment::where('url', $oldurl)->first();
+                $apartment = Apartment::where('url', $url)->first();
 
                                 $apartment->user_id = $user->id;
                                 $apartment->onlinestore_id = $onlinestore_id;
 
                                 $apartment->title = $title;
                                 $apartment->price = $price;
+                                $apartment->currency = $currency;
 
                                 $apartment->phone = $phone;
 
@@ -6550,7 +6635,7 @@ class ListingController extends JsonApiController
                                 $apartment->country = $country;
                                 $apartment->zip = $zip;
                                 $apartment->description = $description;
-                                $apartment->url = $url;
+
                                 $apartment->picture = $thumb;
                                 $apartment->startdate  = $startdate ;
                                 $apartment->enddate = $enddate;
@@ -6609,13 +6694,14 @@ class ListingController extends JsonApiController
                 Log::info('Bureauxs Data:', $bureauxsData);
 
 
-                $bureaux = Bureaux::where('url', $oldurl)->first();
+                $bureaux = Bureaux::where('url', $url)->first();
 
                                 $bureaux->user_id = $user->id;
                                 $bureaux->onlinestore_id = $onlinestore_id;
 
                                 $bureaux->title = $title;
                                 $bureaux->price = $price;
+                                $bureaux->currency = $currency;
 
                                 $bureaux->phone = $phone;
 
@@ -6624,7 +6710,7 @@ class ListingController extends JsonApiController
                                 $bureaux->country = $country;
                                 $bureaux->zip = $zip;
                                 $bureaux->description = $description;
-                                $bureaux->url = $url;
+
                                 $bureaux->picture = $thumb;
                                 $bureaux->startdate  = $startdate ;
                                 $bureaux->enddate = $enddate;
@@ -6687,13 +6773,14 @@ class ListingController extends JsonApiController
                 Log::info('Magasins Data:', $magasinsData);
 
 
-                $magasin = Magasin::where('url', $oldurl)->first();
+                $magasin = Magasin::where('url', $url)->first();
 
                                 $magasin->user_id = $user->id;
                                 $magasin->onlinestore_id = $onlinestore_id;
 
                                 $magasin->title = $title;
                                 $magasin->price = $price;
+                                $magasin->currency = $currency;
 
                                 $magasin->phone = $phone;
 
@@ -6702,7 +6789,7 @@ class ListingController extends JsonApiController
                                 $magasin->country = $country;
                                 $magasin->zip = $zip;
                                 $magasin->description = $description;
-                                $magasin->url = $url;
+
                                 $magasin->picture = $thumb;
                                 $magasin->startdate  = $startdate ;
                                 $magasin->enddate = $enddate;
@@ -6764,13 +6851,14 @@ class ListingController extends JsonApiController
                 $maisonsData = $request->input('attributes.maisons');
                 Log::info('Maisons Data:', $maisonsData);
 
-                $maison = Maison::where('url', $oldurl)->first();
+                $maison = Maison::where('url', $url)->first();
 
                                 $maison->user_id = $user->id;
                                 $maison->onlinestore_id = $onlinestore_id;
 
                                 $maison->title = $title;
                                 $maison->price = $price;
+                                $maison->currency = $currency;
 
                                 $maison->phone = $phone;
 
@@ -6779,7 +6867,7 @@ class ListingController extends JsonApiController
                                 $maison->country = $country;
                                 $maison->zip = $zip;
                                 $maison->description = $description;
-                                $maison->url = $url;
+
                                 $maison->picture = $thumb;
                                 $maison->startdate  = $startdate ;
                                 $maison->enddate = $enddate;
@@ -6835,13 +6923,14 @@ class ListingController extends JsonApiController
                 Log::info('Riads Data:', $riadsData);
 
 
-                $riad = Riad::where('url', $oldurl)->first();
+                $riad = Riad::where('url', $url)->first();
 
                                 $riad->user_id = $user->id;
                                 $riad->onlinestore_id = $onlinestore_id;
 
                                 $riad->title = $title;
                                 $riad->price = $price;
+                                $riad->currency = $currency;
 
                                 $riad->phone = $phone;
 
@@ -6850,7 +6939,7 @@ class ListingController extends JsonApiController
                                 $riad->country = $country;
                                 $riad->zip = $zip;
                                 $riad->description = $description;
-                                $riad->url = $url;
+
                                 $riad->picture = $thumb;
                                 $riad->startdate  = $startdate ;
                                 $riad->enddate = $enddate;
@@ -6930,13 +7019,14 @@ class ListingController extends JsonApiController
                 Log::info('Terrains Data:', $terrainsData);
 
 
-                $terrain = Terrain::where('url', $oldurl)->first();
+                $terrain = Terrain::where('url', $url)->first();
 
                                 $terrain->user_id = $user->id;
                                 $terrain->onlinestore_id = $onlinestore_id;
 
                                 $terrain->title = $title;
                                 $terrain->price = $price;
+                                $terrain->currency = $currency;
 
                                 $terrain->phone = $phone;
 
@@ -6945,7 +7035,7 @@ class ListingController extends JsonApiController
                                 $terrain->country = $country;
                                 $terrain->zip = $zip;
                                 $terrain->description = $description;
-                                $terrain->url = $url;
+
                                 $terrain->picture = $thumb;
                                 $terrain->startdate  = $startdate ;
                                 $terrain->enddate = $enddate;
@@ -7009,13 +7099,14 @@ class ListingController extends JsonApiController
                 $villasData = $request->input('attributes.villas');
                 Log::info('Villas Data:', $villasData);
 
-                $villa = Villa::where('url', $oldurl)->first();
+                $villa = Villa::where('url', $url)->first();
 
                                 $villa->user_id = $user->id;
                                 $villa->onlinestore_id = $onlinestore_id;
 
                                 $villa->title = $title;
                                 $villa->price = $price;
+                                $villa->currency = $currency;
 
                                 $villa->phone = $phone;
 
@@ -7024,7 +7115,7 @@ class ListingController extends JsonApiController
                                 $villa->country = $country;
                                 $villa->zip = $zip;
                                 $villa->description = $description;
-                                $villa->url = $url;
+
                                 $villa->picture = $thumb;
                                 $villa->startdate  = $startdate ;
                                 $villa->enddate = $enddate;
@@ -7081,13 +7172,14 @@ class ListingController extends JsonApiController
                 Log::info('Activities Data:', $activitiesData);
 
 
-                $activity = Activity::where('url', $oldurl)->first();
+                $activity = Activity::where('url', $url)->first();
 
                                 $activity->user_id = $user->id;
                                 $activity->onlinestore_id = $onlinestore_id;
 
                                 $activity->title = $title;
                                 $activity->price = $price;
+                                $activity->currency = $currency;
                                 $activity->phone = $phone;
 
                                 $activity->address = $address;
@@ -7095,7 +7187,7 @@ class ListingController extends JsonApiController
                                 $activity->country = $country;
                                 $activity->zip = $zip;
                                 $activity->description = $description;
-                                $activity->url = $url;
+
                                 $activity->picture = $thumb;
                                 $activity->startdate  = $startdate ;
                                 $activity->enddate = $enddate;
@@ -7152,13 +7244,14 @@ class ListingController extends JsonApiController
 
 
 
-                $livre = Livre::where('url', $oldurl)->first();
+                $livre = Livre::where('url', $url)->first();
 
                                 $livre->user_id = $user->id;
                                 $livre->onlinestore_id = $onlinestore_id;
 
                                 $livre->title = $title;
                                 $livre->price = $price;
+                                $livre->currency = $currency;
 
                                 $livre->phone = $phone;
 
@@ -7167,7 +7260,7 @@ class ListingController extends JsonApiController
                                 $livre->country = $country;
                                 $livre->zip = $zip;
                                 $livre->description = $description;
-                                $livre->url = $url;
+
                                 $livre->picture = $thumb;
                                 $livre->startdate  = $startdate ;
                                 $livre->enddate = $enddate;
@@ -7221,13 +7314,14 @@ class ListingController extends JsonApiController
 
 
 
-                $musical = Musical::where('url', $oldurl)->first();
+                $musical = Musical::where('url', $url)->first();
 
                                 $musical->user_id = $user->id;
                                 $musical->onlinestore_id = $onlinestore_id;
 
                                 $musical->title = $title;
                                 $musical->price = $price;
+                                $musical->currency = $currency;
 
                                 $musical->phone = $phone;
 
@@ -7236,7 +7330,7 @@ class ListingController extends JsonApiController
                                 $musical->country = $country;
                                 $musical->zip = $zip;
                                 $musical->description = $description;
-                                $musical->url = $url;
+
                                 $musical->picture = $thumb;
                                 $musical->startdate  = $startdate ;
                                 $musical->enddate = $enddate;
@@ -7292,13 +7386,14 @@ class ListingController extends JsonApiController
 
 
 
-                $furniture = Furniture::where('url', $oldurl)->first();
+                $furniture = Furniture::where('url', $url)->first();
 
                                 $furniture->user_id = $user->id;
                                 $furniture->onlinestore_id = $onlinestore_id;
 
                                 $furniture->title = $title;
                                 $furniture->price = $price;
+                                $furniture->currency = $currency;
 
                                 $furniture->phone = $phone;
 
@@ -7307,7 +7402,7 @@ class ListingController extends JsonApiController
                                 $furniture->country = $country;
                                 $furniture->zip = $zip;
                                 $furniture->description = $description;
-                                $furniture->url = $url;
+
                                 $furniture->picture = $thumb;
                                 $furniture->startdate  = $startdate ;
                                 $furniture->enddate = $enddate;
@@ -7365,13 +7460,14 @@ class ListingController extends JsonApiController
 
 
 
-                $houseappliance = Houseappliance::where('url', $oldurl)->first();
+                $houseappliance = Houseappliance::where('url', $url)->first();
 
                                 $houseappliance->user_id = $user->id;
                                 $houseappliance->onlinestore_id = $onlinestore_id;
 
                                 $houseappliance->title = $title;
                                 $houseappliance->price = $price;
+                                $houseappliance->currency = $currency;
 
                                 $houseappliance->phone = $phone;
 
@@ -7380,7 +7476,7 @@ class ListingController extends JsonApiController
                                 $houseappliance->country = $country;
                                 $houseappliance->zip = $zip;
                                 $houseappliance->description = $description;
-                                $houseappliance->url = $url;
+
                                 $houseappliance->picture = $thumb;
                                 $houseappliance->startdate  = $startdate ;
                                 $houseappliance->enddate = $enddate;
@@ -7439,13 +7535,14 @@ class ListingController extends JsonApiController
 
 
 
-                $electricaltool = Electricaltool::where('url', $oldurl)->first();
+                $electricaltool = Electricaltool::where('url', $url)->first();
 
                                 $electricaltool->user_id = $user->id;
                                 $electricaltool->onlinestore_id = $onlinestore_id;
 
                                 $electricaltool->title = $title;
                                 $electricaltool->price = $price;
+                                $electricaltool->currency = $currency;
 
                                 $electricaltool->phone = $phone;
 
@@ -7454,7 +7551,7 @@ class ListingController extends JsonApiController
                                 $electricaltool->country = $country;
                                 $electricaltool->zip = $zip;
                                 $electricaltool->description = $description;
-                                $electricaltool->url = $url;
+
                                 $electricaltool->picture = $thumb;
                                 $electricaltool->startdate  = $startdate ;
                                 $electricaltool->enddate = $enddate;
@@ -7524,13 +7621,14 @@ class ListingController extends JsonApiController
 
 
 
-                $ladder = Ladder::where('url', $oldurl)->first();
+                $ladder = Ladder::where('url', $url)->first();
 
                                 $ladder->user_id = $user->id;
                                 $ladder->onlinestore_id = $onlinestore_id;
 
                                 $ladder->title = $title;
                                 $ladder->price = $price;
+                                $ladder->currency = $currency;
 
                                 $ladder->phone = $phone;
 
@@ -7539,7 +7637,7 @@ class ListingController extends JsonApiController
                                 $ladder->country = $country;
                                 $ladder->zip = $zip;
                                 $ladder->description = $description;
-                                $ladder->url = $url;
+
                                 $ladder->picture = $thumb;
                                 $ladder->startdate  = $startdate ;
                                 $ladder->enddate = $enddate;
@@ -7600,13 +7698,14 @@ class ListingController extends JsonApiController
 
 
 
-                $mechanicaltool = Mechanicaltool::where('url', $oldurl)->first();
+                $mechanicaltool = Mechanicaltool::where('url', $url)->first();
 
                                 $mechanicaltool->user_id = $user->id;
                                 $mechanicaltool->onlinestore_id = $onlinestore_id;
 
                                 $mechanicaltool->title = $title;
                                 $mechanicaltool->price = $price;
+                                $mechanicaltool->currency = $currency;
 
                                 $mechanicaltool->phone = $phone;
 
@@ -7615,7 +7714,7 @@ class ListingController extends JsonApiController
                                 $mechanicaltool->country = $country;
                                 $mechanicaltool->zip = $zip;
                                 $mechanicaltool->description = $description;
-                                $mechanicaltool->url = $url;
+
                                 $mechanicaltool->picture = $thumb;
                                 $mechanicaltool->startdate  = $startdate ;
                                 $mechanicaltool->enddate = $enddate;
@@ -7675,13 +7774,14 @@ class ListingController extends JsonApiController
                 $powertoolsData = $request->input('attributes.powertools');
                 Log::info('Powertools Data:', $powertoolsData);
 
-                $powertool = Powertool::where('url', $oldurl)->first();
+                $powertool = Powertool::where('url', $url)->first();
 
                                 $powertool->user_id = $user->id;
                                 $powertool->onlinestore_id = $onlinestore_id;
 
                                 $powertool->title = $title;
                                 $powertool->price = $price;
+                                $powertool->currency = $currency;
 
                                 $powertool->phone = $phone;
 
@@ -7690,7 +7790,7 @@ class ListingController extends JsonApiController
                                 $powertool->country = $country;
                                 $powertool->zip = $zip;
                                 $powertool->description = $description;
-                                $powertool->url = $url;
+
                                 $powertool->picture = $thumb;
                                 $powertool->startdate  = $startdate ;
                                 $powertool->enddate = $enddate;
@@ -7753,13 +7853,14 @@ class ListingController extends JsonApiController
 
 
 
-                $pressurewasher = Pressurewasher::where('url', $oldurl)->first();
+                $pressurewasher = Pressurewasher::where('url', $url)->first();
 
                                 $pressurewasher->user_id = $user->id;
                                 $pressurewasher->onlinestore_id = $onlinestore_id;
 
                                 $pressurewasher->title = $title;
                                 $pressurewasher->price = $price;
+                                $pressurewasher->currency = $currency;
 
                                 $pressurewasher->phone = $phone;
 
@@ -7768,7 +7869,7 @@ class ListingController extends JsonApiController
                                 $pressurewasher->country = $country;
                                 $pressurewasher->zip = $zip;
                                 $pressurewasher->description = $description;
-                                $pressurewasher->url = $url;
+
                                 $pressurewasher->picture = $thumb;
                                 $pressurewasher->startdate  = $startdate ;
                                 $pressurewasher->enddate = $enddate;
@@ -7831,13 +7932,14 @@ class ListingController extends JsonApiController
                 $servicesData = $request->input('attributes.services');
 
 
-                $service = Service::where('url', $oldurl)->first();
+                $service = Service::where('url', $url)->first();
 
                                 $service->user_id = $user->id;
                                 $service->onlinestore_id = $onlinestore_id;
 
                                 $service->title = $title;
                                 $service->price = $price;
+                                $service->currency = $currency;
 
                                 $service->phone = $phone;
 
@@ -7846,7 +7948,7 @@ class ListingController extends JsonApiController
                                 $service->country = $country;
                                 $service->zip = $zip;
                                 $service->description = $description;
-                                $service->url = $url;
+
                                 $service->picture = $thumb;
                                 $service->startdate  = $startdate ;
                                 $service->enddate = $enddate;
@@ -7904,13 +8006,14 @@ class ListingController extends JsonApiController
                 $jobsData = $request->input('attributes.jobs');
 
 
-                $service = Job::where('url', $oldurl)->first();
+                $service = Job::where('url', $url)->first();
 
                                 $service->user_id = $user->id;
                                 $service->onlinestore_id = $onlinestore_id;
 
                                 $service->title = $title;
                                 $service->price = $price;
+                                $service->currency = $currency;
 
                                 $service->phone = $phone;
 
@@ -7919,7 +8022,7 @@ class ListingController extends JsonApiController
                                 $service->country = $country;
                                 $service->zip = $zip;
                                 $service->description = $description;
-                                $service->url = $url;
+
                                 $service->picture = $thumb;
                                 $service->startdate  = $startdate ;
                                 $service->enddate = $enddate;
@@ -7981,7 +8084,7 @@ class ListingController extends JsonApiController
                 $boatsData = $request->input('attributes.boats');
                 Log::info('Boats Data:', $boatsData);
 
-                $boat = Boat::where('url', $oldurl)->first();
+                $boat = Boat::where('url', $url)->first();
 
                                 $boat->user_id = $user->id;
 
@@ -7989,6 +8092,7 @@ class ListingController extends JsonApiController
 
                                 $boat->title = $title;
                                 $boat->price = $price;
+                                $boat->currency = $currency;
 
                                 $boat->phone = $phone;
 
@@ -7997,7 +8101,7 @@ class ListingController extends JsonApiController
                                 $boat->country = $country;
                                 $boat->zip = $zip;
                                 $boat->description = $description;
-                                $boat->url = $url;
+
                                 $boat->picture = $thumb;
                                 $boat->startdate  = $startdate ;
                                 $boat->enddate = $enddate;
@@ -8055,13 +8159,14 @@ class ListingController extends JsonApiController
                 $camionsData = $request->input('attributes.camions');
                 Log::info('Camions Data:', $camionsData);
 
-                $camion = Camion::where('url', $oldurl)->first();
+                $camion = Camion::where('url', $url)->first();
 
                                 $camion->user_id = $user->id;
                                 $camion->onlinestore_id = $onlinestore_id;
 
                                 $camion->title = $title;
                                 $camion->price = $price;
+                                $camion->currency = $currency;
 
                                 $camion->phone = $phone;
 
@@ -8070,7 +8175,7 @@ class ListingController extends JsonApiController
                                 $camion->country = $country;
                                 $camion->zip = $zip;
                                 $camion->description = $description;
-                                $camion->url = $url;
+
                                 $camion->picture = $thumb;
                                 $camion->startdate  = $startdate ;
                                 $camion->enddate = $enddate;
@@ -8123,13 +8228,14 @@ class ListingController extends JsonApiController
                 Log::info('Caravans Data:', $caravansData);
 
 
-                $caravan = Caravan::where('url', $oldurl)->first();
+                $caravan = Caravan::where('url', $url)->first();
 
                                 $caravan->user_id = $user->id;
                                 $caravan->onlinestore_id = $onlinestore_id;
 
                                 $caravan->title = $title;
                                 $caravan->price = $price;
+                                $caravan->currency = $currency;
 
                                 $caravan->phone = $phone;
 
@@ -8138,7 +8244,7 @@ class ListingController extends JsonApiController
                                 $caravan->country = $country;
                                 $caravan->zip = $zip;
                                 $caravan->description = $description;
-                                $caravan->url = $url;
+
                                 $caravan->picture = $thumb;
                                 $caravan->startdate  = $startdate ;
                                 $caravan->enddate = $enddate;
@@ -8193,13 +8299,14 @@ class ListingController extends JsonApiController
 
 
 
-                $car = Car::where('url', $oldurl)->first();
+                $car = Car::where('url', $url)->first();
 
                                 $car->user_id = $user->id;
                                 $car->onlinestore_id = $onlinestore_id;
 
                                 $car->title = $title;
                                 $car->price = $price;
+                                $car->currency = $currency;
 
                                 $car->phone = $phone;
 
@@ -8208,7 +8315,7 @@ class ListingController extends JsonApiController
                                 $car->country = $country;
                                 $car->zip = $zip;
                                 $car->description = $description;
-                                $car->url = $url;
+
                                 $car->picture = $thumb;
                                 $car->startdate  = $startdate ;
                                 $car->enddate = $enddate;
@@ -8262,13 +8369,14 @@ class ListingController extends JsonApiController
 
 
 
-                $engin = Engin::where('url', $oldurl)->first();
+                $engin = Engin::where('url', $url)->first();
 
                                 $engin->user_id = $user->id;
                                 $engin->onlinestore_id = $onlinestore_id;
 
                                 $engin->title = $title;
                                 $engin->price = $price;
+                                $engin->currency = $currency;
 
                                 $engin->phone = $phone;
 
@@ -8277,7 +8385,7 @@ class ListingController extends JsonApiController
                                 $engin->country = $country;
                                 $engin->zip = $zip;
                                 $engin->description = $description;
-                                $engin->url = $url;
+
                                 $engin->picture = $thumb;
                                 $engin->startdate  = $startdate ;
                                 $engin->enddate = $enddate;
@@ -8334,13 +8442,14 @@ class ListingController extends JsonApiController
 
 
 
-                $moto = Moto::where('url', $oldurl)->first();
+                $moto = Moto::where('url', $url)->first();
 
                                 $moto->user_id = $user->id;
                                 $moto->onlinestore_id = $onlinestore_id;
 
                                 $moto->title = $title;
                                 $moto->price = $price;
+                                $moto->currency = $currency;
 
                                 $moto->phone = $phone;
 
@@ -8349,7 +8458,7 @@ class ListingController extends JsonApiController
                                 $moto->country = $country;
                                 $moto->zip = $zip;
                                 $moto->description = $description;
-                                $moto->url = $url;
+
                                 $moto->picture = $thumb;
                                 $moto->startdate  = $startdate ;
                                 $moto->enddate = $enddate;
@@ -8406,13 +8515,14 @@ class ListingController extends JsonApiController
 
 
 
-                $scooter = Scooter::where('url', $oldurl)->first();
+                $scooter = Scooter::where('url', $url)->first();
 
                                 $scooter->user_id = $user->id;
                                 $scooter->onlinestore_id = $onlinestore_id;
 
                                 $scooter->title = $title;
                                 $scooter->price = $price;
+                                $scooter->currency = $currency;
 
                                 $scooter->phone = $phone;
 
@@ -8421,7 +8531,7 @@ class ListingController extends JsonApiController
                                 $scooter->country = $country;
                                 $scooter->zip = $zip;
                                 $scooter->description = $description;
-                                $scooter->url = $url;
+
                                 $scooter->picture = $thumb;
                                 $scooter->startdate  = $startdate ;
                                 $scooter->enddate = $enddate;
@@ -8474,13 +8584,14 @@ class ListingController extends JsonApiController
 
 
 
-                $taxiaeroport = Taxiaeroport::where('url', $oldurl)->first();
+                $taxiaeroport = Taxiaeroport::where('url', $url)->first();
 
                                 $taxiaeroport->user_id = $user->id;
                                 $taxiaeroport->onlinestore_id = $onlinestore_id;
 
                                 $taxiaeroport->title = $title;
                                 $taxiaeroport->price = $price;
+                                $taxiaeroport->currency = $currency;
 
                                 $taxiaeroport->phone = $phone;
 
@@ -8489,7 +8600,7 @@ class ListingController extends JsonApiController
                                 $taxiaeroport->country = $country;
                                 $taxiaeroport->zip = $zip;
                                 $taxiaeroport->description = $description;
-                                $taxiaeroport->url = $url;
+
                                 $taxiaeroport->picture = $thumb;
                                 $taxiaeroport->startdate  = $startdate ;
                                 $taxiaeroport->enddate = $enddate;
@@ -8541,13 +8652,14 @@ class ListingController extends JsonApiController
 
 
 
-                $transportation = Transportation::where('url', $oldurl)->first();
+                $transportation = Transportation::where('url', $url)->first();
 
                                 $transportation->user_id = $user->id;
                                 $transportation->onlinestore_id = $onlinestore_id;
 
                                 $transportation->title = $title;
                                 $transportation->price = $price;
+                                $transportation->currency = $currency;
 
                                 $transportation->phone = $phone;
 
@@ -8556,7 +8668,7 @@ class ListingController extends JsonApiController
                                 $transportation->country = $country;
                                 $transportation->zip = $zip;
                                 $transportation->description = $description;
-                                $transportation->url = $url;
+
                                 $transportation->picture = $thumb;
                                 $transportation->startdate  = $startdate ;
                                 $transportation->enddate = $enddate;
@@ -8611,13 +8723,14 @@ class ListingController extends JsonApiController
                 $velosData = $request->input('attributes.velos');
                 Log::info('Velos Data:', $velosData);
 
-                $velo = Velo::where('url', $oldurl)->first();
+                $velo = Velo::where('url', $url)->first();
 
                                 $velo->user_id = $user->id;
                                 $velo->onlinestore_id = $onlinestore_id;
 
                                 $velo->title = $title;
                                 $velo->price = $price;
+                                $velo->currency = $currency;
                                 $velo->phone = $phone;
 
                                 $velo->address = $address;
@@ -8625,7 +8738,7 @@ class ListingController extends JsonApiController
                                 $velo->country = $country;
                                 $velo->zip = $zip;
                                 $velo->description = $description;
-                                $velo->url = $url;
+
                                 $velo->picture = $thumb;
                                 $velo->startdate  = $startdate ;
                                 $velo->enddate = $enddate;

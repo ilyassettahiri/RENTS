@@ -29,7 +29,7 @@ return new class extends Migration
             $table->decimal('price', 10, 2)->nullable();
             $table->string('url');
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');
 
             $table->foreignId('billiard_id')->nullable();
 
@@ -42,6 +42,9 @@ return new class extends Migration
             $table->foreignId('musculation_id')->nullable();
             $table->foreignId('surf_id')->nullable();
             $table->foreignId('tennis_id')->nullable();
+
+            $table->foreignId('job_id')->nullable();
+
 
             $table->foreignId('audio_id')->nullable();
             $table->foreignId('camera_id')->nullable();

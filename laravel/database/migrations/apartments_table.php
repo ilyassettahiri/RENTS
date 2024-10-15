@@ -64,7 +64,7 @@ return new class extends Migration
             $table->date('enddate')->nullable();
 
             $table->enum('status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed'])->default('pending');
-            $table->boolean('featured')->default(false);
+            $table->enum('admin_status', ['checking out','boosted','refunded','active', 'inactive', 'pending', 'draft', 'archived', 'deleted', 'canceled','paid', 'completed', 'accepted', 'rejected'])->default('pending');            $table->boolean('featured')->default(false);
 
             $table->string('address')->nullable();
             $table->string('city')->nullable();

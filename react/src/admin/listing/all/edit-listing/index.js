@@ -1427,34 +1427,44 @@ function EditListing() {
 
   const handleFilesChange = (files) => {
     const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
-    
-    // Extract old and new files from the object
-    const { updatedSelectedFiles } = files;
+  
+    // Extract old (existingFiles as strings) and new files (updatedSelectedFiles as File objects)
+    const { existingFiles, updatedSelectedFiles } = files; 
+  
+    console.log('Existing Files:', existingFiles);
+    console.log('Updated Selected Files:', updatedSelectedFiles);
   
     
-    if (!updatedSelectedFiles || updatedSelectedFiles.length === 0) {
+    // Set the old files (which are paths/URLs)
+    setOldFiles(existingFiles); 
+  
+    // Check if both existingFiles and updatedSelectedFiles are empty
+    if ((!existingFiles || existingFiles.length === 0) && (!updatedSelectedFiles || updatedSelectedFiles.length === 0)) {
       setFileError("Please select at least one image.");
       setSelectedFiles([]); // Clear new selected files
       return;
     }
-    // Validate only new selected files (updatedSelectedFiles)
-    for (let i = 0; i < updatedSelectedFiles.length; i++) {
-      const file = updatedSelectedFiles[i];
   
-      // Check file type
-      if (!acceptedTypes.includes(file.type)) {
-        setFileError("Only image files (jpg, png, gif, tiff, webp) are allowed.");
-        setSelectedFiles([]); // Clear new selected files if validation fails
-        return;
+    // Check if there are any new files (updatedSelectedFiles)
+    if (updatedSelectedFiles && updatedSelectedFiles.length > 0) {
+      // Validate new files (File objects)
+      for (let i = 0; i < updatedSelectedFiles.length; i++) {
+        const file = updatedSelectedFiles[i];
+
+        // Check if file type is acceptable
+        if (!acceptedTypes.includes(file.type)) {
+          setFileError("Only image files (jpg, png, gif, tiff, webp) are allowed.");
+          setSelectedFiles([]); // Clear new selected files if validation fails
+          return;
+        }
       }
     }
   
-    // Clear any existing file errors and update new files
+    // Clear any existing file errors and update new selected files
     setFileError("");
-    setSelectedFiles(updatedSelectedFiles); // Update new selected files
-  
-    
+    setSelectedFiles(updatedSelectedFiles); // Update new selected files (File objects)
   };
+  
   
 
   useEffect(() => {
@@ -1464,6 +1474,7 @@ function EditListing() {
         const res = await CrudService.getListing(id);
         
         const fetchedData = res.data.attributes;
+        
         setData(fetchedData);
 
         // Common fields
@@ -2219,7 +2230,7 @@ function EditListing() {
     }
 
     // Validate files
-    if (selectedFiles.length === 0 && oldFiles.length === 0) {
+    if ((!selectedFiles || selectedFiles.length === 0) && (!oldFiles || oldFiles.length === 0)) {
       setFileError("Please select at least one image file.");
       return;
     }
@@ -2600,10 +2611,9 @@ function EditListing() {
             formData.append('selectedCategory', selectedCategory);
         
             // Send the file upload request only if there are valid files
-            const response = await CrudService.imageUploadListing(formData);
+             response = await CrudService.imageUploadListing(formData);
             
-            // Handle the response if needed
-            console.log("Upload response:", response);
+            
           } 
         
       
@@ -2627,6 +2637,11 @@ function EditListing() {
               price: pricing.price,
               currency: pricing.currency,
               phone: pricing.phone,
+
+              imagePathslarge: null,
+              imagePathssmall: null,
+              imagePathsxlarge: null,
+              thumb: null,
               
               
               oldimagePathslarge: oldFiles, 
@@ -2691,21 +2706,24 @@ function EditListing() {
         };
         
 
-
         if (response) {
-          if (response.imagePathslarge) {
-            updatedListing.attributes.imagePathslarge = response.imagePathslarge;
-          }
-          if (response.imagePathssmall) {
-            updatedListing.attributes.imagePathssmall = response.imagePathssmall;
-          }
-          if (response.imagePathsxlarge) {
-            updatedListing.attributes.imagePathsxlarge = response.imagePathsxlarge;
-          }
-          if (response.thumb) {
-            updatedListing.attributes.thumb = response.thumb;
-          }
+          
+        
+          
+            updatedListing.attributes.imagePathslarge = response.imagePathslarge.slice(); // Use slice() to copy the array
+          
+          
+            updatedListing.attributes.imagePathssmall = response.imagePathssmall.slice(); // Use slice() to copy the array
+          
+          
+            updatedListing.attributes.imagePathsxlarge = response.imagePathsxlarge.slice(); // Use slice() to copy the array
+          
+          
+            updatedListing.attributes.thumb = response.thumb; // Assign the thumb value
+          
         }
+        
+        
 
 
 

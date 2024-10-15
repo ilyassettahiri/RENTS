@@ -10,12 +10,27 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
   const fileInputRef = useRef(null);
   const [existingFiles, setExistingFiles] = useState([]);
 
+  const [filePreviews, setFilePreviews] = useState([]);
+
+
   useEffect(() => {
-    if (oldFiles.length) {
+    if (oldFiles.length && JSON.stringify(oldFiles) !== JSON.stringify(existingFiles)) {
       setExistingFiles(oldFiles);
     }
-  }, [oldFiles]);
+  }, [oldFiles, existingFiles]);
 
+
+  useEffect(() => {
+    const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
+    setFilePreviews(newPreviews);
+
+    // Clean up blob URLs to avoid memory leaks
+    return () => {
+      newPreviews.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [selectedFiles]);
+
+  
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
     const updatedSelectedFiles = [...selectedFiles, ...files];
@@ -24,23 +39,21 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
   };
 
   const handleRemoveFile = (index, isOldFile = false, event) => {
-
-    event.stopPropagation(); 
-
-
+    event.stopPropagation();
+  
     if (isOldFile) {
       const updatedOldFiles = [...existingFiles];
-      updatedOldFiles.splice(index, 1);
-      setExistingFiles(updatedOldFiles);
-      onFilesChange({ existingFiles: updatedOldFiles, selectedFiles });
+      updatedOldFiles.splice(index, 1); // Remove the old file at the index
+      setExistingFiles(updatedOldFiles); // Update the state for old files
+      onFilesChange({ existingFiles: updatedOldFiles, updatedSelectedFiles: selectedFiles }); // Pass the selectedFiles as updatedSelectedFiles
     } else {
       const updatedFiles = [...selectedFiles];
-      updatedFiles.splice(index, 1);
-      setSelectedFiles(updatedFiles);
-      onFilesChange({ existingFiles, selectedFiles: updatedFiles });
+      updatedFiles.splice(index, 1); // Remove the new file at the index
+      setSelectedFiles(updatedFiles); // Update the state for selected files
+      onFilesChange({ existingFiles, updatedSelectedFiles: updatedFiles }); // Pass updatedFiles as updatedSelectedFiles
     }
   };
-
+  
   const handleDrop = (e) => {
     e.preventDefault();
     const files = Array.from(e.dataTransfer.files);
@@ -100,24 +113,26 @@ function CustomFileInput({ onFilesChange, oldFiles = [] }) {
             </div>
           ))}
 
-          {selectedFiles.map((file, index) => (
+          {filePreviews.map((filePreview, index) => (
             <div
               key={index}
               className="file-preview-wrapper"
               onClick={(e) => e.stopPropagation()} // Prevents file input click
             >
               <img
-                src={URL.createObjectURL(file)}
+                src={filePreview}
                 alt={`preview ${index}`}
                 className="file-preview-image"
               />
               <button
                 type="button"
                 className="remove-file-button"
+                
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleRemoveFile(index);
+                  handleRemoveFile(index, false, e); // Pass event `e`
                 }}
+
               >
                 X
               </button>
