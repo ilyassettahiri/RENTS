@@ -54,6 +54,38 @@ const MoreDetails = [
 ];
 
 
+const ServicesType = [
+  { value: 'Electrician', label: 'Electrician' },
+  { value: 'Plumber', label: 'Plumber' },
+  { value: 'Carpenter', label: 'Carpenter' },
+  { value: 'House Painter', label: 'House Painter' },
+  { value: 'Mechanic', label: 'Mechanic' },
+  { value: 'Construction Worker', label: 'Construction Worker' },
+  { value: 'Landscaper', label: 'Landscaper' },
+  { value: 'Gardener', label: 'Gardener' },
+  { value: 'Handyman', label: 'Handyman' },
+  { value: 'Roofing Services', label: 'Roofing Services' },
+  { value: 'Mason', label: 'Mason' },
+  { value: 'Cleaning Services', label: 'Cleaning Services' },
+  { value: 'Pest Control', label: 'Pest Control' },
+  { value: 'HVAC Technician', label: 'HVAC Technician' },
+  { value: 'Mover', label: 'Mover' },
+  { value: 'Interior Designer', label: 'Interior Designer' },
+  { value: 'Window Installation', label: 'Window Installation' },
+  { value: 'Flooring Installer', label: 'Flooring Installer' },
+  { value: 'Locksmith', label: 'Locksmith' },
+  { value: 'Security', label: 'Security' },
+  { value: 'Personal Trainer', label: 'Personal Trainer' },
+  { value: 'Auto Mechanic', label: 'Auto Mechanic' },
+  { value: 'Tailor', label: 'Tailor' },
+  { value: 'Chef', label: 'Chef' },
+  { value: 'Catering Services', label: 'Catering Services' },
+  { value: 'Event Planner', label: 'Event Planner' },
+  { value: 'Personal Driver', label: 'Personal Driver' },
+  
+  { value: 'Security Guard', label: 'Security Guard' },
+  { value: 'Nanny', label: 'Nanny' },
+];
 
 
 const ServicesLanguages = [
@@ -61,40 +93,25 @@ const ServicesLanguages = [
   { value: 'Spanish', label: 'Spanish' },
   { value: 'French', label: 'French' },
   { value: 'German', label: 'German' },
-  { value: 'Portuguese', label: 'Portuguese' },
   { value: 'Arabic', label: 'Arabic' },
   { value: 'Chinese', label: 'Chinese' },
-  { value: 'Russian', label: 'Russian' },
   { value: 'Japanese', label: 'Japanese' },
   { value: 'Italian', label: 'Italian' },
   { value: 'Dutch', label: 'Dutch' },
-  { value: 'Korean', label: 'Korean' },
-  { value: 'Turkish', label: 'Turkish' },
-  { value: 'Hindi', label: 'Hindi' },
-  { value: 'Polish', label: 'Polish' },
-  { value: 'Swedish', label: 'Swedish' },
-  { value: 'Hebrew', label: 'Hebrew' },
-  { value: 'Greek', label: 'Greek' },
-  { value: 'Norwegian', label: 'Norwegian' },
-  { value: 'Danish', label: 'Danish' }
+
 ];
 
 const ServicesExperience = [
   { value: '0 - 1 year', label: '0 - 1 year' },
   { value: '1 - 2 years', label: '1 - 2 years' },
-  { value: '2 - 3 year', label: '0 - 1 year' },
-  { value: '3 - 4 years', label: '1 - 2 years' },
-  { value: '4 - 5 years', label: '1 - 2 years' },
+  { value: '2 - 3 year', label: '2 - 3 year' },
+  { value: '3 - 4 years', label: '3 - 4 years' },
+  { value: '4 - 5 years', label: '4 - 5 years' },
 
-  { value: '3+ years', label: '3+ years' }
+  { value: '5+ years', label: '5+ years' }
 ];
 
-const ServicesResponseTime = [
-  { value: '1 - 2 hours', label: '1 - 2 hours' },
-  { value: '4 - 6 hours', label: '4 - 6 hours' },
-  { value: '24 hours', label: '24 hours' },
-  { value: '2 business days', label: '2 business days' }
-];
+
 
 const ServicesDeliveryTime = [
   { value: 'Express 24H', label: 'Express 24H' },
@@ -103,44 +120,11 @@ const ServicesDeliveryTime = [
   { value: 'Anytime', label: 'Anytime' }
 ];
 
-const ServicesPackage = [
-  { value: 'Basic', label: 'Basic' },
-  { value: 'Standard', label: 'Standard' },
-  { value: 'Premium', label: 'Premium' }
-];
 
-const ServicesRevisions = [
-  { value: 'Standard Package: Includes 2 rounds of revisions', label: 'Standard Package: Includes 2 rounds of revisions' },
-  { value: 'Premium Package: Includes 3 rounds of revisions', label: 'Premium Package: Includes 3 rounds of revisions' },
-  { value: 'Unlimited Revisions: Contact us for details on our unlimited revision option', label: 'Unlimited Revisions: Contact us for details on our unlimited revision option' }
-];
 
-const ServicesLevel = [
-  { value: 'Beginner', label: 'Beginner' },
-  { value: 'Intermediate', label: 'Intermediate' },
-  { value: 'Expert', label: 'Expert' }
-];
 
-const ServicesOrdersQueue = [
-  { value: '1 order', label: '1 order' },
-  { value: '2 orders', label: '2 orders' },
-  { value: '3 orders', label: '3 orders' },
-  { value: 'Up to 6 orders', label: 'Up to 6 orders' }
-];
 
-const ServicesJobscompleted = [
-  { value: 'Over 10 successful projects completed', label: 'Over 10 successful projects completed' },
-  { value: 'With a track record of 50+ completed projects', label: 'With a track record of 50+ completed projects' },
-  { value: 'Trusted by 100+ clients worldwide', label: 'Trusted by 100+ clients worldwide' }
-];
 
-const ServicesRepeatHireRate = [
-  { value: 'Over 40% of our clients choose to work with us again', label: 'Over 40% of our clients choose to work with us again' },
-  { value: '2 out of 5 clients return for future projects', label: '2 out of 5 clients return for future projects' },
-  { value: '3 out of 5 clients continue to choose us for their projects', label: '3 out of 5 clients continue to choose us for their projects' },
-  { value: 'Trusted by 50% of our clients for their ongoing needs', label: 'Trusted by 50% of our clients for their ongoing needs' },
-  { value: 'Our commitment to quality is reflected in our 55% repeat hire rate', label: 'Our commitment to quality is reflected in our 55% repeat hire rate' }
-];
 
 const ServicesEducation = [
   { value: 'Bachelor degree', label: 'Bachelor degree' },
@@ -154,11 +138,6 @@ const ServicesEducation = [
   { value: 'GED (General Educational Development)', label: 'GED (General Educational Development)' }
 ];
 
-const ServicesOntime = [
-  { value: 'Consistently Meeting Deadlines', label: 'Consistently Meeting Deadlines' },
-  { value: 'Timely Results, Every Time', label: 'Timely Results, Every Time' },
-  { value: 'Meeting Deadlines', label: 'Meeting Deadlines' }
-];
 
 function Services({ onDataChange, initialState, isOpen }) {
 
@@ -191,6 +170,23 @@ function Services({ onDataChange, initialState, isOpen }) {
 
   return (
     <SoftBox mt={3}>
+
+
+      <CollapseList
+        image={<img src={icon3} style={{ width: '40px' }} />}
+        title="Service Type"
+        open={collapse3}
+        onClick={() => setCollapse3(!collapse3)}
+      >
+        <OneSelect
+          name="type"
+          options={ServicesType}
+          value={initiallistingsData.type}
+          onChange={(option) => handleSelectChange("type", option.value)}
+        />
+      </CollapseList>
+
+
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
         title="Languages"
@@ -219,104 +215,10 @@ function Services({ onDataChange, initialState, isOpen }) {
         />
       </CollapseList>
 
-      <CollapseList
-        image={<img src={icon3} style={{ width: '40px' }} />}
-        title="Response Time"
-        open={collapse3}
-        onClick={() => setCollapse3(!collapse3)}
-      >
-        <OneSelect
-          name="responseTime"
-          options={ServicesResponseTime}
-          value={initiallistingsData.responseTime}
-          onChange={(option) => handleSelectChange("responseTime", option.value)}
-        />
-      </CollapseList>
 
-      <CollapseList
-        image={<img src={icon4} style={{ width: '40px' }} />}
-        title="Package"
-        open={collapse4}
-        onClick={() => setCollapse4(!collapse4)}
-      >
-        <OneSelect
-          name="package"
-          options={ServicesPackage}
-          value={initiallistingsData.package}
-          onChange={(option) => handleSelectChange("package", option.value)}
-        />
-      </CollapseList>
+      
 
-      <CollapseList
-        image={<img src={icon5} style={{ width: '40px' }} />}
-        title="Revisions"
-        open={collapse5}
-        onClick={() => setCollapse5(!collapse5)}
-      >
-        <MultSelect
-          name="revisions"
-          options={ServicesRevisions}
-          value={initiallistingsData.revisions}
-          onChange={(options) => handleSelectChange("revisions", options)}
-        />
-      </CollapseList>
-
-      <CollapseList
-        image={<img src={icon6} style={{ width: '40px' }} />}
-        title="Level"
-        open={collapse6}
-        onClick={() => setCollapse6(!collapse6)}
-      >
-        <OneSelect
-          name="level"
-          options={ServicesLevel}
-          value={initiallistingsData.level}
-          onChange={(option) => handleSelectChange("level", option.value)}
-        />
-      </CollapseList>
-
-      <CollapseList
-        image={<img src={icon7} style={{ width: '40px' }} />}
-        title="Orders Queue"
-        open={collapse7}
-        onClick={() => setCollapse7(!collapse7)}
-      >
-        <OneSelect
-          name="ordersQueue"
-          options={ServicesOrdersQueue}
-          value={initiallistingsData.ordersQueue}
-          onChange={(option) => handleSelectChange("ordersQueue", option.value)}
-        />
-      </CollapseList>
-
-      <CollapseList
-        image={<img src={icon8} style={{ width: '40px' }} />}
-        title="Jobs Completed"
-        open={collapse8}
-        onClick={() => setCollapse8(!collapse8)}
-      >
-        <OneSelect
-          name="jobsCompleted"
-          options={ServicesJobscompleted}
-          value={initiallistingsData.jobsCompleted}
-          onChange={(option) => handleSelectChange("jobsCompleted", option.value)}
-        />
-      </CollapseList>
-
-      <CollapseList
-        image={<img src={icon9} style={{ width: '40px' }} />}
-        title="Repeat Hire Rate"
-        open={collapse9}
-        onClick={() => setCollapse9(!collapse9)}
-      >
-        <OneSelect
-          name="repeatHireRate"
-          options={ServicesRepeatHireRate}
-          value={initiallistingsData.repeatHireRate}
-          onChange={(option) => handleSelectChange("repeatHireRate", option.value)}
-        />
-      </CollapseList>
-
+     
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
         title="Education"
@@ -331,20 +233,7 @@ function Services({ onDataChange, initialState, isOpen }) {
         />
       </CollapseList>
 
-      <CollapseList
-        image={<img src={icon11} style={{ width: '40px' }} />}
-        title="On Time"
-        open={collapse11}
-        onClick={() => setCollapse11(!collapse11)}
-      >
-        <MultSelect
-          name="onTime"
-          options={ServicesOntime}
-          value={initiallistingsData.onTime}
-          onChange={(options) => handleSelectChange("onTime", options)}
-        />
-      </CollapseList>
-
+     
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
         title="Delivery Time"

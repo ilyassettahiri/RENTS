@@ -55,22 +55,11 @@ const ServicesLanguages = [
   { value: 'Spanish', label: 'Spanish' },
   { value: 'French', label: 'French' },
   { value: 'German', label: 'German' },
-  { value: 'Portuguese', label: 'Portuguese' },
   { value: 'Arabic', label: 'Arabic' },
   { value: 'Chinese', label: 'Chinese' },
-  { value: 'Russian', label: 'Russian' },
   { value: 'Japanese', label: 'Japanese' },
   { value: 'Italian', label: 'Italian' },
   { value: 'Dutch', label: 'Dutch' },
-  { value: 'Korean', label: 'Korean' },
-  { value: 'Turkish', label: 'Turkish' },
-  { value: 'Hindi', label: 'Hindi' },
-  { value: 'Polish', label: 'Polish' },
-  { value: 'Swedish', label: 'Swedish' },
-  { value: 'Hebrew', label: 'Hebrew' },
-  { value: 'Greek', label: 'Greek' },
-  { value: 'Norwegian', label: 'Norwegian' },
-  { value: 'Danish', label: 'Danish' }
 ];
 
 const ServicesExperience = [

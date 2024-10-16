@@ -111,19 +111,12 @@ const ActivityLanguage = [
   { value: 'English', label: 'English' },
   { value: 'Spanish', label: 'Spanish' },
   { value: 'French', label: 'French' },
-  { value: 'Mandarin', label: 'Mandarin' },
-  { value: 'Arabic', label: 'Arabic' },
-  { value: 'Russian', label: 'Russian' },
   { value: 'German', label: 'German' },
-  { value: 'Portuguese', label: 'Portuguese' },
-  { value: 'Hindi', label: 'Hindi' },
-  { value: 'Bengali', label: 'Bengali' },
+  { value: 'Arabic', label: 'Arabic' },
+  { value: 'Chinese', label: 'Chinese' },
   { value: 'Japanese', label: 'Japanese' },
-  { value: 'Korean', label: 'Korean' },
   { value: 'Italian', label: 'Italian' },
   { value: 'Dutch', label: 'Dutch' },
-  { value: 'Turkish', label: 'Turkish' },
-  { value: 'Other', label: 'Other' }
 ];
 
 const ActivityCancellation = [

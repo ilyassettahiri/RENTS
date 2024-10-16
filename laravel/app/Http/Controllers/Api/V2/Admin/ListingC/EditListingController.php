@@ -2895,15 +2895,9 @@ class EditListingController extends Controller
                                             'services' => [
                                                 'languages' => explode(', ', $this->listingcategory->languages),
                                                 'experience' => $this->listingcategory->experience,
-                                                'responseTime' => $this->listingcategory->response_time,
-                                                'package' => $this->listingcategory->package,
-                                                'revisions' => explode(', ', $this->listingcategory->revisions),
-                                                'level' => $this->listingcategory->level,
-                                                'ordersQueue' => $this->listingcategory->orders_queue,
-                                                'jobsCompleted' => $this->listingcategory->jobs_completed,
-                                                'repeatHireRate' => $this->listingcategory->repeat_hire_rate,
+                                                'type' => $this->listingcategory->type_service,
+
                                                 'education' => $this->listingcategory->education,
-                                                'onTime' => explode(', ', $this->listingcategory->on_time),
                                                 'deliveryTime' => $this->listingcategory->delivery_time,
                                                 'moreDetails' => explode(', ', $this->listingcategory->more_details),
                                             ],

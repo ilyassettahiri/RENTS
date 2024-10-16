@@ -287,7 +287,7 @@ class ListingController extends JsonApiController
 
 
 
-            $category = $request->input('data.attributes.category');
+            /*$category = $request->input('data.attributes.category');
 
             $manager = new ImageManager(new Driver());
 
@@ -375,11 +375,11 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }
+            }*/
 
 
 
-            /*$category = strtolower($request->input('data.attributes.category'));
+            $category = strtolower($request->input('data.attributes.category'));
 
             $manager = new ImageManager(new Driver());
 
@@ -441,7 +441,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
             /*if ($request->hasFile('data.attributes.images')) {
@@ -3678,15 +3678,8 @@ class ListingController extends JsonApiController
                                 // Storing additional data from servicesData
                                 $service->languages = is_array($servicesData['languages']) ? implode(', ', $servicesData['languages']) : $servicesData['languages'];
                                 $service->experience = $servicesData['experience'] ?? null;
-                                $service->response_time = $servicesData['responseTime'] ?? null;
-                                $service->package = $servicesData['package'] ?? null;
-                                $service->revisions = is_array($servicesData['revisions']) ? implode(', ', $servicesData['revisions']) : $servicesData['revisions'];
-                                $service->level = $servicesData['level'] ?? null;
-                                $service->orders_queue = $servicesData['ordersQueue'] ?? null;
-                                $service->jobs_completed = $servicesData['jobsCompleted'] ?? null;
-                                $service->repeat_hire_rate = $servicesData['repeatHireRate'] ?? null;
+                                $service->type_service = $servicesData['type'] ?? null;
                                 $service->education = $servicesData['education'] ?? null;
-                                $service->on_time = is_array($servicesData['onTime']) ? implode(', ', $servicesData['onTime']) : $servicesData['onTime'];
                                 $service->delivery_time = $servicesData['deliveryTime'] ?? null;
 
 
@@ -4585,11 +4578,6 @@ class ListingController extends JsonApiController
         $existingImages = Listingsimg::where('listing_id', $listing->id)->get();
 
 
-        // Log the existing images for the listing
-        Log::info('Existing Images:', $existingImages->toArray());
-
-        // Log the old image paths for comparison
-        Log::info('Old image paths large:', $oldimagePathslarge);
 
 
 
@@ -7955,15 +7943,8 @@ class ListingController extends JsonApiController
                                 // Storing additional data from servicesData
                                 $service->languages = is_array($servicesData['languages']) ? implode(', ', $servicesData['languages']) : $servicesData['languages'];
                                 $service->experience = $servicesData['experience'] ?? null;
-                                $service->response_time = $servicesData['responseTime'] ?? null;
-                                $service->package = $servicesData['package'] ?? null;
-                                $service->revisions = is_array($servicesData['revisions']) ? implode(', ', $servicesData['revisions']) : $servicesData['revisions'];
-                                $service->level = $servicesData['level'] ?? null;
-                                $service->orders_queue = $servicesData['ordersQueue'] ?? null;
-                                $service->jobs_completed = $servicesData['jobsCompleted'] ?? null;
-                                $service->repeat_hire_rate = $servicesData['repeatHireRate'] ?? null;
+                                $service->type_service = $servicesData['type'] ?? null;
                                 $service->education = $servicesData['education'] ?? null;
-                                $service->on_time = is_array($servicesData['onTime']) ? implode(', ', $servicesData['onTime']) : $servicesData['onTime'];
                                 $service->delivery_time = $servicesData['deliveryTime'] ?? null;
 
 

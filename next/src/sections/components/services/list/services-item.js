@@ -396,30 +396,18 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             spacing={1.5}
             sx={{
               p: 1,
-              pt: 0,
+              pb: 1,
               typography: 'body2',
               color: 'text.secondary',
               textTransform: 'capitalize',
             }}
           >
-            <Grid xs={6}>
-              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                <Iconify icon="carbon:increase-level" sx={{ mr: 1 }} />
-                1 year exp
-              </Stack>
-            </Grid>
 
-            <Grid xs={6}>
-              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                <Iconify icon="carbon:time" sx={{ mr: 1 }} />
-                Full Time
-              </Stack>
-            </Grid>
 
             <Grid xs={6}>
               <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
                 <Iconify icon="carbon:money" sx={{ mr: 1 }} />
-                {typeof price === 'number' ? fCurrency(price) : price}
+                {typeof price === 'number' ? fCurrency(price) : price} DH
               </Stack>
             </Grid>
 

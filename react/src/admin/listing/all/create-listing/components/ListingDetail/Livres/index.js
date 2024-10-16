@@ -75,15 +75,11 @@ const LivresLanguage = [
   { value: 'Spanish', label: 'Spanish' },
   { value: 'French', label: 'French' },
   { value: 'German', label: 'German' },
-  { value: 'Mandarin', label: 'Mandarin' },
-  { value: 'Hindi', label: 'Hindi' },
   { value: 'Arabic', label: 'Arabic' },
-  { value: 'Russian', label: 'Russian' },
+  { value: 'Chinese', label: 'Chinese' },
   { value: 'Japanese', label: 'Japanese' },
-  { value: 'Korean', label: 'Korean' },
   { value: 'Italian', label: 'Italian' },
-  { value: 'Portuguese', label: 'Portuguese' },
-  { value: 'Other', label: 'Other' }
+  { value: 'Dutch', label: 'Dutch' },
 ];
 
 const LivresFormat = [

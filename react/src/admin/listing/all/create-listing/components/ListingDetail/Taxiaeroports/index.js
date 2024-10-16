@@ -79,20 +79,13 @@ const AirportTaxiStorage = [
 const AirportTaxiLanguage = [
   { value: 'English', label: 'English' },
   { value: 'Spanish', label: 'Spanish' },
-  { value: 'Chinese', label: 'Chinese' },
-  { value: 'Arabic', label: 'Arabic' },
   { value: 'French', label: 'French' },
   { value: 'German', label: 'German' },
+  { value: 'Arabic', label: 'Arabic' },
+  { value: 'Chinese', label: 'Chinese' },
   { value: 'Japanese', label: 'Japanese' },
-  { value: 'Russian', label: 'Russian' },
-  { value: 'Portuguese', label: 'Portuguese' },
   { value: 'Italian', label: 'Italian' },
-  { value: 'Korean', label: 'Korean' },
-  { value: 'Hindi', label: 'Hindi' },
-  { value: 'Vietnamese', label: 'Vietnamese' },
-  { value: 'Thai', label: 'Thai' },
   { value: 'Dutch', label: 'Dutch' },
-  { value: 'Turkish', label: 'Turkish' }
 ];
 
 function Taxiaeroports({ onDataChange, initialState, isOpen }) {

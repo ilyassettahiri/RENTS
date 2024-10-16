@@ -1113,22 +1113,19 @@ function EditListing() {
   });
 
   
+    
   const [servicesData, setServicesData] = useState({
     languages: [],
     experience: '',
-    responseTime: '',
-    package: '',
-    revisions: [],
-    level: '',
-    ordersQueue: '',
-    jobsCompleted: '',
-    repeatHireRate: '',
+    type: '',
+    
     education: '',
-    onTime: [],
+    
     deliveryTime: '',
     moreDetails: [],
 
   });
+
 
   const [jobsData, setJobsData] = useState({
     languages: [],
