@@ -51,11 +51,11 @@ const StyledButton = styled((props) => (
 
 
 export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
-  console.log('Favorites in listing list ', favorites); // Ensure this is logged correctly and not empty
+
 
   const { attributes } = job;
 
-  const { title, city,phone, averageRating, price,seller, created_at, category, url, id, images } = attributes;
+  const { title, city,phone,jobtype, averageRating, price,seller, created_at, category, url, id, images } = attributes;
 
   const router = useRouter();
 
@@ -132,11 +132,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
     <>
         <Card
-          sx={{
-            '&:hover': {
-              boxShadow: (theme) => theme.customShadows.z24,
-            },
-          }}
+
         >
           {/* Carousel of Images */}
 
@@ -396,27 +392,24 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             spacing={1.5}
             sx={{
               p: 1,
-              pb: 1,
+              pb: 2,
               typography: 'body2',
               color: 'text.secondary',
               textTransform: 'capitalize',
             }}
           >
 
-
-            <Grid xs={6}>
-              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-                <Iconify icon="carbon:money" sx={{ mr: 1 }} />
-                {typeof price === 'number' ? fCurrency(price) : price} DH
-              </Stack>
-            </Grid>
-
             <Grid xs={6}>
               <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
                 <Iconify icon="carbon:user" sx={{ mr: 1 }} />
-                Manager
+
+                {capitalizeFirstLetter(jobtype)}
               </Stack>
             </Grid>
+
+
+
+
           </Grid>
 
 
@@ -474,6 +467,8 @@ ServiceItem.propTypes = {
       price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       city: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
+      jobtype: PropTypes.string.isRequired,
+
       category: PropTypes.string.isRequired,
       averageRating: PropTypes.number.isRequired,
 

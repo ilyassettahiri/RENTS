@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
@@ -11,6 +11,20 @@ import "./CustomFileInput.css"; // Import the custom styles
 function CustomFileInput({ onFilesChange }) {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
+
+  const [filePreviews, setFilePreviews] = useState([]);
+
+    // Generate previews when selectedFiles change
+    useEffect(() => {
+      const newPreviews = selectedFiles.map((file) => URL.createObjectURL(file));
+      setFilePreviews(newPreviews);
+  
+      // Clean up blob URLs to avoid memory leaks
+      return () => {
+        newPreviews.forEach((url) => URL.revokeObjectURL(url));
+      };
+    }, [selectedFiles]);
+
 
   const handleFileChange = (e) => {
     const files = Array.from(e.target.files);
@@ -131,14 +145,14 @@ function CustomFileInput({ onFilesChange }) {
 
         )}
         <SoftBox className="file-preview-container">
-          {selectedFiles.map((file, index) => (
+          {filePreviews.map((filePreview, index) => (
             <div
               key={index}
               className="file-preview-wrapper"
               onClick={(e) => e.stopPropagation()} // Prevents file input click
             >
               <img
-                src={URL.createObjectURL(file)}
+                src={filePreview}
                 alt={`preview ${index}`}
                 className="file-preview-image"
               />

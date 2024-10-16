@@ -35,6 +35,7 @@ use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
 
+use App\Models\Service;
 
 
 use App\Models\Billiard;
@@ -98,7 +99,6 @@ use App\Models\Pressurewasher  ;
 
 
 
-use App\Models\Service  ;
 
 
 
@@ -334,10 +334,10 @@ class ServicePageController extends JsonApiController
         $reviewslistings = $service->review()->orderBy('created_at')->get();
         $user = User::where('id', $service->user_id)->first();
 
-        $sellerlistings = $user->listing()
-        ->where('category', 'services') // Filter by category 'services'
-        ->orderBy('created_at', 'desc')  // Order by newest
-        ->take(20)                       // Limit to 20 results
+        $sellerlistings = $user->services()
+
+        ->orderBy('created_at', 'desc')
+        ->take(20)
         ->get();
 
 
@@ -371,6 +371,7 @@ class ServicePageController extends JsonApiController
 
                     'category' => "services",
 
+                    'jobtype' => $service->type_service,
 
 
 
@@ -383,18 +384,18 @@ class ServicePageController extends JsonApiController
 
 
                     'specifications' => [
+
+                        'type_service' => $service->type_service,
+
                         'languages' => $service->languages,
                         'experience' => $service->experience,
-                        'response_time' => $service->response_time,
-                        'package' => $service->package,
-                        'revisions' => $service->revisions,
-                        'level' => $service->level,
-                        'orders_queue' => $service->orders_queue,
-                        'jobs_completed' => $service->jobs_completed,
-                        'repeat_hire_rate' => $service->repeat_hire_rate,
+
+
                         'education' => $service->education,
-                        'on_time' => $service->on_time,
+
                         'delivery_time' => $service->delivery_time,
+                        'more_details' => $service->more_details,
+
                     ],
 
 
@@ -460,7 +461,7 @@ class ServicePageController extends JsonApiController
                     'sellerlistings' => $sellerlistings->map(function ($listing) {
 
 
-                        $images = $listing->listingsimg->map(function ($image) {
+                        $images = $listing->servicesimg->map(function ($image) {
                             return [
                                 'picturesmall' => $image->picturesmall,
                                 'alttext' => $image->alttext,
@@ -476,32 +477,7 @@ class ServicePageController extends JsonApiController
                             $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
-                            $getIdOnly = function ($listing) {
-                                $result = ['id' => null]; // Initialize the result with default value
 
-                                switch ($listing->category) {
-
-
-
-
-
-                                    case 'services':
-                                        $service = Service::where('url', $listing->url)->first();
-                                        if ($service) {
-                                            $listing->service_id = $service->id;
-                                            $result['id'] = $service->id;
-                                        }
-                                        break;
-
-
-                                    default:
-                                        $result['id'] = null; // Return null if no match
-                                }
-
-                                return $result; // Return the result containing id only
-                            };
-
-                            $idResult = $getIdOnly($listing);
 
                         return [
 
@@ -510,15 +486,19 @@ class ServicePageController extends JsonApiController
                             'id' => $listing->id, // Ensure id is included
 
                             'attributes' => [
-                                'category' => $listing->category,
+                                'category' => "services",
+
                                 'title' => $listing->title,
                                 'price' => $listing->price,
                                 'url' => $listing->url,
 
+                                'jobtype' => $listing->type_service,
+
+
                                 'created_at' => $listing->created_at,
                                 'city' => $listing->city,
 
-                                'id' => $idResult['id'],
+                                'id' => $listing->id,
 
                                 'images' => $images,
 
@@ -567,6 +547,8 @@ class ServicePageController extends JsonApiController
                             'created_at' => $recentlisting->created_at->toIso8601String(),
                             'picture' => $recentlisting->picture,
                             'phone' => $recentlisting->phone,
+                            'jobtype' => $recentlisting->type_service,
+
 
                             'images' => $recentlisting->servicesimg->map(function ($image) {
                                 return [

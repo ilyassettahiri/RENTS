@@ -95,6 +95,7 @@ class ServiceController extends JsonApiController
 
                     'averageRating' => $averageRating, // Include average rating
 
+                    'jobtype' => $service->type_service,
 
                     'category' => 'services',
                     'url' => $service->url,

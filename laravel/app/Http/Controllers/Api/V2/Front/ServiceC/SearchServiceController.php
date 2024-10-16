@@ -264,6 +264,7 @@ class SearchServiceController extends JsonApiController
 
                         'phone' => $service->phone,
                         'averageRating' => $averageRating, // Include average rating
+                        'jobtype' => $service->type_service,
 
 
                         'category' => 'services',
@@ -356,6 +357,7 @@ class SearchServiceController extends JsonApiController
 
                         'phone' => $service->phone,
                         'averageRating' => $averageRating, // Include average rating
+                        'jobtype' => $service->type_service,
 
 
                         'category' => 'services',

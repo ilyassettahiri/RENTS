@@ -131,9 +131,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
         <Card
           sx={{
             display: { sm: 'flex' },
-            '&:hover': {
-              boxShadow: (theme) => theme.customShadows.z24,
-            },
+
             ...(vertical && {
               flexDirection: 'column',
             }),
