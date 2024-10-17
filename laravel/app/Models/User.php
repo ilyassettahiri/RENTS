@@ -109,6 +109,8 @@ use App\Models\Scooter  ;
 use App\Models\Taxiaeroport  ;
 use App\Models\Transportation  ;
 use App\Models\Velo  ;
+use App\Models\Job  ;
+
 
 
 
@@ -554,6 +556,12 @@ class User extends Authenticatable
 
 
         return $this->hasMany(Service::class);
+    }
+
+    public function jobs(): HasMany {
+
+
+        return $this->hasMany(Job::class);
     }
 
 

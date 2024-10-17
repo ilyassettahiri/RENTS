@@ -27,7 +27,7 @@ import Map from 'src/components/map';
 import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
 import ServicesDetailsHeroSkeleton from 'src/sections/components/services/details/services-details-hero-skeleton';
 import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
-import ServicesDetailsHero from '../components/services/details/services-details-hero';
+import ServicesDetailsHero from '../components/services/details/jobs-details-hero';
 
 // ----------------------------------------------------------------------
 
@@ -108,16 +108,8 @@ export default function JobPageView({ params }) {
           }}
         >
 
-          <Box
 
-            sx={{
-              overflow: 'hidden',
-              pt: { xs: 0, md: 7 },
-              pb: 10,
-
-            }}
-          >
-            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
+            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, }, }}>
               <Grid xs={12} md={5} lg={4}>
 
 
@@ -195,7 +187,7 @@ export default function JobPageView({ params }) {
 
             {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}
 
-          </Box>
+
         </Container>
 
 

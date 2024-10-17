@@ -340,8 +340,9 @@ class JobPageController extends JsonApiController
         $reviewslistings = $service->review()->orderBy('created_at')->get();
         $user = User::where('id', $service->user_id)->first();
 
-        $sellerlistings = $user->listing()
-        ->where('category', 'jobs') // Filter by category 'services'
+        $sellerlistings = $user->jobs()
+
+
         ->orderBy('created_at', 'desc')  // Order by newest
         ->take(20)                       // Limit to 20 results
         ->get();
@@ -377,6 +378,7 @@ class JobPageController extends JsonApiController
 
                     'category' => "jobs",
 
+                    'jobtype' => $service->responsibilities,
 
 
 
@@ -464,7 +466,7 @@ class JobPageController extends JsonApiController
                     'sellerlistings' => $sellerlistings->map(function ($listing) {
 
 
-                        $images = $listing->listingsimg->map(function ($image) {
+                        $images = $listing->servicesimg->map(function ($image) {
                             return [
                                 'picturesmall' => $image->picturesmall,
                                 'alttext' => $image->alttext,
@@ -480,32 +482,7 @@ class JobPageController extends JsonApiController
                             $userStore = Onlinestore::where('user_id', $user->id)->first();
 
 
-                            $getIdOnly = function ($listing) {
-                                $result = ['id' => null]; // Initialize the result with default value
 
-                                switch ($listing->category) {
-
-
-
-
-
-                                    case 'jobs':
-                                        $service = Job::where('url', $listing->url)->first();
-                                        if ($service) {
-                                            $listing->job_id = $service->id;
-                                            $result['id'] = $service->id;
-                                        }
-                                        break;
-
-
-                                    default:
-                                        $result['id'] = null; // Return null if no match
-                                }
-
-                                return $result; // Return the result containing id only
-                            };
-
-                            $idResult = $getIdOnly($listing);
 
                         return [
 
@@ -514,7 +491,8 @@ class JobPageController extends JsonApiController
                             'id' => $listing->id, // Ensure id is included
 
                             'attributes' => [
-                                'category' => $listing->category,
+                                'category' => 'jobs',
+
                                 'title' => $listing->title,
                                 'price' => $listing->price,
                                 'url' => $listing->url,
@@ -522,7 +500,9 @@ class JobPageController extends JsonApiController
                                 'created_at' => $listing->created_at,
                                 'city' => $listing->city,
 
-                                'id' => $idResult['id'],
+                                'id' => $listing->id,
+
+                                'jobtype' => $listing->responsibilities,
 
                                 'images' => $images,
 
@@ -571,6 +551,9 @@ class JobPageController extends JsonApiController
                             'created_at' => $recentlisting->created_at->toIso8601String(),
                             'picture' => $recentlisting->picture,
                             'phone' => $recentlisting->phone,
+
+                            'jobtype' => $recentlisting->responsibilities,
+
 
                             'images' => $recentlisting->servicesimg->map(function ($image) {
                                 return [
@@ -651,4 +634,6 @@ class JobPageController extends JsonApiController
 
 
     }
+
+
 }

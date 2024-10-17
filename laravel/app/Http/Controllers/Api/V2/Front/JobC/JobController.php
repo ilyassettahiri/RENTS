@@ -96,6 +96,7 @@ class JobController extends JsonApiController
                     'id' => $service->id,
 
                     'averageRating' => $averageRating, // Include average rating
+                    'jobtype' => $service->responsibilities,
 
 
                     'category' => 'jobs',

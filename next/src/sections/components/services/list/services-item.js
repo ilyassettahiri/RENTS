@@ -387,29 +387,13 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
 
-          <Grid
-            container
-            spacing={1.5}
-            sx={{
-              p: 1,
-              pb: 2,
-              typography: 'body2',
-              color: 'text.secondary',
-              textTransform: 'capitalize',
-            }}
-          >
-
-            <Grid xs={6}>
-              <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
+          <Grid container   sx={{ p: 1, pb: 2, typography: 'body2', color: 'text.secondary', textTransform: 'capitalize' }}>
+            <Grid xs={12}>
+              <Stack direction="row" sx={{ typography: 'body2' }}>
                 <Iconify icon="carbon:user" sx={{ mr: 1 }} />
-
                 {capitalizeFirstLetter(jobtype)}
               </Stack>
             </Grid>
-
-
-
-
           </Grid>
 
 
