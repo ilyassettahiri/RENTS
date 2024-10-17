@@ -104,6 +104,7 @@ export default function JobPageView({ params }) {
             overflow: 'hidden',
             paddingLeft: { lg: '80px' },
             paddingRight: { lg: '80px' },
+            mb: 10,
 
           }}
         >
@@ -179,6 +180,8 @@ export default function JobPageView({ params }) {
                 seller={serviceData.data.attributes.seller}
               />
             )}
+
+            <Divider sx={{ my: 10 }} />
 
 
             {serviceData && <ListingsCarouselService tours={memoizedServiceData.sellerlistings} title={t('Other listings from this store')} />}

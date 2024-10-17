@@ -105,19 +105,13 @@ export default function ServicePageView({ params }) {
             paddingLeft: { lg: '80px' },
             paddingRight: { lg: '80px' },
 
+            mb: 10,
+
           }}
         >
 
-          <Box
 
-            sx={{
-              overflow: 'hidden',
-              pt: { xs: 0, md: 7 },
-              pb: 10,
-
-            }}
-          >
-            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse">
+            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, },  }}>
               <Grid xs={12} md={5} lg={4}>
 
 
@@ -189,13 +183,16 @@ export default function ServicePageView({ params }) {
             )}
 
 
+            <Divider sx={{ my: 10 }} />
+
+
             {serviceData && <ListingsCarouselService tours={memoizedServiceData.sellerlistings} title={t('Other listings from this store')} />}
 
 
 
             {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}
 
-          </Box>
+
         </Container>
 
 

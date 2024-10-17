@@ -38,12 +38,7 @@ export default function ListingsCarouselService({ tours, title }) {
 
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        pt: { xs: 5, md: 10 },
-      }}
-    >
+    <>
 
 
       <Typography variant="h4" sx={{ my: 3 }}>{title}</Typography>
@@ -63,7 +58,7 @@ export default function ListingsCarouselService({ tours, title }) {
       </Box>
 
 
-    </Container>
+    </>
   );
 }
 
