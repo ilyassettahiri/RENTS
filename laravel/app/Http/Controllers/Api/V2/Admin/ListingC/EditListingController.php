@@ -2956,7 +2956,9 @@ class EditListingController extends Controller
                                                     'employmentType' => $this->listingcategory->employment_type,
                                                     'salary' => $this->listingcategory->salary,
                                                     'skills' => explode(', ', $this->listingcategory->skills),
-                                                    'responsibilities' => explode(', ', $this->listingcategory->responsibilities),
+
+                                                    'responsibilities' => $this->listingcategory->responsibilities,
+
                                                     'benefits' => explode(', ', $this->listingcategory->benefits),
                                                     'requirements' => explode(', ', $this->listingcategory->requirements),
 

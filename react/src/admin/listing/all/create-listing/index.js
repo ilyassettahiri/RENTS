@@ -1017,7 +1017,9 @@ function CreateListing() {
       employmentType: '',
       salary: '',
       skills: [],
-      responsibilities: [],
+      
+      responsibilities: '',
+
       
       benefits: [],
 

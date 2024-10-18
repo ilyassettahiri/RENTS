@@ -179,12 +179,26 @@ function Services({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="type"
-          options={ServicesType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+
+
+
+        
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter service type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
 
 

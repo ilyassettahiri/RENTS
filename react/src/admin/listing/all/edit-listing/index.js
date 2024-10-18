@@ -1133,7 +1133,9 @@ function EditListing() {
     employmentType: '',
     salary: '',
     skills: [],
-    responsibilities: [],
+    
+    responsibilities: '',
+
     
     benefits: [],
 

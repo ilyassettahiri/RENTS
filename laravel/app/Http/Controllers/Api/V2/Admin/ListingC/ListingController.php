@@ -3748,8 +3748,7 @@ class ListingController extends JsonApiController
 
                                     $service->skills = is_array($jobsData['skills']) ? implode(', ', $jobsData['skills']) : $jobsData['skills'];
                                     $service->salary = $jobsData['salary'] ?? null;
-                                    $service->responsibilities = is_array($jobsData['responsibilities']) ? implode(', ', $jobsData['responsibilities']) : $jobsData['responsibilities'];
-
+                                    $service->responsibilities = $jobsData['responsibilities'] ?? null;
                                     $service->benefits = is_array($jobsData['benefits']) ? implode(', ', $jobsData['benefits']) : $jobsData['benefits'];
 
                                     $service->requirements = is_array($jobsData['requirements']) ? implode(', ', $jobsData['requirements']) : $jobsData['requirements'];
@@ -8015,7 +8014,8 @@ class ListingController extends JsonApiController
 
                                 $service->skills = is_array($jobsData['skills']) ? implode(', ', $jobsData['skills']) : $jobsData['skills'];
                                 $service->salary = $jobsData['salary'] ?? null;
-                                $service->responsibilities = is_array($jobsData['responsibilities']) ? implode(', ', $jobsData['responsibilities']) : $jobsData['responsibilities'];
+
+                                $service->responsibilities = $jobsData['responsibilities'] ?? null;
 
                                 $service->benefits = is_array($jobsData['benefits']) ? implode(', ', $jobsData['benefits']) : $jobsData['benefits'];
 

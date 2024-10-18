@@ -169,12 +169,23 @@ function Audios({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="audioType"
-          options={AudioType}
-          value={initiallistingsData.audioType}
-          onChange={(option) => handleSelectChange("audioType", option.value)}
-        />
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="audioType"
+            placeholder="Enter audio type"
+            value={initiallistingsData.audioType}
+            onChange={(e) => handleSelectChange("audioType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: "40px" }} />}

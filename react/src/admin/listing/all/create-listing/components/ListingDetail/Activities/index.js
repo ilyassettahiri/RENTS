@@ -189,16 +189,29 @@ function Activities({ onDataChange, initialState, isOpen }) {
     <SoftBox mt={3}>
       <CollapseList
         image={<img src={icon5} style={{ width: "40px" }} />}
-        title="Type"
+        title="Activity Type"
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="type"
-          options={ActivityType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+
+
+
+       
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter activity type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: "40px" }} />}

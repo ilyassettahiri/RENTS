@@ -193,33 +193,8 @@ function Jobs({ onDataChange, initialState, isOpen }) {
 
   return (
     <SoftBox mt={3}>
-      <CollapseList
-        image={<img src={icon1} style={{ width: '40px' }} />}
-        title="Languages"
-        open={collapse1}
-        onClick={() => setCollapse1(!collapse1)}
-      >
-        <MultSelect
-          name="languages"
-          options={ServicesLanguages}
-          value={initiallistingsData.languages}
-          onChange={(options) => handleSelectChange("languages", options)}
-        />
-      </CollapseList>
 
-      <CollapseList
-        image={<img src={icon2} style={{ width: '40px' }} />}
-        title="Experience"
-        open={collapse2}
-        onClick={() => setCollapse2(!collapse2)}
-      >
-        <OneSelect
-          name="experience"
-          options={ServicesExperience}
-          value={initiallistingsData.experience}
-          onChange={(option) => handleSelectChange("experience", option.value)}
-        />
-      </CollapseList>
+
 
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -250,6 +225,39 @@ function Jobs({ onDataChange, initialState, isOpen }) {
 
       </CollapseList>
 
+
+
+
+
+      <CollapseList
+        image={<img src={icon1} style={{ width: '40px' }} />}
+        title="Languages"
+        open={collapse1}
+        onClick={() => setCollapse1(!collapse1)}
+      >
+        <MultSelect
+          name="languages"
+          options={ServicesLanguages}
+          value={initiallistingsData.languages}
+          onChange={(options) => handleSelectChange("languages", options)}
+        />
+      </CollapseList>
+
+      <CollapseList
+        image={<img src={icon2} style={{ width: '40px' }} />}
+        title="Experience"
+        open={collapse2}
+        onClick={() => setCollapse2(!collapse2)}
+      >
+        <OneSelect
+          name="experience"
+          options={ServicesExperience}
+          value={initiallistingsData.experience}
+          onChange={(option) => handleSelectChange("experience", option.value)}
+        />
+      </CollapseList>
+
+
       
 
       <CollapseList
@@ -272,12 +280,22 @@ function Jobs({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="salary"
-          options={ServicesSalary}
-          value={initiallistingsData.salary}
-          onChange={(option) => handleSelectChange("salary", option.value)}
-        />
+
+
+        
+
+
+          <FormField
+            
+            type="text"
+            name="salary"
+            placeholder="Ex : 6000 DH"
+            value={initiallistingsData.salary}
+            onChange={(e) => handleSelectChange("salary", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       
@@ -290,12 +308,24 @@ function Jobs({ onDataChange, initialState, isOpen }) {
         open={collapse11}
         onClick={() => setCollapse11(!collapse11)}
       >
-        <MultSelect
-          name="responsibilities"
-          options={ServicesResponsibilities}
-          value={initiallistingsData.responsibilities}
-          onChange={(options) => handleSelectChange("responsibilities", options)}
-        />
+
+
+
+        
+
+
+          <FormField
+            
+            type="text"
+            name="responsibilities"
+            placeholder="Ex : Customer Support"
+            value={initiallistingsData.responsibilities}
+            onChange={(e) => handleSelectChange("responsibilities", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
 
@@ -375,7 +405,7 @@ Jobs.defaultProps = {
       
     requirements: [],
     
-    responsibilities: [],
+    responsibilities: '',
     
     moreDetails: [],
 
