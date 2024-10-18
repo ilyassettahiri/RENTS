@@ -7,6 +7,7 @@ import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import OneSelect from "admin/components/OneSelect";
 import { Incrementer } from 'admin/components/Quantity/Incrementer';
+import FormField from "admin/components/FormFieldCollap";
 
 import MultSelect from "admin/components/MultSelect";
 
@@ -226,12 +227,27 @@ function Jobs({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
+
+
+
+        {/* <OneSelect
           name="employmentType"
           options={ServicesEmploymentType}
           value={initiallistingsData.employmentType}
           onChange={(option) => handleSelectChange("employmentType", option.value)}
-        />
+        /> */}
+
+          <FormField
+            
+            type="text"
+            name="employmentType"
+            placeholder="Enter employment type"
+            value={initiallistingsData.employmentType}
+            onChange={(e) => handleSelectChange("employmentType", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       

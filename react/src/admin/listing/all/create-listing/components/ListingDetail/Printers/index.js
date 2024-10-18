@@ -7,6 +7,7 @@ import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import OneSelect from "admin/components/OneSelect";
 import { Incrementer } from 'admin/components/Quantity/Incrementer';
+import FormField from "admin/components/FormFieldCollap";
 
 import MultSelect from "admin/components/MultSelect";
 

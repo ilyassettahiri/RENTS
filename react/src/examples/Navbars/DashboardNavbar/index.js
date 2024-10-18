@@ -4,10 +4,11 @@ import { useEffect, useState, useContext } from "react";
 import { useTranslation } from 'react-i18next';  // Import useTranslation for language change
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
+import SoftButton from "components/SoftButton";
 
 // @mui core components
 import AppBar from "@mui/material/AppBar";
@@ -82,6 +83,7 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
 
   const [openLanguage, setOpenLanguage] = useState(false);
 
+  const navigate = useNavigate();
 
   const route = useLocation().pathname.split("/").slice(1);
 
@@ -90,6 +92,22 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const { textDirection } = textDirectionState;
 
   
+  const hiddenPaths = [
+    "/listing/create-listing",
+    "/listing/all",
+    "/listing/completed",
+    "/listing/draft",
+    "/listing/boosted",
+    "/listing/collection",
+    "/listing/discount",
+    "/listing/edit-listing/:id",
+    "/listing/detail-listing/:id",
+    "/listing/edit-boosted/:id",
+    "/listing/detail-boosted/:id",
+    "/listing/edit-completed/:id",
+  ];
+
+  const shouldHideButton = hiddenPaths.some((path) => location.pathname.startsWith(path));
 
 
   useEffect(() => {
@@ -143,7 +161,9 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   }, [dispatch, fixedNavbar]);
 
 
-
+  const clickAddHandler = () => {
+    navigate("/listing/create-listing");
+  };
 
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
 
@@ -249,6 +269,20 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
             <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1} >
               
                 
+                {!shouldHideButton && (
+
+
+                    <SoftBox mr={2}>
+                                  <SoftButton    variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+
+                                  
+                                      Create Listing
+
+                                  </SoftButton>
+                    </SoftBox>
+
+                )}
+
               
               <IconButton
                 size="large"

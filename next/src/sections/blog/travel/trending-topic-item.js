@@ -46,7 +46,7 @@ export default function TrendingTopicItem({ topic }) {
           <Image
             alt={topic.name}
 
-            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${topic.thumb}`}
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BLOGCATEGORY}${topic.thumb}`}
             ratio="4/3"
             overlay={`linear-gradient(to bottom, ${alpha(theme.palette.common.black, 0)} 0%, ${
               theme.palette.common.black
