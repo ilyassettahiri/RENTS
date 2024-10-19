@@ -190,7 +190,7 @@ class UploadController extends Controller
     {
         // Validate the request
         $request->validate([
-            'attachment' => 'required|image|max:60048',
+            'attachment' => 'required|image|max:6000000',
         ]);
 
         // Get the authenticated user
@@ -222,7 +222,7 @@ class UploadController extends Controller
 
 
 
-        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
 
@@ -261,7 +261,7 @@ class UploadController extends Controller
 
 
             $request->validate([
-                'attachment' => 'required|image|max:60048',
+                'attachment' => 'required|image|max:6000000',
             ]);
 
 
@@ -324,8 +324,8 @@ class UploadController extends Controller
 
         // Validate only if the fields are present in the request
         $request->validate([
-            'attachmentpicture' => 'nullable|image|max:60048', // Validate only if attachmentpicture is present
-            'attachmentprofile' => 'nullable|image|max:60048', // Validate only if attachmentprofile is present
+            'attachmentpicture' => 'nullable|image|max:6000000', // Validate only if attachmentpicture is present
+            'attachmentprofile' => 'nullable|image|max:6000000', // Validate only if attachmentprofile is present
         ]);
 
 
@@ -377,7 +377,7 @@ class UploadController extends Controller
 
 
 
-                    $imagelarge->scaleDown(width: 1500);
+                    $imagelarge->scaleDown(width: 2000);
 
 
 
@@ -386,7 +386,7 @@ class UploadController extends Controller
 
 
 
-                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
 
@@ -437,7 +437,7 @@ class UploadController extends Controller
 
 
 
-                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
 
 
 
@@ -487,7 +487,7 @@ class UploadController extends Controller
 
         // Validate the files. Ensure 'data.attributes.images' contains an array of files.
         $request->validate([
-            'data.attributes.images.*' => 'required|image|max:60048', // Validate each file in the array
+            'data.attributes.images.*' => 'required|image|max:6000000', // Validate each file in the array
         ]);
 
 
@@ -508,7 +508,7 @@ class UploadController extends Controller
                 $category = $request->input('selectedCategory');
 
 
-                /*$manager = new ImageManager(new Driver());
+                $manager = new ImageManager(new Driver());
 
                 if ($request->hasFile('attachment')) {
                     $files = $request->file('attachment');
@@ -527,9 +527,9 @@ class UploadController extends Controller
 
 
 
-                            $imagelarge->scaleDown(height: 500);
+                            $imagelarge->scaleDown(height: 800);
 
-                            $imagexlarge->scaleDown(width: 1000);
+                            $imagexlarge->scaleDown(width: 1500);
 
 
                             $imagesmall->scaleDown(width: 400);
@@ -594,12 +594,12 @@ class UploadController extends Controller
                             Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                         }
                     }
-                }*/
+                }
 
 
 
 
-                if ($request->hasFile('attachment')) {
+                /*if ($request->hasFile('attachment')) {
                     $files = $request->file('attachment');
 
                     foreach ($files as $index => $file) {
@@ -614,7 +614,7 @@ class UploadController extends Controller
                             $thumb = $relativePath;
                         }
                     }
-                }
+                }*/
 
 
 

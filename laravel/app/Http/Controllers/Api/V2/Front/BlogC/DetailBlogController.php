@@ -131,7 +131,7 @@ class DetailBlogController extends JsonApiController
 
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
-                'thumb' => 'image|max:6048', // Validate image if present
+                'thumb' => 'image|max:6000000', // Validate image if present
             ]);
 
 
@@ -144,7 +144,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-            if ($request->hasFile('thumb')) {
+            /*if ($request->hasFile('thumb')) {
                 $file = $request->file('thumb');
 
 
@@ -159,12 +159,12 @@ class DetailBlogController extends JsonApiController
 
 
 
-            }
+            }*/
 
 
 
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             $file = $request->file('thumb');
             $imagelarge = $manager->read($file->getRealPath());
@@ -198,7 +198,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-            $imagePaths = $fileNamelarge;*/
+            $imagePaths = $fileNamelarge;
 
 
 
@@ -247,7 +247,7 @@ class DetailBlogController extends JsonApiController
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
-            'thumb' => 'image|max:6048', // Validate image if present
+            'thumb' => 'image|max:6000000', // Validate image if present
         ]);
 
 
@@ -260,7 +260,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-        if ($request->hasFile('thumb')) {
+        /*if ($request->hasFile('thumb')) {
             $file = $request->file('thumb');
 
 
@@ -275,11 +275,11 @@ class DetailBlogController extends JsonApiController
 
 
 
-        }
+        }*/
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         $file = $request->file('thumb');
         $imagelarge = $manager->read($file->getRealPath());
@@ -313,7 +313,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-        $imagePaths = $fileNamelarge;*/
+        $imagePaths = $fileNamelarge;
 
 
 

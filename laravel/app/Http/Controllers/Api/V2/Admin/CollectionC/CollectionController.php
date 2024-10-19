@@ -97,7 +97,7 @@ class CollectionController extends JsonApiController
         $request->validate([
             'data.attributes.name' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:60048',
+            'data.attributes.picture' => 'sometimes|image|max:6000000',
         ]);
 
         // Initialize an array to hold the image paths

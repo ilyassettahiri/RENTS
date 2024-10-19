@@ -24,6 +24,8 @@ use LaravelJsonApi\Contracts\Store\Store;
 use LaravelJsonApi\Contracts\Routing\Route as JsonApiRoute;
 
 
+use App\Models\Job;
+use App\Models\Jobsimg;
 
 
 use App\Models\Listing;
@@ -2296,6 +2298,49 @@ class ReservationFrontController extends JsonApiController
                     ],
                 ],
             ]);
+
+
+
+
+                break;
+
+
+
+            case 'jobs':
+
+
+                $this->listingcategory = Job::where('url', $url)->first();
+
+
+
+
+
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
+
+
+
+
+
+                        ],
+                    ],
+                ]);
 
 
 
@@ -6545,73 +6590,73 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Service::where('url', $url)->first();
 
 
-                Reservation::create([
+                        Reservation::create([
 
-                    'checkout_id' =>$checkout_id,
-                    'name' => $validatedData['name'],
-                    'email' => $validatedData['email'],
-                    'address' => $validatedData['fullAddress'],
-                    'zip' => $validatedData['zipCode'],
-                    'city' => $validatedData['city'],
-                    'phone' => $validatedData['phoneNumber'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'service_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
+                            'checkout_id' =>$checkout_id,
+                            'name' => $validatedData['name'],
+                            'email' => $validatedData['email'],
+                            'address' => $validatedData['fullAddress'],
+                            'zip' => $validatedData['zipCode'],
+                            'city' => $validatedData['city'],
+                            'phone' => $validatedData['phoneNumber'],
+                            'url' =>$this->url ,
+                            'category' =>$this->category ,
+                            'service_id' =>$this->listingcategory->id,
+                            'user_id'=> $this->listingcategory->user_id,
 
-                    'onlinestore_id'=> $this->listingcategory->user_id,
-
-
-                    'status' => "pending",
+                            'onlinestore_id'=> $this->listingcategory->user_id,
 
 
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
-
-                    'reservationstart' => $reservationStart,
-                    'reservationsend' => $reservationEnd,
+                            'status' => "pending",
 
 
-                ]);
+                            'listings_thumb' =>$this->listingcategory->picture ,
+                            'listings_title' =>$this->listingcategory->title ,
+                            'listings_price' =>$this->listingcategory->price ,
 
-                Customer::create([
-                    'name' => $validatedData['name'],
-                    'email' => $validatedData['email'],
-                    'address' => $validatedData['fullAddress'],
-                    'zip' => $validatedData['zipCode'],
-                    'city' => $validatedData['city'],
-                    'phone' => $validatedData['phoneNumber'],
-                    'url' =>$this->url ,
-                    'category' =>$this->category ,
-                    'service_id' =>$this->listingcategory->id,
-                    'user_id'=> $this->listingcategory->user_id,
-                    'listings_thumb' =>$this->listingcategory->picture ,
-                    'listings_title' =>$this->listingcategory->title ,
-                    'listings_price' =>$this->listingcategory->price ,
+                            'reservationstart' => $reservationStart,
+                            'reservationsend' => $reservationEnd,
 
 
-                ]);
+                        ]);
+
+                        Customer::create([
+                            'name' => $validatedData['name'],
+                            'email' => $validatedData['email'],
+                            'address' => $validatedData['fullAddress'],
+                            'zip' => $validatedData['zipCode'],
+                            'city' => $validatedData['city'],
+                            'phone' => $validatedData['phoneNumber'],
+                            'url' =>$this->url ,
+                            'category' =>$this->category ,
+                            'service_id' =>$this->listingcategory->id,
+                            'user_id'=> $this->listingcategory->user_id,
+                            'listings_thumb' =>$this->listingcategory->picture ,
+                            'listings_title' =>$this->listingcategory->title ,
+                            'listings_price' =>$this->listingcategory->price ,
 
 
-
-
-
-                return response()->json([
-                    'data' => [
-                        'type' => $category,
-                        'id' => $this->listingcategory->id,
-                        'attributes' => [
-                            'checkout_id' => $checkout_id,
+                        ]);
 
 
 
 
 
+                        return response()->json([
+                            'data' => [
+                                'type' => $category,
+                                'id' => $this->listingcategory->id,
+                                'attributes' => [
+                                    'checkout_id' => $checkout_id,
 
-                        ],
-                    ],
-                ]);
+
+
+
+
+
+                                ],
+                            ],
+                        ]);
 
 
 
@@ -6619,6 +6664,93 @@ class ReservationFrontController extends JsonApiController
 
 
                         break;
+
+
+
+
+
+                        case 'jobs':
+
+
+                            $this->listingcategory = Job::where('url', $url)->first();
+
+
+                            Reservation::create([
+
+                                'checkout_id' =>$checkout_id,
+                                'name' => $validatedData['name'],
+                                'email' => $validatedData['email'],
+                                'address' => $validatedData['fullAddress'],
+                                'zip' => $validatedData['zipCode'],
+                                'city' => $validatedData['city'],
+                                'phone' => $validatedData['phoneNumber'],
+                                'url' =>$this->url ,
+                                'category' =>$this->category ,
+                                'service_id' =>$this->listingcategory->id,
+                                'user_id'=> $this->listingcategory->user_id,
+
+                                'onlinestore_id'=> $this->listingcategory->user_id,
+
+
+                                'status' => "pending",
+
+
+                                'listings_thumb' =>$this->listingcategory->picture ,
+                                'listings_title' =>$this->listingcategory->title ,
+                                'listings_price' =>$this->listingcategory->price ,
+
+                                'reservationstart' => $reservationStart,
+                                'reservationsend' => $reservationEnd,
+
+
+                            ]);
+
+                            Customer::create([
+                                'name' => $validatedData['name'],
+                                'email' => $validatedData['email'],
+                                'address' => $validatedData['fullAddress'],
+                                'zip' => $validatedData['zipCode'],
+                                'city' => $validatedData['city'],
+                                'phone' => $validatedData['phoneNumber'],
+                                'url' =>$this->url ,
+                                'category' =>$this->category ,
+                                'service_id' =>$this->listingcategory->id,
+                                'user_id'=> $this->listingcategory->user_id,
+                                'listings_thumb' =>$this->listingcategory->picture ,
+                                'listings_title' =>$this->listingcategory->title ,
+                                'listings_price' =>$this->listingcategory->price ,
+
+
+                            ]);
+
+
+
+
+
+                            return response()->json([
+                                'data' => [
+                                    'type' => $category,
+                                    'id' => $this->listingcategory->id,
+                                    'attributes' => [
+                                        'checkout_id' => $checkout_id,
+
+
+
+
+
+
+                                    ],
+                                ],
+                            ]);
+
+
+
+
+
+
+                            break;
+
+
 
 
 

@@ -435,7 +435,7 @@ function CreateListing() {
       equipment: [],
       ageRequirement: '',
       duration: '',
-      language: '',
+      language: [],
       cancellation: '',
       safetyEquipment: [],
       monitor: '',

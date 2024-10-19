@@ -272,7 +272,7 @@ class ListingController extends JsonApiController
             'data.attributes.category' => 'required|string',
             'data.attributes.title' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.images.*' => 'sometimes|image|max:600048', // Validate images if present
+            'data.attributes.images.*' => 'sometimes|image|max:6000000', // Validate images if present
         ]);
 
 
@@ -287,9 +287,9 @@ class ListingController extends JsonApiController
 
 
 
-            /*$category = $request->input('data.attributes.category');
+            $category = $request->input('data.attributes.category');
 
-            $manager = new ImageManager(new Driver());
+            /*$manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -308,9 +308,9 @@ class ListingController extends JsonApiController
 
 
 
-                        $imagelarge->scaleDown(height: 500);
+                        $imagelarge->scaleDown(height: 800);
 
-                        $imagexlarge->scaleDown(width: 1000);
+                        $imagexlarge->scaleDown(width: 1500);
 
 
                         $imagesmall->scaleDown(width: 400);
@@ -379,9 +379,9 @@ class ListingController extends JsonApiController
 
 
 
-            $category = strtolower($request->input('data.attributes.category'));
+            /*$category = strtolower($request->input('data.attributes.category'));
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -2909,7 +2909,6 @@ class ListingController extends JsonApiController
 
 
                 $activitiesData = $request->input('data.attributes.activities');
-                Log::info('Activities Data:', $activitiesData);
 
 
                                 $activity = new Activity();
@@ -2935,7 +2934,11 @@ class ListingController extends JsonApiController
                                 $activity->equipment = is_array($activitiesData['equipment']) ? implode(', ', $activitiesData['equipment']) : $activitiesData['equipment'];
                                 $activity->age_requirement = $activitiesData['ageRequirement'] ?? null;
                                 $activity->duration = $activitiesData['duration'] ?? null;
-                                $activity->language = $activitiesData['language'] ?? null;
+
+
+
+                                $activity->language = is_array($activitiesData['language']) ? implode(', ', $activitiesData['language']) : $activitiesData['language'];
+
                                 $activity->cancellation = $activitiesData['cancellation'] ?? null;
                                 $activity->safety_equipment = is_array($activitiesData['safetyEquipment']) ? implode(', ', $activitiesData['safetyEquipment']) : $activitiesData['safetyEquipment'];
                                 $activity->monitor = $activitiesData['monitor'] ?? null;
@@ -7182,7 +7185,8 @@ class ListingController extends JsonApiController
                                 $activity->equipment = is_array($activitiesData['equipment']) ? implode(', ', $activitiesData['equipment']) : $activitiesData['equipment'];
                                 $activity->age_requirement = $activitiesData['ageRequirement'] ?? null;
                                 $activity->duration = $activitiesData['duration'] ?? null;
-                                $activity->language = $activitiesData['language'] ?? null;
+                                $activity->language = is_array($activitiesData['language']) ? implode(', ', $activitiesData['language']) : $activitiesData['language'];
+
                                 $activity->cancellation = $activitiesData['cancellation'] ?? null;
                                 $activity->safety_equipment = is_array($activitiesData['safetyEquipment']) ? implode(', ', $activitiesData['safetyEquipment']) : $activitiesData['safetyEquipment'];
                                 $activity->monitor = $activitiesData['monitor'] ?? null;

@@ -260,12 +260,18 @@ function Activities({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
+
+
+
+
+        <MultSelect
           name="language"
           options={ActivityLanguage}
           value={initiallistingsData.language}
-          onChange={(option) => handleSelectChange("language", option.value)}
+          onChange={(options) => handleSelectChange("language", options)}
         />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: "40px" }} />}

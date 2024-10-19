@@ -112,8 +112,8 @@ class OnlinestoreController extends JsonApiController
             'data.attributes.name' => 'required|string',
             'data.attributes.email' => 'required|string',
             'data.attributes.description' => 'required|string',
-            'data.attributes.picture' => 'sometimes|image|max:6048', // Validate images if present
-            'data.attributes.profil_picture' => 'sometimes|image|max:6048', // Validate images if present
+            'data.attributes.picture' => 'sometimes|image|max:6000000', // Validate images if present
+            'data.attributes.profil_picture' => 'sometimes|image|max:6000000', // Validate images if present
         ]);
 
         // Initialize variables for image paths
@@ -135,7 +135,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-                    $imagelarge->scaleDown(width: 1500);
+                    $imagelarge->scaleDown(width: 2000);
 
 
 
@@ -144,7 +144,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 85));
+                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
 
@@ -195,7 +195,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 85));
+                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
 
 
 

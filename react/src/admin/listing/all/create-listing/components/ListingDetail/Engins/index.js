@@ -293,7 +293,7 @@ function Engins({ onDataChange, initialState, isOpen }) {
       >
         <MultSelect
           name="moreDetails"
-          options={EngineMoreDetails}
+          options={MachineryMoreDetails}
           value={initiallistingsData.moreDetails}
           onChange={(options) => handleSelectChange("moreDetails", options)}
         />
