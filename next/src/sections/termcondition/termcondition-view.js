@@ -47,7 +47,7 @@ export default function TermconditionView() {
         {isLoading ? (
           <MarkdownSkeleton /> // Placeholder while loading
         ) : (
-          formattedData && <Markdown content={formattedData.attributes.content} firstLetter />
+          formattedData && <Markdown content={formattedData.attributes.content}  />
         )}
       </Container>
 

@@ -49,7 +49,7 @@ export default function PrivacyView() {
         {isLoading ? (
           <MarkdownSkeleton /> // Placeholder while loading
         ) : (
-          formattedData && <Markdown content={formattedData.attributes.privacy} firstLetter />
+          formattedData && <Markdown content={formattedData.attributes.privacy}  />
         )}
       </Container>
 

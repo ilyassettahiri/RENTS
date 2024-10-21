@@ -84,7 +84,7 @@ export default function ArticleView({ params }) {
           <Container>
             <Grid container spacing={{ md: 8 }}>
               <Grid xs={12} md={8}>
-                <Markdown content={formattedData.article.attributes.content} firstLetter />
+                <Markdown content={formattedData.article.attributes.content}  />
                 <PostTags tags={formattedData.article.attributes.tag} />
                 <PostSocialsShare />
                 <Divider sx={{ mt: 8 }} />

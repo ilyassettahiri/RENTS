@@ -6,18 +6,18 @@ const StyledMarkdown = styled('div', {
   shouldForwardProp: (prop) => prop !== 'firstLetter',
 })(({ firstLetter, theme }) => ({
   // Text
-  h1: { margin: 0, ...theme.typography.h1 },
-  h2: { margin: 0, ...theme.typography.h2 },
-  h3: { margin: 0, ...theme.typography.h3 },
-  h4: { margin: 0, ...theme.typography.h4 },
-  h5: { margin: 0, ...theme.typography.h5 },
-  h6: { margin: 0, ...theme.typography.h6 },
-  p: { margin: 0, ...theme.typography.body1 },
+  h1: { margin: 2, ...theme.typography.h1 },
+  h2: { margin: 2, ...theme.typography.h2 },
+  h3: { margin: 2, ...theme.typography.h3 },
+  h4: { margin: 2, ...theme.typography.h4 },
+  h5: { margin: 2, ...theme.typography.h5 },
+  h6: { margin: 2, ...theme.typography.h6 },
+  p: { margin: 2, ...theme.typography.body1 },
 
   br: {
     display: 'grid',
     content: '""',
-    marginTop: '0.75em',
+    marginTop: '1em',
   },
 
   // Link
@@ -33,13 +33,13 @@ const StyledMarkdown = styled('div', {
   '& ul, & ol': {
     margin: 0,
     '& li': {
-      lineHeight: 2,
+      lineHeight: 3,
     },
   },
 
   // Divider
   hr: {
-    margin: 0,
+    margin: 2,
     flexShrink: 0,
     borderWidth: 0,
     msFlexNegative: 0,
@@ -51,7 +51,7 @@ const StyledMarkdown = styled('div', {
 
   // Blockquote
   '& blockquote': {
-    lineHeight: 1.5,
+    lineHeight: 2.5,
     fontSize: '1.5em',
     margin: '40px auto',
     position: 'relative',
@@ -64,7 +64,7 @@ const StyledMarkdown = styled('div', {
       width: '80%',
     },
     '& p, & span': {
-      marginBottom: 0,
+      marginBottom: 2,
       fontSize: 'inherit',
       fontFamily: 'inherit',
     },
