@@ -8,7 +8,7 @@ import PostItem from './post-item';
 
 export default function Posts({ posts, Loading }) {
   const [page, setPage] = useState(1);
-  const postsPerPage = 8;
+  const postsPerPage = 12;
   const handleChange = (event, value) => {
     setPage(value);
   };

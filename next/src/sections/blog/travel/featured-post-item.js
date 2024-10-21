@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
+import Markdown from 'src/components/markdown';
+
 import { alpha, useTheme } from '@mui/material/styles';
 import { paths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -59,7 +61,16 @@ export default function FeaturedPostItem({ post, largePost }) {
             {attributes.title}
           </TextMaxLine>
         </Link>
-        {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>{attributes.content}</TextMaxLine>}
+        {largePost && <TextMaxLine sx={{ opacity: 0.48 }}>
+
+
+        <Markdown content={attributes.content}  />
+
+
+
+
+
+          </TextMaxLine>}
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2', pt: 1.5 }}>
           <Avatar
             src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.author.picture}`}

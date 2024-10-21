@@ -14,12 +14,19 @@ export default function PostItem({ post }) {
 
   return (
     <Stack spacing={2.5}>
-      <Image
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`}
-        alt={attributes.title}
-        ratio="1/1"
-        sx={{ borderRadius: 2 }}
-      />
+
+
+      <Link component={RouterLink} href={`${paths.travel.post}/${attributes.url}`} color="inherit">
+
+          <Image
+            src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${attributes.thumb}`}
+            alt={attributes.title}
+            ratio="1/1"
+            sx={{ borderRadius: 2 }}
+          />
+
+      </Link>
+
       <Stack spacing={1}>
         <PostTimeBlock createdAt={fDate(attributes.created_at)} duration="8 minutes read" />
         <Link component={RouterLink} href={`${paths.travel.post}/${attributes.url}`} color="inherit">

@@ -10,6 +10,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 
 import { paths } from 'src/routes/paths';
+import FeaturedPosts from './travel/featured-posts';
 
 import GeneralArticleSkeleton from 'src/sections/blog/travel/general-article-skeleton';
 
@@ -79,7 +80,7 @@ export default function ArticleView({ params }) {
             />
           </Container>
 
-          <Divider sx={{ mb: { xs: 6, md: 10 } }} />
+          <Divider sx={{ mb: { xs: 6, md: 5 } }} />
 
           <Container>
             <Grid container spacing={{ md: 8 }}>
@@ -106,6 +107,15 @@ export default function ArticleView({ params }) {
                 />
               </Grid>
             </Grid>
+
+
+
+
+
+
+                  <FeaturedPosts posts={formattedData.recentArticles} Loading={isLoading} />
+
+
           </Container>
 
         </>

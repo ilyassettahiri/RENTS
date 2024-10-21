@@ -6,13 +6,13 @@ const StyledMarkdown = styled('div', {
   shouldForwardProp: (prop) => prop !== 'firstLetter',
 })(({ firstLetter, theme }) => ({
   // Text
-  h1: { margin: 2, ...theme.typography.h1 },
-  h2: { margin: 2, ...theme.typography.h2 },
-  h3: { margin: 2, ...theme.typography.h3 },
-  h4: { margin: 2, ...theme.typography.h4 },
-  h5: { margin: 2, ...theme.typography.h5 },
-  h6: { margin: 2, ...theme.typography.h6 },
-  p: { margin: 2, ...theme.typography.body1 },
+  h1: { marginBottom: 40,marginTop: 4, ...theme.typography.h1 },
+  h2: { marginBottom: 40,marginTop: 4, ...theme.typography.h2 },
+  h3: { marginBottom: 40,marginTop: 4, ...theme.typography.h3 },
+  h4: { marginBottom: 40,marginTop: 4, ...theme.typography.h4 },
+  h5: { marginBottom: 40,marginTop: 4, ...theme.typography.h5 },
+  h6: { marginBottom: 40,marginTop: 4, ...theme.typography.h6 },
+  p: { marginBottom: 40,marginTop: 4, ...theme.typography.body1 },
 
   br: {
     display: 'grid',
@@ -39,7 +39,7 @@ const StyledMarkdown = styled('div', {
 
   // Divider
   hr: {
-    margin: 2,
+    marginTop: '1em',
     flexShrink: 0,
     borderWidth: 0,
     msFlexNegative: 0,
@@ -64,7 +64,7 @@ const StyledMarkdown = styled('div', {
       width: '80%',
     },
     '& p, & span': {
-      marginBottom: 2,
+      marginBottom: 3,
       fontSize: 'inherit',
       fontFamily: 'inherit',
     },
