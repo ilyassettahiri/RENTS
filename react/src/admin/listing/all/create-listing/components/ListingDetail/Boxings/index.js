@@ -164,12 +164,22 @@ function Boxings({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="brand"
-          options={BoxingBrand}
-          value={initiallistingsData.brand}
-          onChange={(option) => handleSelectChange("brand", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="brand"
+            placeholder="Enter brand name"
+            value={initiallistingsData.brand}
+            onChange={(e) => handleSelectChange("brand", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}

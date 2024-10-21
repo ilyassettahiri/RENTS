@@ -207,12 +207,21 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="toolType"
-          options={MechanicaltoolsTooltype}
-          value={initiallistingsData.toolType}
-          onChange={(option) => handleSelectChange("toolType", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="toolType"
+            placeholder="Enter Tool Type"
+            value={initiallistingsData.toolType}
+            onChange={(e) => handleSelectChange("toolType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -233,12 +242,23 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="powerSource"
-          options={MechanicaltoolsPowersource}
-          value={initiallistingsData.powerSource}
-          onChange={(option) => handleSelectChange("powerSource", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="powerSource"
+            placeholder="Enter Power Source "
+            value={initiallistingsData.powerSource}
+            onChange={(e) => handleSelectChange("powerSource", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -246,12 +266,23 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="voltage"
-          options={MechanicaltoolsVoltage}
-          value={initiallistingsData.voltage}
-          onChange={(option) => handleSelectChange("voltage", option.value)}
-        />
+       
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="voltage"
+            placeholder="Enter voltage "
+            value={initiallistingsData.voltage}
+            onChange={(e) => handleSelectChange("voltage", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -259,12 +290,23 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="batteryLife"
-          options={MechanicaltoolsBatterylife}
-          value={initiallistingsData.batteryLife}
-          onChange={(option) => handleSelectChange("batteryLife", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="batteryLife"
+            placeholder="Enter Battery Life "
+            value={initiallistingsData.batteryLife}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -272,12 +314,21 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="bladeDiameter"
-          options={MechanicaltoolsBladediameter}
-          value={initiallistingsData.bladeDiameter}
-          onChange={(option) => handleSelectChange("bladeDiameter", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="bladeDiameter"
+            placeholder="Enter Blade Diameter "
+            value={initiallistingsData.bladeDiameter}
+            onChange={(e) => handleSelectChange("bladeDiameter", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}
@@ -285,12 +336,23 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="material"
-          options={MechanicaltoolsMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material "
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -298,12 +360,22 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="style"
-          options={MechanicaltoolsStyle}
-          value={initiallistingsData.style}
-          onChange={(option) => handleSelectChange("style", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="style"
+            placeholder="Enter style "
+            value={initiallistingsData.style}
+            onChange={(e) => handleSelectChange("style", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -311,12 +383,23 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="cuttingWidth"
-          options={MechanicaltoolsCuttingwidth}
-          value={initiallistingsData.cuttingWidth}
-          onChange={(option) => handleSelectChange("cuttingWidth", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="cuttingWidth"
+            placeholder="Enter Cutting Width "
+            value={initiallistingsData.cuttingWidth}
+            onChange={(e) => handleSelectChange("cuttingWidth", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -324,12 +407,22 @@ function Mechanicaltools({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="carburetorType"
-          options={MechanicaltoolsCarburetortype}
-          value={initiallistingsData.carburetorType}
-          onChange={(option) => handleSelectChange("carburetorType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="carburetorType"
+            placeholder="Enter Carburetor Type "
+            value={initiallistingsData.carburetorType}
+            onChange={(e) => handleSelectChange("carburetorType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList

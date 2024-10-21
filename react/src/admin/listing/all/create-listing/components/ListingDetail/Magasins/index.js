@@ -224,12 +224,20 @@ function Magasins({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="surfaceArea"
-          options={MagasinsSurfaceArea}
-          value={initiallistingsData.surfaceArea}
-          onChange={(option) => handleSelectChange("surfaceArea", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="surfaceArea"
+            placeholder="Enter Surface Area"
+            value={initiallistingsData.surfaceArea}
+            onChange={(e) => handleSelectChange("surfaceArea", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -237,12 +245,19 @@ function Magasins({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="capacity"
-          options={MagasinsCapacity}
-          value={initiallistingsData.capacity}
-          onChange={(option) => handleSelectChange("capacity", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="capacity"
+            placeholder="Enter capacity"
+            value={initiallistingsData.capacity}
+            onChange={(e) => handleSelectChange("capacity", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -256,6 +271,12 @@ function Magasins({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.officeNumber}
           onChange={(option) => handleSelectChange("officeNumber", option.value)}
         />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -341,12 +362,21 @@ function Magasins({ onDataChange, initialState, isOpen }) {
         open={collapse11}
         onClick={() => setCollapse11(!collapse11)}
       >
-        <OneSelect
-          name="lighting"
-          options={MagasinsLighting}
-          value={initiallistingsData.lighting}
-          onChange={(option) => handleSelectChange("lighting", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="lighting"
+            placeholder="Enter lighting"
+            value={initiallistingsData.lighting}
+            onChange={(e) => handleSelectChange("lighting", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon14} style={{ width: '40px' }} />}

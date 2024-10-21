@@ -193,12 +193,20 @@ function Mobiliers({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="theme"
-          options={MobilierTheme}
-          value={initiallistingsData.theme}
-          onChange={(option) => handleSelectChange("theme", option.value)}
-        />
+       
+
+          <FormField
+            
+            type="text"
+            name="theme"
+            placeholder="Enter theme"
+            value={initiallistingsData.theme}
+            onChange={(e) => handleSelectChange("theme", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -232,12 +240,23 @@ function Mobiliers({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="festiveDecorations"
-          options={MobilierFestive}
-          value={initiallistingsData.festiveDecorations}
-          onChange={(option) => handleSelectChange("festiveDecorations", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="festiveDecorations"
+            placeholder="Enter Festive Decorations"
+            value={initiallistingsData.festiveDecorations}
+            onChange={(e) => handleSelectChange("festiveDecorations", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}

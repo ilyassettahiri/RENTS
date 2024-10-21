@@ -182,6 +182,21 @@ function Photographies({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.brand}
           onChange={(option) => handleSelectChange("brand", option.value)}
         />
+
+
+
+          <FormField
+            
+            type="text"
+            name="brand"
+            placeholder="Enter brand  name"
+            value={initiallistingsData.brand}
+            onChange={(e) => handleSelectChange("brand", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -189,12 +204,23 @@ function Photographies({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="size"
-          options={photographySize}
-          value={initiallistingsData.size}
-          onChange={(option) => handleSelectChange("size", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="size"
+            placeholder="Enter size  "
+            value={initiallistingsData.size}
+            onChange={(e) => handleSelectChange("size", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -254,12 +280,21 @@ function Photographies({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="battery"
-          options={photographyBattery}
-          value={initiallistingsData.battery}
-          onChange={(option) => handleSelectChange("battery", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="battery"
+            placeholder="Enter battery  "
+            value={initiallistingsData.battery}
+            onChange={(e) => handleSelectChange("battery", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}

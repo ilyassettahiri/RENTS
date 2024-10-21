@@ -204,12 +204,20 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="type"
-          options={FurnitureType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}
@@ -217,12 +225,21 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="material"
-          options={FurnitureMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -230,12 +247,21 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="shape"
-          options={FurnitureShape}
-          value={initiallistingsData.shape}
-          onChange={(option) => handleSelectChange("shape", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="shape"
+            placeholder="Enter shape"
+            value={initiallistingsData.shape}
+            onChange={(e) => handleSelectChange("shape", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -243,12 +269,22 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="cushionThickness"
-          options={FurnitureCushionThickness}
-          value={initiallistingsData.cushionThickness}
-          onChange={(option) => handleSelectChange("cushionThickness", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="cushionThickness"
+            placeholder="Enter Cushion Thickness"
+            value={initiallistingsData.cushionThickness}
+            onChange={(e) => handleSelectChange("cushionThickness", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -256,12 +292,20 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="capacity"
-          options={FurnitureCapacity}
-          value={initiallistingsData.capacity}
-          onChange={(option) => handleSelectChange("capacity", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="capacity"
+            placeholder="Enter capacity"
+            value={initiallistingsData.capacity}
+            onChange={(e) => handleSelectChange("capacity", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -269,12 +313,21 @@ function Furnitures({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="fillMaterial"
-          options={FurnitureFillMaterial}
-          value={initiallistingsData.fillMaterial}
-          onChange={(option) => handleSelectChange("fillMaterial", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="fillMaterial"
+            placeholder="Enter Fill Material"
+            value={initiallistingsData.fillMaterial}
+            onChange={(e) => handleSelectChange("fillMaterial", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}

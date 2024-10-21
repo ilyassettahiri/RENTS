@@ -160,12 +160,21 @@ function Routers({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="gbpsSpeed"
-          options={RoutersGbpsSpeed}
-          value={initiallistingsData.gbpsSpeed}
-          onChange={(option) => handleSelectChange("gbpsSpeed", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="gbpsSpeed"
+            placeholder="Enter Gbps Speed"
+            value={initiallistingsData.gbpsSpeed}
+            onChange={(e) => handleSelectChange("gbpsSpeed", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}
@@ -173,12 +182,21 @@ function Routers({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="wireless"
-          options={RoutersWireless}
-          value={initiallistingsData.wireless}
-          onChange={(option) => handleSelectChange("wireless", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="wireless"
+            placeholder="Enter wireless "
+            value={initiallistingsData.wireless}
+            onChange={(e) => handleSelectChange("wireless", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -186,12 +204,22 @@ function Routers({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="frequency"
-          options={RoutersFrequency}
-          value={initiallistingsData.frequency}
-          onChange={(option) => handleSelectChange("frequency", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="frequency"
+            placeholder="Enter frequency"
+            value={initiallistingsData.frequency}
+            onChange={(e) => handleSelectChange("frequency", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -212,12 +240,22 @@ function Routers({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="antennas"
-          options={RoutersAntennas}
-          value={initiallistingsData.antennas}
-          onChange={(option) => handleSelectChange("antennas", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="antennas"
+            placeholder="Enter antennas "
+            value={initiallistingsData.antennas}
+            onChange={(e) => handleSelectChange("antennas", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -251,12 +289,22 @@ function Routers({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="signalCoverage"
-          options={RoutersSignalCoverage}
-          value={initiallistingsData.signalCoverage}
-          onChange={(option) => handleSelectChange("signalCoverage", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="signalCoverage"
+            placeholder="Enter Signal Coverage"
+            value={initiallistingsData.signalCoverage}
+            onChange={(e) => handleSelectChange("signalCoverage", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList

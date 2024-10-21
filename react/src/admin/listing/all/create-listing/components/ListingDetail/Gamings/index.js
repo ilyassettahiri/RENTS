@@ -151,12 +151,22 @@ function Gamings({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="storage"
-          options={GamingStorage}
-          value={initiallistingsData.storage}
-          onChange={(option) => handleSelectChange("storage", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="storage"
+            placeholder="Enter storage"
+            value={initiallistingsData.storage}
+            onChange={(e) => handleSelectChange("storage", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -177,12 +187,21 @@ function Gamings({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="ports"
-          options={GamingPorts}
-          value={initiallistingsData.ports}
-          onChange={(option) => handleSelectChange("ports", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="ports"
+            placeholder="Enter ports"
+            value={initiallistingsData.ports}
+            onChange={(e) => handleSelectChange("ports", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}

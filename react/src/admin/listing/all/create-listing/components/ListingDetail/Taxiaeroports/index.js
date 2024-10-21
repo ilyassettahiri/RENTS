@@ -130,12 +130,22 @@ function Taxiaeroports({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="luggage"
-          options={AirportTaxiLuggage}
-          value={initiallistingsData.luggage}
-          onChange={(option) => handleSelectChange("luggage", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="luggage"
+            placeholder="Enter luggage"
+            value={initiallistingsData.luggage}
+            onChange={(e) => handleSelectChange("luggage", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -143,12 +153,23 @@ function Taxiaeroports({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="storage"
-          options={AirportTaxiStorage}
-          value={initiallistingsData.storage}
-          onChange={(option) => handleSelectChange("storage", option.value)}
-        />
+
+
+
+        
+
+          <FormField
+            
+            type="text"
+            name="storage"
+            placeholder="Enter storage"
+            value={initiallistingsData.storage}
+            onChange={(e) => handleSelectChange("storage", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList

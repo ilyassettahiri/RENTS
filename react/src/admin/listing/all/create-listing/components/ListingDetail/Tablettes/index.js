@@ -160,6 +160,13 @@ function Tablettes({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.operatingSystem}
           onChange={(option) => handleSelectChange("operatingSystem", option.value)}
         />
+
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -173,6 +180,13 @@ function Tablettes({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.ram}
           onChange={(option) => handleSelectChange("ram", option.value)}
         />
+
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -186,6 +200,13 @@ function Tablettes({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.storage}
           onChange={(option) => handleSelectChange("storage", option.value)}
         />
+
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -193,12 +214,21 @@ function Tablettes({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="displaySize"
-          options={TabletDisplaySize}
-          value={initiallistingsData.displaySize}
-          onChange={(option) => handleSelectChange("displaySize", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="displaySize"
+            placeholder="Enter Display Size"
+            value={initiallistingsData.displaySize}
+            onChange={(e) => handleSelectChange("displaySize", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}
@@ -206,12 +236,22 @@ function Tablettes({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="displayResolution"
-          options={TabletDisplayResolution}
-          value={initiallistingsData.displayResolution}
-          onChange={(option) => handleSelectChange("displayResolution", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="displayResolution"
+            placeholder="Enter Display Resolution"
+            value={initiallistingsData.displayResolution}
+            onChange={(e) => handleSelectChange("displayResolution", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}

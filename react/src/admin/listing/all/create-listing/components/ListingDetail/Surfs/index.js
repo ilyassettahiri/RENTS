@@ -121,12 +121,20 @@ function Surfs({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="surfCategory"
-          options={surfCategory}
-          value={initiallistingsData.surfCategory}
-          onChange={(option) => handleSelectChange("surfCategory", option.value)}
-        />
+        
+          <FormField
+            
+            type="text"
+            name="surfCategory"
+            placeholder="Enter Surf Category"
+            value={initiallistingsData.surfCategory}
+            onChange={(e) => handleSelectChange("surfCategory", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -134,12 +142,22 @@ function Surfs({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="surfTypes"
-          options={surfTypes}
-          value={initiallistingsData.surfTypes}
-          onChange={(option) => handleSelectChange("surfTypes", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="surfTypes"
+            placeholder="Enter Surf Types"
+            value={initiallistingsData.surfTypes}
+            onChange={(e) => handleSelectChange("surfTypes", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -147,12 +165,22 @@ function Surfs({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="surfingSize"
-          options={surfingSize}
-          value={initiallistingsData.surfingSize}
-          onChange={(option) => handleSelectChange("surfingSize", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="surfingSize"
+            placeholder="Enter Surfing Size"
+            value={initiallistingsData.surfingSize}
+            onChange={(e) => handleSelectChange("surfingSize", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}

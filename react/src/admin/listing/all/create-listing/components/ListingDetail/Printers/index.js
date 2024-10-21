@@ -166,12 +166,22 @@ function Printers({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="printSpeed"
-          options={PrinterPrintSpeed}
-          value={initiallistingsData.printSpeed}
-          onChange={(option) => handleSelectChange("printSpeed", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="printSpeed"
+            placeholder="Enter Print Speed"
+            value={initiallistingsData.printSpeed}
+            onChange={(e) => handleSelectChange("printSpeed", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}
@@ -244,12 +254,22 @@ function Printers({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="inputSheets"
-          options={PrinterInputSheets}
-          value={initiallistingsData.inputSheets}
-          onChange={(option) => handleSelectChange("inputSheets", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="inputSheets"
+            placeholder="Enter Input Sheets"
+            value={initiallistingsData.inputSheets}
+            onChange={(e) => handleSelectChange("inputSheets", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}

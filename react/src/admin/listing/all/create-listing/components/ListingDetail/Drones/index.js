@@ -221,12 +221,19 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="flightTime"
-          options={DroneFlightTime}
-          value={initiallistingsData.flightTime}
-          onChange={(option) => handleSelectChange("flightTime", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="flightTime"
+            placeholder="Enter Flight Time Ex: 30 min"
+            value={initiallistingsData.flightTime}
+            onChange={(e) => handleSelectChange("flightTime", e.target.value)}
+          />
+
+
+        
       </CollapseList>
 
       <CollapseList
@@ -235,12 +242,21 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="batteryLife"
-          options={DroneBatteryLife}
-          value={initiallistingsData.batteryLife}
-          onChange={(option) => handleSelectChange("batteryLife", option.value)}
-        />
+       
+
+
+          <FormField
+            
+            type="text"
+            name="batteryLife"
+            placeholder="Enter Battery Life"
+            value={initiallistingsData.batteryLife}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -263,12 +279,22 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="videoResolution"
-          options={DroneVideoResolution}
-          value={initiallistingsData.videoResolution}
-          onChange={(option) => handleSelectChange("videoResolution", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="videoResolution"
+            placeholder="Enter Video Resolution"
+            value={initiallistingsData.videoResolution}
+            onChange={(e) => handleSelectChange("videoResolution", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -291,12 +317,23 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="batteryCapacity"
-          options={DroneBatteryCapacity}
-          value={initiallistingsData.batteryCapacity}
-          onChange={(option) => handleSelectChange("batteryCapacity", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="batteryCapacity"
+            placeholder="Enter Battery Capacity"
+            value={initiallistingsData.batteryCapacity}
+            onChange={(e) => handleSelectChange("batteryCapacity", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -305,12 +342,22 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="memory"
-          options={DroneMemory}
-          value={initiallistingsData.memory}
-          onChange={(option) => handleSelectChange("memory", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="memory"
+            placeholder="Enter memory"
+            value={initiallistingsData.memory}
+            onChange={(e) => handleSelectChange("memory", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -319,12 +366,24 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="imageResolution"
-          options={DroneImageResolution}
-          value={initiallistingsData.imageResolution}
-          onChange={(option) => handleSelectChange("imageResolution", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="imageResolution"
+            placeholder="Enter Image Resolution"
+            value={initiallistingsData.imageResolution}
+            onChange={(e) => handleSelectChange("imageResolution", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -347,12 +406,22 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="remoteControl"
-          options={DroneRemoteControl}
-          value={initiallistingsData.remoteControl}
-          onChange={(option) => handleSelectChange("remoteControl", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="remoteControl"
+            placeholder="Enter Remote Control"
+            value={initiallistingsData.remoteControl}
+            onChange={(e) => handleSelectChange("remoteControl", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -361,12 +430,23 @@ function Drones({ onDataChange, initialState, isOpen }) {
         open={collapse11}
         onClick={() => setCollapse11(!collapse11)}
       >
-        <OneSelect
-          name="maxDistance"
-          options={DroneMaxDistance}
-          value={initiallistingsData.maxDistance}
-          onChange={(option) => handleSelectChange("maxDistance", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="maxDistance"
+            placeholder="Enter Max Distance"
+            value={initiallistingsData.maxDistance}
+            onChange={(e) => handleSelectChange("maxDistance", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon30} style={{ width: "40px" }} />}

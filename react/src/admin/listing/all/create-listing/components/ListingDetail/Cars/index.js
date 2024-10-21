@@ -148,12 +148,20 @@ function Cars({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="seats"
-          options={CarSeats}
-          value={initiallistingsData.seats}
-          onChange={(option) => handleSelectChange("seats", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="seats"
+            placeholder="Enter seats"
+            value={initiallistingsData.seats}
+            onChange={(e) => handleSelectChange("seats", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: "40px" }} />}

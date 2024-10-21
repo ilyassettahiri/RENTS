@@ -264,12 +264,21 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse1}
           onClick={() => setCollapse1(!collapse1)}
         >
-          <OneSelect
+         
+
+
+
+          <FormField
+            
+            type="text"
             name="toolType"
-            options={PowertoolsType}
+            placeholder="Enter Tool Type  "
             value={initiallistingsData.toolType}
-            onChange={(option) => handleSelectChange("toolType", option.value)}
+            onChange={(e) => handleSelectChange("toolType", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon4} style={{ width: "40px" }} />}
@@ -290,12 +299,22 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse3}
           onClick={() => setCollapse3(!collapse3)}
         >
-          <OneSelect
+          
+
+
+
+
+          <FormField
+            
+            type="text"
             name="powerSource"
-            options={PowertoolsPowersource}
+            placeholder="Enter Power Source "
             value={initiallistingsData.powerSource}
-            onChange={(option) => handleSelectChange("powerSource", option.value)}
+            onChange={(e) => handleSelectChange("powerSource", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon12} style={{ width: "40px" }} />}
@@ -303,12 +322,22 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse4}
           onClick={() => setCollapse4(!collapse4)}
         >
-          <OneSelect
+          
+
+
+
+
+          <FormField
+            
+            type="text"
             name="voltage"
-            options={PowertoolsVoltage}
+            placeholder="Enter voltage "
             value={initiallistingsData.voltage}
-            onChange={(option) => handleSelectChange("voltage", option.value)}
+            onChange={(e) => handleSelectChange("voltage", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon2} style={{ width: "40px" }} />}
@@ -316,12 +345,21 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse13}
           onClick={() => setCollapse13(!collapse13)}
         >
-          <OneSelect
+          
+
+
+
+          <FormField
+            
+            type="text"
             name="batteryLife"
-            options={PowertoolsBatteryLife}
+            placeholder="Enter Battery Life "
             value={initiallistingsData.batteryLife}
-            onChange={(option) => handleSelectChange("batteryLife", option.value)}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon6} style={{ width: "40px" }} />}
@@ -329,12 +367,22 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse5}
           onClick={() => setCollapse5(!collapse5)}
         >
-          <OneSelect
+          
+
+
+
+          <FormField
+            
+            type="text"
             name="material"
-            options={PowertoolsMaterial}
+            placeholder="Enter material "
             value={initiallistingsData.material}
-            onChange={(option) => handleSelectChange("material", option.value)}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
           />
+
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon7} style={{ width: "40px" }} />}
@@ -342,12 +390,21 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse6}
           onClick={() => setCollapse6(!collapse6)}
         >
-          <OneSelect
+          
+
+
+          <FormField
+            
+            type="text"
             name="noiseLevel"
-            options={PowertoolsNoiseLevel}
+            placeholder="Enter Noise Level "
             value={initiallistingsData.noiseLevel}
-            onChange={(option) => handleSelectChange("noiseLevel", option.value)}
+            onChange={(e) => handleSelectChange("noiseLevel", e.target.value)}
           />
+
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon16} style={{ width: "40px" }} />}
@@ -355,12 +412,21 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse7}
           onClick={() => setCollapse7(!collapse7)}
         >
-          <OneSelect
+         
+
+
+
+          <FormField
+            
+            type="text"
             name="gritNumber"
-            options={PowertoolsGritNumber}
+            placeholder="Enter Grit Number "
             value={initiallistingsData.gritNumber}
-            onChange={(option) => handleSelectChange("gritNumber", option.value)}
+            onChange={(e) => handleSelectChange("gritNumber", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon9} style={{ width: "40px" }} />}
@@ -368,12 +434,20 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse8}
           onClick={() => setCollapse8(!collapse8)}
         >
-          <OneSelect
+          
+
+
+          <FormField
+            
+            type="text"
             name="rotationalSpeed"
-            options={PowertoolsRotationalspeed}
+            placeholder="Enter Rotational Speed "
             value={initiallistingsData.rotationalSpeed}
-            onChange={(option) => handleSelectChange("rotationalSpeed", option.value)}
+            onChange={(e) => handleSelectChange("rotationalSpeed", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon3} style={{ width: "40px" }} />}
@@ -381,12 +455,22 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse9}
           onClick={() => setCollapse9(!collapse9)}
         >
-          <OneSelect
+          
+
+
+          <FormField
+            
+            type="text"
             name="bladeMaterial"
-            options={PowertoolsBladeMaterial}
+            placeholder="Enter Blade Material "
             value={initiallistingsData.bladeMaterial}
-            onChange={(option) => handleSelectChange("bladeMaterial", option.value)}
+            onChange={(e) => handleSelectChange("bladeMaterial", e.target.value)}
           />
+
+
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon14} style={{ width: "40px" }} />}
@@ -394,12 +478,20 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse10}
           onClick={() => setCollapse10(!collapse10)}
         >
-          <OneSelect
+          
+
+
+          <FormField
+            
+            type="text"
             name="surface"
-            options={PowertoolsSurface}
+            placeholder="Enter surface "
             value={initiallistingsData.surface}
-            onChange={(option) => handleSelectChange("surface", option.value)}
+            onChange={(e) => handleSelectChange("surface", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon11} style={{ width: "40px" }} />}
@@ -407,12 +499,18 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse11}
           onClick={() => setCollapse11(!collapse11)}
         >
-          <OneSelect
+          
+          <FormField
+            
+            type="text"
             name="style"
-            options={PowertoolsStyle}
+            placeholder="Enter style "
             value={initiallistingsData.style}
-            onChange={(option) => handleSelectChange("style", option.value)}
+            onChange={(e) => handleSelectChange("style", e.target.value)}
           />
+
+
+
         </CollapseList>
         <CollapseList
           image={<img src={icon1} style={{ width: "40px" }} />}
@@ -420,12 +518,20 @@ function Powertools({ onDataChange, initialState, isOpen }) {
           open={collapse12}
           onClick={() => setCollapse12(!collapse12)}
         >
-          <OneSelect
+          
+
+
+          <FormField
+            
+            type="text"
             name="amperage"
-            options={PowertoolsAmperage}
+            placeholder="Enter amperage "
             value={initiallistingsData.amperage}
-            onChange={(option) => handleSelectChange("amperage", option.value)}
+            onChange={(e) => handleSelectChange("amperage", e.target.value)}
           />
+
+
+
         </CollapseList>
 
         <CollapseList

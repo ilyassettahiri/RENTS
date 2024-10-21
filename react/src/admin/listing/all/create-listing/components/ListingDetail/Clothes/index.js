@@ -192,12 +192,22 @@ function Clothes({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="numberOfPieces"
-          options={ClothesNumberofPieces}
-          value={initiallistingsData.numberOfPieces}
-          onChange={(option) => handleSelectChange("numberOfPieces", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="numberOfPieces"
+            placeholder="Enter Number Of Pieces"
+            value={initiallistingsData.numberOfPieces}
+            onChange={(e) => handleSelectChange("numberOfPieces", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -205,12 +215,23 @@ function Clothes({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="closureType"
-          options={ClothesClosureType}
-          value={initiallistingsData.closureType}
-          onChange={(option) => handleSelectChange("closureType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="closureType"
+            placeholder="Enter Closure Type"
+            value={initiallistingsData.closureType}
+            onChange={(e) => handleSelectChange("closureType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: "40px" }} />}
@@ -237,6 +258,11 @@ function Clothes({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.numberOfPockets}
           onChange={(option) => handleSelectChange("numberOfPockets", option.value)}
         />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: "40px" }} />}
@@ -244,12 +270,22 @@ function Clothes({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="heelHeight"
-          options={ClothesHeelHeight}
-          value={initiallistingsData.heelHeight}
-          onChange={(option) => handleSelectChange("heelHeight", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="heelHeight"
+            placeholder="Enter Heel Height"
+            value={initiallistingsData.heelHeight}
+            onChange={(e) => handleSelectChange("heelHeight", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: "40px" }} />}
@@ -270,12 +306,22 @@ function Clothes({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="color"
-          options={ClothesColor}
-          value={initiallistingsData.color}
-          onChange={(option) => handleSelectChange("color", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="color"
+            placeholder="Enter color"
+            value={initiallistingsData.color}
+            onChange={(e) => handleSelectChange("color", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon30} style={{ width: "40px" }} />}

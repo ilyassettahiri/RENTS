@@ -223,6 +223,12 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.propertyType}
           onChange={(option) => handleSelectChange("propertyType", option.value)}
         />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon13} style={{ width: "40px" }} />}
@@ -295,12 +301,23 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="buildingSize"
-          options={BureauxBuildingSize}
-          value={initiallistingsData.buildingSize}
-          onChange={(option) => handleSelectChange("buildingSize", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="buildingSize"
+            placeholder="Building Size"
+            value={initiallistingsData.buildingSize}
+            onChange={(e) => handleSelectChange("buildingSize", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: "40px" }} />}
@@ -308,12 +325,21 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="lighting"
-          options={BureauxLighting}
-          value={initiallistingsData.lighting}
-          onChange={(option) => handleSelectChange("lighting", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="lighting"
+            placeholder="Enter lighting Ex: LED Lighting"
+            value={initiallistingsData.lighting}
+            onChange={(e) => handleSelectChange("lighting", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: "40px" }} />}
@@ -321,12 +347,23 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="capacity"
-          options={BureauxCapacity}
-          value={initiallistingsData.capacity}
-          onChange={(option) => handleSelectChange("capacity", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="capacity"
+            placeholder="Enter capacity "
+            value={initiallistingsData.capacity}
+            onChange={(e) => handleSelectChange("capacity", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: "40px" }} />}
@@ -334,12 +371,21 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="bailType"
-          options={BureauxBailType}
-          value={initiallistingsData.bailType}
-          onChange={(option) => handleSelectChange("bailType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="bailType"
+            placeholder="Enter Bail Type "
+            value={initiallistingsData.bailType}
+            onChange={(e) => handleSelectChange("bailType", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon14} style={{ width: "40px" }} />}
@@ -347,12 +393,23 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse11}
         onClick={() => setCollapse11(!collapse11)}
       >
-        <OneSelect
-          name="securityDeposit"
-          options={BureauxSecurityDeposit}
-          value={initiallistingsData.securityDeposit}
-          onChange={(option) => handleSelectChange("securityDeposit", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="securityDeposit"
+            placeholder="Enter Security Deposit "
+            value={initiallistingsData.securityDeposit}
+            onChange={(e) => handleSelectChange("securityDeposit", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: "40px" }} />}
@@ -360,12 +417,23 @@ function Bureauxs({ onDataChange, initialState, isOpen }) {
         open={collapse12}
         onClick={() => setCollapse12(!collapse12)}
       >
-        <OneSelect
-          name="officeTaxes"
-          options={BureauxOfficeTaxes}
-          value={initiallistingsData.officeTaxes}
-          onChange={(option) => handleSelectChange("officeTaxes", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="officeTaxes"
+            placeholder="Enter Office Taxes "
+            value={initiallistingsData.officeTaxes}
+            onChange={(e) => handleSelectChange("officeTaxes", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: "40px" }} />}

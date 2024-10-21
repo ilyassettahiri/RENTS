@@ -190,12 +190,22 @@ function Boats({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="cruiseCapacity"
-          options={BoatsCruiseCapacity}
-          value={initiallistingsData.cruiseCapacity}
-          onChange={(option) => handleSelectChange("cruiseCapacity", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="cruiseCapacity"
+            placeholder="Enter Capacity : Ex: 5 passengers"
+            value={initiallistingsData.cruiseCapacity}
+            onChange={(e) => handleSelectChange("cruiseCapacity", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: "40px" }} />}
@@ -229,12 +239,20 @@ function Boats({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="dailyCruisingTime"
-          options={BoatsDailyCruisingTime}
-          value={initiallistingsData.dailyCruisingTime}
-          onChange={(option) => handleSelectChange("dailyCruisingTime", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="dailyCruisingTime"
+            placeholder="Enter Cruising Time: Ex: 30min"
+            value={initiallistingsData.dailyCruisingTime}
+            onChange={(e) => handleSelectChange("dailyCruisingTime", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -242,12 +260,21 @@ function Boats({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="length"
-          options={BoatsLength}
-          value={initiallistingsData.length}
-          onChange={(option) => handleSelectChange("length", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="length"
+            placeholder="Enter length ex: 10m"
+            value={initiallistingsData.length}
+            onChange={(e) => handleSelectChange("length", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: "40px" }} />}

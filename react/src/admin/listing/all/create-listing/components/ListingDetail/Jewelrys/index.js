@@ -199,12 +199,21 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="type"
-          options={JewelsType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -212,12 +221,21 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="material"
-          options={JewelsMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -225,12 +243,23 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="occasion"
-          options={JewelsOccasion}
-          value={initiallistingsData.occasion}
-          onChange={(option) => handleSelectChange("occasion", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="occasion"
+            placeholder="Enter occasion"
+            value={initiallistingsData.occasion}
+            onChange={(e) => handleSelectChange("occasion", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -238,12 +267,22 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="chainType"
-          options={JewelsChainType}
-          value={initiallistingsData.chainType}
-          onChange={(option) => handleSelectChange("chainType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="chainType"
+            placeholder="Enter Chain Type"
+            value={initiallistingsData.chainType}
+            onChange={(e) => handleSelectChange("chainType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -251,12 +290,23 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="gemType"
-          options={JewelsGemType}
-          value={initiallistingsData.gemType}
-          onChange={(option) => handleSelectChange("gemType", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="gemType"
+            placeholder="Enter Gem Type"
+            value={initiallistingsData.gemType}
+            onChange={(e) => handleSelectChange("gemType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -264,12 +314,22 @@ function Jewelrys({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="color"
-          options={JewelsColor}
-          value={initiallistingsData.color}
-          onChange={(option) => handleSelectChange("color", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="color"
+            placeholder="Enter color"
+            value={initiallistingsData.color}
+            onChange={(e) => handleSelectChange("color", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}

@@ -173,12 +173,21 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="photoSize"
-          options={CameraPhotoSize}
-          value={initiallistingsData.photoSize}
-          onChange={(option) => handleSelectChange("photoSize", option.value)}
-        />
+
+
+        
+
+
+          <FormField
+            
+            type="text"
+            name="photoSize"
+            placeholder="Enter Photo Size "
+            value={initiallistingsData.photoSize}
+            onChange={(e) => handleSelectChange("photoSize", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: "40px" }} />}
@@ -186,12 +195,21 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="sensorSize"
-          options={CameraSensorSize}
-          value={initiallistingsData.sensorSize}
-          onChange={(option) => handleSelectChange("sensorSize", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="sensorSize"
+            placeholder="Enter Sensor Size"
+            value={initiallistingsData.sensorSize}
+            onChange={(e) => handleSelectChange("sensorSize", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: "40px" }} />}
@@ -199,12 +217,22 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="imageStabilization"
-          options={CameraImageStabilization}
-          value={initiallistingsData.imageStabilization}
-          onChange={(option) => handleSelectChange("imageStabilization", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="imageStabilization"
+            placeholder="Enter Image Stabilization"
+            value={initiallistingsData.imageStabilization}
+            onChange={(e) => handleSelectChange("imageStabilization", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: "40px" }} />}
@@ -212,12 +240,23 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="shutterSpeed"
-          options={CameraShutterSpeed}
-          value={initiallistingsData.shutterSpeed}
-          onChange={(option) => handleSelectChange("shutterSpeed", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="shutterSpeed"
+            placeholder="Enter Shutter Speed"
+            value={initiallistingsData.shutterSpeed}
+            onChange={(e) => handleSelectChange("shutterSpeed", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: "40px" }} />}
@@ -231,6 +270,21 @@ function Cameras({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.exposureControl}
           onChange={(option) => handleSelectChange("exposureControl", option.value)}
         />
+
+
+
+          <FormField
+            
+            type="text"
+            name="exposureControl"
+            placeholder="Enter Exposure Control"
+            value={initiallistingsData.exposureControl}
+            onChange={(e) => handleSelectChange("exposureControl", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: "40px" }} />}
@@ -238,12 +292,25 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="imageResolution"
-          options={CameraImageResolution}
-          value={initiallistingsData.imageResolution}
-          onChange={(option) => handleSelectChange("imageResolution", option.value)}
-        />
+
+
+
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="imageResolution"
+            placeholder="Enter Image Resolution"
+            value={initiallistingsData.imageResolution}
+            onChange={(e) => handleSelectChange("imageResolution", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: "40px" }} />}
@@ -257,6 +324,16 @@ function Cameras({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.condition}
           onChange={(option) => handleSelectChange("condition", option.value)}
         />
+
+
+
+
+       
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: "40px" }} />}
@@ -277,12 +354,24 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="memory"
-          options={CameraMemory}
-          value={initiallistingsData.memory}
-          onChange={(option) => handleSelectChange("memory", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="memory"
+            placeholder="Enter memory"
+            value={initiallistingsData.memory}
+            onChange={(e) => handleSelectChange("memory", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -290,12 +379,22 @@ function Cameras({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="lens"
-          options={CameraLens}
-          value={initiallistingsData.lens}
-          onChange={(option) => handleSelectChange("lens", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="lens"
+            placeholder="Enter lens"
+            value={initiallistingsData.lens}
+            onChange={(e) => handleSelectChange("lens", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon30} style={{ width: "40px" }} />}

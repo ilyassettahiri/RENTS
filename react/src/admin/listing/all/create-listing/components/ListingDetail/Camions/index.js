@@ -142,12 +142,20 @@ function Camions({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="type"
-          options={TruckType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+       
+
+
+
+          <FormField
+            type="text"
+            name="type"
+            placeholder="Enter type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -194,12 +202,22 @@ function Camions({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="insurance"
-          options={TruckInsurance}
-          value={initiallistingsData.insurance}
-          onChange={(option) => handleSelectChange("insurance", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="insurance"
+            placeholder="Enter insurance"
+            value={initiallistingsData.insurance}
+            onChange={(e) => handleSelectChange("insurance", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: "40px" }} />}
@@ -213,6 +231,10 @@ function Camions({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.navigation}
           onChange={(option) => handleSelectChange("navigation", option.value)}
         />
+
+
+
+        
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: "40px" }} />}

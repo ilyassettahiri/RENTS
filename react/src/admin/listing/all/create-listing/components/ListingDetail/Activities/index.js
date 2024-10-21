@@ -232,12 +232,24 @@ function Activities({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
+        {/* <OneSelect
           name="ageRequirement"
           options={ActivityAgeRequirement}
           value={initiallistingsData.ageRequirement}
           onChange={(option) => handleSelectChange("ageRequirement", option.value)}
-        />
+        /> */}
+
+
+          <FormField
+            
+            type="text"
+            name="ageRequirement"
+            placeholder="Enter age Requirement Ex: 5 year"
+            value={initiallistingsData.ageRequirement}
+            onChange={(e) => handleSelectChange("ageRequirement", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: "40px" }} />}
@@ -245,14 +257,29 @@ function Activities({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <Incrementer
+
+
+        {/* <Incrementer
           name="hours"
 
           quantity={duration}
           onIncrease={handleIncrease}
           onDecrease={handleDecrease}
           disabledDecrease={duration <= 0} // Disable decrease if duration is 0
-        />
+        /> */}
+
+          <FormField
+            
+            type="text"
+            name="duration"
+            placeholder="Enter Activity duration Ex: 30 min"
+            value={initiallistingsData.duration}
+            onChange={(e) => handleSelectChange("duration", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: "40px" }} />}
@@ -305,12 +332,27 @@ function Activities({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
+        {/* <OneSelect
           name="monitor"
           options={ActivityMonitor}
           value={initiallistingsData.monitor}
           onChange={(option) => handleSelectChange("monitor", option.value)}
-        />
+        /> */}
+
+
+
+          <FormField
+            
+            type="text"
+            name="monitor"
+            placeholder="Enter Activity Monitor Ex: Certified guide"
+            value={initiallistingsData.monitor}
+            onChange={(e) => handleSelectChange("monitor", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon30} style={{ width: "40px" }} />}

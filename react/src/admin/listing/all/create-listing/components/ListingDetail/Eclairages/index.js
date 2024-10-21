@@ -263,12 +263,21 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="brandName"
-          options={eclairageBrand}
-          value={initiallistingsData.brandName}
-          onChange={(option) => handleSelectChange("brandName", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="brandName"
+            placeholder="Enter Brand Name"
+            value={initiallistingsData.brandName}
+            onChange={(e) => handleSelectChange("brandName", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -277,12 +286,19 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="size"
-          options={eclairageSize}
-          value={initiallistingsData.size}
-          onChange={(option) => handleSelectChange("size", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="size"
+            placeholder="Enter size"
+            value={initiallistingsData.size}
+            onChange={(e) => handleSelectChange("size", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -291,12 +307,21 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="voltage"
-          options={eclairageVoltage}
-          value={initiallistingsData.voltage}
-          onChange={(option) => handleSelectChange("voltage", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="voltage"
+            placeholder="Enter voltage"
+            value={initiallistingsData.voltage}
+            onChange={(e) => handleSelectChange("voltage", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -375,12 +400,22 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="power"
-          options={eclairagePower}
-          value={initiallistingsData.power}
-          onChange={(option) => handleSelectChange("power", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="power"
+            placeholder="Enter power"
+            value={initiallistingsData.power}
+            onChange={(e) => handleSelectChange("power", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -389,12 +424,23 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="lightSourceType"
-          options={eclairageLightSourceType}
-          value={initiallistingsData.lightSourceType}
-          onChange={(option) => handleSelectChange("lightSourceType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="lightSourceType"
+            placeholder="Enter Light SourceType"
+            value={initiallistingsData.lightSourceType}
+            onChange={(e) => handleSelectChange("lightSourceType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
 
       <CollapseList
@@ -431,12 +477,23 @@ function Eclairages({ onDataChange, initialState, isOpen }) {
         open={collapse13}
         onClick={() => setCollapse13(!collapse13)}
       >
-        <OneSelect
-          name="controller"
-          options={eclairageController}
-          value={initiallistingsData.controller}
-          onChange={(option) => handleSelectChange("controller", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="controller"
+            placeholder="Enter controller"
+            value={initiallistingsData.controller}
+            onChange={(e) => handleSelectChange("controller", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList

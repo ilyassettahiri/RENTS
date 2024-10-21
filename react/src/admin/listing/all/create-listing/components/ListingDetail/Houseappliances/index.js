@@ -175,12 +175,20 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="accessLocation"
-          options={AppliancesAccessLocation}
-          value={initiallistingsData.accessLocation}
-          onChange={(option) => handleSelectChange("accessLocation", option.value)}
-        />
+      
+
+
+          <FormField
+            
+            type="text"
+            name="accessLocation"
+            placeholder="Enter Access Location"
+            value={initiallistingsData.accessLocation}
+            onChange={(e) => handleSelectChange("accessLocation", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon15} style={{ width: '40px' }} />}
@@ -188,12 +196,23 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="finishType"
-          options={AppliancesFinishType}
-          value={initiallistingsData.finishType}
-          onChange={(option) => handleSelectChange("finishType", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="finishType"
+            placeholder="Enter Finish Type"
+            value={initiallistingsData.finishType}
+            onChange={(e) => handleSelectChange("finishType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon14} style={{ width: '40px' }} />}
@@ -201,12 +220,22 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="cycleOptions"
-          options={AppliancesCycleOptions}
-          value={initiallistingsData.cycleOptions}
-          onChange={(option) => handleSelectChange("cycleOptions", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="cycleOptions"
+            placeholder="Enter Cycle Options"
+            value={initiallistingsData.cycleOptions}
+            onChange={(e) => handleSelectChange("cycleOptions", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon16} style={{ width: '40px' }} />}
@@ -227,12 +256,24 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="installationMethod"
-          options={AppliancesInstallationMethod}
-          value={initiallistingsData.installationMethod}
-          onChange={(option) => handleSelectChange("installationMethod", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="installationMethod"
+            placeholder="Enter Installation Method"
+            value={initiallistingsData.installationMethod}
+            onChange={(e) => handleSelectChange("installationMethod", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon13} style={{ width: '40px' }} />}
@@ -253,12 +294,22 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="controlType"
-          options={AppliancesControlType}
-          value={initiallistingsData.controlType}
-          onChange={(option) => handleSelectChange("controlType", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="controlType"
+            placeholder="Enter Control Type"
+            value={initiallistingsData.controlType}
+            onChange={(e) => handleSelectChange("controlType", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -266,12 +317,21 @@ function Houseappliances({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="certification"
-          options={AppliancesCertification}
-          value={initiallistingsData.certification}
-          onChange={(option) => handleSelectChange("certification", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="certification"
+            placeholder="Enter Certification"
+            value={initiallistingsData.certification}
+            onChange={(e) => handleSelectChange("certification", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList

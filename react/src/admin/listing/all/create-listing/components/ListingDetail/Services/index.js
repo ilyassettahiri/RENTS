@@ -222,12 +222,21 @@ function Services({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="experience"
-          options={ServicesExperience}
-          value={initiallistingsData.experience}
-          onChange={(option) => handleSelectChange("experience", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="experience"
+            placeholder="Enter experience Ex: 10 years"
+            value={initiallistingsData.experience}
+            onChange={(e) => handleSelectChange("experience", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
 
@@ -246,6 +255,11 @@ function Services({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.education}
           onChange={(option) => handleSelectChange("education", option.value)}
         />
+
+
+
+
+
       </CollapseList>
 
      
@@ -255,12 +269,20 @@ function Services({ onDataChange, initialState, isOpen }) {
         open={collapse12}
         onClick={() => setCollapse12(!collapse12)}
       >
-        <OneSelect
-          name="deliveryTime"
-          options={ServicesDeliveryTime}
-          value={initiallistingsData.deliveryTime}
-          onChange={(option) => handleSelectChange("deliveryTime", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="deliveryTime"
+            placeholder="Enter Delivery Time"
+            value={initiallistingsData.deliveryTime}
+            onChange={(e) => handleSelectChange("deliveryTime", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList

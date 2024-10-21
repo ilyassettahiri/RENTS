@@ -132,12 +132,21 @@ function Livres({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="genre"
-          options={LivresGenre}
-          value={initiallistingsData.genre}
-          onChange={(option) => handleSelectChange("genre", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="genre"
+            placeholder="Enter genre"
+            value={initiallistingsData.genre}
+            onChange={(e) => handleSelectChange("genre", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -145,12 +154,22 @@ function Livres({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="type"
-          options={LivresType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -171,12 +190,21 @@ function Livres({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="format"
-          options={LivresFormat}
-          value={initiallistingsData.format}
-          onChange={(option) => handleSelectChange("format", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="format"
+            placeholder="Enter format"
+            value={initiallistingsData.format}
+            onChange={(e) => handleSelectChange("format", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}

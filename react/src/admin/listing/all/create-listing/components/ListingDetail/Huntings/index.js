@@ -157,6 +157,10 @@ function Huntings({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.bowArrow}
           onChange={(option) => handleSelectChange("bowArrow", option.value)}
         />
+
+
+
+        
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}

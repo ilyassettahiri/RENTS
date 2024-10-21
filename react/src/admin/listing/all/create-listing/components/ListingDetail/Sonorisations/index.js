@@ -310,12 +310,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="brand"
-          options={sonorizationBrand}
-          value={initiallistingsData.brand}
-          onChange={(option) => handleSelectChange("brand", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="brand"
+            placeholder="Enter brand name"
+            value={initiallistingsData.brand}
+            onChange={(e) => handleSelectChange("brand", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon15} style={{ width: '40px' }} />}
@@ -323,12 +333,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="size"
-          options={sonorizationSize}
-          value={initiallistingsData.size}
-          onChange={(option) => handleSelectChange("size", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="size"
+            placeholder="Enter size"
+            value={initiallistingsData.size}
+            onChange={(e) => handleSelectChange("size", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -336,12 +356,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="connectivityTechnology"
-          options={sonorizationConnectivityTechnology}
-          value={initiallistingsData.connectivityTechnology}
-          onChange={(option) => handleSelectChange("connectivityTechnology", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="connectivityTechnology"
+            placeholder="Enter Connectivity Technology"
+            value={initiallistingsData.connectivityTechnology}
+            onChange={(e) => handleSelectChange("connectivityTechnology", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -349,12 +379,24 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="fastenerType"
-          options={sonorizationFastenerType}
-          value={initiallistingsData.fastenerType}
-          onChange={(option) => handleSelectChange("fastenerType", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="fastenerType"
+            placeholder="Enter Fastener Type"
+            value={initiallistingsData.fastenerType}
+            onChange={(e) => handleSelectChange("fastenerType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon13} style={{ width: '40px' }} />}
@@ -362,12 +404,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="powerSource"
-          options={sonorizationPowerSource}
-          value={initiallistingsData.powerSource}
-          onChange={(option) => handleSelectChange("powerSource", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="powerSource"
+            placeholder="Enter Power Source"
+            value={initiallistingsData.powerSource}
+            onChange={(e) => handleSelectChange("powerSource", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -375,12 +427,23 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="outputPower"
-          options={sonorizationOutputPower}
-          value={initiallistingsData.outputPower}
-          onChange={(option) => handleSelectChange("outputPower", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="outputPower"
+            placeholder="Enter Output Power"
+            value={initiallistingsData.outputPower}
+            onChange={(e) => handleSelectChange("outputPower", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -388,12 +451,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="numberOfChannels"
-          options={sonorizationNumberofChannels}
-          value={initiallistingsData.numberOfChannels}
-          onChange={(option) => handleSelectChange("numberOfChannels", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="numberOfChannels"
+            placeholder="Enter Number Of Channels"
+            value={initiallistingsData.numberOfChannels}
+            onChange={(e) => handleSelectChange("numberOfChannels", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}
@@ -401,12 +474,22 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="deviceCompatibility"
-          options={sonorizationDeviceCompatibility}
-          value={initiallistingsData.deviceCompatibility}
-          onChange={(option) => handleSelectChange("deviceCompatibility", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="deviceCompatibility"
+            placeholder="Enter Device Compatibility"
+            value={initiallistingsData.deviceCompatibility}
+            onChange={(e) => handleSelectChange("deviceCompatibility", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -414,12 +497,23 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="powerInWatts"
-          options={sonorizationPowerinWatts}
-          value={initiallistingsData.powerInWatts}
-          onChange={(option) => handleSelectChange("powerInWatts", option.value)}
-        />
+       
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="powerInWatts"
+            placeholder="Enter Power In Watts"
+            value={initiallistingsData.powerInWatts}
+            onChange={(e) => handleSelectChange("powerInWatts", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon14} style={{ width: '40px' }} />}
@@ -453,12 +547,21 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse12}
         onClick={() => setCollapse12(!collapse12)}
       >
-        <OneSelect
-          name="weight"
-          options={sonorizationWeight}
-          value={initiallistingsData.weight}
-          onChange={(option) => handleSelectChange("weight", option.value)}
-        />
+       
+
+
+          <FormField
+            
+            type="text"
+            name="weight"
+            placeholder="Enter weight"
+            value={initiallistingsData.weight}
+            onChange={(e) => handleSelectChange("weight", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -479,12 +582,20 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse14}
         onClick={() => setCollapse14(!collapse14)}
       >
-        <OneSelect
-          name="mixageTable"
-          options={sonorizationMixageTable}
-          value={initiallistingsData.mixageTable}
-          onChange={(option) => handleSelectChange("mixageTable", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="mixageTable"
+            placeholder="Enter Mixage Table"
+            value={initiallistingsData.mixageTable}
+            onChange={(e) => handleSelectChange("mixageTable", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -492,12 +603,21 @@ function Sonorisations({ onDataChange, initialState, isOpen }) {
         open={collapse15}
         onClick={() => setCollapse15(!collapse15)}
       >
-        <OneSelect
-          name="amplifier"
-          options={sonorizationAmplifier}
-          value={initiallistingsData.amplifier}
-          onChange={(option) => handleSelectChange("amplifier", option.value)}
-        />
+       
+
+
+          <FormField
+            
+            type="text"
+            name="amplifier"
+            placeholder="Enter amplifier"
+            value={initiallistingsData.amplifier}
+            onChange={(e) => handleSelectChange("amplifier", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}

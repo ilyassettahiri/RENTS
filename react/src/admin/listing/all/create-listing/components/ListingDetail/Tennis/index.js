@@ -121,12 +121,21 @@ function Tennis({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="tennisTerrain"
-          options={TennisTerrain}
-          value={initiallistingsData.tennisTerrain}
-          onChange={(option) => handleSelectChange("tennisTerrain", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="tennisTerrain"
+            placeholder="Enter Tennis Terrain"
+            value={initiallistingsData.tennisTerrain}
+            onChange={(e) => handleSelectChange("tennisTerrain", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -134,12 +143,20 @@ function Tennis({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="brandName"
-          options={TennisBrand}
-          value={initiallistingsData.brandName}
-          onChange={(option) => handleSelectChange("brandName", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="brandName"
+            placeholder="Enter Brand Name"
+            value={initiallistingsData.brandName}
+            onChange={(e) => handleSelectChange("brandName", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}

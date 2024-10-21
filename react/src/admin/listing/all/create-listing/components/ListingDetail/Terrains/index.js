@@ -248,12 +248,23 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="propertySubtype"
-          options={TerrainsPropertySubtype}
-          value={initiallistingsData.propertySubtype}
-          onChange={(option) => handleSelectChange("propertySubtype", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="propertySubtype"
+            placeholder="Enter Property Subtype"
+            value={initiallistingsData.propertySubtype}
+            onChange={(e) => handleSelectChange("propertySubtype", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -261,12 +272,22 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="totalLotSize"
-          options={TerrainsTotalLotSize}
-          value={initiallistingsData.totalLotSize}
-          onChange={(option) => handleSelectChange("totalLotSize", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="totalLotSize"
+            placeholder="Enter total Lot Size"
+            value={initiallistingsData.totalLotSize}
+            onChange={(e) => handleSelectChange("totalLotSize", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -274,12 +295,21 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="landValuation"
-          options={TerrainsLandValuation}
-          value={initiallistingsData.landValuation}
-          onChange={(option) => handleSelectChange("landValuation", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="landValuation"
+            placeholder="Enter land Valuation"
+            value={initiallistingsData.landValuation}
+            onChange={(e) => handleSelectChange("landValuation", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -287,12 +317,23 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="totalRating"
-          options={TerrainsTotalRating}
-          value={initiallistingsData.totalRating}
-          onChange={(option) => handleSelectChange("totalRating", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="totalRating"
+            placeholder="Enter total Rating"
+            value={initiallistingsData.totalRating}
+            onChange={(e) => handleSelectChange("totalRating", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}
@@ -300,12 +341,24 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="roadAccess"
-          options={TerrainsRoadAccess}
-          value={initiallistingsData.roadAccess}
-          onChange={(option) => handleSelectChange("roadAccess", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="roadAccess"
+            placeholder="Enter road Access"
+            value={initiallistingsData.roadAccess}
+            onChange={(e) => handleSelectChange("roadAccess", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -313,12 +366,24 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="slopeDescription"
-          options={TerrainsSlopeDescription}
-          value={initiallistingsData.slopeDescription}
-          onChange={(option) => handleSelectChange("slopeDescription", option.value)}
-        />
+       
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="slopeDescription"
+            placeholder="Enter slope Description"
+            value={initiallistingsData.slopeDescription}
+            onChange={(e) => handleSelectChange("slopeDescription", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -326,12 +391,24 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="propertyUsage"
-          options={TerrainsPropertyUsage}
-          value={initiallistingsData.propertyUsage}
-          onChange={(option) => handleSelectChange("propertyUsage", option.value)}
-        />
+       
+      
+
+
+
+          <FormField
+            
+            type="text"
+            name="propertyUsage"
+            placeholder="Enter Property Usage"
+            value={initiallistingsData.propertyUsage}
+            onChange={(e) => handleSelectChange("propertyUsage", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}
@@ -339,12 +416,23 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="annualTaxes"
-          options={TerrainsAnnualTaxes}
-          value={initiallistingsData.annualTaxes}
-          onChange={(option) => handleSelectChange("annualTaxes", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="annualTaxes"
+            placeholder="Enter Annual Taxes"
+            value={initiallistingsData.annualTaxes}
+            onChange={(e) => handleSelectChange("annualTaxes", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -352,12 +440,23 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="deededAcres"
-          options={TerrainsDeededAcres}
-          value={initiallistingsData.deededAcres}
-          onChange={(option) => handleSelectChange("deededAcres", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="deededAcres"
+            placeholder="Enter Deeded Acres"
+            value={initiallistingsData.deededAcres}
+            onChange={(e) => handleSelectChange("deededAcres", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -365,12 +464,23 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse11}
         onClick={() => setCollapse11(!collapse11)}
       >
-        <OneSelect
-          name="leasedAcres"
-          options={TerrainsLeasedAcres}
-          value={initiallistingsData.leasedAcres}
-          onChange={(option) => handleSelectChange("leasedAcres", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="leasedAcres"
+            placeholder="Enter Leased Acres"
+            value={initiallistingsData.leasedAcres}
+            onChange={(e) => handleSelectChange("leasedAcres", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -378,12 +488,22 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse12}
         onClick={() => setCollapse12(!collapse12)}
       >
-        <OneSelect
-          name="elevation"
-          options={TerrainsElevation}
-          value={initiallistingsData.elevation}
-          onChange={(option) => handleSelectChange("elevation", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="elevation"
+            placeholder="Enter elevation"
+            value={initiallistingsData.elevation}
+            onChange={(e) => handleSelectChange("elevation", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon13} style={{ width: '40px' }} />}
@@ -391,12 +511,22 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse13}
         onClick={() => setCollapse13(!collapse13)}
       >
-        <OneSelect
-          name="vegetation"
-          options={TerrainsVegetation}
-          value={initiallistingsData.vegetation}
-          onChange={(option) => handleSelectChange("vegetation", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="vegetation"
+            placeholder="Enter vegetation"
+            value={initiallistingsData.vegetation}
+            onChange={(e) => handleSelectChange("vegetation", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon14} style={{ width: '40px' }} />}
@@ -430,12 +560,20 @@ function Terrains({ onDataChange, initialState, isOpen }) {
         open={collapse16}
         onClick={() => setCollapse16(!collapse16)}
       >
-        <OneSelect
-          name="zoning"
-          options={TerrainsZoning}
-          value={initiallistingsData.zoning}
-          onChange={(option) => handleSelectChange("zoning", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="zoning"
+            placeholder="Enter zoning"
+            value={initiallistingsData.zoning}
+            onChange={(e) => handleSelectChange("zoning", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
 
       <CollapseList

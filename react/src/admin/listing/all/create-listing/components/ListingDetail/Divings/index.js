@@ -125,12 +125,19 @@ function Divings({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="brandName"
-          options={DivingBrand}
-          value={initiallistingsData.brandName}
-          onChange={(option) => handleSelectChange("brandName", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="brandName"
+            placeholder="Enter Brand Name"
+            value={initiallistingsData.brandName}
+            onChange={(e) => handleSelectChange("brandName", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -138,12 +145,20 @@ function Divings({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="material"
-          options={DivingMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: "40px" }} />}

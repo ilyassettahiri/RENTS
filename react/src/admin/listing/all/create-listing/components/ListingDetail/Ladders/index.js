@@ -231,12 +231,22 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="toolType"
-          options={LaddersandScaffoldingToolType}
-          value={initiallistingsData.toolType}
-          onChange={(option) => handleSelectChange("toolType", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="toolType"
+            placeholder="Enter Tool Type"
+            value={initiallistingsData.toolType}
+            onChange={(e) => handleSelectChange("toolType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -250,6 +260,12 @@ function Ladders({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.condition}
           onChange={(option) => handleSelectChange("condition", option.value)}
         />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -257,12 +273,21 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="powerSource"
-          options={LaddersandScaffoldingPowersource}
-          value={initiallistingsData.powerSource}
-          onChange={(option) => handleSelectChange("powerSource", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="powerSource"
+            placeholder="Enter Power Source"
+            value={initiallistingsData.powerSource}
+            onChange={(e) => handleSelectChange("powerSource", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -270,12 +295,22 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="material"
-          options={LaddersandScaffoldingMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -283,12 +318,21 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="height"
-          options={LaddersandScaffoldingHeight}
-          value={initiallistingsData.height}
-          onChange={(option) => handleSelectChange("height", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="height"
+            placeholder="Enter height"
+            value={initiallistingsData.height}
+            onChange={(e) => handleSelectChange("height", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -296,12 +340,22 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="weight"
-          options={LaddersandScaffoldingWeight}
-          value={initiallistingsData.weight}
-          onChange={(option) => handleSelectChange("weight", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="weight"
+            placeholder="Enter weight"
+            value={initiallistingsData.weight}
+            onChange={(e) => handleSelectChange("weight", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon9} style={{ width: '40px' }} />}
@@ -309,12 +363,23 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="numberOfSteps"
-          options={LaddersandScaffoldingNumberofsteps}
-          value={initiallistingsData.numberOfSteps}
-          onChange={(option) => handleSelectChange("numberOfSteps", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="numberOfSteps"
+            placeholder="Enter Number Of Steps"
+            value={initiallistingsData.numberOfSteps}
+            onChange={(e) => handleSelectChange("numberOfSteps", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -322,12 +387,25 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="loadCapacity"
-          options={LaddersandScaffoldingLoadCapacity}
-          value={initiallistingsData.loadCapacity}
-          onChange={(option) => handleSelectChange("loadCapacity", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="loadCapacity"
+            placeholder="Enter Load Capacity"
+            value={initiallistingsData.loadCapacity}
+            onChange={(e) => handleSelectChange("loadCapacity", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -335,12 +413,22 @@ function Ladders({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="batteryLife"
-          options={LaddersandScaffoldingBatteryLife}
-          value={initiallistingsData.batteryLife}
-          onChange={(option) => handleSelectChange("batteryLife", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="batteryLife"
+            placeholder="Enter Battery Life"
+            value={initiallistingsData.batteryLife}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -367,6 +455,23 @@ function Ladders({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.wheelSize}
           onChange={(option) => handleSelectChange("wheelSize", option.value)}
         />
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="wheelSize"
+            placeholder="Enter Wheel Size"
+            value={initiallistingsData.wheelSize}
+            onChange={(e) => handleSelectChange("wheelSize", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
 
       <CollapseList

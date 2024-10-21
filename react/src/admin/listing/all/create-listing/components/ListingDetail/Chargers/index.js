@@ -181,12 +181,22 @@ function Chargers({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="length"
-          options={ChargersLength}
-          value={initiallistingsData.length}
-          onChange={(option) => handleSelectChange("length", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="length"
+            placeholder="Enter length"
+            value={initiallistingsData.length}
+            onChange={(e) => handleSelectChange("length", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: "40px" }} />}
@@ -194,12 +204,21 @@ function Chargers({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="inputVoltage"
-          options={ChargersInputVoltage}
-          value={initiallistingsData.inputVoltage}
-          onChange={(option) => handleSelectChange("inputVoltage", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="inputVoltage"
+            placeholder="Enter Input Voltage"
+            value={initiallistingsData.inputVoltage}
+            onChange={(e) => handleSelectChange("inputVoltage", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: "40px" }} />}
@@ -207,12 +226,23 @@ function Chargers({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="wattage"
-          options={ChargersWattage}
-          value={initiallistingsData.wattage}
-          onChange={(option) => handleSelectChange("wattage", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="wattage"
+            placeholder="Enter wattage"
+            value={initiallistingsData.wattage}
+            onChange={(e) => handleSelectChange("wattage", e.target.value)}
+          />
+
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: "40px" }} />}
@@ -233,12 +263,22 @@ function Chargers({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="connectorType"
-          options={ChargersConnectorType}
-          value={initiallistingsData.connectorType}
-          onChange={(option) => handleSelectChange("connectorType", option.value)}
-        />
+
+
+       
+
+
+          <FormField
+            
+            type="text"
+            name="connectorType"
+            placeholder="Enter Connector Type"
+            value={initiallistingsData.connectorType}
+            onChange={(e) => handleSelectChange("connectorType", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: "40px" }} />}
@@ -246,12 +286,24 @@ function Chargers({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="amperage"
-          options={ChargersAmperage}
-          value={initiallistingsData.amperage}
-          onChange={(option) => handleSelectChange("amperage", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="amperage"
+            placeholder="Enter amperage"
+            value={initiallistingsData.amperage}
+            onChange={(e) => handleSelectChange("amperage", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon30} style={{ width: "40px" }} />}

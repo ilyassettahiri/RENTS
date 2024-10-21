@@ -166,12 +166,19 @@ function Velos({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="bikeType"
-          options={BikeType}
-          value={initiallistingsData.bikeType}
-          onChange={(option) => handleSelectChange("bikeType", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="bikeType"
+            placeholder="Enter Bike Type"
+            value={initiallistingsData.bikeType}
+            onChange={(e) => handleSelectChange("bikeType", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -179,12 +186,20 @@ function Velos({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="seatpost"
-          options={BikeSeatpost}
-          value={initiallistingsData.seatpost}
-          onChange={(option) => handleSelectChange("seatpost", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="seatpost"
+            placeholder="Enter Seat Post"
+            value={initiallistingsData.seatpost}
+            onChange={(e) => handleSelectChange("seatpost", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}

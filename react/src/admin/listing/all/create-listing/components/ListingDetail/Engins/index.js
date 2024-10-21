@@ -183,12 +183,21 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="type"
-          options={MachineryType}
-          value={initiallistingsData.type}
-          onChange={(option) => handleSelectChange("type", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="type"
+            placeholder="Enter type"
+            value={initiallistingsData.type}
+            onChange={(e) => handleSelectChange("type", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -196,12 +205,23 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="mechanicalCondition"
-          options={MachineryMechanicalCondition}
-          value={initiallistingsData.mechanicalCondition}
-          onChange={(option) => handleSelectChange("mechanicalCondition", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="mechanicalCondition"
+            placeholder="Enter Mechanical Condition"
+            value={initiallistingsData.mechanicalCondition}
+            onChange={(e) => handleSelectChange("mechanicalCondition", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -209,12 +229,21 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="seats"
-          options={EngineSeats}
-          value={initiallistingsData.seats}
-          onChange={(option) => handleSelectChange("seats", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="seats"
+            placeholder="Enter seats"
+            value={initiallistingsData.seats}
+            onChange={(e) => handleSelectChange("seats", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -235,12 +264,22 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="cabType"
-          options={MachineryCabType}
-          value={initiallistingsData.cabType}
-          onChange={(option) => handleSelectChange("cabType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="cabType"
+            placeholder="Enter Cab Type"
+            value={initiallistingsData.cabType}
+            onChange={(e) => handleSelectChange("cabType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -261,12 +300,23 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="couplerType"
-          options={MachineryCouplerType}
-          value={initiallistingsData.couplerType}
-          onChange={(option) => handleSelectChange("couplerType", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="couplerType"
+            placeholder="Enter Coupler Type"
+            value={initiallistingsData.couplerType}
+            onChange={(e) => handleSelectChange("couplerType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -274,12 +324,25 @@ function Engins({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="hydraulicsType"
-          options={MachineryHydraulicsType}
-          value={initiallistingsData.hydraulicsType}
-          onChange={(option) => handleSelectChange("hydraulicsType", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="hydraulicsType"
+            placeholder="Enter Hydraulics Type"
+            value={initiallistingsData.hydraulicsType}
+            onChange={(e) => handleSelectChange("hydraulicsType", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
 
 

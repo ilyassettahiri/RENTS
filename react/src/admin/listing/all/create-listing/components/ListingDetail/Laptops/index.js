@@ -218,12 +218,20 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="ram"
-          options={ComputerRam}
-          value={initiallistingsData.ram}
-          onChange={(option) => handleSelectChange("ram", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="ram"
+            placeholder="Enter ram"
+            value={initiallistingsData.ram}
+            onChange={(e) => handleSelectChange("ram", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -231,12 +239,23 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="graphicsCard"
-          options={ComputerGraphicsCard}
-          value={initiallistingsData.graphicsCard}
-          onChange={(option) => handleSelectChange("graphicsCard", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="graphicsCard"
+            placeholder="Enter Graphics Card"
+            value={initiallistingsData.graphicsCard}
+            onChange={(e) => handleSelectChange("graphicsCard", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -250,6 +269,11 @@ function Laptops({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.operatingSystem}
           onChange={(option) => handleSelectChange("operatingSystem", option.value)}
         />
+
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -270,12 +294,20 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="batteryLife"
-          options={ComputerBatteryLife}
-          value={initiallistingsData.batteryLife}
-          onChange={(option) => handleSelectChange("batteryLife", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="batteryLife"
+            placeholder="Enter Battery Life"
+            value={initiallistingsData.batteryLife}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -283,12 +315,21 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="storage"
-          options={ComputerStorage}
-          value={initiallistingsData.storage}
-          onChange={(option) => handleSelectChange("storage", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="storage"
+            placeholder="Enter storage"
+            value={initiallistingsData.storage}
+            onChange={(e) => handleSelectChange("storage", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -296,12 +337,21 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="resolution"
-          options={ComputerResolution}
-          value={initiallistingsData.resolution}
-          onChange={(option) => handleSelectChange("resolution", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="resolution"
+            placeholder="Enter resolution"
+            value={initiallistingsData.resolution}
+            onChange={(e) => handleSelectChange("resolution", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon10} style={{ width: '40px' }} />}
@@ -309,12 +359,21 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="weight"
-          options={ComputerWeight}
-          value={initiallistingsData.weight}
-          onChange={(option) => handleSelectChange("weight", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="weight"
+            placeholder="Enter weight"
+            value={initiallistingsData.weight}
+            onChange={(e) => handleSelectChange("weight", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -322,12 +381,22 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse9}
         onClick={() => setCollapse9(!collapse9)}
       >
-        <OneSelect
-          name="screenSize"
-          options={ComputerScreenSize}
-          value={initiallistingsData.screenSize}
-          onChange={(option) => handleSelectChange("screenSize", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="screenSize"
+            placeholder="Enter Screen Size"
+            value={initiallistingsData.screenSize}
+            onChange={(e) => handleSelectChange("screenSize", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon11} style={{ width: '40px' }} />}
@@ -335,12 +404,23 @@ function Laptops({ onDataChange, initialState, isOpen }) {
         open={collapse10}
         onClick={() => setCollapse10(!collapse10)}
       >
-        <OneSelect
-          name="cpu"
-          options={ComputerCPU}
-          value={initiallistingsData.cpu}
-          onChange={(option) => handleSelectChange("cpu", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="cpu"
+            placeholder="Enter cpu"
+            value={initiallistingsData.cpu}
+            onChange={(e) => handleSelectChange("cpu", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}

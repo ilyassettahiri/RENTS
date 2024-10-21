@@ -193,12 +193,24 @@ function Audios({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="soundQuality"
-          options={AudioSoundQuality}
-          value={initiallistingsData.soundQuality}
-          onChange={(option) => handleSelectChange("soundQuality", option.value)}
-        />
+   
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="soundQuality"
+            placeholder="Enter sound Quality "
+            value={initiallistingsData.soundQuality}
+            onChange={(e) => handleSelectChange("soundQuality", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: "40px" }} />}
@@ -219,12 +231,24 @@ function Audios({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="maxWirelessRange"
-          options={AudioMaxWirelessRange}
-          value={initiallistingsData.maxWirelessRange}
-          onChange={(option) => handleSelectChange("maxWirelessRange", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="maxWirelessRange"
+            placeholder="max Wireless Range "
+            value={initiallistingsData.maxWirelessRange}
+            onChange={(e) => handleSelectChange("maxWirelessRange", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: "40px" }} />}
@@ -232,12 +256,26 @@ function Audios({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="batteryLife"
-          options={AudioBatteryLife}
-          value={initiallistingsData.batteryLife}
-          onChange={(option) => handleSelectChange("batteryLife", option.value)}
-        />
+
+
+
+
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="batteryLife"
+            placeholder="battery Life "
+            value={initiallistingsData.batteryLife}
+            onChange={(e) => handleSelectChange("batteryLife", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: "40px" }} />}
@@ -245,12 +283,22 @@ function Audios({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="chargingTime"
-          options={AudioChargingTime}
-          value={initiallistingsData.chargingTime}
-          onChange={(option) => handleSelectChange("chargingTime", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="chargingTime"
+            placeholder="charging Time "
+            value={initiallistingsData.chargingTime}
+            onChange={(e) => handleSelectChange("chargingTime", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: "40px" }} />}
@@ -264,6 +312,13 @@ function Audios({ onDataChange, initialState, isOpen }) {
           value={initiallistingsData.condition}
           onChange={(option) => handleSelectChange("condition", option.value)}
         />
+
+
+
+
+
+
+        
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: "40px" }} />}

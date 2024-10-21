@@ -550,7 +550,7 @@ function EditListing() {
     equipment: [],
     ageRequirement: '',
     duration: '',
-    language: '',
+    language: [],
     cancellation: '',
     safetyEquipment: [],
     monitor: '',

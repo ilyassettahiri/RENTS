@@ -204,12 +204,21 @@ function Motos({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="speed"
-          options={MotorcycleSpeed}
-          value={initiallistingsData.speed}
-          onChange={(option) => handleSelectChange("speed", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="speed"
+            placeholder="Enter speed"
+            value={initiallistingsData.speed}
+            onChange={(e) => handleSelectChange("speed", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -230,12 +239,24 @@ function Motos({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="intercom"
-          options={MotorcycleIntercom}
-          value={initiallistingsData.intercom}
-          onChange={(option) => handleSelectChange("intercom", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="intercom"
+            placeholder="Enter intercom"
+            value={initiallistingsData.intercom}
+            onChange={(e) => handleSelectChange("intercom", e.target.value)}
+          />
+
+
+
+
+
       </CollapseList>
 
       <CollapseList

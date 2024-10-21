@@ -137,12 +137,21 @@ function Musicals({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="musicType"
-          options={MusicalsMusicType}
-          value={initiallistingsData.musicType}
-          onChange={(option) => handleSelectChange("musicType", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="musicType"
+            placeholder="Enter Music Type"
+            value={initiallistingsData.musicType}
+            onChange={(e) => handleSelectChange("musicType", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -150,12 +159,23 @@ function Musicals({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="material"
-          options={MusicalsMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
@@ -163,12 +183,23 @@ function Musicals({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="style"
-          options={MusicalsStyle}
-          value={initiallistingsData.style}
-          onChange={(option) => handleSelectChange("style", option.value)}
-        />
+        
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="style"
+            placeholder="Enter style"
+            value={initiallistingsData.style}
+            onChange={(e) => handleSelectChange("style", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -176,12 +207,23 @@ function Musicals({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="finishType"
-          options={MusicalsFinishType}
-          value={initiallistingsData.finishType}
-          onChange={(option) => handleSelectChange("finishType", option.value)}
-        />
+       
+
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="finishType"
+            placeholder="Enter Finish Type"
+            value={initiallistingsData.finishType}
+            onChange={(e) => handleSelectChange("finishType", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList

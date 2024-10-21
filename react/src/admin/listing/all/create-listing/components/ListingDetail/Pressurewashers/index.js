@@ -267,12 +267,18 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="toolType"
-          options={PressurewashersTooltype}
-          value={initiallistingsData.toolType}
-          onChange={(option) => handleSelectChange("toolType", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="toolType"
+            placeholder="Enter Tool Type"
+            value={initiallistingsData.toolType}
+            onChange={(e) => handleSelectChange("toolType", e.target.value)}
+          />
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon1} style={{ width: '40px' }} />}
@@ -293,12 +299,20 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="powerSource"
-          options={PressurewashersPowersource}
-          value={initiallistingsData.powerSource}
-          onChange={(option) => handleSelectChange("powerSource", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="powerSource"
+            placeholder="Enter Power Source"
+            value={initiallistingsData.powerSource}
+            onChange={(e) => handleSelectChange("powerSource", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon15} style={{ width: '40px' }} />}
@@ -306,12 +320,21 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse4}
         onClick={() => setCollapse4(!collapse4)}
       >
-        <OneSelect
-          name="powerOutput"
-          options={PressurewashersPoweroutput}
-          value={initiallistingsData.powerOutput}
-          onChange={(option) => handleSelectChange("powerOutput", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="powerOutput"
+            placeholder="Enter Power Output"
+            value={initiallistingsData.powerOutput}
+            onChange={(e) => handleSelectChange("powerOutput", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon5} style={{ width: '40px' }} />}
@@ -319,12 +342,20 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse5}
         onClick={() => setCollapse5(!collapse5)}
       >
-        <OneSelect
-          name="enginePower"
-          options={PressurewashersEnginepower}
-          value={initiallistingsData.enginePower}
-          onChange={(option) => handleSelectChange("enginePower", option.value)}
-        />
+       
+
+
+          <FormField
+            
+            type="text"
+            name="enginePower"
+            placeholder="Enter Engine Power"
+            value={initiallistingsData.enginePower}
+            onChange={(e) => handleSelectChange("enginePower", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon6} style={{ width: '40px' }} />}
@@ -332,12 +363,21 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse6}
         onClick={() => setCollapse6(!collapse6)}
       >
-        <OneSelect
-          name="hoseLength"
-          options={PressurewashersHoselength}
-          value={initiallistingsData.hoseLength}
-          onChange={(option) => handleSelectChange("hoseLength", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="hoseLength"
+            placeholder="Enter Hose Length"
+            value={initiallistingsData.hoseLength}
+            onChange={(e) => handleSelectChange("hoseLength", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon3} style={{ width: '40px' }} />}
@@ -345,12 +385,20 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse7}
         onClick={() => setCollapse7(!collapse7)}
       >
-        <OneSelect
-          name="cordLength"
-          options={PressurewashersCordlength}
-          value={initiallistingsData.cordLength}
-          onChange={(option) => handleSelectChange("cordLength", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="cordLength"
+            placeholder="Enter Cord Length"
+            value={initiallistingsData.cordLength}
+            onChange={(e) => handleSelectChange("cordLength", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon12} style={{ width: '40px' }} />}
@@ -358,12 +406,20 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse8}
         onClick={() => setCollapse8(!collapse8)}
       >
-        <OneSelect
-          name="weight"
-          options={PressurewashersWeight}
-          value={initiallistingsData.weight}
-          onChange={(option) => handleSelectChange("weight", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="weight"
+            placeholder="Enter weight"
+            value={initiallistingsData.weight}
+            onChange={(e) => handleSelectChange("weight", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon8} style={{ width: '40px' }} />}
@@ -410,12 +466,22 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse12}
         onClick={() => setCollapse12(!collapse12)}
       >
-        <OneSelect
-          name="outletConnectionSize"
-          options={PressurewashersOutletconnectionsize}
-          value={initiallistingsData.outletConnectionSize}
-          onChange={(option) => handleSelectChange("outletConnectionSize", option.value)}
-        />
+       
+
+
+
+          <FormField
+            
+            type="text"
+            name="outletConnectionSize"
+            placeholder="Enter Outlet Connection Size"
+            value={initiallistingsData.outletConnectionSize}
+            onChange={(e) => handleSelectChange("outletConnectionSize", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -423,12 +489,22 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse13}
         onClick={() => setCollapse13(!collapse13)}
       >
-        <OneSelect
-          name="maxWorkingTemperature"
-          options={PressurewashersMaxworkingtemperature}
-          value={initiallistingsData.maxWorkingTemperature}
-          onChange={(option) => handleSelectChange("maxWorkingTemperature", option.value)}
-        />
+      
+
+
+
+          <FormField
+            
+            type="text"
+            name="maxWorkingTemperature"
+            placeholder="Enter max Working Temperature"
+            value={initiallistingsData.maxWorkingTemperature}
+            onChange={(e) => handleSelectChange("maxWorkingTemperature", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -436,12 +512,21 @@ function Pressurewashers({ onDataChange, initialState, isOpen }) {
         open={collapse14}
         onClick={() => setCollapse14(!collapse14)}
       >
-        <OneSelect
-          name="connectionType"
-          options={PressurewashersConnectiontype}
-          value={initiallistingsData.connectionType}
-          onChange={(option) => handleSelectChange("connectionType", option.value)}
-        />
+        
+
+
+
+          <FormField
+            
+            type="text"
+            name="connectionType"
+            placeholder="Enter Connection Type"
+            value={initiallistingsData.connectionType}
+            onChange={(e) => handleSelectChange("connectionType", e.target.value)}
+          />
+
+
+
       </CollapseList>
 
       <CollapseList

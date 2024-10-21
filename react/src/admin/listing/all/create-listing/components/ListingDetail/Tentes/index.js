@@ -137,12 +137,22 @@ function Tentes({ onDataChange, initialState, isOpen }) {
         open={collapse1}
         onClick={() => setCollapse1(!collapse1)}
       >
-        <OneSelect
-          name="material"
-          options={TentesetstructuresMaterial}
-          value={initiallistingsData.material}
-          onChange={(option) => handleSelectChange("material", option.value)}
-        />
+        
+
+
+
+
+          <FormField
+            
+            type="text"
+            name="material"
+            placeholder="Enter material"
+            value={initiallistingsData.material}
+            onChange={(e) => handleSelectChange("material", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon7} style={{ width: '40px' }} />}
@@ -150,12 +160,21 @@ function Tentes({ onDataChange, initialState, isOpen }) {
         open={collapse2}
         onClick={() => setCollapse2(!collapse2)}
       >
-        <OneSelect
-          name="style"
-          options={TentesetstructuresStyle}
-          value={initiallistingsData.style}
-          onChange={(option) => handleSelectChange("style", option.value)}
-        />
+        
+
+
+          <FormField
+            
+            type="text"
+            name="style"
+            placeholder="Enter style"
+            value={initiallistingsData.style}
+            onChange={(e) => handleSelectChange("style", e.target.value)}
+          />
+
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon2} style={{ width: '40px' }} />}
@@ -163,12 +182,19 @@ function Tentes({ onDataChange, initialState, isOpen }) {
         open={collapse3}
         onClick={() => setCollapse3(!collapse3)}
       >
-        <OneSelect
-          name="fabric"
-          options={TentesetstructuresFabric}
-          value={initiallistingsData.fabric}
-          onChange={(option) => handleSelectChange("fabric", option.value)}
-        />
+        
+
+          <FormField
+            
+            type="text"
+            name="fabric"
+            placeholder="Enter fabric"
+            value={initiallistingsData.fabric}
+            onChange={(e) => handleSelectChange("fabric", e.target.value)}
+          />
+
+
+
       </CollapseList>
       <CollapseList
         image={<img src={icon4} style={{ width: '40px' }} />}
