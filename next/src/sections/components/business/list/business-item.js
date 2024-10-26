@@ -35,6 +35,7 @@ import Label from 'src/components/label';
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
 import LoginDialog from 'src/sections/auth/login-dialog';
+import { height } from '@mui/system';
 
 // ----------------------------------------------------------------------
 
@@ -152,14 +153,16 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
 
 
                         sx={{
-                          height: 1,
                           objectFit: 'cover',
-                          width: { sm: 300,  },
-                          aspectRatio: '6/4',
-                          ...(vertical && {
-                            width: { sm: 1 },
-                            aspectRatio: '6/4',
-                          }),
+                          width: { xs: '100%', sm: 320 },
+                          height: {  sm: 1 },
+                          ...(vertical
+                            ? {
+                                aspectRatio: '6/4', // Aspect ratio for vertical layout
+                              }
+                            : {
+                                aspectRatio: '6/4', // Aspect ratio for horizontal layout
+                              }),
                         }}
                       />
 
@@ -280,10 +283,18 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                     />
 
                     <Stack spacing={0}>
-                        <Link variant="subtitle2" color="inherit" >
+                        <Link variant="subtitle2" color="inherit"
+
+                        href={`${paths.eCommerce.stores}/${url}`}
+                        >
 
 
-                        {capitalizeFirstLetter(name.split(' ')[0])}
+
+
+                        <TextMaxLine variant="subtitle2" line={1}>
+
+                        {capitalizeFirstLetter(name)}
+                        </TextMaxLine>
 
                         </Link>
                       <Stack

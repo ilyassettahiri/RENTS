@@ -197,8 +197,8 @@ export default function ListingView({ params }) {
 
 
 
-          <Stack spacing={3} sx={{ my: 10 }}>
-            <Typography variant="h5">{t('Location')}</Typography>
+          <Stack spacing={3} sx={{ my: 6 }}>
+
 
             {listingData && ( <Map offices={listingData?.data} sx={{ borderRadius: 2 }} />)}
           </Stack>

@@ -149,8 +149,8 @@ export default function JobPageView({ params }) {
 
 
 
-            <Stack spacing={3} sx={{ my: 10 }}>
-              <Typography variant="h5">{t('Location')}</Typography>
+            <Stack spacing={3} sx={{ my: 6 }}>
+
 
               {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
             </Stack>

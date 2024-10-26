@@ -39,7 +39,7 @@ export default function ListingSummary({ specifications, description, category }
       <Divider sx={{ borderStyle: 'dashed' }} />
 
       <Stack spacing={2}>
-        <Typography variant="h5"> {t('Description')}</Typography>
+
         <Markdown content={description} />
       </Stack>
 
