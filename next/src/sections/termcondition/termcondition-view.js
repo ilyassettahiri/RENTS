@@ -12,7 +12,7 @@ import Markdown from 'src/components/markdown';
 
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
-import ContactInfo from './termcondition-info';
+import ContactInfo from 'src/sections/contact/contact-info';
 
 // ----------------------------------------------------------------------
 
@@ -51,7 +51,7 @@ export default function TermconditionView() {
         )}
       </Container>
 
-      {/* <ContactInfo /> */}
+       <ContactInfo />
     </>
   );
 }

@@ -12,13 +12,17 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
- const offices = [
-  {
-    name: 'Rents.ma',
-    address: 'Centre Villa , Casablanca , Morocco 45000',
-    latlng: [33.5731, -7.5898], // Latitude and longitude for Casablanca, Morocco
-  },
-];
+const offices = {
+  name: "Rents.ma",
+  attributes: {
+    address: "Centre Ville",
+    city: "Casablanca",
+    zip: "45000",
+    country: "Morocco"
+  }
+};
+
+
 
 export default function ContactInfo() {
   return (
@@ -48,8 +52,8 @@ export default function ContactInfo() {
                 <Iconify icon="carbon:email" width={24} sx={{ mr: 1 }} /> Email
               </Stack>
 
-              <Link color="inherit" variant="body2" href="mailto:hello@example.com">
-                hello@example.com
+              <Link color="inherit" variant="body2" href="mailto:contact@rents.ma">
+                contact@rents.ma
               </Link>
             </Stack>
 
@@ -58,7 +62,7 @@ export default function ContactInfo() {
                 <Iconify icon="carbon:mobile" width={24} sx={{ mr: 1 }} /> Phone
               </Stack>
 
-              <Typography variant="body2">(907) 555-0101</Typography>
+              <Typography variant="body2">+212 623228392</Typography>
             </Stack>
 
             <Stack spacing={1}>
@@ -67,7 +71,7 @@ export default function ContactInfo() {
               </Stack>
 
               <Typography variant="body2">
-                3891 Ranchview Dr. Richardson, California 62639
+                City centre, Casablanca 45000
               </Typography>
             </Stack>
 

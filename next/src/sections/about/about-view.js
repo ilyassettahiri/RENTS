@@ -4,6 +4,11 @@ import { useMemo } from "react";
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
 
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+
+import FeaturedPosts from 'src/sections/blog/travel/featured-posts';
+
 import Team from '../components/listings/team/team';
 import About from './about';
 import OurClients from '../components/listings/our-clients';
@@ -60,7 +65,14 @@ export default function AboutView() {
         last={aboutContent.last}
         profilePicture={about.attributes?.profile_picture}
       />
-      <OurClients brands={ourclients} />
+
+            <Container>
+              <Typography variant="h3" sx={{ my: 3 }}>  Latest Posts </Typography>
+
+            </Container>
+      <FeaturedPosts posts={recentArticles} Loading={isLoading} />
+
+      {/* <OurClients brands={ourclients} /> */}
 
     </>
   );

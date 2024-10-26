@@ -14,7 +14,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 
 
-import ContactInfo from './privacy-info';
+import ContactInfo from 'src/sections/contact/contact-info';
 
 // ----------------------------------------------------------------------
 
@@ -53,7 +53,7 @@ export default function PrivacyView() {
         )}
       </Container>
 
-      {/* <ContactInfo /> */}
+      <ContactInfo />
     </>
   );
 }

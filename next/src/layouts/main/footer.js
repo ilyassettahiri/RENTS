@@ -92,7 +92,7 @@ export default function Footer() {
 
 
 
-              <Stack spacing={2} alignItems="flex-start">
+              <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
 
                 <Typography variant="h6">{t('importantLinks')}</Typography>
 

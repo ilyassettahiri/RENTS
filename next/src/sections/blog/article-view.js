@@ -8,9 +8,9 @@ import CrudService from "src/services/cruds-service";
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 
 import { paths } from 'src/routes/paths';
-import FeaturedPosts from './travel/featured-posts';
 
 import GeneralArticleSkeleton from 'src/sections/blog/travel/general-article-skeleton';
 
@@ -18,6 +18,7 @@ import GeneralArticleSkeleton from 'src/sections/blog/travel/general-article-ske
 import Markdown from 'src/components/markdown';
 import CustomBreadcrumbs from 'src/components/custom-breadcrumbs';
 import PostHeroSkeleton from 'src/sections/blog/travel/post-hero-skeleton';
+import FeaturedPosts from './travel/featured-posts';
 
 import PostTags from './common/post-tags';
 import PostAuthor from './common/post-author';
@@ -113,10 +114,18 @@ export default function ArticleView({ params }) {
 
 
 
-                  <FeaturedPosts posts={formattedData.recentArticles} Loading={isLoading} />
 
 
           </Container>
+
+            <Container>
+              <Typography variant="h3" sx={{ my: 3 }}>  Recommended for you              </Typography>
+
+            </Container>
+
+            <FeaturedPosts posts={formattedData.recentArticles} Loading={isLoading} />
+
+
 
         </>
       )}

@@ -6,13 +6,13 @@ const StyledMarkdown = styled('div', {
   shouldForwardProp: (prop) => prop !== 'firstLetter',
 })(({ firstLetter, theme }) => ({
   // Text
-  h1: { marginBottom: 40,marginTop: 4, ...theme.typography.h1 },
-  h2: { marginBottom: 40,marginTop: 4, ...theme.typography.h2 },
-  h3: { marginBottom: 40,marginTop: 4, ...theme.typography.h3 },
-  h4: { marginBottom: 40,marginTop: 4, ...theme.typography.h4 },
-  h5: { marginBottom: 40,marginTop: 4, ...theme.typography.h5 },
-  h6: { marginBottom: 40,marginTop: 4, ...theme.typography.h6 },
-  p: { marginBottom: 40,marginTop: 4, ...theme.typography.body1 },
+  h1: { marginBottom: 30,marginTop: 4, ...theme.typography.h1 },
+  h2: { marginBottom: 30,marginTop: 4, ...theme.typography.h2 },
+  h3: { marginBottom: 30,marginTop: 4, ...theme.typography.h3 },
+  h4: { marginBottom: 30,marginTop: 4, ...theme.typography.h4 },
+  h5: { marginBottom: 30,marginTop: 4, ...theme.typography.h5 },
+  h6: { marginBottom: 30,marginTop: 4, ...theme.typography.h6 },
+  p: { marginBottom: 20,marginTop: 4, ...theme.typography.body1 },
 
   br: {
     display: 'grid',
@@ -33,7 +33,7 @@ const StyledMarkdown = styled('div', {
   '& ul, & ol': {
     margin: 0,
     '& li': {
-      lineHeight: 3,
+      lineHeight: 2,
     },
   },
 

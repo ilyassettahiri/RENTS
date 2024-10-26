@@ -6,7 +6,7 @@ import { useMemo } from "react";
 import Divider from '@mui/material/Divider';
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
-import ContactInfo from './contact-info';
+import ContactInfo from 'src/sections/contact/contact-info';
 import ContactForm from './contact-form';
 
 export default function ContactView() {
@@ -25,7 +25,7 @@ export default function ContactView() {
 
   return (
     <>
-      {/* <ContactInfo /> */}
+      <ContactInfo />
       <ContactForm />
       <Divider sx={{ mb: { xs: 6, md: 20 } }} />
     </>

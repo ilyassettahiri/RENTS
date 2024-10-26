@@ -4,6 +4,11 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/ap
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import axios from 'axios'; // Moved axios import before './styles'
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import Iconify from 'src/components/iconify';
+import Typography from '@mui/material/Typography';
+import Image from 'src/components/image';
 
 import { GOOGLE_MAP_API } from 'src/config-global';
 import ListingItem from 'src/sections/components/listings/list/listing-item';
@@ -95,9 +100,57 @@ function MapPopup({ offices, onClose }) {
   );
 
   return (
-    <Box sx={{ width: 250, overflow: 'hidden', borderRadius: 1.5, position: 'relative' }}>
-        <ListingItem key={offices.id} tour={offices} />
-    </Box>
+
+
+
+
+
+        <Paper
+        sx={{
+          width: 220,
+          overflow: 'hidden',
+          borderRadius: 1.5,
+
+          position: 'relative',
+        }}
+        >
+
+
+        {offices && <Image alt="photo" src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${offices.attributes.picture}`}  ratio="4/3" />}
+
+        <Stack
+          spacing={1}
+          sx={{
+            pt: 1,
+            wordBreak: 'break-all',
+            ...(!offices.attributes.picture && {
+
+
+            }),
+          }}
+        >
+
+
+
+          {offices.attributes.address && (
+            <Stack direction="row" alignItems="flex-start" sx={{ typography: 'caption' }}>
+              <Iconify icon="carbon:location" width={24} sx={{ mr: 0.5 }} />
+              {offices.attributes.address} {offices.attributes.city} {offices.attributes.country} {offices.attributes.zip}
+
+
+            </Stack>
+          )}
+
+          {offices.attributes.phone && (
+            <Stack direction="row" alignItems="flex-start" sx={{ typography: 'caption' }}>
+              <Iconify icon="carbon:phone" width={18} sx={{ mr: 0.5 }} />
+              {offices.attributes.phone}
+            </Stack>
+          )}
+        </Stack>
+        </Paper>
+
+
   );
 }
 

@@ -190,6 +190,8 @@ const cities = [
   'Sidi Kacem',
   'Khenifra',
   'Tifelt',
+  'Taghazout',
+
   'Essaouira',
   'Taroudant',
   'El Kelaa des Sraghna',

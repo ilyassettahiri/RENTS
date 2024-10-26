@@ -30,6 +30,8 @@ const cities = [
   { label: 'Beni Mellal' },
   { label: 'El Jadida' },
   { label: 'Taza' },
+  { label: 'Taghazout' },
+
   { label: 'Ait Melloul' },
   { label: 'Nador' },
   { label: 'Settat' },
