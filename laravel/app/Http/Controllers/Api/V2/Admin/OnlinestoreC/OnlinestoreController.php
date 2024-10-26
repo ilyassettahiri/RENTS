@@ -79,15 +79,17 @@ class OnlinestoreController extends JsonApiController
     private function generateUrl($title)
     {
 
-        $url = Str::slug($title, '-', null);
+            // Convert accented characters to ASCII equivalents
+            $title = Str::ascii($title);
 
+            // Generate slug from title
+            $url = Str::slug($title, '-', null);
 
-        $uniqueNumber = rand(10000000, 99999999);
+            // Append a unique number to ensure uniqueness
+            $uniqueNumber = rand(1000, 9999);
+            $url .= '-' . $uniqueNumber;
 
-
-        $url .= '-' . $uniqueNumber;
-
-        return $url;
+            return $url;
     }
 
 

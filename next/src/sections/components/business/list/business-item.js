@@ -154,9 +154,11 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                         sx={{
                           height: 1,
                           objectFit: 'cover',
-                          width: { sm: 300 },
+                          width: { sm: 300,  },
+                          aspectRatio: '6/4',
                           ...(vertical && {
                             width: { sm: 1 },
+                            aspectRatio: '6/4',
                           }),
                         }}
                       />

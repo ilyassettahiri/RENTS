@@ -247,7 +247,13 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                       <Stack spacing={0}>
                           <Link variant="subtitle2" color="inherit" >
 
-                          {capitalizeFirstLetter(seller.name.split(' ')[0])}
+
+
+                          <TextMaxLine variant="subtitle2" line={1}>
+
+                            {capitalizeFirstLetter(seller.name)}
+                          </TextMaxLine>
+
                           </Link>
 
 
@@ -261,7 +267,13 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
                                   <Box sx={{ typography: 'caption' }}>
-                                  {capitalizeFirstLetter(city)}
+
+
+                                    <TextMaxLine variant="caption" line={1}>
+
+                                      {capitalizeFirstLetter(city)}
+                                    </TextMaxLine>
+
                                   </Box>
 
 
@@ -391,7 +403,14 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             <Grid xs={12}>
               <Stack direction="row" sx={{ typography: 'body2' }}>
                 <Iconify icon="carbon:user" sx={{ mr: 1 }} />
-                {capitalizeFirstLetter(jobtype)}
+
+
+
+                      <TextMaxLine variant="body2" line={1}>
+
+                          {capitalizeFirstLetter(jobtype)}
+                      </TextMaxLine>
+
               </Stack>
             </Grid>
           </Grid>

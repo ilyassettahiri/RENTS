@@ -295,7 +295,12 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                       <Link variant="subtitle2" color="inherit" >
 
 
-                      {capitalizeFirstLetter(seller.name.split(' ')[0])}
+
+
+                      <TextMaxLine variant="subtitle2" line={1}>
+
+                        {capitalizeFirstLetter(seller.name)}
+                      </TextMaxLine>
 
                       </Link>
 
@@ -308,7 +313,10 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
 
                           <Box sx={{ typography: 'caption' }}>
-                          {capitalizeFirstLetter(city)}
+                           <TextMaxLine variant="caption" line={1}>
+
+                            {capitalizeFirstLetter(city)}
+                            </TextMaxLine>
                           </Box>
 
 
