@@ -19,7 +19,7 @@ const horizontalBarChartData = {
     {
       label: "Sales by age",
       color: "dark",
-      data: [15, 20, 12, 60, 20, 15],
+      data: [0, 0, 0, 0, 0, 0],
     },
   ],
 };

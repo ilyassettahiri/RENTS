@@ -51,27 +51,27 @@ function Social() {
         <SocialItem
           icon={{ color: "facebook", component: <FacebookIcon /> }}
           title="Facebook"
-          percentage={80}
+          percentage={0}
         />
         <SocialItem
           icon={{ color: "twitter", component: <TwitterIcon /> }}
           title="Facebook"
-          percentage={40}
+          percentage={0}
         />
         <SocialItem
           icon={{ color: "reddit", component: <RedditIcon /> }}
-          title="Reddit"
-          percentage={30}
+          title="Search"
+          percentage={0}
         />
         <SocialItem
           icon={{ color: "youtube", component: <YouTubeIcon /> }}
           title="Youtube"
-          percentage={25}
+          percentage={0}
         />
         <SocialItem
           icon={{ color: "instagram", component: <InstagramIcon /> }}
           title="Instagram"
-          percentage={15}
+          percentage={0}
         />
       </SoftBox>
     </Card>

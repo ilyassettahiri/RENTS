@@ -33,22 +33,26 @@ export {
 
 const salesTableData = [
   {
-    country: [US, "united state"],
-    sales: 2500,
-    bounce: "29.9%",
+    country: ["", "Casablanca"],
+    sales: 0,
+    bounce: "0%",
   },
   {
-    country: [DE, "germany"],
-    sales: "3.900",
-    bounce: "40.22%",
+    country: ["", "Marrakech"],
+    sales: "0",
+    bounce: "0%",
   },
   {
-    country: [GB, "great britain"],
-    sales: "1.400",
-    bounce: "23.44%",
+    country: ["", "Rabat"],
+    sales: "0",
+    bounce: "0%",
   },
-  { country: [BR, "brasil"], sales: 562, bounce: "32.14%" },
-  { country: [AU, "australia"], sales: 400, bounce: "56.83%" },
+  { country: ["", "Agadir"], sales: 0, bounce: "0%" },
+  { country: ["", "Tanger"], sales: 0, bounce: "0%" },
+  { country: ["", "Fes"], sales: 0, bounce: "0%" },
+  { country: ["", "Meknes"], sales: 0, bounce: "0%" },
+
+
 ];
 
 export default salesTableData;

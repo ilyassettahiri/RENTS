@@ -500,6 +500,9 @@ class ServicePageController extends JsonApiController
 
                                 'id' => $listing->id,
 
+                                'phone' => $listing->phone,
+
+
                                 'images' => $images,
 
                                 'status' => $listing->status,

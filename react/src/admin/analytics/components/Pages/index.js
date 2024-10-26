@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -53,20 +40,20 @@ function Pages() {
                 <PagesHeaderCell>page</PagesHeaderCell>
                 <PagesHeaderCell>pages view</PagesHeaderCell>
                 <PagesHeaderCell>avg. time</PagesHeaderCell>
-                <PagesHeaderCell>bounce rate</PagesHeaderCell>
+                
               </TableRow>
             </SoftBox>
             <TableBody>
-              <PagesBodyCell rows={["1. /bits", 345, "00:17:07", "40.91%"]} />
-              <PagesBodyCell rows={["2. /pages/argon-dashboard", 520, "00:23:13", "31.14%"]} />
-              <PagesBodyCell rows={["3. /pages/soft-ui-dashboard", 122, "00:3:10", "54.10%"]} />
-              <PagesBodyCell rows={["4. /bootstrap-themes", "1,900", "00:30:42", "20.93%"]} />
-              <PagesBodyCell rows={["5. /react-themes", "1,442", "00:31:50", "34.98%"]} />
+              <PagesBodyCell rows={["1. /", 0, "00:00"]} />
+              <PagesBodyCell rows={["2. /", 0, "00:00"]} />
+              <PagesBodyCell rows={["3. /", 0, "00:00"]} />
+              <PagesBodyCell rows={["4. /", "0", "00:00"]} />
+              <PagesBodyCell rows={["5. /", "0", "00:00"]} />
               <PagesBodyCell
-                rows={["6. /product/argon-dashboard-angular", "201", "00:12:42", "21.4%"]}
+                rows={["6. /", "0", "00:00"]}
               />
               <PagesBodyCell
-                rows={["7. /product/material-dashboard-pro", "2,115", "00:50:11", "34.98%"]}
+                rows={["7. /", "0", "00:00"]}
                 noBorder
               />
             </TableBody>

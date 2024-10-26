@@ -523,12 +523,12 @@ const routes = [
         route: "/finance/overview",
         component: <Overview />,
       },
-      {
-        name: "Payment Settings",
-        key: "payment-settings",
-        route: "/finance/payment-settings",
-        component: <Paymentsettings />,
-      },
+      // {
+      //   name: "Payment Settings",
+      //   key: "payment-settings",
+      //   route: "/finance/payment-settings",
+      //   component: <Paymentsettings />,
+      // },
       {
         name: "Invoices",
         key: "invoices",
@@ -563,12 +563,12 @@ const routes = [
         route: "/store/detail-store",
         component: <DetailStore />,
       },
-      {
-        name: "Plan",
-        key: "plan",
-        route: "/store/plan",
-        component: <Plan />,
-      },
+      // {
+      //   name: "Plan",
+      //   key: "plan",
+      //   route: "/store/plan",
+      //   component: <Plan />,
+      // },
       
     ],
   },

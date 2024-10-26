@@ -68,6 +68,22 @@ function Security() {
     <DashboardLayout stickyNavbar>
       <SoftBox mt={5}>
         
+
+
+
+        <SoftBox mb={7}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+              <ChangePassword />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <PasswordRequirements />
+            </Grid>
+          </Grid>
+        </SoftBox>
+
+
+
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
@@ -78,16 +94,7 @@ function Security() {
             </Grid>
           </Grid>
         </SoftBox>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-              <ChangePassword />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <PasswordRequirements />
-            </Grid>
-          </Grid>
-        </SoftBox>
+
       </SoftBox>
     </DashboardLayout>
   );

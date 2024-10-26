@@ -235,15 +235,17 @@ class ListingController extends JsonApiController
     private function generateUrl($title)
     {
 
-        $url = Str::slug($title, '-', null);
+            // Convert accented characters to ASCII equivalents
+            $title = Str::ascii($title);
 
+            // Generate slug from title
+            $url = Str::slug($title, '-', null);
 
-        $uniqueNumber = rand(1000000000, 9999999999);
+            // Append a unique number to ensure uniqueness
+            $uniqueNumber = rand(1000000000, 9999999999);
+            $url .= '-' . $uniqueNumber;
 
-
-        $url .= '-' . $uniqueNumber;
-
-        return $url;
+            return $url;
     }
 
 
@@ -313,7 +315,7 @@ class ListingController extends JsonApiController
                         $imagexlarge->scaleDown(width: 1500);
 
 
-                        $imagesmall->scaleDown(width: 400);
+                        $imagesmall->scaleDown(width: 500);
 
 
 

@@ -50,7 +50,7 @@ function Tracking() {
                             <SoftBox p={1}>
                               <FormField
                                 type="text"
-                                placeholder="Enter your tracking number here ..."
+                                placeholder="tracking number"
                                
                                 name="title"
                                 

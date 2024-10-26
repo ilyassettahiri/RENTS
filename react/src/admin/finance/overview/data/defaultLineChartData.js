@@ -19,12 +19,12 @@ const defaultLineChartData = {
     {
       label: "Facebook Ads",
       color: "info",
-      data: [50, 100, 200, 190, 400, 350, 500, 450, 700],
+      data: [0,],
     },
     {
       label: "Google Ads",
       color: "dark",
-      data: [10, 30, 40, 120, 150, 220, 280, 250, 280],
+      data: [0,],
     },
   ],
 };

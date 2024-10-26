@@ -117,9 +117,9 @@ function Overview() {
 
 
   // DefaultStatisticsCard state for the dropdown value
-  const [salesDropdownValue, setSalesDropdownValue] = useState("6 May - 7 May");
-  const [customersDropdownValue, setCustomersDropdownValue] = useState("6 May - 7 May");
-  const [revenueDropdownValue, setRevenueDropdownValue] = useState("6 May - 7 May");
+  const [salesDropdownValue, setSalesDropdownValue] = useState("Today");
+  const [customersDropdownValue, setCustomersDropdownValue] = useState("Today");
+  const [revenueDropdownValue, setRevenueDropdownValue] = useState("Today");
 
   // DefaultStatisticsCard state for the dropdown action
   const [salesDropdown, setSalesDropdown] = useState(null);
@@ -168,10 +168,10 @@ function Overview() {
             <Grid item xs={12} sm={4}>
               <DefaultStatisticsCard
                 title="sales"
-                count="$230,220"
+                count="$0"
                 percentage={{
                   color: "success",
-                  value: "+55%",
+                  value: "+0%",
                   label: "since last month",
                 }}
                 dropdown={{
@@ -184,10 +184,10 @@ function Overview() {
             <Grid item xs={12} sm={4}>
               <DefaultStatisticsCard
                 title="customers"
-                count="3.200"
+                count="0"
                 percentage={{
                   color: "success",
-                  value: "+12%",
+                  value: "+0%",
                   label: "since last month",
                 }}
                 dropdown={{
@@ -200,10 +200,10 @@ function Overview() {
             <Grid item xs={12} sm={4}>
               <DefaultStatisticsCard
                 title="avg. revenue"
-                count="$1.200"
+                count="$0"
                 percentage={{
                   color: "secondary",
-                  value: "+$213",
+                  value: "+$0",
                   label: "since last month",
                 }}
                 dropdown={{
@@ -217,10 +217,8 @@ function Overview() {
         </SoftBox>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} lg={4}>
-              <ChannelsChart />
-            </Grid>
-            <Grid item xs={12} sm={6} lg={8}>
+            
+            <Grid item xs={12} sm={12} lg={12}>
               <DefaultLineChart
                 title="Revenue"
                 description={
@@ -252,10 +250,10 @@ function Overview() {
         <SoftBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={8}>
-              <HorizontalBarChart title="Sales by age" chart={horizontalBarChartData} />
+              <HorizontalBarChart title="Reservation by age" chart={horizontalBarChartData} />
             </Grid>
             <Grid item xs={12} lg={4}>
-              <SalesTable title="Sales by Country" rows={salesTableData} />
+              <SalesTable title="Reservation by city" rows={salesTableData} />
             </Grid>
           </Grid>
         </SoftBox>
@@ -264,7 +262,7 @@ function Overview() {
             <Card>
               <SoftBox pt={3} px={3}>
                 <SoftTypography variant="h6" fontWeight="medium">
-                  Top Selling Products
+                  Top Selling Listings
                 </SoftTypography>
               </SoftBox>
               <SoftBox py={1}>

@@ -87,32 +87,32 @@ function Analytics() {
             <Grid item xs={12} sm={6} lg={3}>
               <MiniStatisticsCard
                 title={{ text: "users", fontWeight: "medium" }}
-                count="930"
-                percentage={{ color: "success", text: "+55%" }}
+                count="0"
+                percentage={{ color: "success", text: "+0%" }}
                 icon={{ color: "info", component: "account_circle" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
               <MiniStatisticsCard
                 title={{ text: "new users", fontWeight: "medium" }}
-                count="744"
-                percentage={{ color: "success", text: "+3%" }}
+                count="0"
+                percentage={{ color: "success", text: "+0%" }}
                 icon={{ color: "info", component: "public" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
               <MiniStatisticsCard
                 title={{ text: "sessions", fontWeight: "medium" }}
-                count="1,414"
-                percentage={{ color: "success", text: "-2%" }}
+                count="0"
+                percentage={{ color: "success", text: "0%" }}
                 icon={{ color: "info", component: "watch" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} lg={3}>
               <MiniStatisticsCard
                 title={{ text: "Pages/Session", fontWeight: "medium" }}
-                count="1.76"
-                percentage={{ color: "success", text: "+5%" }}
+                count="0"
+                percentage={{ color: "success", text: "+0%" }}
                 icon={{ color: "info", component: "image" }}
               />
             </Grid>
@@ -120,7 +120,7 @@ function Analytics() {
         </SoftBox>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
+            <Grid item xs={12} lg={12}>
               <DefaultLineChart
                 title="Traffic channels"
                 description={
@@ -133,19 +133,7 @@ function Analytics() {
                 chart={defaultLineChartData}
               />
             </Grid>
-            <Grid item xs={12} lg={5}>
-              <ComplexReportsDoughnutChart
-                title="Referrals"
-                chart={complexReportsDoughnutChartData}
-                tooltip="See which websites are sending traffic to your website"
-                action={{
-                  type: "internal",
-                  route: "/",
-                  color: "secondary",
-                  
-                }}
-              />
-            </Grid>
+            
           </Grid>
         </SoftBox>
         <Grid container spacing={3}>

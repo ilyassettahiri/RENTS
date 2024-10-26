@@ -137,7 +137,7 @@ function BasicInfo({ user }) {
           <Grid item xs={12} sm={6}>
             <FormField
               label="First Name"
-              placeholder="Alec"
+              placeholder="First Name"
               name="firstName"
               value={info.firstName}
               onChange={changeHandler}
@@ -219,8 +219,8 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Street Address"
-              placeholder="123 Main St"
+              label=" Address"
+              placeholder="Address"
               name="streetAddress"
               value={info.streetAddress}
               onChange={changeHandler}
@@ -228,8 +228,8 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Phone Number"
-              placeholder="+40 735 631 620"
+              label="Phone"
+              placeholder="06 35 63 16 20"
               inputProps={{ type: "tel" }}
               name="phoneNumber"
               value={info.phoneNumber}

@@ -134,7 +134,7 @@ function MapPopup({ offices, onClose }) {
 
           {offices.attributes.address && (
             <Stack direction="row" alignItems="flex-start" sx={{ typography: 'caption' }}>
-              <Iconify icon="carbon:location" width={24} sx={{ mr: 0.5 }} />
+              <Iconify icon="carbon:location" width={22} sx={{ mr: 0.5 }} />
               {offices.attributes.address} {offices.attributes.city} {offices.attributes.country} {offices.attributes.zip}
 
 

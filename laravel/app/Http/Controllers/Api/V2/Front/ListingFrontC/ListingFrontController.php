@@ -976,6 +976,8 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
+
 
                                                 'images' => $images,
 
@@ -2101,6 +2103,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -3230,6 +3233,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -4360,6 +4364,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -5484,6 +5489,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -6614,6 +6620,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -7743,6 +7750,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -8865,6 +8873,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -9979,6 +9988,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -11109,6 +11119,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -12240,6 +12251,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -13369,6 +13381,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -14500,6 +14513,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -15635,6 +15649,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -16765,6 +16780,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -17887,6 +17903,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -19014,6 +19031,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -20140,6 +20158,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -21266,6 +21285,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -22397,6 +22417,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -23524,6 +23545,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -24641,6 +24663,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -25772,6 +25795,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -26895,6 +26919,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -28016,6 +28041,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -29140,6 +29166,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -30260,6 +30287,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -31386,6 +31414,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -32510,6 +32539,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -33624,6 +33654,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -34769,6 +34800,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -35888,6 +35920,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -37004,6 +37037,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -38119,6 +38153,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -39232,6 +39267,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -40342,6 +40378,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -41451,6 +41488,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -42565,6 +42603,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -43681,6 +43720,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -44800,6 +44840,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -45911,6 +45952,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -47025,6 +47067,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -48144,6 +48187,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -49261,6 +49305,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -50373,6 +50418,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -51484,6 +51530,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -52592,6 +52639,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -53702,6 +53750,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -54818,6 +54867,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -55929,6 +55979,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -57033,6 +57084,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -58139,6 +58191,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -59248,6 +59301,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 
@@ -60355,6 +60409,7 @@ class ListingFrontController extends JsonApiController
                                                 'city' => $listing->city,
 
                                                 'id' => $idResult['id'],
+                                                'phone' => $listing->phone,
 
                                                 'images' => $images,
 

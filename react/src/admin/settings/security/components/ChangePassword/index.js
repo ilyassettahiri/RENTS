@@ -129,14 +129,7 @@ function ChangePassword() {
 
   return (
     <Card id="change-password">
-      <SoftBox pt={2} px={2} lineHeight={1}>
-        <SoftTypography variant="h6" fontWeight="medium">
-          {t('Change Password')}
-        </SoftTypography>
-        <SoftTypography variant="button" fontWeight="regular" color="text">
-          {t('We will send you an email with the verification code.')}
-        </SoftTypography>
-      </SoftBox>
+      
       <SoftBox component="form" p={2} onSubmit={submitHandler}>
         <Grid container spacing={3}>
           <Grid item xs={12}>

@@ -501,6 +501,8 @@ class JobPageController extends JsonApiController
                                 'city' => $listing->city,
 
                                 'id' => $listing->id,
+                                'phone' => $listing->phone,
+
 
                                 'jobtype' => $listing->responsibilities,
 

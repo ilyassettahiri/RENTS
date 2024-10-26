@@ -33,7 +33,7 @@ import breakpoints from "assets/theme/base/breakpoints";
 
 // Data
 import salesTableData from "admin/dashboard/data/salesTableData";
-import reportsBarChartData from "admin/dashboard//data/reportsBarChartData";
+import reportsBarChartData from "admin/dashboard/data/reportsBarChartData";
 import gradientLineChartData from "admin/dashboard/data/gradientLineChartData";
 
 function Dashboard() {
@@ -222,7 +222,7 @@ function Dashboard() {
                 title="active users"
                 description={
                   <>
-                    (<strong>+23%</strong>) {t("than last week")}
+                    (<strong>+0%</strong>) {t("than last week")}
                   </>
                 }
                 chart={barChartData}
@@ -239,7 +239,7 @@ function Dashboard() {
                       <Icon sx={{ fontWeight: "bold" }}>arrow_upward</Icon>
                     </SoftBox>
                     <SoftTypography variant="button" color="text" fontWeight="medium">
-                      4% {t("more")}{" "}
+                      0% {t("more")}{" "}
                       <SoftTypography variant="button" color="text" fontWeight="regular">
                       ({t("Current vs. Last Month")})
 
