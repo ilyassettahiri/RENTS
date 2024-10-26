@@ -228,12 +228,12 @@ const routes = [
         route: "/reservation/all-reservations",
         component: <ListReservation />,
       },
-      {
-        name: "Tracking",
-        key: "tracking",
-        route: "/reservation/tracking",
-        component: <Tracking />,
-      },
+      // {
+      //   name: "Tracking",
+      //   key: "tracking",
+      //   route: "/reservation/tracking",
+      //   component: <Tracking />,
+      // },
     ],
   },
 

@@ -30,7 +30,7 @@ function CreateStore() {
   const [address, setAddress] = useState({
     address: "",
     city: "",
-    country: "",
+    country: "Morocco",
     zip: "",
   });
 
@@ -204,7 +204,7 @@ function CreateStore() {
 
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                            Type <span style={{ color: "red",}}> * </span>
+                            Category <span style={{ color: "red",}}> * </span>
                           </SoftTypography>
                         </SoftBox>
                         
@@ -213,12 +213,63 @@ function CreateStore() {
                             placeholder="Select Category"
                             options={[
                               
-                              { value: "boats", label: "boats" },
+                              
+                              { value: "boats", label: "boats"},
                               { value: "camions", label: "camions" },
-                              { value: "caravans", label: "caravans"  },
+                              { value: "caravans", label: "caravans"},
                               { value: "cars", label: "cars"},
-                              { value: "engins", label: "engins" },
-                              { value: "motos", label: "motos" },
+                              { value: "engins", label: "engins"},
+                              { value: "motos", label: "motos"},
+                              { value: "scooters", label: "scooters"},
+                              { value: "taxiaeroports", label: "taxiaeroports" },
+                              { value: "transportations", label: "transportations" },
+                              { value: "velos", label: "velos"},
+                              { value: "apartments", label: "apartments" },
+                              { value: "bureauxs", label: "bureauxs" },
+                              { value: "magasins", label: "magasins" },
+                              { value: "maisons", label: "maisons" },
+                              { value: "riads", label: "riads"},
+                              { value: "terrains", label: "terrains"},
+                              { value: "villas", label: "villas" },
+                              { value: "services", label: "services" },
+                              { value: "jobs", label: "jobs"},
+  
+                              { value: "audios", label: "audios" },
+                              { value: "cameras", label: "cameras"},
+                              { value: "chargers", label: "chargers" },
+                              { value: "drones", label: "drones"},
+                              { value: "gamings", label: "gamings" },
+                              { value: "laptops", label: "laptops"},
+                              { value: "lightings", label: "lightings"},
+                              { value: "printers", label: "printers"},
+                              { value: "routers", label: "routers"},
+                              { value: "tablettes", label: "tablettes" },
+                              { value: "electricaltools", label: "electricaltools"},
+                              { value: "ladders", label: "ladders" },
+                              { value: "mechanicaltools", label: "mechanicaltools" },
+                              { value: "powertools", label: "powertools" },
+                              { value: "pressurewashers", label: "pressurewashers" },
+                              { value: "billiards", label: "billiards"},
+                              { value: "boxings", label: "boxings" },
+                              { value: "divings", label: "divings"},
+                              { value: "footballs", label: "footballs" },
+                              { value: "golfs", label: "golfs" },
+                              { value: "huntings", label: "huntings"},
+                              { value: "musculations", label: "musculations" },
+                              { value: "surfs", label: "surfs" },
+                              { value: "tennis", label: "tennis"},
+                              { value: "clothes", label: "clothes" },
+                              { value: "jewelrys", label: "jewelrys"},
+                              { value: "activities", label: "activities"},
+                              { value: "livres", label: "livres" },
+                              { value: "musicals", label: "musicals" },
+                              { value: "furnitures", label: "furnitures" },
+                              { value: "houseappliances", label: "houseappliances" },
+                              { value: "eclairages", label: "eclairages"},
+                              { value: "mobiliers", label: "mobiliers" },
+                              { value: "photographies", label: "photographies" },
+                              { value: "sonorisations", label: "sonorisations" },
+                              { value: "tentes", label: "tentes" }
                             
                             ]}
 
