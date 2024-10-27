@@ -3,7 +3,7 @@ import AboutView from 'src/sections/about/about-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - About us',
+  title: 'About us',
 };
 
 export default function AboutPage() {

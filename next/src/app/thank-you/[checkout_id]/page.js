@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - Order Completed',
+  title: 'Thank You',
 };
 
 const ThankYouPage = ({ params }) => <ThankYouView params={params} />;

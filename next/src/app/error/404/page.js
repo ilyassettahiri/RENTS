@@ -3,7 +3,7 @@ import NotFoundView from 'src/sections/error/not-found-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - 404 Page Not Found!',
+  title: '404 Page Not Found!',
 };
 
 export default function NotFoundPage() {

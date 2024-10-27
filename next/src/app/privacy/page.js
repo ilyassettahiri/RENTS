@@ -3,7 +3,7 @@ import PrivacyView from 'src/sections/privacy/privacy-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - Privacy Policy',
+  title: 'Privacy Policy',
 };
 
 export default function PrivacyPage() {

@@ -8,8 +8,9 @@ import ClientAnalytics from './client-analytics';
 
 
 export const metadata = {
-  title: 'Rents.ma: Morocco Rentals Marketplace',
-  description: 'Morocco Rentals Marketplace',
+  title: 'RENTS.ma: Discover Morocco’s Leading Marketplace for Rentals - Cars, Bikes, Properties & More',
+  description: 'Explore RENTS.ma, Morocco’s top rental marketplace offering a wide range of rental options including cars, bikes, properties, and equipment. Find trusted rentals with flexible terms across Morocco’s popular cities like Marrakech, Casablanca, and beyond.',
+
   icons: {
     icon: '/favicon/favicon.ico', // Make sure the path is correct relative to the public directory
     shortcut: '/favicon/favicon-32x32.png',

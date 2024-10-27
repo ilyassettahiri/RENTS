@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - Reservation Detail',
+  title: 'Reservation Detail',
 };
 
 const DashboardReservationPage = ({ params }) => <DashboardReservationView params={params} />;

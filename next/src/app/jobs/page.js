@@ -3,7 +3,7 @@ import JobsView from 'src/sections/jobs-list/jobs-list-view';
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - Find Your Next Job In Morocco',
+  title: 'Jobs',
 };
 
 export default function JobsPage() {

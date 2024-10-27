@@ -3,7 +3,7 @@ import DashboardPersonalView from 'src/sections/dashboard/dashboard-personal-vie
 // ----------------------------------------------------------------------
 
 export const metadata = {
-  title: 'Rents.ma - Personal',
+  title: 'Account info',
 };
 
 export default function DashboardPersonalPage() {

@@ -8,7 +8,7 @@ export async function generateMetadata({ params }) {
 
   // Set the title dynamically based on the `url` param
   return {
-    title: `Rents.ma - ${url}`, // Customize the title as needed
+    title: `${url}`, // Customize the title as needed
   };
 }
 
