@@ -30,12 +30,12 @@ export const paths = {
   travel: {
     root: '/info-page',
 
-    tour: `/listing-page`, // Base path for the dynamic route
+    tour: ``, // Base path for the dynamic route
 
     checkout: '/checkout',
     orderCompleted: '/thank-you',
     posts: '/blog',
-    post: `/article`,
+    post: `/post`,
     about: '/about',
 
     privacy: '/privacy',
@@ -48,30 +48,30 @@ export const paths = {
   // Career
   career: {
     root: '/services',
-    jobs: '/services-list',
-    job: `/service-page`,
+    jobs: '/services',
+    job: `/service`,
 
   },
 
 
   job: {
     root: '/jobs',
-    jobbs: '/jobs-list',
-    jobb: `/job-page`,
+    jobbs: '/jobs',
+    jobb: `/job`,
 
   },
 
   // E-learning
   eLearning: {
     root: '/business',
-    courses: '/business-list',
+    courses: '/stores',
     course: `/business-page`,
 
   },
   // dashboard
   eCommerce: {
     root: '/dashboard',
-    stores: '/stores',
+    stores: '/store',
     products: '/e-commerce/products',
 
     product: `/dashboard/product`,
