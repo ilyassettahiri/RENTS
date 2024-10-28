@@ -63,7 +63,7 @@ function renderSpecificationsByCategory(category, specifications) {
 
 
   switch (category) {
-    case 'billiards':
+    case 'billiard':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -93,7 +93,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'audios':
+    case 'audio':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -113,7 +113,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'boxings':
+    case 'boxing':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -123,7 +123,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'bureauxs':
+    case 'offices':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -143,7 +143,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'camions':
+    case 'trucks':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -193,7 +193,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'divings':
+    case 'diving':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -213,7 +213,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'eclairages':
+    case 'eclairage':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -223,7 +223,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'electricaltools':
+    case 'electrical-tools':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -243,7 +243,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'footballs':
+    case 'football':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -253,7 +253,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'furnitures':
+    case 'furniture':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -263,7 +263,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'gamings':
+    case 'gaming':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -273,7 +273,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'golfs':
+    case 'golf':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -283,7 +283,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'houseappliances':
+    case 'home-appliances':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -293,7 +293,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'huntings':
+    case 'hunting':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -303,7 +303,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'jewelrys':
+    case 'jewelry':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -333,7 +333,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'lightings':
+    case 'lighting':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -343,7 +343,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'livres':
+    case 'books':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -353,7 +353,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'magasins':
+    case 'shops':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -363,7 +363,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'maisons':
+    case 'houses':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -373,7 +373,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'mechanicaltools':
+    case 'mechanical-tools':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -383,7 +383,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'mobiliers':
+    case 'mobilier':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -393,7 +393,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'motos':
+    case 'motorcycles':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -403,7 +403,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'musculations':
+    case 'gym':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -413,7 +413,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'musicals':
+    case 'musical':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -423,7 +423,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'photographies':
+    case 'photography':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -433,7 +433,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'powertools':
+    case 'power-tools':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -443,7 +443,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'pressurewashers':
+    case 'pressure-washers':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -514,7 +514,7 @@ function renderSpecificationsByCategory(category, specifications) {
           />
         ));
 
-    case 'sonorisations':
+    case 'sound-systems':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -524,7 +524,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'surfs':
+    case 'surf':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -534,7 +534,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'tablettes':
+    case 'tablets':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -544,7 +544,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'taxiaeroports':
+    case 'airport-taxis':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -564,7 +564,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'tentes':
+    case 'tents':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -574,7 +574,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'terrains':
+    case 'lands':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -584,7 +584,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'transportations':
+    case 'transportation':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}
@@ -594,7 +594,7 @@ function renderSpecificationsByCategory(category, specifications) {
         />
       ));
 
-    case 'velos':
+    case 'bicycles':
       return Object.entries(specifications).map(([key, value]) => (
         <OverviewItem
           key={key}

@@ -221,7 +221,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'billiards':
+            case 'billiard':
 
 
                 $this->listingcategory = Billiard::where('url', $url)->first();
@@ -282,7 +282,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'boxings':
+            case 'boxing':
 
                 $this->listingcategory = Boxing::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -340,7 +340,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'divings':
+            case 'diving':
 
 
                             $this->listingcategory = Diving::where('url', $url)->first();
@@ -399,7 +399,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'footballs':
+            case 'football':
 
                             $this->listingcategory = Football::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -458,7 +458,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'golfs':
+            case 'golf':
 
                             $this->listingcategory = Golf::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -518,7 +518,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'huntings':
+            case 'hunting':
 
 
                 $this->listingcategory = Hunting::where('url', $url)->first();
@@ -577,7 +577,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'musculations':
+            case 'gym':
 
                 $this->listingcategory = Musculation::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -637,7 +637,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'surfs':
+            case 'surf':
 
                 $this->listingcategory = Surf::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -755,7 +755,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'audios':
+            case 'audio':
 
 
                 $this->listingcategory = Audio::where('url', $url)->first();
@@ -991,7 +991,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'gamings':
+            case 'gaming':
 
 
                 $this->listingcategory = Gaming::where('url', $url)->first();
@@ -1110,7 +1110,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'lightings':
+            case 'lighting':
 
 
                 $this->listingcategory = Lighting::where('url', $url)->first();
@@ -1288,7 +1288,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'tablettes':
+            case 'tablets':
 
 
                 $this->listingcategory = Tablette::where('url', $url)->first();
@@ -1348,7 +1348,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'eclairages':
+            case 'eclairage':
 
 
                 $this->listingcategory = Eclairage::where('url', $url)->first();
@@ -1407,7 +1407,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'mobiliers':
+            case 'mobilier':
 
 
                 $this->listingcategory = Mobilier::where('url', $url)->first();
@@ -1466,7 +1466,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'photographies':
+            case 'photography':
 
 
                 $this->listingcategory = Photographie::where('url', $url)->first();
@@ -1524,7 +1524,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'sonorisations':
+            case 'sound-systems':
 
 
                 $this->listingcategory = Sonorisation::where('url', $url)->first();
@@ -1584,7 +1584,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'tentes':
+            case 'tents':
 
 
                 $this->listingcategory = Tente::where('url', $url)->first();
@@ -1701,7 +1701,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'jewelrys':
+            case 'jewelry':
 
                 $this->listingcategory = Jewelry::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -1818,7 +1818,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'bureauxs':
+            case 'offices':
 
 
 
@@ -1877,7 +1877,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'magasins':
+            case 'shops':
 
 
                 $this->listingcategory = Magasin::where('url', $url)->first();
@@ -1935,7 +1935,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'maisons':
+            case 'houses':
 
                 $this->listingcategory = Maison::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -2049,7 +2049,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'terrains':
+            case 'lands':
 
 
                 $this->listingcategory = Terrain::where('url', $url)->first();
@@ -2224,7 +2224,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'livres':
+            case 'books':
 
                 $this->listingcategory = Livre::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -2281,7 +2281,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'musicals':
+            case 'musical':
 
 
                 $this->listingcategory = Musical::where('url', $url)->first();
@@ -2339,7 +2339,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'furnitures':
+            case 'furniture':
 
 
                 $this->listingcategory = Furniture::where('url', $url)->first();
@@ -2397,7 +2397,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'houseappliances':
+            case 'home-appliances':
 
 
 
@@ -2455,7 +2455,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'electricaltools':
+            case 'electrical-tools':
 
 
 
@@ -2571,7 +2571,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
 
                 $this->listingcategory = Mechanicaltool::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -2628,7 +2628,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'powertools':
+            case 'power-tools':
 
 
                 $this->listingcategory = Powertool::where('url', $url)->first();
@@ -2685,7 +2685,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'pressurewashers':
+            case 'pressure-washers':
 
                 $this->listingcategory = Pressurewasher::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -2911,7 +2911,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'camions':
+            case 'trucks':
 
                 $this->listingcategory = Camion::where('url', $url)->first();
                             $this->reservations = $this->listingcategory->reservation()->orderBy('reservationstart')->get();
@@ -3138,7 +3138,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'motos':
+            case 'motorcycles':
 
 
                 $this->listingcategory = Moto::where('url', $url)->first();
@@ -3253,7 +3253,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
 
 
                 $this->listingcategory = Taxiaeroport::where('url', $url)->first();
@@ -3310,7 +3310,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'transportations':
+            case 'transportation':
 
 
                 $this->listingcategory = Transportation::where('url', $url)->first();
@@ -3369,7 +3369,7 @@ class DetailListingController extends Controller
 
 
 
-            case 'velos':
+            case 'bicycles':
 
 
                 $this->listingcategory = Velo::where('url', $url)->first();
@@ -3460,7 +3460,7 @@ class DetailListingController extends Controller
         switch ($this->category) {
 
 
-            case 'billiards':
+            case 'billiard':
 
                 $this->listingcategory->update([
                     'title' => $data['title'] ?? $this->listingcategory->title,

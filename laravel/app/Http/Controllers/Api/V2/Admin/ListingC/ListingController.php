@@ -537,7 +537,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'billiards':
+            case 'billiard':
 
 
 
@@ -603,7 +603,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'boxings':
+            case 'boxing':
 
 
 
@@ -668,7 +668,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'divings':
+            case 'diving':
 
 
                 $divingsData = $request->input('data.attributes.divings');
@@ -733,7 +733,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'footballs':
+            case 'football':
 
 
                 $footballsData = $request->input('data.attributes.footballs');
@@ -797,7 +797,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'golfs':
+            case 'golf':
 
 
                 $golfsData = $request->input('data.attributes.golfs');
@@ -863,7 +863,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'huntings':
+            case 'hunting':
 
 
 
@@ -934,7 +934,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'musculations':
+            case 'gym':
 
 
                 $musculationsData = $request->input('data.attributes.musculations');
@@ -1007,7 +1007,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'surfs':
+            case 'surf':
 
 
                 $surfsData = $request->input('data.attributes.surfs');
@@ -1140,7 +1140,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'audios':
+            case 'audio':
 
 
                 $audiosData = $request->input('data.attributes.audios');
@@ -1432,7 +1432,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'gamings':
+            case 'gaming':
 
 
 
@@ -1577,7 +1577,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'lightings':
+            case 'lighting':
 
 
                 $lightingsData = $request->input('data.attributes.lightings');
@@ -1787,7 +1787,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'tablettes':
+            case 'tablets':
 
 
                 $tablettesData = $request->input('data.attributes.tablettes');
@@ -1858,7 +1858,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'eclairages':
+            case 'eclairage':
 
 
                 $eclairagesData = $request->input('data.attributes.eclairages');
@@ -1936,7 +1936,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'mobiliers':
+            case 'mobilier':
 
 
                 $mobiliersData = $request->input('data.attributes.mobiliers');
@@ -2007,7 +2007,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'photographies':
+            case 'photography':
 
 
                 $photographiesData = $request->input('data.attributes.photographies');
@@ -2076,7 +2076,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'sonorisations':
+            case 'sound-systems':
 
 
                 $sonorisationsData = $request->input('data.attributes.sonorisations');
@@ -2158,7 +2158,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'tentes':
+            case 'tents':
 
 
                 $tentesData = $request->input('data.attributes.tentes');
@@ -2296,7 +2296,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'jewelrys':
+            case 'jewelry':
 
 
                 $jewelrysData = $request->input('data.attributes.jewelrys');
@@ -2440,7 +2440,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'bureauxs':
+            case 'offices':
 
 
 
@@ -2518,7 +2518,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'magasins':
+            case 'shops':
 
 
                 $magasinsData = $request->input('data.attributes.magasins');
@@ -2593,7 +2593,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'maisons':
+            case 'houses':
 
 
 
@@ -2758,7 +2758,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'terrains':
+            case 'lands':
 
 
 
@@ -2979,7 +2979,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'livres':
+            case 'books':
 
 
 
@@ -3047,7 +3047,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'musicals':
+            case 'musical':
 
 
 
@@ -3117,7 +3117,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'furnitures':
+            case 'furniture':
 
 
 
@@ -3190,7 +3190,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'houseappliances':
+            case 'home-appliances':
 
 
 
@@ -3263,7 +3263,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'electricaltools':
+            case 'electrical-tools':
 
 
 
@@ -3422,7 +3422,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
 
 
 
@@ -3497,7 +3497,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'powertools':
+            case 'power-tools':
 
 
 
@@ -3574,7 +3574,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'pressurewashers':
+            case 'pressure-washers':
 
 
 
@@ -3863,7 +3863,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'camions':
+            case 'trucks':
 
 
 
@@ -4135,7 +4135,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'motos':
+            case 'motorcycles':
 
 
 
@@ -4275,7 +4275,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
 
 
 
@@ -4341,7 +4341,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'transportations':
+            case 'transportation':
 
 
 
@@ -4410,7 +4410,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'velos':
+            case 'bicycles':
 
 
 
@@ -4685,7 +4685,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'billiards':
+            case 'billiard':
 
 
 
@@ -4752,7 +4752,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'boxings':
+            case 'boxing':
 
 
 
@@ -4821,7 +4821,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'divings':
+            case 'diving':
 
 
                 $divingsData = $request->input('attributes.divings');
@@ -4890,7 +4890,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'footballs':
+            case 'football':
 
 
                 $footballsData = $request->input('attributes.footballs');
@@ -4958,7 +4958,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'golfs':
+            case 'golf':
 
 
                 $golfsData = $request->input('attributes.golfs');
@@ -5028,7 +5028,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'huntings':
+            case 'hunting':
 
 
 
@@ -5102,7 +5102,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'musculations':
+            case 'gym':
 
 
                 $musculationsData = $request->input('attributes.musculations');
@@ -5179,7 +5179,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'surfs':
+            case 'surf':
 
 
                 $surfsData = $request->input('attributes.surfs');
@@ -5321,7 +5321,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'audios':
+            case 'audio':
 
 
                 $audiosData = $request->input('attributes.audios');
@@ -5629,7 +5629,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'gamings':
+            case 'gaming':
 
 
 
@@ -5781,7 +5781,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'lightings':
+            case 'lighting':
 
 
                 $lightingsData = $request->input('attributes.lightings');
@@ -6003,7 +6003,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'tablettes':
+            case 'tablets':
 
 
                 $tablettesData = $request->input('attributes.tablettes');
@@ -6078,7 +6078,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'eclairages':
+            case 'eclairage':
 
 
                 $eclairagesData = $request->input('attributes.eclairages');
@@ -6159,7 +6159,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'mobiliers':
+            case 'mobilier':
 
 
                 $mobiliersData = $request->input('attributes.mobiliers');
@@ -6232,7 +6232,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'photographies':
+            case 'photography':
 
 
                 $photographiesData = $request->input('attributes.photographies');
@@ -6304,7 +6304,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'sonorisations':
+            case 'sound-systems':
 
 
                 $sonorisationsData = $request->input('attributes.sonorisations');
@@ -6389,7 +6389,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'tentes':
+            case 'tents':
 
 
                 $tentesData = $request->input('attributes.tentes');
@@ -6530,7 +6530,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'jewelrys':
+            case 'jewelry':
 
 
                 $jewelrysData = $request->input('attributes.jewelrys');
@@ -6677,7 +6677,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'bureauxs':
+            case 'offices':
 
 
 
@@ -6758,7 +6758,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'magasins':
+            case 'shops':
 
 
                 $magasinsData = $request->input('attributes.magasins');
@@ -6835,7 +6835,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'maisons':
+            case 'houses':
 
 
 
@@ -7003,7 +7003,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'terrains':
+            case 'lands':
 
 
 
@@ -7227,7 +7227,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'livres':
+            case 'books':
 
 
 
@@ -7297,7 +7297,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'musicals':
+            case 'musical':
 
 
 
@@ -7369,7 +7369,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'furnitures':
+            case 'furniture':
 
 
 
@@ -7443,7 +7443,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'houseappliances':
+            case 'home-appliances':
 
 
 
@@ -7518,7 +7518,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'electricaltools':
+            case 'electrical-tools':
 
 
 
@@ -7681,7 +7681,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
 
 
 
@@ -7758,7 +7758,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'powertools':
+            case 'power-tools':
 
 
 
@@ -7836,7 +7836,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'pressurewashers':
+            case 'pressure-washers':
 
 
 
@@ -8138,7 +8138,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'camions':
+            case 'trucks':
 
 
 
@@ -8418,7 +8418,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'motos':
+            case 'motorcycles':
 
 
 
@@ -8561,7 +8561,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
 
 
 
@@ -8629,7 +8629,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'transportations':
+            case 'transportation':
 
 
 
@@ -8702,7 +8702,7 @@ class ListingController extends JsonApiController
 
 
 
-            case 'velos':
+            case 'bicycles':
 
 
 
@@ -8818,28 +8818,28 @@ class ListingController extends JsonApiController
             switch ($category) {
 
 
-                case 'billiards':
+                case 'billiard':
                     $listingcategory = Billiard::where('url', $url)->first();
                     break;
-                case 'boxings':
+                case 'boxing':
                     $listingcategory = Boxing::where('url', $url)->first();
                     break;
-                case 'divings':
+                case 'diving':
                     $listingcategory = Diving::where('url', $url)->first();
                     break;
-                case 'footballs':
+                case 'football':
                     $listingcategory = Football::where('url', $url)->first();
                     break;
-                case 'golfs':
+                case 'golf':
                     $listingcategory = Golf::where('url', $url)->first();
                     break;
-                case 'huntings':
+                case 'hunting':
                     $listingcategory = Hunting::where('url', $url)->first();
                     break;
-                case 'musculations':
+                case 'gym':
                     $listingcategory = Musculation::where('url', $url)->first();
                     break;
-                case 'surfs':
+                case 'surf':
                     $listingcategory = Surf::where('url', $url)->first();
                     break;
                 case 'tennis':
@@ -8848,7 +8848,7 @@ class ListingController extends JsonApiController
                 case 'jobs':
                     $listingcategory = Job::where('url', $url)->first();
                     break;
-                case 'audios':
+                case 'audio':
                     $listingcategory = Audio::where('url', $url)->first();
                     break;
                 case 'cameras':
@@ -8860,13 +8860,13 @@ class ListingController extends JsonApiController
                 case 'drones':
                     $listingcategory = Drone::where('url', $url)->first();
                     break;
-                case 'gamings':
+                case 'gaming':
                     $listingcategory = Gaming::where('url', $url)->first();
                     break;
                 case 'laptops':
                     $listingcategory = Laptop::where('url', $url)->first();
                     break;
-                case 'lightings':
+                case 'lighting':
                     $listingcategory = Lighting::where('url', $url)->first();
                     break;
                 case 'printers':
@@ -8875,28 +8875,28 @@ class ListingController extends JsonApiController
                 case 'routers':
                     $listingcategory = Router::where('url', $url)->first();
                     break;
-                case 'tablettes':
+                case 'tablets':
                     $listingcategory = Tablette::where('url', $url)->first();
                     break;
-                case 'eclairages':
+                case 'eclairage':
                     $listingcategory = Eclairage::where('url', $url)->first();
                     break;
-                case 'mobiliers':
+                case 'mobilier':
                     $listingcategory = Mobilier::where('url', $url)->first();
                     break;
-                case 'photographies':
+                case 'photography':
                     $listingcategory = Photographie::where('url', $url)->first();
                     break;
-                case 'sonorisations':
+                case 'sound-systems':
                     $listingcategory = Sonorisation::where('url', $url)->first();
                     break;
-                case 'tentes':
+                case 'tents':
                     $listingcategory = Tente::where('url', $url)->first();
                     break;
                 case 'clothes':
                     $listingcategory = Clothes::where('url', $url)->first();
                     break;
-                case 'jewelrys':
+                case 'jewelry':
                     $listingcategory = Jewelry::where('url', $url)->first();
                     break;
                 case 'apartments':
@@ -8905,19 +8905,19 @@ class ListingController extends JsonApiController
 
 
                     break;
-                case 'bureauxs':
+                case 'offices':
                     $listingcategory = Bureaux::where('url', $url)->first();
                     break;
-                case 'magasins':
+                case 'shops':
                     $listingcategory = Magasin::where('url', $url)->first();
                     break;
-                case 'maisons':
+                case 'houses':
                     $listingcategory = Maison::where('url', $url)->first();
                     break;
                 case 'riads':
                     $listingcategory = Riad::where('url', $url)->first();
                     break;
-                case 'terrains':
+                case 'lands':
                     $listingcategory = Terrain::where('url', $url)->first();
                     break;
                 case 'villas':
@@ -8926,31 +8926,31 @@ class ListingController extends JsonApiController
                 case 'activities':
                     $listingcategory = Activity::where('url', $url)->first();
                     break;
-                case 'livres':
+                case 'books':
                     $listingcategory = Livre::where('url', $url)->first();
                     break;
-                case 'musicals':
+                case 'musical':
                     $listingcategory = Musical::where('url', $url)->first();
                     break;
-                case 'furnitures':
+                case 'furniture':
                     $listingcategory = Furniture::where('url', $url)->first();
                     break;
-                case 'houseappliances':
+                case 'home-appliances':
                     $listingcategory = Houseappliance::where('url', $url)->first();
                     break;
-                case 'electricaltools':
+                case 'electrical-tools':
                     $listingcategory = Electricaltool::where('url', $url)->first();
                     break;
                 case 'ladders':
                     $listingcategory = Ladder::where('url', $url)->first();
                     break;
-                case 'mechanicaltools':
+                case 'mechanical-tools':
                     $listingcategory = Mechanicaltool::where('url', $url)->first();
                     break;
-                case 'powertools':
+                case 'power-tools':
                     $listingcategory = Powertool::where('url', $url)->first();
                     break;
-                case 'pressurewashers':
+                case 'pressure-washers':
                     $listingcategory = Pressurewasher::where('url', $url)->first();
                     break;
                 case 'services':
@@ -8959,7 +8959,7 @@ class ListingController extends JsonApiController
                 case 'boats':
                     $listingcategory = Boat::where('url', $url)->first();
                     break;
-                case 'camions':
+                case 'trucks':
                     $listingcategory = Camion::where('url', $url)->first();
                     break;
                 case 'caravans':
@@ -8971,19 +8971,19 @@ class ListingController extends JsonApiController
                 case 'engins':
                     $listingcategory = Engin::where('url', $url)->first();
                     break;
-                case 'motos':
+                case 'motorcycles':
                     $listingcategory = Moto::where('url', $url)->first();
                     break;
                 case 'scooters':
                     $listingcategory = Scooter::where('url', $url)->first();
                     break;
-                case 'taxiaeroports':
+                case 'airport-taxis':
                     $listingcategory = Taxiaeroport::where('url', $url)->first();
                     break;
-                case 'transportations':
+                case 'transportation':
                     $listingcategory = Transportation::where('url', $url)->first();
                     break;
-                case 'velos':
+                case 'bicycles':
                     $listingcategory = Velo::where('url', $url)->first();
                     break;
                 default:

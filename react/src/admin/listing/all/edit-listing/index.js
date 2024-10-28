@@ -352,25 +352,25 @@ function getCategory(
 
 ) {
   switch (category) {
-    case 'billiards':
+    case 'billiard':
       return <Billiards onDataChange={updateBilliardsData} initialState={billiardsData} isOpen={true}/>;
-    case 'boxings':
+    case 'boxing':
       return <Boxings onDataChange={updateBoxingsData} initialState={boxingsData} isOpen={true}/>;
-    case 'divings':
+    case 'diving':
       return <Divings onDataChange={updateDivingsData} initialState={divingsData} isOpen={true}/>;
-    case 'footballs':
+    case 'football':
       return <Footballs onDataChange={updateFootballsData} initialState={footballsData} isOpen={true}/>;
-    case 'golfs':
+    case 'golf':
       return <Golfs onDataChange={updateGolfsData} initialState={golfsData} isOpen={true}/>;
-    case 'huntings':
+    case 'hunting':
       return <Huntings onDataChange={updateHuntingsData} initialState={huntingsData} isOpen={true}/>;
-    case 'musculations':
+    case 'gym':
       return <Musculations onDataChange={updateMusculationsData} initialState={musculationsData} isOpen={true}/>;
-    case 'surfs':
+    case 'surf':
       return <Surfs onDataChange={updateSurfsData} initialState={surfsData} isOpen={true}/>;
     case 'tennis':
       return <Tennis onDataChange={updateTennisData} initialState={tennisData} isOpen={true}/>;
-    case 'audios':
+    case 'audio':
       return <Audios onDataChange={updateAudiosData} initialState={audiosData} isOpen={true}/>;
     case 'cameras':
       return <Cameras onDataChange={updateCamerasData} initialState={camerasData} isOpen={true}/>;
@@ -378,65 +378,65 @@ function getCategory(
       return <Chargers onDataChange={updateChargersData} initialState={chargersData} isOpen={true}/>;
     case 'drones':
       return <Drones onDataChange={updateDronesData} initialState={dronesData} isOpen={true}/>;
-    case 'gamings':
+    case 'gaming':
       return <Gamings onDataChange={updateGamingsData} initialState={gamingsData} isOpen={true}/>;
     case 'laptops':
       return <Laptops onDataChange={updateLaptopsData} initialState={laptopsData} isOpen={true}/>;
-    case 'lightings':
+    case 'lighting':
       return <Lightings onDataChange={updateLightingsData} initialState={lightingsData} isOpen={true}/>;
     case 'printers':
       return <Printers onDataChange={updatePrintersData} initialState={printersData} isOpen={true}/>;
     case 'routers':
       return <Routers onDataChange={updateRoutersData} initialState={routersData} isOpen={true}/>;
-    case 'tablettes':
+    case 'tablets':
       return <Tablettes onDataChange={updateTablettesData} initialState={tablettesData} isOpen={true}/>;
-    case 'eclairages':
+    case 'eclairage':
       return <Eclairages onDataChange={updateEclairagesData} initialState={eclairagesData} isOpen={true}/>;
-    case 'mobiliers':
+    case 'mobilier':
       return <Mobiliers onDataChange={updateMobiliersData} initialState={mobiliersData} isOpen={true}/>;
-    case 'photographies':
+    case 'photography':
       return <Photographies onDataChange={updatePhotographiesData} initialState={photographiesData} isOpen={true}/>;
-    case 'sonorisations':
+    case 'sound-systems':
       return <Sonorisations onDataChange={updateSonorisationsData} initialState={sonorisationsData} isOpen={true}/>;
-    case 'tentes':
+    case 'tents':
       return <Tentes onDataChange={updateTentesData} initialState={tentesData} isOpen={true} />;
     case 'clothes':
       return <Clothes onDataChange={updateClothesData} initialState={clothesData} isOpen={true}/>;
-    case 'jewelrys':
+    case 'jewelry':
       return <Jewelrys onDataChange={updateJewelrysData} initialState={jewelrysData} isOpen={true}/>;
     case 'apartments':
       return <Apartments onDataChange={updateApartmentsData} initialState={apartmentsData} isOpen={true}/>;
-    case 'bureauxs':
+    case 'offices':
       return <Bureauxs onDataChange={updateBureauxsData} initialState={bureauxsData} isOpen={true}/>;
-    case 'magasins':
+    case 'shops':
       return <Magasins onDataChange={updateMagasinsData} initialState={magasinsData} isOpen={true}/>;
-    case 'maisons':
+    case 'houses':
       return <Maisons onDataChange={updateMaisonsData} initialState={maisonsData} isOpen={true}/>;
     case 'riads':
       return <Riads onDataChange={updateRiadsData} initialState={riadsData} isOpen={true}/>;
-    case 'terrains':
+    case 'lands':
       return <Terrains onDataChange={updateTerrainsData} initialState={terrainsData} isOpen={true}/>;
     case 'villas':
       return <Villas onDataChange={updateVillasData} initialState={villasData} isOpen={true}/>;
     case 'activities':
       return <Activities onDataChange={updateActivitiesData} initialState={activitiesData} isOpen={true}/>;
-    case 'livres':
+    case 'books':
       return <Livres onDataChange={updateLivresData} initialState={livresData} isOpen={true}/>;
-    case 'musicals':
+    case 'musical':
       return <Musicals onDataChange={updateMusicalsData} initialState={musicalsData} isOpen={true}/>;
-    case 'furnitures':
+    case 'furniture':
       return <Furnitures onDataChange={updateFurnituresData} initialState={furnituresData} isOpen={true}/>;
-    case 'houseappliances':
+    case 'home-appliances':
       return <Houseappliances onDataChange={updateHouseappliancesData} initialState={houseappliancesData} isOpen={true}/>;
-    case 'electricaltools':
+    case 'electrical-tools':
       return <Electricaltools onDataChange={updateElectricaltoolsData} initialState={electricaltoolsData} isOpen={true}/>;
     case 'ladders':
       return <Ladders onDataChange={updateLaddersData} initialState={laddersData} isOpen={true}/>;
-    case 'mechanicaltools':
+    case 'mechanical-tools':
       return <Mechanicaltools onDataChange={updateMechanicaltoolsData} initialState={mechanicaltoolsData} isOpen={true}/>;
-    case 'powertools':
+    case 'power-tools':
       return <Powertools onDataChange={updatePowertoolsData} initialState={powertoolsData} isOpen={true}/>;
-    case 'pressurewashers':
+    case 'pressure-washers':
       return <Pressurewashers onDataChange={updatePressurewashersData} initialState={pressurewashersData} isOpen={true}/>;
     case 'services':
       return <Services onDataChange={updateServicesData} initialState={servicesData} isOpen={true}/>;
@@ -446,7 +446,7 @@ function getCategory(
   
     case 'boats':
       return <Boats onDataChange={updateBoatsData} initialState={boatsData} isOpen={true}/>;
-    case 'camions':
+    case 'trucks':
       return <Camions onDataChange={updateCamionsData} initialState={camionsData} isOpen={true}/>;
     case 'caravans':
       return <Caravans onDataChange={updateCaravansData} initialState={caravansData} isOpen={true}/>;
@@ -454,15 +454,15 @@ function getCategory(
       return <Cars onDataChange={updateCarsData} initialState={carsData} isOpen={true}/>;
     case 'engins':
       return <Engins onDataChange={updateEnginsData} initialState={enginsData} isOpen={true}/>;
-    case 'motos':
+    case 'motorcycles':
       return <Motos onDataChange={updateMotosData} initialState={motosData} isOpen={true}/>;
     case 'scooters':
       return <Scooters onDataChange={updateScootersData} initialState={scootersData} isOpen={true}/>;
-    case 'taxiaeroports':
+    case 'airport-taxis':
       return <Taxiaeroports onDataChange={updateTaxiaeroportsData} initialState={taxiaeroportsData} isOpen={true}/>;
-    case 'transportations':
+    case 'transportation':
       return <Transportations onDataChange={updateTransportationsData} initialState={transportationsData} isOpen={true}/>;
-    case 'velos':
+    case 'bicycles':
       return <Velos onDataChange={updateVelosData} initialState={velosData} isOpen={true}/>;
     default:
       return null;
@@ -1514,43 +1514,43 @@ function EditListing() {
   
         // Switch statement to handle category-specific data
         switch (category) {
-          case 'billiards': {
+          case 'billiard': {
             const { billiards } = data;
 
             setBilliardsData(billiards);
             break;
           }
-          case 'boxings': {
+          case 'boxing': {
             const { boxings } = data;
             setBoxingsData(boxings);
             break;
           }
-          case 'divings': {
+          case 'diving': {
             const { divings } = data;
             setDivingsData(divings);
             break;
           }
-          case 'footballs': {
+          case 'football': {
             const { footballs } = data;
             setFootballsData(footballs);
             break;
           }
-          case 'golfs': {
+          case 'golf': {
             const { golfs } = data;
             setGolfsData(golfs);
             break;
           }
-          case 'huntings': {
+          case 'hunting': {
             const { huntings } = data;
             setHuntingsData(huntings);
             break;
           }
-          case 'musculations': {
+          case 'gym': {
             const { musculations } = data;
             setMusculationsData(musculations);
             break;
           }
-          case 'surfs': {
+          case 'surf': {
             const { surfs } = data;
             setSurfsData(surfs);
             break;
@@ -1560,7 +1560,7 @@ function EditListing() {
             setTennisData(tennis);
             break;
           }
-          case 'audios': {
+          case 'audio': {
             const { audios } = data;
             setAudiosData(audios);
             break;
@@ -1580,7 +1580,7 @@ function EditListing() {
             setDronesData(drones);
             break;
           }
-          case 'gamings': {
+          case 'gaming': {
             const { gamings } = data;
             setGamingsData(gamings);
             break;
@@ -1590,7 +1590,7 @@ function EditListing() {
             setLaptopsData(laptops);
             break;
           }
-          case 'lightings': {
+          case 'lighting': {
             const { lightings } = data;
             setLightingsData(lightings);
             break;
@@ -1605,32 +1605,32 @@ function EditListing() {
             setRoutersData(routers);
             break;
           }
-          case 'tablettes': {
+          case 'tablets': {
             const { tablettes } = data;
             setTablettesData(tablettes);
             break;
           }
-          case 'eclairages': {
+          case 'eclairage': {
             const { eclairages } = data;
             setEclairagesData(eclairages);
             break;
           }
-          case 'mobiliers': {
+          case 'mobilier': {
             const { mobiliers } = data;
             setMobiliersData(mobiliers);
             break;
           }
-          case 'photographies': {
+          case 'photography': {
             const { photographies } = data;
             setPhotographiesData(photographies);
             break;
           }
-          case 'sonorisations': {
+          case 'sound-systems': {
             const { sonorisations } = data;
             setSonorisationsData(sonorisations);
             break;
           }
-          case 'tentes': {
+          case 'tents': {
             const { tentes } = data;
             setTentesData(tentes);
             break;
@@ -1640,7 +1640,7 @@ function EditListing() {
             setClothesData(clothes);
             break;
           }
-          case 'jewelrys': {
+          case 'jewelry': {
             const { jewelrys } = data;
             setJewelrysData(jewelrys);
             break;
@@ -1650,17 +1650,17 @@ function EditListing() {
             setApartmentsData(apartments);
             break;
           }
-          case 'bureauxs': {
+          case 'offices': {
             const { bureauxs } = data;
             setBureauxsData(bureauxs);
             break;
           }
-          case 'magasins': {
+          case 'shops': {
             const { magasins } = data;
             setMagasinsData(magasins);
             break;
           }
-          case 'maisons': {
+          case 'houses': {
             const { maisons } = data;
             setMaisonsData(maisons);
             break;
@@ -1670,7 +1670,7 @@ function EditListing() {
             setRiadsData(riads);
             break;
           }
-          case 'terrains': {
+          case 'lands': {
             const { terrains } = data;
             setTerrainsData(terrains);
             break;
@@ -1685,27 +1685,27 @@ function EditListing() {
             setActivitiesData(activities);
             break;
           }
-          case 'livres': {
+          case 'books': {
             const { livres } = data;
             setLivresData(livres);
             break;
           }
-          case 'musicals': {
+          case 'musical': {
             const { musicals } = data;
             setMusicalsData(musicals);
             break;
           }
-          case 'furnitures': {
+          case 'furniture': {
             const { furnitures } = data;
             setFurnituresData(furnitures);
             break;
           }
-          case 'houseappliances': {
+          case 'home-appliances': {
             const { houseappliances } = data;
             setHouseappliancesData(houseappliances);
             break;
           }
-          case 'electricaltools': {
+          case 'electrical-tools': {
             const { electricaltools } = data;
             setElectricaltoolsData(electricaltools);
             break;
@@ -1715,17 +1715,17 @@ function EditListing() {
             setLaddersData(ladders);
             break;
           }
-          case 'mechanicaltools': {
+          case 'mechanical-tools': {
             const { mechanicaltools } = data;
             setMechanicaltoolsData(mechanicaltools);
             break;
           }
-          case 'powertools': {
+          case 'power-tools': {
             const { powertools } = data;
             setPowertoolsData(powertools);
             break;
           }
-          case 'pressurewashers': {
+          case 'pressure-washers': {
             const { pressurewashers } = data;
             setPressurewashersData(pressurewashers);
             break;
@@ -1749,7 +1749,7 @@ function EditListing() {
             setBoatsData(boats);
             break;
           }
-          case 'camions': {
+          case 'trucks': {
             const { camions } = data;
             setCamionsData(camions);
             break;
@@ -1769,7 +1769,7 @@ function EditListing() {
             setEnginsData(engins);
             break;
           }
-          case 'motos': {
+          case 'motorcycles': {
             const { motos } = data;
             setMotosData(motos);
             break;
@@ -1779,17 +1779,17 @@ function EditListing() {
             setScootersData(scooters);
             break;
           }
-          case 'taxiaeroports': {
+          case 'airport-taxis': {
             const { taxiaeroports } = data;
             setTaxiaeroportsData(taxiaeroports);
             break;
           }
-          case 'transportations': {
+          case 'transportation': {
             const { transportations } = data;
             setTransportationsData(transportations);
             break;
           }
-          case 'velos': {
+          case 'bicycles': {
             const { velos } = data;
             setVelosData(velos);
             break;
@@ -2295,43 +2295,43 @@ function EditListing() {
 
 
     switch (selectedCategory) {
-      case 'billiards':
+      case 'billiard':
         Object.keys(billiardsData).forEach(key => {
           formData.append(`data[attributes][billiards][${key}]`, billiardsData[key]);
         });
         break;
-      case 'boxings':
+      case 'boxing':
         Object.keys(boxingsData).forEach(key => {
           formData.append(`data[attributes][boxings][${key}]`, boxingsData[key]);
         });
         break;
       // Add cases for other categories with their respective data objects
-      case 'divings':
+      case 'diving':
         Object.keys(divingsData).forEach(key => {
           formData.append(`data[attributes][divings][${key}]`, divingsData[key]);
         });
         break;
-      case 'footballs':
+      case 'football':
         Object.keys(footballsData).forEach(key => {
           formData.append(`data[attributes][footballs][${key}]`, footballsData[key]);
         });
         break;
-      case 'golfs':
+      case 'golf':
         Object.keys(golfsData).forEach(key => {
           formData.append(`data[attributes][golfs][${key}]`, golfsData[key]);
         });
         break;
-      case 'huntings':
+      case 'hunting':
         Object.keys(huntingsData).forEach(key => {
           formData.append(`data[attributes][huntings][${key}]`, huntingsData[key]);
         });
         break;
-      case 'musculations':
+      case 'gym':
         Object.keys(musculationsData).forEach(key => {
           formData.append(`data[attributes][musculations][${key}]`, musculationsData[key]);
         });
         break;
-      case 'surfs':
+      case 'surf':
         Object.keys(surfsData).forEach(key => {
           formData.append(`data[attributes][surfs][${key}]`, surfsData[key]);
         });
@@ -2341,7 +2341,7 @@ function EditListing() {
           formData.append(`data[attributes][tennis][${key}]`, tennisData[key]);
         });
         break;
-      case 'audios':
+      case 'audio':
         Object.keys(audiosData).forEach(key => {
           formData.append(`data[attributes][audios][${key}]`, audiosData[key]);
         });
@@ -2361,7 +2361,7 @@ function EditListing() {
           formData.append(`data[attributes][drones][${key}]`, dronesData[key]);
         });
         break;
-      case 'gamings':
+      case 'gaming':
         Object.keys(gamingsData).forEach(key => {
           formData.append(`data[attributes][gamings][${key}]`, gamingsData[key]);
         });
@@ -2371,7 +2371,7 @@ function EditListing() {
           formData.append(`data[attributes][laptops][${key}]`, laptopsData[key]);
         });
         break;
-      case 'lightings':
+      case 'lighting':
         Object.keys(lightingsData).forEach(key => {
           formData.append(`data[attributes][lightings][${key}]`, lightingsData[key]);
         });
@@ -2386,32 +2386,32 @@ function EditListing() {
           formData.append(`data[attributes][routers][${key}]`, routersData[key]);
         });
         break;
-      case 'tablettes':
+      case 'tablets':
         Object.keys(tablettesData).forEach(key => {
           formData.append(`data[attributes][tablettes][${key}]`, tablettesData[key]);
         });
         break;
-      case 'eclairages':
+      case 'eclairage':
         Object.keys(eclairagesData).forEach(key => {
           formData.append(`data[attributes][eclairages][${key}]`, eclairagesData[key]);
         });
         break;
-      case 'mobiliers':
+      case 'mobilier':
         Object.keys(mobiliersData).forEach(key => {
           formData.append(`data[attributes][mobiliers][${key}]`, mobiliersData[key]);
         });
         break;
-      case 'photographies':
+      case 'photography':
         Object.keys(photographiesData).forEach(key => {
           formData.append(`data[attributes][photographies][${key}]`, photographiesData[key]);
         });
         break;
-      case 'sonorisations':
+      case 'sound-systems':
         Object.keys(sonorisationsData).forEach(key => {
           formData.append(`data[attributes][sonorisations][${key}]`, sonorisationsData[key]);
         });
         break;
-      case 'tentes':
+      case 'tents':
         Object.keys(tentesData).forEach(key => {
           formData.append(`data[attributes][tentes][${key}]`, tentesData[key]);
         });
@@ -2421,7 +2421,7 @@ function EditListing() {
           formData.append(`data[attributes][clothes][${key}]`, clothesData[key]);
         });
         break;
-      case 'jewelrys':
+      case 'jewelry':
         Object.keys(jewelrysData).forEach(key => {
           formData.append(`data[attributes][jewelrys][${key}]`, jewelrysData[key]);
         });
@@ -2431,17 +2431,17 @@ function EditListing() {
           formData.append(`data[attributes][apartments][${key}]`, apartmentsData[key]);
         });
         break;
-      case 'bureauxs':
+      case 'offices':
         Object.keys(bureauxsData).forEach(key => {
           formData.append(`data[attributes][bureauxs][${key}]`, bureauxsData[key]);
         });
         break;
-      case 'magasins':
+      case 'shops':
         Object.keys(magasinsData).forEach(key => {
           formData.append(`data[attributes][magasins][${key}]`, magasinsData[key]);
         });
         break;
-      case 'maisons':
+      case 'houses':
         Object.keys(maisonsData).forEach(key => {
           formData.append(`data[attributes][maisons][${key}]`, maisonsData[key]);
         });
@@ -2451,7 +2451,7 @@ function EditListing() {
           formData.append(`data[attributes][riads][${key}]`, riadsData[key]);
         });
         break;
-      case 'terrains':
+      case 'lands':
         Object.keys(terrainsData).forEach(key => {
           formData.append(`data[attributes][terrains][${key}]`, terrainsData[key]);
         });
@@ -2466,27 +2466,27 @@ function EditListing() {
           formData.append(`data[attributes][activities][${key}]`, activitiesData[key]);
         });
         break;
-      case 'livres':
+      case 'books':
         Object.keys(livresData).forEach(key => {
           formData.append(`data[attributes][livres][${key}]`, livresData[key]);
         });
         break;
-      case 'musicals':
+      case 'musical':
         Object.keys(musicalsData).forEach(key => {
           formData.append(`data[attributes][musicals][${key}]`, musicalsData[key]);
         });
         break;
-      case 'furnitures':
+      case 'furniture':
         Object.keys(furnituresData).forEach(key => {
           formData.append(`data[attributes][furnitures][${key}]`, furnituresData[key]);
         });
         break;
-      case 'houseappliances':
+      case 'home-appliances':
         Object.keys(houseappliancesData).forEach(key => {
           formData.append(`data[attributes][houseappliances][${key}]`, houseappliancesData[key]);
         });
         break;
-      case 'electricaltools':
+      case 'electrical-tools':
         Object.keys(electricaltoolsData).forEach(key => {
           formData.append(`data[attributes][electricaltools][${key}]`, electricaltoolsData[key]);
         });
@@ -2496,17 +2496,17 @@ function EditListing() {
           formData.append(`data[attributes][ladders][${key}]`, laddersData[key]);
         });
         break;
-      case 'mechanicaltools':
+      case 'mechanical-tools':
         Object.keys(mechanicaltoolsData).forEach(key => {
           formData.append(`data[attributes][mechanicaltools][${key}]`, mechanicaltoolsData[key]);
         });
         break;
-      case 'powertools':
+      case 'power-tools':
         Object.keys(powertoolsData).forEach(key => {
           formData.append(`data[attributes][powertools][${key}]`, powertoolsData[key]);
         });
         break;
-      case 'pressurewashers':
+      case 'pressure-washers':
         Object.keys(pressurewashersData).forEach(key => {
           formData.append(`data[attributes][pressurewashers][${key}]`, pressurewashersData[key]);
         });
@@ -2527,7 +2527,7 @@ function EditListing() {
           formData.append(`data[attributes][boats][${key}]`, boatsData[key]);
         });
         break;
-      case 'camions':
+      case 'trucks':
         Object.keys(camionsData).forEach(key => {
           formData.append(`data[attributes][camions][${key}]`, camionsData[key]);
         });
@@ -2547,7 +2547,7 @@ function EditListing() {
           formData.append(`data[attributes][engins][${key}]`, enginsData[key]);
         });
         break;
-      case 'motos':
+      case 'motorcycles':
         Object.keys(motosData).forEach(key => {
           formData.append(`data[attributes][motos][${key}]`, motosData[key]);
         });
@@ -2557,17 +2557,17 @@ function EditListing() {
           formData.append(`data[attributes][scooters][${key}]`, scootersData[key]);
         });
         break;
-      case 'taxiaeroports':
+      case 'airport-taxis':
         Object.keys(taxiaeroportsData).forEach(key => {
           formData.append(`data[attributes][taxiaeroports][${key}]`, taxiaeroportsData[key]);
         });
         break;
-      case 'transportations':
+      case 'transportation':
         Object.keys(transportationsData).forEach(key => {
           formData.append(`data[attributes][transportations][${key}]`, transportationsData[key]);
         });
         break;
-      case 'velos':
+      case 'bicycles':
         Object.keys(velosData).forEach(key => {
           formData.append(`data[attributes][velos][${key}]`, velosData[key]);
         });
@@ -2645,62 +2645,62 @@ function EditListing() {
               
               oldimagePathslarge: oldFiles, 
               
-            ...(selectedCategory === 'billiards' && { billiards: billiardsData }),
-            ...(selectedCategory === 'boxings' && { boxings: boxingsData }),
-            ...(selectedCategory === 'divings' && { divings: divingsData }),
-            ...(selectedCategory === 'footballs' && { footballs: footballsData }),
-            ...(selectedCategory === 'golfs' && { golfs: golfsData }),
-            ...(selectedCategory === 'huntings' && { huntings: huntingsData }),
-            ...(selectedCategory === 'musculations' && { musculations: musculationsData }),
-            ...(selectedCategory === 'surfs' && { surfs: surfsData }),
+            ...(selectedCategory === 'billiard' && { billiards: billiardsData }),
+            ...(selectedCategory === 'boxing' && { boxings: boxingsData }),
+            ...(selectedCategory === 'diving' && { divings: divingsData }),
+            ...(selectedCategory === 'football' && { footballs: footballsData }),
+            ...(selectedCategory === 'golf' && { golfs: golfsData }),
+            ...(selectedCategory === 'hunting' && { huntings: huntingsData }),
+            ...(selectedCategory === 'gym' && { musculations: musculationsData }),
+            ...(selectedCategory === 'surf' && { surfs: surfsData }),
             ...(selectedCategory === 'tennis' && { tennis: tennisData }),
-            ...(selectedCategory === 'audios' && { audios: audiosData }),
+            ...(selectedCategory === 'audio' && { audios: audiosData }),
             ...(selectedCategory === 'cameras' && { cameras: camerasData }),
             ...(selectedCategory === 'chargers' && { chargers: chargersData }),
             ...(selectedCategory === 'drones' && { drones: dronesData }),
-            ...(selectedCategory === 'gamings' && { gamings: gamingsData }),
+            ...(selectedCategory === 'gaming' && { gamings: gamingsData }),
             ...(selectedCategory === 'laptops' && { laptops: laptopsData }),
-            ...(selectedCategory === 'lightings' && { lightings: lightingsData }),
+            ...(selectedCategory === 'lighting' && { lightings: lightingsData }),
             ...(selectedCategory === 'printers' && { printers: printersData }),
             ...(selectedCategory === 'routers' && { routers: routersData }),
-            ...(selectedCategory === 'tablettes' && { tablettes: tablettesData }),
-            ...(selectedCategory === 'eclairages' && { eclairages: eclairagesData }),
-            ...(selectedCategory === 'mobiliers' && { mobiliers: mobiliersData }),
-            ...(selectedCategory === 'photographies' && { photographies: photographiesData }),
-            ...(selectedCategory === 'sonorisations' && { sonorisations: sonorisationsData }),
-            ...(selectedCategory === 'tentes' && { tentes: tentesData }),
+            ...(selectedCategory === 'tablets' && { tablettes: tablettesData }),
+            ...(selectedCategory === 'eclairage' && { eclairages: eclairagesData }),
+            ...(selectedCategory === 'mobilier' && { mobiliers: mobiliersData }),
+            ...(selectedCategory === 'photography' && { photographies: photographiesData }),
+            ...(selectedCategory === 'sound-systems' && { sonorisations: sonorisationsData }),
+            ...(selectedCategory === 'tents' && { tentes: tentesData }),
             ...(selectedCategory === 'clothes' && { clothes: clothesData }),
-            ...(selectedCategory === 'jewelrys' && { jewelrys: jewelrysData }),
+            ...(selectedCategory === 'jewelry' && { jewelrys: jewelrysData }),
             ...(selectedCategory === 'apartments' && { apartments: apartmentsData }),
-            ...(selectedCategory === 'bureauxs' && { bureauxs: bureauxsData }),
-            ...(selectedCategory === 'magasins' && { magasins: magasinsData }),
-            ...(selectedCategory === 'maisons' && { maisons: maisonsData }),
+            ...(selectedCategory === 'offices' && { bureauxs: bureauxsData }),
+            ...(selectedCategory === 'shops' && { magasins: magasinsData }),
+            ...(selectedCategory === 'houses' && { maisons: maisonsData }),
             ...(selectedCategory === 'riads' && { riads: riadsData }),
-            ...(selectedCategory === 'terrains' && { terrains: terrainsData }),
+            ...(selectedCategory === 'lands' && { terrains: terrainsData }),
             ...(selectedCategory === 'villas' && { villas: villasData }),
             ...(selectedCategory === 'activities' && { activities: activitiesData }),
-            ...(selectedCategory === 'livres' && { livres: livresData }),
-            ...(selectedCategory === 'musicals' && { musicals: musicalsData }),
-            ...(selectedCategory === 'furnitures' && { furnitures: furnituresData }),
-            ...(selectedCategory === 'houseappliances' && { houseappliances: houseappliancesData }),
-            ...(selectedCategory === 'electricaltools' && { electricaltools: electricaltoolsData }),
+            ...(selectedCategory === 'books' && { livres: livresData }),
+            ...(selectedCategory === 'musical' && { musicals: musicalsData }),
+            ...(selectedCategory === 'furniture' && { furnitures: furnituresData }),
+            ...(selectedCategory === 'home-appliances' && { houseappliances: houseappliancesData }),
+            ...(selectedCategory === 'electrical-tools' && { electricaltools: electricaltoolsData }),
             ...(selectedCategory === 'ladders' && { ladders: laddersData }),
-            ...(selectedCategory === 'mechanicaltools' && { mechanicaltools: mechanicaltoolsData }),
-            ...(selectedCategory === 'powertools' && { powertools: powertoolsData }),
-            ...(selectedCategory === 'pressurewashers' && { pressurewashers: pressurewashersData }),
+            ...(selectedCategory === 'mechanical-tools' && { mechanicaltools: mechanicaltoolsData }),
+            ...(selectedCategory === 'power-tools' && { powertools: powertoolsData }),
+            ...(selectedCategory === 'pressure-washers' && { pressurewashers: pressurewashersData }),
             ...(selectedCategory === 'services' && { services: servicesData }),
             ...(selectedCategory === 'jobs' && { jobs: jobsData }),
 
             ...(selectedCategory === 'boats' && { boats: boatsData }),
-            ...(selectedCategory === 'camions' && { camions: camionsData }),
+            ...(selectedCategory === 'trucks' && { camions: camionsData }),
             ...(selectedCategory === 'caravans' && { caravans: caravansData }),
             ...(selectedCategory === 'cars' && { cars: carsData }),
             ...(selectedCategory === 'engins' && { engins: enginsData }),
-            ...(selectedCategory === 'motos' && { motos: motosData }),
+            ...(selectedCategory === 'motorcycles' && { motos: motosData }),
             ...(selectedCategory === 'scooters' && { scooters: scootersData }),
-            ...(selectedCategory === 'taxiaeroports' && { taxiaeroports: taxiaeroportsData }),
-            ...(selectedCategory === 'transportations' && { transportations: transportationsData }),
-            ...(selectedCategory === 'velos' && { velos: velosData }),  
+            ...(selectedCategory === 'airport-taxis' && { taxiaeroports: taxiaeroportsData }),
+            ...(selectedCategory === 'transportation' && { transportations: transportationsData }),
+            ...(selectedCategory === 'bicycles' && { velos: velosData }),  
           }
         };
         
@@ -2841,63 +2841,63 @@ function EditListing() {
 
                                       value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
                                       options={[
-                                        
-                                        { value: "boats", label: "boats", icon: BoatsIcon },
-                                        { value: "camions", label: "camions", icon: CamionsIcon },
-                                        { value: "caravans", label: "caravans", icon: CaravansIcon },
-                                        { value: "cars", label: "cars", icon: CarsIcon },
-                                        { value: "engins", label: "engins", icon: EnginsIcon },
-                                        { value: "motos", label: "motos", icon: MotosIcon },
-                                        { value: "scooters", label: "scooters", icon: ScootersIcon },
-                                        { value: "taxiaeroports", label: "taxiaeroports", icon: TaxiaeroportsIcon },
-                                        { value: "transportations", label: "transportations", icon: TransportationsIcon },
-                                        { value: "velos", label: "velos", icon: VelosIcon },
-                                        { value: "apartments", label: "apartments", icon: ApartmentsIcon },
-                                        { value: "bureauxs", label: "bureauxs", icon: BureauxsIcon },
-                                        { value: "magasins", label: "magasins", icon: MagasinsIcon },
-                                        { value: "maisons", label: "maisons", icon: MaisonsIcon },
-                                        { value: "riads", label: "riads", icon: RiadsIcon },
-                                        { value: "terrains", label: "terrains", icon: TerrainsIcon },
-                                        { value: "villas", label: "villas", icon: VillasIcon },
-                                        { value: "services", label: "services", icon: ServicesIcon },
-                                        { value: "jobs", label: "jobs", icon: JobsIcon },
-
-                                        { value: "audios", label: "audios", icon: AudiosIcon },
-                                        { value: "cameras", label: "cameras", icon: CamerasIcon },
-                                        { value: "chargers", label: "chargers", icon: ChargersIcon },
-                                        { value: "drones", label: "drones", icon: DronesIcon },
-                                        { value: "gamings", label: "gamings", icon: GamingsIcon },
-                                        { value: "laptops", label: "laptops", icon: LaptopsIcon },
-                                        { value: "lightings", label: "lightings", icon: LightingsIcon },
-                                        { value: "printers", label: "printers", icon: PrintersIcon },
-                                        { value: "routers", label: "routers", icon: RoutersIcon },
-                                        { value: "tablettes", label: "tablettes", icon: TablettesIcon },
-                                        { value: "electricaltools", label: "electricaltools", icon: ElectricaltoolsIcon },
-                                        { value: "ladders", label: "ladders", icon: LaddersIcon },
-                                        { value: "mechanicaltools", label: "mechanicaltools", icon: MechanicaltoolsIcon },
-                                        { value: "powertools", label: "powertools", icon: PowertoolsIcon },
-                                        { value: "pressurewashers", label: "pressurewashers", icon: PressurewashersIcon },
-                                        { value: "billiards", label: "billiards", icon: BilliardsIcon },
-                                        { value: "boxings", label: "boxings", icon: BoxingsIcon },
-                                        { value: "divings", label: "divings", icon: DivingsIcon },
-                                        { value: "footballs", label: "footballs", icon: FootballsIcon },
-                                        { value: "golfs", label: "golfs", icon: GolfsIcon },
-                                        { value: "huntings", label: "huntings", icon: HuntingsIcon },
-                                        { value: "musculations", label: "musculations", icon: MusculationsIcon },
-                                        { value: "surfs", label: "surfs", icon: SurfsIcon },
-                                        { value: "tennis", label: "tennis", icon: TennisIcon },
-                                        { value: "clothes", label: "clothes", icon: ClothesIcon },
-                                        { value: "jewelrys", label: "jewelrys", icon: JewelrysIcon },
-                                        { value: "activities", label: "activities", icon: ActivitiesIcon },
-                                        { value: "livres", label: "livres", icon: LivresIcon },
-                                        { value: "musicals", label: "musicals", icon: MusicalsIcon },
-                                        { value: "furnitures", label: "furnitures", icon: FurnituresIcon },
-                                        { value: "houseappliances", label: "houseappliances", icon: HouseappliancesIcon },
-                                        { value: "eclairages", label: "eclairages", icon: EclairagesIcon },
-                                        { value: "mobiliers", label: "mobiliers", icon: MobiliersIcon },
-                                        { value: "photographies", label: "photographies", icon: PhotographiesIcon },
-                                        { value: "sonorisations", label: "sonorisations", icon: SonorisationsIcon },
-                                        { value: "tentes", label: "tentes", icon: TentesIcon }
+                            
+                                        { value: "boats", label: "Boats", icon: BoatsIcon },
+                                        { value: "trucks", label: "Trucks", icon: CamionsIcon },
+                                        { value: "caravans", label: "Caravans", icon: CaravansIcon },
+                                        { value: "cars", label: "Cars", icon: CarsIcon },
+                                        { value: "engins", label: "Engins", icon: EnginsIcon },
+                                        { value: "motorcycles", label: "Motorcycles", icon: MotosIcon },
+                                        { value: "scooters", label: "Scooters", icon: ScootersIcon },
+                                        { value: "airport-taxis", label: "Airport Taxis", icon: TaxiaeroportsIcon },
+                                        { value: "transportation", label: "Transportation", icon: TransportationsIcon },
+                                        { value: "bicycles", label: "Bicycles", icon: VelosIcon },
+                                        { value: "apartments", label: "Apartments", icon: ApartmentsIcon },
+                                        { value: "offices", label: "Offices", icon: BureauxsIcon },
+                                        { value: "shops", label: "Shops", icon: MagasinsIcon },
+                                        { value: "houses", label: "Houses", icon: MaisonsIcon },
+                                        { value: "riads", label: "Riads", icon: RiadsIcon },
+                                        { value: "lands", label: "Lands", icon: TerrainsIcon },
+                                        { value: "villas", label: "Villas", icon: VillasIcon },
+                                        { value: "services", label: "Services", icon: ServicesIcon },
+                                        { value: "jobs", label: "Jobs", icon: JobsIcon },
+            
+                                        { value: "audio", label: "Audio", icon: AudiosIcon },
+                                        { value: "cameras", label: "Cameras", icon: CamerasIcon },
+                                        { value: "chargers", label: "Chargers", icon: ChargersIcon },
+                                        { value: "drones", label: "Drones", icon: DronesIcon },
+                                        { value: "gaming", label: "Gaming", icon: GamingsIcon },
+                                        { value: "laptops", label: "Laptops", icon: LaptopsIcon },
+                                        { value: "lighting", label: "Lighting", icon: LightingsIcon },
+                                        { value: "printers", label: "Printers", icon: PrintersIcon },
+                                        { value: "routers", label: "Routers", icon: RoutersIcon },
+                                        { value: "tablets", label: "Tablets", icon: TablettesIcon },
+                                        { value: "electrical-tools", label: "Electrical Tools", icon: ElectricaltoolsIcon },
+                                        { value: "ladders", label: "Ladders", icon: LaddersIcon },
+                                        { value: "mechanical-tools", label: "Mechanical Tools", icon: MechanicaltoolsIcon },
+                                        { value: "power-tools", label: "Power Tools", icon: PowertoolsIcon },
+                                        { value: "pressure-washers", label: "Pressure Washers", icon: PressurewashersIcon },
+                                        { value: "billiard", label: "Billiard", icon: BilliardsIcon },
+                                        { value: "boxing", label: "Boxing", icon: BoxingsIcon },
+                                        { value: "diving", label: "Diving", icon: DivingsIcon },
+                                        { value: "football", label: "Football", icon: FootballsIcon },
+                                        { value: "golf", label: "Golf", icon: GolfsIcon },
+                                        { value: "hunting", label: "Hunting", icon: HuntingsIcon },
+                                        { value: "gym", label: "Gym", icon: MusculationsIcon },
+                                        { value: "surf", label: "Surf", icon: SurfsIcon },
+                                        { value: "tennis", label: "Tennis", icon: TennisIcon },
+                                        { value: "clothes", label: "Clothes", icon: ClothesIcon },
+                                        { value: "jewelry", label: "Jewelry", icon: JewelrysIcon },
+                                        { value: "activities", label: "Activities", icon: ActivitiesIcon },
+                                        { value: "books", label: "Books", icon: LivresIcon },
+                                        { value: "musical", label: "Musical", icon: MusicalsIcon },
+                                        { value: "furniture", label: "Furniture", icon: FurnituresIcon },
+                                        { value: "home-appliances", label: "Home Appliances", icon: HouseappliancesIcon },
+                                        { value: "eclairage", label: "Eclairage", icon: EclairagesIcon },
+                                        { value: "mobilier", label: "Mobilier", icon: MobiliersIcon },
+                                        { value: "photography", label: "Photography", icon: PhotographiesIcon },
+                                        { value: "sound-systems", label: "Sound Systems", icon: SonorisationsIcon },
+                                        { value: "tents", label: "Tents", icon: TentesIcon }
                                       ]}
 
 

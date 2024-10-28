@@ -215,7 +215,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'billiards':
+            case 'billiard':
 
 
                 $this->listingcategory = Billiard::where('url', $url)->first();
@@ -224,32 +224,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
                 break;
 
@@ -257,7 +257,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'boxings':
+            case 'boxing':
 
 
                 $this->listingcategory = Boxing::where('url', $url)->first();
@@ -266,32 +266,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -303,7 +303,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'divings':
+            case 'diving':
 
 
                 $this->listingcategory = Diving::where('url', $url)->first();
@@ -312,32 +312,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -352,7 +352,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'footballs':
+            case 'football':
 
 
                 $this->listingcategory = Football::where('url', $url)->first();
@@ -361,32 +361,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -401,7 +401,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'golfs':
+            case 'golf':
 
 
                 $this->listingcategory = Golf::where('url', $url)->first();
@@ -410,32 +410,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -451,7 +451,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'huntings':
+            case 'hunting':
 
 
                 $this->listingcategory = Hunting::where('url', $url)->first();
@@ -460,32 +460,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -500,7 +500,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'musculations':
+            case 'gym':
 
 
                 $this->listingcategory = Musculation::where('url', $url)->first();
@@ -509,32 +509,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -550,7 +550,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'surfs':
+            case 'surf':
 
 
 
@@ -560,32 +560,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -611,32 +611,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -651,7 +651,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'audios':
+            case 'audio':
 
 
 
@@ -661,32 +661,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -710,32 +710,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -758,32 +758,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -807,32 +807,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -849,7 +849,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'gamings':
+            case 'gaming':
 
 
                 $this->listingcategory = Gaming::where('url', $url)->first();
@@ -858,32 +858,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -908,32 +908,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -949,7 +949,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'lightings':
+            case 'lighting':
 
 
                 $this->listingcategory = Lighting::where('url', $url)->first();
@@ -958,32 +958,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1008,32 +1008,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1056,32 +1056,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1097,7 +1097,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'tablettes':
+            case 'tablets':
 
 
                 $this->listingcategory = Tablette::where('url', $url)->first();
@@ -1106,32 +1106,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1147,7 +1147,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'eclairages':
+            case 'eclairage':
 
 
 
@@ -1157,32 +1157,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1197,7 +1197,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'mobiliers':
+            case 'mobilier':
 
 
 
@@ -1207,32 +1207,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1247,7 +1247,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'photographies':
+            case 'photography':
 
 
                 $this->listingcategory = Photographie::where('url', $url)->first();
@@ -1256,32 +1256,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1295,7 +1295,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'sonorisations':
+            case 'sound-systems':
 
 
                 $this->listingcategory = Sonorisation::where('url', $url)->first();
@@ -1304,32 +1304,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1345,7 +1345,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'tentes':
+            case 'tents':
 
 
 
@@ -1355,32 +1355,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1400,32 +1400,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1438,7 +1438,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'jewelrys':
+            case 'jewelry':
 
 
                 $this->listingcategory = Jewelry::where('url', $url)->first();
@@ -1447,32 +1447,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1494,32 +1494,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1531,7 +1531,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'bureauxs':
+            case 'offices':
 
 
                 $this->listingcategory = Bureaux::where('url', $url)->first();
@@ -1540,32 +1540,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1578,7 +1578,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'magasins':
+            case 'shops':
 
 
                 $this->listingcategory = Magasin::where('url', $url)->first();
@@ -1587,32 +1587,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1624,7 +1624,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'maisons':
+            case 'houses':
 
 
                 $this->listingcategory = Maison::where('url', $url)->first();
@@ -1633,32 +1633,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1679,32 +1679,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1714,7 +1714,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'terrains':
+            case 'lands':
 
 
                 $this->listingcategory = Terrain::where('url', $url)->first();
@@ -1723,32 +1723,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1771,32 +1771,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1817,32 +1817,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1853,7 +1853,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'livres':
+            case 'books':
 
 
                 $this->listingcategory = Livre::where('url', $url)->first();
@@ -1862,32 +1862,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1898,7 +1898,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'musicals':
+            case 'musical':
 
 
 
@@ -1908,32 +1908,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1944,7 +1944,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'furnitures':
+            case 'furniture':
 
 
                 $this->listingcategory = Furniture::where('url', $url)->first();
@@ -1953,32 +1953,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -1990,7 +1990,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'houseappliances':
+            case 'home-appliances':
 
 
                 $this->listingcategory = Houseappliance::where('url', $url)->first();
@@ -1999,32 +1999,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2036,7 +2036,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'electricaltools':
+            case 'electrical-tools':
 
 
 
@@ -2046,32 +2046,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2092,32 +2092,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2128,7 +2128,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
 
 
 
@@ -2138,32 +2138,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2173,7 +2173,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'powertools':
+            case 'power-tools':
 
 
                 $this->listingcategory = Powertool::where('url', $url)->first();
@@ -2182,32 +2182,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2218,7 +2218,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'pressurewashers':
+            case 'pressure-washers':
 
 
                 $this->listingcategory = Pressurewasher::where('url', $url)->first();
@@ -2227,32 +2227,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2272,32 +2272,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2361,32 +2361,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2397,7 +2397,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'camions':
+            case 'trucks':
 
 
 
@@ -2407,32 +2407,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
                 break;
@@ -2450,32 +2450,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2494,32 +2494,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2541,32 +2541,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2576,7 +2576,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'motos':
+            case 'motorcycles':
 
 
 
@@ -2586,32 +2586,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2630,32 +2630,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2667,7 +2667,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
 
 
 
@@ -2678,32 +2678,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
                 break;
@@ -2712,7 +2712,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'transportations':
+            case 'transportation':
 
 
                 $this->listingcategory = Transportation::where('url', $url)->first();
@@ -2721,32 +2721,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2759,7 +2759,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            case 'velos':
+            case 'bicycles':
 
 
 
@@ -2769,32 +2769,32 @@ class ReservationFrontController extends JsonApiController
 
 
 
-            return response()->json([
-                'data' => [
-                    'type' => $this->category,
-                    'id' => $this->listingcategory->id,
-                    'attributes' => [
-                        'title' => $this->listingcategory->title,
-                        'price' => $this->listingcategory->price,
-                        'description' => $this->listingcategory->description,
-                        'startdate' => $this->listingcategory->startdate,
-                        'enddate' => $this->listingcategory->enddate,
-                        'address' => $this->listingcategory->address,
-                        'city' => $this->listingcategory->city,
-                        'country' => $this->listingcategory->country,
-                        'zip' => $this->listingcategory->zip,
-                        'category' => $this->category,
-                        'picture' => $this->listingcategory->picture,
-                        'url' => $this->url,
-                        'created_ad' => $this->listingcategory->created_ad,
+                return response()->json([
+                    'data' => [
+                        'type' => $this->category,
+                        'id' => $this->listingcategory->id,
+                        'attributes' => [
+                            'title' => $this->listingcategory->title,
+                            'price' => $this->listingcategory->price,
+                            'description' => $this->listingcategory->description,
+                            'startdate' => $this->listingcategory->startdate,
+                            'enddate' => $this->listingcategory->enddate,
+                            'address' => $this->listingcategory->address,
+                            'city' => $this->listingcategory->city,
+                            'country' => $this->listingcategory->country,
+                            'zip' => $this->listingcategory->zip,
+                            'category' => $this->category,
+                            'picture' => $this->listingcategory->picture,
+                            'url' => $this->url,
+                            'created_ad' => $this->listingcategory->created_ad,
 
 
 
 
 
+                        ],
                     ],
-                ],
-            ]);
+                ]);
 
 
 
@@ -2861,7 +2861,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'billiards':
+                    case 'billiard':
 
 
                         $this->listingcategory = Billiard::where('url', $url)->first();
@@ -2949,7 +2949,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'boxings':
+                    case 'boxing':
 
 
                         $this->listingcategory = Boxing::where('url', $url)->first();
@@ -3034,7 +3034,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'divings':
+                    case 'diving':
 
 
                         $this->listingcategory = Diving::where('url', $url)->first();
@@ -3121,7 +3121,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'footballs':
+                    case 'football':
 
 
                         $this->listingcategory = Football::where('url', $url)->first();
@@ -3208,7 +3208,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'golfs':
+                    case 'golf':
 
 
                         $this->listingcategory = Golf::where('url', $url)->first();
@@ -3296,7 +3296,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'huntings':
+                    case 'hunting':
 
 
                         $this->listingcategory = Hunting::where('url', $url)->first();
@@ -3383,7 +3383,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'musculations':
+                    case 'gym':
 
 
                         $this->listingcategory = Musculation::where('url', $url)->first();
@@ -3471,7 +3471,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'surfs':
+                    case 'surf':
 
 
                         $this->listingcategory = Surf::where('url', $url)->first();
@@ -3645,7 +3645,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'audios':
+                    case 'audio':
 
 
                         $this->listingcategory = Audio::where('url', $url)->first();
@@ -3993,7 +3993,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'gamings':
+                    case 'gaming':
 
 
                         $this->listingcategory = Gaming::where('url', $url)->first();
@@ -4168,7 +4168,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'lightings':
+                    case 'lighting':
 
 
                         $this->listingcategory = Lighting::where('url', $url)->first();
@@ -4430,7 +4430,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'tablettes':
+                    case 'tablets':
 
 
                         $this->listingcategory = Tablette::where('url', $url)->first();
@@ -4518,7 +4518,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'eclairages':
+                    case 'eclairage':
 
 
                         $this->listingcategory = Eclairage::where('url', $url)->first();
@@ -4605,7 +4605,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'mobiliers':
+                    case 'mobilier':
 
 
                         $this->listingcategory = Mobilier::where('url', $url)->first();
@@ -4692,7 +4692,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'photographies':
+                    case 'photography':
 
 
                         $this->listingcategory = Photographie::where('url', $url)->first();
@@ -4778,7 +4778,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'sonorisations':
+                    case 'sound-systems':
 
 
                         $this->listingcategory = Sonorisation::where('url', $url)->first();
@@ -4866,7 +4866,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'tentes':
+                    case 'tents':
 
 
                         $this->listingcategory = Tente::where('url', $url)->first();
@@ -5039,7 +5039,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'jewelrys':
+                    case 'jewelry':
 
 
                         $this->listingcategory = Jewelry::where('url', $url)->first();
@@ -5212,7 +5212,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'bureauxs':
+                    case 'offices':
 
 
                         $this->listingcategory = Bureaux::where('url', $url)->first();
@@ -5299,7 +5299,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'magasins':
+                    case 'shops':
 
 
                         $this->listingcategory = Magasin::where('url', $url)->first();
@@ -5385,7 +5385,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'maisons':
+                    case 'houses':
 
 
                         $this->listingcategory = Maison::where('url', $url)->first();
@@ -5555,7 +5555,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'terrains':
+                    case 'lands':
 
 
                         $this->listingcategory = Terrain::where('url', $url)->first();
@@ -5814,7 +5814,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'livres':
+                    case 'books':
 
 
                         $this->listingcategory = Livre::where('url', $url)->first();
@@ -5899,7 +5899,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'musicals':
+                    case 'musical':
 
 
                         $this->listingcategory = Musical::where('url', $url)->first();
@@ -5985,7 +5985,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'furnitures':
+                    case 'furniture':
 
 
                         $this->listingcategory = Furniture::where('url', $url)->first();
@@ -6071,7 +6071,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'houseappliances':
+                    case 'home-appliances':
 
 
                         $this->listingcategory = Houseappliance::where('url', $url)->first();
@@ -6157,7 +6157,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'electricaltools':
+                    case 'electrical-tools':
 
 
                         $this->listingcategory = Electricaltool::where('url', $url)->first();
@@ -6329,7 +6329,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'mechanicaltools':
+                    case 'mechanical-tools':
 
 
                         $this->listingcategory = Mechanicaltool::where('url', $url)->first();
@@ -6414,7 +6414,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'powertools':
+                    case 'power-tools':
 
 
                         $this->listingcategory = Powertool::where('url', $url)->first();
@@ -6499,7 +6499,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'pressurewashers':
+                    case 'pressure-washers':
 
 
                         $this->listingcategory = Pressurewasher::where('url', $url)->first();
@@ -6842,7 +6842,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'camions':
+                    case 'trucks':
 
 
                         $this->listingcategory = Camion::where('url', $url)->first();
@@ -7181,7 +7181,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'motos':
+                    case 'motorcycles':
 
 
                         $this->listingcategory = Moto::where('url', $url)->first();
@@ -7352,7 +7352,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'taxiaeroports':
+                    case 'airport-taxis':
 
 
                         $this->listingcategory = Taxiaeroport::where('url', $url)->first();
@@ -7437,7 +7437,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'transportations':
+                    case 'transportation':
 
 
                         $this->listingcategory = Transportation::where('url', $url)->first();
@@ -7524,7 +7524,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
-                    case 'velos':
+                    case 'bicycles':
 
 
                         $this->listingcategory = Velo::where('url', $url)->first();

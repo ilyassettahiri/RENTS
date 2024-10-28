@@ -217,7 +217,7 @@ class StoreController extends JsonApiController
 
 
                 $categories = [
-                    'billiards' => array_filter($favorites->pluck('billiard_id')->toArray()),
+                    'billiard' => array_filter($favorites->pluck('billiard_id')->toArray()),
                     'boxing' => array_filter($favorites->pluck('boxing_id')->toArray()),
                     'diving' => array_filter($favorites->pluck('diving_id')->toArray()),
                     'football' => array_filter($favorites->pluck('football_id')->toArray()),
@@ -391,7 +391,7 @@ class StoreController extends JsonApiController
                                     $result = ['id' => null]; // Initialize the result with default value
 
                                     switch ($listing->category) {
-                                        case 'billiards':
+                                        case 'billiard':
                                             $billiard = Billiard::where('url', $listing->url)->first();
                                             if ($billiard) {
                                                 $listing->billiard_id = $billiard->id;
@@ -399,7 +399,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'boxings':
+                                        case 'boxing':
                                             $boxing = Boxing::where('url', $listing->url)->first();
                                             if ($boxing) {
                                                 $listing->boxing_id = $boxing->id;
@@ -407,7 +407,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'divings':
+                                        case 'diving':
                                             $diving = Diving::where('url', $listing->url)->first();
                                             if ($diving) {
                                                 $listing->diving_id = $diving->id;
@@ -415,7 +415,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'footballs':
+                                        case 'football':
                                             $football = Football::where('url', $listing->url)->first();
                                             if ($football) {
                                                 $listing->football_id = $football->id;
@@ -423,7 +423,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'golfs':
+                                        case 'golf':
                                             $golf = Golf::where('url', $listing->url)->first();
                                             if ($golf) {
                                                 $listing->golf_id = $golf->id;
@@ -431,7 +431,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'huntings':
+                                        case 'hunting':
                                             $hunting = Hunting::where('url', $listing->url)->first();
                                             if ($hunting) {
                                                 $listing->hunting_id = $hunting->id;
@@ -439,7 +439,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'musculations':
+                                        case 'gym':
                                             $musculation = Musculation::where('url', $listing->url)->first();
                                             if ($musculation) {
                                                 $listing->musculation_id = $musculation->id;
@@ -447,7 +447,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'surfs':
+                                        case 'surf':
                                             $surf = Surf::where('url', $listing->url)->first();
                                             if ($surf) {
                                                 $listing->surf_id = $surf->id;
@@ -463,7 +463,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'audios':
+                                        case 'audio':
                                             $audio = Audio::where('url', $listing->url)->first();
                                             if ($audio) {
                                                 $listing->audio_id = $audio->id;
@@ -495,7 +495,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'gamings':
+                                        case 'gaming':
                                             $gaming = Gaming::where('url', $listing->url)->first();
                                             if ($gaming) {
                                                 $listing->gaming_id = $gaming->id;
@@ -511,7 +511,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'lightings':
+                                        case 'lighting':
                                             $lighting = Lighting::where('url', $listing->url)->first();
                                             if ($lighting) {
                                                 $listing->lighting_id = $lighting->id;
@@ -535,7 +535,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'tablettes':
+                                        case 'tablets':
                                             $tablette = Tablette::where('url', $listing->url)->first();
                                             if ($tablette) {
                                                 $listing->tablette_id = $tablette->id;
@@ -543,7 +543,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'eclairages':
+                                        case 'eclairage':
                                             $eclairage = Eclairage::where('url', $listing->url)->first();
                                             if ($eclairage) {
                                                 $listing->eclairage_id = $eclairage->id;
@@ -551,7 +551,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'mobiliers':
+                                        case 'mobilier':
                                             $mobilier = Mobilier::where('url', $listing->url)->first();
                                             if ($mobilier) {
                                                 $listing->mobilier_id = $mobilier->id;
@@ -559,7 +559,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'photographies':
+                                        case 'photography':
                                             $photographie = Photographie::where('url', $listing->url)->first();
                                             if ($photographie) {
                                                 $listing->photographie_id = $photographie->id;
@@ -567,7 +567,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'sonorisations':
+                                        case 'sound-systems':
                                             $sonorisation = Sonorisation::where('url', $listing->url)->first();
                                             if ($sonorisation) {
                                                 $listing->sonorisation_id = $sonorisation->id;
@@ -575,7 +575,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'tentes':
+                                        case 'tents':
                                             $tente = Tente::where('url', $listing->url)->first();
                                             if ($tente) {
                                                 $listing->tente_id = $tente->id;
@@ -591,7 +591,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'jewelrys':
+                                        case 'jewelry':
                                             $jewelry = Jewelry::where('url', $listing->url)->first();
                                             if ($jewelry) {
                                                 $listing->jewelry_id = $jewelry->id;
@@ -607,7 +607,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'bureauxs':
+                                        case 'offices':
                                             $bureaux = Bureaux::where('url', $listing->url)->first();
                                             if ($bureaux) {
                                                 $listing->bureaux_id = $bureaux->id;
@@ -615,7 +615,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'magasins':
+                                        case 'shops':
                                             $magasin = Magasin::where('url', $listing->url)->first();
                                             if ($magasin) {
                                                 $listing->magasin_id = $magasin->id;
@@ -623,7 +623,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'maisons':
+                                        case 'houses':
                                             $maison = Maison::where('url', $listing->url)->first();
                                             if ($maison) {
                                                 $listing->maison_id = $maison->id;
@@ -639,7 +639,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'terrains':
+                                        case 'lands':
                                             $terrain = Terrain::where('url', $listing->url)->first();
                                             if ($terrain) {
                                                 $listing->terrain_id = $terrain->id;
@@ -663,7 +663,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'livres':
+                                        case 'books':
                                             $livre = Livre::where('url', $listing->url)->first();
                                             if ($livre) {
                                                 $listing->livre_id = $livre->id;
@@ -671,7 +671,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'musicals':
+                                        case 'musical':
                                             $musical = Musical::where('url', $listing->url)->first();
                                             if ($musical) {
                                                 $listing->musical_id = $musical->id;
@@ -679,7 +679,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'furnitures':
+                                        case 'furniture':
                                             $furniture = Furniture::where('url', $listing->url)->first();
                                             if ($furniture) {
                                                 $listing->furniture_id = $furniture->id;
@@ -687,7 +687,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'houseappliances':
+                                        case 'home-appliances':
                                             $houseappliance = Houseappliance::where('url', $listing->url)->first();
                                             if ($houseappliance) {
                                                 $listing->houseappliance_id = $houseappliance->id;
@@ -695,7 +695,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'electricaltools':
+                                        case 'electrical-tools':
                                             $electricaltool = Electricaltool::where('url', $listing->url)->first();
                                             if ($electricaltool) {
                                                 $listing->electricaltool_id = $electricaltool->id;
@@ -711,7 +711,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'mechanicaltools':
+                                        case 'mechanical-tools':
                                             $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
                                             if ($mechanicaltool) {
                                                 $listing->mechanicaltool_id = $mechanicaltool->id;
@@ -719,7 +719,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'powertools':
+                                        case 'power-tools':
                                             $powertool = Powertool::where('url', $listing->url)->first();
                                             if ($powertool) {
                                                 $listing->powertool_id = $powertool->id;
@@ -727,7 +727,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'pressurewashers':
+                                        case 'pressure-washers':
                                             $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
                                             if ($pressurewasher) {
                                                 $listing->pressurewasher_id = $pressurewasher->id;
@@ -751,7 +751,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'camions':
+                                        case 'trucks':
                                             $camion = Camion::where('url', $listing->url)->first();
                                             if ($camion) {
                                                 $listing->camion_id = $camion->id;
@@ -783,7 +783,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'motos':
+                                        case 'motorcycles':
                                             $moto = Moto::where('url', $listing->url)->first();
                                             if ($moto) {
                                                 $listing->moto_id = $moto->id;
@@ -799,7 +799,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'taxiaeroports':
+                                        case 'airport-taxis':
                                             $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
                                             if ($taxiaeroport) {
                                                 $listing->taxiaeroport_id = $taxiaeroport->id;
@@ -807,7 +807,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'transportations':
+                                        case 'transportation':
                                             $transportation = Transportation::where('url', $listing->url)->first();
                                             if ($transportation) {
                                                 $listing->transportation_id = $transportation->id;
@@ -815,7 +815,7 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
-                                        case 'velos':
+                                        case 'bicycles':
                                             $velo = Velo::where('url', $listing->url)->first();
                                             if ($velo) {
                                                 $listing->velo_id = $velo->id;

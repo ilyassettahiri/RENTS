@@ -222,56 +222,56 @@ class FavoriteController extends JsonApiController
 
 
                         switch ($favorite->category) {
-                            case 'billiards':
+                            case 'billiard':
                                 return Billiardsimg::where('billiard_id', $favorite->billiard_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'boxings':
+                            case 'boxing':
                                 return Boxingsimg::where('boxing_id', $favorite->boxing_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'divings':
+                            case 'diving':
                                 return Divingsimg::where('diving_id', $favorite->diving_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'footballs':
+                            case 'football':
                                 return Footballsimg::where('football_id', $favorite->football_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'golfs':
+                            case 'golf':
                                 return Golfsimg::where('golf_id', $favorite->golf_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'huntings':
+                            case 'hunting':
                                 return Huntingsimg::where('hunting_id', $favorite->hunting_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'musculations':
+                            case 'gym':
                                 return Musculationsimg::where('musculation_id', $favorite->musculation_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'surfs':
+                            case 'surf':
                                 return Surfsimg::where('surf_id', $favorite->surf_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -285,7 +285,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'audios':
+                            case 'audio':
                                 return Audiosimg::where('audio_id', $favorite->audio_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -313,7 +313,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'gamings':
+                            case 'gaming':
                                 return Gamingsimg::where('gaming_id', $favorite->gaming_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -327,7 +327,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'lightings':
+                            case 'lighting':
                                 return Lightingsimg::where('lighting_id', $favorite->lighting_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -348,42 +348,42 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'tablettes':
+                            case 'tablets':
                                 return Tablettesimg::where('tablette_id', $favorite->tablette_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'eclairages':
+                            case 'eclairage':
                                 return Eclairagesimg::where('eclairage_id', $favorite->eclairage_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'mobiliers':
+                            case 'mobilier':
                                 return Mobiliersimg::where('mobilier_id', $favorite->mobilier_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'photographies':
+                            case 'photography':
                                 return Photographiesimg::where('photographie_id', $favorite->photographie_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'sonorisations':
+                            case 'sound-systems':
                                 return Sonorisationsimg::where('sonorisation_id', $favorite->sonorisation_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'tentes':
+                            case 'tents':
                                 return Tentesimg::where('tente_id', $favorite->tente_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -397,7 +397,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'jewelrys':
+                            case 'jewelry':
                                 return Jewelrysimg::where('jewelry_id', $favorite->jewelry_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -411,21 +411,21 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'bureauxs':
+                            case 'offices':
                                 return Bureauxsimg::where('bureaux_id', $favorite->bureaux_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'magasins':
+                            case 'shops':
                                 return Magasinsimg::where('magasin_id', $favorite->magasin_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'maisons':
+                            case 'houses':
                                 return Maisonsimg::where('maison_id', $favorite->maison_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -439,7 +439,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'terrains':
+                            case 'lands':
                                 return Terrainsimg::where('terrain_id', $favorite->terrain_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -460,35 +460,35 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'livres':
+                            case 'books':
                                 return Livresimg::where('livre_id', $favorite->livre_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'musicals':
+                            case 'musical':
                                 return Musicalsimg::where('musical_id', $favorite->musical_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'furnitures':
+                            case 'furniture':
                                 return Furnituresimg::where('furniture_id', $favorite->furniture_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'houseappliances':
+                            case 'home-appliances':
                                 return Houseappliancesimg::where('houseappliance_id', $favorite->houseappliance_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'electricaltools':
+                            case 'electrical-tools':
                                 return Electricaltoolsimg::where('electricaltool_id', $favorite->electricaltool_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -502,21 +502,21 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'mechanicaltools':
+                            case 'mechanical-tools':
                                 return Mechanicaltoolsimg::where('mechanicaltool_id', $favorite->mechanicaltool_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'powertools':
+                            case 'power-tools':
                                 return Powertoolsimg::where('powertool_id', $favorite->powertool_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'pressurewashers':
+                            case 'pressure-washers':
                                 return Pressurewashersimg::where('pressurewasher_id', $favorite->pressurewasher_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -537,7 +537,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'camions':
+                            case 'trucks':
                                 return Camionsimg::where('camion_id', $favorite->camion_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -565,7 +565,7 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'motos':
+                            case 'motorcycles':
                                 return Motosimg::where('moto_id', $favorite->moto_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -579,21 +579,21 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'taxiaeroports':
+                            case 'airport-taxis':
                                 return Taxiaeroportsimg::where('taxiaeroport_id', $favorite->taxiaeroport_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'transportations':
+                            case 'transportation':
                                 return Transportationsimg::where('transportation_id', $favorite->transportation_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
                                         'alttext' => $image->alttext,
                                     ];
                                 });
-                            case 'velos':
+                            case 'bicycles':
                                 return Velosimg::where('velo_id', $favorite->velo_id)->get()->map(function ($image) {
                                     return [
                                         'picturesmall' => $image->picturesmall,
@@ -688,7 +688,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'billiards':
+                    case 'billiard':
 
 
 
@@ -724,7 +724,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'boxings':
+                    case 'boxing':
 
 
 
@@ -765,7 +765,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'divings':
+                    case 'diving':
 
 
 
@@ -808,7 +808,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'footballs':
+                    case 'football':
 
 
 
@@ -851,7 +851,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'golfs':
+                    case 'golf':
 
 
 
@@ -895,7 +895,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'huntings':
+                    case 'hunting':
 
 
 
@@ -938,7 +938,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'musculations':
+                    case 'gym':
 
 
 
@@ -982,7 +982,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'surfs':
+                    case 'surf':
 
 
 
@@ -1068,7 +1068,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'audios':
+                    case 'audio':
 
 
 
@@ -1240,7 +1240,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'gamings':
+                    case 'gaming':
 
 
 
@@ -1327,7 +1327,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'lightings':
+                    case 'lighting':
 
 
 
@@ -1457,7 +1457,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'tablettes':
+                    case 'tablets':
 
 
 
@@ -1501,7 +1501,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'eclairages':
+                    case 'eclairage':
 
 
 
@@ -1544,7 +1544,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'mobiliers':
+                    case 'mobilier':
 
 
 
@@ -1587,7 +1587,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'photographies':
+                    case 'photography':
 
 
 
@@ -1629,7 +1629,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'sonorisations':
+                    case 'sound-systems':
 
 
 
@@ -1673,7 +1673,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'tentes':
+                    case 'tents':
 
 
 
@@ -1758,7 +1758,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'jewelrys':
+                    case 'jewelry':
 
 
 
@@ -1843,7 +1843,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'bureauxs':
+                    case 'offices':
 
 
 
@@ -1886,7 +1886,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'magasins':
+                    case 'shops':
 
 
 
@@ -1928,7 +1928,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'maisons':
+                    case 'houses':
 
 
 
@@ -2010,7 +2010,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'terrains':
+                    case 'lands':
 
 
 
@@ -2137,7 +2137,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'livres':
+                    case 'books':
 
 
 
@@ -2178,7 +2178,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'musicals':
+                    case 'musical':
 
 
 
@@ -2220,7 +2220,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'furnitures':
+                    case 'furniture':
 
 
 
@@ -2262,7 +2262,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'houseappliances':
+                    case 'home-appliances':
 
 
 
@@ -2304,7 +2304,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'electricaltools':
+                    case 'electrical-tools':
 
 
 
@@ -2388,7 +2388,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'mechanicaltools':
+                    case 'mechanical-tools':
 
 
 
@@ -2429,7 +2429,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'powertools':
+                    case 'power-tools':
 
 
 
@@ -2470,7 +2470,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'pressurewashers':
+                    case 'pressure-washers':
 
 
 
@@ -2594,7 +2594,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'camions':
+                    case 'trucks':
 
 
 
@@ -2757,7 +2757,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'motos':
+                    case 'motorcycles':
 
 
 
@@ -2840,7 +2840,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'taxiaeroports':
+                    case 'airport-taxis':
 
 
 
@@ -2881,7 +2881,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'transportations':
+                    case 'transportation':
 
 
 
@@ -2924,7 +2924,7 @@ class FavoriteController extends JsonApiController
 
 
 
-                    case 'velos':
+                    case 'bicycles':
 
 
 

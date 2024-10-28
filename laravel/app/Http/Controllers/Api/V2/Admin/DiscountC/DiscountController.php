@@ -215,7 +215,7 @@ class DiscountController extends JsonApiController
 
 
                         switch ($listing->category) {
-                            case 'billiards':
+                            case 'billiard':
                                 $billiard = Billiard::where('url', $url)->first();
                                 $billiard->discount_id = $discountID;
                                 $billiard->save();
@@ -233,7 +233,7 @@ class DiscountController extends JsonApiController
                                 $activity->save();
                                 break;
 
-                            case 'audios':
+                            case 'audio':
                                 $audio = Audio::where('url', $url)->first();
                                 $audio->discount_id = $discountID;
                                 $audio->save();
@@ -245,13 +245,13 @@ class DiscountController extends JsonApiController
                                 $boat->save();
                                 break;
 
-                            case 'boxings':
+                            case 'boxing':
                                 $boxing = Boxing::where('url', $url)->first();
                                 $boxing->discount_id = $discountID;
                                 $boxing->save();
                                 break;
 
-                            case 'bureauxs':
+                            case 'offices':
                                 $bureaux = Bureaux::where('url', $url)->first();
                                 $bureaux->discount_id = $discountID;
                                 $bureaux->save();
@@ -263,7 +263,7 @@ class DiscountController extends JsonApiController
                                 $camera->save();
                                 break;
 
-                            case 'camions':
+                            case 'trucks':
                                 $camion = Camion::where('url', $url)->first();
                                 $camion->discount_id = $discountID;
                                 $camion->save();
@@ -293,7 +293,7 @@ class DiscountController extends JsonApiController
                                 $clothes->save();
                                 break;
 
-                            case 'divings':
+                            case 'diving':
                                 $diving = Diving::where('url', $url)->first();
                                 $diving->discount_id = $discountID;
                                 $diving->save();
@@ -305,13 +305,13 @@ class DiscountController extends JsonApiController
                                 $drone->save();
                                 break;
 
-                            case 'eclairages':
+                            case 'eclairage':
                                 $eclairage = Eclairage::where('url', $url)->first();
                                 $eclairage->discount_id = $discountID;
                                 $eclairage->save();
                                 break;
 
-                            case 'electricaltools':
+                            case 'electrical-tools':
                                 $electricalTool = ElectricalTool::where('url', $url)->first();
                                 $electricalTool->discount_id = $discountID;
                                 $electricalTool->save();
@@ -323,43 +323,43 @@ class DiscountController extends JsonApiController
                                 $engin->save();
                                 break;
 
-                            case 'footballs':
+                            case 'football':
                                 $football = Football::where('url', $url)->first();
                                 $football->discount_id = $discountID;
                                 $football->save();
                                 break;
 
-                            case 'furnitures':
+                            case 'furniture':
                                 $furniture = Furniture::where('url', $url)->first();
                                 $furniture->discount_id = $discountID;
                                 $furniture->save();
                                 break;
 
-                            case 'gamings':
+                            case 'gaming':
                                 $gaming = Gaming::where('url', $url)->first();
                                 $gaming->discount_id = $discountID;
                                 $gaming->save();
                                 break;
 
-                            case 'golfs':
+                            case 'golf':
                                 $golf = Golf::where('url', $url)->first();
                                 $golf->discount_id = $discountID;
                                 $golf->save();
                                 break;
 
-                            case 'houseappliances':
+                            case 'home-appliances':
                                 $houseAppliance = HouseAppliance::where('url', $url)->first();
                                 $houseAppliance->discount_id = $discountID;
                                 $houseAppliance->save();
                                 break;
 
-                            case 'huntings':
+                            case 'hunting':
                                 $hunting = Hunting::where('url', $url)->first();
                                 $hunting->discount_id = $discountID;
                                 $hunting->save();
                                 break;
 
-                            case 'jewelrys':
+                            case 'jewelry':
                                 $jewelry = Jewelry::where('url', $url)->first();
                                 $jewelry->discount_id = $discountID;
                                 $jewelry->save();
@@ -377,73 +377,73 @@ class DiscountController extends JsonApiController
                                 $laptop->save();
                                 break;
 
-                            case 'lightings':
+                            case 'lighting':
                                 $lighting = Lighting::where('url', $url)->first();
                                 $lighting->discount_id = $discountID;
                                 $lighting->save();
                                 break;
 
-                            case 'livres':
+                            case 'books':
                                 $livre = Livre::where('url', $url)->first();
                                 $livre->discount_id = $discountID;
                                 $livre->save();
                                 break;
 
-                            case 'magasins':
+                            case 'shops':
                                 $magasin = Magasin::where('url', $url)->first();
                                 $magasin->discount_id = $discountID;
                                 $magasin->save();
                                 break;
 
-                            case 'maisons':
+                            case 'houses':
                                 $maison = Maison::where('url', $url)->first();
                                 $maison->discount_id = $discountID;
                                 $maison->save();
                                 break;
 
-                            case 'mechanicaltools':
+                            case 'mechanical-tools':
                                 $mechanicalTool = MechanicalTool::where('url', $url)->first();
                                 $mechanicalTool->discount_id = $discountID;
                                 $mechanicalTool->save();
                                 break;
 
-                            case 'mobiliers':
+                            case 'mobilier':
                                 $mobilier = Mobilier::where('url', $url)->first();
                                 $mobilier->discount_id = $discountID;
                                 $mobilier->save();
                                 break;
 
-                            case 'motos':
+                            case 'motorcycles':
                                 $moto = Moto::where('url', $url)->first();
                                 $moto->discount_id = $discountID;
                                 $moto->save();
                                 break;
 
-                            case 'musculations':
+                            case 'gym':
                                 $musculation = Musculation::where('url', $url)->first();
                                 $musculation->discount_id = $discountID;
                                 $musculation->save();
                                 break;
 
-                            case 'musicals':
+                            case 'musical':
                                 $musical = Musical::where('url', $url)->first();
                                 $musical->discount_id = $discountID;
                                 $musical->save();
                                 break;
 
-                            case 'photographies':
+                            case 'photography':
                                 $photographie = Photographie::where('url', $url)->first();
                                 $photographie->discount_id = $discountID;
                                 $photographie->save();
                                 break;
 
-                            case 'powertools':
+                            case 'power-tools':
                                 $powertool = Powertool::where('url', $url)->first();
                                 $powertool->discount_id = $discountID;
                                 $powertool->save();
                                 break;
 
-                            case 'pressurewashers':
+                            case 'pressure-washers':
                                 $pressureWasher = PressureWasher::where('url', $url)->first();
                                 $pressureWasher->discount_id = $discountID;
                                 $pressureWasher->save();
@@ -479,25 +479,25 @@ class DiscountController extends JsonApiController
                                 $service->save();
                                 break;
 
-                            case 'sonorisations':
+                            case 'sound-systems':
                                 $sonorisation = Sonorisation::where('url', $url)->first();
                                 $sonorisation->discount_id = $discountID;
                                 $sonorisation->save();
                                 break;
 
-                            case 'surfs':
+                            case 'surf':
                                 $surf = Surf::where('url', $url)->first();
                                 $surf->discount_id = $discountID;
                                 $surf->save();
                                 break;
 
-                            case 'tablettes':
+                            case 'tablets':
                                 $tablette = Tablette::where('url', $url)->first();
                                 $tablette->discount_id = $discountID;
                                 $tablette->save();
                                 break;
 
-                            case 'taxiaeroports':
+                            case 'airport-taxis':
                                 $taxiAeroport = TaxiAeroport::where('url', $url)->first();
                                 $taxiAeroport->discount_id = $discountID;
                                 $taxiAeroport->save();
@@ -509,25 +509,25 @@ class DiscountController extends JsonApiController
                                 $tennis->save();
                                 break;
 
-                            case 'tentes':
+                            case 'tents':
                                 $tente = Tente::where('url', $url)->first();
                                 $tente->discount_id = $discountID;
                                 $tente->save();
                                 break;
 
-                            case 'terrains':
+                            case 'lands':
                                 $terrain = Terrain::where('url', $url)->first();
                                 $terrain->discount_id = $discountID;
                                 $terrain->save();
                                 break;
 
-                            case 'transportations':
+                            case 'transportation':
                                 $transportation = Transportation::where('url', $url)->first();
                                 $transportation->discount_id = $discountID;
                                 $transportation->save();
                                 break;
 
-                            case 'velos':
+                            case 'bicycles':
                                 $velo = Velo::where('url', $url)->first();
                                 $velo->discount_id = $discountID;
                                 $velo->save();
@@ -568,7 +568,7 @@ class DiscountController extends JsonApiController
 
 
                     switch ($listing->category) {
-                        case 'billiards':
+                        case 'billiard':
                             $billiard = Billiard::where('url', $url)->first();
                             $billiard->discount_id = $discountID;
                             $billiard->save();
@@ -586,7 +586,7 @@ class DiscountController extends JsonApiController
                             $activity->save();
                             break;
 
-                        case 'audios':
+                        case 'audio':
                             $audio = Audio::where('url', $url)->first();
                             $audio->discount_id = $discountID;
                             $audio->save();
@@ -598,13 +598,13 @@ class DiscountController extends JsonApiController
                             $boat->save();
                             break;
 
-                        case 'boxings':
+                        case 'boxing':
                             $boxing = Boxing::where('url', $url)->first();
                             $boxing->discount_id = $discountID;
                             $boxing->save();
                             break;
 
-                        case 'bureauxs':
+                        case 'offices':
                             $bureaux = Bureaux::where('url', $url)->first();
                             $bureaux->discount_id = $discountID;
                             $bureaux->save();
@@ -616,7 +616,7 @@ class DiscountController extends JsonApiController
                             $camera->save();
                             break;
 
-                        case 'camions':
+                        case 'trucks':
                             $camion = Camion::where('url', $url)->first();
                             $camion->discount_id = $discountID;
                             $camion->save();
@@ -646,7 +646,7 @@ class DiscountController extends JsonApiController
                             $clothes->save();
                             break;
 
-                        case 'divings':
+                        case 'diving':
                             $diving = Diving::where('url', $url)->first();
                             $diving->discount_id = $discountID;
                             $diving->save();
@@ -658,13 +658,13 @@ class DiscountController extends JsonApiController
                             $drone->save();
                             break;
 
-                        case 'eclairages':
+                        case 'eclairage':
                             $eclairage = Eclairage::where('url', $url)->first();
                             $eclairage->discount_id = $discountID;
                             $eclairage->save();
                             break;
 
-                        case 'electricaltools':
+                        case 'electrical-tools':
                             $electricalTool = ElectricalTool::where('url', $url)->first();
                             $electricalTool->discount_id = $discountID;
                             $electricalTool->save();
@@ -676,43 +676,43 @@ class DiscountController extends JsonApiController
                             $engin->save();
                             break;
 
-                        case 'footballs':
+                        case 'football':
                             $football = Football::where('url', $url)->first();
                             $football->discount_id = $discountID;
                             $football->save();
                             break;
 
-                        case 'furnitures':
+                        case 'furniture':
                             $furniture = Furniture::where('url', $url)->first();
                             $furniture->discount_id = $discountID;
                             $furniture->save();
                             break;
 
-                        case 'gamings':
+                        case 'gaming':
                             $gaming = Gaming::where('url', $url)->first();
                             $gaming->discount_id = $discountID;
                             $gaming->save();
                             break;
 
-                        case 'golfs':
+                        case 'golf':
                             $golf = Golf::where('url', $url)->first();
                             $golf->discount_id = $discountID;
                             $golf->save();
                             break;
 
-                        case 'houseappliances':
+                        case 'home-appliances':
                             $houseAppliance = HouseAppliance::where('url', $url)->first();
                             $houseAppliance->discount_id = $discountID;
                             $houseAppliance->save();
                             break;
 
-                        case 'huntings':
+                        case 'hunting':
                             $hunting = Hunting::where('url', $url)->first();
                             $hunting->discount_id = $discountID;
                             $hunting->save();
                             break;
 
-                        case 'jewelrys':
+                        case 'jewelry':
                             $jewelry = Jewelry::where('url', $url)->first();
                             $jewelry->discount_id = $discountID;
                             $jewelry->save();
@@ -730,73 +730,73 @@ class DiscountController extends JsonApiController
                             $laptop->save();
                             break;
 
-                        case 'lightings':
+                        case 'lighting':
                             $lighting = Lighting::where('url', $url)->first();
                             $lighting->discount_id = $discountID;
                             $lighting->save();
                             break;
 
-                        case 'livres':
+                        case 'books':
                             $livre = Livre::where('url', $url)->first();
                             $livre->discount_id = $discountID;
                             $livre->save();
                             break;
 
-                        case 'magasins':
+                        case 'shops':
                             $magasin = Magasin::where('url', $url)->first();
                             $magasin->discount_id = $discountID;
                             $magasin->save();
                             break;
 
-                        case 'maisons':
+                        case 'houses':
                             $maison = Maison::where('url', $url)->first();
                             $maison->discount_id = $discountID;
                             $maison->save();
                             break;
 
-                        case 'mechanicaltools':
+                        case 'mechanical-tools':
                             $mechanicalTool = MechanicalTool::where('url', $url)->first();
                             $mechanicalTool->discount_id = $discountID;
                             $mechanicalTool->save();
                             break;
 
-                        case 'mobiliers':
+                        case 'mobilier':
                             $mobilier = Mobilier::where('url', $url)->first();
                             $mobilier->discount_id = $discountID;
                             $mobilier->save();
                             break;
 
-                        case 'motos':
+                        case 'motorcycles':
                             $moto = Moto::where('url', $url)->first();
                             $moto->discount_id = $discountID;
                             $moto->save();
                             break;
 
-                        case 'musculations':
+                        case 'gym':
                             $musculation = Musculation::where('url', $url)->first();
                             $musculation->discount_id = $discountID;
                             $musculation->save();
                             break;
 
-                        case 'musicals':
+                        case 'musical':
                             $musical = Musical::where('url', $url)->first();
                             $musical->discount_id = $discountID;
                             $musical->save();
                             break;
 
-                        case 'photographies':
+                        case 'photography':
                             $photographie = Photographie::where('url', $url)->first();
                             $photographie->discount_id = $discountID;
                             $photographie->save();
                             break;
 
-                        case 'powertools':
+                        case 'power-tools':
                             $powertool = Powertool::where('url', $url)->first();
                             $powertool->discount_id = $discountID;
                             $powertool->save();
                             break;
 
-                        case 'pressurewashers':
+                        case 'pressure-washers':
                             $pressureWasher = PressureWasher::where('url', $url)->first();
                             $pressureWasher->discount_id = $discountID;
                             $pressureWasher->save();
@@ -832,25 +832,25 @@ class DiscountController extends JsonApiController
                             $service->save();
                             break;
 
-                        case 'sonorisations':
+                        case 'sound-systems':
                             $sonorisation = Sonorisation::where('url', $url)->first();
                             $sonorisation->discount_id = $discountID;
                             $sonorisation->save();
                             break;
 
-                        case 'surfs':
+                        case 'surf':
                             $surf = Surf::where('url', $url)->first();
                             $surf->discount_id = $discountID;
                             $surf->save();
                             break;
 
-                        case 'tablettes':
+                        case 'tablets':
                             $tablette = Tablette::where('url', $url)->first();
                             $tablette->discount_id = $discountID;
                             $tablette->save();
                             break;
 
-                        case 'taxiaeroports':
+                        case 'airport-taxis':
                             $taxiAeroport = TaxiAeroport::where('url', $url)->first();
                             $taxiAeroport->discount_id = $discountID;
                             $taxiAeroport->save();
@@ -862,25 +862,25 @@ class DiscountController extends JsonApiController
                             $tennis->save();
                             break;
 
-                        case 'tentes':
+                        case 'tents':
                             $tente = Tente::where('url', $url)->first();
                             $tente->discount_id = $discountID;
                             $tente->save();
                             break;
 
-                        case 'terrains':
+                        case 'lands':
                             $terrain = Terrain::where('url', $url)->first();
                             $terrain->discount_id = $discountID;
                             $terrain->save();
                             break;
 
-                        case 'transportations':
+                        case 'transportation':
                             $transportation = Transportation::where('url', $url)->first();
                             $transportation->discount_id = $discountID;
                             $transportation->save();
                             break;
 
-                        case 'velos':
+                        case 'bicycles':
                             $velo = Velo::where('url', $url)->first();
                             $velo->discount_id = $discountID;
                             $velo->save();

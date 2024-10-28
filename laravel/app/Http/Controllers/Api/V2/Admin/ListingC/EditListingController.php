@@ -201,7 +201,7 @@ class EditListingController extends Controller
 
 
 
-            case 'billiards':
+            case 'billiard':
 
 
                 $this->listingcategory = Billiard::where('url', $url)->first();
@@ -257,7 +257,7 @@ class EditListingController extends Controller
 
 
 
-            case 'boxings':
+            case 'boxing':
 
 
 
@@ -308,7 +308,7 @@ class EditListingController extends Controller
 
 
 
-            case 'divings':
+            case 'diving':
 
 
 
@@ -373,7 +373,7 @@ class EditListingController extends Controller
 
 
 
-            case 'footballs':
+            case 'football':
 
 
 
@@ -427,7 +427,7 @@ class EditListingController extends Controller
 
 
 
-            case 'golfs':
+            case 'golf':
 
 
                                 $this->listingcategory = Golf::where('url', $url)->first();
@@ -484,7 +484,7 @@ class EditListingController extends Controller
 
 
 
-            case 'huntings':
+            case 'hunting':
 
 
                                 $this->listingcategory = Hunting::where('url', $url)->first();
@@ -543,7 +543,7 @@ class EditListingController extends Controller
 
 
 
-            case 'musculations':
+            case 'gym':
 
 
 
@@ -608,7 +608,7 @@ class EditListingController extends Controller
 
 
 
-            case 'surfs':
+            case 'surf':
 
 
 
@@ -723,7 +723,7 @@ class EditListingController extends Controller
 
 
 
-            case 'audios':
+            case 'audio':
 
 
 
@@ -973,7 +973,7 @@ class EditListingController extends Controller
 
 
 
-            case 'gamings':
+            case 'gaming':
 
 
 
@@ -1101,7 +1101,7 @@ class EditListingController extends Controller
 
 
 
-            case 'lightings':
+            case 'lighting':
 
 
 
@@ -1282,7 +1282,7 @@ class EditListingController extends Controller
 
 
 
-            case 'tablettes':
+            case 'tablets':
 
 
 
@@ -1343,7 +1343,7 @@ class EditListingController extends Controller
 
 
 
-            case 'eclairages':
+            case 'eclairage':
 
 
 
@@ -1409,7 +1409,7 @@ class EditListingController extends Controller
 
 
 
-            case 'mobiliers':
+            case 'mobilier':
 
 
 
@@ -1468,7 +1468,7 @@ class EditListingController extends Controller
 
 
 
-            case 'photographies':
+            case 'photography':
 
 
 
@@ -1530,7 +1530,7 @@ class EditListingController extends Controller
 
 
 
-            case 'sonorisations':
+            case 'sound-systems':
 
 
 
@@ -1601,7 +1601,7 @@ class EditListingController extends Controller
 
 
 
-            case 'tentes':
+            case 'tents':
 
 
 
@@ -1717,7 +1717,7 @@ class EditListingController extends Controller
 
 
 
-            case 'jewelrys':
+            case 'jewelry':
 
 
 
@@ -1838,7 +1838,7 @@ class EditListingController extends Controller
 
 
 
-            case 'bureauxs':
+            case 'offices':
 
 
 
@@ -1905,7 +1905,7 @@ class EditListingController extends Controller
 
 
 
-            case 'magasins':
+            case 'shops':
 
 
 
@@ -1970,7 +1970,7 @@ class EditListingController extends Controller
 
 
 
-            case 'maisons':
+            case 'houses':
 
 
 
@@ -2109,7 +2109,7 @@ class EditListingController extends Controller
 
 
 
-            case 'terrains':
+            case 'lands':
 
 
 
@@ -2303,7 +2303,7 @@ class EditListingController extends Controller
 
 
 
-            case 'livres':
+            case 'books':
 
 
 
@@ -2359,7 +2359,7 @@ class EditListingController extends Controller
 
 
 
-            case 'musicals':
+            case 'musical':
 
 
 
@@ -2417,7 +2417,7 @@ class EditListingController extends Controller
 
 
 
-            case 'furnitures':
+            case 'furniture':
 
 
 
@@ -2480,7 +2480,7 @@ class EditListingController extends Controller
 
 
 
-            case 'houseappliances':
+            case 'home-appliances':
 
 
 
@@ -2539,7 +2539,7 @@ class EditListingController extends Controller
 
 
 
-            case 'electricaltools':
+            case 'electrical-tools':
 
 
 
@@ -2672,7 +2672,7 @@ class EditListingController extends Controller
 
 
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
 
 
 
@@ -2733,7 +2733,7 @@ class EditListingController extends Controller
 
 
 
-            case 'powertools':
+            case 'power-tools':
 
 
 
@@ -2798,7 +2798,7 @@ class EditListingController extends Controller
 
 
 
-            case 'pressurewashers':
+            case 'pressure-washers':
 
 
 
@@ -3048,7 +3048,7 @@ class EditListingController extends Controller
 
 
 
-            case 'camions':
+            case 'trucks':
 
 
 
@@ -3282,7 +3282,7 @@ class EditListingController extends Controller
 
 
 
-            case 'motos':
+            case 'motorcycles':
 
 
 
@@ -3393,7 +3393,7 @@ class EditListingController extends Controller
 
 
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
 
 
 
@@ -3449,7 +3449,7 @@ class EditListingController extends Controller
 
 
 
-            case 'transportations':
+            case 'transportation':
 
 
 
@@ -3508,7 +3508,7 @@ class EditListingController extends Controller
 
 
 
-            case 'velos':
+            case 'bicycles':
 
 
 

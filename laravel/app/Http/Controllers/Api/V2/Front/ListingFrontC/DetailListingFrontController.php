@@ -207,7 +207,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'billiards':
+            case 'billiard':
                 $listingCategory = Billiard::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -223,7 +223,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'audios':
+            case 'audio':
                 $listingCategory = Audio::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -239,7 +239,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'boxings':
+            case 'boxing':
                 $listingCategory = Boxing::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -247,7 +247,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'bureauxs':
+            case 'offices':
                 $listingCategory = Bureaux::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -263,7 +263,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'camions':
+            case 'trucks':
                 $listingCategory = Camion::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -303,7 +303,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'divings':
+            case 'diving':
                 $listingCategory = Diving::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -319,7 +319,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'eclairages':
+            case 'eclairage':
                 $listingCategory = Eclairage::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -327,7 +327,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'electricaltools':
+            case 'electrical-tools':
                 $listingCategory = Electricaltool::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -343,7 +343,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'footballs':
+            case 'football':
                 $listingCategory = Football::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -351,7 +351,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'furnitures':
+            case 'furniture':
                 $listingCategory = Furniture::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -359,7 +359,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'gamings':
+            case 'gaming':
                 $listingCategory = Gaming::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -367,7 +367,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'golfs':
+            case 'golf':
                 $listingCategory = Golf::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -375,7 +375,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'houseappliances':
+            case 'home-appliances':
                 $listingCategory = Houseappliance::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -383,7 +383,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'huntings':
+            case 'hunting':
                 $listingCategory = Hunting::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -391,7 +391,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'jewelrys':
+            case 'jewelry':
                 $listingCategory = Jewelry::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -415,7 +415,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'lightings':
+            case 'lighting':
                 $listingCategory = Lighting::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -423,7 +423,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'livres':
+            case 'books':
                 $listingCategory = Livre::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -431,7 +431,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'magasins':
+            case 'shops':
                 $listingCategory = Magasin::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -439,7 +439,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'maisons':
+            case 'houses':
                 $listingCategory = Maison::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -447,7 +447,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'mechanicaltools':
+            case 'mechanical-tools':
                 $listingCategory = Mechanicaltool::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -455,7 +455,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'mobiliers':
+            case 'mobilier':
                 $listingCategory = Mobilier::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -463,7 +463,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'motos':
+            case 'motorcycles':
                 $listingCategory = Moto::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -471,7 +471,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'musculations':
+            case 'gym':
                 $listingCategory = Musculation::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -479,7 +479,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'musicals':
+            case 'musical':
                 $listingCategory = Musical::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -487,7 +487,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'photographies':
+            case 'photography':
                 $listingCategory = Photographie::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -495,7 +495,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'powertools':
+            case 'power-tools':
                 $listingCategory = Powertool::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -503,7 +503,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'pressurewashers':
+            case 'pressure-washers':
                 $listingCategory = Pressurewasher::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -551,7 +551,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'sonorisations':
+            case 'sound-systems':
                 $listingCategory = Sonorisation::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -559,7 +559,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'surfs':
+            case 'surf':
                 $listingCategory = Surf::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -567,7 +567,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'tablettes':
+            case 'tablets':
                 $listingCategory = Tablette::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -575,7 +575,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'taxiaeroports':
+            case 'airport-taxis':
                 $listingCategory = Taxiaeroport::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -591,7 +591,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'tentes':
+            case 'tents':
                 $listingCategory = Tente::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -599,7 +599,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'terrains':
+            case 'lands':
                 $listingCategory = Terrain::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -607,7 +607,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'transportations':
+            case 'transportation':
                 $listingCategory = Transportation::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -615,7 +615,7 @@ class DetailListingFrontController extends JsonApiController
                 });
                 break;
 
-            case 'velos':
+            case 'bicycles':
                 $listingCategory = Velo::where('url', $url)->first();
                 $images = $listingCategory->servicesimg->map(function ($image) {
 
@@ -680,7 +680,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'billiards':
+                        case 'billiard':
 
 
 
@@ -741,7 +741,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'boxings':
+                        case 'boxing':
 
 
 
@@ -802,7 +802,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'divings':
+                        case 'diving':
 
 
 
@@ -865,7 +865,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'footballs':
+                        case 'football':
 
 
 
@@ -928,7 +928,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'golfs':
+                        case 'golf':
 
 
 
@@ -992,7 +992,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'huntings':
+                        case 'hunting':
 
 
 
@@ -1055,7 +1055,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'musculations':
+                        case 'gym':
 
 
 
@@ -1119,7 +1119,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'surfs':
+                        case 'surf':
 
 
 
@@ -1245,7 +1245,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'audios':
+                        case 'audio':
 
 
 
@@ -1497,7 +1497,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'gamings':
+                        case 'gaming':
 
 
 
@@ -1624,7 +1624,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'lightings':
+                        case 'lighting':
 
 
 
@@ -1814,7 +1814,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'tablettes':
+                        case 'tablets':
 
 
 
@@ -1878,7 +1878,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'eclairages':
+                        case 'eclairage':
 
 
 
@@ -1941,7 +1941,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'mobiliers':
+                        case 'mobilier':
 
 
 
@@ -2004,7 +2004,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'photographies':
+                        case 'photography':
 
 
 
@@ -2066,7 +2066,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'sonorisations':
+                        case 'sound-systems':
 
 
 
@@ -2130,7 +2130,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'tentes':
+                        case 'tents':
 
 
 
@@ -2255,7 +2255,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'jewelrys':
+                        case 'jewelry':
 
 
 
@@ -2380,7 +2380,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'bureauxs':
+                        case 'offices':
 
 
 
@@ -2443,7 +2443,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'magasins':
+                        case 'shops':
 
 
 
@@ -2505,7 +2505,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'maisons':
+                        case 'houses':
 
 
 
@@ -2627,7 +2627,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'terrains':
+                        case 'lands':
 
 
 
@@ -2814,7 +2814,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'livres':
+                        case 'books':
 
 
 
@@ -2875,7 +2875,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'musicals':
+                        case 'musical':
 
 
 
@@ -2937,7 +2937,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'furnitures':
+                        case 'furniture':
 
 
 
@@ -2999,7 +2999,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'houseappliances':
+                        case 'home-appliances':
 
 
 
@@ -3061,7 +3061,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'electricaltools':
+                        case 'electrical-tools':
 
 
 
@@ -3185,7 +3185,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'mechanicaltools':
+                        case 'mechanical-tools':
 
 
 
@@ -3246,7 +3246,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'powertools':
+                        case 'power-tools':
 
 
 
@@ -3307,7 +3307,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'pressurewashers':
+                        case 'pressure-washers':
 
 
 
@@ -3491,7 +3491,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                        case 'camions':
+                        case 'trucks':
 
 
 
@@ -3734,7 +3734,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                    case 'motos':
+                    case 'motorcycles':
 
 
 
@@ -3857,7 +3857,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                    case 'taxiaeroports':
+                    case 'airport-taxis':
 
 
 
@@ -3918,7 +3918,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                    case 'transportations':
+                    case 'transportation':
 
 
 
@@ -3981,7 +3981,7 @@ class DetailListingFrontController extends JsonApiController
 
 
 
-                    case 'velos':
+                    case 'bicycles':
 
 
 
