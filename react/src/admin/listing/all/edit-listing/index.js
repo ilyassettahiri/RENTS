@@ -513,10 +513,10 @@ function EditListing() {
 
   const clickOpenHandler = (category, url) => {
     const baseUrl = category === 'services' 
-      ? `https://rents.ma/service-page/${url}`  // URL for services category
+      ? `https://rents.ma/service/${url}`  // URL for services category
       : category === 'jobs'
-      ? `https://rents.ma/job-page/${url}`  // URL for jobs category
-      : `https://rents.ma/listing-page/${category}/${url}`;  // Default URL for other categories
+      ? `https://rents.ma/job/${url}`  // URL for jobs category
+      : `https://rents.ma/${category}/${url}`;  // Default URL for other categories
   
     window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };

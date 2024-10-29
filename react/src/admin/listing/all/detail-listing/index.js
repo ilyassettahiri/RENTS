@@ -78,8 +78,8 @@ function DetailListing() {
 
   const clickOpenHandler = (category, url) => {
     const baseUrl = category === 'services' 
-      ? `https://rents.ma/service-page/${url}`  // URL for services category
-      : `https://rents.ma/listing-page/${category}/${url}`;  // Default URL for other categories
+      ? `https://rents.ma/service/${url}`  // URL for services category
+      : `https://rents.ma/${category}/${url}`;  // Default URL for other categories
     
     window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };

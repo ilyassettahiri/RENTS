@@ -127,7 +127,7 @@ function ListDraft() {
   };
 
   const clickOpenHandler = (category, url) => {
-    window.open(`https://rents.ma/listing-page/${category}/${url}`, '_blank');
+    window.open(`https://rents.ma/${category}/${url}`, '_blank');
   };
 
   const handleRowClick = (row) => {
