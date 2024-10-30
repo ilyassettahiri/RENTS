@@ -12,15 +12,15 @@ export const pageLinks = [
     items: [
 
       { title: 'Boats', path: paths.travel.termcondition },
-      { title: 'Camions', path: paths.travel.privacy },
+      { title: 'Trucks', path: paths.travel.privacy },
       { title: 'Caravans', path: paths.travel.termcondition },
       { title: 'Cars', path: paths.travel.privacy },
       { title: 'Engins', path: paths.travel.termcondition },
-      { title: 'Motos', path: paths.travel.privacy },
+      { title: 'Motorcycles', path: paths.travel.privacy },
       { title: 'Scooters', path: paths.travel.termcondition },
-      { title: 'Taxiaeroports', path: paths.travel.privacy },
-      { title: 'Transportations', path: paths.travel.termcondition },
-      { title: 'Velos', path: paths.travel.privacy },
+      { title: 'Airport Taxis', path: paths.travel.privacy },
+      { title: 'Transportation', path: paths.travel.termcondition },
+      { title: 'Bicycles', path: paths.travel.privacy },
 
 
     ],
@@ -33,12 +33,12 @@ export const pageLinks = [
     items: [
 
       { title: 'Apartments', path: paths.travel.about },
-      { title: 'Bureauxs', path: paths.travel.posts },
+      { title: 'Offices', path: paths.travel.posts },
 
-      { title: 'Magasins', path: paths.travel.about },
-      { title: 'Maisons', path: paths.travel.posts },
+      { title: 'Shops', path: paths.travel.about },
+      { title: 'Houses', path: paths.travel.posts },
       { title: 'Riads', path: paths.travel.about },
-      { title: 'Terrains', path: paths.travel.posts },
+      { title: 'Lands', path: paths.travel.posts },
       { title: 'Villas', path: paths.travel.about },
 
 
@@ -55,16 +55,16 @@ export const pageLinks = [
 
 
 
-      { title: 'Audios', path: paths.travel.termcondition },
+      { title: 'Audio', path: paths.travel.termcondition },
       { title: 'Cameras', path: paths.travel.privacy },
       { title: 'Chargers', path: paths.travel.termcondition },
       { title: 'Drones', path: paths.travel.privacy },
-      { title: 'Gamings', path: paths.travel.termcondition },
+      { title: 'Gaming', path: paths.travel.termcondition },
       { title: 'Laptops', path: paths.travel.privacy },
-      { title: 'Lightings', path: paths.travel.termcondition },
+      { title: 'Lighting', path: paths.travel.termcondition },
       { title: 'Printers', path: paths.travel.privacy },
       { title: 'Routers', path: paths.travel.termcondition },
-      { title: 'Tablettes', path: paths.travel.privacy },
+      { title: 'Tablets', path: paths.travel.privacy },
 
 
     ],
@@ -75,13 +75,13 @@ export const pageLinks = [
 
     items: [
 
-      { title: 'Electricaltools', path: paths.travel.termcondition },
+      { title: 'Electrical Tools', path: paths.travel.termcondition },
       { title: 'Ladders', path: paths.travel.privacy },
 
-      { title: 'Mechanicaltools', path: paths.travel.termcondition },
-      { title: 'Powertools', path: paths.travel.privacy },
+      { title: 'Mechanical Tools', path: paths.travel.termcondition },
+      { title: 'Power Tools', path: paths.travel.privacy },
 
-      { title: 'Pressurewashers', path: paths.travel.privacy },
+      { title: 'Pressure Washers', path: paths.travel.privacy },
 
 
     ],
@@ -93,14 +93,14 @@ export const pageLinks = [
     items: [
 
 
-    { title: 'Billiards', path: paths.support },
-    { title: 'Boxings', path: paths.travel.contact },
-    { title: 'Divings', path: paths.support },
-    { title: 'Footballs', path: paths.travel.contact },
-    { title: 'Golfs', path: paths.support },
-    { title: 'Huntings', path: paths.travel.contact },
-    { title: 'Musculations', path: paths.support },
-    { title: 'Surfs', path: paths.travel.contact },
+    { title: 'Billiard', path: paths.support },
+    { title: 'Boxing', path: paths.travel.contact },
+    { title: 'Diving', path: paths.support },
+    { title: 'Football', path: paths.travel.contact },
+    { title: 'Golf', path: paths.support },
+    { title: 'Hunting', path: paths.travel.contact },
+    { title: 'Gym', path: paths.support },
+    { title: 'Surf', path: paths.travel.contact },
     { title: 'Tennis', path: paths.support },
 
 
@@ -116,11 +116,11 @@ export const pageLinks = [
     subheader: 'EquipementpourEvenements',
 
     items: [
-      { title: 'Eclairages', path: paths.travel.termcondition },
-      { title: 'Mobiliers', path: paths.travel.privacy },
-      { title: 'Photographies', path: paths.travel.termcondition },
-      { title: 'Sonorisations', path: paths.travel.privacy },
-      { title: 'Tentes', path: paths.travel.termcondition },
+      { title: 'Eclairage', path: paths.travel.termcondition },
+      { title: 'Mobilier', path: paths.travel.privacy },
+      { title: 'Photography', path: paths.travel.termcondition },
+      { title: 'Sound Systems', path: paths.travel.privacy },
+      { title: 'Tents', path: paths.travel.termcondition },
 
 
 
@@ -138,8 +138,8 @@ export const pageLinks = [
 
     items: [
       { title: 'Activities', path: paths.travel.termcondition },
-      { title: 'Livres', path: paths.travel.privacy },
-      { title: 'Musicals', path: paths.travel.privacy },
+      { title: 'Books', path: paths.travel.privacy },
+      { title: 'Musical', path: paths.travel.privacy },
 
 
     ],
@@ -155,7 +155,7 @@ export const pageLinks = [
 
     items: [
       { title: 'Clothes', path: paths.travel.termcondition },
-      { title: 'Jewelrys', path: paths.travel.privacy },
+      { title: 'Jewelry', path: paths.travel.privacy },
 
 
     ],
@@ -169,8 +169,8 @@ export const pageLinks = [
     subheader: 'MaisonetetJardin',
 
     items: [
-      { title: 'Furnitures', path: paths.travel.termcondition },
-      { title: 'Houseappliances', path: paths.travel.privacy },
+      { title: 'Furniture', path: paths.travel.termcondition },
+      { title: 'Home Appliances', path: paths.travel.privacy },
 
 
     ],

@@ -2,6 +2,9 @@
 
 export const paths = {
   // Marketing
+
+  home: '/',
+
   marketing: {
     root: '/marketing',
 

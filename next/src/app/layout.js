@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 
 import Script from 'next/script';
+import Head from 'next/head';
 
 import ClientLayout from './client-layout';
 import ClientAnalytics from './client-analytics';
@@ -16,8 +17,13 @@ export const metadata = {
     shortcut: '/favicon/favicon-32x32.png',
     apple: '/favicon/apple-touch-icon.png',
   },
-  manifest: '/favicon/manifest.json', // Ensure this path is correct
-  themeColor: '#17c1e8',
+  manifest: '/manifest.json',
+
+
+};
+
+export const viewport = {
+  themeColor: '#17c1e8', // Move themeColor here
 };
 
 // Import the client layout component
@@ -32,9 +38,18 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href={metadata.icons.shortcut} />
         <link rel="apple-touch-icon" href={metadata.icons.apple} />
         <link rel="manifest" href={metadata.manifest} />
-        <meta name="theme-color" content={metadata.themeColor} />
+        <link rel="canonical" href="https://www.rents.ma/" />
+
+
+        <meta name="theme-color" content={viewport.themeColor} />
+
         <meta name="description" content={metadata.description} />
 
+
+
+
+      </head>
+      <body>
 
 
         {/* Add Google Analytics script here */}
@@ -52,9 +67,6 @@ export default function RootLayout({ children }) {
           `}
         </Script>
 
-
-      </head>
-      <body>
 
         <ClientAnalytics />
 

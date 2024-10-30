@@ -7,7 +7,7 @@ import Divider from '@mui/material/Divider';
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
 import ContactInfo from 'src/sections/contact/contact-info';
-import ContactForm from './contact-form';
+import ContactForm from 'src/sections/contact/contact-form';
 
 export default function ContactView() {
   // Fetch contacts data using React Query

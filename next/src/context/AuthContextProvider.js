@@ -74,16 +74,22 @@ const AuthContextProvider = ({ children }) => {
   }, [getCurrentUser]);
 
 
-  const handleCategoryClick = useCallback((category) => {
+  const handleCategoryClick = useCallback(async (category) => {
     setSelectedCategory(category);
     NProgress.start();
 
-    router.push(`/?searchCategories=${category}`).then(() => {
+    try {
+      // Replace spaces with hyphens and encode for URL compatibility
+      const formattedCategory = category.replace(/\s+/g, '-');
+      await router.push(`/?searchCategories=${formattedCategory}`);
+    } catch (error) {
+      console.error('Router push error:', error);
+    } finally {
       NProgress.done();
-    }).catch(() => {
-      NProgress.done();
-    });
+    }
   }, [router]);
+
+
 
   // Memoize the context value to prevent it from changing on every render
   const contextValue = useMemo(() => ({

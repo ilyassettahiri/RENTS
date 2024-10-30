@@ -98,6 +98,7 @@ export default function ListingImage({ images, params }) {
           overflow: 'hidden',
           paddingLeft: { lg: '80px' },
           paddingRight: { lg: '80px' },
+          mt: 10,
         }}
         >
 
