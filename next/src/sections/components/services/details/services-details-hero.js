@@ -198,7 +198,7 @@ function CarouselBasic3({ data , jobUrl }) {
                 <Image
                   alt={item.title}
                   src={item.coverUrl}
-                  ratio={isMdUp ? '4/3' : '1/1'}
+                  ratio={isMdUp ? '4/3' : '3/4'}
                   sx={{
                     width: '100%',
                     height: '100%',

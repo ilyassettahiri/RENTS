@@ -25,12 +25,13 @@ export default function ListingImageSkeleton() {
         mb: { xs: 5, md: 5 },
         px: {  md: 10 },
 
+        mt: {  md: 12 },
       }}
     >
       {/* Main Image Skeleton */}
       <Skeleton
         variant="rectangular"
-        sx={{ width: '100%', height: { xs: 240, md: 400 }, borderRadius: 2 }}
+        sx={{ width: '100%', height: { xs: 400, md: 400 }, borderRadius: 2 }}
       />
 
       {/* Additional Thumbnails Skeleton for Desktop */}

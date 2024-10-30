@@ -14,17 +14,17 @@ export default function StoreHeroSkeleton() {
     <Container
       maxWidth={false}
       sx={{
-        pt: { xs: 5, md: 3 },
-        mb: { md: -4 },
+        paddingLeft: { xs: '0px', lg: '0px' },
+        paddingRight: {xs: '0px', lg: '0px' },
         position: 'relative',
       }}
     >
       <Box
         sx={{
-          borderRadius: 3,
+
           overflow: 'hidden',
-          height: '400px',
-          display: { xs: 'none', sm: 'flex' },
+          height: '500px',
+          display: { xs: 'flex', sm: 'flex' },
           alignItems: 'center',
           justifyContent: 'center',
           position: 'relative',
@@ -40,12 +40,12 @@ export default function StoreHeroSkeleton() {
           backgroundColor: (theme) => theme.palette.background.paper,
           boxShadow: (theme) => theme.shadows[3],
           bottom: -60,
-          left: '50%',
-          transform: 'translateX(-50%)',
+
           position: 'relative',
           mt: -12,
           py: 2,
           px: 2,
+          mx: 2,
         }}
       >
         <Stack spacing={4} direction={{ xs: 'column', md: 'row' }}>

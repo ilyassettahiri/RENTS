@@ -288,7 +288,7 @@ function PhotoItem({ photo,  id , params }) {
       <Image
         alt="photo"
         src={photo}
-        ratio={isMdUp ? '4/3' : '1/1'}
+        ratio={isMdUp ? '4/3' : '3/4'}
         onClick={handleImageClick}
         sx={{ borderRadius: { xs: 0, md: 2 }, cursor: 'pointer' }}
       />
