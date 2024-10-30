@@ -153,9 +153,9 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
             maxWidth={false}
 
             sx={{
-              pt: { xs: 5, md: 0 },
-              mb: {  md: -4 },
 
+              paddingLeft: { xs: '0px', lg: '0px' },
+              paddingRight: {xs: '0px', lg: '0px' },
               position: 'relative',
 
             }}
@@ -165,11 +165,12 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                 ...bgGradient({
                   color: alpha(theme.palette.background.default, 0),
                   imgUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${picture}`,
+
                 }),
-                borderRadius: 3,
+
                 overflow: 'hidden',
                 height: '550px',
-                display: { xs: 'none', sm: 'flex' }, // Hide on xs, show on sm and larger
+                display: { xs: 'flex', sm: 'flex' }, // Hide on xs, show on sm and larger
 
                 alignItems: "center",
                 justifyContent: "center", // Center the card horizontally
@@ -183,13 +184,14 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                 backgroundColor: (themeVar) => alpha(themeVar.palette.background.paper, 0.8), // Renamed theme to themeVar
                 boxShadow: (themeVar) => themeVar.shadows[3], // Renamed theme to themeVar
                 bottom: -60, // Adjust as needed to place it correctly
-                left: '50%', // Center horizontally
-                transform: 'translateX(-50%)', // Center horizontally
+
+
                 position: "relative",
                 mt: -12,
-                marginRight: { xs: 0, lg: '50px' },
+
                 py: 2,
                 px: 2,
+                mx: 2,
               }}
             >
 

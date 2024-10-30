@@ -217,7 +217,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
             duration: theme.transitions.duration.shorter,
           }),
           ...(headerOnDark && {
-            color: 'common.white',
+            color: 'common.black',
           }),
           ...(offset && {
             ...bgBlur({ color: theme.palette.background.default }),

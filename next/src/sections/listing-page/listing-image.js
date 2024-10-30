@@ -99,6 +99,7 @@ export default function ListingImage({ images, params }) {
           paddingLeft: { lg: '80px' },
           paddingRight: { lg: '80px' },
           mt: 10,
+
         }}
         >
 
