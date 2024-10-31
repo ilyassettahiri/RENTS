@@ -111,7 +111,7 @@ export default function HomeHero({ tours }) {
                           key={tour.id}
                           tour={tour}
                           selected={selectedIndex === index}
-                          onClick={() => handleThumbnailClick(index,tour.categories)}
+                          onClick={() => handleThumbnailClick(index,tour.categories.value)}
                         />
                       ))}
                     </Carousel>
@@ -242,7 +242,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
 
 
 
-          {t(tour.categories)}
+          {t(tour.categories.label)}
           </TextMaxLine>
 
         </Stack>

@@ -21,10 +21,13 @@ export default function SearchCategories({ searchCategories, onChangeCategory, c
   return (
     <Autocomplete
       sx={{ width: 1 }}
-      options={categories}
+      options={categories.map((category) => category.label)}
       getOptionLabel={(option) => option}
-      value={searchCategories}
-      onChange={(event, value) => onChangeCategory(value)}
+      value={categories.find((cat) => cat.value === searchCategories)?.label || ''}
+      onChange={(event, value) => {
+        const selectedCategory = categories.find((cat) => cat.label === value);
+        onChangeCategory(selectedCategory ? selectedCategory.value : '');
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -66,7 +69,12 @@ SearchCategories.propTypes = {
   colorr: PropTypes.string,
   placeholder: PropTypes.string,
 
-  categories: PropTypes.array,
+  categories: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 
 
   icon: PropTypes.string,

@@ -79,9 +79,8 @@ const AuthContextProvider = ({ children }) => {
     NProgress.start();
 
     try {
-      // Replace spaces with hyphens and encode for URL compatibility
-      const formattedCategory = category.replace(/\s+/g, '-');
-      await router.push(`/?searchCategories=${formattedCategory}`);
+
+      await router.push(`/?searchcategories=${category}`);
     } catch (error) {
       console.error('Router push error:', error);
     } finally {
