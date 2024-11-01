@@ -1,22 +1,35 @@
 
 import ReactQuill from "react-quill";
 
-// react-quill styles
+
 import "react-quill/dist/quill.snow.css";
 
-// Custom styles for the MDEditor
 import MDEditorRoot from "components/MDEditor/MDEditorRoot";
 
-// Material Dashboard 2 PRO React context
+
 import { useSoftUIController } from "context";
 
 function MDEditor(props) {
   const [controller] = useSoftUIController();
   const { darkMode } = controller;
 
+  const toolbarOptions = [
+    [{ header: [3, 4, 5, false] }],
+    ["bold", "italic", "underline"],
+    [{ list: "ordered" }, { list: "bullet" }],
+    [{ align: [] }],
+    ["clean"], // remove formatting button
+  ];
+
+  
+
+
   return (
     <MDEditorRoot ownerState={{ darkMode }}>
-      <ReactQuill theme="snow" placeholder="Write something..."  {...props} />
+      <ReactQuill theme="snow" placeholder="Write something..."  {...props} 
+      
+      modules={{ toolbar: toolbarOptions }}
+      />
     </MDEditorRoot>
   );
 }

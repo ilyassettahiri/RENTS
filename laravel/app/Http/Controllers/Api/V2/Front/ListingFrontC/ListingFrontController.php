@@ -863,13 +863,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -1990,13 +1984,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -3120,13 +3108,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -4251,13 +4233,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -5376,13 +5352,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -6507,13 +6477,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -7637,13 +7601,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -8760,13 +8718,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -9875,13 +9827,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -11006,13 +10952,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -12138,13 +12078,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -13268,13 +13202,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -14400,13 +14328,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -15536,13 +15458,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -16667,13 +16583,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -17790,13 +17700,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -18918,13 +18822,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -20045,13 +19943,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -21172,13 +21064,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -22304,13 +22190,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -23432,13 +23312,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -24550,13 +24424,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -25682,13 +25550,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -26806,13 +26668,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -27928,13 +27784,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -29053,13 +28903,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -30174,13 +30018,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -31301,13 +31139,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -32426,13 +32258,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -33541,13 +33367,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -34687,13 +34507,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -35807,13 +35621,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -36924,13 +36732,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -38040,13 +37842,6 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -39154,13 +38949,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -40265,13 +40054,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -41375,13 +41158,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -42490,13 +42267,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -43607,13 +43378,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -44727,13 +44492,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -45839,13 +45598,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -46954,13 +46707,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -48074,13 +47821,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -48691,1121 +48432,6 @@ class ListingFrontController extends JsonApiController
 
 
 
-            case 'services':
-
-
-
-                        $listingcategory = Service::where('url', $url)->first();
-                        $reservations = $listingcategory->reservation()->orderBy('reservationstart')->get();
-                        $reviewslistings = $listingcategory->review()->orderBy('created_at')->get();
-                        $user = User::where('id', $listingcategory->user_id)->first();
-                        $sellerlistings = $user->listing()->orderBy('created_at', 'desc')->take(20)->get();
-
-                        $userStore = Onlinestore::where('user_id', $user->id)->first();
-
-
-                        // Calculate total reviews and average rating
-                        $totalReviews = $reviewslistings->count();
-                        $averageRating = $totalReviews > 0 ? $reviewslistings->avg('rating') : 0;
-
-
-
-                        $listingsData = [
-
-                                'type' => $category,
-                                'id' => $listingcategory->id,
-                                'attributes' => [
-                                    'title' => $listingcategory->title,
-                                    'price' => $listingcategory->price,
-                                    'description' => $listingcategory->description,
-                                    'startdate' => $listingcategory->startdate,
-                                    'enddate' => $listingcategory->enddate,
-                                    'address' => $listingcategory->address,
-                                    'city' => $listingcategory->city,
-                                    'phone' => $listingcategory->phone,
-                                    'id' => $listingcategory->id,
-
-
-                                    'picture' => $listingcategory->picture,
-
-
-
-
-
-                                    'country' => $listingcategory->country,
-                                    'zip' => $listingcategory->zip,
-                                    'category' => $category,
-                                    'url' => $url,
-
-
-                                    'specifications' => [
-                                        'languages' => $listingcategory->languages,
-                                        'experience' => $listingcategory->experience,
-                                        'response_time' => $listingcategory->response_time,
-                                        'package' => $listingcategory->package,
-                                        'revisions' => $listingcategory->revisions,
-                                        'level' => $listingcategory->level,
-                                        'orders_queue' => $listingcategory->orders_queue,
-                                        'jobs_completed' => $listingcategory->jobs_completed,
-                                        'repeat_hire_rate' => $listingcategory->repeat_hire_rate,
-                                        'education' => $listingcategory->education,
-                                        'on_time' => $listingcategory->on_time,
-                                        'delivery_time' => $listingcategory->delivery_time,
-                                        'more_details' => $listingcategory->more_details,
-
-                                    ],
-
-
-                                    'created_at' => $listingcategory->created_at,
-                                    'reservations' => $reservations->map(function ($reservation) {
-                                        return [
-                                            'start' => $reservation->reservationstart,
-                                            'end' => $reservation->reservationsend,
-                                        ];
-                                    }),
-
-                                    'reviewslistings' => $reviewslistings->map(function ($review) {
-
-                                        $user = User::find($review->user_id);
-
-                                        return [
-                                            'id' => $review->id, // Ensure id is included
-
-                                            'name' => $review->name,
-                                            'rating' => $review->rating,
-                                            'message' => $review->description,
-                                            'helpful' => $review->like,
-                                            'profile_image' => $user->profile_image,
-
-                                            'created_at' => $review->created_at->toIso8601String(),
-
-
-                                            'replies' => $review->reviewreply->map(function ($reply) {
-
-                                                $replyUser = User::find($reply->user_id);
-
-                                            return [
-                                                'id' => $reply->id,
-                                                'name' => $reply->name,
-                                                'picture' => $reply->picture,
-                                                'profile_image' => $replyUser->profile_image,
-                                                'message' => $reply->message,
-                                                'created_at' => $reply->created_at->toIso8601String(),
-                                            ];
-                                        }),
-
-
-
-
-                                        ];
-                                    }),
-
-
-
-
-                                    'images' => Servicesimg::where('service_id', $listingcategory->id)->get()->map(function ($image) {
-                                        return $image->picture;
-                                    }),
-
-                                    'seller' => [
-                                        'name' => $userStore ? $userStore->name : $user->name,
-                                        'id' => $user->id,
-
-                                        'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
-
-                                        'created_at' => $user->created_at->toIso8601String(),
-                                        'url' => $userStore ? $userStore->url : null,  // Add the store URL here
-
-                                    ],
-
-
-                                    'total_reviews' => $totalReviews,
-                                    'average_rating' => round($averageRating, 1), // Rounded to one decimal place
-
-
-
-
-                                    'sellerlistings' => $sellerlistings->map(function ($listing) {
-
-
-                                        $images = $listing->listingsimg->map(function ($image) {
-                                            return [
-                                                'picturesmall' => $image->picturesmall,
-                                                'alttext' => $image->alttext,
-                                            ];
-                                        });
-
-                                            $reviews = $listing->review()->orderBy('created_at')->get(); // Adjust this to use the appropriate relationship
-                                            $totalReviews = $reviews->count();
-                                            $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Set default to 5 if no reviews
-
-                                            $user = User::where('id', $listing->user_id)->first();
-
-                                            $userStore = Onlinestore::where('user_id', $user->id)->first();
-
-
-                                            $getIdOnly = function ($listing) {
-                                                $result = ['id' => null]; // Initialize the result with default value
-
-                                                switch ($listing->category) {
-                                                    case 'billiard':
-                                                        $billiard = Billiard::where('url', $listing->url)->first();
-                                                        if ($billiard) {
-                                                            $listing->billiard_id = $billiard->id;
-                                                            $result['id'] = $billiard->id;
-                                                        }
-                                                        break;
-
-                                                    case 'boxing':
-                                                        $boxing = Boxing::where('url', $listing->url)->first();
-                                                        if ($boxing) {
-                                                            $listing->boxing_id = $boxing->id;
-                                                            $result['id'] = $boxing->id;
-                                                        }
-                                                        break;
-
-                                                    case 'diving':
-                                                        $diving = Diving::where('url', $listing->url)->first();
-                                                        if ($diving) {
-                                                            $listing->diving_id = $diving->id;
-                                                            $result['id'] = $diving->id;
-                                                        }
-                                                        break;
-
-                                                    case 'football':
-                                                        $football = Football::where('url', $listing->url)->first();
-                                                        if ($football) {
-                                                            $listing->football_id = $football->id;
-                                                            $result['id'] = $football->id;
-                                                        }
-                                                        break;
-
-                                                    case 'golf':
-                                                        $golf = Golf::where('url', $listing->url)->first();
-                                                        if ($golf) {
-                                                            $listing->golf_id = $golf->id;
-                                                            $result['id'] = $golf->id;
-                                                        }
-                                                        break;
-
-                                                    case 'hunting':
-                                                        $hunting = Hunting::where('url', $listing->url)->first();
-                                                        if ($hunting) {
-                                                            $listing->hunting_id = $hunting->id;
-                                                            $result['id'] = $hunting->id;
-                                                        }
-                                                        break;
-
-                                                    case 'gym':
-                                                        $musculation = Musculation::where('url', $listing->url)->first();
-                                                        if ($musculation) {
-                                                            $listing->musculation_id = $musculation->id;
-                                                            $result['id'] = $musculation->id;
-                                                        }
-                                                        break;
-
-                                                    case 'surf':
-                                                        $surf = Surf::where('url', $listing->url)->first();
-                                                        if ($surf) {
-                                                            $listing->surf_id = $surf->id;
-                                                            $result['id'] = $surf->id;
-                                                        }
-                                                        break;
-
-                                                    case 'tennis':
-                                                        $tennis = Tennis::where('url', $listing->url)->first();
-                                                        if ($tennis) {
-                                                            $listing->tennis_id = $tennis->id;
-                                                            $result['id'] = $tennis->id;
-                                                        }
-                                                        break;
-
-                                                    case 'audio':
-                                                        $audio = Audio::where('url', $listing->url)->first();
-                                                        if ($audio) {
-                                                            $listing->audio_id = $audio->id;
-                                                            $result['id'] = $audio->id;
-                                                        }
-                                                        break;
-
-                                                    case 'cameras':
-                                                        $camera = Camera::where('url', $listing->url)->first();
-                                                        if ($camera) {
-                                                            $listing->camera_id = $camera->id;
-                                                            $result['id'] = $camera->id;
-                                                        }
-                                                        break;
-
-                                                    case 'chargers':
-                                                        $charger = Charger::where('url', $listing->url)->first();
-                                                        if ($charger) {
-                                                            $listing->charger_id = $charger->id;
-                                                            $result['id'] = $charger->id;
-                                                        }
-                                                        break;
-
-                                                    case 'drones':
-                                                        $drone = Drone::where('url', $listing->url)->first();
-                                                        if ($drone) {
-                                                            $listing->drone_id = $drone->id;
-                                                            $result['id'] = $drone->id;
-                                                        }
-                                                        break;
-
-                                                    case 'gaming':
-                                                        $gaming = Gaming::where('url', $listing->url)->first();
-                                                        if ($gaming) {
-                                                            $listing->gaming_id = $gaming->id;
-                                                            $result['id'] = $gaming->id;
-                                                        }
-                                                        break;
-
-                                                    case 'laptops':
-                                                        $laptop = Laptop::where('url', $listing->url)->first();
-                                                        if ($laptop) {
-                                                            $listing->laptop_id = $laptop->id;
-                                                            $result['id'] = $laptop->id;
-                                                        }
-                                                        break;
-
-                                                    case 'lighting':
-                                                        $lighting = Lighting::where('url', $listing->url)->first();
-                                                        if ($lighting) {
-                                                            $listing->lighting_id = $lighting->id;
-                                                            $result['id'] = $lighting->id;
-                                                        }
-                                                        break;
-
-                                                    case 'printers':
-                                                        $printer = Printer::where('url', $listing->url)->first();
-                                                        if ($printer) {
-                                                            $listing->printer_id = $printer->id;
-                                                            $result['id'] = $printer->id;
-                                                        }
-                                                        break;
-
-                                                    case 'routers':
-                                                        $router = Router::where('url', $listing->url)->first();
-                                                        if ($router) {
-                                                            $listing->router_id = $router->id;
-                                                            $result['id'] = $router->id;
-                                                        }
-                                                        break;
-
-                                                    case 'tablets':
-                                                        $tablette = Tablette::where('url', $listing->url)->first();
-                                                        if ($tablette) {
-                                                            $listing->tablette_id = $tablette->id;
-                                                            $result['id'] = $tablette->id;
-                                                        }
-                                                        break;
-
-                                                    case 'eclairage':
-                                                        $eclairage = Eclairage::where('url', $listing->url)->first();
-                                                        if ($eclairage) {
-                                                            $listing->eclairage_id = $eclairage->id;
-                                                            $result['id'] = $eclairage->id;
-                                                        }
-                                                        break;
-
-                                                    case 'mobilier':
-                                                        $mobilier = Mobilier::where('url', $listing->url)->first();
-                                                        if ($mobilier) {
-                                                            $listing->mobilier_id = $mobilier->id;
-                                                            $result['id'] = $mobilier->id;
-                                                        }
-                                                        break;
-
-                                                    case 'photography':
-                                                        $photographie = Photographie::where('url', $listing->url)->first();
-                                                        if ($photographie) {
-                                                            $listing->photographie_id = $photographie->id;
-                                                            $result['id'] = $photographie->id;
-                                                        }
-                                                        break;
-
-                                                    case 'sound-systems':
-                                                        $sonorisation = Sonorisation::where('url', $listing->url)->first();
-                                                        if ($sonorisation) {
-                                                            $listing->sonorisation_id = $sonorisation->id;
-                                                            $result['id'] = $sonorisation->id;
-                                                        }
-                                                        break;
-
-                                                    case 'tents':
-                                                        $tente = Tente::where('url', $listing->url)->first();
-                                                        if ($tente) {
-                                                            $listing->tente_id = $tente->id;
-                                                            $result['id'] = $tente->id;
-                                                        }
-                                                        break;
-
-                                                    case 'clothes':
-                                                        $clothes = Clothes::where('url', $listing->url)->first();
-                                                        if ($clothes) {
-                                                            $listing->clothes_id = $clothes->id;
-                                                            $result['id'] = $clothes->id;
-                                                        }
-                                                        break;
-
-                                                    case 'jewelry':
-                                                        $jewelry = Jewelry::where('url', $listing->url)->first();
-                                                        if ($jewelry) {
-                                                            $listing->jewelry_id = $jewelry->id;
-                                                            $result['id'] = $jewelry->id;
-                                                        }
-                                                        break;
-
-                                                    case 'apartments':
-                                                        $apartment = Apartment::where('url', $listing->url)->first();
-                                                        if ($apartment) {
-                                                            $listing->apartment_id = $apartment->id;
-                                                            $result['id'] = $apartment->id;
-                                                        }
-                                                        break;
-
-                                                    case 'offices':
-                                                        $bureaux = Bureaux::where('url', $listing->url)->first();
-                                                        if ($bureaux) {
-                                                            $listing->bureaux_id = $bureaux->id;
-                                                            $result['id'] = $bureaux->id;
-                                                        }
-                                                        break;
-
-                                                    case 'shops':
-                                                        $magasin = Magasin::where('url', $listing->url)->first();
-                                                        if ($magasin) {
-                                                            $listing->magasin_id = $magasin->id;
-                                                            $result['id'] = $magasin->id;
-                                                        }
-                                                        break;
-
-                                                    case 'houses':
-                                                        $maison = Maison::where('url', $listing->url)->first();
-                                                        if ($maison) {
-                                                            $listing->maison_id = $maison->id;
-                                                            $result['id'] = $maison->id;
-                                                        }
-                                                        break;
-
-                                                    case 'riads':
-                                                        $riad = Riad::where('url', $listing->url)->first();
-                                                        if ($riad) {
-                                                            $listing->riad_id = $riad->id;
-                                                            $result['id'] = $riad->id;
-                                                        }
-                                                        break;
-
-                                                    case 'lands':
-                                                        $terrain = Terrain::where('url', $listing->url)->first();
-                                                        if ($terrain) {
-                                                            $listing->terrain_id = $terrain->id;
-                                                            $result['id'] = $terrain->id;
-                                                        }
-                                                        break;
-
-                                                    case 'villas':
-                                                        $villa = Villa::where('url', $listing->url)->first();
-                                                        if ($villa) {
-                                                            $listing->villa_id = $villa->id;
-                                                            $result['id'] = $villa->id;
-                                                        }
-                                                        break;
-
-                                                    case 'activities':
-                                                        $activity = Activity::where('url', $listing->url)->first();
-                                                        if ($activity) {
-                                                            $listing->activity_id = $activity->id;
-                                                            $result['id'] = $activity->id;
-                                                        }
-                                                        break;
-
-                                                    case 'books':
-                                                        $livre = Livre::where('url', $listing->url)->first();
-                                                        if ($livre) {
-                                                            $listing->livre_id = $livre->id;
-                                                            $result['id'] = $livre->id;
-                                                        }
-                                                        break;
-
-                                                    case 'musical':
-                                                        $musical = Musical::where('url', $listing->url)->first();
-                                                        if ($musical) {
-                                                            $listing->musical_id = $musical->id;
-                                                            $result['id'] = $musical->id;
-                                                        }
-                                                        break;
-
-                                                    case 'furniture':
-                                                        $furniture = Furniture::where('url', $listing->url)->first();
-                                                        if ($furniture) {
-                                                            $listing->furniture_id = $furniture->id;
-                                                            $result['id'] = $furniture->id;
-                                                        }
-                                                        break;
-
-                                                    case 'home-appliances':
-                                                        $houseappliance = Houseappliance::where('url', $listing->url)->first();
-                                                        if ($houseappliance) {
-                                                            $listing->houseappliance_id = $houseappliance->id;
-                                                            $result['id'] = $houseappliance->id;
-                                                        }
-                                                        break;
-
-                                                    case 'electrical-tools':
-                                                        $electricaltool = Electricaltool::where('url', $listing->url)->first();
-                                                        if ($electricaltool) {
-                                                            $listing->electricaltool_id = $electricaltool->id;
-                                                            $result['id'] = $electricaltool->id;
-                                                        }
-                                                        break;
-
-                                                    case 'ladders':
-                                                        $ladder = Ladder::where('url', $listing->url)->first();
-                                                        if ($ladder) {
-                                                            $listing->ladder_id = $ladder->id;
-                                                            $result['id'] = $ladder->id;
-                                                        }
-                                                        break;
-
-                                                    case 'mechanical-tools':
-                                                        $mechanicaltool = Mechanicaltool::where('url', $listing->url)->first();
-                                                        if ($mechanicaltool) {
-                                                            $listing->mechanicaltool_id = $mechanicaltool->id;
-                                                            $result['id'] = $mechanicaltool->id;
-                                                        }
-                                                        break;
-
-                                                    case 'power-tools':
-                                                        $powertool = Powertool::where('url', $listing->url)->first();
-                                                        if ($powertool) {
-                                                            $listing->powertool_id = $powertool->id;
-                                                            $result['id'] = $powertool->id;
-                                                        }
-                                                        break;
-
-                                                    case 'pressure-washers':
-                                                        $pressurewasher = Pressurewasher::where('url', $listing->url)->first();
-                                                        if ($pressurewasher) {
-                                                            $listing->pressurewasher_id = $pressurewasher->id;
-                                                            $result['id'] = $pressurewasher->id;
-                                                        }
-                                                        break;
-
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
-
-                                                    case 'boats':
-                                                        $boat = Boat::where('url', $listing->url)->first();
-                                                        if ($boat) {
-                                                            $listing->boat_id = $boat->id;
-                                                            $result['id'] = $boat->id;
-                                                        }
-                                                        break;
-
-                                                    case 'trucks':
-                                                        $camion = Camion::where('url', $listing->url)->first();
-                                                        if ($camion) {
-                                                            $listing->camion_id = $camion->id;
-                                                            $result['id'] = $camion->id;
-                                                        }
-                                                        break;
-
-                                                    case 'caravans':
-                                                        $caravan = Caravan::where('url', $listing->url)->first();
-                                                        if ($caravan) {
-                                                            $listing->caravan_id = $caravan->id;
-                                                            $result['id'] = $caravan->id;
-                                                        }
-                                                        break;
-
-                                                    case 'cars':
-                                                        $car = Car::where('url', $listing->url)->first();
-                                                        if ($car) {
-                                                            $listing->car_id = $car->id;
-                                                            $result['id'] = $car->id;
-                                                        }
-                                                        break;
-
-                                                    case 'engins':
-                                                        $engin = Engin::where('url', $listing->url)->first();
-                                                        if ($engin) {
-                                                            $listing->engin_id = $engin->id;
-                                                            $result['id'] = $engin->id;
-                                                        }
-                                                        break;
-
-                                                    case 'motorcycles':
-                                                        $moto = Moto::where('url', $listing->url)->first();
-                                                        if ($moto) {
-                                                            $listing->moto_id = $moto->id;
-                                                            $result['id'] = $moto->id;
-                                                        }
-                                                        break;
-
-                                                    case 'scooters':
-                                                        $scooter = Scooter::where('url', $listing->url)->first();
-                                                        if ($scooter) {
-                                                            $listing->scooter_id = $scooter->id;
-                                                            $result['id'] = $scooter->id;
-                                                        }
-                                                        break;
-
-                                                    case 'airport-taxis':
-                                                        $taxiaeroport = Taxiaeroport::where('url', $listing->url)->first();
-                                                        if ($taxiaeroport) {
-                                                            $listing->taxiaeroport_id = $taxiaeroport->id;
-                                                            $result['id'] = $taxiaeroport->id;
-                                                        }
-                                                        break;
-
-                                                    case 'transportation':
-                                                        $transportation = Transportation::where('url', $listing->url)->first();
-                                                        if ($transportation) {
-                                                            $listing->transportation_id = $transportation->id;
-                                                            $result['id'] = $transportation->id;
-                                                        }
-                                                        break;
-
-                                                    case 'bicycles':
-                                                        $velo = Velo::where('url', $listing->url)->first();
-                                                        if ($velo) {
-                                                            $listing->velo_id = $velo->id;
-                                                            $result['id'] = $velo->id;
-                                                        }
-                                                        break;
-
-                                                    default:
-                                                        $result['id'] = null; // Return null if no match
-                                                }
-
-                                                return $result; // Return the result containing id only
-                                            };
-
-                                            $idResult = $getIdOnly($listing);
-
-                                        return [
-
-                                            'type' => 'listings',
-
-                                            'id' => $listing->id, // Ensure id is included
-
-                                            'attributes' => [
-                                                'category' => $listing->category,
-                                                'title' => $listing->title,
-                                                'price' => $listing->price,
-                                                'url' => $listing->url,
-
-                                                'created_at' => $listing->created_at,
-                                                'city' => $listing->city,
-
-                                                'id' => $idResult['id'],
-                                                'phone' => $listing->phone,
-
-                                                'images' => $images,
-
-                                                'status' => $listing->status,
-                                                'picture' => $listing->picture,
-                                                'user_id' => $listing->user_id,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-
-                                                'seller' => [
-                                                    'name' => $userStore ? $userStore->name : $user->name,
-                                                    'id' => $user->id,
-
-                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
-
-                                                    'created_at' => $user->created_at->toIso8601String(),
-                                                    'url' => $userStore ? $userStore->url : null,  // Add the store URL here
-
-                                                ],
-
-                                            ],
-
-
-                                        ];
-                                    }),
-
-
-
-
-
-
-                                    'recentlistings' => Service::orderBy('created_at', 'desc')->take(10)->get()->map(function ($recentlisting) {
-
-                                        $user = User::where('id', $recentlisting->user_id)->first();
-                                        $userStore = Onlinestore::where('user_id', $user->id)->first();
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-                                        return [
-
-                                            'attributes' => [
-
-                                                'phone' => $recentlisting->phone,
-                                                'averageRating' => $averageRating,
-
-
-                                                'seller' => [
-                                                    'name' => $userStore ? $userStore->name : $user->name,
-                                                    'id' => $user->id,
-
-                                                    'profile_image' => $userStore ? $userStore->profile_picture : $user->profile_image,
-
-                                                    'created_at' => $user->created_at->toIso8601String(),
-
-                                                ],
-
-                                            'title' => $recentlisting->title,
-                                            'price' => $recentlisting->price,
-                                            'city' => $recentlisting->city,
-                                            'id' => $recentlisting->id,
-                                            'category' => 'services',
-                                            'url' => $recentlisting->url,
-                                            'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                                                                                                            'picture' => $recentlisting->picture,
-
-
-
-                                            'images' => $recentlisting->servicesimg->map(function ($image) {
-                                                return [
-
-                                                    'picturesmall' => $image->picturesmall,
-                                                    'alttext' => $image->alttext,
-                                                ];
-                                            }),
-
-                                            ],
-
-                                        ];
-                                    }),
-
-
-                                    'recentlistingscasablanca' => Service::where('city', 'Casablanca')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-
-
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingsmarrakech' => Service::where('city', 'Marrakech')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingstanger' => Service::where('city', 'Tanger')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-
-
-
-                                    'recentlistingsrabat' => Service::where('city', 'Rabat')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingsfes' => Service::where('city', 'Fes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingsagadir' => Service::where('city', 'Agadir')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingsmeknes' => Service::where('city', 'Meknes')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-                                    'recentlistingsojuda' => Service::where('city', 'Oujda')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-
-
-
-
-
-                                    'recentlistingskenitra' => Service::where('city', 'Kenitra')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingstetouan' => Service::where('city', 'Tetouan')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingssale' => Service::where('city', 'Salé')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingstemara' => Service::where('city', 'Temara')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingssafi' => Service::where('city', 'Safi')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingsmohammedia' => Service::where('city', 'Mohammedia')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingskhouribga' => Service::where('city', 'Khouribga')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentListingseljadida' => Service::where('city', 'El Jadida')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-                                    'recentlistingsbenimellal' => Service::where('city', 'Beni Mellal')->orderBy('created_at', 'desc')->take(12)->get()->map(function ($recentlisting) {
-
-                                        $reviews = $recentlisting->review()->orderBy('created_at')->get();
-                                        $totalReviews = $reviews->count();
-                                        $averageRating = $totalReviews > 0 ? $reviews->avg('rating') : 5; // Default to 5 if no reviews
-                                        return [
-                                            'attributes' => [
-                                                'title' => $recentlisting->title,
-                                                'price' => $recentlisting->price,
-                                                'city' => $recentlisting->city,
-                                                'id' => $recentlisting->id,
-                                                'category' => 'services',
-                                                'url' => $recentlisting->url,
-                                                'created_at' => $recentlisting->created_at->toIso8601String(),
-                                                'picture' => $recentlisting->picture,
-
-                                                'averageRating' => $averageRating,
-                                                'totalReviews' => $totalReviews,
-                                            ],
-                                        ];
-                                    }),
-
-
-
-
-
-
-
-
-
-
-                                ],
-
-                        ];
-
-
-                        // Build the response data
-                        $responseData = [
-                            'data' => $listingsData,
-                        ];
-
-                        // Conditionally add 'favorites' if the user is authenticated
-                        if (isset($favoriteIds)) {
-                            $responseData['favorites'] = $favoriteIds;
-                        }
-
-                        // Return the JSON response
-                        return response()->json($responseData);
-
-
-
-                break;
-
-
-
-
 
 
             case 'boats':
@@ -50305,13 +48931,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -51417,13 +50037,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -52526,13 +51140,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -53637,13 +52245,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -54754,13 +53356,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -55866,13 +54462,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -56971,13 +55561,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -58078,13 +56662,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -59188,13 +57766,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
@@ -60296,13 +58868,7 @@ class ListingFrontController extends JsonApiController
                                                         }
                                                         break;
 
-                                                    case 'services':
-                                                        $service = Service::where('url', $listing->url)->first();
-                                                        if ($service) {
-                                                            $listing->service_id = $service->id;
-                                                            $result['id'] = $service->id;
-                                                        }
-                                                        break;
+
 
                                                     case 'boats':
                                                         $boat = Boat::where('url', $listing->url)->first();
