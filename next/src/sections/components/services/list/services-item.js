@@ -59,6 +59,21 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const router = useRouter();
 
+  const formatJobType = (jobtype) => {
+    if (!jobtype) return ""; // Return an empty string if jobtype is null or undefined
+    return jobtype
+      .toLowerCase()
+      .normalize("NFD") // Normalize accents
+      .replace(/[\u0300-\u036f]/g, "") // Remove accents
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .trim()
+      .replace(/\s+/g, "-"); // Replace spaces with hyphens
+  };
+
+  // Usage
+  const type = formatJobType(jobtype);
+
+
 
   const { i18n } = useTranslation();
 
@@ -85,11 +100,11 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const getHref = () => {
     if (category === 'services') {
-      return `${paths.career.job}/${url}`;  // Correct URL for services category
+      return `${paths.career.root}/${type}/${city}/${url}`;  // Correct URL for services category
     }
 
     if (category === 'jobs') {
-      return `${paths.job.jobb}/${url}`;  // Correct URL for jobs category
+      return `${paths.job.root}/${type}/${city}/${url}`;  // Correct URL for jobs category
     }
     return ''; // Default return value if no conditions are met
 
@@ -138,7 +153,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} category={category} url={url} />
+            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type}/>
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -497,7 +512,7 @@ ServiceItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data, category, url }) {
+function CarouselBasic1({ data, category, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -506,11 +521,11 @@ function CarouselBasic1({ data, category, url }) {
 
   const getHref = () => {
     if (category === 'services') {
-      return `${paths.career.job}/${url}`;  // Correct URL for services category
+      return `${paths.career.root}/${type}/${city}/${url}`;  // Correct URL for services category
     }
 
     if (category === 'jobs') {
-      return `${paths.job.jobb}/${url}`;  // Correct URL for jobs category
+      return `${paths.job.root}/${type}/${city}/${url}`;  // Correct URL for jobs category
     }
 
     return ''; // Default return value if no conditions are met
@@ -564,6 +579,8 @@ CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
 
   category: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 
   url: PropTypes.string.isRequired,
 };
