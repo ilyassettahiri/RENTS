@@ -392,6 +392,12 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
 
 
+    // home search
+
+    Route::get('search/{city}', [SearchController::class, 'getSearchCity']);
+    Route::get('search/{city}/{category}', [SearchController::class, 'getSearchCategory']);
+    Route::get('search/{city}/{category}/{type}', [SearchController::class, 'getSearchType']);
+
 
     // Listing Front
     Route::get('listings/{category}/{url}', [ListingFrontController::class, 'getListing']);

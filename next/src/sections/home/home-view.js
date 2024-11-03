@@ -1,15 +1,13 @@
 'use client';
 
 import { useState, useEffect, useCallback, useContext, useMemo } from "react";
-import { useBoolean } from 'src/hooks/use-boolean';
-import { useDebounce } from 'src/hooks/use-debounce';
-import { useSetState } from 'src/hooks/use-set-state';
+
 import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
-import { orderBy } from 'src/utils/helper';
+
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { useRouter} from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -17,26 +15,14 @@ import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
-import Iconify from 'src/components/iconify';
+
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
-import { EmptyContent } from 'src/components/empty-content';
+
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 
 
-
-
-
-import { ProductSearch } from 'src/sections/home/product-search';
-
-
-import { ProductSort } from 'src/sections/home/product-sort';
-
-import { ProductFilters } from 'src/sections/home/product-filters';
-
-import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 
 import HomeHero from './home-hero';
 
@@ -231,25 +217,6 @@ const tours = heroUrl.map((url, index) => ({
   categories: categories[index] || 'Uncategorized',
 }));
 
-const PRODUCT_SORT_OPTIONS = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'featured', label: 'Featured' },
-
-  { value: 'priceDesc', label: 'Price: High - Low' },
-  { value: 'priceAsc', label: 'Price: Low - High' },
-];
-
-
-
-const PRODUCT_GENDER_OPTIONS = [
-  { label: 'Men', value: 'Men' },
-  { label: 'Women', value: 'Women' },
-  { label: 'Kids', value: 'Kids' },
-];
-
-const PRODUCT_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
-
-const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
@@ -272,7 +239,6 @@ export default function HomeView() {
 
 
 
-  const mdUp = useResponsive('up', 'md');
 
   const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
 
@@ -395,53 +361,16 @@ export default function HomeView() {
 
 
 
-  const openFilters = useBoolean();
-
-  const [sortBy, setSortBy] = useState('newest');
 
 
 
-  const filters = useSetState({
-    gender: [],
 
-    rating: '',
-    category: 'all',
-
-    priceRange: { start: 0, end: 0 },
-
-  });
-
-  // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
-  const dataFiltered = applyFilter({ inputData: InitialListings, filters: filters.state, sortBy });
-
-
-  const canReset =
-    filters.state.gender.length > 0 ||
-
-    filters.state.rating !== '' ||
-    filters.state.category !== 'all' ||
-    filters.state.priceRange.start !== 0 || // Updated check
-    filters.state.priceRange.end !== 0;   // Updated check
-
-    const notFound = !dataFiltered.length && canReset;
-
-  const handleSortBy = useCallback((newValue) => {
-    setSortBy(newValue);
-  }, []);
 
   const handleSearch = useCallback((params) => {
     setSearchParamsState(params);
   }, []);
 
-  const productsEmpty = !InitialListings.length;
 
-
-
-  const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={dataFiltered.length} />
-  );
-
-  const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
 
 
 
@@ -517,45 +446,14 @@ export default function HomeView() {
 
           mt: { xs: -5, md: -7 },
 
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '80px' },
+          paddingRight: { lg: '80px' },
           backgroundColor: 'white',
         }}
       >
 
 
-        <Stack direction="row" justifyContent="space-between" sx={{ py: 5,  }}>
-          <Stack spacing={2.5} >
-
-              <ProductFilters
-                filters={filters}
-                canReset={canReset}
-                open={openFilters.value}
-                onOpen={openFilters.onTrue}
-                onClose={openFilters.onFalse}
-                options={{
-
-                  ratings: PRODUCT_RATING_OPTIONS,
-                  genders: PRODUCT_GENDER_OPTIONS,
-                  categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
-                }}
-              />
-
-          </Stack>
-
-          <Stack alignItems="flex-end" spacing={2.5} >
-            <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
-
-          </Stack>
-        </Stack>
-
-        <Stack direction="row" justifyContent="space-between" >
-          <Stack spacing={2.5} sx={{ mb: 2 }}>
-            {canReset && renderResults}
-          </Stack>
-
-
-        </Stack>
+        <Stack sx={{ py: 4,  }}/>
 
 
 
@@ -563,12 +461,16 @@ export default function HomeView() {
 
 
 
-        {!isLoading  && (notFound || productsEmpty) && renderNotFound}
 
 
 
 
-        <ListingList tours={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+
+
+
+
+
+        <ListingList tours={InitialListings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
         <Stack sx={{ my: 5 }} >
@@ -606,68 +508,6 @@ export default function HomeView() {
 
 
 
-
-function applyFilter({ inputData, filters, sortBy }) {
-  const { gender, category, priceRange, rating } = filters;
-
-  const min = priceRange.start;
-  const max = priceRange.end;
-
-
-
-
-  // Sort by
-  if (sortBy === 'featured') {
-    inputData = orderBy(inputData, ['totalSold'], ['desc']);
-  }
-
-  if (sortBy === 'newest') {
-    inputData = orderBy(inputData, [(item) => new Date(item.attributes.created_at)], ['desc']);
-  }
-
-  if (sortBy === 'priceDesc') {
-    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['desc']);
-  }
-
-  if (sortBy === 'priceAsc') {
-    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['asc']);
-  }
-  // filters
-  if (gender.length) {
-    inputData = inputData.filter((product) => product.gender.some((i) => gender.includes(i)));
-  }
-
-  if (category !== 'all') {
-    inputData = inputData.filter((product) => product.category === category);
-  }
-
-
-  // Apply price filter based on user input only
-  if (min !== 0 || max !== 0) {
-    inputData = inputData.filter((product) => {
-      const price = Number(product.attributes.price);
-      // Filter based on the existence of min and/or max
-      return (min === 0 || price >= min) && (max === 0 || price <= max);
-    });
-  }
-
-
-  if (rating) {
-    inputData = inputData.filter((product) => {
-      const convertRating = (value) => {
-        if (value === 'up4Star') return 4;
-        if (value === 'up3Star') return 3;
-        if (value === 'up2Star') return 2;
-        return 1;
-      };
-      return product.totalRatings > convertRating(rating);
-    });
-  }
-
-
-
-  return inputData;
-}
 
 
 

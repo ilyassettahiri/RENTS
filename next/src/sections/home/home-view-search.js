@@ -476,8 +476,8 @@ export default function HomeViewSearch() {
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-            paddingLeft: { lg: '100px' },
-            paddingRight: { lg: '100px' },
+            paddingLeft: { lg: '80px' },
+            paddingRight: { lg: '80px' },
 
             position: { md: 'absolute' },
           }}
@@ -571,16 +571,8 @@ export default function HomeViewSearch() {
         <ListingList tours={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
-        <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
+        <Stack sx={{ my: 5 }} />
 
-        </Stack>
-
-
-        <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newCarsListings')}/>}
-
-        </Stack>
 
 
 

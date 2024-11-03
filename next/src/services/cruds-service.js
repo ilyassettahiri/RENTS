@@ -152,11 +152,27 @@ class CrudService {
   };
 
 
-  getSearchListing = async (city, category) => {
-    const url = `/${city}/${category}`;
-    console.log('Request URL:', url);
-    return HttpService.get(url);
+
+
+  getSearchCity = async (city) => {
+    const searchcityEndpoint = `search/${city}`;
+    return HttpService.get(searchcityEndpoint);
   };
+
+
+
+  getSearchCategory = async (city, category) => {
+    const searchcityEndpoint = `search/${city}/${category}`;
+    return HttpService.get(searchcityEndpoint);
+  };
+
+
+  getSearchType = async (city, category, type) => {
+    const searchcityEndpoint = `search/${city}/${category}/${type}`;
+    return HttpService.get(searchcityEndpoint);
+  };
+
+
 
 
 

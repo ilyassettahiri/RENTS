@@ -61,6 +61,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
   const formattedDuration = dayjs(new Date(created_at)).fromNow();
 
+  const type = `${category}-for-rent`;
 
 
   const [opencall, setOpencall] = useState(null);
@@ -117,7 +118,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
         <Card sx={{ position: 'relative' }}>
           {/* Carousel of Images */}
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} category={category} url={url} />
+            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type}/>
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -209,7 +210,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
                   <Link
                     component={RouterLink}
-                    href={`${paths.travel.tour}/${category}/${url}`}
+                    href={`${paths.travel.tour}/en/${city}/${category}/${type}/${url}`}
                     color="inherit"
                   >
                     <TextMaxLine variant="h6" line={1}>
@@ -438,7 +439,7 @@ ListingsItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data, category, url }) {
+function CarouselBasic1({ data, category, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -452,7 +453,7 @@ function CarouselBasic1({ data, category, url }) {
 
             <Link
               key={index}
-              href={`${paths.travel.tour}/${category}/${url}`}
+              href={`${paths.travel.tour}/en/${city}/${category}/${type}/${url}`}
               component={RouterLink}
             >
 
@@ -485,7 +486,8 @@ function CarouselBasic1({ data, category, url }) {
 CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
   category: PropTypes.string.isRequired,
-
+  city: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 
 };

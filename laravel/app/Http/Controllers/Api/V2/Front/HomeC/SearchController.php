@@ -649,6 +649,32 @@ class SearchController extends JsonApiController
         }
 
 
+        public function getSearchCity(Request $request, $city)
+        {
+
+
+        }
+
+
+
+
+
+        public function getSearchCategory(Request $request, $city, $category)
+        {
+
+
+        }
+
+
+
+
+        public function getSearchType(Request $request, $city, $category, $type)
+        {
+
+
+        }
+
+
 
 
 

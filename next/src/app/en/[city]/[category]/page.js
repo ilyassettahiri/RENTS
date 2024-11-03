@@ -1,0 +1,27 @@
+import HomeViewSearch from 'src/sections/home/home-view-search';
+import PropTypes from 'prop-types';
+
+// ----------------------------------------------------------------------
+
+// Dynamically generate metadata based on `params`
+export async function generateMetadata({ params }) {
+  const { category } = params;
+
+  // Set the title dynamically based on the `url` param
+  return {
+    title: `${category}`, // Customize the title as needed
+  };
+}
+
+const HomeSearchPage = ({ params }) => <HomeViewSearch params={params} />;
+
+HomeSearchPage.propTypes = {
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+
+  }).isRequired,
+};
+
+export default HomeSearchPage;
