@@ -93,7 +93,7 @@ class OnlinestoreController extends JsonApiController
     }
 
 
-    function generateUniqueFileName($extension = 'jpg')
+    function generateUniqueFileName($extension = 'webp')
     {
 
         $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
@@ -142,11 +142,11 @@ class OnlinestoreController extends JsonApiController
 
 
 
-                    $fileNamelarge = $this->generateUniqueFileName('jpg');
+                    $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+                    $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -193,11 +193,11 @@ class OnlinestoreController extends JsonApiController
 
 
 
-                    $fileNamesmall = $this->generateUniqueFileName('jpg');
+                    $fileNamesmall = $this->generateUniqueFileName('webp');
 
 
 
-                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+                    $encodedImagesmall = $imagesmall->encode(new WebpEncoder(quality: 90));
 
 
 

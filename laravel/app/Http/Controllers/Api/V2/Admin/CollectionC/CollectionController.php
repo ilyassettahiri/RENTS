@@ -75,7 +75,7 @@ class CollectionController extends JsonApiController
     }
 
 
-    function generateUniqueFileName($extension = 'jpg')
+    function generateUniqueFileName($extension = 'webp')
     {
 
         $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
@@ -118,11 +118,11 @@ class CollectionController extends JsonApiController
 
 
 
-        $fileNamelarge = $this->generateUniqueFileName('jpg');
+        $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
 
 
 

@@ -242,14 +242,14 @@ class ListingController extends JsonApiController
             $url = Str::slug($title, '-', null);
 
             // Append a unique number to ensure uniqueness
-            $uniqueNumber = rand(1000000000, 9999999999);
+            $uniqueNumber = rand(1000000, 9999999);
             $url .= '-' . $uniqueNumber;
 
             return $url;
     }
 
 
-    function generateUniqueFileName($extension = 'jpg')
+    function generateUniqueFileName($extension = 'webp')
     {
 
         $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
@@ -291,7 +291,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -310,7 +310,7 @@ class ListingController extends JsonApiController
 
 
 
-                        $imagelarge->scaleDown(height: 800);
+                        $imagelarge->scaleDown(width: 700);
 
                         $imagexlarge->scaleDown(width: 1500);
 
@@ -321,21 +321,21 @@ class ListingController extends JsonApiController
 
 
 
-                        $fileNamelarge = $this->generateUniqueFileName('jpg');
+                        $fileNamelarge = $this->generateUniqueFileName('webp');
 
-                        $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
+                        $fileNamesmall = str_replace('.webp', 'small.webp', $fileNamelarge);
 
-                        $fileNamexlarge = str_replace('.jpg', 'xl.jpg', $fileNamelarge);
-
-
+                        $fileNamexlarge = str_replace('.webp', 'xl.webp', $fileNamelarge);
 
 
-                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
-
-                        $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
-                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+                        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+
+                        $encodedImagexlarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+
+
+                        $encodedImagesmall = $imagesmall->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -377,7 +377,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
@@ -409,14 +409,14 @@ class ListingController extends JsonApiController
                         $imagesmall->scaleDown(width: 400);
 
                         // Generate unique filenames
-                        $fileNamelarge = $this->generateUniqueFileName('jpg');
-                        $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
-                        $fileNamexlarge = str_replace('.jpg', 'xl.jpg', $fileNamelarge);
+                        $fileNamelarge = $this->generateUniqueFileName('webp');
+                        $fileNamesmall = str_replace('.webp', 'small.webp', $fileNamelarge);
+                        $fileNamexlarge = str_replace('.webp', 'xl.webp', $fileNamelarge);
 
                         // Encode the images with quality 90
-                        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
-                        $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
-                        $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+                        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+                        $encodedImagexlarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+                        $encodedImagesmall = $imagesmall->encode(new WebpEncoder(quality: 90));
 
                         // Save encoded images to local filesystem
                         $encodedImagelarge->save($fileNamelarge);
@@ -446,7 +446,7 @@ class ListingController extends JsonApiController
             }*/
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -461,7 +461,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
@@ -4591,11 +4591,7 @@ class ListingController extends JsonApiController
                 if (!in_array($image->picture, $oldimagePathslarge)) {
 
 
-                    Log::info('Deleting image from listing:', [
-                        'large_image' => $image->picture,
-                        'small_image' => $image->picturesmall,
-                        'xlarge_image' => $image->picturesxlarge,
-                    ]);
+
 
 
                     // Delete from DigitalOcean Spaces (Large)

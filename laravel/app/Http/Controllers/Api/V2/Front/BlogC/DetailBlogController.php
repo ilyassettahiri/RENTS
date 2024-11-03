@@ -54,7 +54,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-    function generateUniqueFileName($extension = 'jpg')
+    function generateUniqueFileName($extension = 'webp')
     {
 
         $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
@@ -144,7 +144,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-            if ($request->hasFile('thumb')) {
+            /*if ($request->hasFile('thumb')) {
                 $file = $request->file('thumb');
 
 
@@ -159,12 +159,12 @@ class DetailBlogController extends JsonApiController
 
 
 
-            }
+            }*/
 
 
 
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             $file = $request->file('thumb');
             $imagelarge = $manager->read($file->getRealPath());
@@ -177,11 +177,11 @@ class DetailBlogController extends JsonApiController
 
 
 
-            $fileNamelarge = $this->generateUniqueFileName('jpg');
+            $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-            $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+            $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -198,7 +198,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-            $imagePaths = $fileNamelarge;*/
+            $imagePaths = $fileNamelarge;
 
 
 
@@ -260,7 +260,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-        if ($request->hasFile('thumb')) {
+        /*if ($request->hasFile('thumb')) {
             $file = $request->file('thumb');
 
 
@@ -275,11 +275,11 @@ class DetailBlogController extends JsonApiController
 
 
 
-        }
+        }*/
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         $file = $request->file('thumb');
         $imagelarge = $manager->read($file->getRealPath());
@@ -292,11 +292,11 @@ class DetailBlogController extends JsonApiController
 
 
 
-        $fileNamelarge = $this->generateUniqueFileName('jpg');
+        $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 95));
 
 
 
@@ -313,7 +313,7 @@ class DetailBlogController extends JsonApiController
 
 
 
-        $imagePaths = $fileNamelarge;*/
+        $imagePaths = $fileNamelarge;
 
 
 

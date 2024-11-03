@@ -103,7 +103,7 @@ const StyledNavItem = styled(ListItemButton, {
     ...(!subItem && {
       ...theme.typography.body1,
       padding: 0,
-      fontSize: 15,
+      fontSize: 16,
       minHeight: '100%',
       fontWeight: theme.typography.fontWeightMedium,
       fontFamily: theme.typography.fontSecondaryFamily,

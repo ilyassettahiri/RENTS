@@ -16,8 +16,9 @@ import StoreItemBestSellers from '../product/item/store-item-best-sellers';
 // ----------------------------------------------------------------------
 
 const TABS = [
-  'Casablanca',
   'Marrakech',
+  'Casablanca',
+
   'Tanger',
   'Rabat',
   'Fes',
@@ -56,7 +57,7 @@ export default function StorePopularProducts({
   recentListingsElJadida,
   recentListingsBeniMellal,
 }) {
-  const [tab, setTab] = useState('Casablanca');
+  const [tab, setTab] = useState('Marrakech');
   const { t } = useTranslation();
 
   const handleChangeTab = useCallback((event, newValue) => {
@@ -64,8 +65,9 @@ export default function StorePopularProducts({
   }, []);
 
   const listingsMap = {
-    'Casablanca': recentListingsCasablanca,
     'Marrakech': recentListingsMarrakech,
+    'Casablanca': recentListingsCasablanca,
+
     'Tanger': recentListingsTanger,
     'Rabat': recentListingsRabat,
     'Fes': recentListingsFes,

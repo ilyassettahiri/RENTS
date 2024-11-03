@@ -176,7 +176,7 @@ class UploadController extends Controller
 {
 
 
-    function generateUniqueFileName($extension = 'jpg')
+    function generateUniqueFileName($extension = 'webp')
     {
 
         $randomString = bin2hex(random_bytes(16)); // Generate a random 32-character hexadecimal string
@@ -218,11 +218,11 @@ class UploadController extends Controller
 
 
 
-        $fileNamelarge = $this->generateUniqueFileName('jpg');
+        $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -284,11 +284,11 @@ class UploadController extends Controller
 
 
 
-        $fileNamelarge = $this->generateUniqueFileName('jpg');
+        $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-        $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 95));
+        $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 95));
 
 
 
@@ -382,11 +382,11 @@ class UploadController extends Controller
 
 
 
-                    $fileNamelarge = $this->generateUniqueFileName('jpg');
+                    $fileNamelarge = $this->generateUniqueFileName('webp');
 
 
 
-                    $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
+                    $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -433,11 +433,11 @@ class UploadController extends Controller
 
 
 
-                    $fileNamesmall = $this->generateUniqueFileName('jpg');
+                    $fileNamesmall = $this->generateUniqueFileName('webp');
 
 
 
-                    $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+                    $encodedImagesmall = $imagesmall->encode(new WebpEncoder(quality: 90));
 
 
 
@@ -527,32 +527,32 @@ class UploadController extends Controller
 
 
 
-                            $imagelarge->scaleDown(height: 800);
+                            $imagelarge->scaleDown(width: 700);
 
                             $imagexlarge->scaleDown(width: 1500);
 
 
-                            $imagesmall->scaleDown(width: 400);
+                            $imagesmall->scaleDown(width: 500);
 
 
 
 
 
-                            $fileNamelarge = $this->generateUniqueFileName('jpg');
+                            $fileNamelarge = $this->generateUniqueFileName('webp');
 
-                            $fileNamesmall = str_replace('.jpg', 'small.jpg', $fileNamelarge);
+                            $fileNamesmall = str_replace('.webp', 'small.webp', $fileNamelarge);
 
-                            $fileNamexlarge = str_replace('.jpg', 'xl.jpg', $fileNamelarge);
-
-
+                            $fileNamexlarge = str_replace('.webp', 'xl.webp', $fileNamelarge);
 
 
-                            $encodedImagelarge = $imagelarge->encode(new AutoEncoder(quality: 90));
-
-                            $encodedImagexlarge = $imagelarge->encode(new AutoEncoder(quality: 90));
 
 
-                            $encodedImagesmall = $imagesmall->encode(new AutoEncoder(quality: 90));
+                            $encodedImagelarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+
+                            $encodedImagexlarge = $imagelarge->encode(new WebpEncoder(quality: 90));
+
+
+                            $encodedImagesmall = $imagesmall->encode(new WebpEncoder(quality: 90));
 
 
 
