@@ -5,14 +5,6 @@ export const paths = {
 
   home: '/',
 
-  marketing: {
-    root: '/marketing',
-
-    posts: '/marketing/posts',
-    post: `/marketing/post`,
-
-  },
-
 
 
 
@@ -41,12 +33,12 @@ export const paths = {
     post: `/post`,
     about: '/about',
 
-    privacy: '/privacy',
+    privacy: '/privacy-policy',
 
-    termcondition: '/termcondition',
+    termcondition: '/terms-of-service',
 
 
-    contact: '/contact',
+    contact: '/contact-us',
   },
   // Career
   career: {
@@ -68,17 +60,15 @@ export const paths = {
   eLearning: {
     root: '/business',
     courses: '/stores',
-    course: `/business-page`,
+
 
   },
   // dashboard
   eCommerce: {
     root: '/dashboard',
     stores: '/store',
-    products: '/e-commerce/products',
 
-    product: `/dashboard/product`,
-    cart: '/dashboard/cart',
+
     personal: `/dashboard/personal`,
     wishlist: `/dashboard/wishlist`,
     vouchers: `/dashboard/chat`,
