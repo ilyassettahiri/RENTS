@@ -59,9 +59,9 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const router = useRouter();
 
-  const formatJobType = (jobtype) => {
-    if (!jobtype) return ""; // Return an empty string if jobtype is null or undefined
-    return jobtype
+  const formatJobType = (jobtypee) => {
+    if (!jobtypee) return ""; // Return an empty string if jobtype is null or undefined
+    return jobtypee
       .toLowerCase()
       .normalize("NFD") // Normalize accents
       .replace(/[\u0300-\u036f]/g, "") // Remove accents
@@ -100,11 +100,11 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const getHref = () => {
     if (category === 'services') {
-      return `${paths.career.root}/${type}/${city}/${url}`;  // Correct URL for services category
+      return `${paths.career.root}/${city}/${type}/${url}`;  // Correct URL for services category
     }
 
     if (category === 'jobs') {
-      return `${paths.job.root}/${type}/${city}/${url}`;  // Correct URL for jobs category
+      return `${paths.job.root}/${city}/${type}/${url}`;  // Correct URL for jobs category
     }
     return ''; // Default return value if no conditions are met
 
@@ -521,11 +521,11 @@ function CarouselBasic1({ data, category, url, city, type }) {
 
   const getHref = () => {
     if (category === 'services') {
-      return `${paths.career.root}/${type}/${city}/${url}`;  // Correct URL for services category
+      return `${paths.career.root}/${city}/${type}/${url}`;  // Correct URL for services category
     }
 
     if (category === 'jobs') {
-      return `${paths.job.root}/${type}/${city}/${url}`;  // Correct URL for jobs category
+      return `${paths.job.root}/${city}/${type}/${url}`;  // Correct URL for jobs category
     }
 
     return ''; // Default return value if no conditions are met

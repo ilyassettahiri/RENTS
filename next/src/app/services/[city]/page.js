@@ -1,9 +1,8 @@
-import ListingView from 'src/sections/listing-page/listing-view';
+import ServicesListViewCity from 'src/sections/services-list/services-list-view-city';
 import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
 
-// Dynamically generate metadata based on `params`
 export async function generateMetadata({ params }) {
   const { url } = params;
 
@@ -13,13 +12,15 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const ListingPage = ({ params }) => <ListingView params={params} />;
 
-ListingPage.propTypes = {
+const ServicesPageCity = ({ params }) => <ServicesListViewCity params={params} />;
+
+ServicesPageCity.propTypes = {
   params: PropTypes.shape({
+    // Add the necessary params validation
     category: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default ListingPage;
+export default ServicesPageCity;

@@ -419,6 +419,23 @@ class SearchJobController extends JsonApiController
 
 
 
+    public function getSearchJobCity(Request $request, $city)
+    {
+
+
+    }
+
+
+
+
+
+
+
+    public function getSearchJobType(Request $request, $city, $type)
+    {
+
+
+    }
 
 
 }

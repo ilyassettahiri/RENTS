@@ -1,4 +1,4 @@
-import HomeViewSearch from 'src/sections/home/home-view-search';
+import HomeViewCity from 'src/sections/home/home-view-city';
 import PropTypes from 'prop-types';
 
 // ----------------------------------------------------------------------
@@ -13,9 +13,9 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const HomeSearchPage = ({ params }) => <HomeViewSearch params={params} />;
+const HomeCityPage = ({ params }) => <HomeViewCity params={params} />;
 
-HomeSearchPage.propTypes = {
+HomeCityPage.propTypes = {
   params: PropTypes.shape({
     category: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
@@ -24,4 +24,4 @@ HomeSearchPage.propTypes = {
   }).isRequired,
 };
 
-export default HomeSearchPage;
+export default HomeCityPage;

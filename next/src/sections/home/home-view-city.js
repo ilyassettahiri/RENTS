@@ -253,7 +253,7 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function HomeViewSearch() {
+export default function HomeViewCity() {
 
 
 

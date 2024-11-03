@@ -176,6 +176,39 @@ class CrudService {
 
 
 
+
+  getSearchJobCity = async (city) => {
+    const searchjobcityEndpoint = `searchjob/${city}`;
+    return HttpService.get(searchjobcityEndpoint);
+  };
+
+
+
+  getSearchJobType = async (city, type) => {
+    const searchjobcityEndpoint = `searchjob/${city}/${type}`;
+    return HttpService.get(searchjobcityEndpoint);
+  };
+
+
+
+
+
+
+  getSearchServiceCity = async (city) => {
+    const searchcityserviceEndpoint = `searchservice/${city}`;
+    return HttpService.get(searchcityserviceEndpoint);
+  };
+
+
+
+  getSearchServiceType = async (city, type) => {
+    const searchcityserviceEndpoint = `searchservice/${city}/${type}`;
+    return HttpService.get(searchcityserviceEndpoint);
+  };
+
+
+
+
     // Search Service
     getSearchServiceListings = async (search) => {
       const searchservicelistingsEndpoint = "service/search";

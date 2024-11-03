@@ -419,4 +419,25 @@ class SearchServiceController extends JsonApiController
 
 
 
+    public function getSearchServiceCity(Request $request, $city)
+    {
+
+
+    }
+
+
+
+
+
+
+
+
+
+    public function getSearchServiceType(Request $request, $city, $type)
+    {
+
+
+    }
+
+
 }
