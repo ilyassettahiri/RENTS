@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export async function generateMetadata({ params }) {
-  const { url } = params;
+  const { type } = params;
 
   // Set the title dynamically based on the `url` param
   return {
-    title: `${url}`, // Customize the title as needed
+    title: `${type}`, // Customize the title as needed
   };
 }
 
@@ -18,8 +18,8 @@ const JobsPageType = ({ params }) => <JobsListViewType params={params} />;
 JobsPageType.propTypes = {
   params: PropTypes.shape({
     // Add the necessary params validation
-    category: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
   }).isRequired,
 };
 

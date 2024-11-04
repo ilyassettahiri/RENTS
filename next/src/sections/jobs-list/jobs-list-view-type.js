@@ -10,6 +10,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { useQuery } from '@tanstack/react-query';
 
+import { usePathname, useSearchParams} from 'src/routes/hooks';
 
 import CrudService from 'src/services/cruds-service';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
@@ -1107,7 +1108,14 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function JobsListViewType() {
+export default function JobsListViewType({ params }) {
+
+  const searchParams = useSearchParams();
+
+
+  const {city, type } = params;
+
+  const searchKeyword = searchParams.get('searchKeyword');
 
 
   const [favorites, setFavorites] = useState([]);
@@ -1118,12 +1126,15 @@ export default function JobsListViewType() {
 
   const [searchParamsState, setSearchParamsState] = useState({});
 
-  // Query for initial services
+
+
+
+
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
-    queryKey: ['services'],
-    queryFn: () => CrudService.getJobs(),
+    queryKey: ['services', city, type, searchKeyword],
+    queryFn: () => CrudService.getSearchJobType(city, type, searchKeyword),
     onError: (error) => {
-      console.error('Failed to fetch initial services:', error);
+      console.error('Failed to fetch Home:', error);
     },
   });
 

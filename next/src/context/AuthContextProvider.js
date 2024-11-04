@@ -76,17 +76,15 @@ const AuthContextProvider = ({ children }) => {
 
   const handleCategoryClick = useCallback(async (category) => {
     setSelectedCategory(category);
-    NProgress.start();
 
     try {
-
-      await router.push(`/?searchcategories=${category}`);
+      const city = "all-cities"; // Default city value
+      await router.push(`/en/${city}/${category}`);
     } catch (error) {
       console.error('Router push error:', error);
-    } finally {
-      NProgress.done();
     }
   }, [router]);
+
 
 
 

@@ -10,6 +10,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 import { useQuery } from '@tanstack/react-query';
 
+import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 
 import CrudService from 'src/services/cruds-service';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
@@ -1085,29 +1086,16 @@ const keywordCategoryMap = {
 
 };
 
-const PRODUCT_SORT_OPTIONS = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'featured', label: 'Featured' },
-
-  { value: 'priceDesc', label: 'Price: High - Low' },
-  { value: 'priceAsc', label: 'Price: Low - High' },
-];
-
-
-
-const PRODUCT_GENDER_OPTIONS = [
-  { label: 'Men', value: 'Men' },
-  { label: 'Women', value: 'Women' },
-  { label: 'Kids', value: 'Kids' },
-];
-
-const PRODUCT_RATING_OPTIONS = ['up4Star', 'up3Star', 'up2Star', 'up1Star'];
-
-const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
-
 
 
 export default function ServicesListView() {
+
+
+
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
 
 
   const [favorites, setFavorites] = useState([]);
@@ -1190,56 +1178,35 @@ export default function ServicesListView() {
 
 
 
-
-
-  const openFilters = useBoolean();
-
-  const [sortBy, setSortBy] = useState('newest');
-
-
-
-  const filters = useSetState({
-    gender: [],
-
-    rating: '',
-    category: 'all',
-
-    priceRange: { start: 0, end: 0 },
-
-  });
-
-  // const { searchResults, searchLoading } = useSearchProducts(debouncedQuery);
-  const dataFiltered = applyFilter({ inputData: services, filters: filters.state, sortBy });
-
-
-  const canReset =
-    filters.state.gender.length > 0 ||
-
-    filters.state.rating !== '' ||
-    filters.state.category !== 'all' ||
-    filters.state.priceRange.start !== 0 || // Updated check
-    filters.state.priceRange.end !== 0;   // Updated check
-
-    const notFound = !dataFiltered.length && canReset;
-
-  const handleSortBy = useCallback((newValue) => {
-    setSortBy(newValue);
-  }, []);
-
   const handleSearch = useCallback((params) => {
-    setSearchParamsState(params);
-  }, []);
 
-  const productsEmpty = !services.length;
+    let { searchLocation, searchCategories, searchKeyword } = params;
 
+    // Set default city if only category is selected
+    if (!searchLocation && searchCategories) {
+      searchLocation = "all-cities";
+    }
 
+    // Construct the base URL path
+    let newPath = `/services`;
+    if (searchLocation) {
+      newPath += `/${searchLocation}`;
+    }
+    if (searchCategories) {
+      newPath += `/${searchCategories}`;
+    }
 
-  const renderResults = (
-    <ProductFiltersResult filters={filters} totalResults={dataFiltered.length} />
-  );
+    // Create URLSearchParams for query parameters
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (searchKeyword) {
+      newSearchParams.set('searchKeyword', searchKeyword);
+    } else {
+      newSearchParams.delete('searchKeyword');
+    }
 
-  const renderNotFound = <EmptyContent filled sx={{ py: 10 }} />;
-
+    // Navigate to the new URL with router.push
+    router.push(`${newPath}?${newSearchParams.toString()}`);
+  }, [searchParams, router]);
 
 
 
@@ -1256,8 +1223,8 @@ export default function ServicesListView() {
       sx={{
         mt: { xs: 15, md: 0 },
 
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
       }}
     >
 
@@ -1277,45 +1244,7 @@ export default function ServicesListView() {
       />
 
 
-        <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
-          <Stack spacing={2.5} >
-
-              <ProductFilters
-                filters={filters}
-                canReset={canReset}
-                open={openFilters.value}
-                onOpen={openFilters.onTrue}
-                onClose={openFilters.onFalse}
-                options={{
-
-                  ratings: PRODUCT_RATING_OPTIONS,
-                  genders: PRODUCT_GENDER_OPTIONS,
-                  categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
-                }}
-              />
-
-          </Stack>
-
-          <Stack alignItems="flex-end" spacing={2.5} >
-            <ProductSort  sort={sortBy} onSort={handleSortBy} sortOptions={PRODUCT_SORT_OPTIONS} />
-
-          </Stack>
-        </Stack>
-
-
-
-        <Stack direction="row" justifyContent="space-between" >
-          <Stack spacing={2.5} sx={{ my: 3 }}>
-            {canReset && renderResults}
-          </Stack>
-
-
-        </Stack>
-
-
-
-
-        {!isLoading  && (notFound || productsEmpty) && renderNotFound}
+        <Stack  sx={{ my: 1, }}/>
 
 
 
@@ -1324,7 +1253,8 @@ export default function ServicesListView() {
 
 
 
-      <ServiceList jobs={dataFiltered} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
+
+      <ServiceList jobs={services} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle}/>
     </Container>
   );
 }

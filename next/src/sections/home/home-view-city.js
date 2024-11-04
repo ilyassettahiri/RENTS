@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { usePathname, useSearchParams} from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -253,16 +253,20 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function HomeViewCity() {
+export default function HomeViewCity({ params }) {
 
 
 
-  const router = useRouter();
-  const searchParams = router.query;
+
+  const searchParams = useSearchParams();
+
+
 
   const { t } = useTranslation();
 
+  const { city } = params;
 
+  const searchKeyword = searchParams.get('searchKeyword');
 
 
   const [searchParamsState, setSearchParamsState] = useState({});
@@ -279,14 +283,13 @@ export default function HomeViewCity() {
 
 
 
-    const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
-      queryKey: ['home'],
-      queryFn: CrudService.getHome,
-      onError: (error) => {
-        console.error('Failed to fetch Home:', error);
-      },
-    });
-
+  const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
+    queryKey: ['searchhome', city, searchKeyword],
+    queryFn: () => CrudService.getSearchCity(city, searchKeyword),
+    onError: (error) => {
+      console.error('Failed to fetch Home:', error);
+    },
+  });
 
 
   const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
@@ -299,20 +302,6 @@ export default function HomeViewCity() {
   });
 
 
-  useEffect(() => {
-    const searchCategory = searchParams?.searchCategories; // Extract to a separate variable
-
-    if (searchCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: searchCategory, searchLocation: '' });
-    }
-  }, [searchParams]); // Include only searchParams in the dependency array
-
-
-  useEffect(() => {
-    if (selectedCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: selectedCategory,  searchLocation: '' });
-    }
-  }, [selectedCategory]);
 
 
   useEffect(() => {
@@ -349,21 +338,17 @@ export default function HomeViewCity() {
 
 
     const memoizedHomeData = useMemo(() => {
-      const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
-      const velos = homeData?.data.filter(item => item.type === 'velos') || [];
+
       const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
 
-      const recentarticles = homeData?.recentarticles || [];
-      const ourclients = homeData?.ourclients || [];
+
       const listingsEmpty = !isLoading && !InitialListings.length;
 
       return {
 
-        billiards,
-        velos,
+
         apartments,
-        recentarticles,
-        ourclients,
+
         favorites: homeData?.favorites || [],
         homeLoading: isLoading,
         homeError,

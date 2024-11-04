@@ -653,6 +653,21 @@ class SearchController extends JsonApiController
         {
 
 
+
+             // Retrieve searchKeyword from the query parameters
+                $searchKeyword = $request->query('searchKeyword');
+
+                // Log the city and searchKeyword values
+                \Log::info('City:', ['city' => $city]);
+                \Log::info('Search Keyword:', ['searchKeyword' => $searchKeyword]);
+
+                // Return an "ok" response with city and searchKeyword for testing
+                return response()->json([
+                    'message' => 'ok',
+                    'city' => $city,
+                    'searchKeyword' => $searchKeyword
+                ]);
+
         }
 
 
@@ -661,6 +676,22 @@ class SearchController extends JsonApiController
 
         public function getSearchCategory(Request $request, $city, $category)
         {
+
+
+
+            // Retrieve the searchKeyword from the request query parameters
+            $searchKeyword = $request->query('searchKeyword');
+
+            // Log city, category, and searchKeyword
+            \Log::info('City:', ['city' => $city]);
+            \Log::info('Category:', ['category' => $category]);
+            \Log::info('Search Keyword:', ['searchKeyword' => $searchKeyword]);
+
+            // Return a simple response for testing
+            return response()->json(['message' => 'ok']);
+
+
+
 
 
         }

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 
 // Dynamically generate metadata based on `params`
 export async function generateMetadata({ params }) {
-  const { category } = params;
+  const { city } = params;
 
   // Set the title dynamically based on the `url` param
   return {
-    title: `${category}`, // Customize the title as needed
+    title: `${city}`, // Customize the title as needed
   };
 }
 
@@ -17,9 +17,9 @@ const HomeCityPage = ({ params }) => <HomeViewCity params={params} />;
 
 HomeCityPage.propTypes = {
   params: PropTypes.shape({
-    category: PropTypes.string.isRequired,
+
     city: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+
 
   }).isRequired,
 };

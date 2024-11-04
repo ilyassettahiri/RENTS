@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useRouter, useSearchParams } from 'src/routes/hooks';
+import { usePathname, useSearchParams} from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -253,16 +253,17 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function HomeViewCategory() {
+export default function HomeViewCategory({ params }) {
 
 
+  const searchParams = useSearchParams();
 
-  const router = useRouter();
-  const searchParams = router.query;
 
   const { t } = useTranslation();
 
+  const {city, category } = params;
 
+  const searchKeyword = searchParams.get('searchKeyword');
 
 
   const [searchParamsState, setSearchParamsState] = useState({});
@@ -280,8 +281,8 @@ export default function HomeViewCategory() {
 
 
     const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
-      queryKey: ['home'],
-      queryFn: CrudService.getHome,
+      queryKey: ['searchhome', city, category, searchKeyword],
+      queryFn: () => CrudService.getSearchCategory(city, category, searchKeyword),
       onError: (error) => {
         console.error('Failed to fetch Home:', error);
       },
@@ -299,20 +300,7 @@ export default function HomeViewCategory() {
   });
 
 
-  useEffect(() => {
-    const searchCategory = searchParams?.searchCategories; // Extract to a separate variable
 
-    if (searchCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: searchCategory, searchLocation: '' });
-    }
-  }, [searchParams]); // Include only searchParams in the dependency array
-
-
-  useEffect(() => {
-    if (selectedCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: selectedCategory,  searchLocation: '' });
-    }
-  }, [selectedCategory]);
 
 
   useEffect(() => {
@@ -349,21 +337,16 @@ export default function HomeViewCategory() {
 
 
     const memoizedHomeData = useMemo(() => {
-      const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
-      const velos = homeData?.data.filter(item => item.type === 'velos') || [];
       const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
 
-      const recentarticles = homeData?.recentarticles || [];
-      const ourclients = homeData?.ourclients || [];
+
       const listingsEmpty = !isLoading && !InitialListings.length;
 
       return {
 
-        billiards,
-        velos,
+
         apartments,
-        recentarticles,
-        ourclients,
+
         favorites: homeData?.favorites || [],
         homeLoading: isLoading,
         homeError,

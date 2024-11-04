@@ -152,60 +152,67 @@ class CrudService {
   };
 
 
-
-
-  getSearchCity = async (city) => {
+  getSearchCity = async (city, searchKeyword = '') => {
     const searchcityEndpoint = `search/${city}`;
-    return HttpService.get(searchcityEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchcityEndpoint}${queryParams}`;
+
+
+    return HttpService.get(url);
   };
 
 
 
-  getSearchCategory = async (city, category) => {
+  getSearchCategory = async (city, category, searchKeyword = '') => {
     const searchcityEndpoint = `search/${city}/${category}`;
-    return HttpService.get(searchcityEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchcityEndpoint}${queryParams}`;
+
+    return HttpService.get(url);
   };
 
-
-  getSearchType = async (city, category, type) => {
+  getSearchType = async (city, category, type, searchKeyword = '') => {
     const searchcityEndpoint = `search/${city}/${category}/${type}`;
-    return HttpService.get(searchcityEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchcityEndpoint}${queryParams}`;
+
+    return HttpService.get(url);
   };
 
 
 
 
-
-
-  getSearchJobCity = async (city) => {
+  getSearchJobCity = async (city, searchKeyword = '') => {
     const searchjobcityEndpoint = `searchjob/${city}`;
-    return HttpService.get(searchjobcityEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchjobcityEndpoint}${queryParams}`;
+
+    return HttpService.get(url);
   };
 
-
-
-  getSearchJobType = async (city, type) => {
+  getSearchJobType = async (city, type, searchKeyword = '') => {
     const searchjobcityEndpoint = `searchjob/${city}/${type}`;
-    return HttpService.get(searchjobcityEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchjobcityEndpoint}${queryParams}`;
+
+    return HttpService.get(url);
   };
 
-
-
-
-
-
-  getSearchServiceCity = async (city) => {
+  getSearchServiceCity = async (city, searchKeyword = '') => {
     const searchcityserviceEndpoint = `searchservice/${city}`;
-    return HttpService.get(searchcityserviceEndpoint);
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchcityserviceEndpoint}${queryParams}`;
+
+    return HttpService.get(url);
   };
 
-
-
-  getSearchServiceType = async (city, type) => {
+  getSearchServiceType = async (city, type, searchKeyword = '') => {
     const searchcityserviceEndpoint = `searchservice/${city}/${type}`;
-    return HttpService.get(searchcityserviceEndpoint);
-  };
+    const queryParams = searchKeyword ? `?searchKeyword=${encodeURIComponent(searchKeyword)}` : '';
+    const url = `${searchcityserviceEndpoint}${queryParams}`;
 
+    return HttpService.get(url);
+  };
 
 
 

@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from 'src/context/AuthContextProvider';
 
 import { useResponsive } from 'src/hooks/use-responsive';
-import { useRouter} from 'src/routes/hooks';
+import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -224,8 +224,10 @@ export default function HomeView() {
 
 
 
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const router = useRouter();
-  const searchParams = router.query;
+
 
   const { t } = useTranslation();
 
@@ -265,20 +267,7 @@ export default function HomeView() {
   });
 
 
-  useEffect(() => {
-    const searchCategory = searchParams?.searchCategories; // Extract to a separate variable
 
-    if (searchCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: searchCategory, searchLocation: '' });
-    }
-  }, [searchParams]); // Include only searchParams in the dependency array
-
-
-  useEffect(() => {
-    if (selectedCategory) {
-      setSearchParamsState({ searchKeyword: '', searchCategories: selectedCategory,  searchLocation: '' });
-    }
-  }, [selectedCategory]);
 
 
   useEffect(() => {
@@ -361,20 +350,35 @@ export default function HomeView() {
 
 
 
-
-
-
-
-
   const handleSearch = useCallback((params) => {
-    setSearchParamsState(params);
-  }, []);
 
+    let { searchLocation, searchCategories, searchKeyword } = params;
 
+    // Set default city if only category is selected
+    if (!searchLocation && searchCategories) {
+      searchLocation = "all-cities";
+    }
 
+    // Construct the base URL path
+    let newPath = `/en`;
+    if (searchLocation) {
+      newPath += `/${searchLocation}`;
+    }
+    if (searchCategories) {
+      newPath += `/${searchCategories}`;
+    }
 
+    // Create URLSearchParams for query parameters
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (searchKeyword) {
+      newSearchParams.set('searchKeyword', searchKeyword);
+    } else {
+      newSearchParams.delete('searchKeyword');
+    }
 
-
+    // Navigate to the new URL with router.push
+    router.push(`${newPath}?${newSearchParams.toString()}`);
+  }, [searchParams, router]);
 
 
 
