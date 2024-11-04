@@ -352,7 +352,7 @@ export default function HomeView() {
 
   const handleSearch = useCallback((params) => {
 
-    let { searchLocation, searchCategories, searchKeyword } = params;
+    const { searchLocation, searchCategories, searchKeyword } = params;
 
     // Set default city if only category is selected
     if (!searchLocation && searchCategories) {

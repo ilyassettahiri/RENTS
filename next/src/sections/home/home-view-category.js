@@ -572,6 +572,12 @@ export default function HomeViewCategory({ params }) {
 }
 
 
+HomeViewCategory.propTypes = {
+  params: PropTypes.shape({
+    category: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 
 

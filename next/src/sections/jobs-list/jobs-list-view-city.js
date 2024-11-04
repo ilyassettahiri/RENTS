@@ -1342,7 +1342,12 @@ export default function JobsListViewCity({ params }) {
 }
 
 
+JobsListViewCity.propTypes = {
+  params: PropTypes.shape({
+    city: PropTypes.string.isRequired,
 
+  }).isRequired,
+};
 
 
 function applyFilter({ inputData, filters, sortBy }) {
@@ -1406,6 +1411,9 @@ function applyFilter({ inputData, filters, sortBy }) {
 
   return inputData;
 }
+
+
+
 
 
 
