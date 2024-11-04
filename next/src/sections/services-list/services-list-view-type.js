@@ -1111,13 +1111,13 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function ServicesListViewType({ params }) {
+export default function ServicesListViewType({ routeParams }) {
 
 
   const searchParams = useSearchParams();
 
 
-  const {city, type } = params;
+  const {city, type } = routeParams;
 
   const searchKeyword = searchParams.get('searchKeyword');
 

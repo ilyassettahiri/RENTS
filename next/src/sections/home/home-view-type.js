@@ -256,7 +256,7 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function HomeViewType({ params }) {
+export default function HomeViewType({ routeParams }) {
 
 
   const searchParams = useSearchParams();
@@ -264,7 +264,7 @@ export default function HomeViewType({ params }) {
 
   const { t } = useTranslation();
 
-  const { city, category, type } = params;
+  const { city, category, type } = routeParams;
 
   const searchKeyword = searchParams.get('searchKeyword');
 

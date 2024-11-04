@@ -1111,12 +1111,12 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function JobsListViewType({ params }) {
+export default function JobsListViewType({ routeParams }) {
 
   const searchParams = useSearchParams();
 
 
-  const {city, type } = params;
+  const {city, type } = routeParams;
 
   const searchKeyword = searchParams.get('searchKeyword');
 
