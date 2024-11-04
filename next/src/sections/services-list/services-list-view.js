@@ -1176,24 +1176,16 @@ export default function ServicesListView() {
 
 
 
-
-
   const handleSearch = useCallback((params) => {
-
-    let { searchLocation, searchCategories, searchKeyword } = params;
+    const { searchLocation, searchCategories, searchKeyword } = params; // Use `const` instead of `let`
 
     // Set default city if only category is selected
     const location = searchLocation || (searchCategories ? "all-cities" : "");
 
-    // Set default city if only category is selected
-    if (!searchLocation && searchCategories) {
-      searchLocation = "all-cities";
-    }
-
     // Construct the base URL path
     let newPath = `/services`;
-    if (searchLocation) {
-      newPath += `/${searchLocation}`;
+    if (location) {
+      newPath += `/${location}`;
     }
     if (searchCategories) {
       newPath += `/${searchCategories}`;
@@ -1210,8 +1202,6 @@ export default function ServicesListView() {
     // Navigate to the new URL with router.push
     router.push(`${newPath}?${newSearchParams.toString()}`);
   }, [searchParams, router]);
-
-
 
 
 

@@ -578,7 +578,7 @@ export default function HomeViewCity({ params }) {
 
 
 HomeViewCity.propTypes = {
-  params: PropTypes.shape({
+  routeParams: PropTypes.shape({
     city: PropTypes.string.isRequired,
 
   }).isRequired,

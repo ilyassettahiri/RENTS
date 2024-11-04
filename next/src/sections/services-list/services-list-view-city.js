@@ -1343,7 +1343,7 @@ export default function ServicesListViewCity({ params }) {
 }
 
 ServicesListViewCity.propTypes = {
-  params: PropTypes.shape({
+  routeParams: PropTypes.shape({
     city: PropTypes.string.isRequired,
 
   }).isRequired,

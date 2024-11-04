@@ -1344,7 +1344,7 @@ export default function JobsListViewType({ params }) {
 }
 
 JobsListViewType.propTypes = {
-  params: PropTypes.shape({
+  routeParams: PropTypes.shape({
     type: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
   }).isRequired,
