@@ -1,6 +1,9 @@
 'use client';
 
 import { useState, useEffect, useCallback, useContext, useMemo } from "react";
+
+import PropTypes from 'prop-types';
+
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';

@@ -1180,7 +1180,10 @@ export default function ServicesListView() {
 
   const handleSearch = useCallback((params) => {
 
-    const { searchLocation, searchCategories, searchKeyword } = params;
+    let { searchLocation, searchCategories, searchKeyword } = params;
+
+    // Set default city if only category is selected
+    const location = searchLocation || (searchCategories ? "all-cities" : "");
 
     // Set default city if only category is selected
     if (!searchLocation && searchCategories) {

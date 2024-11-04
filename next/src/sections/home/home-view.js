@@ -347,22 +347,16 @@ export default function HomeView() {
 
 
 
-
-
-
   const handleSearch = useCallback((params) => {
-
-    const { searchLocation, searchCategories, searchKeyword } = params;
+    let { searchLocation, searchCategories, searchKeyword } = params;
 
     // Set default city if only category is selected
-    if (!searchLocation && searchCategories) {
-      searchLocation = "all-cities";
-    }
+    const location = searchLocation || (searchCategories ? "all-cities" : "");
 
     // Construct the base URL path
     let newPath = `/en`;
-    if (searchLocation) {
-      newPath += `/${searchLocation}`;
+    if (location) {
+      newPath += `/${location}`;
     }
     if (searchCategories) {
       newPath += `/${searchCategories}`;
@@ -379,7 +373,6 @@ export default function HomeView() {
     // Navigate to the new URL with router.push
     router.push(`${newPath}?${newSearchParams.toString()}`);
   }, [searchParams, router]);
-
 
 
 

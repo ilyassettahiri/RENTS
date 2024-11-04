@@ -1,6 +1,10 @@
 'use client';
 
 import { useState, useEffect, useCallback, useMemo  } from 'react';
+
+import PropTypes from 'prop-types';
+
+
 import Container from '@mui/material/Container';
 import { useDebounce } from 'src/hooks/use-debounce';
 import { useSetState } from 'src/hooks/use-set-state';

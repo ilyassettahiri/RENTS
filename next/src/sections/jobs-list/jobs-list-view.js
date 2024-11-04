@@ -1175,18 +1175,15 @@ export default function JobsListView() {
 
 
   const handleSearch = useCallback((params) => {
-
-    const { searchLocation, searchCategories, searchKeyword } = params;
+    let { searchLocation, searchCategories, searchKeyword } = params;
 
     // Set default city if only category is selected
-    if (!searchLocation && searchCategories) {
-      searchLocation = "all-cities";
-    }
+    const location = searchLocation || (searchCategories ? "all-cities" : "");
 
     // Construct the base URL path
     let newPath = `/jobs`;
-    if (searchLocation) {
-      newPath += `/${searchLocation}`;
+    if (location) {
+      newPath += `/${location}`;
     }
     if (searchCategories) {
       newPath += `/${searchCategories}`;
