@@ -6,9 +6,10 @@ import PropTypes from 'prop-types';
 export async function generateMetadata({ params }) {
   const { city } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${city}`, // Customize the title as needed
+    title: `Jobs in ${city} - Find Employment Opportunities on RENTS.ma`,
+    description: `Explore the latest job opportunities in ${city} on RENTS.ma. Discover positions across various industries and connect with top employers in ${city}. Start your job search today!`,
   };
 }
 

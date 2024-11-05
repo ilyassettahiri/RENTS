@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export async function generateMetadata({ params }) {
-  const { type } = params;
+  const { city, type } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${type}`, // Customize the title as needed
+    title: `Hire Professional ${type} in ${city} - Trusted Services on RENTS.ma`,
+    description: `Need reliable ${type} services in ${city}? RENTS.ma connects you with trusted professionals ready to meet your needs.`,
   };
+
 }
 
 

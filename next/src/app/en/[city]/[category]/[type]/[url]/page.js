@@ -1,15 +1,15 @@
 import ListingView from 'src/sections/listing-page/listing-view';
 import PropTypes from 'prop-types';
 
-// ----------------------------------------------------------------------
 
-// Dynamically generate metadata based on `params`
 export async function generateMetadata({ params }) {
-  const { url } = params;
+  const { category, type, city  } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${url}`, // Customize the title as needed
+    title: `Best ${category} for Rent in ${city} - RENTS.ma`,
+    description: `Discover this exclusive ${category} for rent in ${city}. Explore details and connect with trusted providers.`,
+
   };
 }
 

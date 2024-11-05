@@ -1,16 +1,16 @@
 import HomeViewCity from 'src/sections/home/home-view-city';
 import PropTypes from 'prop-types';
 
-// ----------------------------------------------------------------------
 
-// Dynamically generate metadata based on `params`
 export async function generateMetadata({ params }) {
   const { city } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${city}`, // Customize the title as needed
+    title: `Explore ${city} Rentals - Cars, Equipment, and More on RENTS.ma`,
+    description: `Explore a wide range of rental options in ${city} on RENTS.ma. Find everything from vehicles, tools, electronics, and more, all available for rent.`,
   };
+
 }
 
 const HomeCityPage = ({ params }) => <HomeViewCity params={params} />;

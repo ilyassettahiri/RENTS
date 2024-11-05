@@ -6,10 +6,12 @@ import PropTypes from 'prop-types';
 export async function generateMetadata({ params }) {
   const { city } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${city}`, // Customize the title as needed
+    title: `Hire Professional Services in ${city} - Trusted Providers on RENTS.ma`,
+    description: `Find skilled professionals for hire in ${city} on RENTS.ma. Connect with trustworthy providers offering a wide range of services to meet your needs. Explore the best options in ${city} today!`,
   };
+
 }
 
 

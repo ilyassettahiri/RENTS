@@ -4,11 +4,12 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 export async function generateMetadata({ params }) {
-  const { type } = params;
+  const { city, type } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${type}`, // Customize the title as needed
+    title: `${type} Jobs in ${city} - Opportunities on RENTS.ma`,
+    description: `Find top ${type} job openings in ${city} on RENTS.ma. Browse positions tailored to your skills and connect with reputable employers in ${city} to advance your career.`,
   };
 }
 
@@ -17,7 +18,7 @@ const JobsPageType = ({ params }) => <JobsListViewType params={params} />;
 
 JobsPageType.propTypes = {
   params: PropTypes.shape({
-    // Add the necessary params validation
+
     city: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
   }).isRequired,

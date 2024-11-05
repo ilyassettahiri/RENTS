@@ -1,15 +1,14 @@
 import HomeViewType from 'src/sections/home/home-view-city';
 import PropTypes from 'prop-types';
 
-// ----------------------------------------------------------------------
 
-// Dynamically generate metadata based on `params`
 export async function generateMetadata({ params }) {
-  const { category } = params;
+  const { city, category, type } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${category}`, // Customize the title as needed
+    title: `Find ${type} for Rent in ${city} - RENTS.ma`,
+    description: `Explore top listings for ${type} rentals in ${city} on RENTS.ma. Find quality options and trusted providers to meet your needs in ${city}.`,
   };
 }
 
