@@ -43,7 +43,6 @@ import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 
 import HomeHero from './home-hero';
 
-import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 
 import ListingList from '../components/listings/list/listings-list';
@@ -421,6 +420,7 @@ export default function HomeViewCity({ params }) {
 
 
 
+
   const handleSearch = useCallback((routeparams) => {
     const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
@@ -433,19 +433,12 @@ export default function HomeViewCity({ params }) {
       newPath += `/${searchCategories}`;
     }
 
-    // Create URLSearchParams for query parameters
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (searchKeyword) {
-      newSearchParams.set('searchKeyword', searchKeyword);
-    } else {
-      newSearchParams.delete('searchKeyword');
-    }
+    // Only add the searchKeyword if it's provided
+    const searchQuery = searchKeyword ? `?searchKeyword=${searchKeyword}` : '';
 
     // Navigate to the new URL with router.push
-    router.push(`${newPath}?${newSearchParams.toString()}`);
-  }, [searchParams, router]);
-
-
+    router.push(`${newPath}${searchQuery}`);
+  }, [router]);
 
 
 

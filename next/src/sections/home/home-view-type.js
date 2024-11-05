@@ -429,18 +429,12 @@ export default function HomeViewType({ params }) {
       newPath += `/${searchCategories}`;
     }
 
-    // Create URLSearchParams for query parameters
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (searchKeyword) {
-      newSearchParams.set('searchKeyword', searchKeyword);
-    } else {
-      newSearchParams.delete('searchKeyword');
-    }
+    // Only add the searchKeyword if it's provided
+    const searchQuery = searchKeyword ? `?searchKeyword=${searchKeyword}` : '';
 
     // Navigate to the new URL with router.push
-    router.push(`${newPath}?${newSearchParams.toString()}`);
-  }, [searchParams, router]);
-
+    router.push(`${newPath}${searchQuery}`);
+  }, [router]);
 
 
 

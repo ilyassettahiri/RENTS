@@ -29,6 +29,66 @@ import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
 
 import ServiceList from '../components/services/list/services-list';
 
+
+
+const categories = [
+  { value: 'apartments', label: 'Apartments' },
+  { value: 'cars', label: 'Cars' },
+  { value: 'offices', label: 'Offices' },
+  { value: 'activities', label: 'Activities' },
+  { value: 'engins', label: 'Engins' },
+  { value: 'lands', label: 'Lands' },
+  { value: 'transportation', label: 'Transportation' },
+  { value: 'bicycles', label: 'Bicycles' },
+  { value: 'villas', label: 'Villas' },
+  { value: 'audio', label: 'Audio' },
+  { value: 'boats', label: 'Boats' },
+  { value: 'boxing', label: 'Boxing' },
+  { value: 'cameras', label: 'Cameras' },
+  { value: 'trucks', label: 'Trucks' },
+  { value: 'caravans', label: 'Caravans' },
+  { value: 'chargers', label: 'Chargers' },
+  { value: 'clothes', label: 'Clothes' },
+  { value: 'diving', label: 'Diving' },
+  { value: 'drones', label: 'Drones' },
+  { value: 'eclairage', label: 'Eclairage' },
+  { value: 'electrical-tools', label: 'Electrical Tools' },
+  { value: 'football', label: 'Football' },
+  { value: 'furniture', label: 'Furniture' },
+  { value: 'gaming', label: 'Gaming' },
+  { value: 'golf', label: 'Golf' },
+  { value: 'home-appliances', label: 'Home Appliances' },
+  { value: 'hunting', label: 'Hunting' },
+  { value: 'jewelry', label: 'Jewelry' },
+  { value: 'ladders', label: 'Ladders' },
+  { value: 'laptops', label: 'Laptops' },
+  { value: 'lighting', label: 'Lighting' },
+  { value: 'books', label: 'Books' },
+  { value: 'shops', label: 'Shops' },
+  { value: 'houses', label: 'Houses' },
+  { value: 'mechanical-tools', label: 'Mechanical Tools' },
+  { value: 'mobilier', label: 'Mobilier' },
+  { value: 'motorcycles', label: 'Motorcycles' },
+  { value: 'gym', label: 'Gym' },
+  { value: 'musical', label: 'Musical' },
+  { value: 'photography', label: 'Photography' },
+  { value: 'power-tools', label: 'Power Tools' },
+  { value: 'pressure-washers', label: 'Pressure Washers' },
+  { value: 'printers', label: 'Printers' },
+  { value: 'riads', label: 'Riads' },
+  { value: 'routers', label: 'Routers' },
+  { value: 'scooters', label: 'Scooters' },
+  { value: 'services', label: 'Services' },
+  { value: 'sound-systems', label: 'Sound Systems' },
+  { value: 'surf', label: 'Surf' },
+  { value: 'tablets', label: 'Tablets' },
+  { value: 'airport-taxis', label: 'Airport Taxis' },
+  { value: 'tennis', label: 'Tennis' },
+  { value: 'tents', label: 'Tents' },
+  { value: 'billiard', label: 'Billiard' }
+];
+
+
 const keywordCategoryMap = {
   'Digital Camera': 'Cameras',
   'DSLR Camera': 'Cameras',
@@ -1093,19 +1153,13 @@ export default function JobsListView() {
 
 
 
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
 
 
 
   const [favorites, setFavorites] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState('');
 
-  const debouncedQuery = useDebounce(searchQuery);
-
-  const [searchParamsState, setSearchParamsState] = useState({});
 
   // Query for initial services
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
@@ -1118,15 +1172,7 @@ export default function JobsListView() {
 
 
 
-  // Query for search results
-  const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
-    queryKey: ['services', debouncedQuery],
-    queryFn: () => CrudService.getSearchJobListings(debouncedQuery),
-    enabled: !!debouncedQuery, // Only run query if debouncedQuery is not empty
-    onError: (error) => {
-      console.error('Failed to fetch search results:', error);
-    },
-  });
+
 
 
 
@@ -1138,28 +1184,23 @@ export default function JobsListView() {
   }, [initialData]);
 
 
-  useEffect(() => {
-    if (searchData?.favorites) {
-      setFavorites(searchData.favorites);
-    }
-  }, [searchData]);
 
 
 
 
+  const services = useMemo(() =>  initialData?.data || [], [initialData]);
+  const isLoading = isInitialLoading ;
 
-  const services = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);
-  const isLoading = isInitialLoading || isSearching;
 
 
   const memoizedValue = useMemo(() => ({
     services,
     favorites,
-    servicesLoading: isSearchLoading || isInitialLoading,
-    servicesError: searchError || initialError,
+    servicesLoading:  isInitialLoading,
+    servicesError:  initialError,
     servicesFetching: isLoading,
-    servicesEmpty: !isSearchLoading && !(services.length),
-  }), [ searchError, isLoading, isInitialLoading, initialError, services, favorites, isSearchLoading]);
+    servicesEmpty: !isInitialLoading && !(services.length),
+  }), [ isLoading, isInitialLoading, initialError, services, favorites,]);
 
 
 
@@ -1173,8 +1214,8 @@ export default function JobsListView() {
 
 
 
-  const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params;
+  const handleSearch = useCallback((routeparams) => {
+    const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
     // Use "all-cities" as the default if searchLocation is empty
     const location = searchLocation || "all-cities";
@@ -1185,19 +1226,12 @@ export default function JobsListView() {
       newPath += `/${searchCategories}`;
     }
 
-    // Create URLSearchParams for query parameters
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (searchKeyword) {
-      newSearchParams.set('searchKeyword', searchKeyword);
-    } else {
-      newSearchParams.delete('searchKeyword');
-    }
+    // Only add the searchKeyword if it's provided
+    const searchQuery = searchKeyword ? `?searchKeyword=${searchKeyword}` : '';
 
     // Navigate to the new URL with router.push
-    router.push(`${newPath}?${newSearchParams.toString()}`);
-  }, [searchParams, router]);
-
-
+    router.push(`${newPath}${searchQuery}`);
+  }, [router]);
 
 
 
@@ -1261,123 +1295,4 @@ export default function JobsListView() {
 
 
 
-function applyFilter({ inputData, filters, sortBy }) {
-  const { gender, category, priceRange, rating } = filters;
 
-  const min = priceRange.start;
-  const max = priceRange.end;
-
-
-
-
-  // Sort by
-  if (sortBy === 'featured') {
-    inputData = orderBy(inputData, ['totalSold'], ['desc']);
-  }
-
-  if (sortBy === 'newest') {
-    inputData = orderBy(inputData, [(item) => new Date(item.attributes.created_at)], ['desc']);
-  }
-
-  if (sortBy === 'priceDesc') {
-    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['desc']);
-  }
-
-  if (sortBy === 'priceAsc') {
-    inputData = orderBy(inputData, [(item) => Number(item.attributes.price)], ['asc']);
-  }
-  // filters
-  if (gender.length) {
-    inputData = inputData.filter((product) => product.gender.some((i) => gender.includes(i)));
-  }
-
-  if (category !== 'all') {
-    inputData = inputData.filter((product) => product.category === category);
-  }
-
-
-  // Apply price filter based on user input only
-  if (min !== 0 || max !== 0) {
-    inputData = inputData.filter((product) => {
-      const price = Number(product.attributes.price);
-      // Filter based on the existence of min and/or max
-      return (min === 0 || price >= min) && (max === 0 || price <= max);
-    });
-  }
-
-
-  if (rating) {
-    inputData = inputData.filter((product) => {
-      const convertRating = (value) => {
-        if (value === 'up4Star') return 4;
-        if (value === 'up3Star') return 3;
-        if (value === 'up2Star') return 2;
-        return 1;
-      };
-      return product.totalRatings > convertRating(rating);
-    });
-  }
-
-
-
-  return inputData;
-}
-
-
-
-const categories = [
-  { value: 'apartments', label: 'Apartments' },
-  { value: 'cars', label: 'Cars' },
-  { value: 'offices', label: 'Offices' },
-  { value: 'activities', label: 'Activities' },
-  { value: 'engins', label: 'Engins' },
-  { value: 'lands', label: 'Lands' },
-  { value: 'transportation', label: 'Transportation' },
-  { value: 'bicycles', label: 'Bicycles' },
-  { value: 'villas', label: 'Villas' },
-  { value: 'audio', label: 'Audio' },
-  { value: 'boats', label: 'Boats' },
-  { value: 'boxing', label: 'Boxing' },
-  { value: 'cameras', label: 'Cameras' },
-  { value: 'trucks', label: 'Trucks' },
-  { value: 'caravans', label: 'Caravans' },
-  { value: 'chargers', label: 'Chargers' },
-  { value: 'clothes', label: 'Clothes' },
-  { value: 'diving', label: 'Diving' },
-  { value: 'drones', label: 'Drones' },
-  { value: 'eclairage', label: 'Eclairage' },
-  { value: 'electrical-tools', label: 'Electrical Tools' },
-  { value: 'football', label: 'Football' },
-  { value: 'furniture', label: 'Furniture' },
-  { value: 'gaming', label: 'Gaming' },
-  { value: 'golf', label: 'Golf' },
-  { value: 'home-appliances', label: 'Home Appliances' },
-  { value: 'hunting', label: 'Hunting' },
-  { value: 'jewelry', label: 'Jewelry' },
-  { value: 'ladders', label: 'Ladders' },
-  { value: 'laptops', label: 'Laptops' },
-  { value: 'lighting', label: 'Lighting' },
-  { value: 'books', label: 'Books' },
-  { value: 'shops', label: 'Shops' },
-  { value: 'houses', label: 'Houses' },
-  { value: 'mechanical-tools', label: 'Mechanical Tools' },
-  { value: 'mobilier', label: 'Mobilier' },
-  { value: 'motorcycles', label: 'Motorcycles' },
-  { value: 'gym', label: 'Gym' },
-  { value: 'musical', label: 'Musical' },
-  { value: 'photography', label: 'Photography' },
-  { value: 'power-tools', label: 'Power Tools' },
-  { value: 'pressure-washers', label: 'Pressure Washers' },
-  { value: 'printers', label: 'Printers' },
-  { value: 'riads', label: 'Riads' },
-  { value: 'routers', label: 'Routers' },
-  { value: 'scooters', label: 'Scooters' },
-  { value: 'services', label: 'Services' },
-  { value: 'sound-systems', label: 'Sound Systems' },
-  { value: 'surf', label: 'Surf' },
-  { value: 'tablets', label: 'Tablets' },
-  { value: 'airport-taxis', label: 'Airport Taxis' },
-  { value: 'tennis', label: 'Tennis' },
-  { value: 'tents', label: 'Tents' },
-  { value: 'billiard', label: 'Billiard' }
-];

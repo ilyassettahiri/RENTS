@@ -224,7 +224,6 @@ export default function HomeView() {
 
 
 
-  const searchParams = useSearchParams();
   const router = useRouter();
 
 
@@ -240,7 +239,7 @@ export default function HomeView() {
 
 
 
-  const { selectedCategory, handleCategoryClick } = useContext(AuthContext);
+  const { handleCategoryClick } = useContext(AuthContext);
 
 
 
@@ -281,7 +280,7 @@ export default function HomeView() {
     [homeData]
   );
 
-  console.log('InitialListings:', InitialListings);
+
 
   const isLoading = isHomeLoading ;
 
@@ -293,7 +292,7 @@ export default function HomeView() {
       const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
 
       const recentarticles = homeData?.recentarticles || [];
-      const ourclients = homeData?.ourclients || [];
+
       const listingsEmpty = !isLoading && !InitialListings.length;
 
       return {
@@ -302,7 +301,6 @@ export default function HomeView() {
         velos,
         apartments,
         recentarticles,
-        ourclients,
         favorites: homeData?.favorites || [],
         homeLoading: isLoading,
         homeError,
@@ -328,7 +326,6 @@ export default function HomeView() {
 
 
 
-
   const handleSearch = useCallback((routeparams) => {
     const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
@@ -341,17 +338,12 @@ export default function HomeView() {
       newPath += `/${searchCategories}`;
     }
 
-    // Create URLSearchParams for query parameters
-    const newSearchParams = new URLSearchParams(searchParams);
-    if (searchKeyword) {
-      newSearchParams.set('searchKeyword', searchKeyword);
-    } else {
-      newSearchParams.delete('searchKeyword');
-    }
+    // Only add the searchKeyword if it's provided
+    const searchQuery = searchKeyword ? `?searchKeyword=${searchKeyword}` : '';
 
     // Navigate to the new URL with router.push
-    router.push(`${newPath}?${newSearchParams.toString()}`);
-  }, [searchParams, router]);
+    router.push(`${newPath}${searchQuery}`);
+  }, [router]);
 
 
 
