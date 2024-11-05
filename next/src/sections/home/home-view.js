@@ -329,8 +329,8 @@ export default function HomeView() {
 
 
 
-  const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params;
+  const handleSearch = useCallback((routeparams) => {
+    const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
     // Use "all-cities" as the default if searchLocation is empty
     const location = searchLocation || "all-cities";

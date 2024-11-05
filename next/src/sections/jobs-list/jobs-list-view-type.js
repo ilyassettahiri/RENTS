@@ -1111,14 +1111,14 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function JobsListViewType({ routeParams }) {
+export default function JobsListViewType({ params }) {
 
 
   const searchParams = useSearchParams();
   const router = useRouter();
 
 
-  const {city, type } = routeParams;
+  const {city, type } = params;
 
   const getsearchKeyword = searchParams.get('searchKeyword');
 
@@ -1241,8 +1241,8 @@ export default function JobsListViewType({ routeParams }) {
 
 
 
-  const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params;
+  const handleSearch = useCallback((routeparams) => {
+    const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
     // Use "all-cities" as the default if searchLocation is empty
     const location = searchLocation || "all-cities";
@@ -1350,7 +1350,7 @@ export default function JobsListViewType({ routeParams }) {
 }
 
 JobsListViewType.propTypes = {
-  routeParams: PropTypes.shape({
+  params: PropTypes.shape({
     type: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
   }).isRequired,

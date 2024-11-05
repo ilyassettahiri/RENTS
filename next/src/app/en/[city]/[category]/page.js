@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 // ----------------------------------------------------------------------
 
 // Dynamically generate metadata based on `params`
-export async function generateMetadata({ routeParams }) {
-  const { category } = routeParams;
+export async function generateMetadata({ params }) {
+  const { category } = params;
 
   // Set the title dynamically based on the `url` param
   return {
@@ -13,13 +13,13 @@ export async function generateMetadata({ routeParams }) {
   };
 }
 
-const HomeCategoryPage = ({ routeParams }) => <HomeViewCategory params={routeParams} />;
+const HomeCategoryPage = ({ params }) => <HomeViewCategory params={params} />;
 
 HomeCategoryPage.propTypes = {
-  routeParams: PropTypes.shape({
+  params: PropTypes.shape({
     category: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
+
 
   }).isRequired,
 };

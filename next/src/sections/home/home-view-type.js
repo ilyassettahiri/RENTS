@@ -256,7 +256,7 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function HomeViewType({ routeParams }) {
+export default function HomeViewType({ params }) {
 
 
 
@@ -266,7 +266,7 @@ export default function HomeViewType({ routeParams }) {
 
   const { t } = useTranslation();
 
-  const { city, category, type } = routeParams;
+  const { city, category, type } = params;
 
   const getsearchKeyword = searchParams.get('searchKeyword');
 
@@ -417,8 +417,8 @@ export default function HomeViewType({ routeParams }) {
 
 
 
-  const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params;
+  const handleSearch = useCallback((routeparams) => {
+    const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
     // Use "all-cities" as the default if searchLocation is empty
     const location = searchLocation || "all-cities";
@@ -582,7 +582,7 @@ export default function HomeViewType({ routeParams }) {
 }
 
 HomeViewType.propTypes = {
-  routeParams: PropTypes.shape({
+  params: PropTypes.shape({
     category: PropTypes.string.isRequired,
     city: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,

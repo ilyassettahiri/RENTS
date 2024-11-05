@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
 }
 
 
-const ServicesPageType = ({ params }) => <ServicesListViewType routeParams={params} />;
+const ServicesPageType = ({ params }) => <ServicesListViewType params={params} />;
 
 ServicesPageType.propTypes = {
   params: PropTypes.shape({

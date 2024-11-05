@@ -1112,7 +1112,7 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 
 
 
-export default function ServicesListViewCity({ routeParams }) {
+export default function ServicesListViewCity({ params }) {
 
 
 
@@ -1120,7 +1120,7 @@ export default function ServicesListViewCity({ routeParams }) {
   const router = useRouter();
 
 
-  const { city } = routeParams;
+  const { city } = params;
 
   const getsearchKeyword = searchParams.get('searchKeyword');
 
@@ -1243,8 +1243,8 @@ export default function ServicesListViewCity({ routeParams }) {
 
 
 
-  const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params;
+  const handleSearch = useCallback((routeparams) => {
+    const { searchLocation, searchCategories, searchKeyword } = routeparams;
 
     // Use "all-cities" as the default if searchLocation is empty
     const location = searchLocation || "all-cities";
@@ -1354,7 +1354,7 @@ export default function ServicesListViewCity({ routeParams }) {
 }
 
 ServicesListViewCity.propTypes = {
-  routeParams: PropTypes.shape({
+  params: PropTypes.shape({
     city: PropTypes.string.isRequired,
 
   }).isRequired,

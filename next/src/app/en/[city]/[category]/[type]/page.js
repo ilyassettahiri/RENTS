@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const HomeTypePage = ({ params }) => <HomeViewType routeParams={params} />;
+const HomeTypePage = ({ params }) => <HomeViewType params={params} />;
 
 HomeTypePage.propTypes = {
   params: PropTypes.shape({
