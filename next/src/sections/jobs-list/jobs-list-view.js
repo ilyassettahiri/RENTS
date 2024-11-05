@@ -1174,16 +1174,13 @@ export default function JobsListView() {
 
 
   const handleSearch = useCallback((params) => {
-    const { searchLocation, searchCategories, searchKeyword } = params; // Use `const` instead of `let`
+    const { searchLocation, searchCategories, searchKeyword } = params;
 
-    // Set default city if only category is selected
-    const location = searchLocation || (searchCategories ? "all-cities" : "");
+    // Use "all-cities" as the default if searchLocation is empty
+    const location = searchLocation || "all-cities";
 
     // Construct the base URL path
-    let newPath = `/jobs`;
-    if (location) {
-      newPath += `/${location}`;
-    }
+    let newPath = `/jobs/${location}`;
     if (searchCategories) {
       newPath += `/${searchCategories}`;
     }
@@ -1199,7 +1196,6 @@ export default function JobsListView() {
     // Navigate to the new URL with router.push
     router.push(`${newPath}?${newSearchParams.toString()}`);
   }, [searchParams, router]);
-
 
 
 

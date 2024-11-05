@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { orderBy } from 'src/utils/helper';
 import { useResponsive } from 'src/hooks/use-responsive';
-import { usePathname, useSearchParams} from 'src/routes/hooks';
+import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -259,7 +259,9 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 export default function HomeViewType({ routeParams }) {
 
 
+
   const searchParams = useSearchParams();
+  const router = useRouter();
 
 
   const { t } = useTranslation();
@@ -269,7 +271,6 @@ export default function HomeViewType({ routeParams }) {
   const searchKeyword = searchParams.get('searchKeyword');
 
 
-  const [searchParamsState, setSearchParamsState] = useState({});
 
 
   const [favorites, setFavorites] = useState([]);
@@ -293,14 +294,6 @@ export default function HomeViewType({ routeParams }) {
 
 
 
-  const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
-    queryKey: ['search', searchParamsState],
-    queryFn: () => CrudService.getSearchListings(searchParamsState),
-    enabled: !!searchParamsState.searchKeyword || !!searchParamsState.searchCategories,
-    onError: (error) => {
-      console.error('Failed to fetch search results:', error);
-    },
-  });
 
 
 
@@ -312,29 +305,23 @@ export default function HomeViewType({ routeParams }) {
     }
   }, [homeData]);
 
-  useEffect(() => {
-    if (searchResultsData?.favorites) {
-      setFavorites(searchResultsData.favorites);
 
-    }
-  }, [searchResultsData]);
 
-  // Combine search results or category data
   const InitialListings = useMemo(
     () =>
-      searchResultsData?.data.map(item => ({
+      homeData?.data.map(item => ({
         type: item.type,
         id: item.id,
         attributes: {
           ...item.attributes,
         },
-      })) || homeData?.data.filter(item => item.type === 'apartments') || [],
-    [searchResultsData, homeData]
+      })) || homeData?.data || [],
+    [homeData]
   );
 
   console.log('InitialListings:', InitialListings);
 
-  const isLoading = isHomeLoading || isSearchLoading;
+  const isLoading = isHomeLoading ;
 
 
 
@@ -413,9 +400,6 @@ export default function HomeViewType({ routeParams }) {
     setSortBy(newValue);
   }, []);
 
-  const handleSearch = useCallback((params) => {
-    setSearchParamsState(params);
-  }, []);
 
   const productsEmpty = !InitialListings.length;
 
@@ -431,6 +415,31 @@ export default function HomeViewType({ routeParams }) {
 
 
 
+
+
+  const handleSearch = useCallback((params) => {
+    const { searchLocation, searchCategories, searchKeyword } = params;
+
+    // Use "all-cities" as the default if searchLocation is empty
+    const location = searchLocation || "all-cities";
+
+    // Construct the base URL path
+    let newPath = `/en/${location}`;
+    if (searchCategories) {
+      newPath += `/${searchCategories}`;
+    }
+
+    // Create URLSearchParams for query parameters
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (searchKeyword) {
+      newSearchParams.set('searchKeyword', searchKeyword);
+    } else {
+      newSearchParams.delete('searchKeyword');
+    }
+
+    // Navigate to the new URL with router.push
+    router.push(`${newPath}?${newSearchParams.toString()}`);
+  }, [searchParams, router]);
 
 
 

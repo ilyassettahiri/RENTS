@@ -12,7 +12,7 @@ import { orderBy } from 'src/utils/helper';
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { useQuery } from '@tanstack/react-query';
-import { usePathname, useSearchParams} from 'src/routes/hooks';
+import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 
 
 import CrudService from 'src/services/cruds-service';
@@ -1114,7 +1114,9 @@ const PRODUCT_CATEGORY_OPTIONS = ['Shose', 'Apparel', 'Accessories'];
 export default function ServicesListViewType({ routeParams }) {
 
 
+
   const searchParams = useSearchParams();
+  const router = useRouter();
 
 
   const {city, type } = routeParams;
@@ -1123,11 +1125,6 @@ export default function ServicesListViewType({ routeParams }) {
 
   const [favorites, setFavorites] = useState([]);
 
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const debouncedQuery = useDebounce(searchQuery);
-
-  const [searchParamsState, setSearchParamsState] = useState({});
 
 
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
@@ -1140,16 +1137,6 @@ export default function ServicesListViewType({ routeParams }) {
 
 
 
-  // Query for search results
-  const { data: searchData, isLoading: isSearchLoading, isFetching: isSearching, error: searchError } = useQuery({
-    queryKey: ['services', debouncedQuery],
-    queryFn: () => CrudService.getSearchServiceListings(debouncedQuery),
-    enabled: !!debouncedQuery, // Only run query if debouncedQuery is not empty
-    onError: (error) => {
-      console.error('Failed to fetch search results:', error);
-    },
-  });
-
 
 
 
@@ -1160,18 +1147,15 @@ export default function ServicesListViewType({ routeParams }) {
   }, [initialData]);
 
 
-  useEffect(() => {
-    if (searchData?.favorites) {
-      setFavorites(searchData.favorites);
-    }
-  }, [searchData]);
 
 
 
 
 
-  const services = useMemo(() => searchData?.data || initialData?.data || [], [searchData, initialData]);
-  const isLoading = isInitialLoading || isSearching;
+
+
+  const services = useMemo(() =>  initialData?.data || [], [initialData]);
+  const isLoading = isInitialLoading ;
 
 
   const memoizedValue = useMemo(() => ({
@@ -1237,9 +1221,6 @@ export default function ServicesListViewType({ routeParams }) {
     setSortBy(newValue);
   }, []);
 
-  const handleSearch = useCallback((params) => {
-    setSearchParamsState(params);
-  }, []);
 
   const productsEmpty = !services.length;
 
@@ -1253,6 +1234,32 @@ export default function ServicesListViewType({ routeParams }) {
 
 
 
+
+
+
+  const handleSearch = useCallback((params) => {
+    const { searchLocation, searchCategories, searchKeyword } = params;
+
+    // Use "all-cities" as the default if searchLocation is empty
+    const location = searchLocation || "all-cities";
+
+    // Construct the base URL path
+    let newPath = `/services/${location}`;
+    if (searchCategories) {
+      newPath += `/${searchCategories}`;
+    }
+
+    // Create URLSearchParams for query parameters
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (searchKeyword) {
+      newSearchParams.set('searchKeyword', searchKeyword);
+    } else {
+      newSearchParams.delete('searchKeyword');
+    }
+
+    // Navigate to the new URL with router.push
+    router.push(`${newPath}?${newSearchParams.toString()}`);
+  }, [searchParams, router]);
 
 
 
