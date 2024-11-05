@@ -268,7 +268,7 @@ export default function HomeViewCategory({ routeParams }) {
 
   const {city, category } = routeParams;
 
-  const searchKeyword = searchParams.get('searchKeyword');
+  const getsearchKeyword = searchParams.get('searchKeyword');
 
 
 
@@ -285,8 +285,8 @@ export default function HomeViewCategory({ routeParams }) {
 
 
     const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
-      queryKey: ['searchhome', city, category, searchKeyword],
-      queryFn: () => CrudService.getSearchCategory(city, category, searchKeyword),
+      queryKey: ['searchhome', city, category, getsearchKeyword],
+      queryFn: () => CrudService.getSearchCategory(city, category, getsearchKeyword),
       onError: (error) => {
         console.error('Failed to fetch Home:', error);
       },

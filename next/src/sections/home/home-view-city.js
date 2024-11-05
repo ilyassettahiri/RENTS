@@ -270,7 +270,7 @@ export default function HomeViewCity({ routeParams }) {
 
   const { city } = routeParams;
 
-  const searchKeyword = searchParams.get('searchKeyword');
+  const getsearchKeyword = searchParams.get('searchKeyword');
 
 
 
@@ -287,8 +287,8 @@ export default function HomeViewCity({ routeParams }) {
 
 
   const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
-    queryKey: ['searchhome', city, searchKeyword],
-    queryFn: () => CrudService.getSearchCity(city, searchKeyword),
+    queryKey: ['searchhome', city, getsearchKeyword],
+    queryFn: () => CrudService.getSearchCity(city, getsearchKeyword),
     onError: (error) => {
       console.error('Failed to fetch Home:', error);
     },

@@ -1122,7 +1122,7 @@ export default function JobsListViewCity({ routeParams }) {
 
   const { city } = routeParams;
 
-  const searchKeyword = searchParams.get('searchKeyword');
+  const getsearchKeyword = searchParams.get('searchKeyword');
 
   const [favorites, setFavorites] = useState([]);
 
@@ -1130,8 +1130,8 @@ export default function JobsListViewCity({ routeParams }) {
 
 
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
-    queryKey: ['services', city, searchKeyword],
-    queryFn: () => CrudService.getSearchJobCity(city, searchKeyword),
+    queryKey: ['services', city, getsearchKeyword],
+    queryFn: () => CrudService.getSearchJobCity(city, getsearchKeyword),
     onError: (error) => {
       console.error('Failed to fetch Home:', error);
     },
@@ -1163,14 +1163,15 @@ export default function JobsListViewCity({ routeParams }) {
   const isLoading = isInitialLoading ;
 
 
+
   const memoizedValue = useMemo(() => ({
     services,
     favorites,
-    servicesLoading: isSearchLoading || isInitialLoading,
-    servicesError: searchError || initialError,
+    servicesLoading:  isInitialLoading,
+    servicesError:  initialError,
     servicesFetching: isLoading,
-    servicesEmpty: !isSearchLoading && !(services.length),
-  }), [ searchError, isLoading, isInitialLoading, initialError, services, favorites, isSearchLoading]);
+    servicesEmpty: !isInitialLoading && !(services.length),
+  }), [ isLoading, isInitialLoading, initialError, services, favorites,]);
 
 
 

@@ -1121,15 +1121,15 @@ export default function ServicesListViewType({ routeParams }) {
 
   const {city, type } = routeParams;
 
-  const searchKeyword = searchParams.get('searchKeyword');
+  const getsearchKeyword = searchParams.get('searchKeyword');
 
   const [favorites, setFavorites] = useState([]);
 
 
 
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
-    queryKey: ['services', city, type, searchKeyword],
-    queryFn: () => CrudService.getSearchServiceType(city, type, searchKeyword),
+    queryKey: ['services', city, type, getsearchKeyword],
+    queryFn: () => CrudService.getSearchServiceType(city, type, getsearchKeyword),
     onError: (error) => {
       console.error('Failed to fetch Home:', error);
     },
@@ -1161,11 +1161,11 @@ export default function ServicesListViewType({ routeParams }) {
   const memoizedValue = useMemo(() => ({
     services,
     favorites,
-    servicesLoading: isSearchLoading || isInitialLoading,
-    servicesError: searchError || initialError,
+    servicesLoading:  isInitialLoading,
+    servicesError:  initialError,
     servicesFetching: isLoading,
-    servicesEmpty: !isSearchLoading && !(services.length),
-  }), [ searchError, isLoading, isInitialLoading, initialError, services, favorites, isSearchLoading]);
+    servicesEmpty: !isInitialLoading && !(services.length),
+  }), [ isLoading, isInitialLoading, initialError, services, favorites,]);
 
 
 

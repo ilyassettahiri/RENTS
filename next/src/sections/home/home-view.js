@@ -233,7 +233,6 @@ export default function HomeView() {
 
 
 
-  const [searchParamsState, setSearchParamsState] = useState({});
 
 
   const [favorites, setFavorites] = useState([]);
@@ -256,15 +255,6 @@ export default function HomeView() {
 
 
 
-  const { data: searchResultsData, isLoading: isSearchLoading, error: searchError } = useQuery({
-    queryKey: ['search', searchParamsState],
-    queryFn: () => CrudService.getSearchListings(searchParamsState),
-    enabled: !!searchParamsState.searchKeyword || !!searchParamsState.searchCategories,
-    onError: (error) => {
-      console.error('Failed to fetch search results:', error);
-    },
-  });
-
 
 
 
@@ -276,29 +266,24 @@ export default function HomeView() {
     }
   }, [homeData]);
 
-  useEffect(() => {
-    if (searchResultsData?.favorites) {
-      setFavorites(searchResultsData.favorites);
 
-    }
-  }, [searchResultsData]);
 
   // Combine search results or category data
   const InitialListings = useMemo(
     () =>
-      searchResultsData?.data.map(item => ({
+      homeData?.data.map(item => ({
         type: item.type,
         id: item.id,
         attributes: {
           ...item.attributes,
         },
       })) || homeData?.data.filter(item => item.type === 'apartments') || [],
-    [searchResultsData, homeData]
+    [homeData]
   );
 
   console.log('InitialListings:', InitialListings);
 
-  const isLoading = isHomeLoading || isSearchLoading;
+  const isLoading = isHomeLoading ;
 
 
 

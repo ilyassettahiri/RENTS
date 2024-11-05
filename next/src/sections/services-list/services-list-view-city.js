@@ -1122,7 +1122,7 @@ export default function ServicesListViewCity({ routeParams }) {
 
   const { city } = routeParams;
 
-  const searchKeyword = searchParams.get('searchKeyword');
+  const getsearchKeyword = searchParams.get('searchKeyword');
 
 
   const [favorites, setFavorites] = useState([]);
@@ -1133,8 +1133,8 @@ export default function ServicesListViewCity({ routeParams }) {
 
 
   const { data: initialData, isLoading: isInitialLoading, error: initialError } = useQuery({
-    queryKey: ['services', city, searchKeyword],
-    queryFn: () => CrudService.getSearchServiceCity(city, searchKeyword),
+    queryKey: ['services', city, getsearchKeyword],
+    queryFn: () => CrudService.getSearchServiceCity(city, getsearchKeyword),
     onError: (error) => {
       console.error('Failed to fetch Home:', error);
     },
@@ -1161,14 +1161,16 @@ export default function ServicesListViewCity({ routeParams }) {
   const isLoading = isInitialLoading ;
 
 
+
   const memoizedValue = useMemo(() => ({
     services,
     favorites,
-    servicesLoading: isSearchLoading || isInitialLoading,
-    servicesError: searchError || initialError,
+    servicesLoading:  isInitialLoading,
+    servicesError:  initialError,
     servicesFetching: isLoading,
-    servicesEmpty: !isSearchLoading && !(services.length),
-  }), [ searchError, isLoading, isInitialLoading, initialError, services, favorites, isSearchLoading]);
+    servicesEmpty: !isInitialLoading && !(services.length),
+  }), [ isLoading, isInitialLoading, initialError, services, favorites,]);
+
 
 
 
