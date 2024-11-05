@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
 }
 
 
-const JobsPageType = ({ params }) => <JobsListViewType params={params} />;
+const JobsPageType = ({ params }) => <JobsListViewType routeParams={params} />;
 
 JobsPageType.propTypes = {
   params: PropTypes.shape({
