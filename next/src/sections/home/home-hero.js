@@ -16,7 +16,7 @@ import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
-export default function HomeHero({ tours, category }) {
+export default function HomeHero({ tours, categoryy }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
@@ -72,7 +72,7 @@ export default function HomeHero({ tours, category }) {
     <Box sx={{ minHeight: { md: '55vh' }, position: 'relative' }}>
       {!!tours.length && (
         <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
-         <CarouselItem category={category} /> {/* Display only one image */}
+         <CarouselItem categoryy={categoryy} /> {/* Display only one image */}
         </Carousel>
       )}
 
@@ -126,13 +126,13 @@ export default function HomeHero({ tours, category }) {
 
 HomeHero.propTypes = {
   tours: PropTypes.array,
-  category: PropTypes.string.isRequired,
+  categoryy: PropTypes.string.isRequired,
 
 };
 
 // ----------------------------------------------------------------------
 
-function CarouselItem({ category }) {
+function CarouselItem({ categoryy }) {
   const theme = useTheme();
 
   const renderOverlay = (
@@ -185,7 +185,7 @@ function CarouselItem({ category }) {
         {renderOverlay}
         <Image
           alt="hero"
-          src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoriescover/${category}.jpg`}
+          src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoriescover/${categoryy}.jpg`}
           sx={{
             width: 1,
             height: { xs: 1, md: '55vh' },
@@ -197,7 +197,7 @@ function CarouselItem({ category }) {
 }
 
 CarouselItem.propTypes = {
-  category: PropTypes.string.isRequired,
+  categoryy: PropTypes.string.isRequired,
 
 };
 

@@ -353,7 +353,7 @@ export default function HomeView() {
 
 
 
-            <HomeHero tours={tours} category="apartments"/>
+            <HomeHero tours={tours} categoryy="apartments"/>
 
 
 
