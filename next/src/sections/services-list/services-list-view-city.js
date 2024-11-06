@@ -1273,10 +1273,10 @@ export default function ServicesListViewCity({ params }) {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 15, md: 0 },
+        mt: { xs: 25, md: 10 },
 
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
       }}
     >
 

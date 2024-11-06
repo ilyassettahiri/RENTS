@@ -58,27 +58,19 @@ export default function ContactForm() {
     <Box
       sx={{
         bgcolor: 'background.neutral',
-        py: { xs: 10, md: 15 },
+        py: { xs: 5, md: 5 },
       }}
     >
       <Container>
-        <Grid container spacing={3} justifyContent="space-between">
-          {mdUp && (
-            <Grid xs={12} md={6} lg={5}>
-              <Image
-                alt="contact"
-                src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/assets/illustrations/illustration_courses_contact.svg`}
-                sx={{ maxWidth: 260 }}
-              />
-            </Grid>
-          )}
+        <Grid container spacing={3} justifyContent="center">
 
-          <Grid xs={12} md={6} lg={6}>
+
+          <Grid xs={12} md={10} lg={10}>
             <Stack
               spacing={2}
               sx={{
                 mb: 5,
-                textAlign: { xs: 'center', md: 'left' },
+                textAlign: { xs: 'center', md: 'center' },
               }}
             >
               <Typography variant="h3">Drop Us A Line</Typography>

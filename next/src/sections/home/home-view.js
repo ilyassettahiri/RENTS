@@ -438,10 +438,6 @@ export default function HomeView() {
         <ListingList tours={memoizedHomeData.apartments} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
-        <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
-
-        </Stack>
 
 
         <Stack sx={{ my: 5 }} >
@@ -456,6 +452,11 @@ export default function HomeView() {
         </Stack>
 
 
+
+        <Stack sx={{ my: 5 }} >
+          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
+
+        </Stack>
 
 
       </Container>

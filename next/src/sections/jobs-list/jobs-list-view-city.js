@@ -1276,8 +1276,8 @@ export default function JobsListViewCity({ params }) {
       sx={{
         mt: { xs: 15, md: 0 },
 
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '80px' },
+        paddingRight: { lg: '80px' },
       }}
     >
 
