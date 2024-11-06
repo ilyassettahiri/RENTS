@@ -44,6 +44,7 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
         )}
       </Box>
 
+      <Box sx={{my: 10,}}/>
       {pageCount > 1 && (
         <Pagination
           count={pageCount}
@@ -51,7 +52,7 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
           onChange={handlePageChange}
           color="primary"
           sx={{
-            my: 10,
+
             [`& .${paginationClasses.ul}`]: {
               justifyContent: 'center',
             },
