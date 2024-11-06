@@ -10,10 +10,6 @@ const ITEMS_PER_PAGE = 32;
 export default function ListingsList({ tours, loading, favorites, onFavoriteToggle, columns = 4 }) {
   const [currentPage, setCurrentPage] = useState(1);
 
-
-
-
-
   const handlePageChange = (event, value) => {
     setCurrentPage(value);
   };
@@ -21,6 +17,9 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
   const indexOfLastTour = currentPage * ITEMS_PER_PAGE;
   const indexOfFirstTour = indexOfLastTour - ITEMS_PER_PAGE;
   const currentTours = tours.slice(indexOfFirstTour, indexOfLastTour);
+
+  // Calculate the number of pages
+  const pageCount = Math.ceil(tours.length / ITEMS_PER_PAGE);
 
   return (
     <>
@@ -45,18 +44,20 @@ export default function ListingsList({ tours, loading, favorites, onFavoriteTogg
         )}
       </Box>
 
-      <Pagination
-        count={Math.ceil(tours.length / ITEMS_PER_PAGE)}
-        page={currentPage}
-        onChange={handlePageChange}
-        color="primary"
-        sx={{
-          my: 10,
-          [`& .${paginationClasses.ul}`]: {
-            justifyContent: 'center',
-          },
-        }}
-      />
+      {pageCount > 1 && (
+        <Pagination
+          count={pageCount}
+          page={currentPage}
+          onChange={handlePageChange}
+          color="primary"
+          sx={{
+            my: 10,
+            [`& .${paginationClasses.ul}`]: {
+              justifyContent: 'center',
+            },
+          }}
+        />
+      )}
     </>
   );
 }
@@ -66,6 +67,5 @@ ListingsList.propTypes = {
   loading: PropTypes.bool.isRequired,
   favorites: PropTypes.array.isRequired,
   onFavoriteToggle: PropTypes.func.isRequired,
-  columns: PropTypes.number, // New prop for columns
-
+  columns: PropTypes.number,
 };

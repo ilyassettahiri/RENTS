@@ -446,7 +446,7 @@ export default function HomeViewType({ params }) {
 
 
 
-            <HomeHero tours={tours} />
+        <HomeHero tours={tours} category={category}/>
 
 
 

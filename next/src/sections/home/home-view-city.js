@@ -450,7 +450,7 @@ export default function HomeViewCity({ params }) {
 
 
 
-            <HomeHero tours={tours} />
+        <HomeHero tours={tours} category="apartments"/>
 
 
 

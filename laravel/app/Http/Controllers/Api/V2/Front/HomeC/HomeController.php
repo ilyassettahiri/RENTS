@@ -191,12 +191,12 @@ class HomeController extends JsonApiController
     {
 
 
-        $velos = Velo::orderBy('created_at', 'desc')->get();
+        $velos = Velo::orderBy('created_at', 'desc')->take(8)->get();
 
-        $apartments = Apartment::orderBy('created_at', 'desc')->get();
+        $apartments = Apartment::orderBy('created_at', 'desc')->take(8)->get();
 
 
-        $billiards = Car::orderBy('created_at', 'desc')->get();
+        $billiards = Car::orderBy('created_at', 'desc')->take(8)->get();
 
 
 
@@ -510,7 +510,7 @@ class HomeController extends JsonApiController
         $responseData = [
             'data' => $mergedData,
             'recentarticles' => $recentarticlesData,
-            'ourclients' => $ourclientData,
+
         ];
 
         // Conditionally add 'favorites' key if user is authenticated

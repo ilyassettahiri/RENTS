@@ -267,7 +267,6 @@ export default function HomeView() {
 
 
 
-  // Combine search results or category data
   const InitialListings = useMemo(
     () =>
       homeData?.data.map(item => ({
@@ -354,7 +353,7 @@ export default function HomeView() {
 
 
 
-            <HomeHero tours={tours} />
+            <HomeHero tours={tours} category="apartments"/>
 
 
 
@@ -436,7 +435,7 @@ export default function HomeView() {
 
 
 
-        <ListingList tours={InitialListings} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={memoizedHomeData.apartments} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
         <Stack sx={{ my: 5 }} >
