@@ -140,7 +140,7 @@ function CarouselItem({ categoryy }) {
       sx={{
         ...bgGradient({
           startColor: `${alpha(theme.palette.common.black, 0)} 0%`,
-          endColor: `${theme.palette.common.black} 60%`,
+          endColor: `${theme.palette.common.black} 100%`,
         }),
         backgroundColor: alpha(theme.palette.common.black, 0.24),
         top: 0,
@@ -230,7 +230,7 @@ function ThumbnailItem({ tour, selected, onClick }) {
         }),
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/${tour.iconUrl}`} sx={{ width: 45, height: 45 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoryiconcover/${tour.categories.value}.svg`} sx={{ width: 45, height: 45 }} />
 
 
         <Stack spacing={0.5}   >
