@@ -53,7 +53,40 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
 
 
-  const { id, category, url } = product.attributes;
+  const { id, category, url, city, jobtype } = product.attributes;
+
+  const formatJobType = (jobtypee) => {
+    if (!jobtypee) return ""; // Return an empty string if jobtype is null or undefined
+    return jobtypee
+      .toLowerCase()
+      .normalize("NFD") // Normalize accents
+      .replace(/[\u0300-\u036f]/g, "") // Remove accents
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .trim()
+      .replace(/\s+/g, "-"); // Replace spaces with hyphens
+  };
+
+
+  let type;
+
+  const getHref = () => {
+
+
+    if (category === 'services') {
+      type = formatJobType(jobtype);
+      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+    }
+
+    if (category === 'jobs') {
+      type = formatJobType(jobtype);
+      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+    }
+
+    type = `${category}-for-rent`;
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+  };
+
+  console.log('Generated Href:', getHref()); // Log the href
 
 
   const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
@@ -139,7 +172,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
               overflow: 'hidden', // Ensure the carousel respects the borderRadius
             }}
           >
-            <CarouselBasic1 data={product.attributes.images} category={category} url={url} />
+            <CarouselBasic1 data={product.attributes.images} category={category} url={url} city={city} type={type}/>
           </Box>
 
           <Stack spacing={1}>
@@ -151,11 +184,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
               <Link component={RouterLink}
 
-                href={
-                  category === 'services'
-                    ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
-                    : `${paths.travel.tour}/${category}/${url}`  // Default path
-                }
+              href={getHref()}
 
 
               color="inherit">
@@ -210,7 +239,10 @@ StoreViewListItem.propTypes = {
       price: PropTypes.number,
       images: PropTypes.array.isRequired,
       id: PropTypes.number,
+      city: PropTypes.string,
+      jobtype: PropTypes.string.isRequired,
 
+      type: PropTypes.string,
       url: PropTypes.string, // Added missing prop validation
 
     }),
@@ -226,10 +258,23 @@ StoreViewListItem.defaultProps = {
 };
 
 
-function CarouselBasic1({ data, category, url }) {
+function CarouselBasic1({ data, category, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
+
+
+
+  const getHref = () => {
+    if (category === 'services') {
+      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+    }
+    if (category === 'jobs') {
+      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+    }
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+  };
+
 
   return (
     <>
@@ -239,11 +284,7 @@ function CarouselBasic1({ data, category, url }) {
 
             <Link
               key={index}
-              href={
-                category === 'services'
-                  ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
-                  : `${paths.travel.tour}/${category}/${url}`  // Default path
-              }
+              href={getHref()}
               component={RouterLink}
             >
                   <Image
@@ -274,7 +315,8 @@ function CarouselBasic1({ data, category, url }) {
 CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
 
-
+  city: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
 
   url: PropTypes.string.isRequired,

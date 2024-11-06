@@ -17,10 +17,13 @@ import ProductRating from '../../common/product-rating';
 const BASE_URL = process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL;
 
 export default function StoreItemBestSellers({ product, ...other }) {
+
+  const type = `${product.category}-for-rent`;
+
   return (
     <Link
       component={RouterLink}
-      href={`${paths.travel.tour}/${product.category}/${product.url}`}
+      href={`${paths.travel.tour}/en/${product.city}/${product.category}/${type}/${product.url} `}
       color="inherit"
       underline="none"
     >

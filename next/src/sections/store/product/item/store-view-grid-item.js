@@ -50,8 +50,42 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
 
 
 
-  const { id, category, url } = product.attributes;
+  const { id, category, url, city, jobtype  } = product.attributes;
 
+
+
+
+
+  const formatJobType = (jobtypee) => {
+    if (!jobtypee) return ""; // Return an empty string if jobtype is null or undefined
+    return jobtypee
+      .toLowerCase()
+      .normalize("NFD") // Normalize accents
+      .replace(/[\u0300-\u036f]/g, "") // Remove accents
+      .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+      .trim()
+      .replace(/\s+/g, "-"); // Replace spaces with hyphens
+  };
+  let type;
+
+  const getHref = () => {
+
+
+    if (category === 'services') {
+      type = formatJobType(jobtype);
+      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+    }
+
+    if (category === 'jobs') {
+      type = formatJobType(jobtype);
+      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+    }
+
+    type = `${category}-for-rent`;
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+  };
+
+  console.log('Generated Href:', getHref()); // Log the href
 
   const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
@@ -129,7 +163,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
               <Iconify icon="carbon:shopping-cart-plus" />
             </Fab>
 
-            <CarouselBasic1 data={product.attributes.images} category={category} url={url}/>
+            <CarouselBasic1 data={product.attributes.images} category={category} url={url} city={city} type={type}/>
 
           </Box>
 
@@ -157,11 +191,8 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
 
             <Link
               component={RouterLink}
-              href={
-                category === 'services'
-                  ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
-                  : `${paths.travel.tour}/${category}/${url}`  // Default path
-              }
+              href={getHref()}
+
               color="inherit"
             >
               <TextMaxLine variant="body2" line={1} sx={{ fontWeight: 'fontWeightMedium' }}>
@@ -191,7 +222,10 @@ StoreViewGridItem.propTypes = {
       created_at: PropTypes.string,
       images: PropTypes.array.isRequired,
       id: PropTypes.number,
+      city: PropTypes.string,
+      jobtype: PropTypes.string.isRequired,
 
+      type: PropTypes.string,
 
       price: PropTypes.number,
       status: PropTypes.string,
@@ -210,10 +244,22 @@ StoreViewGridItem.defaultProps = {
   favorites: [],
 };
 
-function CarouselBasic1({ data, category, url }) {
+function CarouselBasic1({ data, category, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
+
+
+
+  const getHref = () => {
+    if (category === 'services') {
+      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+    }
+    if (category === 'jobs') {
+      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+    }
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+  };
 
   return (
     <>
@@ -224,11 +270,7 @@ function CarouselBasic1({ data, category, url }) {
 
             <Link
               key={index}
-              href={
-                category === 'services'
-                  ? `${paths.career.job}/${url}`  // Use this path if category is 'services'
-                  : `${paths.travel.tour}/${category}/${url}`  // Default path
-              }
+              href={getHref()}
               component={RouterLink}
             >
 
@@ -261,7 +303,8 @@ CarouselBasic1.propTypes = {
   data: PropTypes.array.isRequired,
 
   category: PropTypes.string.isRequired,
-
+  city: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
 };
 
