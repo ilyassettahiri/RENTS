@@ -236,7 +236,7 @@ export function ListDesktop({ list }) {
         <Typography
           key={link.title}
           variant="caption"
-          onClick={() => handleClick(link.title)}
+          onClick={() => handleClick(link.value)}
           sx={{
             color: 'text.secondary',
             cursor: 'pointer',

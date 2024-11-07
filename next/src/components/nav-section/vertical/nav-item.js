@@ -19,6 +19,8 @@ const NavItem = forwardRef(
   (
     {
       title,
+      value,
+
       path,
       icon,
       info,
@@ -144,7 +146,7 @@ const NavItem = forwardRef(
 
     return (
       <Typography
-        onClick={() => handleClick(title)}
+        onClick={() => handleClick(value)}
         color="inherit"
         underline="none"
         sx={{
@@ -167,6 +169,8 @@ NavItem.propTypes = {
   icon: PropTypes.element,
   info: PropTypes.element,
   title: PropTypes.string,
+  value: PropTypes.string,
+
   disabled: PropTypes.bool,
   hasChild: PropTypes.bool,
   caption: PropTypes.string,

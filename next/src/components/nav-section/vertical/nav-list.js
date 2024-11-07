@@ -41,6 +41,8 @@ export default function NavList({ data, depth, slotProps, onItemClick }) {
         onClick={handleToggleMenu}
         //
         title={data.title}
+        value={data.value}
+
         path={data.path}
         icon={data.icon}
         info={data.info}

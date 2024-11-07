@@ -67,26 +67,20 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
   };
 
 
-  let type;
+  const type = category === 'services' || category === 'jobs'
+    ? formatJobType(jobtype)
+    : `${category}-for-rent`;
 
   const getHref = () => {
-
-
     if (category === 'services') {
-      type = formatJobType(jobtype);
-      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+      return `${paths.career.root}/${city}/${type}/${url}`;
     }
-
     if (category === 'jobs') {
-      type = formatJobType(jobtype);
-      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+      return `${paths.job.root}/${city}/${type}/${url}`;
     }
-
-    type = `${category}-for-rent`;
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`;
   };
 
-  console.log('Generated Href:', getHref()); // Log the href
 
 
   const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
@@ -140,27 +134,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
                   />
 
 
-          <Fab
-            component={RouterLink}
-            href={paths.eCommerce.product}
-            className="add-to-cart"
-            color="primary"
-            size="small"
-            sx={{
-              right: 8,
-              zIndex: 9,
-              top: 8,
-              opacity: 0,
-              position: 'absolute',
-              transition: (theme) =>
-                theme.transitions.create('opacity', {
-                  easing: theme.transitions.easing.easeIn,
-                  duration: theme.transitions.duration.shortest,
-                }),
-            }}
-          >
-            <Iconify icon="carbon:shopping-cart-plus" />
-          </Fab>
+
 
           <Box
             sx={{
@@ -265,6 +239,8 @@ function CarouselBasic1({ data, category, url, city, type }) {
 
 
 
+
+
   const getHref = () => {
     if (category === 'services') {
       return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
@@ -274,6 +250,7 @@ function CarouselBasic1({ data, category, url, city, type }) {
     }
     return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
   };
+
 
 
   return (

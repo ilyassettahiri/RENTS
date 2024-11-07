@@ -2890,6 +2890,7 @@ class EditListingController extends Controller
                                             'id' => $this->listingcategory->id,
                                             'url' => $this->listingcategory->url,
                                             'created_at' => $this->listingcategory->created_at,
+                                            'jobtype' => $this->listingcategory->type_service,
 
 
                                             'services' => [
@@ -2948,6 +2949,7 @@ class EditListingController extends Controller
                                                 'id' => $this->listingcategory->id,
                                                 'url' => $this->listingcategory->url,
                                                 'created_at' => $this->listingcategory->created_at,
+                                                'jobtype' => $this->listingcategory->responsibilities,
 
 
                                                 'jobs' => [

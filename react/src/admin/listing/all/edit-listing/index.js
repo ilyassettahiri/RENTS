@@ -509,15 +509,43 @@ function EditListing() {
 
   const category= data?.category;
   const url= data?.url;
+  const jobtype= data?.jobtype;
+  const city= data?.city;
 
 
-  const clickOpenHandler = (category, url) => {
-    const baseUrl = category === 'services' 
-      ? `https://rents.ma/service/${url}`  // URL for services category
-      : category === 'jobs'
-      ? `https://rents.ma/job/${url}`  // URL for jobs category
-      : `https://rents.ma/${category}/${url}`;  // Default URL for other categories
+
+
+  const clickOpenHandler = (category, url, jobtype, city) => {
+    const formatJobType = (jobtype) => {
+      if (!jobtype) return ""; // Return an empty string if jobtype is null or undefined
+      return jobtype
+        .toLowerCase()
+        .normalize("NFD") // Normalize accents
+        .replace(/[\u0300-\u036f]/g, "") // Remove accents
+        .replace(/[^a-z0-9\s-]/g, "") // Remove special characters
+        .trim()
+        .replace(/\s+/g, "-"); // Replace spaces with hyphens
+    };
   
+    // Determine the type based on category
+    const type = (category === 'services' || category === 'jobs')
+      ? formatJobType(jobtype)
+      : `${category}-for-rent`;
+  
+    // Define the base paths for different categories
+    const paths = {
+      services: `/career/${city}`,
+      jobs: `/job/${city}`,
+      default: `/travel/tour/en/${city}/${category}`
+    };
+  
+    // Build the full URL based on category
+    const baseUrl = category === 'services'
+      ? `${paths.services}/${type}/${url}`
+      : category === 'jobs'
+      ? `${paths.jobs}/${type}/${url}`
+      : `${paths.default}/${type}/${url}`; // Default URL for other categories
+    
     window.open(baseUrl, '_blank');  // Open the URL in a new tab
   };
   
@@ -2796,7 +2824,7 @@ function EditListing() {
             title="Delete"
             clickAddHandler={clickDeleteHandler}
             
-            clickOpenHandler={() => clickOpenHandler(category, url)}
+            clickOpenHandler={() => clickOpenHandler(category, url, jobtype, city)}
 
             statusOptions={[
               { value: 'pending', label: 'Pending' },

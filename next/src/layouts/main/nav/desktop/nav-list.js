@@ -164,7 +164,7 @@ function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
 
           return (
             <NavItem key={item.title} title={item.title} path={item.path} active={active} subItem disableLink
-            onClick={() => handleClick(item.title)} // Handle click to close the tab
+            onClick={() => handleClick(item.value)} // Handle click to close the tab
 
             />
           );

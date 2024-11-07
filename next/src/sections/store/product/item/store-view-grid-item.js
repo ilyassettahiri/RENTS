@@ -54,8 +54,6 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
 
 
 
-
-
   const formatJobType = (jobtypee) => {
     if (!jobtypee) return ""; // Return an empty string if jobtype is null or undefined
     return jobtypee
@@ -66,26 +64,23 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
       .trim()
       .replace(/\s+/g, "-"); // Replace spaces with hyphens
   };
-  let type;
+
+
+  const type = category === 'services' || category === 'jobs'
+    ? formatJobType(jobtype)
+    : `${category}-for-rent`;
 
   const getHref = () => {
-
-
     if (category === 'services') {
-      type = formatJobType(jobtype);
-      return `${paths.career.root}/${city}/${type}/${url}`; // Correct URL for services category
+      return `${paths.career.root}/${city}/${type}/${url}`;
     }
-
     if (category === 'jobs') {
-      type = formatJobType(jobtype);
-      return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
+      return `${paths.job.root}/${city}/${type}/${url}`;
     }
-
-    type = `${category}-for-rent`;
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`;
   };
 
-  console.log('Generated Href:', getHref()); // Log the href
+
 
   const isFavorite = favorites.some((favorite) => favorite.category === category && favorite.id === id);
   const [favorite, setFavorite] = useState(isFavorite);
@@ -141,27 +136,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
 
 
           <Box sx={{ position: 'relative',  }}>
-            <Fab
-              component={RouterLink}
-              href={paths.eCommerce.product}
-              className="add-to-cart"
-              color="primary"
-              size="small"
-              sx={{
-                right: 8,
-                zIndex: 9,
-                bottom: 8,
-                opacity: 0,
-                position: 'absolute',
-                transition: (theme) =>
-                  theme.transitions.create('opacity', {
-                    easing: theme.transitions.easing.easeIn,
-                    duration: theme.transitions.duration.shortest,
-                  }),
-              }}
-            >
-              <Iconify icon="carbon:shopping-cart-plus" />
-            </Fab>
+
 
             <CarouselBasic1 data={product.attributes.images} category={category} url={url} city={city} type={type}/>
 
@@ -248,7 +223,6 @@ function CarouselBasic1({ data, category, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
-
 
 
   const getHref = () => {

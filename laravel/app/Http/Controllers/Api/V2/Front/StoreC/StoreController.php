@@ -29,6 +29,8 @@ use App\Models\Listingsimg;
 
 use App\Models\Listing;
 use App\Models\User;
+use App\Models\Job;
+
 
 use App\Models\Onlinestore;
 
@@ -131,6 +133,7 @@ use App\Models\Huntingsimg;
 use App\Models\Musculationsimg;
 use App\Models\Surfsimg;
 use App\Models\Tennisimg;
+use App\Models\Jobsimg;
 
 use App\Models\Audiosimg;
 use App\Models\Camerasimg;
@@ -743,6 +746,14 @@ class StoreController extends JsonApiController
                                             }
                                             break;
 
+                                        case 'jobs':
+                                                $service = Job::where('url', $listing->url)->first();
+                                                if ($service) {
+                                                    $listing->service_id = $service->id;
+                                                    $result['id'] = $service->id;
+                                                }
+                                                break;
+
                                         case 'boats':
                                             $boat = Boat::where('url', $listing->url)->first();
                                             if ($boat) {
@@ -832,6 +843,20 @@ class StoreController extends JsonApiController
 
                                 $idResult = $getIdOnly($listing);
 
+                                $getJobOrServiceType = function ($listing) {
+                                    if ($listing->category === 'jobs') {
+                                        $job = Job::where('url', $listing->url)->first();
+                                        return $job ? $job->responsibilities : null;
+                                    } elseif ($listing->category === 'services') {
+                                        $service = Service::where('url', $listing->url)->first();
+                                        return $service ? $service->type_service : null;
+                                    }
+                                    return null; // Return null if not jobs or services
+                                };
+
+                                $jobtype = $getJobOrServiceType($listing);
+
+
                             return [
 
                                 'type' => 'listings',
@@ -847,8 +872,7 @@ class StoreController extends JsonApiController
                                     'city' => $listing->city,
 
 
-                                    'jobtype' => $listing->responsibilities ?? $listing->type_service ?? null,
-
+                                    'jobtype' => $jobtype,
                                     'created_at' => $listing->created_at,
                                     //'listing_city' => $listing->city,
 

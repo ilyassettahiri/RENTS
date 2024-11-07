@@ -78,6 +78,8 @@ StoreItemBestSellers.propTypes = {
     averageRating: PropTypes.number,
     totalReviews: PropTypes.number,
     category: PropTypes.string,
+    city: PropTypes.string,
+
     url: PropTypes.string,
   }).isRequired,
 };

@@ -199,9 +199,23 @@ class ListingController extends JsonApiController
         $user = Auth::user();
         $listings = Listing::where('user_id', $user->id)->get();
 
+        $getJobOrServiceType = function ($listing) {
+            if ($listing->category === 'jobs') {
+                $job = Job::where('url', $listing->url)->first();
+                return $job ? $job->responsibilities : null;
+            } elseif ($listing->category === 'services') {
+                $service = Service::where('url', $listing->url)->first();
+                return $service ? $service->type_service : null;
+            }
+            return null; // Return null if not jobs or services
+        };
+
         // Ensure JSON:API compliance
         return response()->json([
-            'data' => $listings->map(function ($listing) use ($user) {
+            'data' => $listings->map(function ($listing) use ($user, $getJobOrServiceType) {
+                $jobtype = $getJobOrServiceType($listing);
+
+
                 return [
                     'type' => 'listings',
                     'id' => $listing->id,
@@ -210,12 +224,15 @@ class ListingController extends JsonApiController
                         'url' => $listing->url,
                         'id' => $listing->id,
                         'title' => $listing->title,
+                        'city' => $listing->city,
+
                         'price' => $listing->price,
                         'status' => $listing->status,
                         'picture' => $listing->picture,
                         'user_id' => $listing->user_id,
                         'created_at' => $listing->created_at,
                         'updated_at' => $listing->updated_at,
+                        'jobtype' => $jobtype,
                     ],
                     'relationships' => [
                         'user' => [
@@ -242,7 +259,7 @@ class ListingController extends JsonApiController
             $url = Str::slug($title, '-', null);
 
             // Append a unique number to ensure uniqueness
-            $uniqueNumber = rand(1000000, 9999999);
+            $uniqueNumber = rand(1000, 9999);
             $url .= '-' . $uniqueNumber;
 
             return $url;
