@@ -191,7 +191,7 @@ class EditListingController extends Controller
     public function getListing(Request $request, $id)
     {
         $this->listing = Listing::where('id', $id)->first();
-        $this->category = strtolower($this->listing->category);
+        $this->category = $this->listing->category;
         $url = $this->listing->url;
 
 

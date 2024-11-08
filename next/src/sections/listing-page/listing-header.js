@@ -153,7 +153,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
           mb: 2,
         }}
       >
-        <Typography variant="h3" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
+        <Typography variant="h4" component="h1" sx={{ flexGrow: 1, pr: { md: 10 } }}>
 
           {capitalizeFirstLetter(title)}
         </Typography>

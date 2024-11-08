@@ -153,7 +153,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type}/>
+            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type} title={title}/>
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -514,7 +514,7 @@ ServiceItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data, category, url, city, type }) {
+function CarouselBasic1({ data, category, title, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -554,7 +554,7 @@ function CarouselBasic1({ data, category, url, city, type }) {
 
                 <Image
                   key={index}
-                  alt={`Image ${index + 1}`}
+                  alt={title}
                   src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                   ratio="6/4"
                 />
@@ -583,6 +583,8 @@ CarouselBasic1.propTypes = {
   category: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+
+  title: PropTypes.string.isRequired,
 
   url: PropTypes.string.isRequired,
 };

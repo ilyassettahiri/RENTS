@@ -9,6 +9,7 @@ import { orderBy } from 'src/utils/helper';
 import { useBoolean } from 'src/hooks/use-boolean';
 
 import { useQuery } from '@tanstack/react-query';
+import Typography from '@mui/material/Typography';
 
 import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 
@@ -1250,6 +1251,18 @@ export default function ServicesListView() {
         paddingRight: { lg: '80px' },
       }}
     >
+
+
+
+
+              <Typography variant="h1" component="h1" sx={{ display: 'none' }}>
+                  Discover Trusted Services Across Morocco
+                  From cleaning and maintenance to event planning and personal care, find reliable services near you on RENTS.ma. Explore, compare, and connect with professionals for all your needs.
+
+
+
+              </Typography>
+
 
       <ServiceSearch
         colorr="black"

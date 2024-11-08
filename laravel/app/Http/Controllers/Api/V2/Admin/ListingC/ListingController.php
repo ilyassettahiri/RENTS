@@ -521,6 +521,7 @@ class ListingController extends JsonApiController
 
         $listing->city = $city;
         $listing->zip = $zip;
+        $listing->description = $description;
 
 
         $listing->picture = $thumb;
@@ -4728,6 +4729,9 @@ class ListingController extends JsonApiController
 
             $listing->city = $city;
             $listing->zip = $zip;
+
+            $listing->description = $description;
+
 
 
             $listing->picture = $imagePathssmall[0];

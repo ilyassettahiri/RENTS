@@ -86,8 +86,8 @@ class OnlinestoreController extends JsonApiController
             $url = Str::slug($title, '-', null);
 
             // Append a unique number to ensure uniqueness
-            $uniqueNumber = rand(1000, 9999);
-            $url .= '-' . $uniqueNumber;
+            //$uniqueNumber = rand(1000, 9999);
+            //$url .= '-' . $uniqueNumber;
 
             return $url;
     }
@@ -250,12 +250,16 @@ class OnlinestoreController extends JsonApiController
         // Retrieve other input values
         $name = $request->input('data.attributes.name');
         $description = $request->input('data.attributes.description');
-        $phone = $request->input('data.attributes.phone');
+
+        $phone = preg_replace('/\D/', '', $request->input('data.attributes.phone'));
+
         $email = $request->input('data.attributes.email');
         $type = $request->input('data.attributes.category');
 
         $address = $request->input('data.attributes.address');
-        $city = $request->input('data.attributes.city');
+
+        $city = strtolower($request->input('data.attributes.city'));
+
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
         $url = $this->generateUrl($name);
@@ -353,12 +357,15 @@ class OnlinestoreController extends JsonApiController
 
         $name = $request->input('attributes.name');
         $description = $request->input('attributes.description');
-        $phone = $request->input('attributes.phone');
+
+        $phone = preg_replace('/\D/', '', $request->input('attributes.phone'));
+
         $email = $request->input('attributes.email');
         $type = $request->input('attributes.category');
 
         $address = $request->input('attributes.address');
-        $city = $request->input('attributes.city');
+        $city = strtolower($request->input('attributes.city'));
+
         $country = $request->input('attributes.country');
         $zip = $request->input('attributes.zip');
         $url = $this->generateUrl($name);

@@ -15,6 +15,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 
+import Typography from '@mui/material/Typography';
 
 import CrudService from 'src/services/cruds-service';
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
@@ -1280,6 +1281,16 @@ export default function JobsListViewCity({ params }) {
         paddingRight: { lg: '80px' },
       }}
     >
+
+
+              <Typography variant="h1" component="h1" sx={{ display: 'none' }}>
+                Find Your Next Job Opportunity in Morocco
+                Explore a wide range of job openings across industries and locations. Discover full-time, part-time, and freelance opportunities on RENTS.ma and take the next step in your career.
+
+
+
+
+              </Typography>
 
       <ServiceSearch
         colorr="black"

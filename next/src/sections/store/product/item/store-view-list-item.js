@@ -53,7 +53,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
 
 
-  const { id, category, url, city, jobtype } = product.attributes;
+  const { id, category, url, city, jobtype, title } = product.attributes;
 
   const formatJobType = (jobtypee) => {
     if (!jobtypee) return ""; // Return an empty string if jobtype is null or undefined
@@ -146,7 +146,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
               overflow: 'hidden', // Ensure the carousel respects the borderRadius
             }}
           >
-            <CarouselBasic1 data={product.attributes.images} category={category} url={url} city={city} type={type}/>
+            <CarouselBasic1 data={product.attributes.images} category={category} title={title} url={url} city={city} type={type}/>
           </Box>
 
           <Stack spacing={1}>
@@ -232,7 +232,7 @@ StoreViewListItem.defaultProps = {
 };
 
 
-function CarouselBasic1({ data, category, url, city, type }) {
+function CarouselBasic1({ data, category, title, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -266,7 +266,8 @@ function CarouselBasic1({ data, category, url, city, type }) {
             >
                   <Image
                     key={index}
-                    alt={`Image ${index + 1}`}
+                    alt={title}
+
                     src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                     ratio="1/1"
                   />
@@ -295,6 +296,8 @@ CarouselBasic1.propTypes = {
   city: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+
 
   url: PropTypes.string.isRequired,
 };

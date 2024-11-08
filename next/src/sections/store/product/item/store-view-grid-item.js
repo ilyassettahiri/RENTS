@@ -50,7 +50,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
 
 
 
-  const { id, category, url, city, jobtype  } = product.attributes;
+  const { id, category, url, city, jobtype, title  } = product.attributes;
 
 
 
@@ -138,7 +138,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
           <Box sx={{ position: 'relative',  }}>
 
 
-            <CarouselBasic1 data={product.attributes.images} category={category} url={url} city={city} type={type}/>
+            <CarouselBasic1 data={product.attributes.images} category={category} title={title} url={url} city={city} type={type}/>
 
           </Box>
 
@@ -219,7 +219,7 @@ StoreViewGridItem.defaultProps = {
   favorites: [],
 };
 
-function CarouselBasic1({ data, category, url, city, type }) {
+function CarouselBasic1({ data, category, title, url, city, type }) {
   const carousel = useCarousel({
     autoplay: false,
   });
@@ -250,7 +250,8 @@ function CarouselBasic1({ data, category, url, city, type }) {
 
                   <Image
                     key={index}
-                    alt={`Image ${index + 1}`}
+                    alt={title}
+
                     src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                     ratio="4/3"
                   />
@@ -279,6 +280,8 @@ CarouselBasic1.propTypes = {
   category: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+
   url: PropTypes.string.isRequired,
 };
 
