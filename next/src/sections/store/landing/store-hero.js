@@ -370,7 +370,9 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
 
                     <Box component="span" sx={{ color: 'primary.main' }}>
 
-                      {phone}
+                        <a href={`tel:${phone}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                          {phone}
+                        </a>
                     </Box>
                   </Typography>
                 </StyledButton>

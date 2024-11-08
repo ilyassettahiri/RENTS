@@ -489,7 +489,9 @@ class ListingController extends JsonApiController
         $title = $request->input('data.attributes.title');
         $address = $request->input('data.attributes.address');
 
-        $city = $request->input('data.attributes.city');
+
+        $city = strtolower($request->input('data.attributes.city'));
+
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
 
@@ -499,7 +501,7 @@ class ListingController extends JsonApiController
         $startdate = $request->input('data.attributes.startdate');
         $enddate = $request->input('data.attributes.enddate');
         $price = $request->input('data.attributes.price');
-        $phone = $request->input('data.attributes.phone');
+        $phone = preg_replace('/\D/', '', $request->input('data.attributes.phone'));
 
         $url = $this->generateUrl($title);
 
@@ -528,7 +530,7 @@ class ListingController extends JsonApiController
 
 
 
-            $listing->onlinestore_id = $onlinestore_id;
+        $listing->onlinestore_id = $onlinestore_id;
 
 
 
@@ -538,7 +540,7 @@ class ListingController extends JsonApiController
         foreach ($imagePathslarge as $index => $largePath) {
 
             $smallPath = $imagePathssmall[$index];
-                                    $xlargePath = $imagePathsxlarge[$index];
+            $xlargePath = $imagePathsxlarge[$index];
 
 
             $listingsimg = new Listingsimg();
@@ -546,11 +548,13 @@ class ListingController extends JsonApiController
             $listingsimg->picture = $largePath;
             $listingsimg->picturesmall = $smallPath;
             $listingsimg->picturesxlarge = $xlargePath;
+            $listingsimg->alttext = $title ;
+
             $listingsimg->save();
         }
 
 
-        switch (strtolower($category)) {
+        switch ($category) {
 
 
 
@@ -607,6 +611,8 @@ class ListingController extends JsonApiController
                     $billiardsimg->picture = $largePath;
                     $billiardsimg->picturesmall = $smallPath;
                     $billiardsimg->picturesxlarge = $xlargePath;
+                    $billiardsimg->alttext = $title ;
+
                     $billiardsimg->save();
                 }
 
@@ -625,7 +631,6 @@ class ListingController extends JsonApiController
 
 
                                 $boxingsData = $request->input('data.attributes.boxings');
-                                Log::info('Billiards Data:', $boxingsData);
 
                                 $boxing = new Boxing();
                                 $boxing->user_id = $user->id;
@@ -672,6 +677,8 @@ class ListingController extends JsonApiController
                                     $boxingsimg->picture = $largePath;
                                     $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->picturesxlarge = $xlargePath;
+                                    $boxingsimg->alttext = $title ;
+
                                     $boxingsimg->save();
                                 }
 
@@ -689,7 +696,6 @@ class ListingController extends JsonApiController
 
 
                 $divingsData = $request->input('data.attributes.divings');
-                Log::info('Divings Data:', $divingsData);
 
                                 $diving = new Diving();
                                 $diving->user_id = $user->id;
@@ -735,6 +741,8 @@ class ListingController extends JsonApiController
                                     $divingsimg->picture = $largePath;
                                     $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->picturesxlarge = $xlargePath;
+                                    $divingsimg->alttext = $title ;
+
                                     $divingsimg->save();
                                 }
 
@@ -754,7 +762,6 @@ class ListingController extends JsonApiController
 
 
                 $footballsData = $request->input('data.attributes.footballs');
-                Log::info('Footballs Data:', $footballsData);
 
 
                                 $football = new Football();
@@ -799,6 +806,8 @@ class ListingController extends JsonApiController
                                     $footballsimg->picture = $largePath;
                                     $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->picturesxlarge = $xlargePath;
+                                    $footballsimg->alttext = $title ;
+
                                     $footballsimg->save();
                                 }
 
@@ -818,7 +827,6 @@ class ListingController extends JsonApiController
 
 
                 $golfsData = $request->input('data.attributes.golfs');
-                Log::info('Golfs Data:', $golfsData);
 
 
                                 $golf = new Golf();
@@ -864,6 +872,8 @@ class ListingController extends JsonApiController
                                     $golfsimg->picture = $largePath;
                                     $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->picturesxlarge = $xlargePath;
+                                    $golfsimg->alttext = $title ;
+
                                     $golfsimg->save();
                                 }
 
@@ -885,7 +895,6 @@ class ListingController extends JsonApiController
 
 
                 $huntingsData = $request->input('data.attributes.huntings');
-                Log::info('Huntings Data:', $huntingsData);
 
 
                                 $hunting = new Hunting();
@@ -936,6 +945,8 @@ class ListingController extends JsonApiController
                                     $huntingsimg->picture = $largePath;
                                     $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->picturesxlarge = $xlargePath;
+                                    $huntingsimg->alttext = $title ;
+
                                     $huntingsimg->save();
                                 }
 
@@ -955,7 +966,6 @@ class ListingController extends JsonApiController
 
 
                 $musculationsData = $request->input('data.attributes.musculations');
-                Log::info('Musculations Data:', $musculationsData);
 
 
                                 $musculation = new Musculation();
@@ -1008,6 +1018,8 @@ class ListingController extends JsonApiController
                                     $musculationsimg->picture = $largePath;
                                     $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->picturesxlarge = $xlargePath;
+                                    $musculationsimg->alttext = $title ;
+
                                     $musculationsimg->save();
                                 }
 
@@ -1028,7 +1040,6 @@ class ListingController extends JsonApiController
 
 
                 $surfsData = $request->input('data.attributes.surfs');
-                Log::info('Surfs Data:', $surfsData);
 
 
 
@@ -1079,6 +1090,8 @@ class ListingController extends JsonApiController
                                     $surfsimg->picture = $largePath;
                                     $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->picturesxlarge = $xlargePath;
+                                    $surfsimg->alttext = $title ;
+
                                     $surfsimg->save();
                                 }
 
@@ -1098,7 +1111,6 @@ class ListingController extends JsonApiController
 
 
                 $tennisData = $request->input('data.attributes.tennis');
-                Log::info('Tennis Data:', $tennisData);
 
 
                                 $tennis = new Tennis();
@@ -1142,6 +1154,8 @@ class ListingController extends JsonApiController
                                     $Tennisimg->picture = $largePath;
                                     $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->picturesxlarge = $xlargePath;
+                                    $Tennisimg->alttext = $title ;
+
                                     $Tennisimg->save();
                                 }
 
@@ -1161,7 +1175,6 @@ class ListingController extends JsonApiController
 
 
                 $audiosData = $request->input('data.attributes.audios');
-                Log::info('Audios Data:', $audiosData);
 
 
                                 $audio = new Audio();
@@ -1215,6 +1228,8 @@ class ListingController extends JsonApiController
                                     $audiosimg->picture = $largePath;
                                     $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->picturesxlarge = $xlargePath;
+                                    $audiosimg->alttext = $title ;
+
                                     $audiosimg->save();
                                 }
 
@@ -1234,7 +1249,6 @@ class ListingController extends JsonApiController
 
 
                 $camerasData = $request->input('data.attributes.cameras');
-                Log::info('Cameras Data:', $camerasData);
 
 
 
@@ -1290,6 +1304,8 @@ class ListingController extends JsonApiController
                                     $camerasimg->picture = $largePath;
                                     $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->picturesxlarge = $xlargePath;
+                                    $camerasimg->alttext = $title ;
+
                                     $camerasimg->save();
                                 }
 
@@ -1307,7 +1323,6 @@ class ListingController extends JsonApiController
 
 
                 $chargersData = $request->input('data.attributes.chargers');
-                Log::info('Chargers Data:', $chargersData);
 
                                 $charger = new Charger();
                                 $charger->user_id = $user->id;
@@ -1358,6 +1373,8 @@ class ListingController extends JsonApiController
                                     $chargersimg->picture = $largePath;
                                     $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->picturesxlarge = $xlargePath;
+                                    $chargersimg->alttext = $title ;
+
                                     $chargersimg->save();
                                 }
 
@@ -1378,7 +1395,6 @@ class ListingController extends JsonApiController
 
 
                 $dronesData = $request->input('data.attributes.drones');
-                Log::info('Drones Data:', $dronesData);
 
                                 $drone = new Drone();
                                 $drone->user_id = $user->id;
@@ -1432,6 +1448,8 @@ class ListingController extends JsonApiController
                                     $dronesimg->picture = $largePath;
                                     $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->picturesxlarge = $xlargePath;
+                                    $dronesimg->alttext = $title ;
+
                                     $dronesimg->save();
                                 }
 
@@ -1454,7 +1472,6 @@ class ListingController extends JsonApiController
 
 
                 $gamingsData = $request->input('data.attributes.gamings');
-                Log::info('Gamings Data:', $gamingsData);
 
                                 $gaming = new Gaming();
                                 $gaming->user_id = $user->id;
@@ -1504,6 +1521,8 @@ class ListingController extends JsonApiController
                                     $gamingsimg->picture = $largePath;
                                     $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->picturesxlarge = $xlargePath;
+                                    $gamingsimg->alttext = $title ;
+
                                     $gamingsimg->save();
                                 }
 
@@ -1523,7 +1542,6 @@ class ListingController extends JsonApiController
 
 
                 $laptopsData = $request->input('data.attributes.laptops');
-                Log::info('Laptops Data:', $laptopsData);
 
                                 $laptop = new Laptop();
                                 $laptop->user_id = $user->id;
@@ -1578,6 +1596,8 @@ class ListingController extends JsonApiController
                                     $laptopsimg->picture = $largePath;
                                     $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->picturesxlarge = $xlargePath;
+                                    $laptopsimg->alttext = $title ;
+
                                     $laptopsimg->save();
                                 }
 
@@ -1598,7 +1618,6 @@ class ListingController extends JsonApiController
 
 
                 $lightingsData = $request->input('data.attributes.lightings');
-                Log::info('Lightings Data:', $lightingsData);
 
 
                                 $lighting = new Lighting();
@@ -1646,6 +1665,8 @@ class ListingController extends JsonApiController
                                     $lightingsimg->picture = $largePath;
                                     $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->picturesxlarge = $xlargePath;
+                                    $lightingsimg->alttext = $title ;
+
                                     $lightingsimg->save();
                                 }
 
@@ -1665,7 +1686,6 @@ class ListingController extends JsonApiController
             case 'printers':
 
                 $printersData = $request->input('data.attributes.printers');
-                Log::info('Printers Data:', $printersData);
 
 
 
@@ -1718,6 +1738,8 @@ class ListingController extends JsonApiController
                                     $printersimg->picture = $largePath;
                                     $printersimg->picturesmall = $smallPath;
                                     $printersimg->picturesxlarge = $xlargePath;
+                                    $printersimg->alttext = $title ;
+
                                     $printersimg->save();
                                 }
 
@@ -1735,7 +1757,6 @@ class ListingController extends JsonApiController
 
 
                 $routersData = $request->input('data.attributes.routers');
-                Log::info('Routers Data:', $routersData);
 
 
                                 $router = new Router();
@@ -1788,6 +1809,8 @@ class ListingController extends JsonApiController
                                     $routersimg->picture = $largePath;
                                     $routersimg->picturesmall = $smallPath;
                                     $routersimg->picturesxlarge = $xlargePath;
+                                    $routersimg->alttext = $title ;
+
                                     $routersimg->save();
                                 }
 
@@ -1808,7 +1831,6 @@ class ListingController extends JsonApiController
 
 
                 $tablettesData = $request->input('data.attributes.tablettes');
-                Log::info('Tablettes Data:', $tablettesData);
 
 
                                 $tablette = new Tablette();
@@ -1859,6 +1881,8 @@ class ListingController extends JsonApiController
                                     $tablettesimg->picture = $largePath;
                                     $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->picturesxlarge = $xlargePath;
+                                    $tablettesimg->alttext = $title ;
+
                                     $tablettesimg->save();
                                 }
 
@@ -1879,7 +1903,6 @@ class ListingController extends JsonApiController
 
 
                 $eclairagesData = $request->input('data.attributes.eclairages');
-                Log::info('Eclairages Data:', $eclairagesData);
 
 
                                 $eclairage = new Eclairage();
@@ -1938,6 +1961,8 @@ class ListingController extends JsonApiController
                                     $eclairagesimg->picture = $largePath;
                                     $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->picturesxlarge = $xlargePath;
+                                    $eclairagesimg->alttext = $title ;
+
                                     $eclairagesimg->save();
                                 }
 
@@ -1957,7 +1982,6 @@ class ListingController extends JsonApiController
 
 
                 $mobiliersData = $request->input('data.attributes.mobiliers');
-                Log::info('Mobiliers Data:', $mobiliersData);
 
 
                                 $mobilier = new Mobilier();
@@ -2009,6 +2033,8 @@ class ListingController extends JsonApiController
                                     $mobiliersimg->picture = $largePath;
                                     $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->picturesxlarge = $xlargePath;
+                                    $mobiliersimg->alttext = $title ;
+
                                     $mobiliersimg->save();
                                 }
 
@@ -2028,7 +2054,6 @@ class ListingController extends JsonApiController
 
 
                 $photographiesData = $request->input('data.attributes.photographies');
-                Log::info('Photographies Data:', $photographiesData);
 
                                 $photographie = new Photographie();
                                 $photographie->user_id = $user->id;
@@ -2079,6 +2104,8 @@ class ListingController extends JsonApiController
                                     $photographiesimg->picture = $largePath;
                                     $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->picturesxlarge = $xlargePath;
+                                    $photographiesimg->alttext = $title ;
+
                                     $photographiesimg->save();
                                 }
 
@@ -2097,7 +2124,6 @@ class ListingController extends JsonApiController
 
 
                 $sonorisationsData = $request->input('data.attributes.sonorisations');
-                Log::info('Sonorisations Data:', $sonorisationsData);
 
 
 
@@ -2159,6 +2185,8 @@ class ListingController extends JsonApiController
                                     $sonorisationsimg->picture = $largePath;
                                     $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->picturesxlarge = $xlargePath;
+                                    $sonorisationsimg->alttext = $title ;
+
                                     $sonorisationsimg->save();
                                 }
 
@@ -2179,7 +2207,6 @@ class ListingController extends JsonApiController
 
 
                 $tentesData = $request->input('data.attributes.tentes');
-                Log::info('Tentes Data:', $tentesData);
 
 
                                 $tente = new Tente();
@@ -2227,6 +2254,8 @@ class ListingController extends JsonApiController
                                     $tentesimg->picture = $largePath;
                                     $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->picturesxlarge = $xlargePath;
+                                    $tentesimg->alttext = $title ;
+
                                     $tentesimg->save();
                                 }
 
@@ -2246,7 +2275,6 @@ class ListingController extends JsonApiController
 
 
                 $clothesData = $request->input('data.attributes.clothes');
-                Log::info('Clothes Data:', $clothesData);
 
 
 
@@ -2298,6 +2326,8 @@ class ListingController extends JsonApiController
                                     $clothessimg->picture = $largePath;
                                     $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->picturesxlarge = $xlargePath;
+                                    $clothessimg->alttext = $title ;
+
                                     $clothessimg->save();
                                 }
 
@@ -2317,7 +2347,6 @@ class ListingController extends JsonApiController
 
 
                 $jewelrysData = $request->input('data.attributes.jewelrys');
-                Log::info('Jewelrys Data:', $jewelrysData);
 
 
 
@@ -2370,6 +2399,8 @@ class ListingController extends JsonApiController
                                     $jewelrysimg->picture = $largePath;
                                     $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->picturesxlarge = $xlargePath;
+                                    $jewelrysimg->alttext = $title ;
+
                                     $jewelrysimg->save();
                                 }
 
@@ -2388,7 +2419,6 @@ class ListingController extends JsonApiController
 
 
                 $apartmentsData = $request->input('data.attributes.apartments');
-                Log::info('Apartments Data:', $apartmentsData);
 
 
 
@@ -2442,6 +2472,8 @@ class ListingController extends JsonApiController
                                     $apartmentsimg->picture = $largePath;
                                     $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->picturesxlarge = $xlargePath;
+                                    $apartmentsimg->alttext = $title ;
+
                                     $apartmentsimg->save();
                                 }
 
@@ -2463,7 +2495,6 @@ class ListingController extends JsonApiController
 
 
                 $bureauxsData = $request->input('data.attributes.bureauxs');
-                Log::info('Bureauxs Data:', $bureauxsData);
 
 
                                 $bureaux = new Bureaux();
@@ -2520,6 +2551,8 @@ class ListingController extends JsonApiController
                                     $bureauxsimg->picture = $largePath;
                                     $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->picturesxlarge = $xlargePath;
+                                    $bureauxsimg->alttext = $title ;
+
                                     $bureauxsimg->save();
                                 }
 
@@ -2539,7 +2572,6 @@ class ListingController extends JsonApiController
 
 
                 $magasinsData = $request->input('data.attributes.magasins');
-                Log::info('Magasins Data:', $magasinsData);
 
 
                                 $magasin = new Magasin();
@@ -2596,6 +2628,8 @@ class ListingController extends JsonApiController
                                     $magasinsimg->picture = $largePath;
                                     $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->picturesxlarge = $xlargePath;
+                                    $magasinsimg->alttext = $title ;
+
                                     $magasinsimg->save();
                                 }
 
@@ -2616,7 +2650,6 @@ class ListingController extends JsonApiController
 
 
                 $maisonsData = $request->input('data.attributes.maisons');
-                Log::info('Maisons Data:', $maisonsData);
 
                                 $maison = new Maison();
                                 $maison->user_id = $user->id;
@@ -2667,6 +2700,8 @@ class ListingController extends JsonApiController
                                     $maisonsimg->picture = $largePath;
                                     $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->picturesxlarge = $xlargePath;
+                                    $maisonsimg->alttext = $title ;
+
                                     $maisonsimg->save();
                                 }
 
@@ -2686,7 +2721,6 @@ class ListingController extends JsonApiController
 
 
                 $riadsData = $request->input('data.attributes.riads');
-                Log::info('Riads Data:', $riadsData);
 
 
                                 $riad = new Riad();
@@ -2762,6 +2796,8 @@ class ListingController extends JsonApiController
                                     $riadsimg->picture = $largePath;
                                     $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->picturesxlarge = $xlargePath;
+                                    $riadsimg->alttext = $title ;
+
                                     $riadsimg->save();
                                 }
 
@@ -2780,7 +2816,6 @@ class ListingController extends JsonApiController
 
 
                 $terrainsData = $request->input('data.attributes.terrains');
-                Log::info('Terrains Data:', $terrainsData);
 
 
                                 $terrain = new Terrain();
@@ -2838,6 +2873,8 @@ class ListingController extends JsonApiController
                                     $terrainsimg->picture = $largePath;
                                     $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->picturesxlarge = $xlargePath;
+                                    $terrainsimg->alttext = $title ;
+
                                     $terrainsimg->save();
                                 }
 
@@ -2859,7 +2896,6 @@ class ListingController extends JsonApiController
 
 
                 $villasData = $request->input('data.attributes.villas');
-                Log::info('Villas Data:', $villasData);
 
                                 $villa = new Villa();
                                 $villa->user_id = $user->id;
@@ -2909,6 +2945,8 @@ class ListingController extends JsonApiController
                                     $villasimg->picture = $largePath;
                                     $villasimg->picturesmall = $smallPath;
                                     $villasimg->picturesxlarge = $xlargePath;
+                                    $villasimg->alttext = $title ;
+
                                     $villasimg->save();
                                 }
 
@@ -2982,6 +3020,8 @@ class ListingController extends JsonApiController
                                     $activitiesimg->picture = $largePath;
                                     $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->picturesxlarge = $xlargePath;
+                                    $activitiesimg->alttext = $title ;
+
                                     $activitiesimg->save();
                                 }
 
@@ -3002,7 +3042,6 @@ class ListingController extends JsonApiController
 
 
                 $livresData = $request->input('data.attributes.livres');
-                Log::info('Livres Data:', $livresData);
 
 
 
@@ -3051,6 +3090,8 @@ class ListingController extends JsonApiController
                                     $livresimg->picture = $largePath;
                                     $livresimg->picturesmall = $smallPath;
                                     $livresimg->picturesxlarge = $xlargePath;
+                                    $livresimg->alttext = $title ;
+
                                     $livresimg->save();
                                 }
 
@@ -3070,7 +3111,6 @@ class ListingController extends JsonApiController
 
 
                 $musicalsData = $request->input('data.attributes.musicals');
-                Log::info('Musicals Data:', $musicalsData);
 
 
 
@@ -3120,6 +3160,8 @@ class ListingController extends JsonApiController
                                     $musicalsimg->picture = $largePath;
                                     $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->picturesxlarge = $xlargePath;
+                                    $musicalsimg->alttext = $title ;
+
                                     $musicalsimg->save();
                                 }
 
@@ -3140,7 +3182,6 @@ class ListingController extends JsonApiController
 
 
                 $furnituresData = $request->input('data.attributes.furnitures');
-                Log::info('Furnitures Data:', $furnituresData);
 
 
 
@@ -3193,6 +3234,8 @@ class ListingController extends JsonApiController
                                     $furnituresimg->picture = $largePath;
                                     $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->picturesxlarge = $xlargePath;
+                                    $furnituresimg->alttext = $title ;
+
                                     $furnituresimg->save();
                                 }
 
@@ -3212,7 +3255,6 @@ class ListingController extends JsonApiController
 
 
                 $houseappliancesData = $request->input('data.attributes.houseappliances');
-                Log::info('Houseappliances Data:', $houseappliancesData);
 
 
 
@@ -3266,6 +3308,8 @@ class ListingController extends JsonApiController
                                     $houseappliancesimg->picture = $largePath;
                                     $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->picturesxlarge = $xlargePath;
+                                    $houseappliancesimg->alttext = $title ;
+
                                     $houseappliancesimg->save();
                                 }
 
@@ -3286,7 +3330,6 @@ class ListingController extends JsonApiController
 
 
                 $electricaltoolsData = $request->input('data.attributes.electricaltools');
-                Log::info('Electrical Tools Data:', $electricaltoolsData);
 
 
 
@@ -3347,6 +3390,8 @@ class ListingController extends JsonApiController
                                     $electricaltoolsimg->picture = $largePath;
                                     $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->picturesxlarge = $xlargePath;
+                                    $electricaltoolsimg->alttext = $title ;
+
                                     $electricaltoolsimg->save();
                                 }
 
@@ -3368,7 +3413,6 @@ class ListingController extends JsonApiController
 
 
                 $laddersData = $request->input('data.attributes.ladders');
-                Log::info('Ladders Data:', $laddersData);
 
 
 
@@ -3426,6 +3470,8 @@ class ListingController extends JsonApiController
                                     $laddersimg->picture = $largePath;
                                     $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->picturesxlarge = $xlargePath;
+                                    $laddersimg->alttext = $title ;
+
                                     $laddersimg->save();
                                 }
 
@@ -3445,7 +3491,6 @@ class ListingController extends JsonApiController
 
 
                 $mechanicaltoolsData = $request->input('data.attributes.mechanicaltools');
-                Log::info('Mechanicaltools Data:', $mechanicaltoolsData);
 
 
 
@@ -3502,6 +3547,8 @@ class ListingController extends JsonApiController
                                     $mechanicaltoolsimg->picture = $largePath;
                                     $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->picturesxlarge = $xlargePath;
+                                    $mechanicaltoolsimg->alttext = $title ;
+
                                     $mechanicaltoolsimg->save();
                                 }
 
@@ -3521,7 +3568,6 @@ class ListingController extends JsonApiController
 
 
                 $powertoolsData = $request->input('data.attributes.powertools');
-                Log::info('Powertools Data:', $powertoolsData);
 
                                 $powertool = new Powertool();
                                 $powertool->user_id = $user->id;
@@ -3579,6 +3625,8 @@ class ListingController extends JsonApiController
                                     $powertoolsimg->picture = $largePath;
                                     $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->picturesxlarge = $xlargePath;
+                                    $powertoolsimg->alttext = $title ;
+
                                     $powertoolsimg->save();
                                 }
 
@@ -3597,7 +3645,6 @@ class ListingController extends JsonApiController
 
 
                 $pressurewashersData = $request->input('data.attributes.pressurewashers');
-                Log::info('Pressure Washers Data:', $pressurewashersData);
 
 
 
@@ -3658,6 +3705,8 @@ class ListingController extends JsonApiController
                                     $pressurewashersimg->picture = $largePath;
                                     $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->picturesxlarge = $xlargePath;
+                                    $pressurewashersimg->alttext = $title ;
+
                                     $pressurewashersimg->save();
                                 }
 
@@ -3675,7 +3724,6 @@ class ListingController extends JsonApiController
 
 
                 $servicesData = $request->input('data.attributes.services');
-                Log::info('Services Data:', $servicesData);
 
 
                                 $service = new Service();
@@ -3726,6 +3774,8 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
+                                    $servicesimg->alttext = $title ;
+
                                     $servicesimg->save();
                                 }
 
@@ -3796,6 +3846,8 @@ class ListingController extends JsonApiController
                                         $servicesimg->picture = $largePath;
                                         $servicesimg->picturesmall = $smallPath;
                                         $servicesimg->picturesxlarge = $xlargePath;
+                                        $servicesimg->alttext = $title ;
+
                                         $servicesimg->save();
                                     }
 
@@ -3813,7 +3865,6 @@ class ListingController extends JsonApiController
 
 
                 $boatsData = $request->input('data.attributes.boats');
-                Log::info('Boats Data:', $boatsData);
 
                                 $boat = new Boat();
                                 $boat->user_id = $user->id;
@@ -3868,6 +3919,8 @@ class ListingController extends JsonApiController
                                     $boatsimg->picture = $largePath;
                                     $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->picturesxlarge = $xlargePath;
+                                    $boatsimg->alttext = $title ;
+
                                     $boatsimg->save();
                                 }
 
@@ -3886,7 +3939,6 @@ class ListingController extends JsonApiController
 
 
                 $camionsData = $request->input('data.attributes.camions');
-                Log::info('Camions Data:', $camionsData);
 
                                 $camion = new Camion();
                                 $camion->user_id = $user->id;
@@ -3936,6 +3988,8 @@ class ListingController extends JsonApiController
                                     $camionsimg->picture = $largePath;
                                     $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->picturesxlarge = $xlargePath;
+                                    $camionsimg->alttext = $title ;
+
                                     $camionsimg->save();
                                 }
 
@@ -3952,7 +4006,6 @@ class ListingController extends JsonApiController
 
 
                 $caravansData = $request->input('data.attributes.caravans');
-                Log::info('Caravans Data:', $caravansData);
 
 
                                 $caravan = new Caravan();
@@ -4003,6 +4056,8 @@ class ListingController extends JsonApiController
                                     $caravansimg->picture = $largePath;
                                     $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->picturesxlarge = $xlargePath;
+                                    $caravansimg->alttext = $title ;
+
                                     $caravansimg->save();
                                 }
 
@@ -4019,7 +4074,6 @@ class ListingController extends JsonApiController
 
 
                 $carsData = $request->input('data.attributes.cars');
-                Log::info('Cars Data:', $carsData);
 
 
 
@@ -4070,6 +4124,8 @@ class ListingController extends JsonApiController
                                     $carsimg->picture = $largePath;
                                     $carsimg->picturesmall = $smallPath;
                                     $carsimg->picturesxlarge = $xlargePath;
+                                    $carsimg->alttext = $title ;
+
                                     $carsimg->save();
                                 }
 
@@ -4089,7 +4145,6 @@ class ListingController extends JsonApiController
 
 
                 $enginsData = $request->input('data.attributes.engins');
-                Log::info('Engins Data:', $enginsData);
 
 
 
@@ -4140,6 +4195,8 @@ class ListingController extends JsonApiController
                                     $enginsimg->picture = $largePath;
                                     $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->picturesxlarge = $xlargePath;
+                                    $enginsimg->alttext = $title ;
+
                                     $enginsimg->save();
                                 }
 
@@ -4158,7 +4215,6 @@ class ListingController extends JsonApiController
 
 
                 $motosData = $request->input('data.attributes.motos');
-                Log::info('Motos Data:', $motosData);
 
 
 
@@ -4212,6 +4268,8 @@ class ListingController extends JsonApiController
                                     $motosimg->picture = $largePath;
                                     $motosimg->picturesmall = $smallPath;
                                     $motosimg->picturesxlarge = $xlargePath;
+                                    $motosimg->alttext = $title ;
+
                                     $motosimg->save();
                                 }
 
@@ -4231,7 +4289,6 @@ class ListingController extends JsonApiController
 
 
                 $scootersData = $request->input('data.attributes.scooters');
-                Log::info('Scooters Data:', $scootersData);
 
 
 
@@ -4280,6 +4337,8 @@ class ListingController extends JsonApiController
                                     $scootersimg->picture = $largePath;
                                     $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->picturesxlarge = $xlargePath;
+                                    $scootersimg->alttext = $title ;
+
                                     $scootersimg->save();
                                 }
 
@@ -4298,7 +4357,6 @@ class ListingController extends JsonApiController
 
 
                 $taxiaeroportsData = $request->input('data.attributes.taxiaeroports');
-                Log::info('Taxiaeroports Data:', $taxiaeroportsData);
 
 
 
@@ -4347,6 +4405,8 @@ class ListingController extends JsonApiController
                                     $taxiaeroportsimg->picture = $largePath;
                                     $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->picturesxlarge = $xlargePath;
+                                    $taxiaeroportsimg->alttext = $title ;
+
                                     $taxiaeroportsimg->save();
                                 }
 
@@ -4364,7 +4424,6 @@ class ListingController extends JsonApiController
 
 
                 $transportationsData = $request->input('data.attributes.transportations');
-                Log::info('Transportations Data:', $transportationsData);
 
 
 
@@ -4414,6 +4473,8 @@ class ListingController extends JsonApiController
                                     $transportationsimg->picture = $largePath;
                                     $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->picturesxlarge = $xlargePath;
+                                    $transportationsimg->alttext = $title ;
+
                                     $transportationsimg->save();
                                 }
 
@@ -4433,7 +4494,6 @@ class ListingController extends JsonApiController
 
 
                 $velosData = $request->input('data.attributes.velos');
-                Log::info('Velos Data:', $velosData);
 
                                 $velo = new Velo();
                                 $velo->user_id = $user->id;
@@ -4480,6 +4540,8 @@ class ListingController extends JsonApiController
                                     $velosimg->picture = $largePath;
                                     $velosimg->picturesmall = $smallPath;
                                     $velosimg->picturesxlarge = $xlargePath;
+                                    $velosimg->alttext = $title ;
+
                                     $velosimg->save();
                                 }
 
@@ -4559,7 +4621,7 @@ class ListingController extends JsonApiController
         $title = $request->input('attributes.title');
         $address = $request->input('attributes.address');
 
-        $city = $request->input('attributes.city');
+        $city = strtolower($request->input('data.attributes.city'));
         $country = $request->input('attributes.country');
         $zip = $request->input('attributes.zip');
 
@@ -4567,7 +4629,7 @@ class ListingController extends JsonApiController
         $enddate = $request->input('attributes.enddate');
         $price = $request->input('attributes.price');
 
-        $phone = $request->input('attributes.phone');
+        $phone = preg_replace('/\D/', '', $request->input('data.attributes.phone'));
         $currency = $request->input('attributes.currency');
 
 
@@ -4688,6 +4750,8 @@ class ListingController extends JsonApiController
             $listingsimg->picture = $largePath;
             $listingsimg->picturesmall = $smallPath;
             $listingsimg->picturesxlarge = $xlargePath;
+            $listingsimg->alttext = $title ;
+
             $listingsimg->save();
         }
 
@@ -4755,6 +4819,8 @@ class ListingController extends JsonApiController
                         $billiardsimg->picture = $largePath;
                         $billiardsimg->picturesmall = $smallPath;
                         $billiardsimg->picturesxlarge = $xlargePath;
+                        $billiardsimg->alttext = $title ;
+
                         $billiardsimg->save();
                     }
 
@@ -4770,7 +4836,6 @@ class ListingController extends JsonApiController
 
 
                                 $boxingsData = $request->input('attributes.boxings');
-                                Log::info('Billiards Data:', $boxingsData);
 
                                 $boxing = Boxing::where('url', $url)->first();
 
@@ -4821,6 +4886,8 @@ class ListingController extends JsonApiController
                                     $boxingsimg->picture = $largePath;
                                     $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->picturesxlarge = $xlargePath;
+                                    $boxingsimg->alttext = $title ;
+
                                     $boxingsimg->save();
                                 }
 
@@ -4838,7 +4905,6 @@ class ListingController extends JsonApiController
 
 
                 $divingsData = $request->input('attributes.divings');
-                Log::info('Divings Data:', $divingsData);
 
                 $diving = Diving::where('url', $url)->first();
 
@@ -4888,6 +4954,8 @@ class ListingController extends JsonApiController
                                     $divingsimg->picture = $largePath;
                                     $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->picturesxlarge = $xlargePath;
+                                    $divingsimg->alttext = $title ;
+
                                     $divingsimg->save();
                                 }
 
@@ -4907,7 +4975,6 @@ class ListingController extends JsonApiController
 
 
                 $footballsData = $request->input('attributes.footballs');
-                Log::info('Footballs Data:', $footballsData);
 
 
                 $football = Football::where('url', $url)->first();
@@ -4956,6 +5023,8 @@ class ListingController extends JsonApiController
                                     $footballsimg->picture = $largePath;
                                     $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->picturesxlarge = $xlargePath;
+                                    $footballsimg->alttext = $title ;
+
                                     $footballsimg->save();
                                 }
 
@@ -4975,7 +5044,6 @@ class ListingController extends JsonApiController
 
 
                 $golfsData = $request->input('attributes.golfs');
-                Log::info('Golfs Data:', $golfsData);
 
 
                 $golf = Golf::where('url', $url)->first();
@@ -5025,6 +5093,8 @@ class ListingController extends JsonApiController
                                     $golfsimg->picture = $largePath;
                                     $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->picturesxlarge = $xlargePath;
+                                    $golfsimg->alttext = $title ;
+
                                     $golfsimg->save();
                                 }
 
@@ -5046,7 +5116,6 @@ class ListingController extends JsonApiController
 
 
                 $huntingsData = $request->input('attributes.huntings');
-                Log::info('Huntings Data:', $huntingsData);
 
 
                 $hunting = Hunting::where('url', $url)->first();
@@ -5101,6 +5170,8 @@ class ListingController extends JsonApiController
                                     $huntingsimg->picture = $largePath;
                                     $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->picturesxlarge = $xlargePath;
+                                    $huntingsimg->alttext = $title ;
+
                                     $huntingsimg->save();
                                 }
 
@@ -5119,7 +5190,6 @@ class ListingController extends JsonApiController
 
 
                 $musculationsData = $request->input('attributes.musculations');
-                Log::info('Musculations Data:', $musculationsData);
 
 
                 $musculation = Musculation::where('url', $url)->first();
@@ -5176,6 +5246,8 @@ class ListingController extends JsonApiController
                                     $musculationsimg->picture = $largePath;
                                     $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->picturesxlarge = $xlargePath;
+                                    $musculationsimg->alttext = $title ;
+
                                     $musculationsimg->save();
                                 }
 
@@ -5196,7 +5268,6 @@ class ListingController extends JsonApiController
 
 
                 $surfsData = $request->input('attributes.surfs');
-                Log::info('Surfs Data:', $surfsData);
 
 
 
@@ -5252,6 +5323,8 @@ class ListingController extends JsonApiController
                                     $surfsimg->picture = $largePath;
                                     $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->picturesxlarge = $xlargePath;
+                                    $surfsimg->alttext = $title ;
+
                                     $surfsimg->save();
                                 }
 
@@ -5270,7 +5343,6 @@ class ListingController extends JsonApiController
 
 
                 $tennisData = $request->input('attributes.tennis');
-                Log::info('Tennis Data:', $tennisData);
 
 
                 $tennis = Tennis::where('url', $url)->first();
@@ -5319,6 +5391,8 @@ class ListingController extends JsonApiController
                                     $Tennisimg->picture = $largePath;
                                     $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->picturesxlarge = $xlargePath;
+                                    $Tennisimg->alttext = $title ;
+
                                     $Tennisimg->save();
                                 }
 
@@ -5338,7 +5412,6 @@ class ListingController extends JsonApiController
 
 
                 $audiosData = $request->input('attributes.audios');
-                Log::info('Audios Data:', $audiosData);
 
 
                 $audio = Audio::where('url', $url)->first();
@@ -5397,6 +5470,8 @@ class ListingController extends JsonApiController
                                     $audiosimg->picture = $largePath;
                                     $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->picturesxlarge = $xlargePath;
+                                    $audiosimg->alttext = $title ;
+
                                     $audiosimg->save();
                                 }
 
@@ -5415,7 +5490,6 @@ class ListingController extends JsonApiController
 
 
                 $camerasData = $request->input('attributes.cameras');
-                Log::info('Cameras Data:', $camerasData);
 
 
 
@@ -5475,6 +5549,8 @@ class ListingController extends JsonApiController
                                     $camerasimg->picture = $largePath;
                                     $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->picturesxlarge = $xlargePath;
+                                    $camerasimg->alttext = $title ;
+
                                     $camerasimg->save();
                                 }
 
@@ -5492,7 +5568,6 @@ class ListingController extends JsonApiController
 
 
                 $chargersData = $request->input('attributes.chargers');
-                Log::info('Chargers Data:', $chargersData);
 
                 $charger = Charger::where('url', $url)->first();
 
@@ -5548,6 +5623,8 @@ class ListingController extends JsonApiController
                                     $chargersimg->picture = $largePath;
                                     $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->picturesxlarge = $xlargePath;
+                                    $chargersimg->alttext = $title ;
+
                                     $chargersimg->save();
                                 }
 
@@ -5567,7 +5644,6 @@ class ListingController extends JsonApiController
 
 
                 $dronesData = $request->input('attributes.drones');
-                Log::info('Drones Data:', $dronesData);
 
                 $drone = Drone::where('url', $url)->first();
 
@@ -5625,6 +5701,8 @@ class ListingController extends JsonApiController
                                     $dronesimg->picture = $largePath;
                                     $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->picturesxlarge = $xlargePath;
+                                    $dronesimg->alttext = $title ;
+
                                     $dronesimg->save();
                                 }
 
@@ -5647,7 +5725,6 @@ class ListingController extends JsonApiController
 
 
                 $gamingsData = $request->input('attributes.gamings');
-                Log::info('Gamings Data:', $gamingsData);
 
                 $gaming = Gaming::where('url', $url)->first();
 
@@ -5702,6 +5779,8 @@ class ListingController extends JsonApiController
                                     $gamingsimg->picture = $largePath;
                                     $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->picturesxlarge = $xlargePath;
+                                    $gamingsimg->alttext = $title ;
+
                                     $gamingsimg->save();
                                 }
 
@@ -5720,7 +5799,6 @@ class ListingController extends JsonApiController
 
 
                 $laptopsData = $request->input('attributes.laptops');
-                Log::info('Laptops Data:', $laptopsData);
 
                 $laptop = Laptop::where('url', $url)->first();
 
@@ -5779,6 +5857,8 @@ class ListingController extends JsonApiController
                                     $laptopsimg->picture = $largePath;
                                     $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->picturesxlarge = $xlargePath;
+                                    $laptopsimg->alttext = $title ;
+
                                     $laptopsimg->save();
                                 }
 
@@ -5798,7 +5878,6 @@ class ListingController extends JsonApiController
 
 
                 $lightingsData = $request->input('attributes.lightings');
-                Log::info('Lightings Data:', $lightingsData);
 
 
                 $lighting = Lighting::where('url', $url)->first();
@@ -5852,6 +5931,8 @@ class ListingController extends JsonApiController
                                     $lightingsimg->picture = $largePath;
                                     $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->picturesxlarge = $xlargePath;
+                                    $lightingsimg->alttext = $title ;
+
                                     $lightingsimg->save();
                                 }
 
@@ -5870,7 +5951,6 @@ class ListingController extends JsonApiController
             case 'printers':
 
                 $printersData = $request->input('attributes.printers');
-                Log::info('Printers Data:', $printersData);
 
 
 
@@ -5928,6 +6008,8 @@ class ListingController extends JsonApiController
                                     $printersimg->picture = $largePath;
                                     $printersimg->picturesmall = $smallPath;
                                     $printersimg->picturesxlarge = $xlargePath;
+                                    $printersimg->alttext = $title ;
+
                                     $printersimg->save();
                                 }
 
@@ -5945,7 +6027,6 @@ class ListingController extends JsonApiController
 
 
                 $routersData = $request->input('attributes.routers');
-                Log::info('Routers Data:', $routersData);
 
 
                 $router = Router::where('url', $url)->first();
@@ -6001,6 +6082,8 @@ class ListingController extends JsonApiController
                                     $routersimg->picture = $largePath;
                                     $routersimg->picturesmall = $smallPath;
                                     $routersimg->picturesxlarge = $xlargePath;
+                                    $routersimg->alttext = $title ;
+
                                     $routersimg->save();
                                 }
 
@@ -6020,7 +6103,6 @@ class ListingController extends JsonApiController
 
 
                 $tablettesData = $request->input('attributes.tablettes');
-                Log::info('Tablettes Data:', $tablettesData);
 
 
                 $tablette = Tablette::where('url', $url)->first();
@@ -6078,6 +6160,8 @@ class ListingController extends JsonApiController
                                     $tablettesimg->picture = $largePath;
                                     $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->picturesxlarge = $xlargePath;
+                                    $tablettesimg->alttext = $title ;
+
                                     $tablettesimg->save();
                                 }
 
@@ -6095,7 +6179,6 @@ class ListingController extends JsonApiController
 
 
                 $eclairagesData = $request->input('attributes.eclairages');
-                Log::info('Eclairages Data:', $eclairagesData);
 
 
                 $eclairage = Eclairage::where('url', $url)->first();
@@ -6158,6 +6241,8 @@ class ListingController extends JsonApiController
                                     $eclairagesimg->picture = $largePath;
                                     $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->picturesxlarge = $xlargePath;
+                                    $eclairagesimg->alttext = $title ;
+
                                     $eclairagesimg->save();
                                 }
 
@@ -6176,7 +6261,6 @@ class ListingController extends JsonApiController
 
 
                 $mobiliersData = $request->input('attributes.mobiliers');
-                Log::info('Mobiliers Data:', $mobiliersData);
 
 
                 $mobilier = Mobilier::where('url', $url)->first();
@@ -6231,6 +6315,8 @@ class ListingController extends JsonApiController
                                     $mobiliersimg->picture = $largePath;
                                     $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->picturesxlarge = $xlargePath;
+                                    $mobiliersimg->alttext = $title ;
+
                                     $mobiliersimg->save();
                                 }
 
@@ -6249,7 +6335,6 @@ class ListingController extends JsonApiController
 
 
                 $photographiesData = $request->input('attributes.photographies');
-                Log::info('Photographies Data:', $photographiesData);
 
                 $photographie = Photographie::where('url', $url)->first();
 
@@ -6305,6 +6390,8 @@ class ListingController extends JsonApiController
                                     $photographiesimg->picture = $largePath;
                                     $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->picturesxlarge = $xlargePath;
+                                    $photographiesimg->alttext = $title ;
+
                                     $photographiesimg->save();
                                 }
 
@@ -6321,7 +6408,6 @@ class ListingController extends JsonApiController
 
 
                 $sonorisationsData = $request->input('attributes.sonorisations');
-                Log::info('Sonorisations Data:', $sonorisationsData);
 
 
 
@@ -6388,6 +6474,8 @@ class ListingController extends JsonApiController
                                     $sonorisationsimg->picture = $largePath;
                                     $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->picturesxlarge = $xlargePath;
+                                    $sonorisationsimg->alttext = $title ;
+
                                     $sonorisationsimg->save();
                                 }
 
@@ -6406,7 +6494,6 @@ class ListingController extends JsonApiController
 
 
                 $tentesData = $request->input('attributes.tentes');
-                Log::info('Tentes Data:', $tentesData);
 
 
                 $tente = Tente::where('url', $url)->first();
@@ -6457,6 +6544,8 @@ class ListingController extends JsonApiController
                                     $tentesimg->picture = $largePath;
                                     $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->picturesxlarge = $xlargePath;
+                                    $tentesimg->alttext = $title ;
+
                                     $tentesimg->save();
                                 }
 
@@ -6474,7 +6563,6 @@ class ListingController extends JsonApiController
 
 
                 $clothesData = $request->input('attributes.clothes');
-                Log::info('Clothes Data:', $clothesData);
 
 
 
@@ -6530,6 +6618,8 @@ class ListingController extends JsonApiController
                                     $clothessimg->picture = $largePath;
                                     $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->picturesxlarge = $xlargePath;
+                                    $clothessimg->alttext = $title ;
+
                                     $clothessimg->save();
                                 }
 
@@ -6547,7 +6637,6 @@ class ListingController extends JsonApiController
 
 
                 $jewelrysData = $request->input('attributes.jewelrys');
-                Log::info('Jewelrys Data:', $jewelrysData);
 
 
 
@@ -6604,6 +6693,8 @@ class ListingController extends JsonApiController
                                     $jewelrysimg->picture = $largePath;
                                     $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->picturesxlarge = $xlargePath;
+                                    $jewelrysimg->alttext = $title ;
+
                                     $jewelrysimg->save();
                                 }
 
@@ -6620,7 +6711,6 @@ class ListingController extends JsonApiController
 
 
                 $apartmentsData = $request->input('attributes.apartments');
-                Log::info('Apartments Data:', $apartmentsData);
 
 
 
@@ -6677,6 +6767,8 @@ class ListingController extends JsonApiController
                                     $apartmentsimg->picture = $largePath;
                                     $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->picturesxlarge = $xlargePath;
+                                    $apartmentsimg->alttext = $title ;
+
                                     $apartmentsimg->save();
                                 }
 
@@ -6696,7 +6788,6 @@ class ListingController extends JsonApiController
 
 
                 $bureauxsData = $request->input('attributes.bureauxs');
-                Log::info('Bureauxs Data:', $bureauxsData);
 
 
                 $bureaux = Bureaux::where('url', $url)->first();
@@ -6759,6 +6850,8 @@ class ListingController extends JsonApiController
                                     $bureauxsimg->picture = $largePath;
                                     $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->picturesxlarge = $xlargePath;
+                                    $bureauxsimg->alttext = $title ;
+
                                     $bureauxsimg->save();
                                 }
 
@@ -6775,7 +6868,6 @@ class ListingController extends JsonApiController
 
 
                 $magasinsData = $request->input('attributes.magasins');
-                Log::info('Magasins Data:', $magasinsData);
 
 
                 $magasin = Magasin::where('url', $url)->first();
@@ -6835,6 +6927,8 @@ class ListingController extends JsonApiController
                                     $magasinsimg->picture = $largePath;
                                     $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->picturesxlarge = $xlargePath;
+                                    $magasinsimg->alttext = $title ;
+
                                     $magasinsimg->save();
                                 }
 
@@ -6854,7 +6948,6 @@ class ListingController extends JsonApiController
 
 
                 $maisonsData = $request->input('attributes.maisons');
-                Log::info('Maisons Data:', $maisonsData);
 
                 $maison = Maison::where('url', $url)->first();
 
@@ -6908,6 +7001,8 @@ class ListingController extends JsonApiController
                                     $maisonsimg->picture = $largePath;
                                     $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->picturesxlarge = $xlargePath;
+                                    $maisonsimg->alttext = $title ;
+
                                     $maisonsimg->save();
                                 }
 
@@ -6925,7 +7020,6 @@ class ListingController extends JsonApiController
 
 
                 $riadsData = $request->input('attributes.riads');
-                Log::info('Riads Data:', $riadsData);
 
 
                 $riad = Riad::where('url', $url)->first();
@@ -7005,6 +7099,8 @@ class ListingController extends JsonApiController
                                     $riadsimg->picture = $largePath;
                                     $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->picturesxlarge = $xlargePath;
+                                    $riadsimg->alttext = $title ;
+
                                     $riadsimg->save();
                                 }
 
@@ -7021,7 +7117,6 @@ class ListingController extends JsonApiController
 
 
                 $terrainsData = $request->input('attributes.terrains');
-                Log::info('Terrains Data:', $terrainsData);
 
 
                 $terrain = Terrain::where('url', $url)->first();
@@ -7083,6 +7178,8 @@ class ListingController extends JsonApiController
                                     $terrainsimg->picture = $largePath;
                                     $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->picturesxlarge = $xlargePath;
+                                    $terrainsimg->alttext = $title ;
+
                                     $terrainsimg->save();
                                 }
 
@@ -7102,7 +7199,6 @@ class ListingController extends JsonApiController
 
 
                 $villasData = $request->input('attributes.villas');
-                Log::info('Villas Data:', $villasData);
 
                 $villa = Villa::where('url', $url)->first();
 
@@ -7158,6 +7254,8 @@ class ListingController extends JsonApiController
                                     $villasimg->picture = $largePath;
                                     $villasimg->picturesmall = $smallPath;
                                     $villasimg->picturesxlarge = $xlargePath;
+                                    $villasimg->alttext = $title ;
+
                                     $villasimg->save();
                                 }
 
@@ -7174,7 +7272,6 @@ class ListingController extends JsonApiController
 
 
                 $activitiesData = $request->input('attributes.activities');
-                Log::info('Activities Data:', $activitiesData);
 
 
                 $activity = Activity::where('url', $url)->first();
@@ -7229,6 +7326,8 @@ class ListingController extends JsonApiController
                                     $activitiesimg->picture = $largePath;
                                     $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->picturesxlarge = $xlargePath;
+                                    $activitiesimg->alttext = $title ;
+
                                     $activitiesimg->save();
                                 }
 
@@ -7246,7 +7345,6 @@ class ListingController extends JsonApiController
 
 
                 $livresData = $request->input('attributes.livres');
-                Log::info('Livres Data:', $livresData);
 
 
 
@@ -7298,7 +7396,9 @@ class ListingController extends JsonApiController
                                     $livresimg->livre_id = $livre->id;
                                     $livresimg->picture = $largePath;
                                     $livresimg->picturesmall = $smallPath;
-                                    $listingsimg->picturesxlarge = $xlargePath;
+                                    $livresimg->picturesxlarge = $xlargePath;
+                                    $listingsimg->alttext = $title ;
+
                                     $livresimg->save();
                                 }
 
@@ -7316,7 +7416,6 @@ class ListingController extends JsonApiController
 
 
                 $musicalsData = $request->input('attributes.musicals');
-                Log::info('Musicals Data:', $musicalsData);
 
 
 
@@ -7370,6 +7469,8 @@ class ListingController extends JsonApiController
                                     $musicalsimg->picture = $largePath;
                                     $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->picturesxlarge = $xlargePath;
+                                    $musicalsimg->alttext = $title ;
+
                                     $musicalsimg->save();
                                 }
 
@@ -7388,7 +7489,6 @@ class ListingController extends JsonApiController
 
 
                 $furnituresData = $request->input('attributes.furnitures');
-                Log::info('Furnitures Data:', $furnituresData);
 
 
 
@@ -7444,6 +7544,8 @@ class ListingController extends JsonApiController
                                     $furnituresimg->picture = $largePath;
                                     $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->picturesxlarge = $xlargePath;
+                                    $furnituresimg->alttext = $title ;
+
                                     $furnituresimg->save();
                                 }
 
@@ -7461,7 +7563,6 @@ class ListingController extends JsonApiController
 
 
                 $houseappliancesData = $request->input('attributes.houseappliances');
-                Log::info('Houseappliances Data:', $houseappliancesData);
 
 
 
@@ -7519,6 +7620,8 @@ class ListingController extends JsonApiController
                                     $houseappliancesimg->picture = $largePath;
                                     $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->picturesxlarge = $xlargePath;
+                                    $houseappliancesimg->alttext = $title ;
+
                                     $houseappliancesimg->save();
                                 }
 
@@ -7537,7 +7640,6 @@ class ListingController extends JsonApiController
 
 
                 $electricaltoolsData = $request->input('attributes.electricaltools');
-                Log::info('Electrical Tools Data:', $electricaltoolsData);
 
 
 
@@ -7604,6 +7706,8 @@ class ListingController extends JsonApiController
                                     $electricaltoolsimg->picture = $largePath;
                                     $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->picturesxlarge = $xlargePath;
+                                    $electricaltoolsimg->alttext = $title ;
+
                                     $electricaltoolsimg->save();
                                 }
 
@@ -7622,7 +7726,6 @@ class ListingController extends JsonApiController
 
 
                 $laddersData = $request->input('attributes.ladders');
-                Log::info('Ladders Data:', $laddersData);
 
 
 
@@ -7683,6 +7786,8 @@ class ListingController extends JsonApiController
                                     $laddersimg->picture = $largePath;
                                     $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->picturesxlarge = $xlargePath;
+                                    $laddersimg->alttext = $title ;
+
                                     $laddersimg->save();
                                 }
 
@@ -7700,7 +7805,6 @@ class ListingController extends JsonApiController
 
 
                 $mechanicaltoolsData = $request->input('attributes.mechanicaltools');
-                Log::info('Mechanicaltools Data:', $mechanicaltoolsData);
 
 
 
@@ -7760,6 +7864,8 @@ class ListingController extends JsonApiController
                                     $mechanicaltoolsimg->picture = $largePath;
                                     $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->picturesxlarge = $xlargePath;
+                                    $mechanicaltoolsimg->alttext = $title ;
+
                                     $mechanicaltoolsimg->save();
                                 }
 
@@ -7778,7 +7884,6 @@ class ListingController extends JsonApiController
 
 
                 $powertoolsData = $request->input('attributes.powertools');
-                Log::info('Powertools Data:', $powertoolsData);
 
                 $powertool = Powertool::where('url', $url)->first();
 
@@ -7838,6 +7943,8 @@ class ListingController extends JsonApiController
                                     $powertoolsimg->picture = $largePath;
                                     $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->picturesxlarge = $xlargePath;
+                                    $powertoolsimg->alttext = $title ;
+
                                     $powertoolsimg->save();
                                 }
 
@@ -7855,7 +7962,6 @@ class ListingController extends JsonApiController
 
 
                 $pressurewashersData = $request->input('attributes.pressurewashers');
-                Log::info('Pressure Washers Data:', $pressurewashersData);
 
 
 
@@ -7920,6 +8026,8 @@ class ListingController extends JsonApiController
                                     $pressurewashersimg->picture = $largePath;
                                     $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->picturesxlarge = $xlargePath;
+                                    $pressurewashersimg->alttext = $title ;
+
                                     $pressurewashersimg->save();
                                 }
 
@@ -7989,6 +8097,8 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
+                                    $servicesimg->alttext = $title ;
+
                                     $servicesimg->save();
                                 }
 
@@ -8064,6 +8174,8 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
+                                    $servicesimg->alttext = $title ;
+
                                     $servicesimg->save();
                                 }
 
@@ -8082,7 +8194,6 @@ class ListingController extends JsonApiController
 
 
                 $boatsData = $request->input('attributes.boats');
-                Log::info('Boats Data:', $boatsData);
 
                 $boat = Boat::where('url', $url)->first();
 
@@ -8140,6 +8251,8 @@ class ListingController extends JsonApiController
                                     $boatsimg->picture = $largePath;
                                     $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->picturesxlarge = $xlargePath;
+                                    $boatsimg->alttext = $title ;
+
                                     $boatsimg->save();
                                 }
 
@@ -8157,7 +8270,6 @@ class ListingController extends JsonApiController
 
 
                 $camionsData = $request->input('attributes.camions');
-                Log::info('Camions Data:', $camionsData);
 
                 $camion = Camion::where('url', $url)->first();
 
@@ -8210,6 +8322,8 @@ class ListingController extends JsonApiController
                                     $camionsimg->picture = $largePath;
                                     $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->picturesxlarge = $xlargePath;
+                                    $camionsimg->alttext = $title ;
+
                                     $camionsimg->save();
                                 }
 
@@ -8225,7 +8339,6 @@ class ListingController extends JsonApiController
 
 
                 $caravansData = $request->input('attributes.caravans');
-                Log::info('Caravans Data:', $caravansData);
 
 
                 $caravan = Caravan::where('url', $url)->first();
@@ -8279,6 +8392,8 @@ class ListingController extends JsonApiController
                                     $caravansimg->picture = $largePath;
                                     $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->picturesxlarge = $xlargePath;
+                                    $caravansimg->alttext = $title ;
+
                                     $caravansimg->save();
                                 }
 
@@ -8294,7 +8409,6 @@ class ListingController extends JsonApiController
 
 
                 $carsData = $request->input('attributes.cars');
-                Log::info('Cars Data:', $carsData);
 
 
 
@@ -8347,6 +8461,8 @@ class ListingController extends JsonApiController
                                     $carsimg->picture = $largePath;
                                     $carsimg->picturesmall = $smallPath;
                                     $carsimg->picturesxlarge = $xlargePath;
+                                    $carsimg->alttext = $title ;
+
                                     $carsimg->save();
                                 }
 
@@ -8365,7 +8481,6 @@ class ListingController extends JsonApiController
 
 
                 $enginsData = $request->input('attributes.engins');
-                Log::info('Engins Data:', $enginsData);
 
 
 
@@ -8419,6 +8534,8 @@ class ListingController extends JsonApiController
                                     $enginsimg->picture = $largePath;
                                     $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->picturesxlarge = $xlargePath;
+                                    $enginsimg->alttext = $title ;
+
                                     $enginsimg->save();
                                 }
 
@@ -8437,7 +8554,6 @@ class ListingController extends JsonApiController
 
 
                 $motosData = $request->input('attributes.motos');
-                Log::info('Motos Data:', $motosData);
 
 
 
@@ -8493,6 +8609,8 @@ class ListingController extends JsonApiController
                                     $motosimg->picture = $largePath;
                                     $motosimg->picturesmall = $smallPath;
                                     $motosimg->picturesxlarge = $xlargePath;
+                                    $motosimg->alttext = $title ;
+
                                     $motosimg->save();
                                 }
 
@@ -8511,7 +8629,6 @@ class ListingController extends JsonApiController
 
 
                 $scootersData = $request->input('attributes.scooters');
-                Log::info('Scooters Data:', $scootersData);
 
 
 
@@ -8562,6 +8679,8 @@ class ListingController extends JsonApiController
                                     $scootersimg->picture = $largePath;
                                     $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->picturesxlarge = $xlargePath;
+                                    $scootersimg->alttext = $title ;
+
                                     $scootersimg->save();
                                 }
 
@@ -8580,7 +8699,6 @@ class ListingController extends JsonApiController
 
 
                 $taxiaeroportsData = $request->input('attributes.taxiaeroports');
-                Log::info('Taxiaeroports Data:', $taxiaeroportsData);
 
 
 
@@ -8631,6 +8749,8 @@ class ListingController extends JsonApiController
                                     $taxiaeroportsimg->picture = $largePath;
                                     $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->picturesxlarge = $xlargePath;
+                                    $taxiaeroportsimg->alttext = $title ;
+
                                     $taxiaeroportsimg->save();
                                 }
 
@@ -8648,7 +8768,6 @@ class ListingController extends JsonApiController
 
 
                 $transportationsData = $request->input('attributes.transportations');
-                Log::info('Transportations Data:', $transportationsData);
 
 
 
@@ -8703,6 +8822,8 @@ class ListingController extends JsonApiController
                                     $transportationsimg->picture = $largePath;
                                     $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->picturesxlarge = $xlargePath;
+                                    $transportationsimg->alttext = $title ;
+
                                     $transportationsimg->save();
                                 }
 
@@ -8721,7 +8842,6 @@ class ListingController extends JsonApiController
 
 
                 $velosData = $request->input('attributes.velos');
-                Log::info('Velos Data:', $velosData);
 
                 $velo = Velo::where('url', $url)->first();
 
@@ -8772,6 +8892,8 @@ class ListingController extends JsonApiController
                                     $velosimg->picture = $largePath;
                                     $velosimg->picturesmall = $smallPath;
                                     $velosimg->picturesxlarge = $xlargePath;
+                                    $velosimg->alttext = $title ;
+
                                     $velosimg->save();
                                 }
 
@@ -8821,7 +8943,7 @@ class ListingController extends JsonApiController
 
 
 
-        $category = strtolower($listing->category);
+        $category = $listing->category;
         $url = $listing->url;
 
 
