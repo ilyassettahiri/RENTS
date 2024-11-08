@@ -461,7 +461,9 @@ function CarouselBasic1({ data, category,title, url, city, type }) {
 
                 <Image
                   key={index}
-                  alt={title}
+
+                  alt={`${title} - ${category} for rent on rents.ma`}
+
                   src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${item.picturesmall}`}
                   ratio="4/3"
                 />

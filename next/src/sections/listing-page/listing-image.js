@@ -74,7 +74,9 @@ export default function ListingImage({ images, params }) {
 
   const [slides, setSlides] = useState(
     images.map((slide) => ({
-      src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${slide}`,
+      src: `${process.env.NEXT_PUBLIC_IMAGE_LISTING_LARGE}${slide.picture}`,
+      alttext: slide.alttext || 'Image description not available', // Fallback if alttext is null
+
     }))
   );
 
@@ -124,7 +126,7 @@ export default function ListingImage({ images, params }) {
                 mb: { xs: 5, md: 5 },
               }}
             >
-              <PhotoItem photo={slides[0].src} params={params} id={0} />
+              <PhotoItem photo={slides[0].src} alttext={slides[0].alttext}  params={params} id={0} />
 
               <Box
                 sx={{
@@ -139,6 +141,7 @@ export default function ListingImage({ images, params }) {
                     key={slide.src}
                     params={params}
                     photo={slide.src}
+                    alttext={slide.alttext}
                     id={index + 1}
                     />
                 ))}
@@ -155,6 +158,7 @@ export default function ListingImage({ images, params }) {
                       key={slides[4].src}
                       params={params}
                       photo={slides[4].src}
+                      alttext={slides[4].alttext}
                       id={5}
                       />
                     <Box
@@ -193,7 +197,12 @@ export default function ListingImage({ images, params }) {
 }
 
 ListingImage.propTypes = {
-  images: PropTypes.array.isRequired,
+  images: PropTypes.arrayOf(
+    PropTypes.shape({
+      picture: PropTypes.string.isRequired,
+      alttext: PropTypes.string,
+    })
+  ).isRequired,
 
   params: PropTypes.shape({
     category: PropTypes.string.isRequired,
@@ -203,7 +212,7 @@ ListingImage.propTypes = {
 
 // ----------------------------------------------------------------------
 
-function PhotoItem({ photo,  id , params }) {
+function PhotoItem({ photo,  id , alttext, params }) {
 
 
   const isMdUp = useResponsive('up', 'md');
@@ -286,7 +295,9 @@ function PhotoItem({ photo,  id , params }) {
       transition={varTranHover()}
     >
       <Image
-        alt="photo"
+
+        alt={alttext}
+
         src={photo}
         ratio={isMdUp ? '4/3' : '3/4'}
         onClick={handleImageClick}
@@ -307,6 +318,7 @@ PhotoItem.propTypes = {
 
   id: PropTypes.number.isRequired,
   photo: PropTypes.string.isRequired,
+  alttext: PropTypes.string,
 
   params: PropTypes.shape({
     category: PropTypes.string.isRequired,
@@ -358,6 +370,8 @@ function CarouselThumbnail({ data , params }) {
             key={item.src}
             photo={item.src}
             params={params}
+            alttext={item.alttext || ''} // Pass alttext here
+
             id={index}
           />
           ))}
@@ -383,7 +397,8 @@ function CarouselThumbnail({ data , params }) {
           <Box key={item.src} sx={{ px: 0.5 }}>
             <Avatar
               variant="rounded"
-              alt={item.title}
+              alt={item.alttext || ''} // Pass alttext to Avatar alt
+
               src={item.src}
               sx={{
                 width: THUMB_SIZE,
@@ -418,7 +433,12 @@ function CarouselThumbnail({ data , params }) {
 
 
 CarouselThumbnail.propTypes = {
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      src: PropTypes.string.isRequired,
+      alttext: PropTypes.string,
+    })
+  ).isRequired,
 
   params: PropTypes.shape({
     category: PropTypes.string.isRequired,

@@ -549,7 +549,7 @@ class ListingController extends JsonApiController
             $listingsimg->picture = $largePath;
             $listingsimg->picturesmall = $smallPath;
             $listingsimg->picturesxlarge = $xlargePath;
-            $listingsimg->alttext = $title ;
+            $listingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
             $listingsimg->save();
         }
@@ -612,7 +612,7 @@ class ListingController extends JsonApiController
                     $billiardsimg->picture = $largePath;
                     $billiardsimg->picturesmall = $smallPath;
                     $billiardsimg->picturesxlarge = $xlargePath;
-                    $billiardsimg->alttext = $title ;
+                    $billiardsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                     $billiardsimg->save();
                 }
@@ -678,7 +678,7 @@ class ListingController extends JsonApiController
                                     $boxingsimg->picture = $largePath;
                                     $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->picturesxlarge = $xlargePath;
-                                    $boxingsimg->alttext = $title ;
+                                    $boxingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $boxingsimg->save();
                                 }
@@ -742,7 +742,7 @@ class ListingController extends JsonApiController
                                     $divingsimg->picture = $largePath;
                                     $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->picturesxlarge = $xlargePath;
-                                    $divingsimg->alttext = $title ;
+                                    $divingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $divingsimg->save();
                                 }
@@ -807,7 +807,7 @@ class ListingController extends JsonApiController
                                     $footballsimg->picture = $largePath;
                                     $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->picturesxlarge = $xlargePath;
-                                    $footballsimg->alttext = $title ;
+                                    $footballsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $footballsimg->save();
                                 }
@@ -873,7 +873,7 @@ class ListingController extends JsonApiController
                                     $golfsimg->picture = $largePath;
                                     $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->picturesxlarge = $xlargePath;
-                                    $golfsimg->alttext = $title ;
+                                    $golfsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $golfsimg->save();
                                 }
@@ -946,7 +946,7 @@ class ListingController extends JsonApiController
                                     $huntingsimg->picture = $largePath;
                                     $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->picturesxlarge = $xlargePath;
-                                    $huntingsimg->alttext = $title ;
+                                    $huntingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $huntingsimg->save();
                                 }
@@ -1019,7 +1019,7 @@ class ListingController extends JsonApiController
                                     $musculationsimg->picture = $largePath;
                                     $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->picturesxlarge = $xlargePath;
-                                    $musculationsimg->alttext = $title ;
+                                    $musculationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $musculationsimg->save();
                                 }
@@ -1091,7 +1091,7 @@ class ListingController extends JsonApiController
                                     $surfsimg->picture = $largePath;
                                     $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->picturesxlarge = $xlargePath;
-                                    $surfsimg->alttext = $title ;
+                                    $surfsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $surfsimg->save();
                                 }
@@ -1155,7 +1155,7 @@ class ListingController extends JsonApiController
                                     $Tennisimg->picture = $largePath;
                                     $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->picturesxlarge = $xlargePath;
-                                    $Tennisimg->alttext = $title ;
+                                    $Tennisimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $Tennisimg->save();
                                 }
@@ -1229,7 +1229,7 @@ class ListingController extends JsonApiController
                                     $audiosimg->picture = $largePath;
                                     $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->picturesxlarge = $xlargePath;
-                                    $audiosimg->alttext = $title ;
+                                    $audiosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $audiosimg->save();
                                 }
@@ -1305,7 +1305,7 @@ class ListingController extends JsonApiController
                                     $camerasimg->picture = $largePath;
                                     $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->picturesxlarge = $xlargePath;
-                                    $camerasimg->alttext = $title ;
+                                    $camerasimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $camerasimg->save();
                                 }
@@ -1374,7 +1374,7 @@ class ListingController extends JsonApiController
                                     $chargersimg->picture = $largePath;
                                     $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->picturesxlarge = $xlargePath;
-                                    $chargersimg->alttext = $title ;
+                                    $chargersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $chargersimg->save();
                                 }
@@ -1449,7 +1449,7 @@ class ListingController extends JsonApiController
                                     $dronesimg->picture = $largePath;
                                     $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->picturesxlarge = $xlargePath;
-                                    $dronesimg->alttext = $title ;
+                                    $dronesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $dronesimg->save();
                                 }
@@ -1522,7 +1522,7 @@ class ListingController extends JsonApiController
                                     $gamingsimg->picture = $largePath;
                                     $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->picturesxlarge = $xlargePath;
-                                    $gamingsimg->alttext = $title ;
+                                    $gamingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $gamingsimg->save();
                                 }
@@ -1597,7 +1597,7 @@ class ListingController extends JsonApiController
                                     $laptopsimg->picture = $largePath;
                                     $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->picturesxlarge = $xlargePath;
-                                    $laptopsimg->alttext = $title ;
+                                    $laptopsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $laptopsimg->save();
                                 }
@@ -1666,7 +1666,7 @@ class ListingController extends JsonApiController
                                     $lightingsimg->picture = $largePath;
                                     $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->picturesxlarge = $xlargePath;
-                                    $lightingsimg->alttext = $title ;
+                                    $lightingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $lightingsimg->save();
                                 }
@@ -1739,7 +1739,7 @@ class ListingController extends JsonApiController
                                     $printersimg->picture = $largePath;
                                     $printersimg->picturesmall = $smallPath;
                                     $printersimg->picturesxlarge = $xlargePath;
-                                    $printersimg->alttext = $title ;
+                                    $printersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $printersimg->save();
                                 }
@@ -1810,7 +1810,7 @@ class ListingController extends JsonApiController
                                     $routersimg->picture = $largePath;
                                     $routersimg->picturesmall = $smallPath;
                                     $routersimg->picturesxlarge = $xlargePath;
-                                    $routersimg->alttext = $title ;
+                                    $routersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $routersimg->save();
                                 }
@@ -1882,7 +1882,7 @@ class ListingController extends JsonApiController
                                     $tablettesimg->picture = $largePath;
                                     $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->picturesxlarge = $xlargePath;
-                                    $tablettesimg->alttext = $title ;
+                                    $tablettesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $tablettesimg->save();
                                 }
@@ -1962,7 +1962,7 @@ class ListingController extends JsonApiController
                                     $eclairagesimg->picture = $largePath;
                                     $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->picturesxlarge = $xlargePath;
-                                    $eclairagesimg->alttext = $title ;
+                                    $eclairagesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $eclairagesimg->save();
                                 }
@@ -2034,7 +2034,7 @@ class ListingController extends JsonApiController
                                     $mobiliersimg->picture = $largePath;
                                     $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->picturesxlarge = $xlargePath;
-                                    $mobiliersimg->alttext = $title ;
+                                    $mobiliersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $mobiliersimg->save();
                                 }
@@ -2105,7 +2105,7 @@ class ListingController extends JsonApiController
                                     $photographiesimg->picture = $largePath;
                                     $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->picturesxlarge = $xlargePath;
-                                    $photographiesimg->alttext = $title ;
+                                    $photographiesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $photographiesimg->save();
                                 }
@@ -2186,7 +2186,7 @@ class ListingController extends JsonApiController
                                     $sonorisationsimg->picture = $largePath;
                                     $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->picturesxlarge = $xlargePath;
-                                    $sonorisationsimg->alttext = $title ;
+                                    $sonorisationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $sonorisationsimg->save();
                                 }
@@ -2255,7 +2255,7 @@ class ListingController extends JsonApiController
                                     $tentesimg->picture = $largePath;
                                     $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->picturesxlarge = $xlargePath;
-                                    $tentesimg->alttext = $title ;
+                                    $tentesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $tentesimg->save();
                                 }
@@ -2327,7 +2327,7 @@ class ListingController extends JsonApiController
                                     $clothessimg->picture = $largePath;
                                     $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->picturesxlarge = $xlargePath;
-                                    $clothessimg->alttext = $title ;
+                                    $clothessimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $clothessimg->save();
                                 }
@@ -2400,7 +2400,7 @@ class ListingController extends JsonApiController
                                     $jewelrysimg->picture = $largePath;
                                     $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->picturesxlarge = $xlargePath;
-                                    $jewelrysimg->alttext = $title ;
+                                    $jewelrysimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $jewelrysimg->save();
                                 }
@@ -2473,7 +2473,7 @@ class ListingController extends JsonApiController
                                     $apartmentsimg->picture = $largePath;
                                     $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->picturesxlarge = $xlargePath;
-                                    $apartmentsimg->alttext = $title ;
+                                    $apartmentsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $apartmentsimg->save();
                                 }
@@ -2552,7 +2552,7 @@ class ListingController extends JsonApiController
                                     $bureauxsimg->picture = $largePath;
                                     $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->picturesxlarge = $xlargePath;
-                                    $bureauxsimg->alttext = $title ;
+                                    $bureauxsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $bureauxsimg->save();
                                 }
@@ -2629,7 +2629,7 @@ class ListingController extends JsonApiController
                                     $magasinsimg->picture = $largePath;
                                     $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->picturesxlarge = $xlargePath;
-                                    $magasinsimg->alttext = $title ;
+                                    $magasinsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $magasinsimg->save();
                                 }
@@ -2701,7 +2701,7 @@ class ListingController extends JsonApiController
                                     $maisonsimg->picture = $largePath;
                                     $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->picturesxlarge = $xlargePath;
-                                    $maisonsimg->alttext = $title ;
+                                    $maisonsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $maisonsimg->save();
                                 }
@@ -2797,7 +2797,7 @@ class ListingController extends JsonApiController
                                     $riadsimg->picture = $largePath;
                                     $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->picturesxlarge = $xlargePath;
-                                    $riadsimg->alttext = $title ;
+                                    $riadsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $riadsimg->save();
                                 }
@@ -2874,7 +2874,7 @@ class ListingController extends JsonApiController
                                     $terrainsimg->picture = $largePath;
                                     $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->picturesxlarge = $xlargePath;
-                                    $terrainsimg->alttext = $title ;
+                                    $terrainsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $terrainsimg->save();
                                 }
@@ -2946,7 +2946,7 @@ class ListingController extends JsonApiController
                                     $villasimg->picture = $largePath;
                                     $villasimg->picturesmall = $smallPath;
                                     $villasimg->picturesxlarge = $xlargePath;
-                                    $villasimg->alttext = $title ;
+                                    $villasimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $villasimg->save();
                                 }
@@ -3021,7 +3021,7 @@ class ListingController extends JsonApiController
                                     $activitiesimg->picture = $largePath;
                                     $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->picturesxlarge = $xlargePath;
-                                    $activitiesimg->alttext = $title ;
+                                    $activitiesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $activitiesimg->save();
                                 }
@@ -3091,7 +3091,7 @@ class ListingController extends JsonApiController
                                     $livresimg->picture = $largePath;
                                     $livresimg->picturesmall = $smallPath;
                                     $livresimg->picturesxlarge = $xlargePath;
-                                    $livresimg->alttext = $title ;
+                                    $livresimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $livresimg->save();
                                 }
@@ -3161,7 +3161,7 @@ class ListingController extends JsonApiController
                                     $musicalsimg->picture = $largePath;
                                     $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->picturesxlarge = $xlargePath;
-                                    $musicalsimg->alttext = $title ;
+                                    $musicalsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $musicalsimg->save();
                                 }
@@ -3235,7 +3235,7 @@ class ListingController extends JsonApiController
                                     $furnituresimg->picture = $largePath;
                                     $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->picturesxlarge = $xlargePath;
-                                    $furnituresimg->alttext = $title ;
+                                    $furnituresimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $furnituresimg->save();
                                 }
@@ -3309,7 +3309,7 @@ class ListingController extends JsonApiController
                                     $houseappliancesimg->picture = $largePath;
                                     $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->picturesxlarge = $xlargePath;
-                                    $houseappliancesimg->alttext = $title ;
+                                    $houseappliancesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $houseappliancesimg->save();
                                 }
@@ -3391,7 +3391,7 @@ class ListingController extends JsonApiController
                                     $electricaltoolsimg->picture = $largePath;
                                     $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->picturesxlarge = $xlargePath;
-                                    $electricaltoolsimg->alttext = $title ;
+                                    $electricaltoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $electricaltoolsimg->save();
                                 }
@@ -3471,7 +3471,7 @@ class ListingController extends JsonApiController
                                     $laddersimg->picture = $largePath;
                                     $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->picturesxlarge = $xlargePath;
-                                    $laddersimg->alttext = $title ;
+                                    $laddersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $laddersimg->save();
                                 }
@@ -3548,7 +3548,7 @@ class ListingController extends JsonApiController
                                     $mechanicaltoolsimg->picture = $largePath;
                                     $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->picturesxlarge = $xlargePath;
-                                    $mechanicaltoolsimg->alttext = $title ;
+                                    $mechanicaltoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $mechanicaltoolsimg->save();
                                 }
@@ -3626,7 +3626,7 @@ class ListingController extends JsonApiController
                                     $powertoolsimg->picture = $largePath;
                                     $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->picturesxlarge = $xlargePath;
-                                    $powertoolsimg->alttext = $title ;
+                                    $powertoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $powertoolsimg->save();
                                 }
@@ -3706,7 +3706,7 @@ class ListingController extends JsonApiController
                                     $pressurewashersimg->picture = $largePath;
                                     $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->picturesxlarge = $xlargePath;
-                                    $pressurewashersimg->alttext = $title ;
+                                    $pressurewashersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $pressurewashersimg->save();
                                 }
@@ -3775,7 +3775,7 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
-                                    $servicesimg->alttext = $title ;
+                                    $servicesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $servicesimg->save();
                                 }
@@ -3847,7 +3847,7 @@ class ListingController extends JsonApiController
                                         $servicesimg->picture = $largePath;
                                         $servicesimg->picturesmall = $smallPath;
                                         $servicesimg->picturesxlarge = $xlargePath;
-                                        $servicesimg->alttext = $title ;
+                                        $servicesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                         $servicesimg->save();
                                     }
@@ -3920,7 +3920,7 @@ class ListingController extends JsonApiController
                                     $boatsimg->picture = $largePath;
                                     $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->picturesxlarge = $xlargePath;
-                                    $boatsimg->alttext = $title ;
+                                    $boatsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $boatsimg->save();
                                 }
@@ -3989,7 +3989,7 @@ class ListingController extends JsonApiController
                                     $camionsimg->picture = $largePath;
                                     $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->picturesxlarge = $xlargePath;
-                                    $camionsimg->alttext = $title ;
+                                    $camionsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $camionsimg->save();
                                 }
@@ -4057,7 +4057,7 @@ class ListingController extends JsonApiController
                                     $caravansimg->picture = $largePath;
                                     $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->picturesxlarge = $xlargePath;
-                                    $caravansimg->alttext = $title ;
+                                    $caravansimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $caravansimg->save();
                                 }
@@ -4125,7 +4125,7 @@ class ListingController extends JsonApiController
                                     $carsimg->picture = $largePath;
                                     $carsimg->picturesmall = $smallPath;
                                     $carsimg->picturesxlarge = $xlargePath;
-                                    $carsimg->alttext = $title ;
+                                    $carsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $carsimg->save();
                                 }
@@ -4196,7 +4196,7 @@ class ListingController extends JsonApiController
                                     $enginsimg->picture = $largePath;
                                     $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->picturesxlarge = $xlargePath;
-                                    $enginsimg->alttext = $title ;
+                                    $enginsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $enginsimg->save();
                                 }
@@ -4269,7 +4269,7 @@ class ListingController extends JsonApiController
                                     $motosimg->picture = $largePath;
                                     $motosimg->picturesmall = $smallPath;
                                     $motosimg->picturesxlarge = $xlargePath;
-                                    $motosimg->alttext = $title ;
+                                    $motosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $motosimg->save();
                                 }
@@ -4338,7 +4338,7 @@ class ListingController extends JsonApiController
                                     $scootersimg->picture = $largePath;
                                     $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->picturesxlarge = $xlargePath;
-                                    $scootersimg->alttext = $title ;
+                                    $scootersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $scootersimg->save();
                                 }
@@ -4406,7 +4406,7 @@ class ListingController extends JsonApiController
                                     $taxiaeroportsimg->picture = $largePath;
                                     $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->picturesxlarge = $xlargePath;
-                                    $taxiaeroportsimg->alttext = $title ;
+                                    $taxiaeroportsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $taxiaeroportsimg->save();
                                 }
@@ -4474,7 +4474,7 @@ class ListingController extends JsonApiController
                                     $transportationsimg->picture = $largePath;
                                     $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->picturesxlarge = $xlargePath;
-                                    $transportationsimg->alttext = $title ;
+                                    $transportationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $transportationsimg->save();
                                 }
@@ -4541,7 +4541,7 @@ class ListingController extends JsonApiController
                                     $velosimg->picture = $largePath;
                                     $velosimg->picturesmall = $smallPath;
                                     $velosimg->picturesxlarge = $xlargePath;
-                                    $velosimg->alttext = $title ;
+                                    $velosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $velosimg->save();
                                 }
@@ -4754,7 +4754,7 @@ class ListingController extends JsonApiController
             $listingsimg->picture = $largePath;
             $listingsimg->picturesmall = $smallPath;
             $listingsimg->picturesxlarge = $xlargePath;
-            $listingsimg->alttext = $title ;
+            $listingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
             $listingsimg->save();
         }
@@ -4823,7 +4823,7 @@ class ListingController extends JsonApiController
                         $billiardsimg->picture = $largePath;
                         $billiardsimg->picturesmall = $smallPath;
                         $billiardsimg->picturesxlarge = $xlargePath;
-                        $billiardsimg->alttext = $title ;
+                        $billiardsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                         $billiardsimg->save();
                     }
@@ -4890,7 +4890,7 @@ class ListingController extends JsonApiController
                                     $boxingsimg->picture = $largePath;
                                     $boxingsimg->picturesmall = $smallPath;
                                     $boxingsimg->picturesxlarge = $xlargePath;
-                                    $boxingsimg->alttext = $title ;
+                                    $boxingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $boxingsimg->save();
                                 }
@@ -4958,7 +4958,7 @@ class ListingController extends JsonApiController
                                     $divingsimg->picture = $largePath;
                                     $divingsimg->picturesmall = $smallPath;
                                     $divingsimg->picturesxlarge = $xlargePath;
-                                    $divingsimg->alttext = $title ;
+                                    $divingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $divingsimg->save();
                                 }
@@ -5027,7 +5027,7 @@ class ListingController extends JsonApiController
                                     $footballsimg->picture = $largePath;
                                     $footballsimg->picturesmall = $smallPath;
                                     $footballsimg->picturesxlarge = $xlargePath;
-                                    $footballsimg->alttext = $title ;
+                                    $footballsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $footballsimg->save();
                                 }
@@ -5097,7 +5097,7 @@ class ListingController extends JsonApiController
                                     $golfsimg->picture = $largePath;
                                     $golfsimg->picturesmall = $smallPath;
                                     $golfsimg->picturesxlarge = $xlargePath;
-                                    $golfsimg->alttext = $title ;
+                                    $golfsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $golfsimg->save();
                                 }
@@ -5174,7 +5174,7 @@ class ListingController extends JsonApiController
                                     $huntingsimg->picture = $largePath;
                                     $huntingsimg->picturesmall = $smallPath;
                                     $huntingsimg->picturesxlarge = $xlargePath;
-                                    $huntingsimg->alttext = $title ;
+                                    $huntingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $huntingsimg->save();
                                 }
@@ -5250,7 +5250,7 @@ class ListingController extends JsonApiController
                                     $musculationsimg->picture = $largePath;
                                     $musculationsimg->picturesmall = $smallPath;
                                     $musculationsimg->picturesxlarge = $xlargePath;
-                                    $musculationsimg->alttext = $title ;
+                                    $musculationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $musculationsimg->save();
                                 }
@@ -5327,7 +5327,7 @@ class ListingController extends JsonApiController
                                     $surfsimg->picture = $largePath;
                                     $surfsimg->picturesmall = $smallPath;
                                     $surfsimg->picturesxlarge = $xlargePath;
-                                    $surfsimg->alttext = $title ;
+                                    $surfsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $surfsimg->save();
                                 }
@@ -5395,7 +5395,7 @@ class ListingController extends JsonApiController
                                     $Tennisimg->picture = $largePath;
                                     $Tennisimg->picturesmall = $smallPath;
                                     $Tennisimg->picturesxlarge = $xlargePath;
-                                    $Tennisimg->alttext = $title ;
+                                    $Tennisimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $Tennisimg->save();
                                 }
@@ -5474,7 +5474,7 @@ class ListingController extends JsonApiController
                                     $audiosimg->picture = $largePath;
                                     $audiosimg->picturesmall = $smallPath;
                                     $audiosimg->picturesxlarge = $xlargePath;
-                                    $audiosimg->alttext = $title ;
+                                    $audiosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $audiosimg->save();
                                 }
@@ -5553,7 +5553,7 @@ class ListingController extends JsonApiController
                                     $camerasimg->picture = $largePath;
                                     $camerasimg->picturesmall = $smallPath;
                                     $camerasimg->picturesxlarge = $xlargePath;
-                                    $camerasimg->alttext = $title ;
+                                    $camerasimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $camerasimg->save();
                                 }
@@ -5627,7 +5627,7 @@ class ListingController extends JsonApiController
                                     $chargersimg->picture = $largePath;
                                     $chargersimg->picturesmall = $smallPath;
                                     $chargersimg->picturesxlarge = $xlargePath;
-                                    $chargersimg->alttext = $title ;
+                                    $chargersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $chargersimg->save();
                                 }
@@ -5705,7 +5705,7 @@ class ListingController extends JsonApiController
                                     $dronesimg->picture = $largePath;
                                     $dronesimg->picturesmall = $smallPath;
                                     $dronesimg->picturesxlarge = $xlargePath;
-                                    $dronesimg->alttext = $title ;
+                                    $dronesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $dronesimg->save();
                                 }
@@ -5783,7 +5783,7 @@ class ListingController extends JsonApiController
                                     $gamingsimg->picture = $largePath;
                                     $gamingsimg->picturesmall = $smallPath;
                                     $gamingsimg->picturesxlarge = $xlargePath;
-                                    $gamingsimg->alttext = $title ;
+                                    $gamingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $gamingsimg->save();
                                 }
@@ -5861,7 +5861,7 @@ class ListingController extends JsonApiController
                                     $laptopsimg->picture = $largePath;
                                     $laptopsimg->picturesmall = $smallPath;
                                     $laptopsimg->picturesxlarge = $xlargePath;
-                                    $laptopsimg->alttext = $title ;
+                                    $laptopsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $laptopsimg->save();
                                 }
@@ -5935,7 +5935,7 @@ class ListingController extends JsonApiController
                                     $lightingsimg->picture = $largePath;
                                     $lightingsimg->picturesmall = $smallPath;
                                     $lightingsimg->picturesxlarge = $xlargePath;
-                                    $lightingsimg->alttext = $title ;
+                                    $lightingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $lightingsimg->save();
                                 }
@@ -6012,7 +6012,7 @@ class ListingController extends JsonApiController
                                     $printersimg->picture = $largePath;
                                     $printersimg->picturesmall = $smallPath;
                                     $printersimg->picturesxlarge = $xlargePath;
-                                    $printersimg->alttext = $title ;
+                                    $printersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $printersimg->save();
                                 }
@@ -6086,7 +6086,7 @@ class ListingController extends JsonApiController
                                     $routersimg->picture = $largePath;
                                     $routersimg->picturesmall = $smallPath;
                                     $routersimg->picturesxlarge = $xlargePath;
-                                    $routersimg->alttext = $title ;
+                                    $routersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $routersimg->save();
                                 }
@@ -6164,7 +6164,7 @@ class ListingController extends JsonApiController
                                     $tablettesimg->picture = $largePath;
                                     $tablettesimg->picturesmall = $smallPath;
                                     $tablettesimg->picturesxlarge = $xlargePath;
-                                    $tablettesimg->alttext = $title ;
+                                    $tablettesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $tablettesimg->save();
                                 }
@@ -6245,7 +6245,7 @@ class ListingController extends JsonApiController
                                     $eclairagesimg->picture = $largePath;
                                     $eclairagesimg->picturesmall = $smallPath;
                                     $eclairagesimg->picturesxlarge = $xlargePath;
-                                    $eclairagesimg->alttext = $title ;
+                                    $eclairagesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $eclairagesimg->save();
                                 }
@@ -6319,7 +6319,7 @@ class ListingController extends JsonApiController
                                     $mobiliersimg->picture = $largePath;
                                     $mobiliersimg->picturesmall = $smallPath;
                                     $mobiliersimg->picturesxlarge = $xlargePath;
-                                    $mobiliersimg->alttext = $title ;
+                                    $mobiliersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $mobiliersimg->save();
                                 }
@@ -6394,7 +6394,7 @@ class ListingController extends JsonApiController
                                     $photographiesimg->picture = $largePath;
                                     $photographiesimg->picturesmall = $smallPath;
                                     $photographiesimg->picturesxlarge = $xlargePath;
-                                    $photographiesimg->alttext = $title ;
+                                    $photographiesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $photographiesimg->save();
                                 }
@@ -6478,7 +6478,7 @@ class ListingController extends JsonApiController
                                     $sonorisationsimg->picture = $largePath;
                                     $sonorisationsimg->picturesmall = $smallPath;
                                     $sonorisationsimg->picturesxlarge = $xlargePath;
-                                    $sonorisationsimg->alttext = $title ;
+                                    $sonorisationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $sonorisationsimg->save();
                                 }
@@ -6548,7 +6548,7 @@ class ListingController extends JsonApiController
                                     $tentesimg->picture = $largePath;
                                     $tentesimg->picturesmall = $smallPath;
                                     $tentesimg->picturesxlarge = $xlargePath;
-                                    $tentesimg->alttext = $title ;
+                                    $tentesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $tentesimg->save();
                                 }
@@ -6622,7 +6622,7 @@ class ListingController extends JsonApiController
                                     $clothessimg->picture = $largePath;
                                     $clothessimg->picturesmall = $smallPath;
                                     $clothessimg->picturesxlarge = $xlargePath;
-                                    $clothessimg->alttext = $title ;
+                                    $clothessimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $clothessimg->save();
                                 }
@@ -6697,7 +6697,7 @@ class ListingController extends JsonApiController
                                     $jewelrysimg->picture = $largePath;
                                     $jewelrysimg->picturesmall = $smallPath;
                                     $jewelrysimg->picturesxlarge = $xlargePath;
-                                    $jewelrysimg->alttext = $title ;
+                                    $jewelrysimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $jewelrysimg->save();
                                 }
@@ -6771,7 +6771,7 @@ class ListingController extends JsonApiController
                                     $apartmentsimg->picture = $largePath;
                                     $apartmentsimg->picturesmall = $smallPath;
                                     $apartmentsimg->picturesxlarge = $xlargePath;
-                                    $apartmentsimg->alttext = $title ;
+                                    $apartmentsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $apartmentsimg->save();
                                 }
@@ -6854,7 +6854,7 @@ class ListingController extends JsonApiController
                                     $bureauxsimg->picture = $largePath;
                                     $bureauxsimg->picturesmall = $smallPath;
                                     $bureauxsimg->picturesxlarge = $xlargePath;
-                                    $bureauxsimg->alttext = $title ;
+                                    $bureauxsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $bureauxsimg->save();
                                 }
@@ -6931,7 +6931,7 @@ class ListingController extends JsonApiController
                                     $magasinsimg->picture = $largePath;
                                     $magasinsimg->picturesmall = $smallPath;
                                     $magasinsimg->picturesxlarge = $xlargePath;
-                                    $magasinsimg->alttext = $title ;
+                                    $magasinsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $magasinsimg->save();
                                 }
@@ -7005,7 +7005,7 @@ class ListingController extends JsonApiController
                                     $maisonsimg->picture = $largePath;
                                     $maisonsimg->picturesmall = $smallPath;
                                     $maisonsimg->picturesxlarge = $xlargePath;
-                                    $maisonsimg->alttext = $title ;
+                                    $maisonsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $maisonsimg->save();
                                 }
@@ -7103,7 +7103,7 @@ class ListingController extends JsonApiController
                                     $riadsimg->picture = $largePath;
                                     $riadsimg->picturesmall = $smallPath;
                                     $riadsimg->picturesxlarge = $xlargePath;
-                                    $riadsimg->alttext = $title ;
+                                    $riadsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $riadsimg->save();
                                 }
@@ -7182,7 +7182,7 @@ class ListingController extends JsonApiController
                                     $terrainsimg->picture = $largePath;
                                     $terrainsimg->picturesmall = $smallPath;
                                     $terrainsimg->picturesxlarge = $xlargePath;
-                                    $terrainsimg->alttext = $title ;
+                                    $terrainsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $terrainsimg->save();
                                 }
@@ -7258,7 +7258,7 @@ class ListingController extends JsonApiController
                                     $villasimg->picture = $largePath;
                                     $villasimg->picturesmall = $smallPath;
                                     $villasimg->picturesxlarge = $xlargePath;
-                                    $villasimg->alttext = $title ;
+                                    $villasimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $villasimg->save();
                                 }
@@ -7330,7 +7330,7 @@ class ListingController extends JsonApiController
                                     $activitiesimg->picture = $largePath;
                                     $activitiesimg->picturesmall = $smallPath;
                                     $activitiesimg->picturesxlarge = $xlargePath;
-                                    $activitiesimg->alttext = $title ;
+                                    $activitiesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $activitiesimg->save();
                                 }
@@ -7401,7 +7401,7 @@ class ListingController extends JsonApiController
                                     $livresimg->picture = $largePath;
                                     $livresimg->picturesmall = $smallPath;
                                     $livresimg->picturesxlarge = $xlargePath;
-                                    $listingsimg->alttext = $title ;
+                                    $listingsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $livresimg->save();
                                 }
@@ -7473,7 +7473,7 @@ class ListingController extends JsonApiController
                                     $musicalsimg->picture = $largePath;
                                     $musicalsimg->picturesmall = $smallPath;
                                     $musicalsimg->picturesxlarge = $xlargePath;
-                                    $musicalsimg->alttext = $title ;
+                                    $musicalsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $musicalsimg->save();
                                 }
@@ -7548,7 +7548,7 @@ class ListingController extends JsonApiController
                                     $furnituresimg->picture = $largePath;
                                     $furnituresimg->picturesmall = $smallPath;
                                     $furnituresimg->picturesxlarge = $xlargePath;
-                                    $furnituresimg->alttext = $title ;
+                                    $furnituresimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $furnituresimg->save();
                                 }
@@ -7624,7 +7624,7 @@ class ListingController extends JsonApiController
                                     $houseappliancesimg->picture = $largePath;
                                     $houseappliancesimg->picturesmall = $smallPath;
                                     $houseappliancesimg->picturesxlarge = $xlargePath;
-                                    $houseappliancesimg->alttext = $title ;
+                                    $houseappliancesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $houseappliancesimg->save();
                                 }
@@ -7710,7 +7710,7 @@ class ListingController extends JsonApiController
                                     $electricaltoolsimg->picture = $largePath;
                                     $electricaltoolsimg->picturesmall = $smallPath;
                                     $electricaltoolsimg->picturesxlarge = $xlargePath;
-                                    $electricaltoolsimg->alttext = $title ;
+                                    $electricaltoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $electricaltoolsimg->save();
                                 }
@@ -7790,7 +7790,7 @@ class ListingController extends JsonApiController
                                     $laddersimg->picture = $largePath;
                                     $laddersimg->picturesmall = $smallPath;
                                     $laddersimg->picturesxlarge = $xlargePath;
-                                    $laddersimg->alttext = $title ;
+                                    $laddersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $laddersimg->save();
                                 }
@@ -7868,7 +7868,7 @@ class ListingController extends JsonApiController
                                     $mechanicaltoolsimg->picture = $largePath;
                                     $mechanicaltoolsimg->picturesmall = $smallPath;
                                     $mechanicaltoolsimg->picturesxlarge = $xlargePath;
-                                    $mechanicaltoolsimg->alttext = $title ;
+                                    $mechanicaltoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $mechanicaltoolsimg->save();
                                 }
@@ -7947,7 +7947,7 @@ class ListingController extends JsonApiController
                                     $powertoolsimg->picture = $largePath;
                                     $powertoolsimg->picturesmall = $smallPath;
                                     $powertoolsimg->picturesxlarge = $xlargePath;
-                                    $powertoolsimg->alttext = $title ;
+                                    $powertoolsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $powertoolsimg->save();
                                 }
@@ -8030,7 +8030,7 @@ class ListingController extends JsonApiController
                                     $pressurewashersimg->picture = $largePath;
                                     $pressurewashersimg->picturesmall = $smallPath;
                                     $pressurewashersimg->picturesxlarge = $xlargePath;
-                                    $pressurewashersimg->alttext = $title ;
+                                    $pressurewashersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $pressurewashersimg->save();
                                 }
@@ -8101,7 +8101,7 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
-                                    $servicesimg->alttext = $title ;
+                                    $servicesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $servicesimg->save();
                                 }
@@ -8178,7 +8178,7 @@ class ListingController extends JsonApiController
                                     $servicesimg->picture = $largePath;
                                     $servicesimg->picturesmall = $smallPath;
                                     $servicesimg->picturesxlarge = $xlargePath;
-                                    $servicesimg->alttext = $title ;
+                                    $servicesimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $servicesimg->save();
                                 }
@@ -8255,7 +8255,7 @@ class ListingController extends JsonApiController
                                     $boatsimg->picture = $largePath;
                                     $boatsimg->picturesmall = $smallPath;
                                     $boatsimg->picturesxlarge = $xlargePath;
-                                    $boatsimg->alttext = $title ;
+                                    $boatsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $boatsimg->save();
                                 }
@@ -8326,7 +8326,7 @@ class ListingController extends JsonApiController
                                     $camionsimg->picture = $largePath;
                                     $camionsimg->picturesmall = $smallPath;
                                     $camionsimg->picturesxlarge = $xlargePath;
-                                    $camionsimg->alttext = $title ;
+                                    $camionsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $camionsimg->save();
                                 }
@@ -8396,7 +8396,7 @@ class ListingController extends JsonApiController
                                     $caravansimg->picture = $largePath;
                                     $caravansimg->picturesmall = $smallPath;
                                     $caravansimg->picturesxlarge = $xlargePath;
-                                    $caravansimg->alttext = $title ;
+                                    $caravansimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $caravansimg->save();
                                 }
@@ -8465,7 +8465,7 @@ class ListingController extends JsonApiController
                                     $carsimg->picture = $largePath;
                                     $carsimg->picturesmall = $smallPath;
                                     $carsimg->picturesxlarge = $xlargePath;
-                                    $carsimg->alttext = $title ;
+                                    $carsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $carsimg->save();
                                 }
@@ -8538,7 +8538,7 @@ class ListingController extends JsonApiController
                                     $enginsimg->picture = $largePath;
                                     $enginsimg->picturesmall = $smallPath;
                                     $enginsimg->picturesxlarge = $xlargePath;
-                                    $enginsimg->alttext = $title ;
+                                    $enginsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $enginsimg->save();
                                 }
@@ -8613,7 +8613,7 @@ class ListingController extends JsonApiController
                                     $motosimg->picture = $largePath;
                                     $motosimg->picturesmall = $smallPath;
                                     $motosimg->picturesxlarge = $xlargePath;
-                                    $motosimg->alttext = $title ;
+                                    $motosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $motosimg->save();
                                 }
@@ -8683,7 +8683,7 @@ class ListingController extends JsonApiController
                                     $scootersimg->picture = $largePath;
                                     $scootersimg->picturesmall = $smallPath;
                                     $scootersimg->picturesxlarge = $xlargePath;
-                                    $scootersimg->alttext = $title ;
+                                    $scootersimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $scootersimg->save();
                                 }
@@ -8753,7 +8753,7 @@ class ListingController extends JsonApiController
                                     $taxiaeroportsimg->picture = $largePath;
                                     $taxiaeroportsimg->picturesmall = $smallPath;
                                     $taxiaeroportsimg->picturesxlarge = $xlargePath;
-                                    $taxiaeroportsimg->alttext = $title ;
+                                    $taxiaeroportsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $taxiaeroportsimg->save();
                                 }
@@ -8826,7 +8826,7 @@ class ListingController extends JsonApiController
                                     $transportationsimg->picture = $largePath;
                                     $transportationsimg->picturesmall = $smallPath;
                                     $transportationsimg->picturesxlarge = $xlargePath;
-                                    $transportationsimg->alttext = $title ;
+                                    $transportationsimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $transportationsimg->save();
                                 }
@@ -8896,7 +8896,7 @@ class ListingController extends JsonApiController
                                     $velosimg->picture = $largePath;
                                     $velosimg->picturesmall = $smallPath;
                                     $velosimg->picturesxlarge = $xlargePath;
-                                    $velosimg->alttext = $title ;
+                                    $velosimg->alttext = "{$title} - {$category} for rent on RENTS.ma" ;
 
                                     $velosimg->save();
                                 }

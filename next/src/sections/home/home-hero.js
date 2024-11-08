@@ -94,7 +94,7 @@ export default function HomeHero({ tours, categoryy }) {
             }}
           >
               <Typography variant="h1" component="h1" sx={{ display: 'none' }}>
-              Explore Morocco's Largest Rental Marketplace
+              Explore Morocco Largest Rental Marketplace
               Find everything you need to rent across Morocco – from cars, homes, and offices to sports equipment, tools, and more. Discover local services, compare prices, and connect with trusted providers on RENTS.ma.
 
 

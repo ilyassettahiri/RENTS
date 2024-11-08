@@ -196,7 +196,7 @@ function CarouselBasic3({ data , jobUrl }) {
             {data.map((item) => (
               <Box key={item.id} onClick={() => handleImageClick(item)} sx={{ cursor: 'pointer' }}>
                 <Image
-                  alt={item.title}
+                  alt={`${item.title} - Find Your Next Job Opportunity on rents.ma`}
                   src={item.coverUrl}
                   ratio={isMdUp ? '4/3' : '1/1'}
                   sx={{
