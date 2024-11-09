@@ -266,13 +266,6 @@ export default function ListingView({ params }) {
                     recentListingsOujda={listingData?.data?.attributes?.recentlistingsojuda}
                     recentListingsKenitra={listingData?.data?.attributes?.recentlistingskenitra}
                     recentListingsTetouan={listingData?.data?.attributes?.recentlistingstetouan}
-                    recentListingsSale={listingData?.data?.attributes?.recentlistingssale}
-                    recentListingsTemara={listingData?.data?.attributes?.recentlistingstemara}
-                    recentListingsSafi={listingData?.data?.attributes?.recentlistingssafi}
-                    recentListingsMohammedia={listingData?.data?.attributes?.recentlistingsmohammedia}
-                    recentListingsKhouribga={listingData?.data?.attributes?.recentlistingskhouribga}
-                    recentListingsElJadida={memoizedListingData.recentListingsElJadida}
-                    recentListingsBeniMellal={listingData?.data?.attributes?.recentlistingsbenimellal}
                   />
                 )}
         </Container>

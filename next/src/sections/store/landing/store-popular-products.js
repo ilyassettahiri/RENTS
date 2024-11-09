@@ -31,9 +31,7 @@ const TABS = [
   'Temara',
   'Safi',
   'Mohammedia',
-  'Khouribga',
-  'El Jadida',
-  'Beni Mellal'
+
 ];
 
 // ----------------------------------------------------------------------
@@ -49,13 +47,7 @@ export default function StorePopularProducts({
   recentListingsOujda,
   recentListingsKenitra,
   recentListingsTetouan,
-  recentListingsSale,
-  recentListingsTemara,
-  recentListingsSafi,
-  recentListingsMohammedia,
-  recentListingsKhouribga,
-  recentListingsElJadida,
-  recentListingsBeniMellal,
+
 }) {
   const [tab, setTab] = useState('Marrakech');
   const { t } = useTranslation();
@@ -76,13 +68,7 @@ export default function StorePopularProducts({
     'Oujda': recentListingsOujda,
     'Kenitra': recentListingsKenitra,
     'Tetouan': recentListingsTetouan,
-    'Salé': recentListingsSale,
-    'Temara': recentListingsTemara,
-    'Safi': recentListingsSafi,
-    'Mohammedia': recentListingsMohammedia,
-    'Khouribga': recentListingsKhouribga,
-    'El Jadida': recentListingsElJadida,
-    'Beni Mellal': recentListingsBeniMellal,
+
   };
 
   const currentListings = listingsMap[tab] || [];
@@ -109,6 +95,7 @@ export default function StorePopularProducts({
         allowScrollButtonsMobile
         onChange={handleChangeTab}
         sx={{ my: 5 }}
+
       >
         {TABS.map((city) => (
           <Tab key={city} value={city} label={city} />
@@ -143,11 +130,5 @@ StorePopularProducts.propTypes = {
   recentListingsOujda: PropTypes.array,
   recentListingsKenitra: PropTypes.array,
   recentListingsTetouan: PropTypes.array,
-  recentListingsSale: PropTypes.array,
-  recentListingsTemara: PropTypes.array,
-  recentListingsSafi: PropTypes.array,
-  recentListingsMohammedia: PropTypes.array,
-  recentListingsKhouribga: PropTypes.array,
-  recentListingsElJadida: PropTypes.array,
-  recentListingsBeniMellal: PropTypes.array,
+
 };
