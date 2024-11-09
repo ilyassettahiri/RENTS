@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
+import { useRouter } from 'src/routes/hooks';
 import { useQuery } from '@tanstack/react-query';
 
 import Box from '@mui/material/Box';
@@ -31,119 +30,7 @@ import BlogHomeLatestPosts from '../blog/travel/home-posts';
 
 import ListingList from '../components/listings/list/listings-list';
 
-// ----------------------------------------------------------------------
-const heroUrl = [
-  'categoriescover/apartments.jpg',
-  'categoriescover/cars.jpg',
-  'categoriescover/bureauxs.jpg',
-  'categoriescover/activities.jpg',
-  'categoriescover/engins.jpg',
-  'categoriescover/terrains.jpg',
-  'categoriescover/transportations.jpg',
-  'categoriescover/velos.jpg',
-  'categoriescover/villas.jpg',
-  'categoriescover/audios.jpg',
-  'categoriescover/boats.jpg',
-  'categoriescover/boxings.jpg',
-  'categoriescover/cameras.jpg',
-  'categoriescover/camions.jpg',
-  'categoriescover/caravans.jpg',
-  'categoriescover/chargers.jpg',
-  'categoriescover/clothes.jpg',
-  'categoriescover/divings.jpg',
-  'categoriescover/drones.jpg',
-  'categoriescover/eclairages.jpg',
-  'categoriescover/electricaltools.jpg',
-  'categoriescover/footballs.jpg',
-  'categoriescover/furnitures.jpg',
-  'categoriescover/gamings.jpg',
-  'categoriescover/golfs.jpg',
-  'categoriescover/houseappliances.jpg',
-  'categoriescover/huntings.jpg',
-  'categoriescover/jewelrys.jpg',
-  'categoriescover/ladders.jpg',
-  'categoriescover/laptops.jpg',
-  'categoriescover/lightings.jpg',
-  'categoriescover/livres.jpg',
-  'categoriescover/magasins.jpg',
-  'categoriescover/maisons.jpg',
-  'categoriescover/mechanicaltools.jpg',
-  'categoriescover/mobiliers.jpg',
-  'categoriescover/motos.jpg',
-  'categoriescover/musculations.jpg',
-  'categoriescover/musicals.jpg',
-  'categoriescover/photographies.jpg',
-  'categoriescover/powertools.jpg',
-  'categoriescover/pressurewashers.jpg',
-  'categoriescover/printers.jpg',
-  'categoriescover/riads.jpg',
-  'categoriescover/routers.jpg',
-  'categoriescover/scooters.jpg',
-  'categoriescover/sonorisations.jpg',
-  'categoriescover/surfs.jpg',
-  'categoriescover/tablettes.jpg',
-  'categoriescover/taxiaeroports.jpg',
-  'categoriescover/tennis.jpg',
-  'categoriescover/tentes.jpg',
-  'categoriescover/billiards.jpg'
-];
 
-
-const heroUrlicon = [
-  'categoryiconcover/apartments.svg',
-  'categoryiconcover/cars.svg',
-  'categoryiconcover/bureauxs.svg',
-  'categoryiconcover/activities.svg',
-  'categoryiconcover/engins.svg',
-  'categoryiconcover/terrains.svg',
-  'categoryiconcover/transportations.svg',
-  'categoryiconcover/velos.svg',
-  'categoryiconcover/villas.svg',
-  'categoryiconcover/audios.svg',
-  'categoryiconcover/boats.svg',
-  'categoryiconcover/boxings.svg',
-  'categoryiconcover/cameras.svg',
-  'categoryiconcover/camions.svg',
-  'categoryiconcover/caravans.svg',
-  'categoryiconcover/chargers.svg',
-  'categoryiconcover/clothes.svg',
-  'categoryiconcover/divings.svg',
-  'categoryiconcover/drones.svg',
-  'categoryiconcover/eclairages.svg',
-  'categoryiconcover/electricaltools.svg',
-  'categoryiconcover/footballs.svg',
-  'categoryiconcover/furnitures.svg',
-  'categoryiconcover/gamings.svg',
-  'categoryiconcover/golfs.svg',
-  'categoryiconcover/houseappliances.svg',
-  'categoryiconcover/huntings.svg',
-  'categoryiconcover/jewelrys.svg',
-  'categoryiconcover/ladders.svg',
-  'categoryiconcover/laptops.svg',
-  'categoryiconcover/lightings.svg',
-  'categoryiconcover/livres.svg',
-  'categoryiconcover/magasins.svg',
-  'categoryiconcover/maisons.svg',
-  'categoryiconcover/mechanicaltools.svg',
-  'categoryiconcover/mobiliers.svg',
-  'categoryiconcover/motos.svg',
-  'categoryiconcover/musculations.svg',
-  'categoryiconcover/musicals.svg',
-  'categoryiconcover/photographies.svg',
-  'categoryiconcover/powertools.svg',
-  'categoryiconcover/pressurewashers.svg',
-  'categoryiconcover/printers.svg',
-  'categoryiconcover/riads.svg',
-  'categoryiconcover/routers.svg',
-  'categoryiconcover/scooters.svg',
-  'categoryiconcover/sonorisations.svg',
-  'categoryiconcover/surfs.svg',
-  'categoryiconcover/tablettes.svg',
-  'categoryiconcover/taxiaeroports.svg',
-  'categoryiconcover/tennis.svg',
-  'categoryiconcover/tentes.svg',
-  'categoryiconcover/billiards.svg'
-];
 
 
 const categories = [
@@ -203,21 +90,21 @@ const categories = [
 ];
 
 
+
+
+
+const tours = categories.map((category, index) => ({
+  id: index,
+  categories: category,
+}));
+
+
+
+
 const keywordCategoryMap = {
 
 
 };
-
-
-const tours = heroUrl.map((url, index) => ({
-  id: index,
-  heroUrl: url,
-  iconUrl: heroUrlicon[index] || '', // Add icon URL from heroUrlicon
-
-  categories: categories[index] || 'Uncategorized',
-}));
-
-
 
 
 export default function HomeView() {

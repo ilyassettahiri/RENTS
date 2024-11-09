@@ -482,26 +482,12 @@ class CrudService {
     return HttpService.get(collectionsEndpoint);
   };
 
-  deleteCollection = async (id) => {
-    const endpoint = `collections/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createCollection = async (payload) => {
-    const endpoint = "collections";
-    return HttpService.post(endpoint, payload);
-  };
 
   getCollection = async (id) => {
     const collectionsEndpoint = `collections/${id}`;
     return HttpService.get(collectionsEndpoint);
   };
-
-  updateCollection = async (payload, id) => {
-    const collectionsEndpoint = `collections/${id}`;
-    return HttpService.patch(collectionsEndpoint, payload);
-  };
-
 
 
 
@@ -512,125 +498,16 @@ class CrudService {
     return HttpService.get(discountsEndpoint);
   };
 
-  deleteDiscount = async (id) => {
-    const endpoint = `discounts/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  createDiscount = async (payload) => {
-    const endpoint = "discounts";
-    return HttpService.post(endpoint, payload);
-  };
 
   getDiscount = async (id) => {
     const discountsEndpoint = `discounts/${id}`;
     return HttpService.get(discountsEndpoint);
   };
 
-  updateDiscount = async (payload, id) => {
-    const discountsEndpoint = `discounts/${id}`;
-    return HttpService.patch(discountsEndpoint, payload);
-  };
 
 
 
 
-
-
-   // customer requests
-   getCustomers = async () => {
-    const customersEndpoint = "customers";
-    return HttpService.get(customersEndpoint);
-  };
-
-  deleteCustomer = async (id) => {
-    const endpoint = `customers/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  createCustomer = async (payload) => {
-    const endpoint = "customers";
-    return HttpService.post(endpoint, payload);
-  };
-
-  getCustomer = async (id) => {
-    const customersEndpoint = `customers/${id}`;
-    return HttpService.get(customersEndpoint);
-  };
-
-  updateCustomer = async (payload, id) => {
-    const customersEndpoint = `customers/${id}`;
-    return HttpService.patch(customersEndpoint, payload);
-  };
-
-
-
-  // tag requests
-  getTags = async () => {
-    const tagsEndpoint = "tags";
-    return HttpService.get(tagsEndpoint);
-  };
-
-  deleteTag = async (id) => {
-    const endpoint = `tags/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  createTag = async (payload) => {
-    const endpoint = "tags";
-    return HttpService.post(endpoint, payload);
-  };
-
-  getTag = async (id) => {
-    const endpoint = `tags/${id}`;
-    return HttpService.get(endpoint);
-  };
-
-  updateTag = async (payload, id) => {
-    const endpoint = `tags/${id}`;
-    return HttpService.patch(endpoint, payload);
-  };
-
-  // item requests
-  getItems = async () => {
-    const tagsEndpoint = "items";
-    return HttpService.get(tagsEndpoint);
-  };
-
-  deleteItem = async (id) => {
-    const endpoint = `items/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  getCategoryOfItem = async (id) => {
-    const endpoint = `items/${id}/category`;
-    return HttpService.get(endpoint);
-  };
-
-  getTagsOfItem = async (id) => {
-    const endpoint = `items/${id}/tags`;
-    return HttpService.get(endpoint);
-  };
-
-  createItem = async (payload) => {
-    const endpoint = "items";
-    return HttpService.post(endpoint, payload);
-  };
-
-  itemImageUpload = async (formData, id) => {
-    const imageUpdate = `uploads/items/${id}/image`;
-    return HttpService.post(imageUpdate, formData);
-  };
-
-  getItem = async (id) => {
-    const endpoint = `items/${id}?include=category,tags`;
-    return HttpService.get(endpoint);
-  };
-
-  updateItem = async (payload, id) => {
-    const endpoint = `items/${id}`;
-    return HttpService.patch(endpoint, payload);
-  };
 
 
 
@@ -647,28 +524,10 @@ class CrudService {
     return HttpService.get(aboutsEndpoint);
   };
 
-  deleteAbout = async (id) => {
-    const endpoint = `abouts/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  createAbout = async (payload) => {
-    const endpoint = "abouts";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getAbout = async (id) => {
     const aboutsEndpoint = `abouts/edit-about/${id}`;
     return HttpService.get(aboutsEndpoint);
-  };
-
-  updateAbout = async (payload, id) => {
-    const aboutsEndpoint = `abouts/edit-about/${id}`;
-    return HttpService.patch(aboutsEndpoint, payload);
   };
 
 
@@ -722,32 +581,13 @@ class CrudService {
     return HttpService.get(articlesEndpoint);
   };
 
-  deleteArticle = async (id) => {
-    const endpoint = `articles/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createArticle = async (payload) => {
-    const endpoint = "articles";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
 
     getArticle = async (url) => {
       const articleEndpoint = `article/${url}`;
       return HttpService.get(articleEndpoint);
     };
-
-
-
-  updateArticle = async (payload, id) => {
-    const articlesEndpoint = `articles/edit-article/${id}`;
-    return HttpService.patch(articlesEndpoint, payload);
-  };
 
 
 
@@ -762,28 +602,11 @@ class CrudService {
     return HttpService.get(blogsEndpoint);
   };
 
-  deleteBlog = async (id) => {
-    const endpoint = `blogs/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createBlog = async (payload) => {
-    const endpoint = "blogs";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getBlog = async (id) => {
     const blogsEndpoint = `blogs/edit-blog/${id}`;
     return HttpService.get(blogsEndpoint);
-  };
-
-  updateBlog = async (payload, id) => {
-    const blogsEndpoint = `blogs/edit-blog/${id}`;
-    return HttpService.patch(blogsEndpoint, payload);
   };
 
 
@@ -806,28 +629,11 @@ class CrudService {
     return HttpService.get(cancelledsEndpoint);
   };
 
-  deleteCancelled = async (id) => {
-    const endpoint = `cancelleds/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createCancelled = async (payload) => {
-    const endpoint = "cancelleds";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getCancelled = async (id) => {
     const cancelledsEndpoint = `cancelleds/edit-cancelled/${id}`;
     return HttpService.get(cancelledsEndpoint);
-  };
-
-  updateCancelled = async (payload, id) => {
-    const cancelledsEndpoint = `cancelleds/edit-cancelled/${id}`;
-    return HttpService.patch(cancelledsEndpoint, payload);
   };
 
 
@@ -880,28 +686,11 @@ class CrudService {
     return HttpService.get(completedfrontsEndpoint);
   };
 
-  deleteCompletedfront = async (id) => {
-    const endpoint = `completedfronts/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createCompletedfront = async (payload) => {
-    const endpoint = "completedfronts";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getCompletedfront = async (id) => {
     const completedfrontsEndpoint = `completedfronts/edit-completedfront/${id}`;
     return HttpService.get(completedfrontsEndpoint);
-  };
-
-  updateCompletedfront = async (payload, id) => {
-    const completedfrontsEndpoint = `completedfronts/edit-completedfront/${id}`;
-    return HttpService.patch(completedfrontsEndpoint, payload);
   };
 
 
@@ -937,13 +726,6 @@ class CrudService {
     return HttpService.get(contactsEndpoint);
   };
 
-  updateContact = async (payload, id) => {
-    const contactsEndpoint = `contacts/edit-contact/${id}`;
-    return HttpService.patch(contactsEndpoint, payload);
-  };
-
-
-
 
 
 
@@ -956,30 +738,12 @@ class CrudService {
     return HttpService.get(currentlyhostingfrontsEndpoint);
   };
 
-  deleteCurrentlyhostingfront = async (id) => {
-    const endpoint = `currentlyhostingfronts/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createCurrentlyhostingfront = async (payload) => {
-    const endpoint = "currentlyhostingfronts";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getCurrentlyhostingfront = async (id) => {
     const currentlyhostingfrontsEndpoint = `currentlyhostingfronts/edit-currentlyhostingfront/${id}`;
     return HttpService.get(currentlyhostingfrontsEndpoint);
   };
-
-  updateCurrentlyhostingfront = async (payload, id) => {
-    const currentlyhostingfrontsEndpoint = `currentlyhostingfronts/edit-currentlyhostingfront/${id}`;
-    return HttpService.patch(currentlyhostingfrontsEndpoint, payload);
-  };
-
 
 
 
@@ -1031,28 +795,11 @@ class CrudService {
     return HttpService.get(faqsEndpoint);
   };
 
-  deleteFaq = async (id) => {
-    const endpoint = `faqs/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createFaq = async (payload) => {
-    const endpoint = "faqs";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getFaq = async (id) => {
     const faqsEndpoint = `faqs/edit-faq/${id}`;
     return HttpService.get(faqsEndpoint);
-  };
-
-  updateFaq = async (payload, id) => {
-    const faqsEndpoint = `faqs/edit-faq/${id}`;
-    return HttpService.patch(faqsEndpoint, payload);
   };
 
 
@@ -1174,34 +921,12 @@ class CrudService {
 
 
 
-  // Termconditions requests
-  getTermconditions = async () => {
-    const termconditionsEndpoint = "termconditions";
-    return HttpService.get(termconditionsEndpoint);
-  };
 
-  deleteTermcondition = async (id) => {
-    const endpoint = `termconditions/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createTermcondition = async (payload) => {
-    const endpoint = "termconditions";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getTermcondition = async (id) => {
     const termconditionsEndpoint = `termconditions/edit-termcondition/${id}`;
     return HttpService.get(termconditionsEndpoint);
-  };
-
-  updateTermcondition = async (payload, id) => {
-    const termconditionsEndpoint = `termconditions/edit-termcondition/${id}`;
-    return HttpService.patch(termconditionsEndpoint, payload);
   };
 
 
@@ -1256,29 +981,13 @@ class CrudService {
     return HttpService.get(upcomingfrontsEndpoint);
   };
 
-  deleteUpcomingfront = async (id) => {
-    const endpoint = `upcomingfronts/${id}`;
-    return HttpService.delete(endpoint);
-  };
 
-  createUpcomingfront = async (payload) => {
-    const endpoint = "upcomingfronts";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
 
   getUpcomingfront = async (id) => {
     const upcomingfrontsEndpoint = `upcomingfronts/edit-upcomingfront/${id}`;
     return HttpService.get(upcomingfrontsEndpoint);
   };
 
-  updateUpcomingfront = async (payload, id) => {
-    const upcomingfrontsEndpoint = `upcomingfronts/edit-upcomingfront/${id}`;
-    return HttpService.patch(upcomingfrontsEndpoint, payload);
-  };
 
 
 
@@ -1287,39 +996,6 @@ class CrudService {
 
 
 
-
-
-
-
-  // pricings requests
-  getPricings = async () => {
-    const pricingsEndpoint = "pricings";
-    return HttpService.get(pricingsEndpoint);
-  };
-
-  deletePricing = async (id) => {
-    const endpoint = `pricings/${id}`;
-    return HttpService.delete(endpoint);
-  };
-
-  createPricing = async (payload) => {
-    const endpoint = "pricings";
-    return HttpService.post(endpoint, payload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
-  };
-
-  getPricing = async (id) => {
-    const pricingsEndpoint = `pricings/edit-pricing/${id}`;
-    return HttpService.get(pricingsEndpoint);
-  };
-
-  updatePricing = async (payload, id) => {
-    const pricingsEndpoint = `pricings/edit-pricing/${id}`;
-    return HttpService.patch(pricingsEndpoint, payload);
-  };
 
 
 

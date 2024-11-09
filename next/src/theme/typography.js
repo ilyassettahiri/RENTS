@@ -67,16 +67,16 @@ export const typography = {
   h3: {
     fontWeight: 700,
     lineHeight: 1.5,
-    fontSize: pxToRem(24),
+    fontSize: pxToRem(22),
     fontFamily: secondaryFont.style.fontFamily,
-    ...responsiveFontSizes({ sm: 26, md: 30, lg: 32 }),
+    ...responsiveFontSizes({ sm: 22, md: 25, lg: 26 }),
   },
   h4: {
-    fontWeight: 600,
+    fontWeight: 700,
     lineHeight: 1.5,
-    fontSize: pxToRem(20),
+    fontSize: pxToRem(22),
     fontFamily: secondaryFont.style.fontFamily,
-    ...responsiveFontSizes({ sm: 20, md: 24, lg: 24 }),
+    ...responsiveFontSizes({ sm: 22, md: 25, lg: 26 }),
   },
   h5: {
     fontWeight: 600,
