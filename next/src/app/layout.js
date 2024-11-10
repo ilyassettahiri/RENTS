@@ -17,11 +17,13 @@ export const metadata = {
     apple: '/favicon/apple-touch-icon.png',
   },
   manifest: '/manifest.json',
-  themeColor: '#17c1e8',
+
 
 };
 
-
+export const viewport = {
+  themeColor: '#17c1e8',
+};
 
 export default function RootLayout({ children }) {
   return (
