@@ -95,7 +95,7 @@ export default function DashboardChatPage() {
       } else if (userConversation) {
         setParticipants([userConversation.data.attributes]);
       }
-    }, [userConversation, router]);
+    }, [userConversation, router, paths.eCommerce.chat]);
 
     // Update participants and sender after fetching selected conversation
     useEffect(() => {

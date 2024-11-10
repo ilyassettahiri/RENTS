@@ -104,7 +104,7 @@ export function ChatNav({
       handleClickAwaySearch();
       router.push(`${paths.eCommerce.chat}?id=${result.id}`);
     },
-    [handleClickAwaySearch, router]
+    [handleClickAwaySearch, router, paths.eCommerce.chat]
   );
 
   const renderLoading = <ChatNavItemSkeleton />;
