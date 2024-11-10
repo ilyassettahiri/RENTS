@@ -69,7 +69,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
     requireAuth(() => {
       window.location.href = paths.eCommerce.vouchers;
     });
-  }, [requireAuth]);
+  }, [requireAuth, paths.eCommerce.vouchers]);
 
 
 

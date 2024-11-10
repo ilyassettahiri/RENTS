@@ -104,7 +104,7 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
     requireAuth(() => {
       router.push(`${paths.eCommerce.chat}?userID=${seller.id}`);
     });
-  }, [requireAuth, seller.id, router]);
+  }, [requireAuth, seller.id, router, paths.eCommerce.chat]);
 
 
 

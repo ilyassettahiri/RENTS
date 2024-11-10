@@ -113,7 +113,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
     requireAuth(() => {
       router.push(`${paths.eCommerce.chat}?userID=${id}`);
     });
-  }, [requireAuth, id, router]);
+  }, [requireAuth, id, router, paths.eCommerce.chat]);
 
 
 

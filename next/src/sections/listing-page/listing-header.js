@@ -134,7 +134,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
     requireAuth(() => {
       router.push(`${paths.eCommerce.chat}?userID=${sellerId}`);
     });
-  }, [requireAuth, sellerId, router]);
+  }, [requireAuth, sellerId, router, paths.eCommerce.chat]);
 
 
 
