@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
 import TextMaxLine from 'src/components/text-max-line';
@@ -18,9 +18,14 @@ const getFirstParagraph = (content) => {
   return firstParagraph;
 };
 
+
 // ----------------------------------------------------------------------
 
 export default function LandingPostItem({ post }) {
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
+
   return (
     <div>
       <Typography variant="caption" sx={{ color: 'primary.main' }}>

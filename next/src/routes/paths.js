@@ -1,96 +1,64 @@
-// ----------------------------------------------------------------------
-
-export const paths = {
+export const paths = (lang = 'en') => ({
   // Marketing
+  home: `/${lang}`,
 
-  home: '/',
-
-
-
-
-   // Auth
-
-   login: '/auth/login',
-
-
-   register: '/auth/register',
-
-   forgotPassword: '/auth/forgot-password',
-   verify: '/auth/verify',
-
-
-
+  // Auth
+  login: `/${lang}/auth/login`,
+  register: `/${lang}/auth/register`,
+  forgotPassword: `/${lang}/auth/forgot-password`,
+  verify: `/${lang}/auth/verify`,
 
   // Travel
   travel: {
-    root: '/info-page',
-
-    tour: ``, // Base path for the dynamic route
-
-    checkout: '/checkout',
-    orderCompleted: '/thank-you',
-    posts: '/blog',
-    post: `/post`,
-    about: '/about',
-
-    privacy: '/privacy-policy',
-
-    termcondition: '/terms-of-service',
-
-
-    contact: '/contact-us',
+    root: `/${lang}/info-page`,
+    tour: `/${lang}/`, // Base path for the dynamic route
+    checkout: `/${lang}/checkout`,
+    orderCompleted: `/${lang}/thank-you`,
+    posts: `/${lang}/blog`,
+    post: `/${lang}/post`,
+    about: `/${lang}/about`,
+    privacy: `/${lang}/privacy-policy`,
+    termcondition: `/${lang}/terms-of-service`,
+    contact: `/${lang}/contact-us`,
   },
+
   // Career
   career: {
-    root: '/services',
-    jobs: '/services',
-    job: `/service`,
-
+    root: `/${lang}/services`,
+    jobs: `/${lang}/services`,
+    job: `/${lang}/service`,
   },
 
-
   job: {
-    root: '/jobs',
-    jobbs: '/jobs',
-    jobb: `/job`,
-
+    root: `/${lang}/jobs`,
+    jobbs: `/${lang}/jobs`,
+    jobb: `/${lang}/job`,
   },
 
   // E-learning
   eLearning: {
-    root: '/business',
-    courses: '/stores',
-
-
+    root: `/${lang}/business`,
+    courses: `/${lang}/stores`,
   },
-  // dashboard
+
+  // Dashboard
   eCommerce: {
-    root: '/dashboard',
-    stores: '/store',
-
-
-    personal: `/dashboard/personal`,
-    wishlist: `/dashboard/wishlist`,
-    vouchers: `/dashboard/chat`,
-    chat: `/dashboard/chat`,
-    orders: `/dashboard/orders`,
-    payment: `/dashboard/payment`,
-
-    reservation: `/dashboard/reservation-detail`,
-
+    root: `/${lang}/dashboard`,
+    stores: `/${lang}/store`,
+    personal: `/${lang}/dashboard/personal`,
+    wishlist: `/${lang}/dashboard/wishlist`,
+    vouchers: `/${lang}/dashboard/vouchers`,
+    chat: `/${lang}/dashboard/chat`,
+    orders: `/${lang}/dashboard/orders`,
+    payment: `/${lang}/dashboard/payment`,
+    reservation: `/${lang}/dashboard/reservation-detail`,
   },
 
   // Common
-  maintenance: '/maintenance',
-  comingsoon: '/coming-soon',
-
-  support: '/faqs',
-  page404: '/error/404',
-  page500: '/error/500',
-
-
-  pages: '/pages',
-
-
-  createlisting: 'https://accounts.rents.ma',
-};
+  maintenance: `/${lang}/maintenance`,
+  comingsoon: `/${lang}/coming-soon`,
+  support: `/${lang}/faqs`,
+  page404: `/${lang}/error/404`,
+  page500: `/${lang}/error/500`,
+  pages: `/${lang}/pages`,
+});

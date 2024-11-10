@@ -14,7 +14,7 @@ import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import CardActionArea from '@mui/material/CardActionArea';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { useRouter } from 'src/routes/hooks';
 
@@ -61,7 +61,8 @@ const StyledButton = styled((props) => (
 
 export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle }) {
   const { t } = useTranslation();
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { attributes } = StoreData;
   const { name,seller,id, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;

@@ -4,7 +4,7 @@
 import { useCallback} from 'react';
 import { useTranslation } from 'react-i18next';
 
-
+import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -18,7 +18,7 @@ import Badge from '@mui/material/Badge';
 import IconButton from '@mui/material/IconButton';
 import { RouterLink } from 'src/routes/components';
 import Iconify from 'src/components/iconify';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import { AnimateBorder } from 'src/components/animate/animate-border';
 
@@ -49,6 +49,11 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const { t } = useTranslation();
 
 
+  const { locale } = useRouter();
+  const paths = getPaths(locale);
+
+  const navigationData = navConfig('en');
+
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
@@ -72,7 +77,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const renderContent = (
     <>
 
-      {!mdUp && <NavMobile data={navConfig} />}
+      {!mdUp && <NavMobile data={navigationData} />}
 
       <Box sx={{ lineHeight: 0, position: 'relative' }}>
         {/* Directly use the SVG here */}
@@ -119,7 +124,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
           display: { xs: 'none', md: 'flex' },
         }}
       >
-        <NavDesktop data={navConfig} />
+        <NavDesktop data={navigationData} />
       </Stack>
       <Box sx={{ flexGrow: { xs: 1, md: 'unset' } }} />
       <Stack spacing={2} direction="row" alignItems="center" justifyContent="flex-end">
@@ -154,7 +159,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
                     variant="text"
                     rel="noopener"
                     target="_blank"
-                    href={paths.createlisting}
+                    href="https://accounts.rents.ma"
                     sx={{ px: 2 }}
                   >
                     {t('createListing')}

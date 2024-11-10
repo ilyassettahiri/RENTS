@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter, useSearchParams } from 'src/routes/hooks';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { EmptyContent } from 'src/components/empty-content';
@@ -24,6 +24,10 @@ import { ChatHeaderDetail } from 'src/sections/chat/chat-header-detail';
 // ----------------------------------------------------------------------
 
 export default function DashboardChatPage() {
+
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const router = useRouter();
   const searchParams = useSearchParams();

@@ -16,7 +16,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -39,7 +39,8 @@ export default function CheckoutView({ params }) {
 
   const { category, url } = params;
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const sameBilling = useBoolean();
 
   const [departureDay, setDepartureDay] = useState([null, null]);

@@ -23,7 +23,7 @@ import Link from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import CardActionArea from '@mui/material/CardActionArea';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fCurrency } from 'src/utils/format-number';
 import Image from 'src/components/image';
@@ -52,7 +52,8 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const { attributes } = tour;
   const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const { i18n } = useTranslation();
 
 
@@ -210,7 +211,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
 
                   <Link
                     component={RouterLink}
-                    href={`${paths.travel.tour}/en/${city}/${category}/${type}/${url}`}
+                    href={`${paths.travel.tour}/${city}/${category}/${type}/${url}`}
                     color="inherit"
                   >
                     <TextMaxLine variant="h6" line={1}>
@@ -446,6 +447,9 @@ function CarouselBasic1({ data, category,title, url, city, type }) {
     autoplay: false,
   });
 
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
+
   return (
     <>
       <Carousel ref={carousel.carouselRef} {...carousel.carouselSettings}>
@@ -455,7 +459,7 @@ function CarouselBasic1({ data, category,title, url, city, type }) {
 
             <Link
               key={index}
-              href={`${paths.travel.tour}/en/${city}/${category}/${type}/${url}`}
+              href={`${paths.travel.tour}/${city}/${category}/${type}/${url}`}
               component={RouterLink}
             >
 

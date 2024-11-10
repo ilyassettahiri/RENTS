@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
@@ -20,10 +20,13 @@ export default function StoreItemBestSellers({ product, ...other }) {
 
   const type = `${product.category}-for-rent`;
 
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
+
   return (
     <Link
       component={RouterLink}
-      href={`${paths.travel.tour}/en/${product.city}/${product.category}/${type}/${product.url} `}
+      href={`${paths.travel.tour}/${product.city}/${product.category}/${type}/${product.url} `}
       color="inherit"
       underline="none"
     >

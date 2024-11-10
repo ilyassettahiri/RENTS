@@ -8,6 +8,7 @@ import { alpha } from '@mui/material/styles';
 import Link from '@mui/material/Link';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
 
 import Divider from '@mui/material/Divider';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -25,19 +26,13 @@ import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
 import AuthService from 'src/services/auth-service';
 import CrudService from 'src/services/cruds-service';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter, useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 import { AuthContext, AuthContextProvider } from 'src/context/AuthContextProvider';
 import Nav from 'src/layouts/account/nav';
 
-const navigations = [
-  { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
-  { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
-  { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
-  { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
-  { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
-];
+
 
 export default function AccountLayout({ children }) {
   const mdUp = useResponsive('up', 'md');
@@ -48,10 +43,20 @@ export default function AccountLayout({ children }) {
 
   const router = useRouter();
 
+  const { locale } = useRouter();
+  const paths = getPaths(locale);
+
   const { getCurrentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();
   const [isImageSelected, setIsImageSelected] = useState(false);
 
+  const navigations = [
+    { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
+    { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
+    { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
+    { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
+    { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
+  ];
 
   const [imageUrl, setImageUrl] = useState(null);
   const [fileState, setFileState] = useState(null);

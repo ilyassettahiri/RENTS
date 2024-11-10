@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-
+import { useRouter } from 'next/navigation';
 
 import {
   Carousel,
@@ -18,7 +18,7 @@ import {
 } from 'src/components/carousell';
 
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import ListingItem from 'src/sections/components/listings/list/listing-item';
@@ -36,7 +36,8 @@ export default function ListingsCarousel({ tours, title }) {
 
   const mdUp = useResponsive('up', 'md');
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const carousel = useCarousel({
     containScroll: true,
 

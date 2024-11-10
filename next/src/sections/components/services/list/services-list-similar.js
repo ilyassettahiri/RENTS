@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -19,6 +19,10 @@ import ServiceItem from './services-item';
 
 export default function CareerJobListSimilar({ jobs }) {
   const mdUp = useResponsive('up', 'md');
+
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const viewAllBtn = (
     <Button

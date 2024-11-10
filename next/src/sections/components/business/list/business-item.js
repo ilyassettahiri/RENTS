@@ -23,7 +23,7 @@ import Markdown from 'src/components/markdown';
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fCurrency, fShortenNumber } from 'src/utils/format-number';
@@ -59,7 +59,8 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
 
   const { t } = useTranslation();
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const { attributes } = business;
   const { name,description,profile,id,totalReviews,averageRating, city,phone,picture, created_at, category, url, } = attributes;
 

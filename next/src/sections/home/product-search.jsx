@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
 import Iconify from 'src/components/iconify';
@@ -18,6 +18,9 @@ import Iconify from 'src/components/iconify';
 
 export function ProductSearch({ query, results, onSearch, loading }) {
   const router = useRouter();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const handleClick = (id) => {
     router.push(paths.product.details(id));

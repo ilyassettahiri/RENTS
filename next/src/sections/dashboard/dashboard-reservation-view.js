@@ -4,9 +4,9 @@ import { useState, useEffect, useCallback,useMemo   } from 'react';
 import CrudService from "src/services/cruds-service";
 import { useQuery } from '@tanstack/react-query';
 import PropTypes from 'prop-types';
-
+import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 
 import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -27,6 +27,8 @@ export default function DashboardReservationPage({ params }) {
 
   const { id } = params;
 
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { data: orderData, isLoading: isOrderLoading, error: orderError } = useQuery({
     queryKey: ['order', id], // Including id in queryKey for caching

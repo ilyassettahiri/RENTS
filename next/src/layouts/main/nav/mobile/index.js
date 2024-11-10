@@ -10,8 +10,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -116,7 +116,7 @@ export default function NavMobile({ data }) {
                 variant="contained"
                 rel="noopener"
                 target="_blank"
-                href={paths.createlisting}
+                href="https://accounts.rents.ma"
               >
                 {t('createListing')}
               </Button>

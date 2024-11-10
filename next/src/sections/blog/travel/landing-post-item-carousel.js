@@ -4,8 +4,8 @@ import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image';
@@ -25,6 +25,9 @@ const getFirstParagraph = (content) => {
 
 export default function LandingPostItemCarousel({ post }) {
   const theme = useTheme();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   return (
     <Stack sx={{ position: 'relative' }}>

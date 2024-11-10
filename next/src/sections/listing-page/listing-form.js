@@ -12,8 +12,9 @@ import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/navigation';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { fCurrency } from 'src/utils/format-number';
 import FilterTime from 'src/sections/components/listings/filters/filter-time';
 import FilterGuests from 'src/sections/components/listings/filters/filter-guests';
@@ -22,6 +23,9 @@ export default function ListingForm({ tour }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const { t } = useTranslation();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { attributes } = tour;
   const { price, category, url, startdate, enddate, reservations } = attributes;

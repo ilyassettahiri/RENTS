@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'src/routes/hooks';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { formatISO } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 
@@ -23,6 +23,9 @@ export function ChatMessageInput({
   const fileRef = useRef(null);
   const [message, setMessage] = useState('');
   const { t } = useTranslation();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const messageData = useMemo(
     () => ({

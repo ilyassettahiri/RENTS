@@ -10,8 +10,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -50,6 +50,9 @@ export default function ElearningCourseDetailsHero({ course }) {
   const mdUp = useResponsive('up', 'md');
 
   const videoOpen = useBoolean();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   return (
     <>

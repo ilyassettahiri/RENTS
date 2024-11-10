@@ -4,8 +4,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -21,7 +21,8 @@ import LandingPostItemCarousel from './landing-post-item-carousel';
 export default function HomePosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const carousel = useCarousel({
     slidesToShow: 1,
     slidesToScroll: 1,

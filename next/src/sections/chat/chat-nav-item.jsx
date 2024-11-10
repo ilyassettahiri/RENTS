@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import PropTypes from 'prop-types'; // Import PropTypes
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 
 import { useRouter } from 'src/routes/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -21,6 +21,9 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
 
   const router = useRouter();
   const mdUp = useResponsive('up', 'md');
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { receiver, sender, unreadCount } = conversation;
 

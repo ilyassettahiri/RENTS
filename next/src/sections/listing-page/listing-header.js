@@ -20,7 +20,7 @@ import CrudService from 'src/services/cruds-service';
 
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { useRouter } from 'src/routes/hooks';
 
@@ -67,7 +67,8 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   const { title, city,phone, created_at, average_rating, total_reviews,category,url, id } = attributes;
   const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const { i18n } = useTranslation();
 
 

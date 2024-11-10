@@ -7,7 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/ar';
-
+import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -18,7 +18,7 @@ import Checkbox from '@mui/material/Checkbox';
 import CrudService from 'src/services/cruds-service';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
 import Image from 'src/components/image';
@@ -37,7 +37,8 @@ dayjs.extend(relativeTime);
 
 export default function StoreViewGridItem({ product, sx, favorites = [], onFavoriteToggle, ...other }) {
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { i18n } = useTranslation();
 
@@ -77,7 +78,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
     if (category === 'jobs') {
       return `${paths.job.root}/${city}/${type}/${url}`;
     }
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`;
+    return `${paths.travel.tour}/${city}/${category}/${type}/${url}`;
   };
 
 
@@ -224,6 +225,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     autoplay: false,
   });
 
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const getHref = () => {
     if (category === 'services') {
@@ -232,7 +235,7 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     if (category === 'jobs') {
       return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
     }
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+    return `${paths.travel.tour}/${city}/${category}/${type}/${url}`; // Default URL for other categories
   };
 
   return (

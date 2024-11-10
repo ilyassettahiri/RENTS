@@ -17,7 +17,7 @@ import { alpha } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useBoolean } from 'src/hooks/use-boolean';
 import Iconify from 'src/components/iconify';
 import Review from 'src/sections/review/review';
@@ -52,7 +52,8 @@ export default function ListingView({ params }) {
   const mdUp = useResponsive('up', 'md');
 
   const [favorites, setFavorites] = useState([]);
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
 
 

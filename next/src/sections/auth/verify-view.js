@@ -3,13 +3,13 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
+import { useRouter } from 'next/navigation';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import Image from 'src/components/image';
@@ -22,6 +22,9 @@ export default function VerifyView() {
   const VerifySchema = Yup.object().shape({
     code: Yup.string().min(6, 'Code must be at least 6 characters').required('Code is required'),
   });
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const defaultValues = {
     code: '',

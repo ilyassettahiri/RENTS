@@ -4,9 +4,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Markdown from 'src/components/markdown';
-
+import { useRouter } from 'next/navigation';
 import { alpha, useTheme } from '@mui/material/styles';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image';
@@ -16,6 +16,9 @@ import PostTimeBlock from '../common/post-time-block';
 export default function FeaturedPostItem({ post, largePost }) {
   const theme = useTheme();
   const { attributes } = post;
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import Box from '@mui/material/Box';
-
+import { useRouter } from 'next/navigation';
 import Link from '@mui/material/Link';
 import Masonry from '@mui/lab/Masonry';
 import Stack from '@mui/material/Stack';
@@ -18,7 +18,7 @@ import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 import Button, { buttonClasses } from '@mui/material/Button';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 
 
 import { usePathname } from 'src/routes/hooks';
@@ -53,13 +53,15 @@ export default function Footer() {
   const { handleCategoryClick } = useContext(AuthContext);
   const { t } = useTranslation();
 
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
+
   const pathname = usePathname();
 
-  const mobileList = navConfig.find((i) => i.title === 'Pages')?.children || [];
 
   const desktopList = pageLinks.sort((listA, listB) => Number(listA.order) - Number(listB.order));
 
-  const renderLists = mdUp ? desktopList : mobileList;
+  const renderLists = desktopList ;
 
 
 
@@ -183,11 +185,8 @@ export default function Footer() {
                 ))}
               </Masonry>
             ) : (
-              <Stack spacing={1.5}>
-                {renderLists.map((list) => (
-                  <ListMobile key={list.subheader} list={list} />
-                ))}
-              </Stack>
+              <Stack spacing={1.5}/>
+
             )}
           </Grid>
         </Grid>

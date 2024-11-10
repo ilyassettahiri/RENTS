@@ -4,8 +4,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
@@ -13,6 +13,10 @@ import { fDate } from 'src/utils/format-time';
 // ----------------------------------------------------------------------
 
 export default function CareerJobDetailsCompanySimilar({ jobs }) {
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
+
   return (
     <Paper
       variant="outlined"

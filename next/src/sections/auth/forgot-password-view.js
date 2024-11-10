@@ -8,8 +8,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
-
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
 import Image from 'src/components/image';
@@ -22,6 +22,9 @@ export default function ForgotPasswordView() {
   const ForgotPasswordSchema = Yup.object().shape({
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
   });
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const defaultValues = {
     email: '',

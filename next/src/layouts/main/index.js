@@ -4,7 +4,8 @@
 
 import { useContext } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
-import { paths } from 'src/routes/paths';
+import { useRouter } from 'next/navigation';
+import { paths as getPaths } from 'src/routes/paths';
 
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -23,6 +24,9 @@ const queryClient = new QueryClient();
 export default function MainLayout({ children, headerOnDark = false, disabledSpacing = false, sx, ...other }) {
   const navOpen = useBoolean();
   const { isAuthenticated } = useContext(AuthContext);
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const handleOpenNav = () => {
     if (isAuthenticated) {

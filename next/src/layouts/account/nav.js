@@ -5,13 +5,12 @@ import Drawer from '@mui/material/Drawer';
 import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import { useTranslation } from 'react-i18next';
-
 import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemButton from '@mui/material/ListItemButton';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter, useActiveLink } from 'src/routes/hooks';
 import { RouterLink } from 'src/routes/components';
 import Typography from '@mui/material/Typography';
@@ -30,19 +29,23 @@ import BaseOptions from 'src/components/settings/drawer/base-options'; // Import
 
 
 
-const navigations = [
-  { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
-  { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
-  { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
-  { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
-  { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
-];
 
 export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
   const router = useRouter();
+  const { locale } = useRouter();
+  const paths = getPaths(locale);
   const settings = useSettingsContext(); // Use settings context
   const { t } = useTranslation();
+
+  const navigations = [
+    { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
+    { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
+    { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
+    { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
+    { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
+  ];
+
 
   const { getCurrentUser } = useContext(AuthContext);
   const [user, setUser] = useState({});

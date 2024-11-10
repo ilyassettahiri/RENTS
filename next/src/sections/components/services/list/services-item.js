@@ -22,7 +22,7 @@ import CrudService from 'src/services/cruds-service';
 import { useRouter } from 'src/routes/hooks';
 
 import Typography from '@mui/material/Typography';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import { fDate,capitalizeFirstLetter } from 'src/utils/format-time';
 import { fCurrency } from 'src/utils/format-number';
@@ -52,6 +52,9 @@ const StyledButton = styled((props) => (
 
 export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const { attributes } = job;
 
@@ -519,7 +522,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     autoplay: false,
   });
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const getHref = () => {
     if (category === 'services') {

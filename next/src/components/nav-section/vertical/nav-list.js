@@ -13,16 +13,10 @@ import NavItem from './nav-item';
 export default function NavList({ data, depth, slotProps, onItemClick }) {
   const pathname = usePathname();
 
-  const active = useActiveLink(data.path, !!data.children);
 
-  const [openMenu, setOpenMenu] = useState(active);
+  const [openMenu, setOpenMenu] = useState();
 
-  useEffect(() => {
-    if (!active) {
-      handleCloseMenu();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+
 
   const handleToggleMenu = useCallback(() => {
     if (data.children) {
@@ -43,7 +37,7 @@ export default function NavList({ data, depth, slotProps, onItemClick }) {
         title={data.title}
         value={data.value}
 
-        path={data.path}
+
         icon={data.icon}
         info={data.info}
         roles={data.roles}
@@ -52,16 +46,10 @@ export default function NavList({ data, depth, slotProps, onItemClick }) {
         //
         depth={depth}
         hasChild={!!data.children}
-        externalLink={data.path.includes('http')}
         currentRole={slotProps?.currentRole}
 
-        //
-        active={active}
-        className={active ? 'active' : ''}
-        sx={{
-          mb: `${slotProps?.gap}px`,
-          ...(depth === 1 ? slotProps?.rootItem : slotProps?.subItem),
-        }}
+
+
 
         onItemClick={onItemClick}  // Pass down to NavItem
 

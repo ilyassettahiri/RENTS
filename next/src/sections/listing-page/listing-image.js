@@ -5,10 +5,10 @@ import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import CrudService from 'src/services/cruds-service';
 import { useQuery } from '@tanstack/react-query';
-
+import { useRouter } from 'next/navigation';
 import Image from 'src/components/image';
 import { varTranHover } from 'src/components/animate';
 import Lightbox, { useLightbox } from 'src/components/lightbox';
@@ -70,7 +70,8 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
 
 export default function ListingImage({ images, params }) {
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const [slides, setSlides] = useState(
     images.map((slide) => ({

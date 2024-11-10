@@ -97,9 +97,9 @@ export default function NavList({ data }) {
                       <NavSubList
                         key={list.subheader}
                         subheader={list.subheader}
-                        cover={list.cover}
+
                         items={list.items}
-                        isNew={list.isNew}
+
                         menuOpen={menuOpen}  // Pass menuOpen here
 
                       />
@@ -126,9 +126,7 @@ function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
   const { handleCategoryClick } = useContext(AuthContext);
   const { t } = useTranslation();
 
-  const coverPath = items.length ? items[0].path : '';
 
-  const commonList = subheader === 'Common';
 
   const handleClick = (title) => {
     handleCategoryClick(title);
@@ -147,23 +145,16 @@ function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
       >
         {t(subheader)}
 
-        {isNew && (
-          <Label color="info" sx={{ ml: 1 }}>
-            NEW
-          </Label>
-        )}
+
       </ListSubheader>
 
-      {!commonList && (
-        <Link component={RouterLink} href={coverPath} />
-      )}
+
 
       <Stack spacing={1.5} alignItems="flex-start">
         {items.map((item) => {
-          const active = pathname === item.path || pathname === `${item.path}/`;
 
           return (
-            <NavItem key={item.title} title={item.title} path={item.path} active={active} subItem disableLink
+            <NavItem key={item.title} title={item.title}  subItem disableLink
             onClick={() => handleClick(item.value)} // Handle click to close the tab
 
             />

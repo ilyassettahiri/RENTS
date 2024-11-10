@@ -8,7 +8,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/ar';
-
+import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
@@ -17,7 +17,7 @@ import Box from '@mui/material/Box';
 import Checkbox from '@mui/material/Checkbox';
 import { capitalizeFirstLetter } from 'src/utils/format-time';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Image from 'src/components/image';
 import useAuthDialog from 'src/hooks/use-authdialog';
@@ -41,7 +41,8 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
 
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
   const { i18n } = useTranslation();
 
 
@@ -78,7 +79,7 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
     if (category === 'jobs') {
       return `${paths.job.root}/${city}/${type}/${url}`;
     }
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`;
+    return `${paths.travel.tour}/${city}/${category}/${type}/${url}`;
   };
 
 
@@ -239,7 +240,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
 
 
 
-
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const getHref = () => {
     if (category === 'services') {
@@ -248,7 +250,7 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     if (category === 'jobs') {
       return `${paths.job.root}/${city}/${type}/${url}`; // Correct URL for jobs category
     }
-    return `${paths.travel.tour}/en/${city}/${category}/${type}/${url}`; // Default URL for other categories
+    return `${paths.travel.tour}/${city}/${category}/${type}/${url}`; // Default URL for other categories
   };
 
 

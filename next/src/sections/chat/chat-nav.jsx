@@ -10,7 +10,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import { useTranslation } from 'react-i18next';
 
-import { paths } from 'src/routes/paths';
+import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -44,6 +44,9 @@ export function ChatNav({
   const router = useRouter();
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
+
+  const { locale } = useRouter(); // Get the current language
+  const paths = getPaths(locale);
 
   const {
     openMobile,
