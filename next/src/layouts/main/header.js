@@ -61,7 +61,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
     requireAuth(() => {
       window.location.href = paths.eCommerce.wishlist;
     });
-  }, [requireAuth]);
+  }, [requireAuth, paths.eCommerce.wishlist]);
 
 
 

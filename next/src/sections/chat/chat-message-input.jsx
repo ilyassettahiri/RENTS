@@ -90,7 +90,7 @@ export function ChatMessageInput({
         }
       }
     },
-    [conversationData, message, messageData, onMessageSent, recipients, router, selectedConversationId]
+    [conversationData, message, messageData, onMessageSent, recipients, router, selectedConversationId, paths.eCommerce.chat]
   );
 
   return (

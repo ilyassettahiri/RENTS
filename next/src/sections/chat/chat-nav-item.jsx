@@ -48,7 +48,7 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
     } catch (error) {
       console.error('Failed to fetch conversation:', error);
     }
-  }, [conversation.id, mdUp, onCloseMobile, router, onConversationClick]);
+  }, [conversation.id, mdUp, onCloseMobile, router, onConversationClick, paths.eCommerce.chat]);
 
   const renderSingle = (
     <Badge key={status} variant={status} anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}>

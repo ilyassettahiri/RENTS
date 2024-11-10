@@ -151,15 +151,16 @@ function NavSubList({ subheader, isNew, cover, items, menuOpen }) {
 
 
       <Stack spacing={1.5} alignItems="flex-start">
-        {items.map((item) => {
-
-          return (
-            <NavItem key={item.title} title={item.title}  subItem disableLink
+        {items.map((item) => (
+          <NavItem
+            key={item.title}
+            title={item.title}
+            subItem
+            disableLink
             onClick={() => handleClick(item.value)} // Handle click to close the tab
+          />
+        ))}
 
-            />
-          );
-        })}
       </Stack>
     </Stack>
   );

@@ -78,7 +78,7 @@ export function ChatNav({
       onCloseMobile();
     }
     router.push(paths.eCommerce.chat);
-  }, [mdUp, onCloseMobile, router]);
+  }, [mdUp, onCloseMobile, router, paths.eCommerce.chat]);
 
   const handleSearchContacts = useCallback(
     (inputValue) => {
