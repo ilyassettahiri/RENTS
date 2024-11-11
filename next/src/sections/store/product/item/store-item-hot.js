@@ -3,7 +3,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 import Image from 'src/components/image';
@@ -16,8 +17,8 @@ export default function StoreItemHot({ product, hotProduct = false, sx }) {
   const attributes = product.attributes || {};
   const { title, price, picture } = attributes;
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <Link component={RouterLink} href={paths.eCommerce.product} color="inherit" underline="none">

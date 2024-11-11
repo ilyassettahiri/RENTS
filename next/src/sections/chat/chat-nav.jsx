@@ -45,8 +45,8 @@ export function ChatNav({
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const {
     openMobile,

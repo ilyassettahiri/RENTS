@@ -52,9 +52,9 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
   const { attributes } = tour;
   const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
   const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
+
 
 
   dayjs.locale(i18n.language);
@@ -447,8 +447,8 @@ function CarouselBasic1({ data, category,title, url, city, type }) {
     autoplay: false,
   });
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <>

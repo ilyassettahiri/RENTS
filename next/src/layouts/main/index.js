@@ -4,8 +4,10 @@
 
 import { useContext } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
-import { useRouter } from 'next/navigation';
+
 import { paths as getPaths } from 'src/routes/paths';
+import { useTranslation } from 'react-i18next';
+
 
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -25,8 +27,8 @@ export default function MainLayout({ children, headerOnDark = false, disabledSpa
   const navOpen = useBoolean();
   const { isAuthenticated } = useContext(AuthContext);
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const handleOpenNav = () => {
     if (isAuthenticated) {

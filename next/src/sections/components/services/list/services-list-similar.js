@@ -5,7 +5,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
@@ -21,8 +22,8 @@ export default function CareerJobListSimilar({ jobs }) {
   const mdUp = useResponsive('up', 'md');
 
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const viewAllBtn = (
     <Button

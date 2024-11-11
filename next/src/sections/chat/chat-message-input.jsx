@@ -24,8 +24,8 @@ export function ChatMessageInput({
   const [message, setMessage] = useState('');
   const { t } = useTranslation();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const messageData = useMemo(
     () => ({

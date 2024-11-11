@@ -4,9 +4,10 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Markdown from 'src/components/markdown';
-import { useRouter } from 'next/navigation';
 import { alpha, useTheme } from '@mui/material/styles';
 import { paths as getPaths } from 'src/routes/paths';
+import { useTranslation } from 'react-i18next';
+
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image';
@@ -17,8 +18,8 @@ export default function FeaturedPostItem({ post, largePost }) {
   const theme = useTheme();
   const { attributes } = post;
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>

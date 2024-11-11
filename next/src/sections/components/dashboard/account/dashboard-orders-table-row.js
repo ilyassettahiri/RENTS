@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
+import { useTranslation } from 'react-i18next';
 
 import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
@@ -25,8 +26,8 @@ export default function EcommerceAccountOrdersTableRow({ row, onSelectRow, selec
   const [open, setOpen] = useState(null);
 
   const router = useRouter();
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const handleOpen = useCallback((event) => {
     setOpen(event.currentTarget);

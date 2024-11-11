@@ -22,6 +22,7 @@ import Markdown from 'src/components/markdown';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
+import { useTranslation } from 'react-i18next';
 
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -59,8 +60,8 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
 
   const { t } = useTranslation();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
   const { attributes } = business;
   const { name,description,profile,id,totalReviews,averageRating, city,phone,picture, created_at, category, url, } = attributes;
 

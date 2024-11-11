@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 import { useTheme } from '@mui/material/styles';
 import { useResponsive } from 'src/hooks/use-responsive';
 
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 
 import {
   Carousel,
@@ -36,8 +37,8 @@ export default function ListingsCarousel({ tours, title }) {
 
   const mdUp = useResponsive('up', 'md');
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
   const carousel = useCarousel({
     containScroll: true,
 

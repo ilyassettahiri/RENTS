@@ -7,7 +7,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/ar';
-import { useRouter } from 'next/navigation';
+
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -37,10 +37,8 @@ dayjs.extend(relativeTime);
 
 export default function StoreViewGridItem({ product, sx, favorites = [], onFavoriteToggle, ...other }) {
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
-
   const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
 
   dayjs.locale(i18n.language);
@@ -225,8 +223,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     autoplay: false,
   });
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const getHref = () => {
     if (category === 'services') {

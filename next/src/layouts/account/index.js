@@ -42,8 +42,8 @@ export default function AccountLayout({ children }) {
 
   const router = useRouter();
 
-  const { locale } = useRouter();
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const { getCurrentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();

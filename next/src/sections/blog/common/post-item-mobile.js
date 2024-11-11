@@ -3,16 +3,17 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import { fDate } from 'src/utils/format-time';
 import Image from 'src/components/image';
-import { useRouter } from 'next/navigation';
 import TextMaxLine from 'src/components/text-max-line';
 import { RouterLink } from 'src/routes/components';
+import { useTranslation } from 'react-i18next';
+
 import { paths as getPaths } from 'src/routes/paths';
 import PostTimeBlock from './post-time-block';
 
 export default function PostItemMobile({ post, onSiderbar }) {
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const { attributes } = post;
   return (

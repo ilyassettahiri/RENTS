@@ -12,7 +12,7 @@ import Divider from '@mui/material/Divider';
 import { alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/navigation';
+
 
 import { paths as getPaths } from 'src/routes/paths';
 import { fCurrency } from 'src/utils/format-number';
@@ -24,8 +24,8 @@ export default function ListingForm({ tour }) {
   const [endDate, setEndDate] = useState(null);
   const { t } = useTranslation();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const { attributes } = tour;
   const { price, category, url, startdate, enddate, reservations } = attributes;

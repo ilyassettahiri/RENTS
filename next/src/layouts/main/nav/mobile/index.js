@@ -10,7 +10,6 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import { useRouter } from 'next/navigation';
 import { paths as getPaths } from 'src/routes/paths';
 import { usePathname } from 'src/routes/hooks';
 

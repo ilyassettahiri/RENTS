@@ -8,7 +8,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import 'dayjs/locale/en';
 import 'dayjs/locale/fr';
 import 'dayjs/locale/ar';
-import { useRouter } from 'next/navigation';
+
 import PropTypes from 'prop-types';
 import Fab from '@mui/material/Fab';
 import Link from '@mui/material/Link';
@@ -41,9 +41,8 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
 
 
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
   const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
 
   dayjs.locale(i18n.language);
@@ -240,8 +239,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
 
 
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const getHref = () => {
     if (category === 'services') {

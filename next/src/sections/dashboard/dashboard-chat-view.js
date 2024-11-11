@@ -26,8 +26,8 @@ import { ChatHeaderDetail } from 'src/sections/chat/chat-header-detail';
 export default function DashboardChatPage() {
 
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const router = useRouter();
   const searchParams = useSearchParams();

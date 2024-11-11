@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
+import { useTranslation } from 'react-i18next';
 
 import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
@@ -19,8 +20,8 @@ import Iconify from 'src/components/iconify';
 export function ProductSearch({ query, results, onSearch, loading }) {
   const router = useRouter();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const handleClick = (id) => {
     router.push(paths.product.details(id));

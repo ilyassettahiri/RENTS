@@ -5,6 +5,7 @@ import Script from 'next/script';
 
 import ClientLayout from './client-layout';
 import ClientAnalytics from './client-analytics';
+import { cookies } from 'next/headers';
 
 
 export const metadata = {
@@ -22,12 +23,18 @@ export const metadata = {
 };
 
 export const viewport = {
+
+  width: 'device-width',
+  initialScale: 1,
   themeColor: '#17c1e8',
 };
 
 export default function RootLayout({ children }) {
+
+  const lang = cookies().get('i18nextLng')?.value || 'en';
+
   return (
-    <html lang="en">
+    <html lang={lang}>
 
       <body>
 
@@ -50,7 +57,7 @@ export default function RootLayout({ children }) {
 
         <ClientAnalytics />
 
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout lang={lang} >{children}</ClientLayout>
       </body>
     </html>
   );

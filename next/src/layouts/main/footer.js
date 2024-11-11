@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import Box from '@mui/material/Box';
-import { useRouter } from 'next/navigation';
+
 import Link from '@mui/material/Link';
 import Masonry from '@mui/lab/Masonry';
 import Stack from '@mui/material/Stack';
@@ -53,8 +53,8 @@ export default function Footer() {
   const { handleCategoryClick } = useContext(AuthContext);
   const { t } = useTranslation();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const pathname = usePathname();
 

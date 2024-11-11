@@ -15,6 +15,7 @@ import Divider from '@mui/material/Divider';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
@@ -39,8 +40,8 @@ export default function CheckoutView({ params }) {
 
   const { category, url } = params;
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
   const sameBilling = useBoolean();
 
   const [departureDay, setDepartureDay] = useState([null, null]);

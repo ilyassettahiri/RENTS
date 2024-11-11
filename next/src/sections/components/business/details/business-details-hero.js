@@ -10,7 +10,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 import { paths as getPaths } from 'src/routes/paths';
 
 import { useBoolean } from 'src/hooks/use-boolean';
@@ -51,8 +52,8 @@ export default function ElearningCourseDetailsHero({ course }) {
 
   const videoOpen = useBoolean();
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <>

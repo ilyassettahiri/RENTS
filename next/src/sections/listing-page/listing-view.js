@@ -52,8 +52,8 @@ export default function ListingView({ params }) {
   const mdUp = useResponsive('up', 'md');
 
   const [favorites, setFavorites] = useState([]);
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
 
 

@@ -2,8 +2,9 @@ import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/navigation';
 import { paths as getPaths } from 'src/routes/paths';
+import { useTranslation } from 'react-i18next';
+
 import { RouterLink } from 'src/routes/components';
 import { fDate } from 'src/utils/format-time';
 import TextMaxLine from 'src/components/text-max-line';
@@ -23,8 +24,8 @@ const getFirstParagraph = (content) => {
 
 export default function LandingPostItem({ post }) {
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <div>

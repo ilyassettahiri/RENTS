@@ -4,7 +4,6 @@
 import { useCallback} from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { useRouter } from 'next/navigation';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -48,11 +47,10 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
-  const { locale } = useRouter();
-  const paths = getPaths(locale);
-
-  const navigationData = navConfig('en');
+  const navigationData = navConfig(i18n.language);
 
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();

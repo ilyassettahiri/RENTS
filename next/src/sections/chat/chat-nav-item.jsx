@@ -8,6 +8,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemButton from '@mui/material/ListItemButton';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { paths as getPaths } from 'src/routes/paths';
+import { useTranslation } from 'react-i18next';
+
 
 import { useRouter } from 'src/routes/hooks';
 import { useResponsive } from 'src/hooks/use-responsive';
@@ -22,8 +24,8 @@ export function ChatNavItem({ selected, collapse, conversation, onCloseMobile, o
   const router = useRouter();
   const mdUp = useResponsive('up', 'md');
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const { receiver, sender, unreadCount } = conversation;
 

@@ -61,8 +61,8 @@ const StyledButton = styled((props) => (
 
 export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle }) {
   const { t } = useTranslation();
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const { attributes } = StoreData;
   const { name,seller,id, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;

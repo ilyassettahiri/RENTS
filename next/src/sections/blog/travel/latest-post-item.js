@@ -3,8 +3,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import { useRouter } from 'next/navigation';
 import { paths as getPaths } from 'src/routes/paths';
+import { useTranslation } from 'react-i18next';
+
 import { RouterLink } from 'src/routes/components';
 
 import { fDate } from 'src/utils/format-time';
@@ -20,8 +21,8 @@ export default function LatestPostItem({ post }) {
   const { attributes } = post;
   const { author } = attributes;
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   return (
     <Stack spacing={2.5}>

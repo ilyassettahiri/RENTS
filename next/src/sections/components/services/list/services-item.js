@@ -53,8 +53,7 @@ const StyledButton = styled((props) => (
 export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const paths = getPaths(i18n.language);
 
   const { attributes } = job;
 
@@ -522,8 +521,8 @@ function CarouselBasic1({ data, category, title, url, city, type }) {
     autoplay: false,
   });
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const getHref = () => {
     if (category === 'services') {

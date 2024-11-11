@@ -8,7 +8,8 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
-import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
+
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
 
@@ -23,8 +24,8 @@ export default function ForgotPasswordView() {
     email: Yup.string().required('Email is required').email('Email must be a valid email address'),
   });
 
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   const defaultValues = {
     email: '',

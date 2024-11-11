@@ -8,7 +8,6 @@ import AuthService from 'src/services/auth-service';
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useRouter } from 'next/navigation';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -17,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import { useTranslation } from 'react-i18next';
 
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
@@ -30,8 +30,8 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 
 export default function LoginView() {
   const authContext = useContext(AuthContext);
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
   const passwordShow = useBoolean();
 
   const LoginSchema = Yup.object().shape({

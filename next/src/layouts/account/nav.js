@@ -33,8 +33,8 @@ import BaseOptions from 'src/components/settings/drawer/base-options'; // Import
 export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
   const router = useRouter();
-  const { locale } = useRouter();
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
   const settings = useSettingsContext(); // Use settings context
   const { t } = useTranslation();
 

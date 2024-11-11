@@ -4,11 +4,11 @@ import { useMemo } from "react";
 import PropTypes from 'prop-types';
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
-import { useRouter } from 'next/navigation';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Unstable_Grid2';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useTranslation } from 'react-i18next';
 
 import { paths as getPaths } from 'src/routes/paths';
 
@@ -30,9 +30,8 @@ import PostSocialsShare from './common/post-socials-share';
 export default function ArticleView({ params }) {
   const { url } = params;
 
-
-  const { locale } = useRouter(); // Get the current language
-  const paths = getPaths(locale);
+  const { i18n } = useTranslation();
+  const paths = getPaths(i18n.language);
 
   // Fetch article data using useQuery
   const { data: articleData, isLoading, error: articleError } = useQuery({
