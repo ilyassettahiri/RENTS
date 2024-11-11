@@ -3,6 +3,8 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
+import { useContext, useState, useMemo } from "react";
+
 import Markdown from 'src/components/markdown';
 import { alpha, useTheme } from '@mui/material/styles';
 import { paths as getPaths } from 'src/routes/paths';
@@ -19,7 +21,7 @@ export default function FeaturedPostItem({ post, largePost }) {
   const { attributes } = post;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <Box sx={{ borderRadius: 2, overflow: 'hidden', position: 'relative' }}>

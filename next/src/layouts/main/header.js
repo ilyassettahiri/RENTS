@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useCallback} from 'react';
+import { useCallback, useMemo} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import PropTypes from 'prop-types';
@@ -48,7 +48,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const navigationData = navConfig(i18n.language);
 

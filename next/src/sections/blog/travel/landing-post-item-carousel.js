@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Stack from '@mui/material/Stack';
+import { useContext, useState, useMemo } from "react";
+
 import Typography from '@mui/material/Typography';
 import { alpha, useTheme } from '@mui/material/styles';
 import { paths as getPaths } from 'src/routes/paths';
@@ -28,7 +30,7 @@ export default function LandingPostItemCarousel({ post }) {
   const theme = useTheme();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <Stack sx={{ position: 'relative' }}>

@@ -31,7 +31,7 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 export default function LoginView() {
   const authContext = useContext(AuthContext);
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const passwordShow = useBoolean();
 
   const LoginSchema = Yup.object().shape({

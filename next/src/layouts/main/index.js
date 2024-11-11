@@ -2,7 +2,7 @@
 
 
 
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
 
 import { paths as getPaths } from 'src/routes/paths';
@@ -28,7 +28,7 @@ export default function MainLayout({ children, headerOnDark = false, disabledSpa
   const { isAuthenticated } = useContext(AuthContext);
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const handleOpenNav = () => {
     if (isAuthenticated) {

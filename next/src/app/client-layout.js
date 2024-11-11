@@ -9,7 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MotionLazy } from 'src/components/animate/motion-lazy';
 import ProgressBar from 'src/components/progress-bar';
 import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
-import { AuthContextProvider } from 'src/context/AuthContextProvider'; // Adjust the import path
+import { AuthContextProvider } from 'src/context/AuthContextProvider';
 import ThemeProvider from 'src/theme';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -22,25 +22,23 @@ import i18next from 'i18next';
 export default function ClientLayout({ children, lang: initialLang  }) {
 
   const router = useRouter();
-  const pathname = usePathname(); // Get current path to detect URL language
+  const pathname = usePathname();
   const [lang, setLang] = useState(initialLang);
 
   useEffect(() => {
-    // Extract language from the URL
-    const urlLang = pathname.split('/')[1]; // Assuming URL is structured as /en/...
+
+    const urlLang = pathname.split('/')[1];
     if (urlLang && i18next.language !== urlLang) {
-      i18next.changeLanguage(urlLang); // Sync i18next with the URL
-      setLang(urlLang); // Update the local lang state
+      i18next.changeLanguage(urlLang);
+      setLang(urlLang);
     }
   }, [pathname]);
 
-  // Listen for i18next language changes
+
   useEffect(() => {
     const handleLangChange = (newLang) => {
       setLang(newLang);
-      // Optional: Update the URL to match the language change if needed
-      const newPath = `/${newLang}${pathname.slice(3)}`;
-      router.push(newPath); // Redirect to new URL with the selected language
+
     };
 
     i18next.on('languageChanged', handleLangChange);
@@ -48,7 +46,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
     return () => {
       i18next.off('languageChanged', handleLangChange);
     };
-  }, [pathname, router]);
+  }, []);
 
 
   return (

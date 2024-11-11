@@ -1,3 +1,6 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
+
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -23,7 +26,7 @@ export default function CareerJobListSimilar({ jobs }) {
 
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const viewAllBtn = (
     <Button

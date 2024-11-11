@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect , useMemo} from 'react';
 
 import { useTranslation } from 'react-i18next';
 
@@ -38,7 +38,7 @@ dayjs.extend(relativeTime);
 export default function StoreViewGridItem({ product, sx, favorites = [], onFavoriteToggle, ...other }) {
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
 
   dayjs.locale(i18n.language);
@@ -137,7 +137,7 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
           <Box sx={{ position: 'relative',  }}>
 
 
-            <CarouselBasic1 data={product.attributes.images} category={category} title={title} url={url} city={city} type={type}/>
+            <CarouselBasic1 data={product.attributes.images} category={category} title={title} url={url} city={city} type={type} paths={paths}/>
 
           </Box>
 
@@ -218,13 +218,11 @@ StoreViewGridItem.defaultProps = {
   favorites: [],
 };
 
-function CarouselBasic1({ data, category, title, url, city, type }) {
+function CarouselBasic1({ data, category, title, url, city, type, paths }) {
   const carousel = useCarousel({
     autoplay: false,
   });
 
-  const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
 
   const getHref = () => {
     if (category === 'services') {
@@ -282,6 +280,7 @@ CarouselBasic1.propTypes = {
   city: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
+  paths: PropTypes.object.isRequired,
 
   url: PropTypes.string.isRequired,
 };

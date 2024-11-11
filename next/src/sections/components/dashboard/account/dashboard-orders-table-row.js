@@ -1,3 +1,6 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
+
 import PropTypes from 'prop-types';
 import { useState, useCallback } from 'react';
 import { paths as getPaths } from 'src/routes/paths';
@@ -27,7 +30,7 @@ export default function EcommerceAccountOrdersTableRow({ row, onSelectRow, selec
 
   const router = useRouter();
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const handleOpen = useCallback((event) => {
     setOpen(event.currentTarget);

@@ -18,7 +18,6 @@ import { useContext, useEffect, useState, useMemo } from 'react';
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import Skeleton from '@mui/material/Skeleton';
 
-import Cookies from 'js-cookie';
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useResponsive } from 'src/hooks/use-responsive';
 import Iconify from 'src/components/iconify';
@@ -43,7 +42,7 @@ export default function AccountLayout({ children }) {
   const router = useRouter();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { getCurrentUser } = useContext(AuthContext);
   const queryClient = useQueryClient();

@@ -1,3 +1,6 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
+
 import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -22,7 +25,7 @@ export default function StoreItemBestSellers({ product, ...other }) {
   const type = `${product.category}-for-rent`;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <Link

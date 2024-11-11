@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import AuthService from 'src/services/auth-service';
@@ -32,7 +32,7 @@ export default function RegisterView() {
   const authContext = useContext(AuthContext);
   const passwordShow = useBoolean();
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const [errors, setErrors] = useState({
     nameError: false,
     emailError: false,

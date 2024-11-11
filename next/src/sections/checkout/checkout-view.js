@@ -8,6 +8,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useQuery } from '@tanstack/react-query';
 
 import CrudService from 'src/services/cruds-service';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -41,7 +42,7 @@ export default function CheckoutView({ params }) {
   const { category, url } = params;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const sameBilling = useBoolean();
 
   const [departureDay, setDepartureDay] = useState([null, null]);

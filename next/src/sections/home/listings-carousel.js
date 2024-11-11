@@ -1,3 +1,5 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
@@ -38,7 +40,7 @@ export default function ListingsCarousel({ tours, title }) {
   const mdUp = useResponsive('up', 'md');
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const carousel = useCarousel({
     containScroll: true,
 

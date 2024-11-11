@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback , useMemo } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -46,7 +46,7 @@ export function ChatNav({
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const {
     openMobile,

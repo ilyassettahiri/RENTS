@@ -29,7 +29,7 @@ export default function DashboardReservationPage({ params }) {
   const { id } = params;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { data: orderData, isLoading: isOrderLoading, error: orderError } = useQuery({
     queryKey: ['order', id], // Including id in queryKey for caching

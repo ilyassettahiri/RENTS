@@ -11,7 +11,7 @@ export const paths = (lang = 'en') => ({
   // Travel
   travel: {
     root: `/${lang}/info-page`,
-    tour: `/${lang}/`, // Base path for the dynamic route
+    tour: `/${lang}/`,
     checkout: `/${lang}/checkout`,
     orderCompleted: `/${lang}/thank-you`,
     posts: `/${lang}/blog`,

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useCallback, useEffect  } from 'react';
+import { useState, useCallback, useEffect, useMemo  } from 'react';
 import { format } from 'date-fns';
 import { useResponsive } from 'src/hooks/use-responsive';
 import { useTranslation } from 'react-i18next';
@@ -68,7 +68,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
   const { name, profile_image, id: sellerId, url: sellerUrl, created_at : sellerCreated_at  } = seller;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
 
   dayjs.locale(i18n.language);

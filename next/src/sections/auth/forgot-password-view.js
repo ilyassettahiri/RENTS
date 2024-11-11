@@ -3,6 +3,7 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useContext, useMemo } from 'react';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -25,7 +26,7 @@ export default function ForgotPasswordView() {
   });
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const defaultValues = {
     email: '',

@@ -2,7 +2,7 @@
 
 
 import PropTypes from 'prop-types';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect , useMemo} from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -60,7 +60,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const { attributes } = business;
   const { name,description,profile,id,totalReviews,averageRating, city,phone,picture, created_at, category, url, } = attributes;
 

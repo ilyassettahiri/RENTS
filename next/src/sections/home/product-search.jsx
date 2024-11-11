@@ -21,7 +21,7 @@ export function ProductSearch({ query, results, onSearch, loading }) {
   const router = useRouter();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const handleClick = (id) => {
     router.push(paths.product.details(id));

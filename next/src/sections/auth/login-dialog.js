@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState, useCallback } from "react";
+import { useContext, useState, useCallback, useMemo } from "react";
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import AuthService from 'src/services/auth-service';
@@ -41,7 +41,7 @@ export default function LoginDialog({ open, onClose,  }) {
 
   const authContext = useContext(AuthContext);
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const passwordShow = useBoolean();
 
   const LoginSchema = Yup.object().shape({

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +54,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const { i18n } = useTranslation();
 
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { attributes } = job;
 
@@ -155,7 +155,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
           <Box sx={{ position: 'relative' }}>
-            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type} title={title}/>
+            <CarouselBasic1 data={images} category={category} url={url} city={city} type={type} title={title} paths={paths}/>
 
             {/* Price and Favorite at the Top */}
             <Stack
@@ -516,13 +516,11 @@ ServiceItem.defaultProps = {
 
 // CarouselBasic1 Component
 
-function CarouselBasic1({ data, category, title, url, city, type }) {
+function CarouselBasic1({ data, category, title, url, city, type, paths }) {
   const carousel = useCarousel({
     autoplay: false,
   });
 
-  const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
 
   const getHref = () => {
     if (category === 'services') {
@@ -586,6 +584,7 @@ CarouselBasic1.propTypes = {
   category: PropTypes.string.isRequired,
   city: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
+  paths: PropTypes.object.isRequired,
 
   title: PropTypes.string.isRequired,
 

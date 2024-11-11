@@ -1,3 +1,6 @@
+import { useContext, useState, useMemo } from "react";
+
+
 import PropTypes from 'prop-types'; // Import PropTypes
 import { useRef, useMemo, useState, useCallback } from 'react';
 import Stack from '@mui/material/Stack';
@@ -25,7 +28,7 @@ export function ChatMessageInput({
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const messageData = useMemo(
     () => ({

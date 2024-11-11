@@ -1,3 +1,6 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
+
 import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -18,7 +21,7 @@ export default function StoreItemHot({ product, hotProduct = false, sx }) {
   const { title, price, picture } = attributes;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <Link component={RouterLink} href={paths.eCommerce.product} color="inherit" underline="none">

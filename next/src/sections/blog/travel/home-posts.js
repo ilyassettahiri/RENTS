@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 import { paths as getPaths } from 'src/routes/paths';
 import { RouterLink } from 'src/routes/components';
+import { useContext, useState, useMemo } from "react";
 
 import { useResponsive } from 'src/hooks/use-responsive';
 
@@ -21,7 +22,7 @@ export default function HomePosts({ posts }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const carousel = useCarousel({
     slidesToShow: 1,
     slidesToScroll: 1,

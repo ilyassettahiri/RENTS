@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback , useMemo} from 'react';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 
@@ -25,7 +25,7 @@ export default function ListingForm({ tour }) {
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { attributes } = tour;
   const { price, category, url, startdate, enddate, reservations } = attributes;

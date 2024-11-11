@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
@@ -54,7 +54,7 @@ export default function Footer() {
   const { t } = useTranslation();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const pathname = usePathname();
 

@@ -31,7 +31,7 @@ export default function ArticleView({ params }) {
   const { url } = params;
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   // Fetch article data using useQuery
   const { data: articleData, isLoading, error: articleError } = useQuery({

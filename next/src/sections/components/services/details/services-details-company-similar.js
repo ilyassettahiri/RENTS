@@ -1,3 +1,6 @@
+import { useState, useCallback, useEffect, useMemo } from 'react';
+
+
 import PropTypes from 'prop-types';
 
 import Link from '@mui/material/Link';
@@ -16,7 +19,7 @@ import { fDate } from 'src/utils/format-time';
 export default function CareerJobDetailsCompanySimilar({ jobs }) {
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <Paper

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
@@ -53,7 +54,7 @@ export default function ElearningCourseDetailsHero({ course }) {
   const videoOpen = useBoolean();
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   return (
     <>

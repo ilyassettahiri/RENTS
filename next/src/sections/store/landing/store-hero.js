@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
@@ -62,7 +62,7 @@ const StyledButton = styled((props) => (
 export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle }) {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { attributes } = StoreData;
   const { name,seller,id, city,phone,zip, average_rating ,address,picture, created_at, category, url, total_reviews, profile } = attributes;

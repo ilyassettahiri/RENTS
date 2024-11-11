@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
+import { useContext, useState, useMemo } from "react";
+
 import Typography from '@mui/material/Typography';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { useTranslation } from 'react-i18next';
@@ -24,7 +26,7 @@ export default function VerifyView() {
   });
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const defaultValues = {
     code: '',

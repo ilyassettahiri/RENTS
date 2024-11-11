@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef  } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo  } from "react";
 import { m } from 'framer-motion';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
@@ -72,7 +72,7 @@ const StyledThumbnailsContainer = styled('div')(({ length, theme }) => ({
 export default function ListingImage({ images, params }) {
 
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const [slides, setSlides] = useState(
     images.map((slide) => ({

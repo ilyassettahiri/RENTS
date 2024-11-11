@@ -18,7 +18,7 @@ import Typography from '@mui/material/Typography';
 import { useResponsive } from 'src/hooks/use-responsive';
 import Iconify from 'src/components/iconify';
 import TextMaxLine from 'src/components/text-max-line';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState, useMemo } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import CrudService from 'src/services/cruds-service';
 import AuthService from 'src/services/auth-service';
@@ -34,7 +34,7 @@ export default function Nav({ open, onClose }) {
   const authContext = useContext(AuthContext);
   const router = useRouter();
   const { i18n } = useTranslation();
-  const paths = getPaths(i18n.language);
+  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const settings = useSettingsContext(); // Use settings context
   const { t } = useTranslation();
 
