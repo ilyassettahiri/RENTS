@@ -1,6 +1,6 @@
 'use client';
 
-import { useContext, useState } from "react";
+import { useContext, useState, useMemo } from "react";
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import AuthService from 'src/services/auth-service';
