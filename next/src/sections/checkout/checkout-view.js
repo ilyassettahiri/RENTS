@@ -3,7 +3,6 @@
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
-import { useState, useCallback, useEffect, useMemo } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useQuery } from '@tanstack/react-query';
 
@@ -42,7 +41,7 @@ export default function CheckoutView({ params }) {
   const { category, url } = params;
 
   const { i18n } = useTranslation();
-  const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
+  const paths = getPaths(i18n.language);
   const sameBilling = useBoolean();
 
   const [departureDay, setDepartureDay] = useState([null, null]);

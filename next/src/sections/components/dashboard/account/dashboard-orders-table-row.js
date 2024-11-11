@@ -1,8 +1,7 @@
-import { useState, useCallback, useEffect, useMemo } from 'react';
 
 
 import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { paths as getPaths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
 import { useTranslation } from 'react-i18next';
