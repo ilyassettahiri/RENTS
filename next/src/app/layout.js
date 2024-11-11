@@ -2,10 +2,11 @@
 import PropTypes from 'prop-types';
 
 import Script from 'next/script';
+import { cookies } from 'next/headers';
 
 import ClientLayout from './client-layout';
+
 import ClientAnalytics from './client-analytics';
-import { cookies } from 'next/headers';
 
 
 export const metadata = {

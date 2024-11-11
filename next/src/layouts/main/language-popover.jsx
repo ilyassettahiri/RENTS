@@ -3,6 +3,7 @@
 
 import PropTypes from 'prop-types';
 
+import { useRouter, usePathname } from 'next/navigation';
 
 import { m } from 'framer-motion';
 import { useCallback } from 'react';
@@ -25,15 +26,22 @@ export function LanguagePopover({ data = [], sx, ...other }) {
   const settings = useSettingsContext();
   const { onChangeLang, currentLang } = useTranslate();
 
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleChangeLang = useCallback(
     (newLang) => {
-      onChangeLang(newLang);
+      onChangeLang(newLang); // Update i18next language
 
+      // Update the URL to reflect the new language
+      const newPath = `/${newLang}${pathname.slice(3)}`; // Adjust path to new language
+      router.push(newPath);
+
+      // Update theme direction if needed
       settings.onUpdate('themeDirection', newLang === 'ar' ? 'rtl' : 'ltr');
-
       popover.onClose();
     },
-    [onChangeLang, popover, settings]
+    [onChangeLang, pathname, router, settings, popover]
   );
 
   return (

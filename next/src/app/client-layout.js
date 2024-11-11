@@ -11,6 +11,7 @@ import ProgressBar from 'src/components/progress-bar';
 import { SettingsDrawer, SettingsProvider } from 'src/components/settings';
 import { AuthContextProvider } from 'src/context/AuthContextProvider'; // Adjust the import path
 import ThemeProvider from 'src/theme';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { I18nProvider } from 'src/locales/i18n-provider';
 
@@ -20,15 +21,26 @@ import i18next from 'i18next';
 
 export default function ClientLayout({ children, lang: initialLang  }) {
 
+  const router = useRouter();
+  const pathname = usePathname(); // Get current path to detect URL language
   const [lang, setLang] = useState(initialLang);
 
   useEffect(() => {
+    // Extract language from the URL
+    const urlLang = pathname.split('/')[1]; // Assuming URL is structured as /en/...
+    if (urlLang && i18next.language !== urlLang) {
+      i18next.changeLanguage(urlLang); // Sync i18next with the URL
+      setLang(urlLang); // Update the local lang state
+    }
+  }, [pathname]);
 
-    i18next.changeLanguage(lang); // Set the initial language in i18next
-
+  // Listen for i18next language changes
+  useEffect(() => {
     const handleLangChange = (newLang) => {
-
       setLang(newLang);
+      // Optional: Update the URL to match the language change if needed
+      const newPath = `/${newLang}${pathname.slice(3)}`;
+      router.push(newPath); // Redirect to new URL with the selected language
     };
 
     i18next.on('languageChanged', handleLangChange);
@@ -36,8 +48,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
     return () => {
       i18next.off('languageChanged', handleLangChange);
     };
-  }, [lang]);
-
+  }, [pathname, router]);
 
 
   return (
@@ -48,7 +59,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
             <SettingsProvider
               defaultSettings={{
                 themeMode: 'light', // 'light' | 'dark'
-                themeDirection: 'ltr', //  'rtl' | 'ltr'
+                themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
                 themeColorPresets: 'default', // 'default' | 'preset01' | 'preset02' | 'preset03' | 'preset04' | 'preset05'
               }}
             >

@@ -52,6 +52,7 @@ const StyledButton = styled((props) => (
 
 export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
+  const { i18n } = useTranslation();
 
   const paths = getPaths(i18n.language);
 
@@ -77,7 +78,6 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
 
 
-  const { i18n } = useTranslation();
 
 
   dayjs.locale(i18n.language);

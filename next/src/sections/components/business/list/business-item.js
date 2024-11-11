@@ -3,7 +3,6 @@
 
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
