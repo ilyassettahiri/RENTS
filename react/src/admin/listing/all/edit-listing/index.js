@@ -1341,9 +1341,12 @@ function EditListing() {
 
 
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  const [categoryError, setCategoryError] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+  
 
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -1421,7 +1424,7 @@ function EditListing() {
 
 
   const changeDescriptionHandler = (newText) => {
-    console.log("newText:", newText);
+    
   
     // Regular expressions for URLs and image tags
     const urlPattern = /(https?:\/\/[^\s]+)/g;
@@ -1473,14 +1476,11 @@ function EditListing() {
   
  
   const handleCategoryChange = (selectedOption) => {
-    setSelectedCategory(selectedOption.value);
-
-
-          // Remove error when a valid category is selected
-          if (selectedOption.value.trim().length > 0) {
-            setCategoryError(false);
-          }
-
+    setSelectedCategory({
+      value: selectedOption.value,
+      error: selectedOption.value.trim().length === 0, // Set error if value is empty
+      textError: selectedOption.value.trim().length === 0 ? "A category must be selected" : "",
+    });
   };
 
   const handleFilesChange = (files) => {
@@ -1566,6 +1566,12 @@ function EditListing() {
           error: false,
           textError: ""
         });
+
+        setSelectedCategory({
+          value: category,
+          error: false,
+          textError: ""
+        });
         
 
         setAddress({
@@ -1583,7 +1589,7 @@ function EditListing() {
         
         setIds({ listingid });
         setDateRange([dayjs(startdate), dayjs(enddate)]);
-        setSelectedCategory(category);
+        
         
         setSelectedStatus(status);
         setInitialStatus(status);
@@ -2287,18 +2293,30 @@ function EditListing() {
     setIsSubmitting(true);
 
 
-    if (selectedCategory.trim().length < 1) {
-      setCategoryError(true);
+    if (selectedCategory.value.trim().length < 1) {
+
+      setIsSubmitting(false);
+
+      setSelectedCategory((prevCategory) => ({
+        ...prevCategory,
+        error: true,
+        textError: "A category must be selected",
+      }));
       return;
     }
-    setCategoryError(false); 
+    
   
     if (title.text.trim().length < 1) {
+
+      setIsSubmitting(false);
+
       setTitle({ ...title, error: true, textError: "The Title name is required" });
       return;
     }
 
     if (title.text.length > 255) {
+
+      setIsSubmitting(false);
       setTitle({
         ...title,
         error: true,
@@ -2316,6 +2334,9 @@ function EditListing() {
   
     // Check if description is empty, contains URLs, or contains image tags
     if (descNoTags.length < 1) {
+
+      setIsSubmitting(false);
+
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -2325,6 +2346,8 @@ function EditListing() {
     }
     
     if (urlPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -2334,6 +2357,8 @@ function EditListing() {
     }
   
     if (imgPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -2345,6 +2370,8 @@ function EditListing() {
 
     // Validate files
     if ((!selectedFiles || selectedFiles.length === 0) && (!oldFiles || oldFiles.length === 0)) {
+
+      setIsSubmitting(false);
       setFileError("Please select at least one image file.");
       return;
     }
@@ -2353,6 +2380,8 @@ function EditListing() {
 
 
     if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
+
+      setIsSubmitting(false);
       setAddress((prevAddress) => ({
         ...prevAddress,
         address: {
@@ -2368,6 +2397,8 @@ function EditListing() {
     }
   
     if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
+
+      setIsSubmitting(false);
       setAddress((prevAddress) => ({
         ...prevAddress,
         city: {
@@ -2383,6 +2414,8 @@ function EditListing() {
     }
   
     if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
+
+      setIsSubmitting(false);
       setAddress((prevAddress) => ({
         ...prevAddress,
         zip: {
@@ -2398,6 +2431,8 @@ function EditListing() {
     }
 
     if (pricing.price.value.trim().length < 1 || isNaN(pricing.price.value)) {
+
+      setIsSubmitting(false);
       setPricing((prevPricing) => ({
         ...prevPricing,
         price: {
@@ -2412,6 +2447,8 @@ function EditListing() {
     }
   
     if (pricing.phone.value.trim().length < 1) {
+
+      setIsSubmitting(false);
       setPricing((prevPricing) => ({
         ...prevPricing,
         phone: {
@@ -2433,7 +2470,7 @@ function EditListing() {
 
     const formData = new FormData();
     formData.append('data[type]', 'listings');
-    formData.append('data[attributes][category]', selectedCategory);
+    formData.append('data[attributes][category]', selectedCategory.value);
     formData.append('data[attributes][title]', title.text);
     formData.append('data[attributes][description]', description.value);
     formData.append('data[attributes][startdate]', formattedStartDate);
@@ -2454,7 +2491,7 @@ function EditListing() {
 
 
 
-    switch (selectedCategory) {
+    switch (selectedCategory.value) {
       case 'billiard':
         Object.keys(billiardsData).forEach(key => {
           formData.append(`data[attributes][billiards][${key}]`, billiardsData[key]);
@@ -2767,7 +2804,7 @@ function EditListing() {
                 }
             });
         
-            formData.append('selectedCategory', selectedCategory);
+            formData.append('selectedCategory', selectedCategory.value);
         
             // Send the file upload request only if there are valid files
              response = await CrudService.imageUploadListing(formData);
@@ -2784,9 +2821,9 @@ function EditListing() {
         const updatedListing = {
           type: 'listings',
           attributes: {
-              category: selectedCategory,
+              category: selectedCategory.value,
               title: title.text,
-              description: description,
+              description: description.value,
               startdate: formattedStartDate,
               enddate: formattedEndDate,
               address: address.address,
@@ -2805,62 +2842,62 @@ function EditListing() {
               
               oldimagePathslarge: oldFiles, 
               
-            ...(selectedCategory === 'billiard' && { billiards: billiardsData }),
-            ...(selectedCategory === 'boxing' && { boxings: boxingsData }),
-            ...(selectedCategory === 'diving' && { divings: divingsData }),
-            ...(selectedCategory === 'football' && { footballs: footballsData }),
-            ...(selectedCategory === 'golf' && { golfs: golfsData }),
-            ...(selectedCategory === 'hunting' && { huntings: huntingsData }),
-            ...(selectedCategory === 'gym' && { musculations: musculationsData }),
-            ...(selectedCategory === 'surf' && { surfs: surfsData }),
-            ...(selectedCategory === 'tennis' && { tennis: tennisData }),
-            ...(selectedCategory === 'audio' && { audios: audiosData }),
-            ...(selectedCategory === 'cameras' && { cameras: camerasData }),
-            ...(selectedCategory === 'chargers' && { chargers: chargersData }),
-            ...(selectedCategory === 'drones' && { drones: dronesData }),
-            ...(selectedCategory === 'gaming' && { gamings: gamingsData }),
-            ...(selectedCategory === 'laptops' && { laptops: laptopsData }),
-            ...(selectedCategory === 'lighting' && { lightings: lightingsData }),
-            ...(selectedCategory === 'printers' && { printers: printersData }),
-            ...(selectedCategory === 'routers' && { routers: routersData }),
-            ...(selectedCategory === 'tablets' && { tablettes: tablettesData }),
-            ...(selectedCategory === 'eclairage' && { eclairages: eclairagesData }),
-            ...(selectedCategory === 'mobilier' && { mobiliers: mobiliersData }),
-            ...(selectedCategory === 'photography' && { photographies: photographiesData }),
-            ...(selectedCategory === 'sound-systems' && { sonorisations: sonorisationsData }),
-            ...(selectedCategory === 'tents' && { tentes: tentesData }),
-            ...(selectedCategory === 'clothes' && { clothes: clothesData }),
-            ...(selectedCategory === 'jewelry' && { jewelrys: jewelrysData }),
-            ...(selectedCategory === 'apartments' && { apartments: apartmentsData }),
-            ...(selectedCategory === 'offices' && { bureauxs: bureauxsData }),
-            ...(selectedCategory === 'shops' && { magasins: magasinsData }),
-            ...(selectedCategory === 'houses' && { maisons: maisonsData }),
-            ...(selectedCategory === 'riads' && { riads: riadsData }),
-            ...(selectedCategory === 'lands' && { terrains: terrainsData }),
-            ...(selectedCategory === 'villas' && { villas: villasData }),
-            ...(selectedCategory === 'activities' && { activities: activitiesData }),
-            ...(selectedCategory === 'books' && { livres: livresData }),
-            ...(selectedCategory === 'musical' && { musicals: musicalsData }),
-            ...(selectedCategory === 'furniture' && { furnitures: furnituresData }),
-            ...(selectedCategory === 'home-appliances' && { houseappliances: houseappliancesData }),
-            ...(selectedCategory === 'electrical-tools' && { electricaltools: electricaltoolsData }),
-            ...(selectedCategory === 'ladders' && { ladders: laddersData }),
-            ...(selectedCategory === 'mechanical-tools' && { mechanicaltools: mechanicaltoolsData }),
-            ...(selectedCategory === 'power-tools' && { powertools: powertoolsData }),
-            ...(selectedCategory === 'pressure-washers' && { pressurewashers: pressurewashersData }),
-            ...(selectedCategory === 'services' && { services: servicesData }),
-            ...(selectedCategory === 'jobs' && { jobs: jobsData }),
+            ...(selectedCategory.value === 'billiard' && { billiards: billiardsData }),
+            ...(selectedCategory.value === 'boxing' && { boxings: boxingsData }),
+            ...(selectedCategory.value === 'diving' && { divings: divingsData }),
+            ...(selectedCategory.value === 'football' && { footballs: footballsData }),
+            ...(selectedCategory.value === 'golf' && { golfs: golfsData }),
+            ...(selectedCategory.value === 'hunting' && { huntings: huntingsData }),
+            ...(selectedCategory.value === 'gym' && { musculations: musculationsData }),
+            ...(selectedCategory.value === 'surf' && { surfs: surfsData }),
+            ...(selectedCategory.value === 'tennis' && { tennis: tennisData }),
+            ...(selectedCategory.value === 'audio' && { audios: audiosData }),
+            ...(selectedCategory.value === 'cameras' && { cameras: camerasData }),
+            ...(selectedCategory.value === 'chargers' && { chargers: chargersData }),
+            ...(selectedCategory.value === 'drones' && { drones: dronesData }),
+            ...(selectedCategory.value === 'gaming' && { gamings: gamingsData }),
+            ...(selectedCategory.value === 'laptops' && { laptops: laptopsData }),
+            ...(selectedCategory.value === 'lighting' && { lightings: lightingsData }),
+            ...(selectedCategory.value === 'printers' && { printers: printersData }),
+            ...(selectedCategory.value === 'routers' && { routers: routersData }),
+            ...(selectedCategory.value === 'tablets' && { tablettes: tablettesData }),
+            ...(selectedCategory.value === 'eclairage' && { eclairages: eclairagesData }),
+            ...(selectedCategory.value === 'mobilier' && { mobiliers: mobiliersData }),
+            ...(selectedCategory.value === 'photography' && { photographies: photographiesData }),
+            ...(selectedCategory.value === 'sound-systems' && { sonorisations: sonorisationsData }),
+            ...(selectedCategory.value === 'tents' && { tentes: tentesData }),
+            ...(selectedCategory.value === 'clothes' && { clothes: clothesData }),
+            ...(selectedCategory.value === 'jewelry' && { jewelrys: jewelrysData }),
+            ...(selectedCategory.value === 'apartments' && { apartments: apartmentsData }),
+            ...(selectedCategory.value === 'offices' && { bureauxs: bureauxsData }),
+            ...(selectedCategory.value === 'shops' && { magasins: magasinsData }),
+            ...(selectedCategory.value === 'houses' && { maisons: maisonsData }),
+            ...(selectedCategory.value === 'riads' && { riads: riadsData }),
+            ...(selectedCategory.value === 'lands' && { terrains: terrainsData }),
+            ...(selectedCategory.value === 'villas' && { villas: villasData }),
+            ...(selectedCategory.value === 'activities' && { activities: activitiesData }),
+            ...(selectedCategory.value === 'books' && { livres: livresData }),
+            ...(selectedCategory.value === 'musical' && { musicals: musicalsData }),
+            ...(selectedCategory.value === 'furniture' && { furnitures: furnituresData }),
+            ...(selectedCategory.value === 'home-appliances' && { houseappliances: houseappliancesData }),
+            ...(selectedCategory.value === 'electrical-tools' && { electricaltools: electricaltoolsData }),
+            ...(selectedCategory.value === 'ladders' && { ladders: laddersData }),
+            ...(selectedCategory.value === 'mechanical-tools' && { mechanicaltools: mechanicaltoolsData }),
+            ...(selectedCategory.value === 'power-tools' && { powertools: powertoolsData }),
+            ...(selectedCategory.value === 'pressure-washers' && { pressurewashers: pressurewashersData }),
+            ...(selectedCategory.value === 'services' && { services: servicesData }),
+            ...(selectedCategory.value === 'jobs' && { jobs: jobsData }),
 
-            ...(selectedCategory === 'boats' && { boats: boatsData }),
-            ...(selectedCategory === 'trucks' && { camions: camionsData }),
-            ...(selectedCategory === 'caravans' && { caravans: caravansData }),
-            ...(selectedCategory === 'cars' && { cars: carsData }),
-            ...(selectedCategory === 'engins' && { engins: enginsData }),
-            ...(selectedCategory === 'motorcycles' && { motos: motosData }),
-            ...(selectedCategory === 'scooters' && { scooters: scootersData }),
-            ...(selectedCategory === 'airport-taxis' && { taxiaeroports: taxiaeroportsData }),
-            ...(selectedCategory === 'transportation' && { transportations: transportationsData }),
-            ...(selectedCategory === 'bicycles' && { velos: velosData }),  
+            ...(selectedCategory.value === 'boats' && { boats: boatsData }),
+            ...(selectedCategory.value === 'trucks' && { camions: camionsData }),
+            ...(selectedCategory.value === 'caravans' && { caravans: caravansData }),
+            ...(selectedCategory.value === 'cars' && { cars: carsData }),
+            ...(selectedCategory.value === 'engins' && { engins: enginsData }),
+            ...(selectedCategory.value === 'motorcycles' && { motos: motosData }),
+            ...(selectedCategory.value === 'scooters' && { scooters: scootersData }),
+            ...(selectedCategory.value === 'airport-taxis' && { taxiaeroports: taxiaeroportsData }),
+            ...(selectedCategory.value === 'transportation' && { transportations: transportationsData }),
+            ...(selectedCategory.value === 'bicycles' && { velos: velosData }),  
           }
         };
         
@@ -2999,7 +3036,7 @@ function EditListing() {
                                     </SoftBox>
                                     <SoftSelect
 
-                                      value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
+                                      value={{ value: selectedCategory.value, label: selectedCategory.value || "Select Category" }}
                                       options={[
                             
                                         { value: "boats", label: "Boats", icon: BoatsIcon },
@@ -3065,13 +3102,13 @@ function EditListing() {
 
                                       onChange={handleCategoryChange}
 
-                                      error={categoryError}
+                                      error={selectedCategory.error}
 
                                     />
 
-                                      {categoryError && (
+                                      {selectedCategory.error && (
                                         <SoftTypography variant="caption" color="error" fontWeight="light">
-                                          Please select a category
+                                          {selectedCategory.textError}
                                         </SoftTypography>
                                       )}
 
@@ -3152,7 +3189,7 @@ function EditListing() {
 
 
                                 {getCategory(
-                                  selectedCategory,
+                                  selectedCategory.value,
                                   updateBilliardsData,
                                   updateBoxingsData,
                                   updateDivingsData,

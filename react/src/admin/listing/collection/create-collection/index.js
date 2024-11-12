@@ -35,6 +35,8 @@ export {
 
 const CreateCollection = () => {
   const navigate = useNavigate();
+
+  
   const [name, setName] = useState({
     text: "",
     error: false,
@@ -69,7 +71,7 @@ const CreateCollection = () => {
 
 
   const changeDescriptionHandler = (newText) => {
-    console.log("newText:", newText);
+    
   
     // Regular expressions for URLs and image tags
     const urlPattern = /(https?:\/\/[^\s]+)/g;

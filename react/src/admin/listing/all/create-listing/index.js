@@ -1202,9 +1202,12 @@ function CreateListing() {
 
   
 
-  const [selectedCategory, setSelectedCategory] = useState('');
-
-  const [categoryError, setCategoryError] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+  
 
 
   const [selectedFiles, setSelectedFiles] = useState([]);
@@ -1283,7 +1286,7 @@ function CreateListing() {
 
 
   const changeDescriptionHandler = (newText) => {
-    console.log("newText:", newText);
+    
   
     // Regular expressions for URLs and image tags
     const urlPattern = /(https?:\/\/[^\s]+)/g;
@@ -1334,15 +1337,13 @@ function CreateListing() {
   
  
   const handleCategoryChange = (selectedOption) => {
-
-    setSelectedCategory(selectedOption.value);
-
-      // Remove error when a valid category is selected
-      if (selectedOption.value.trim().length > 0) {
-        setCategoryError(false);
-      }
-
+    setSelectedCategory({
+      value: selectedOption.value,
+      error: selectedOption.value.trim().length === 0, // Set error if value is empty
+      textError: selectedOption.value.trim().length === 0 ? "A category must be selected" : "",
+    });
   };
+  
 
   const handleFilesChange = (files) => {
     const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
@@ -1798,19 +1799,32 @@ function CreateListing() {
       setIsSubmitting(true);
 
 
-    if (selectedCategory.trim().length < 1) {
-      setCategoryError(true);
-      return;
-    }
-    setCategoryError(false); 
+      if (selectedCategory.value.trim().length < 1) {
+
+        setIsSubmitting(false);
+
+        setSelectedCategory((prevCategory) => ({
+          ...prevCategory,
+          error: true,
+          textError: "A category must be selected",
+        }));
+        return;
+      }
+      
   
 
     if (title.text.trim().length < 1) {
+
+      setIsSubmitting(false);
+
       setTitle({ ...title, error: true, textError: "The Title name is required" });
       return;
     }
 
     if (title.text.length > 255) {
+
+      setIsSubmitting(false);
+
       setTitle({
         ...title,
         error: true,
@@ -1827,6 +1841,9 @@ function CreateListing() {
   
     // Check if description is empty, contains URLs, or contains image tags
     if (descNoTags.length < 1) {
+
+      setIsSubmitting(false);
+
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -1836,6 +1853,9 @@ function CreateListing() {
     }
     
     if (urlPattern.test(description.value)) {
+
+      setIsSubmitting(false);
+
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -1845,6 +1865,9 @@ function CreateListing() {
     }
   
     if (imgPattern.test(description.value)) {
+
+      setIsSubmitting(false);
+
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -1856,6 +1879,9 @@ function CreateListing() {
 
     // Validate files
     if (selectedFiles.length === 0) {
+
+      setIsSubmitting(false);
+
       setFileError("Please select at least one image file.");
      
       return;
@@ -1863,6 +1889,9 @@ function CreateListing() {
 
 
     if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
+
+      setIsSubmitting(false);
+
       setAddress((prevAddress) => ({
         ...prevAddress,
         address: {
@@ -1878,6 +1907,10 @@ function CreateListing() {
     }
   
     if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
+
+
+      setIsSubmitting(false);
+
       setAddress((prevAddress) => ({
         ...prevAddress,
         city: {
@@ -1893,6 +1926,9 @@ function CreateListing() {
     }
   
     if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
+
+      setIsSubmitting(false);
+
       setAddress((prevAddress) => ({
         ...prevAddress,
         zip: {
@@ -1908,6 +1944,9 @@ function CreateListing() {
     }
 
     if (pricing.price.value.trim().length < 1 || isNaN(pricing.price.value)) {
+
+      setIsSubmitting(false);
+
       setPricing((prevPricing) => ({
         ...prevPricing,
         price: {
@@ -1922,6 +1961,10 @@ function CreateListing() {
     }
   
     if (pricing.phone.value.trim().length < 1) {
+
+
+      setIsSubmitting(false);
+
       setPricing((prevPricing) => ({
         ...prevPricing,
         phone: {
@@ -1939,7 +1982,7 @@ function CreateListing() {
 
     const formData = new FormData();
     formData.append('data[type]', 'listings');
-    formData.append('data[attributes][category]', selectedCategory);
+    formData.append('data[attributes][category]', selectedCategory.value);
     formData.append('data[attributes][title]', title.text);
     formData.append('data[attributes][description]', description.value);
     formData.append('data[attributes][startdate]', formattedStartDate);
@@ -1964,7 +2007,7 @@ function CreateListing() {
 
 
 
-    switch (selectedCategory) {
+    switch (selectedCategory.value) {
       case 'billiard':
         Object.keys(billiardsData).forEach(key => {
           formData.append(`data[attributes][billiards][${key}]`, billiardsData[key]);
@@ -2364,15 +2407,16 @@ function CreateListing() {
 
                           onChange={handleCategoryChange}
 
-                          error={categoryError}
+                          error={selectedCategory.error}
+
 
                         />
 
-                          {categoryError && (
-                              <SoftTypography variant="caption" color="error" fontWeight="light">
-                                Please select a category
-                              </SoftTypography>
-                            )}
+                          {selectedCategory.error && (
+                            <SoftTypography variant="caption" color="error" fontWeight="light">
+                              {selectedCategory.textError}
+                            </SoftTypography>
+                          )}
                       </SoftBox>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -2451,7 +2495,7 @@ function CreateListing() {
 
 
                     {getCategory(
-                      selectedCategory,
+                      selectedCategory.value,
                       updateBilliardsData,
                       updateBoxingsData,
                       updateDivingsData,

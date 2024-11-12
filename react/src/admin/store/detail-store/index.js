@@ -152,7 +152,7 @@ function DetailStore() {
 
 
   const changeDescriptionHandler = (newText) => {
-    console.log("newText:", newText);
+    
   
     // Regular expressions for URLs and image tags
     const urlPattern = /(https?:\/\/[^\s]+)/g;
