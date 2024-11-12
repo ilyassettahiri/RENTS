@@ -7,7 +7,7 @@ import { cookies } from 'next/headers';
 import ClientLayout from './client-layout';
 
 import ClientAnalytics from './client-analytics';
-
+import { SettingsProvider } from 'src/components/settings';
 
 export const metadata = {
   title: 'RENTS.ma: Discover Morocco’s Leading Marketplace for Rentals - Cars, Bikes, Properties & More',
@@ -32,7 +32,13 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
 
-  const lang = cookies().get('i18nextLng')?.value || 'en';
+  const allCookies = Array.from(cookies());
+
+
+  const langCookie = allCookies.find(cookie => cookie[0] === 'i18next');
+
+
+  const lang = langCookie ? langCookie[1].value : 'en';
 
   return (
     <html lang={lang}>
@@ -58,7 +64,15 @@ export default function RootLayout({ children }) {
 
         <ClientAnalytics />
 
-        <ClientLayout lang={lang} >{children}</ClientLayout>
+        <SettingsProvider
+          defaultSettings={{
+            themeMode: 'light',
+            themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
+            themeColorPresets: 'default',
+          }}
+        >
+          <ClientLayout lang={lang}>{children}</ClientLayout>
+        </SettingsProvider>
       </body>
     </html>
   );

@@ -17,13 +17,17 @@ import { I18nProvider } from 'src/locales/i18n-provider';
 
 import { useState, useEffect } from 'react';
 import i18next from 'i18next';
+import { useSettingsContext } from 'src/components/settings/context';
 
 
 export default function ClientLayout({ children, lang: initialLang  }) {
 
-  const router = useRouter();
+
   const pathname = usePathname();
   const [lang, setLang] = useState(initialLang);
+  const settings = useSettingsContext(); // Access settings context
+
+
 
   useEffect(() => {
 
@@ -31,6 +35,13 @@ export default function ClientLayout({ children, lang: initialLang  }) {
     if (urlLang && i18next.language !== urlLang) {
       i18next.changeLanguage(urlLang);
       setLang(urlLang);
+
+
+      // Update the theme direction based on URL language
+      const themeDirection = urlLang === 'ar' ? 'rtl' : 'ltr';
+      settings.onUpdate('themeDirection', themeDirection);
+
+
     }
   }, [pathname]);
 
@@ -38,6 +49,8 @@ export default function ClientLayout({ children, lang: initialLang  }) {
   useEffect(() => {
     const handleLangChange = (newLang) => {
       setLang(newLang);
+      const themeDirection = newLang === 'ar' ? 'rtl' : 'ltr';
+      settings.onUpdate('themeDirection', themeDirection); // Update theme direction using settings
 
     };
 
@@ -46,7 +59,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
     return () => {
       i18next.off('languageChanged', handleLangChange);
     };
-  }, []);
+  }, [settings]);
 
 
   return (
@@ -54,13 +67,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
 
         <I18nProvider lang={lang}>
           <LocalizationProvider>
-            <SettingsProvider
-              defaultSettings={{
-                themeMode: 'light', // 'light' | 'dark'
-                themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
-                themeColorPresets: 'default', // 'default' | 'preset01' | 'preset02' | 'preset03' | 'preset04' | 'preset05'
-              }}
-            >
+
               <AuthContextProvider>
                 <ThemeProvider>
                   <MotionLazy>
@@ -72,7 +79,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
                   </MotionLazy>
                 </ThemeProvider>
               </AuthContextProvider>
-            </SettingsProvider>
+
           </LocalizationProvider>
         </I18nProvider>
 
