@@ -2,14 +2,10 @@
 
 import Grid from "@mui/material/Grid";
 import SoftBox from "components/SoftBox";
-import { useTranslation } from 'react-i18next';
 import FormField from "admin/components/FormField";
 import SoftTypography from "components/SoftTypography";
 
-
-function Address({ address, onAddressChange, addressError, cityError, zipError }) {
-
-
+function Address({ address, onAddressChange }) {
   return (
     <SoftBox>
       <SoftBox mt={2}>
@@ -19,70 +15,71 @@ function Address({ address, onAddressChange, addressError, cityError, zipError }
               type="text"
               label="Address"
               name="address"
-              value={address.address}
+              value={address.address.value}
               onChange={onAddressChange}
-              placeholder="Eg. Center Ville "
-              error={addressError}
-
+              placeholder="Eg. Center Ville"
+              error={address.address.error}
             />
 
-            {addressError && (
+            {address.address.error && (
               <SoftTypography variant="caption" color="error" fontWeight="light">
-                Address is required
+                {address.address.textError || "Address is required"}
               </SoftTypography>
             )}
-
           </Grid>
+
           <Grid item xs={12} md={5}>
             <FormField
               type="text"
               label="City"
               name="city"
-              value={address.city}
+              value={address.city.value}
               onChange={onAddressChange}
               placeholder="Eg. Marrakech"
-              error={cityError}
-
+              error={address.city.error}
             />
 
-
-            {cityError && (
+            {address.city.error && (
               <SoftTypography variant="caption" color="error" fontWeight="light">
-                City is required
+                {address.city.textError || "City is required"}
               </SoftTypography>
             )}
-
-
           </Grid>
+
           <Grid item xs={12} md={5}>
             <FormField
               type="text"
               label="Country"
               name="country"
-              value={address.country}
+              value={address.country.value}
               onChange={onAddressChange}
               placeholder="Eg. Argentina"
+              error={address.country.error}
             />
+
+            {address.country.error && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                {address.country.textError || "Country is required"}
+              </SoftTypography>
+            )}
           </Grid>
+
           <Grid item xs={12} md={2}>
             <FormField
               type="text"
               label="Zip"
               name="zip"
-              value={address.zip}
+              value={address.zip.value}
               onChange={onAddressChange}
               placeholder="Eg. 123456"
-              error={zipError}
-
+              error={address.zip.error}
             />
 
-            {zipError && (
+            {address.zip.error && (
               <SoftTypography variant="caption" color="error" fontWeight="light">
-                Zip code is required
+                {address.zip.textError || "Zip code is required"}
               </SoftTypography>
             )}
-
-
           </Grid>
         </Grid>
       </SoftBox>

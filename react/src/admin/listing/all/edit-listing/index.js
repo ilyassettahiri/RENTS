@@ -1323,27 +1323,21 @@ function EditListing() {
 
 
   const [address, setAddress] = useState({
-    address: "",
-    city: "",
-    country: "",
-    zip: "",
+    address: { value: "", error: false, textError: "" },
+    city: { value: "", error: false, textError: "" },
+    country: { value: "Morocco", error: false, textError: "" },
+    zip: { value: "", error: false, textError: "" },
   });
 
 
   const [pricing, setPricing] = useState({
-    price: "",
-    currency: "", // Default currency
-    phone: "",
-    
+    price: { value: "", error: false, textError: "" },
+    currency: { value: "DH", error: false, textError: "" },
+    phone: { value: "", error: false, textError: "" },
   });
   
 
-  const [addressError, setAddressError] = useState(false);
-  const [cityError, setCityError] = useState(false);
-  const [zipError, setZipError] = useState(false);
-
-  const [priceError, setPriceError] = useState(false);
-  const [phoneError, setPhoneError] = useState(false);
+  
 
 
 
@@ -1360,72 +1354,51 @@ function EditListing() {
   const [oldFiles, setOldFiles] = useState([]);
 
 
-  const [description, setDescription] = useState("");
-  const [descError, setDescError] = useState(false);
+  const [description, setDescription] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
   const handlePricingChange = (e) => {
+    const { name, value } = e.target;
+  
+    setPricing((prevPricing) => ({
+      ...prevPricing,
+      [name]: {
+        ...prevPricing[name],
+        value: value,
+        error: value.trim().length === 0 || (name === "price" && isNaN(value)),
+        textError:
+          value.trim().length === 0
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
+            : name === "price" && isNaN(value)
+            ? "Price must be a number."
+            : "",
+      },
+    }));
+  
     
-
-
-    setPricing((prevPricing) => {
-      const newPricing = { ...prevPricing, [e.target.name]: e.target.value };
-      
-      
-      
-      return newPricing;
-    });
-
-    
-      // Remove error when a valid price or phone is entered
-      if (e.target.name === "price" && e.target.value.trim().length > 0) {
-        setPriceError(false);
-      }
-      if (e.target.name === "phone" && e.target.value.trim().length > 0) {
-        setPhoneError(false);
-      }
-
   };
+  
 
   const handleSelectChange = (name, value) => {
-
-   
-
-    setPricing((prevPricing) => {
-      const newPricing = { ...prevPricing, [name]: value };
-      
-     
-      
-      return newPricing;
-    });
+    setPricing((prevPricing) => ({
+      ...prevPricing,
+      [name]: {
+        ...prevPricing[name],
+        value: value,
+        error: value.trim().length === 0,
+        textError: value.trim().length === 0 ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.` : "",
+      },
+  }));
+  
     
-      // Remove error when a valid price or phone is entered
-      if (name === "price" && value.trim().length > 0) {
-        setPriceError(false);
-      }
   };
-
-  const handleAddressChange = (e) => {
-    setAddress((prevAddress) => {
-      const newAddress = { ...prevAddress, [e.target.name]: e.target.value };
   
-      
-  
-      return newAddress;
-    });
 
-          // Remove error when a valid address, city, or zip is entered
-          if (e.target.name === "address" && e.target.value.trim().length > 0) {
-            setAddressError(false);
-          }
-          if (e.target.name === "city" && e.target.value.trim().length > 0) {
-            setCityError(false);
-          }
-          if (e.target.name === "zip" && e.target.value.trim().length > 0) {
-            setZipError(false);
-          }
-
-  };
 
 
 
@@ -1435,8 +1408,66 @@ function EditListing() {
     setTitle((prevTitle) => ({
       ...prevTitle,
       text: newText,
-      error: newText.trim().length === 0 ? prevTitle.error : false,
-      textError: newText.trim().length === 0 ? prevTitle.textError : "",
+      error: newText.trim().length === 0 || newText.length > 255,
+      textError: newText.trim().length === 0
+        ? "The Title name is required"
+        : newText.length > 255
+        ? "The Title cannot exceed 255 characters"
+        : "",
+    }));
+  };
+  
+
+
+
+  const changeDescriptionHandler = (newText) => {
+    console.log("newText:", newText);
+  
+    // Regular expressions for URLs and image tags
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check for errors
+    const isEmpty = newText.trim().length === 0;
+    const isTooLong = newText.length > 1055;
+    const containsUrl = urlPattern.test(newText);
+    const containsImg = imgPattern.test(newText);
+  
+    setDescription((prevDescription) => ({
+      ...prevDescription,
+      value: newText,
+      error: isEmpty || isTooLong || containsUrl || containsImg,
+      textError: isEmpty
+        ? "The Description is required"
+        : isTooLong
+        ? "The Description cannot exceed 1055 characters"
+        : containsUrl
+        ? "The Description cannot contain URLs"
+        : containsImg
+        ? "The Description cannot contain images"
+        : "",
+    }));
+  };
+  
+
+  
+
+  const handleAddressChange = (e) => {
+    const { name, value } = e.target;
+  
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: {
+        ...prevAddress[name],
+        value: value,
+        error: value.trim().length === 0 || value.length > 255,
+        textError:
+          value.trim().length === 0
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
+            : value.length > 255
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} cannot exceed 255 characters.`
+            : "",
+      },
     }));
   };
   
@@ -1528,12 +1559,32 @@ function EditListing() {
   
         // Set common data
         setTitle({ text: title, error: false, textError: "" });
-        setDescription(description);
-        setAddress({ address, city, country, zip });
+        
+
+        setDescription({
+          value: description,
+          error: false,
+          textError: ""
+        });
+        
+
+        setAddress({
+          address: { value: address, error: false, textError: "" },
+          city: { value: city, error: false, textError: "" },
+          country: { value: country, error: false, textError: "" },
+          zip: { value: zip, error: false, textError: "" },
+        });
+        
+        setPricing({
+          price: { value: price, error: false, textError: "" },
+          currency: { value: currency, error: false, textError: "" },
+          phone: { value: phone, error: false, textError: "" },
+        });
+        
         setIds({ listingid });
         setDateRange([dayjs(startdate), dayjs(enddate)]);
         setSelectedCategory(category);
-        setPricing({ price, currency, phone });
+        
         setSelectedStatus(status);
         setInitialStatus(status);
 
@@ -2242,19 +2293,55 @@ function EditListing() {
     }
     setCategoryError(false); 
   
-
     if (title.text.trim().length < 1) {
       setTitle({ ...title, error: true, textError: "The Title name is required" });
       return;
     }
 
-  
-
-    let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
-    if (descNoTags < 1) {
-      setDescError(true);
+    if (title.text.length > 255) {
+      setTitle({
+        ...title,
+        error: true,
+        textError: "The Title cannot exceed 255 characters",
+      });
       return;
     }
+
+  
+
+
+    const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check if description is empty, contains URLs, or contains image tags
+    if (descNoTags.length < 1) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description must contain text content.",
+      }));
+      return;
+    }
+    
+    if (urlPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain URLs.",
+      }));
+      return;
+    }
+  
+    if (imgPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain images.",
+      }));
+      return;
+    }
+  
 
     // Validate files
     if ((!selectedFiles || selectedFiles.length === 0) && (!oldFiles || oldFiles.length === 0)) {
@@ -2265,30 +2352,74 @@ function EditListing() {
   
 
 
-    // Validate address fields
-    if (address.address.trim().length < 1) {
-      setAddressError(true);
+    if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        address: {
+          ...prevAddress.address,
+          error: true,
+          textError:
+            address.address.value.trim().length < 1
+              ? "Address is required."
+              : "Address cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        city: {
+          ...prevAddress.city,
+          error: true,
+          textError:
+            address.city.value.trim().length < 1
+              ? "City is required."
+              : "City cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        zip: {
+          ...prevAddress.zip,
+          error: true,
+          textError:
+            address.zip.value.trim().length < 1
+              ? "ZIP code is required."
+              : "ZIP code cannot exceed 255 characters.",
+        },
+      }));
       return;
     }
 
-    if (address.city.trim().length < 1) {
-      setCityError(true);
+    if (pricing.price.value.trim().length < 1 || isNaN(pricing.price.value)) {
+      setPricing((prevPricing) => ({
+        ...prevPricing,
+        price: {
+          ...prevPricing.price,
+          error: true,
+          textError: pricing.price.value.trim().length < 1
+            ? "Price is required."
+            : "Price must be a number.",
+        },
+      }));
       return;
     }
-
-    if (address.zip.trim().length < 1) {
-      setZipError(true);
-      return;
-    }
-
-    // Validate pricing fields
-    if (pricing.price.trim().length < 1 || isNaN(pricing.price)) {
-      setPriceError(true);
-      return;
-    }
-
-    if (pricing.phone.trim().length < 1) {
-      setPhoneError(true);
+  
+    if (pricing.phone.value.trim().length < 1) {
+      setPricing((prevPricing) => ({
+        ...prevPricing,
+        phone: {
+          ...prevPricing.phone,
+          error: true,
+          textError: "Phone number is required.",
+        },
+      }));
       return;
     }
     
@@ -2304,17 +2435,18 @@ function EditListing() {
     formData.append('data[type]', 'listings');
     formData.append('data[attributes][category]', selectedCategory);
     formData.append('data[attributes][title]', title.text);
-    formData.append('data[attributes][description]', description);
+    formData.append('data[attributes][description]', description.value);
     formData.append('data[attributes][startdate]', formattedStartDate);
     formData.append('data[attributes][enddate]', formattedEndDate);
-    formData.append('data[attributes][address]', address.address);
-    formData.append('data[attributes][city]', address.city);
-    formData.append('data[attributes][country]', address.country);
-    formData.append('data[attributes][zip]', address.zip);
+    formData.append('data[attributes][address]', address.address.value);
+    formData.append('data[attributes][city]', address.city.value);
+    formData.append('data[attributes][country]', address.country.value);
+    formData.append('data[attributes][zip]', address.zip.value);
+    
    
-    formData.append('data[attributes][price]', pricing.price);
-    formData.append('data[attributes][currency]', pricing.currency);
-    formData.append('data[attributes][phone]', pricing.phone);
+    formData.append('data[attributes][price]', pricing.price.value);
+    formData.append('data[attributes][currency]', pricing.currency.value);
+    formData.append('data[attributes][phone]', pricing.phone.value);
 
 
     
@@ -2975,26 +3107,19 @@ function EditListing() {
 
                                   </SoftTypography>
                                 </SoftBox>
-                                <SoftEditor value={description} 
+                                    <SoftEditor 
+
+                                        value={description.value}
+                                        onChange={changeDescriptionHandler}
+                                        
 
 
-                                    onChange={(value) => {
-                                      setDescription(value);
-
-                                      // Remove error when description is not empty
-                                      if (value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
-                                        setDescError(false);
-                                      }
-                                    }}
-                                
-                                
-                                
-                                />
-                                {descError && (
-                                  <SoftTypography variant="caption" color="error" fontWeight="light">
-                                    The Description description is required
-                                  </SoftTypography>
-                                )}
+                                    />
+                                    {description.error && (
+                                      <SoftTypography variant="caption" color="error" fontWeight="light">
+                                        {description.textError}
+                                      </SoftTypography>
+                                    )}
                               </SoftBox>
                             </SoftBox>
                             <SoftBox mt={8}>
@@ -3191,9 +3316,7 @@ function EditListing() {
 
 
                             <Address address={address} onAddressChange={handleAddressChange} 
-                                            addressError={addressError} 
-                                            cityError={cityError} 
-                                            zipError={zipError} 
+                                           
                             
                             />
                           </SoftBox>
@@ -3201,8 +3324,7 @@ function EditListing() {
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
                           <SoftBox p={2}>
                             <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} 
-                                            priceError={priceError} 
-                                            phoneError={phoneError} 
+                                            
                             
                             />
                           </SoftBox>

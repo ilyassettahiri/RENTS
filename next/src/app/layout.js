@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import Script from 'next/script';
 import { cookies } from 'next/headers';
+import { SettingsProvider } from 'src/components/settings';
 
 import ClientLayout from './client-layout';
 
 import ClientAnalytics from './client-analytics';
-import { SettingsProvider } from 'src/components/settings';
 
 export const metadata = {
   title: 'RENTS.ma: Discover Morocco’s Leading Marketplace for Rentals - Cars, Bikes, Properties & More',

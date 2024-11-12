@@ -63,7 +63,14 @@ const DetailCollection = () => {
   const [data, setData] = useState(null);
 
 
-  const [description, setDescription] = useState("");
+  
+  const [description, setDescription] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
   const [collection, setCollection] = useState({
     id: "",
     name: "",
@@ -99,7 +106,12 @@ const DetailCollection = () => {
           name: collectionAttributes.name,
           picture: collectionAttributes.picture,
         });
-        setDescription(collectionAttributes.description);
+        
+        setDescription({
+          value: collectionAttributes.description,
+          error: false,
+          textError: ""
+        });
       }
     }, [collectionData]);
 
@@ -191,6 +203,39 @@ const DetailCollection = () => {
   };
 
 
+
+
+  const changeDescriptionHandler = (newText) => {
+    console.log("newText:", newText);
+  
+    // Regular expressions for URLs and image tags
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check for errors
+    const isEmpty = newText.trim().length === 0;
+    const isTooLong = newText.length > 1055;
+    const containsUrl = urlPattern.test(newText);
+    const containsImg = imgPattern.test(newText);
+  
+    setDescription((prevDescription) => ({
+      ...prevDescription,
+      value: newText,
+      error: isEmpty || isTooLong || containsUrl || containsImg,
+      textError: isEmpty
+        ? "The Description is required"
+        : isTooLong
+        ? "The Description cannot exceed 1055 characters"
+        : containsUrl
+        ? "The Description cannot contain URLs"
+        : containsImg
+        ? "The Description cannot contain images"
+        : "",
+    }));
+  };
+  
+
+
   const [isSubmitting, setIsSubmitting] = useState(false);
 
 
@@ -206,11 +251,39 @@ const DetailCollection = () => {
       return;
     }
   
-    let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
-    if (descNoTags.trim().length < 1) {
-      setError({ ...error, description: true, textError: "The Collection description is required" });
+
+    const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check if description is empty, contains URLs, or contains image tags
+    if (descNoTags.length < 1) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description must contain text content.",
+      }));
       return;
     }
+    
+    if (urlPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain URLs.",
+      }));
+      return;
+    }
+  
+    if (imgPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain images.",
+      }));
+      return;
+    }
+  
   
     try {
       let pictureUrl = collection.picture;
@@ -233,7 +306,7 @@ const DetailCollection = () => {
       const updatedCollection = {
         id: collection.id,
         name: collection.name,
-        description,
+        description: description.value,
         picture: pictureUrl,
       };
   
@@ -336,10 +409,17 @@ const DetailCollection = () => {
 
                       </SoftTypography>
                     </SoftBox>
-                    <SoftEditor value={description} onChange={setDescription} />
-                    {error.description && (
+                    <SoftEditor 
+
+                        value={description.value}
+                        onChange={changeDescriptionHandler}
+                        
+
+
+                    />
+                    {description.error && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
-                        {error.textError}
+                        {description.textError}
                       </SoftTypography>
                     )}
                   </SoftBox>

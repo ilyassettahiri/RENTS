@@ -28,10 +28,10 @@ function CreateStore() {
   const navigate = useNavigate();
 
   const [address, setAddress] = useState({
-    address: "",
-    city: "",
-    country: "Morocco",
-    zip: "",
+    address: { value: "", error: false, textError: "" },
+    city: { value: "", error: false, textError: "" },
+    country: { value: "Morocco", error: false, textError: "" },
+    zip: { value: "", error: false, textError: "" },
   });
 
 
@@ -59,8 +59,13 @@ function CreateStore() {
   const [selectedCategory, setSelectedCategory] = useState('');
 
 
-  const [description, setDescription] = useState("");
-  const [descError, setDescError] = useState(false);
+
+  const [description, setDescription] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
 
   const [profileImage, setProfileImage] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
@@ -72,6 +77,38 @@ function CreateStore() {
   };
 
 
+
+  const changeDescriptionHandler = (newText) => {
+    console.log("newText:", newText);
+  
+    // Regular expressions for URLs and image tags
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check for errors
+    const isEmpty = newText.trim().length === 0;
+    const isTooLong = newText.length > 1055;
+    const containsUrl = urlPattern.test(newText);
+    const containsImg = imgPattern.test(newText);
+  
+    setDescription((prevDescription) => ({
+      ...prevDescription,
+      value: newText,
+      error: isEmpty || isTooLong || containsUrl || containsImg,
+      textError: isEmpty
+        ? "The Description is required"
+        : isTooLong
+        ? "The Description cannot exceed 1055 characters"
+        : containsUrl
+        ? "The Description cannot contain URLs"
+        : containsImg
+        ? "The Description cannot contain images"
+        : "",
+    }));
+  };
+  
+
+
   const changePhoneHandler = (e) => {
     setPhone({ ...phone, text: e.target.value });
   };
@@ -81,8 +118,24 @@ function CreateStore() {
   };
 
   const handleAddressChange = (e) => {
-    setAddress({ ...address, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+  
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: {
+        ...prevAddress[name],
+        value: value,
+        error: value.trim().length === 0 || value.length > 255,
+        textError:
+          value.trim().length === 0
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
+            : value.length > 255
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} cannot exceed 255 characters.`
+            : "",
+      },
+    }));
   };
+  
 
   const handleProfileImageChange = (event) => {
     const file = event.target.files[0];
@@ -124,11 +177,86 @@ function CreateStore() {
       return;
     }
 
-    let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
-    if (descNoTags.trim().length < 1) {
-      setDescError(true);
+
+    const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check if description is empty, contains URLs, or contains image tags
+    if (descNoTags.length < 1) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description must contain text content.",
+      }));
       return;
     }
+    
+    if (urlPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain URLs.",
+      }));
+      return;
+    }
+  
+    if (imgPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain images.",
+      }));
+      return;
+    }
+  
+
+
+    if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        address: {
+          ...prevAddress.address,
+          error: true,
+          textError:
+            address.address.value.trim().length < 1
+              ? "Address is required."
+              : "Address cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        city: {
+          ...prevAddress.city,
+          error: true,
+          textError:
+            address.city.value.trim().length < 1
+              ? "City is required."
+              : "City cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        zip: {
+          ...prevAddress.zip,
+          error: true,
+          textError:
+            address.zip.value.trim().length < 1
+              ? "ZIP code is required."
+              : "ZIP code cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+
 
     const formData = new FormData();
     formData.append("data[attributes][name]", name.text);
@@ -138,11 +266,11 @@ function CreateStore() {
 
     formData.append("data[attributes][email]", email.text);
 
-    formData.append("data[attributes][description]", description);
-    formData.append("data[attributes][address]", address.address);
-    formData.append("data[attributes][city]", address.city);
-    formData.append("data[attributes][country]", address.country);
-    formData.append("data[attributes][zip]", address.zip);
+    formData.append("data[attributes][description]", description.value);
+    formData.append("data[attributes][address]", address.address.value);
+    formData.append("data[attributes][city]", address.city.value);
+    formData.append("data[attributes][country]", address.country.value);
+    formData.append("data[attributes][zip]", address.zip.value);
 
     if (profileImage) {
       formData.append("data[attributes][profil_picture]", profileImage);
@@ -340,10 +468,17 @@ function CreateStore() {
                         Description <span style={{ color: "red",}}> * </span>
                       </SoftTypography>
                     </SoftBox>
-                    <SoftEditor value={description} onChange={setDescription} />
-                    {descError && (
+                    <SoftEditor 
+
+                        value={description.value}
+                        onChange={changeDescriptionHandler}
+                        
+
+
+                    />
+                    {description.error && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
-                        The Store description is required
+                        {description.textError}
                       </SoftTypography>
                     )}
                   </SoftBox>

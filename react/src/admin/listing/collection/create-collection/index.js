@@ -41,8 +41,13 @@ const CreateCollection = () => {
     textError: "",
   });
 
-  const [description, setDescription] = useState("");
-  const [descError, setDescError] = useState(false);
+
+  const [description, setDescription] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
 
   const [picture, setPicture] = useState(null);
 
@@ -60,6 +65,39 @@ const CreateCollection = () => {
       textError: newText.trim().length === 0 ? prevName.textError : "",
     }));
   };
+
+
+
+  const changeDescriptionHandler = (newText) => {
+    console.log("newText:", newText);
+  
+    // Regular expressions for URLs and image tags
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check for errors
+    const isEmpty = newText.trim().length === 0;
+    const isTooLong = newText.length > 1055;
+    const containsUrl = urlPattern.test(newText);
+    const containsImg = imgPattern.test(newText);
+  
+    setDescription((prevDescription) => ({
+      ...prevDescription,
+      value: newText,
+      error: isEmpty || isTooLong || containsUrl || containsImg,
+      textError: isEmpty
+        ? "The Description is required"
+        : isTooLong
+        ? "The Description cannot exceed 1055 characters"
+        : containsUrl
+        ? "The Description cannot contain URLs"
+        : containsImg
+        ? "The Description cannot contain images"
+        : "",
+    }));
+  };
+  
+
 
   const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
   const maxFileSize = 6 * 1024 * 1024; // 6 MB
@@ -109,11 +147,39 @@ const CreateCollection = () => {
       return;
     }
 
-    let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
-    if (descNoTags.trim().length < 1) {
-      setDescError(true);
+
+    const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check if description is empty, contains URLs, or contains image tags
+    if (descNoTags.length < 1) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description must contain text content.",
+      }));
       return;
     }
+    
+    if (urlPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain URLs.",
+      }));
+      return;
+    }
+  
+    if (imgPattern.test(description.value)) {
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError: "The Description cannot contain images.",
+      }));
+      return;
+    }
+  
 
     if (!picture) {
       setFileError("Please select a valid image.");
@@ -122,7 +188,7 @@ const CreateCollection = () => {
 
     const formData = new FormData();
     formData.append("data[attributes][name]", name.text);
-    formData.append("data[attributes][description]", description);
+    formData.append("data[attributes][description]", description.value);
     if (picture) {
       formData.append("data[attributes][picture]", picture);
     }
@@ -184,22 +250,17 @@ const CreateCollection = () => {
 
                       </SoftTypography>
                     </SoftBox>
-                    <SoftEditor value={description} 
-                    
-                    
-                    onChange={(value) => {
-                      setDescription(value);
+                    <SoftEditor 
 
-                      // Remove error when description is not empty
-                      if (value.replace(/(<([^>]+)>)/gi, "").trim().length > 0) {
-                        setDescError(false);
-                      }
-                    }}
-                    
+                        value={description.value}
+                        onChange={changeDescriptionHandler}
+                        
+
+
                     />
-                    {descError && (
+                    {description.error && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
-                        The Collection description is required
+                        {description.textError}
                       </SoftTypography>
                     )}
                   </SoftBox>

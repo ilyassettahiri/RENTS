@@ -43,7 +43,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
 
 
     }
-  }, [pathname]);
+  }, [pathname, settings]);
 
 
   useEffect(() => {

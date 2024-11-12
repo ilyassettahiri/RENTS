@@ -42,11 +42,11 @@ function DetailStore() {
    const [storeId, setStoreId] = useState(null);
 
    const [address, setAddress] = useState({
-     address: "",
-     city: "",
-     country: "",
-     zip: "",
-   });
+    address: { value: "", error: false, textError: "" },
+    city: { value: "", error: false, textError: "" },
+    country: { value: "Morocco", error: false, textError: "" },
+    zip: { value: "", error: false, textError: "" },
+  });
  
  
  
@@ -73,8 +73,13 @@ function DetailStore() {
    const [selectedCategory, setSelectedCategory] = useState('');
  
  
-   const [description, setDescription] = useState("");
-   const [descError, setDescError] = useState(false);
+
+   const [description, setDescription] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
  
    const [profileImage, setProfileImage] = useState(null);
    const [backgroundImage, setBackgroundImage] = useState(null);
@@ -96,13 +101,38 @@ function DetailStore() {
       setPhone({ text: storeAttributes.phone, error: false, textError: "" });
       setEmail({ text: storeAttributes.email, error: false, textError: "" });
       setSelectedCategory(storeAttributes.category || '');
-      setDescription(storeAttributes.description || '');
-      setAddress({
-        address: storeAttributes.address || "",
-        city: storeAttributes.city || "",
-        country: storeAttributes.country || "",
-        zip: storeAttributes.zip || "",
+    
+      
+      setDescription({
+        value: storeAttributes.description,
+        error: false,
+        textError: ""
       });
+
+      setAddress({
+        address: {
+          value: storeAttributes.address || "",
+          error: false,
+          textError: "",
+        },
+        city: {
+          value: storeAttributes.city || "",
+          error: false,
+          textError: "",
+        },
+        country: {
+          value: storeAttributes.country || "",
+          error: false,
+          textError: "",
+        },
+        zip: {
+          value: storeAttributes.zip || "",
+          error: false,
+          textError: "",
+        },
+      });
+
+      
       setProfileImage(storeAttributes.profile_picture || null);
       setBackgroundImage(storeAttributes.picture || null);
 
@@ -119,6 +149,38 @@ function DetailStore() {
      setName({ ...name, text: e.target.value });
    };
  
+
+
+  const changeDescriptionHandler = (newText) => {
+    console.log("newText:", newText);
+  
+    // Regular expressions for URLs and image tags
+    const urlPattern = /(https?:\/\/[^\s]+)/g;
+    const imgPattern = /<img\b[^>]*>/i;
+  
+    // Check for errors
+    const isEmpty = newText.trim().length === 0;
+    const isTooLong = newText.length > 1055;
+    const containsUrl = urlPattern.test(newText);
+    const containsImg = imgPattern.test(newText);
+  
+    setDescription((prevDescription) => ({
+      ...prevDescription,
+      value: newText,
+      error: isEmpty || isTooLong || containsUrl || containsImg,
+      textError: isEmpty
+        ? "The Description is required"
+        : isTooLong
+        ? "The Description cannot exceed 1055 characters"
+        : containsUrl
+        ? "The Description cannot contain URLs"
+        : containsImg
+        ? "The Description cannot contain images"
+        : "",
+    }));
+  };
+  
+
  
    const changePhoneHandler = (e) => {
      setPhone({ ...phone, text: e.target.value });
@@ -129,8 +191,24 @@ function DetailStore() {
    };
  
    const handleAddressChange = (e) => {
-     setAddress({ ...address, [e.target.name]: e.target.value });
-   };
+    const { name, value } = e.target;
+  
+    setAddress((prevAddress) => ({
+      ...prevAddress,
+      [name]: {
+        ...prevAddress[name],
+        value: value,
+        error: value.trim().length === 0 || value.length > 255,
+        textError:
+          value.trim().length === 0
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
+            : value.length > 255
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} cannot exceed 255 characters.`
+            : "",
+      },
+    }));
+  };
+  
  
    const handleProfileImageChange = (event) => {
      const file = event.target.files[0];
@@ -172,12 +250,85 @@ function DetailStore() {
        return;
      }
  
-     let descNoTags = description.replace(/(<([^>]+)>)/gi, "");
-     if (descNoTags.trim().length < 1) {
-       setDescError(true);
+
+     const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
+     const urlPattern = /(https?:\/\/[^\s]+)/g;
+     const imgPattern = /<img\b[^>]*>/i;
+   
+     // Check if description is empty, contains URLs, or contains image tags
+     if (descNoTags.length < 1) {
+       setDescription((prevDescription) => ({
+         ...prevDescription,
+         error: true,
+         textError: "The Description must contain text content.",
+       }));
        return;
      }
+     
+     if (urlPattern.test(description.value)) {
+       setDescription((prevDescription) => ({
+         ...prevDescription,
+         error: true,
+         textError: "The Description cannot contain URLs.",
+       }));
+       return;
+     }
+   
+     if (imgPattern.test(description.value)) {
+       setDescription((prevDescription) => ({
+         ...prevDescription,
+         error: true,
+         textError: "The Description cannot contain images.",
+       }));
+       return;
+     }
+   
  
+     if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        address: {
+          ...prevAddress.address,
+          error: true,
+          textError:
+            address.address.value.trim().length < 1
+              ? "Address is required."
+              : "Address cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        city: {
+          ...prevAddress.city,
+          error: true,
+          textError:
+            address.city.value.trim().length < 1
+              ? "City is required."
+              : "City cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+  
+    if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
+      setAddress((prevAddress) => ({
+        ...prevAddress,
+        zip: {
+          ...prevAddress.zip,
+          error: true,
+          textError:
+            address.zip.value.trim().length < 1
+              ? "ZIP code is required."
+              : "ZIP code cannot exceed 255 characters.",
+        },
+      }));
+      return;
+    }
+
 
      
  
@@ -224,11 +375,11 @@ function DetailStore() {
             category: selectedCategory,
             phone: phone.text,
             email: email.text,
-            description: description,
-            address: address.address,
-            city: address.city,
-            country: address.country,
-            zip: address.zip,
+            description: description.value,
+            address: address.address.value,
+            city: address.city.value,
+            country: address.country.value,
+            zip: address.zip.value,
             profil_picture: profileUrl, // Use the uploaded profile picture URL
             picture: pictureUrl, // Use the uploaded background picture URL
           },
@@ -508,10 +659,17 @@ function DetailStore() {
                                   Description <span style={{ color: "red",}}> * </span>
                                 </SoftTypography>
                               </SoftBox>
-                              <SoftEditor value={description} onChange={setDescription} />
-                              {descError && (
+                              <SoftEditor 
+
+                                  value={description.value}
+                                  onChange={changeDescriptionHandler}
+                                  
+
+
+                              />
+                              {description.error && (
                                 <SoftTypography variant="caption" color="error" fontWeight="light">
-                                  The Store description is required
+                                  {description.textError}
                                 </SoftTypography>
                               )}
                             </SoftBox>
