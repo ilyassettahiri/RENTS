@@ -308,7 +308,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -394,7 +394,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
@@ -463,7 +463,7 @@ class ListingController extends JsonApiController
             }*/
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -478,7 +478,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
@@ -4622,7 +4622,7 @@ class ListingController extends JsonApiController
         $title = $request->input('attributes.title');
         $address = $request->input('attributes.address');
 
-        $city = strtolower($request->input('data.attributes.city'));
+        $city = strtolower($request->input('attributes.city'));
         $country = $request->input('attributes.country');
         $zip = $request->input('attributes.zip');
 
@@ -4630,7 +4630,7 @@ class ListingController extends JsonApiController
         $enddate = $request->input('attributes.enddate');
         $price = $request->input('attributes.price');
 
-        $phone = preg_replace('/\D/', '', $request->input('data.attributes.phone'));
+        $phone = preg_replace('/\D/', '', $request->input('attributes.phone'));
         $currency = $request->input('attributes.currency');
 
 

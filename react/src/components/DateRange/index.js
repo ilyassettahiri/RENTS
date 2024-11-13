@@ -11,7 +11,7 @@ import dayjs from 'dayjs';
 
 // ----------------------------------------------------------------------
 
-export default function DateRange({ value, onChange, minDate, maxDate, disabledDateRanges = [], sx }) {
+export default function DateRange({ value, onChange, minDate = dayjs(), maxDate, disabledDateRanges = [], sx }) {
   // Function to disable specific dates in the picker
   const shouldDisableDate = (date) => {
     if (!disabledDateRanges || disabledDateRanges.length === 0) {

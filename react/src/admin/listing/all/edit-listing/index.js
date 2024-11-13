@@ -1384,6 +1384,7 @@ function EditListing() {
     }));
   
     
+    
   };
   
 
@@ -1396,7 +1397,7 @@ function EditListing() {
         error: value.trim().length === 0,
         textError: value.trim().length === 0 ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.` : "",
       },
-  }));
+    }));
   
     
   };
@@ -2468,313 +2469,6 @@ function EditListing() {
     const formattedEndDate = dateRange[1].format('YYYY-MM-DD HH:mm:ss');
     
 
-    const formData = new FormData();
-    formData.append('data[type]', 'listings');
-    formData.append('data[attributes][category]', selectedCategory.value);
-    formData.append('data[attributes][title]', title.text);
-    formData.append('data[attributes][description]', description.value);
-    formData.append('data[attributes][startdate]', formattedStartDate);
-    formData.append('data[attributes][enddate]', formattedEndDate);
-    formData.append('data[attributes][address]', address.address.value);
-    formData.append('data[attributes][city]', address.city.value);
-    formData.append('data[attributes][country]', address.country.value);
-    formData.append('data[attributes][zip]', address.zip.value);
-    
-   
-    formData.append('data[attributes][price]', pricing.price.value);
-    formData.append('data[attributes][currency]', pricing.currency.value);
-    formData.append('data[attributes][phone]', pricing.phone.value);
-
-
-    
-
-
-
-
-    switch (selectedCategory.value) {
-      case 'billiard':
-        Object.keys(billiardsData).forEach(key => {
-          formData.append(`data[attributes][billiards][${key}]`, billiardsData[key]);
-        });
-        break;
-      case 'boxing':
-        Object.keys(boxingsData).forEach(key => {
-          formData.append(`data[attributes][boxings][${key}]`, boxingsData[key]);
-        });
-        break;
-      // Add cases for other categories with their respective data objects
-      case 'diving':
-        Object.keys(divingsData).forEach(key => {
-          formData.append(`data[attributes][divings][${key}]`, divingsData[key]);
-        });
-        break;
-      case 'football':
-        Object.keys(footballsData).forEach(key => {
-          formData.append(`data[attributes][footballs][${key}]`, footballsData[key]);
-        });
-        break;
-      case 'golf':
-        Object.keys(golfsData).forEach(key => {
-          formData.append(`data[attributes][golfs][${key}]`, golfsData[key]);
-        });
-        break;
-      case 'hunting':
-        Object.keys(huntingsData).forEach(key => {
-          formData.append(`data[attributes][huntings][${key}]`, huntingsData[key]);
-        });
-        break;
-      case 'gym':
-        Object.keys(musculationsData).forEach(key => {
-          formData.append(`data[attributes][musculations][${key}]`, musculationsData[key]);
-        });
-        break;
-      case 'surf':
-        Object.keys(surfsData).forEach(key => {
-          formData.append(`data[attributes][surfs][${key}]`, surfsData[key]);
-        });
-        break;
-      case 'tennis':
-        Object.keys(tennisData).forEach(key => {
-          formData.append(`data[attributes][tennis][${key}]`, tennisData[key]);
-        });
-        break;
-      case 'audio':
-        Object.keys(audiosData).forEach(key => {
-          formData.append(`data[attributes][audios][${key}]`, audiosData[key]);
-        });
-        break;
-      case 'cameras':
-        Object.keys(camerasData).forEach(key => {
-          formData.append(`data[attributes][cameras][${key}]`, camerasData[key]);
-        });
-        break;
-      case 'chargers':
-        Object.keys(chargersData).forEach(key => {
-          formData.append(`data[attributes][chargers][${key}]`, chargersData[key]);
-        });
-        break;
-      case 'drones':
-        Object.keys(dronesData).forEach(key => {
-          formData.append(`data[attributes][drones][${key}]`, dronesData[key]);
-        });
-        break;
-      case 'gaming':
-        Object.keys(gamingsData).forEach(key => {
-          formData.append(`data[attributes][gamings][${key}]`, gamingsData[key]);
-        });
-        break;
-      case 'laptops':
-        Object.keys(laptopsData).forEach(key => {
-          formData.append(`data[attributes][laptops][${key}]`, laptopsData[key]);
-        });
-        break;
-      case 'lighting':
-        Object.keys(lightingsData).forEach(key => {
-          formData.append(`data[attributes][lightings][${key}]`, lightingsData[key]);
-        });
-        break;
-      case 'printers':
-        Object.keys(printersData).forEach(key => {
-          formData.append(`data[attributes][printers][${key}]`, printersData[key]);
-        });
-        break;
-      case 'routers':
-        Object.keys(routersData).forEach(key => {
-          formData.append(`data[attributes][routers][${key}]`, routersData[key]);
-        });
-        break;
-      case 'tablets':
-        Object.keys(tablettesData).forEach(key => {
-          formData.append(`data[attributes][tablettes][${key}]`, tablettesData[key]);
-        });
-        break;
-      case 'eclairage':
-        Object.keys(eclairagesData).forEach(key => {
-          formData.append(`data[attributes][eclairages][${key}]`, eclairagesData[key]);
-        });
-        break;
-      case 'mobilier':
-        Object.keys(mobiliersData).forEach(key => {
-          formData.append(`data[attributes][mobiliers][${key}]`, mobiliersData[key]);
-        });
-        break;
-      case 'photography':
-        Object.keys(photographiesData).forEach(key => {
-          formData.append(`data[attributes][photographies][${key}]`, photographiesData[key]);
-        });
-        break;
-      case 'sound-systems':
-        Object.keys(sonorisationsData).forEach(key => {
-          formData.append(`data[attributes][sonorisations][${key}]`, sonorisationsData[key]);
-        });
-        break;
-      case 'tents':
-        Object.keys(tentesData).forEach(key => {
-          formData.append(`data[attributes][tentes][${key}]`, tentesData[key]);
-        });
-        break;
-      case 'clothes':
-        Object.keys(clothesData).forEach(key => {
-          formData.append(`data[attributes][clothes][${key}]`, clothesData[key]);
-        });
-        break;
-      case 'jewelry':
-        Object.keys(jewelrysData).forEach(key => {
-          formData.append(`data[attributes][jewelrys][${key}]`, jewelrysData[key]);
-        });
-        break;
-      case 'apartments':
-        Object.keys(apartmentsData).forEach(key => {
-          formData.append(`data[attributes][apartments][${key}]`, apartmentsData[key]);
-        });
-        break;
-      case 'offices':
-        Object.keys(bureauxsData).forEach(key => {
-          formData.append(`data[attributes][bureauxs][${key}]`, bureauxsData[key]);
-        });
-        break;
-      case 'shops':
-        Object.keys(magasinsData).forEach(key => {
-          formData.append(`data[attributes][magasins][${key}]`, magasinsData[key]);
-        });
-        break;
-      case 'houses':
-        Object.keys(maisonsData).forEach(key => {
-          formData.append(`data[attributes][maisons][${key}]`, maisonsData[key]);
-        });
-        break;
-      case 'riads':
-        Object.keys(riadsData).forEach(key => {
-          formData.append(`data[attributes][riads][${key}]`, riadsData[key]);
-        });
-        break;
-      case 'lands':
-        Object.keys(terrainsData).forEach(key => {
-          formData.append(`data[attributes][terrains][${key}]`, terrainsData[key]);
-        });
-        break;
-      case 'villas':
-        Object.keys(villasData).forEach(key => {
-          formData.append(`data[attributes][villas][${key}]`, villasData[key]);
-        });
-        break;
-      case 'activities':
-        Object.keys(activitiesData).forEach(key => {
-          formData.append(`data[attributes][activities][${key}]`, activitiesData[key]);
-        });
-        break;
-      case 'books':
-        Object.keys(livresData).forEach(key => {
-          formData.append(`data[attributes][livres][${key}]`, livresData[key]);
-        });
-        break;
-      case 'musical':
-        Object.keys(musicalsData).forEach(key => {
-          formData.append(`data[attributes][musicals][${key}]`, musicalsData[key]);
-        });
-        break;
-      case 'furniture':
-        Object.keys(furnituresData).forEach(key => {
-          formData.append(`data[attributes][furnitures][${key}]`, furnituresData[key]);
-        });
-        break;
-      case 'home-appliances':
-        Object.keys(houseappliancesData).forEach(key => {
-          formData.append(`data[attributes][houseappliances][${key}]`, houseappliancesData[key]);
-        });
-        break;
-      case 'electrical-tools':
-        Object.keys(electricaltoolsData).forEach(key => {
-          formData.append(`data[attributes][electricaltools][${key}]`, electricaltoolsData[key]);
-        });
-        break;
-      case 'ladders':
-        Object.keys(laddersData).forEach(key => {
-          formData.append(`data[attributes][ladders][${key}]`, laddersData[key]);
-        });
-        break;
-      case 'mechanical-tools':
-        Object.keys(mechanicaltoolsData).forEach(key => {
-          formData.append(`data[attributes][mechanicaltools][${key}]`, mechanicaltoolsData[key]);
-        });
-        break;
-      case 'power-tools':
-        Object.keys(powertoolsData).forEach(key => {
-          formData.append(`data[attributes][powertools][${key}]`, powertoolsData[key]);
-        });
-        break;
-      case 'pressure-washers':
-        Object.keys(pressurewashersData).forEach(key => {
-          formData.append(`data[attributes][pressurewashers][${key}]`, pressurewashersData[key]);
-        });
-        break;
-      case 'services':
-        Object.keys(servicesData).forEach(key => {
-          formData.append(`data[attributes][services][${key}]`, servicesData[key]);
-        });
-        break;
-
-      case 'jobs':
-          Object.keys(jobsData).forEach(key => {
-            formData.append(`data[attributes][jobs][${key}]`, jobsData[key]);
-          });
-          break;
-      case 'boats':
-        Object.keys(boatsData).forEach(key => {
-          formData.append(`data[attributes][boats][${key}]`, boatsData[key]);
-        });
-        break;
-      case 'trucks':
-        Object.keys(camionsData).forEach(key => {
-          formData.append(`data[attributes][camions][${key}]`, camionsData[key]);
-        });
-        break;
-      case 'caravans':
-        Object.keys(caravansData).forEach(key => {
-          formData.append(`data[attributes][caravans][${key}]`, caravansData[key]);
-        });
-        break;
-      case 'cars':
-        Object.keys(carsData).forEach(key => {
-          formData.append(`data[attributes][cars][${key}]`, carsData[key]);
-        });
-        break;
-      case 'engins':
-        Object.keys(enginsData).forEach(key => {
-          formData.append(`data[attributes][engins][${key}]`, enginsData[key]);
-        });
-        break;
-      case 'motorcycles':
-        Object.keys(motosData).forEach(key => {
-          formData.append(`data[attributes][motos][${key}]`, motosData[key]);
-        });
-        break;
-      case 'scooters':
-        Object.keys(scootersData).forEach(key => {
-          formData.append(`data[attributes][scooters][${key}]`, scootersData[key]);
-        });
-        break;
-      case 'airport-taxis':
-        Object.keys(taxiaeroportsData).forEach(key => {
-          formData.append(`data[attributes][taxiaeroports][${key}]`, taxiaeroportsData[key]);
-        });
-        break;
-      case 'transportation':
-        Object.keys(transportationsData).forEach(key => {
-          formData.append(`data[attributes][transportations][${key}]`, transportationsData[key]);
-        });
-        break;
-      case 'bicycles':
-        Object.keys(velosData).forEach(key => {
-          formData.append(`data[attributes][velos][${key}]`, velosData[key]);
-        });
-        break;
-      default:
-        break;
-    }
-
-
-
 
 
 
@@ -2826,13 +2520,13 @@ function EditListing() {
               description: description.value,
               startdate: formattedStartDate,
               enddate: formattedEndDate,
-              address: address.address,
-              city: address.city,
-              country: address.country,
-              zip: address.zip,
-              price: pricing.price,
-              currency: pricing.currency,
-              phone: pricing.phone,
+              address: address.address.value,
+              city: address.city.value,
+              country: address.country.value,
+              zip: address.zip.value,
+              price: pricing.price.value,
+              currency: pricing.currency.value,
+              phone: pricing.phone.value,
 
               imagePathslarge: null,
               imagePathssmall: null,
@@ -2900,6 +2594,7 @@ function EditListing() {
             ...(selectedCategory.value === 'bicycles' && { velos: velosData }),  
           }
         };
+        
         
 
         if (response) {
