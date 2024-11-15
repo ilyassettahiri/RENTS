@@ -227,6 +227,9 @@ function ChangePassword() {
       setNewPassword({ text: "", error: false, textError: "" });
       setConfirmNewPassword({ text: "", error: false, textError: "" });
     } catch (error) {
+
+      setIsSubmitting(false);
+
       console.error("Failed to change password:", error);
       
       setNotification({

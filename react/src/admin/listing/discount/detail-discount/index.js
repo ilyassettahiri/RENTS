@@ -478,6 +478,9 @@ if (purchaseRequirement.value === "purchaseamount") {
         state: { value: true, text: "The Discount was successfully created" },
       });
     } catch (err) {
+
+      setIsSubmitting(false);
+
       if (err.response && err.response.data && err.response.data.errors) {
         setCode({ ...code, error: true, textError: err.response.data.errors[0].detail });
       }

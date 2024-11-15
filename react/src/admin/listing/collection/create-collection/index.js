@@ -240,6 +240,8 @@ const CreateCollection = () => {
         state: { value: true, text: "The Collection was successfully created" },
       });
     } catch (err) {
+      setIsSubmitting(false);
+
       if (err.hasOwnProperty("errors")) {
         setName({ ...name, error: true, textError: err.errors[0].detail });
       }

@@ -2409,6 +2409,9 @@ function CreateListing() {
         state: { value: true, text: "The Listing was successfully created" },
       });
     } catch (err) {
+
+      setIsSubmitting(false);
+
       console.error(err);
       // Handle error
     }

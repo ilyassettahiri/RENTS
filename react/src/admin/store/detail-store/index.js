@@ -547,6 +547,9 @@ function DetailStore() {
          state: { value: true, text: "The Store was successfully created" },
        });
      } catch (err) {
+
+      setIsSubmitting(false);
+
        console.error(err);
        // Handle error
      }

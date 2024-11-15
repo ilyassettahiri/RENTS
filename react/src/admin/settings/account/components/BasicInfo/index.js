@@ -645,6 +645,9 @@ function BasicInfo({ user }) {
         message: "Your profile has been updated",
       });
     } catch (error) {
+
+      setIsSubmitting(false);
+
       console.error("Failed to update profile:", error);
     }
 

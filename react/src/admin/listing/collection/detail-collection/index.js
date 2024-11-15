@@ -396,6 +396,8 @@ const DetailCollection = () => {
         state: { value: true, text: "The Collection was successfully updated" },
       });
     } catch (err) {
+      setIsSubmitting(false);
+
       if (err.hasOwnProperty("errors")) {
         setError({ ...name, error: true, textError: err.errors[0].detail });
       }

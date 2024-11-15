@@ -2728,6 +2728,9 @@ function EditListing() {
         state: { value: true, text: "The Listing was successfully updated" },
       });
     } catch (err) {
+
+      setIsSubmitting(false);
+
       console.error(err);
       // Handle error
     }
