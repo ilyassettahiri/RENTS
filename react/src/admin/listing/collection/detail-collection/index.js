@@ -71,20 +71,21 @@ const DetailCollection = () => {
   });
 
 
-  const [collection, setCollection] = useState({
-    id: "",
-    name: "",
-    picture: "",
-  });
+  const [collectionID, setCollectionID] = useState();
 
-  const [picture, setPicture] = useState(null);
-
-  const [error, setError] = useState({
-    name: false,
-    description: false,
+  const [name, setName] = useState({
+    text: "",
     error: false,
     textError: "",
   });
+
+
+  const [oldpicture, setOldpicture] = useState(null);
+
+  const [picture, setPicture] = useState(null);
+
+  const [fileError, setFileError] = useState("");
+
 
 
 
@@ -101,10 +102,15 @@ const DetailCollection = () => {
     useEffect(() => {
       if (collectionData) {
         const collectionAttributes = collectionData.data.attributes;
-        setCollection({
-          id: collectionData.data.id,
-          name: collectionAttributes.name,
-          picture: collectionAttributes.picture,
+        
+        setCollectionID(collectionData.data.id);
+
+        setOldpicture(collectionAttributes.picture);
+
+        setName({
+          text: collectionAttributes.name,
+          error: false,
+          textError: ""
         });
         
         setDescription({
@@ -188,20 +194,57 @@ const DetailCollection = () => {
   };
 
 
+  const acceptedTypes = ["image/jpeg", "image/png", "image/tiff", "image/jpg", "image/webp", "image/gif"];
+  const maxFileSize = 6 * 1024 * 1024; // 6 MB
+
+
   const changePictureHandler = (e) => {
     const file = e.target.files[0];
-    if (file && file.type.startsWith("image/")) {
-      console.log("Selected file:", file);
-      setPicture(file);
-    } else {
-      console.error("Selected file is not an image.");
+  
+    // Check if a file is selected
+    if (!file) {
+      setFileError("Please select an image.");
+      setPicture(null); // Ensure no picture is set if no file is selected
+      return;
     }
+  
+    // Check the file type
+    if (!acceptedTypes.includes(file.type)) {
+      setFileError("Only image files (JPEG, PNG, GIF, WEBP, TIFF) are allowed.");
+      setPicture(null); // Do not set the file if it is not a valid image
+      return;
+    }
+  
+    // Check the file size
+    if (file.size > maxFileSize) {
+      setFileError("Image must be less than 6MB.");
+      setPicture(null); // Do not set the file if it exceeds the size limit
+      return;
+    }
+  
+    // Clear any previous errors and set the picture
+    setFileError("");
+    setPicture(file);
   };
+
+
 
   const changeNameHandler = (e) => {
-    setCollection({ ...collection, name: e.target.value });
+    const newValue = e.target.value;
+    setName({
+      ...name,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+      textError:
+        newValue.trim().length < 1
+          ? "The Store Name is Required"
+          : newValue.length > 255
+          ? "The Name cannot exceed 255 characters"
+          : /https?:\/\/[^\s]+/.test(newValue)
+          ? "The Store Name cannot contain a URL"
+          : "",
+    });
   };
-
 
 
 
@@ -246,18 +289,44 @@ const DetailCollection = () => {
 
     setIsSubmitting(true);
   
-    if (collection.name.trim().length < 1) {
-      setError({ ...error, name: true, textError: "The Collection name is required" });
-      return;
-    }
-  
-
     const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
     const urlPattern = /(https?:\/\/[^\s]+)/g;
     const imgPattern = /<img\b[^>]*>/i;
+
+
+    if (name.text.trim().length < 1) {
+      setIsSubmitting(false);
+      setName({ ...name, error: true, textError: "The Store Name is Required" });
+      return;
+    } else if (name.text.length > 255) {
+      setIsSubmitting(false);
+      setName({
+        ...name,
+        error: true,
+        textError: "The Name cannot exceed 255 characters",
+      });
+      return;
+    } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
+      setIsSubmitting(false);
+      setName({
+        ...name,
+        error: true,
+        textError: "The Store Name cannot contain a URL",
+      });
+      return;
+    } else {
+      setName({ ...name, error: false, textError: "" });
+    }
+
+  
+
+
+
   
     // Check if description is empty, contains URLs, or contains image tags
     if (descNoTags.length < 1) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -267,6 +336,8 @@ const DetailCollection = () => {
     }
     
     if (urlPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -276,6 +347,8 @@ const DetailCollection = () => {
     }
   
     if (imgPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -284,40 +357,47 @@ const DetailCollection = () => {
       return;
     }
   
+
+    if (!picture) {
+
+      setIsSubmitting(false);
+      setFileError("Please select a valid image.");
+      return;
+    }
+
+  
   
     try {
-      let pictureUrl = collection.picture;
+      let pictureUrl = oldpicture;
   
   
       
-      if (picture) {
-
+     
         
 
         const formData = new FormData();
         formData.append('attachment', picture);
   
-        const pictureUploadResponse = await CrudService.imageUploadCollection(formData, collection.id);
-        console.log("Picture upload response:", pictureUploadResponse); // Log the full response
+        const pictureUploadResponse = await CrudService.imageUploadCollection(formData, collectionID);
 
         pictureUrl = pictureUploadResponse.relativePath;
-      }
+     
   
       const updatedCollection = {
-        id: collection.id,
-        name: collection.name,
+        id: collectionID,
+        name: name.text,
         description: description.value,
         picture: pictureUrl,
       };
   
-      await CrudService.updateCollection(updatedCollection, collection.id);
+      await CrudService.updateCollection(updatedCollection, collectionID);
   
       navigate("/listing/collection", {
         state: { value: true, text: "The Collection was successfully updated" },
       });
     } catch (err) {
       if (err.hasOwnProperty("errors")) {
-        setError({ ...error, name: true, textError: err.errors[0].detail });
+        setError({ ...name, error: true, textError: err.errors[0].detail });
       }
       console.error(err);
     }
@@ -332,7 +412,7 @@ const DetailCollection = () => {
   const handleStatusChange = async (newStatus) => {
     try {
       const payload = { status: newStatus };
-      const response = await CrudService.updateCollectionStatus(payload, data.id);
+      const response = await CrudService.updateCollectionStatus(payload, collectionID);
       if (response.data) {
         setData((prevData) => ({
           ...prevData,
@@ -386,19 +466,25 @@ const DetailCollection = () => {
               <SoftBox >
                 <SoftBox display="flex" flexDirection="column" p={3} >
                   <SoftBox p={1}>
+                    
+
                     <FormField
                       type="text"
                       label="Name"
+                      placeholder="Newest "
+
                       name="name"
-                      value={collection.name}
+                      value={name.text}
                       onChange={changeNameHandler}
-                      error={error.name}
+                      error={name.error}
                     />
-                    {error.name && (
+                    {name.error && (
                       <SoftTypography variant="caption" color="error" fontWeight="light">
-                        {error.textError}
+                        {name.textError}
                       </SoftTypography>
                     )}
+
+
                   </SoftBox>
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
@@ -528,10 +614,10 @@ const DetailCollection = () => {
                           width="100%"
                         />
                       ) : (
-                        collection.picture && (
+                        picture && (
                           <SoftBox
                             component="img"
-                            src={`${process.env.REACT_APP_IMAGE_COLLECTION}${collection.picture}`}
+                            src={`${process.env.REACT_APP_IMAGE_COLLECTION}${picture}`}
                             alt="Product Image"
                             borderRadius="lg"
                             shadow="lg"

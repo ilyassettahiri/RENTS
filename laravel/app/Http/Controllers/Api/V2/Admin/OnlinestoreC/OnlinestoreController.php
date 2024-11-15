@@ -124,7 +124,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-        $manager = new ImageManager(new Driver());
+        /*$manager = new ImageManager(new Driver());
 
         if ($request->hasFile('data.attributes.picture')) {
             $file = $request->file('data.attributes.picture');
@@ -225,13 +225,13 @@ class OnlinestoreController extends JsonApiController
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }
+        }*/
 
 
 
 
         // Handle image uploads
-       /* if ($request->hasFile('data.attributes.picture')) {
+        if ($request->hasFile('data.attributes.picture')) {
             $picturefile = $request->file('data.attributes.picture');
             $picturePath = Storage::disk('public')->put('images', $picturefile, 'public');
             $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
@@ -241,7 +241,7 @@ class OnlinestoreController extends JsonApiController
             $profil_picturefile = $request->file('data.attributes.profil_picture');
             $profil_picturePath = Storage::disk('public')->put('images', $profil_picturefile, 'public');
             $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
-        }*/
+        }
 
 
 

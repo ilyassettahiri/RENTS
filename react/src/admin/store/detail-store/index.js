@@ -70,9 +70,11 @@ function DetailStore() {
      textError: "",
    });
  
-   const [selectedCategory, setSelectedCategory] = useState('');
- 
- 
+   const [selectedCategory, setSelectedCategory] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
 
    const [description, setDescription] = useState({
     value: "",
@@ -100,9 +102,10 @@ function DetailStore() {
       setName({ text: storeAttributes.name, error: false, textError: "" });
       setPhone({ text: storeAttributes.phone, error: false, textError: "" });
       setEmail({ text: storeAttributes.email, error: false, textError: "" });
-      setSelectedCategory(storeAttributes.category || '');
-    
       
+    
+      setSelectedCategory({ value: storeAttributes.category, error: false, textError: "" });
+
       setDescription({
         value: storeAttributes.description,
         error: false,
@@ -145,10 +148,56 @@ function DetailStore() {
 
 
  
-   const changeNameHandler = (e) => {
-     setName({ ...name, text: e.target.value });
-   };
- 
+  const changeNameHandler = (e) => {
+    const newValue = e.target.value;
+    setName({
+      ...name,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+      textError:
+        newValue.trim().length < 1
+          ? "The Store Name is Required"
+          : newValue.length > 255
+          ? "The Name cannot exceed 255 characters"
+          : /https?:\/\/[^\s]+/.test(newValue)
+          ? "The Store Name cannot contain a URL"
+          : "",
+    });
+  };
+  
+  const changePhoneHandler = (e) => {
+    const newValue = e.target.value;
+    setPhone({
+      ...phone,
+      text: newValue,
+      error: newValue.trim().length < 1 || !/^\d+$/.test(newValue) || newValue.length < 10 || newValue.length > 15,
+      textError:
+        newValue.trim().length < 1
+          ? "The Phone is required"
+          : !/^\d+$/.test(newValue)
+          ? "The Phone must contain only numbers"
+          : newValue.length < 10 || newValue.length > 15
+          ? "The Phone must be between 10 and 15 digits"
+          : "",
+    });
+  };
+  
+  const changeEmailHandler = (e) => {
+    const newValue = e.target.value;
+    setEmail({
+      ...email,
+      text: newValue,
+      error: newValue.trim().length < 1 || !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(newValue),
+      textError:
+        newValue.trim().length < 1
+          ? "The Email is required"
+          : !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(newValue)
+          ? "The Email format is invalid"
+          : "",
+    });
+  };
+  
+
 
 
   const changeDescriptionHandler = (newText) => {
@@ -181,43 +230,47 @@ function DetailStore() {
   };
   
 
- 
-   const changePhoneHandler = (e) => {
-     setPhone({ ...phone, text: e.target.value });
-   };
- 
-   const changeEmailHandler = (e) => {
-     setEmail({ ...email, text: e.target.value });
-   };
- 
-   const handleAddressChange = (e) => {
+
+
+  const handleAddressChange = (e) => {
     const { name, value } = e.target;
+    const urlPattern = /(https?:\/\/[^\s]+)/g; // Regex pattern to detect URLs
   
     setAddress((prevAddress) => ({
       ...prevAddress,
       [name]: {
         ...prevAddress[name],
         value: value,
-        error: value.trim().length === 0 || value.length > 255,
+        error:
+          value.trim().length === 0 ||
+          value.length > 255 ||
+          urlPattern.test(value), // Checks if value contains a URL
         textError:
           value.trim().length === 0
             ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
             : value.length > 255
             ? `${name.charAt(0).toUpperCase() + name.slice(1)} cannot exceed 255 characters.`
+            : urlPattern.test(value)
+            ? `${name.charAt(0).toUpperCase() + name.slice(1)} cannot contain URLs.`
             : "",
       },
     }));
   };
   
- 
-   const handleProfileImageChange = (event) => {
-     const file = event.target.files[0];
-     setProfileImage(file);
-   };
- 
-   const handleCategoryChange = (selectedOption) => {
-     setSelectedCategory(selectedOption.value);
-   };
+  
+
+  const handleProfileImageChange = (event) => {
+    const file = event.target.files[0];
+    setProfileImage(file);
+  };
+
+  const handleCategoryChange = (selectedOption) => {
+    setSelectedCategory({
+      value: selectedOption.value,
+      error: selectedOption.value.trim().length === 0, // Set error if value is empty
+      textError: selectedOption.value.trim().length === 0 ? "A category must be selected" : "",
+    });
+  };
  
    const handleBackgroundImageChange = (event) => {
      const file = event.target.files[0];
@@ -234,101 +287,201 @@ function DetailStore() {
      setIsSubmitting(true);
 
  
-     if (name.text.trim().length < 1) {
-       setName({ ...name, error: true, textError: "The Name is required" });
-       return;
-     }
- 
- 
-     if (phone.text.trim().length < 1) {
-       setPhone({ ...phone, error: true, textError: "The Phone is required" });
-       return;
-     }
- 
-     if (email.text.trim().length < 1) {
-       setEmail({ ...email, error: true, textError: "The Email is required" });
-       return;
-     }
- 
 
      const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
      const urlPattern = /(https?:\/\/[^\s]+)/g;
      const imgPattern = /<img\b[^>]*>/i;
+ 
+     if (selectedCategory.value.trim().length < 1) {
+ 
+       setIsSubmitting(false);
+ 
+       setSelectedCategory((prevCategory) => ({
+         ...prevCategory,
+         error: true,
+         textError: "A category must be selected",
+       }));
+       return;
+     }
+     
+ 
+ 
+     
+ 
+ 
+     if (name.text.trim().length < 1) {
+       setIsSubmitting(false);
+       setName({ ...name, error: true, textError: "The Store Name is Required" });
+       return;
+     } else if (name.text.length > 255) {
+       setIsSubmitting(false);
+       setName({
+         ...name,
+         error: true,
+         textError: "The Name cannot exceed 255 characters",
+       });
+       return;
+     } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
+       setIsSubmitting(false);
+       setName({
+         ...name,
+         error: true,
+         textError: "The Store Name cannot contain a URL",
+       });
+       return;
+     } else {
+       setName({ ...name, error: false, textError: "" });
+     }
+ 
+   
+ 
+ 
+     if (phone.text.trim().length < 1) {
+ 
+       setIsSubmitting(false);
+ 
+       setPhone({ ...phone, error: true, textError: "The Phone is required" });
+       return;
+     } else if (!/^\d+$/.test(phone.text)) {
+ 
+       setIsSubmitting(false);
+ 
+       setPhone({ ...phone, error: true, textError: "The Phone must contain only numbers" });
+       return;
+     } else if (phone.text.length < 10 || phone.text.length > 15) { 
+ 
+       setIsSubmitting(false);
+ 
+       setPhone({ ...phone, error: true, textError: "The Phone must be between 10 and 15 digits" });
+       return;
+     } else {
+       setPhone({ ...phone, error: false, textError: "" });
+     }
+   
+ 
+     // Email validation
+     if (email.text.trim().length < 1) {
+       setIsSubmitting(false);
+       setEmail({ ...email, error: true, textError: "The Email is required" });
+       return;
+     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text)) {
+       setIsSubmitting(false);
+       setEmail({ ...email, error: true, textError: "The Email format is invalid" });
+       return;
+     } else if (urlPattern.test(email.text)) { // Extra check to ensure no URL-like text is entered
+       setIsSubmitting(false);
+       setEmail({ ...email, error: true, textError: "The Email cannot contain URLs" });
+       return;
+     } else {
+       setEmail({ ...email, error: false, textError: "" });
+     }
+ 
+ 
+     
    
      // Check if description is empty, contains URLs, or contains image tags
      if (descNoTags.length < 1) {
+       setIsSubmitting(false);
        setDescription((prevDescription) => ({
          ...prevDescription,
          error: true,
          textError: "The Description must contain text content.",
        }));
-       return;
-     }
-     
-     if (urlPattern.test(description.value)) {
+     } else if (urlPattern.test(description.value)) {
+       setIsSubmitting(false);
        setDescription((prevDescription) => ({
          ...prevDescription,
          error: true,
          textError: "The Description cannot contain URLs.",
        }));
-       return;
-     }
-   
-     if (imgPattern.test(description.value)) {
+     } else if (imgPattern.test(description.value)) {
+       setIsSubmitting(false);
        setDescription((prevDescription) => ({
          ...prevDescription,
          error: true,
          textError: "The Description cannot contain images.",
        }));
-       return;
+     } else {
+       // If all checks pass, reset error state if needed and proceed with submission
+       setDescription((prevDescription) => ({
+         ...prevDescription,
+         error: false,
+         textError: "",
+       }));
      }
    
  
-     if (address.address.value.trim().length < 1 || address.address.value.length > 255) {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        address: {
-          ...prevAddress.address,
-          error: true,
-          textError:
-            address.address.value.trim().length < 1
-              ? "Address is required."
-              : "Address cannot exceed 255 characters.",
-        },
-      }));
-      return;
-    }
-  
-    if (address.city.value.trim().length < 1 || address.city.value.length > 255) {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        city: {
-          ...prevAddress.city,
-          error: true,
-          textError:
-            address.city.value.trim().length < 1
-              ? "City is required."
-              : "City cannot exceed 255 characters.",
-        },
-      }));
-      return;
-    }
-  
-    if (address.zip.value.trim().length < 1 || address.zip.value.length > 255) {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        zip: {
-          ...prevAddress.zip,
-          error: true,
-          textError:
-            address.zip.value.trim().length < 1
-              ? "ZIP code is required."
-              : "ZIP code cannot exceed 255 characters.",
-        },
-      }));
-      return;
-    }
-
+ 
+ 
+       // Check for Address
+       if (
+         address.address.value.trim().length < 1 ||
+         address.address.value.length > 255 ||
+         urlPattern.test(address.address.value)
+       ) {
+         setIsSubmitting(false);
+         setAddress((prevAddress) => ({
+           ...prevAddress,
+           address: {
+             ...prevAddress.address,
+             error: true,
+             textError:
+               address.address.value.trim().length < 1
+                 ? "Address is required."
+                 : address.address.value.length > 255
+                 ? "Address cannot exceed 255 characters."
+                 : "Address cannot contain URLs.",
+           },
+         }));
+         return;
+       }
+ 
+       // Check for City
+       if (
+         address.city.value.trim().length < 1 ||
+         address.city.value.length > 255 ||
+         urlPattern.test(address.city.value)
+       ) {
+         setIsSubmitting(false);
+         setAddress((prevAddress) => ({
+           ...prevAddress,
+           city: {
+             ...prevAddress.city,
+             error: true,
+             textError:
+               address.city.value.trim().length < 1
+                 ? "City is required."
+                 : address.city.value.length > 255
+                 ? "City cannot exceed 255 characters."
+                 : "City cannot contain URLs.",
+           },
+         }));
+         return;
+       }
+ 
+       // Check for ZIP code
+       if (
+         address.zip.value.trim().length < 1 ||
+         address.zip.value.length > 255 ||
+         urlPattern.test(address.zip.value)
+       ) {
+         setIsSubmitting(false);
+         setAddress((prevAddress) => ({
+           ...prevAddress,
+           zip: {
+             ...prevAddress.zip,
+             error: true,
+             textError:
+               address.zip.value.trim().length < 1
+                 ? "ZIP code is required."
+                 : address.zip.value.length > 255
+                 ? "ZIP code cannot exceed 255 characters."
+                 : "ZIP code cannot contain URLs.",
+           },
+         }));
+         return;
+       }
+ 
 
      
  
@@ -372,7 +525,7 @@ function DetailStore() {
           type: 'stores',
           attributes: {
             name: name.text,
-            category: selectedCategory,
+            category: selectedCategory.value,
             phone: phone.text,
             email: email.text,
             description: description.value,
@@ -529,7 +682,7 @@ function DetailStore() {
                                   
                                     <SoftSelect
 
-                                      value={{ value: selectedCategory, label: selectedCategory || "Select Category" }}
+                                      value={{ value: selectedCategory.value, label: selectedCategory.value || "Select Category" }}
                                       options={[
                                         
                                         { value: "boats", label: "boats"},
@@ -593,9 +746,17 @@ function DetailStore() {
 
 
 
-
                                       onChange={handleCategoryChange}
+
+                                      error={selectedCategory.error}
                                     />
+
+
+                                        {selectedCategory.error && (
+                                          <SoftTypography variant="caption" color="error" fontWeight="light">
+                                            {selectedCategory.textError}
+                                          </SoftTypography>
+                                        )}
 
                                 </SoftBox>
                               </Grid>

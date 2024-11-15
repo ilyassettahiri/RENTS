@@ -16,21 +16,22 @@ const CreateDiscount = () => {
 
   const [collectionsData, setCollectionsData] = useState([]);
   const [listingsData, setListingsData] = useState([]);
-  const [selectedCollections, setSelectedCollections] = useState([]);
-  const [selectedListings, setSelectedListings] = useState([]);
-  const [purchaseAmount, setPurchaseAmount] = useState("");
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await CrudService.getDiscountData();
-        setCollectionsData(response.data.collections);
-        setListingsData(response.data.listings);
-      } catch (error) {
-        console.error("Error fetching discount data:", error);
-      }
-    })();
-  }, []);
+
+
+ 
+
+  const [purchaseAmount, setPurchaseAmount] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
+
+
+  
+
 
   const [code, setCode] = useState({
     text: "",
@@ -44,28 +45,176 @@ const CreateDiscount = () => {
     textError: "",
   });
 
-  const [appliesTo, setAppliesTo] = useState("");
-  const [purchaseRequirement, setPurchaseRequirement] = useState("");
+ 
+
+  const [appliesTo, setAppliesTo] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
+  const [purchaseRequirement, setPurchaseRequirement] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
+  const [selectedCollections, setSelectedCollections] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
+  const [selectedListings, setSelectedListings] = useState({
+    value: "",
+    error: false,
+    textError: "",
+  });
+
+
+
+  const collectionOptions = collectionsData.map((collection) => ({
+    value: collection.id,
+    label: collection.attributes.name,
+    icon: collection.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${collection.attributes.picture}` : null,
+  }));
+  
+  const listingOptions = listingsData.map((listing) => ({
+    value: listing.id,
+    label: listing.attributes.title,
+    icon: listing.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${listing.attributes.picture}` : null,
+  }));
+  
+
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await CrudService.getDiscountData();
+        setCollectionsData(response.data.collections);
+        setListingsData(response.data.listings);
+      } catch (error) {
+        console.error("Error fetching discount data:", error);
+      }
+    })();
+  }, []);
+
+
+
+
+  const changeSelectedCollectionsHandler = (selectedOptions) => {
+    if (selectedOptions.length === 0) {
+      setSelectedCollections({
+        value: [],
+        error: true,
+        textError: "A Collection must be selected",
+      });
+    } else {
+      setSelectedCollections({
+        value: selectedOptions,
+        error: false,
+        textError: "",
+      });
+    }
+  };
+  
+  const changeSelectedListingsHandler = (selectedOptions) => {
+    if (selectedOptions.length === 0) {
+      setSelectedListings({
+        value: [],
+        error: true,
+        textError: "A Listing must be selected",
+      });
+    } else {
+      setSelectedListings({
+        value: selectedOptions,
+        error: false,
+        textError: "",
+      });
+    }
+  };
+  
+
+  
 
   const changeCodeHandler = (e) => {
-    setCode({ ...code, text: e.target.value });
+    const newValue = e.target.value;
+    setCode({
+      ...code,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+      textError:
+        newValue.trim().length < 1
+          ? "The Code is required."
+          : newValue.length > 255
+          ? "The Code cannot exceed 255 characters"
+          : /https?:\/\/[^\s]+/.test(newValue)
+          ? "The Code cannot contain a URL"
+          : "",
+    });
   };
+
 
   const changeDiscountValueHandler = (e) => {
-    setDiscountValue({ ...discountValue, text: e.target.value });
+    const newValue = e.target.value;
+    const isValidPercentage = /^[1-9][0-9]?$|^100$/.test(newValue); // Matches 1-99 only
+  
+    setDiscountValue({
+      ...discountValue,
+      text: newValue,
+      error: newValue.trim().length < 1 || !isValidPercentage,
+      textError:
+        newValue.trim().length < 1
+          ? "The Discount Value is required."
+          : !isValidPercentage
+          ? "The Discount Value must be a percentage between 1 and 99."
+          : "",
+    });
   };
+  
+
+
 
   const changeAppliesToHandler = (selectedOption) => {
-    setAppliesTo(selectedOption.value);
+    setAppliesTo({
+      value: selectedOption.value,
+      error: selectedOption.value.trim().length === 0, // Set error if value is empty
+      textError: selectedOption.value.trim().length === 0 ? "Applies to must be selected" : "",
+    });
   };
+
+
+
 
   const changePurchaseRequirementHandler = (selectedOption) => {
-    setPurchaseRequirement(selectedOption.value);
+    setPurchaseRequirement({
+      value: selectedOption.value,
+      error: selectedOption.value.trim().length === 0, // Set error if value is empty
+      textError: selectedOption.value.trim().length === 0 ? "Minimum purchase requirements must be selected" : "",
+    });
   };
 
+
   const changePurchaseAmountHandler = (e) => {
-    setPurchaseAmount(e.target.value);
+    const newValue = e.target.value;
+  
+    setPurchaseAmount({
+      value: newValue,
+      error: newValue.trim().length < 1 || isNaN(newValue) || newValue.length > 255,
+      textError:
+        newValue.trim().length < 1
+          ? "The Purchase Amount is required."
+          : isNaN(newValue)
+          ? "The Purchase Amount must be a number."
+          : newValue.length > 255
+          ? "The Purchase Amount cannot exceed 255 characters."
+          : "",
+    });
   };
+  
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -77,10 +226,144 @@ const CreateDiscount = () => {
     setIsSubmitting(true);
 
 
-    if (code.text.trim().length < 1) {
-      setCode({ ...code, error: true, textError: "The Discount name is required" });
-      return;
+    if (appliesTo.value.trim().length < 1) {
+
+          setIsSubmitting(false);
+
+
+          setAppliesTo((prevCategory) => ({
+              ...prevCategory,
+              error: true,
+              textError: "Applies to must be selected",
+            }));
+            return;
     }
+
+    if (purchaseRequirement.value.trim().length < 1) {
+
+          setIsSubmitting(false);
+
+          setPurchaseRequirement((prevCategory) => ({
+              ...prevCategory,
+              error: true,
+              textError: "Minimum purchase requirements must be selected",
+            }));
+            return;
+    }
+
+
+    // Validate code
+    if (code.text.trim().length < 1) {
+      setIsSubmitting(false);
+      setCode({
+        ...code,
+        error: true,
+        textError: "The Code is required.",
+      });
+      return;
+    } else if (code.text.length > 255) {
+      setIsSubmitting(false);
+      setCode({
+        ...code,
+        error: true,
+        textError: "The Code cannot exceed 255 characters.",
+      });
+      return;
+    } else if (/https?:\/\/[^\s]+/.test(code.text)) {
+      setIsSubmitting(false);
+      setCode({
+        ...code,
+        error: true,
+        textError: "The Code cannot contain a URL.",
+      });
+      return;
+    } else {
+      setCode({ ...code, error: false, textError: "" });
+    }
+
+    // Validate discountValue
+    const isValidPercentage = /^[1-9][0-9]?$|^100$/.test(discountValue.text);
+    if (discountValue.text.trim().length < 1) {
+      setIsSubmitting(false);
+      setDiscountValue({
+        ...discountValue,
+        error: true,
+        textError: "The Discount Value is required.",
+      });
+      return;
+    } else if (!isValidPercentage) {
+      setIsSubmitting(false);
+      setDiscountValue({
+        ...discountValue,
+        error: true,
+        textError: "The Discount Value must be a percentage between 1 and 99.",
+      });
+      return;
+    } else {
+      setDiscountValue({ ...discountValue, error: false, textError: "" });
+    }
+
+
+
+    if (appliesTo.value === "collection") {
+        if (selectedCollections.value.length < 1) {
+          setIsSubmitting(false);
+          setSelectedCollections((prevCategory) => ({
+            ...prevCategory,
+            error: true,
+            textError: "A Collection must be selected",
+          }));
+          return;
+        }
+
+    } else {
+
+          if (selectedListings.value.length < 1) {
+            setIsSubmitting(false);
+            setSelectedListings((prevCategory) => ({
+              ...prevCategory,
+              error: true,
+              textError: "A Listing must be selected",
+            }));
+            return;
+          }
+
+    }
+
+
+    if (purchaseRequirement.value === "purchaseamount") {
+              // Validate purchaseAmount
+          if (purchaseAmount.value.trim().length < 1) {
+            setIsSubmitting(false);
+            setPurchaseAmount({
+              ...purchaseAmount,
+              error: true,
+              textError: "The Purchase Amount is required.",
+            });
+            return;
+          } else if (isNaN(purchaseAmount.value)) {
+            setIsSubmitting(false);
+            setPurchaseAmount({
+              ...purchaseAmount,
+              error: true,
+              textError: "The Purchase Amount must be a number.",
+            });
+            return;
+          } else if (purchaseAmount.value.length > 255) {
+            setIsSubmitting(false);
+            setPurchaseAmount({
+              ...purchaseAmount,
+              error: true,
+              textError: "The Purchase Amount cannot exceed 255 characters.",
+            });
+            return;
+          } else {
+            setPurchaseAmount({ ...purchaseAmount, error: false, textError: "" });
+          }
+
+    }
+
+
 
     const discountPayload = {
       data: {
@@ -88,11 +371,11 @@ const CreateDiscount = () => {
         attributes: {
           code: code.text,
           discountvalue: discountValue.text,
-          applies_to: appliesTo,
-          requirements: purchaseRequirement,
-          collections_id: appliesTo === "collection" ? selectedCollections.map(option => option.value) : [],
-          listings_id: appliesTo === "product" ? selectedListings.map(option => option.value) : [],
-          purchaseamount: purchaseRequirement === "purchaseamount" ? purchaseAmount : null,
+          applies_to: appliesTo.value,
+          requirements: purchaseRequirement.value,
+          collections_id: appliesTo.value === "collection" ? selectedCollections.value.map(option => option.value) : [],
+          listings_id: appliesTo.value === "product" ? selectedListings.value.map(option => option.value) : [],
+          purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount : null,
         },
       },
     };
@@ -114,17 +397,7 @@ const CreateDiscount = () => {
 
   };
 
-  const collectionOptions = collectionsData.map((collection) => ({
-    value: collection.id,
-    label: collection.attributes.name,
-    icon: collection.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${collection.attributes.picture}` : null,
-  }));
-  
-  const listingOptions = listingsData.map((listing) => ({
-    value: listing.id,
-    label: listing.attributes.title,
-    icon: listing.attributes.picture ? `${process.env.REACT_APP_IMAGE_BASE_URL}${listing.attributes.picture}` : null,
-  }));
+
   
 
   return (
@@ -195,14 +468,27 @@ const CreateDiscount = () => {
                             { value: "collection", label: "Specific Collection" },
                             { value: "product", label: "Specific Product" },
                           ]}
+                          
+
                           onChange={changeAppliesToHandler}
+
+                          error={appliesTo.error}
                         />
+
+
+                          {appliesTo.error && (
+                            <SoftTypography variant="caption" color="error" fontWeight="light">
+                              {appliesTo.textError}
+                            </SoftTypography>
+                          )}
+
+
                       </SoftBox>
                     </Grid>
                   </Grid>
                 </SoftBox>
 
-                {appliesTo === "collection" && (
+                {appliesTo.value === "collection" && (
                   <SoftBox mt={4}>
                     <Grid container spacing={3}>
                       <Grid item xs={12}>
@@ -216,14 +502,27 @@ const CreateDiscount = () => {
                         <SoftSelect
                           options={collectionOptions}
                           isMulti
-                          onChange={(selectedOptions) => setSelectedCollections(selectedOptions)}
+
+                          onChange={changeSelectedCollectionsHandler}
+
+                          
+
+                          error={selectedCollections.error}
+
                         />
+
+                          {selectedCollections.error && (
+                            <SoftTypography variant="caption" color="error" fontWeight="light">
+                              {selectedCollections.textError}
+                            </SoftTypography>
+                          )}
+
                       </Grid>
                     </Grid>
                   </SoftBox>
                 )}
 
-                {appliesTo === "product" && (
+                {appliesTo.value === "product" && (
                   <SoftBox mt={4}>
                     <Grid container spacing={3}>
                       <Grid item xs={12}>
@@ -237,8 +536,20 @@ const CreateDiscount = () => {
                         <SoftSelect
                           options={listingOptions}
                           isMulti
-                          onChange={(selectedOptions) => setSelectedListings(selectedOptions)}
+
+                          onChange={changeSelectedListingsHandler}
+
+                          error={selectedListings.error}
+
                         />
+
+                          {selectedListings.error && (
+                            <SoftTypography variant="caption" color="error" fontWeight="light">
+                              {selectedListings.textError}
+                            </SoftTypography>
+                          )}
+
+
                       </Grid>
                     </Grid>
                   </SoftBox>
@@ -266,19 +577,38 @@ const CreateDiscount = () => {
                     { value: "purchaseamount", label: "Minimum purchase amount" },
                   ]}
                   onChange={changePurchaseRequirementHandler}
+
+                  
+
+                  error={purchaseRequirement.error}
+
                 />
+
+
+                          {purchaseRequirement.error && (
+                            <SoftTypography variant="caption" color="error" fontWeight="light">
+                              {purchaseRequirement.textError}
+                            </SoftTypography>
+                          )}
               </SoftBox>
 
-              {purchaseRequirement === "purchaseamount" && (
+              {purchaseRequirement.value === "purchaseamount" && (
                 <SoftBox p={3}>
                   <FormField
                     type="text"
                     placeholder="Minimum purchase amount"
                     label="Minimum purchase amount"
                     name="purchaseamount"
-                    value={purchaseAmount}
+                    value={purchaseAmount.value}
                     onChange={changePurchaseAmountHandler}
+                    error={purchaseAmount.error}
                   />
+
+                        {purchaseAmount.error && (
+                          <SoftTypography variant="caption" color="error" fontWeight="light">
+                            {purchaseAmount.textError}
+                          </SoftTypography>
+                        )}
                 </SoftBox>
               )}
             </Card>

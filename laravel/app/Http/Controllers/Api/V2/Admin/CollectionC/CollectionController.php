@@ -105,7 +105,7 @@ class CollectionController extends JsonApiController
 
 
 
-        $manager = new ImageManager(new Driver());
+        /*$manager = new ImageManager(new Driver());
 
         $file = $request->file('data.attributes.picture');
         $imagelarge = $manager->read($file->getRealPath());
@@ -139,11 +139,11 @@ class CollectionController extends JsonApiController
 
 
 
-        $picturerelativePath = $fileNamelarge;
+        $picturerelativePath = $fileNamelarge;*/
 
 
 
-                /*if ($request->hasFile('data.attributes.picture')) {
+                if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
                     $filePath = Storage::disk('public')->put('storage/images', $picturefile, 'public');
 
@@ -151,7 +151,7 @@ class CollectionController extends JsonApiController
                     $picturerelativePath = '/' . $relativePath;
 
 
-                }*/
+                }
 
 
         $name = $request->input('data.attributes.name');

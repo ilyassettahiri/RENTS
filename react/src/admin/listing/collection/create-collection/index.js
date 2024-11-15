@@ -58,14 +58,20 @@ const CreateCollection = () => {
 
 
   const changeNameHandler = (e) => {
-    const newText = e.target.value;
-  
-    setName((prevName) => ({
-      ...prevName,
-      text: newText,
-      error: newText.trim().length === 0 ? prevName.error : false,
-      textError: newText.trim().length === 0 ? prevName.textError : "",
-    }));
+    const newValue = e.target.value;
+    setName({
+      ...name,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+      textError:
+        newValue.trim().length < 1
+          ? "The Store Name is Required"
+          : newValue.length > 255
+          ? "The Name cannot exceed 255 characters"
+          : /https?:\/\/[^\s]+/.test(newValue)
+          ? "The Store Name cannot contain a URL"
+          : "",
+    });
   };
 
 
@@ -142,20 +148,44 @@ const CreateCollection = () => {
     e.preventDefault();
 
     setIsSubmitting(true);
-
-
-    if (name.text.trim().length < 1) {
-      setName({ ...name, error: true, textError: "The Collection name is required" });
-      return;
-    }
-
-
     const descNoTags = description.value.replace(/(<([^>]+)>)/gi, "").trim();
     const urlPattern = /(https?:\/\/[^\s]+)/g;
     const imgPattern = /<img\b[^>]*>/i;
+
+
+    if (name.text.trim().length < 1) {
+      setIsSubmitting(false);
+      setName({ ...name, error: true, textError: "The Store Name is Required" });
+      return;
+    } else if (name.text.length > 255) {
+      setIsSubmitting(false);
+      setName({
+        ...name,
+        error: true,
+        textError: "The Name cannot exceed 255 characters",
+      });
+      return;
+    } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
+      setIsSubmitting(false);
+      setName({
+        ...name,
+        error: true,
+        textError: "The Store Name cannot contain a URL",
+      });
+      return;
+    } else {
+      setName({ ...name, error: false, textError: "" });
+    }
+
+  
+
+
+
   
     // Check if description is empty, contains URLs, or contains image tags
     if (descNoTags.length < 1) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -165,6 +195,8 @@ const CreateCollection = () => {
     }
     
     if (urlPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -174,6 +206,8 @@ const CreateCollection = () => {
     }
   
     if (imgPattern.test(description.value)) {
+
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
@@ -184,6 +218,8 @@ const CreateCollection = () => {
   
 
     if (!picture) {
+
+      setIsSubmitting(false);
       setFileError("Please select a valid image.");
       return;
     }
@@ -195,7 +231,7 @@ const CreateCollection = () => {
       formData.append("data[attributes][picture]", picture);
     }
 
-    console.log("Form Data:", formData);
+    
 
 
     try {
