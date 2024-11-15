@@ -66,31 +66,50 @@ function Register() {
       [e.target.name]: e.target.value,
     });
   };
+
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
-    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsSubmitting(true);
 
-    if (inputs.name.trim().length === 0) {
+
+    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const urlPattern = /(https?:\/\/[^\s]+)/;
+
+    if (inputs.name.trim().length === 0 || inputs.name.length > 255 || urlPattern.test(inputs.name)) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, nameError: true });
       return;
     }
 
     if (inputs.email.trim().length === 0 || !inputs.email.trim().match(mailFormat)) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, emailError: true });
       return;
     }
 
-    if (inputs.password.trim().length < 8) {
+    if (inputs.password.trim().length < 8 || inputs.password.length > 255) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, passwordError: true });
       return;
     }
 
     if (inputs.confirmPass.trim() !== inputs.password.trim()) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, confirmPassError: true });
       return;
     }
 
     if (inputs.agree === false) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, agreeError: true });
       return;
     }
@@ -128,6 +147,11 @@ function Register() {
       agreeError: false,
       emailTaken: false,
     });
+
+
+    setIsSubmitting(false);
+
+
   };
 
 
@@ -308,8 +332,15 @@ function Register() {
 
 
             <SoftBox mt={3} >
-              <SoftButton sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit">
-                sign up
+              <SoftButton sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
+              
+              disabled={isSubmitting}
+
+              
+              >
+                
+
+                {isSubmitting ? "Sign up..." : "Sign up"}
               </SoftButton>
             </SoftBox>
             

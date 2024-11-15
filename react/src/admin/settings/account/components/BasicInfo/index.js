@@ -15,104 +15,629 @@ import AuthService from "services/auth-service";
 import CrudService from "services/cruds-service";
 
 function BasicInfo({ user }) {
-  const [info, setInfo] = useState({
-    id: '',
-    name: '',
-    firstName: '',
-    lastName: '',
-    email: '',
-    phoneNumber: '',
-    birthday: '',
-    gender: '',
-    streetAddress: '',
-    zipCode: '',
-    city: '',
-    country: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-  });
+
+
+
+
+      const [userId, setUserId] = useState(null);
+
+      const [name, setName] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [firstName, setFirstName] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [lastName, setLastName] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [email, setEmail] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [phoneNumber, setPhoneNumber] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [birthday, setBirthday] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [gender, setGender] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [streetAddress, setStreetAddress] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [zipCode, setZipCode] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [city, setCity] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [country, setCountry] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [oldPassword, setOldPassword] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [newPassword, setNewPassword] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+      const [confirmNewPassword, setConfirmNewPassword] = useState({
+        text: "",
+        error: false,
+        textError: "",
+      });
+
+
   
-  const [userId, setUserId] = useState(null);
-  const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
+  
+      const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
 
-  useEffect(() => {
-    setInfo({
-      id: user.id,
-      name: user.name,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.emailAddress,
-      phoneNumber: user.phoneNumber,
-      birthday: user.birthday,
-      gender: user.gender,
-      streetAddress: user.streetAddress,
-      zipCode: user.zipCode,
-      city: user.city,
-      country: user.country,
-      oldPassword: user.oldPassword,
-      newPassword: user.newPassword,
-      confirmNewPassword: user.confirmNewPassword,
-    });
-    setUserId(user.id);
-  }, [user]);
+      useEffect(() => {
+        if (notification.value === true) {
+          let timer = setTimeout(() => {
+            setNotification({ value: false, color: "info", message: "" });
+          }, 5000);
+        }
+      }, [notification]);
 
-  useEffect(() => {
-    if (notification.value === true) {
-      let timer = setTimeout(() => {
-        setNotification({ value: false, color: "info", message: "" });
-      }, 5000);
-    }
-  }, [notification]);
+      
 
-  const [errors, setErrors] = useState({
-    nameError: false,
-    emailError: false,
-  });
+      useEffect(() => {
+        if (!user) return;
+      
+        setUserId(user.id);
+      
+        setName({
+          text: user.name || "",
+          error: false,
+          textError: "",
+        });
+      
+        setFirstName({
+          text: user.firstName || "",
+          error: false,
+          textError: "",
+        });
+      
+        setLastName({
+          text: user.lastName || "",
+          error: false,
+          textError: "",
+        });
+      
+        setEmail({
+          text: user.emailAddress || "",
+          error: false,
+          textError: "",
+        });
+      
+        setPhoneNumber({
+          text: user.phoneNumber || "",
+          error: false,
+          textError: "",
+        });
+      
+        setBirthday({
+          text: user.birthday || "",
+          error: false,
+          textError: "",
+        });
+      
+        setGender({
+          text: user.gender || "",
+          error: false,
+          textError: "",
+        });
+      
+        setStreetAddress({
+          text: user.streetAddress || "",
+          error: false,
+          textError: "",
+        });
+      
+        setZipCode({
+          text: user.zipCode || "",
+          error: false,
+          textError: "",
+        });
+      
+        setCity({
+          text: user.city || "",
+          error: false,
+          textError: "",
+        });
+      
+        setCountry({
+          text: user.country || "",
+          error: false,
+          textError: "",
+        });
+      
+        setOldPassword({
+          text: user.oldPassword || "",
+          error: false,
+          textError: "",
+        });
+      
+        setNewPassword({
+          text: user.newPassword || "",
+          error: false,
+          textError: "",
+        });
+      
+        setConfirmNewPassword({
+          text: user.confirmNewPassword || "",
+          error: false,
+          textError: "",
+        });
+      }, [user]);
+      
 
-  const changeHandler = (e) => {
-    setInfo({
-      ...info,
-      [e.target.name]: e.target.value,
-    });
-  };
+
+
+      const changeNameHandler = (e) => {
+        const newValue = e.target.value;
+        setName({
+          ...name,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The Name is required."
+              : newValue.length > 255
+              ? "The Name cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The Name cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeFirstNameHandler = (e) => {
+        const newValue = e.target.value;
+        setFirstName({
+          ...firstName,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The First Name is required."
+              : newValue.length > 255
+              ? "The First Name cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The First Name cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeLastNameHandler = (e) => {
+        const newValue = e.target.value;
+        setLastName({
+          ...lastName,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The Last Name is required."
+              : newValue.length > 255
+              ? "The Last Name cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The Last Name cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeEmailHandler = (e) => {
+        const newValue = e.target.value;
+        setEmail({
+          ...email,
+          text: newValue,
+          error: newValue.trim().length < 1 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The Email is required."
+              : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(newValue)
+              ? "The Email format is invalid."
+              : "",
+        });
+      };
+      
+      const changePhoneNumberHandler = (e) => {
+        const newValue = e.target.value;
+        setPhoneNumber({
+          ...phoneNumber,
+          text: newValue,
+          error: newValue.trim().length < 1 || !/^\d+$/.test(newValue) || newValue.length < 10 || newValue.length > 15,
+          textError:
+            newValue.trim().length < 1
+              ? "The Phone Number is required."
+              : !/^\d+$/.test(newValue)
+              ? "The Phone Number must contain only numbers."
+              : newValue.length < 10 || newValue.length > 15
+              ? "The Phone Number must be between 10 and 15 digits."
+              : "",
+        });
+      };
+      
+      const changeStreetAddressHandler = (e) => {
+        const newValue = e.target.value;
+        setStreetAddress({
+          ...streetAddress,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The Street Address is required."
+              : newValue.length > 255
+              ? "The Street Address cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The Street Address cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeCityHandler = (e) => {
+        const newValue = e.target.value;
+        setCity({
+          ...city,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The City is required."
+              : newValue.length > 255
+              ? "The City cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The City cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeZipCodeHandler = (e) => {
+        const newValue = e.target.value;
+        setZipCode({
+          ...zipCode,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255,
+          textError:
+            newValue.trim().length < 1
+              ? "The Zip Code is required."
+              : newValue.length > 255
+              ? "The Zip Code cannot exceed 255 characters."
+              : "",
+        });
+      };
+      
+      const changeCountryHandler = (e) => {
+        const newValue = e.target.value;
+        setCountry({
+          ...country,
+          text: newValue,
+          error: newValue.trim().length < 1 || newValue.length > 255 || /https?:\/\/[^\s]+/.test(newValue),
+          textError:
+            newValue.trim().length < 1
+              ? "The Country is required."
+              : newValue.length > 255
+              ? "The Country cannot exceed 255 characters."
+              : /https?:\/\/[^\s]+/.test(newValue)
+              ? "The Country cannot contain a URL."
+              : "",
+        });
+      };
+      
+      const changeGenderHandler = (selectedOption) => {
+        setGender({
+          ...gender,
+          text: selectedOption.value,
+          error: selectedOption.value.trim().length < 1,
+          textError: selectedOption.value.trim().length < 1 ? "The Gender is required." : "",
+        });
+      };
+      
+      const changeBirthdayHandler = (date) => {
+        const formattedDate = date ? date[0] : "";
+        setBirthday({
+          ...birthday,
+          text: formattedDate,
+          error: !formattedDate,
+          textError: !formattedDate ? "The Birthday is required." : "",
+        });
+      };
+      
+      const changePasswordHandler = (e) => {
+        const newValue = e.target.value;
+        setNewPassword({
+          ...newPassword,
+          text: newValue,
+          error: newValue.trim().length < 6 || newValue.length > 255,
+          textError:
+            newValue.trim().length < 6
+              ? "The Password must be at least 6 characters long."
+              : newValue.length > 255
+              ? "The Password cannot exceed 255 characters."
+              : "",
+        });
+      };
+      
+      const changeConfirmPasswordHandler = (e) => {
+        const newValue = e.target.value;
+        setConfirmNewPassword({
+          ...confirmNewPassword,
+          text: newValue,
+          error: newValue !== newPassword.text,
+          textError: newValue !== newPassword.text ? "Passwords do not match." : "",
+        });
+      };
+      
+
+      const changePhoneHandler = (e) => {
+        const newValue = e.target.value;
+        setPhone({
+          ...phone,
+          text: newValue,
+          error: newValue.trim().length < 1 || !/^\d+$/.test(newValue) || newValue.length < 10 || newValue.length > 15,
+          textError:
+            newValue.trim().length < 1
+              ? "The Phone is required"
+              : !/^\d+$/.test(newValue)
+              ? "The Phone must contain only numbers"
+              : newValue.length < 10 || newValue.length > 15
+              ? "The Phone must be between 10 and 15 digits"
+              : "",
+        });
+      };
+
+
 
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submitHandler = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
-    setIsSubmitting(true);
+      setIsSubmitting(true);
 
 
-    const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    if (info.firstName.trim().length === 0 || info.lastName.trim().length === 0) {
-      setErrors({ ...errors, nameError: true });
-      return;
-    }
+        // Name validation
+      if (name.text.trim().length === 0 || name.text.length > 255 || /https?:\/\/[^\s]+/.test(name.text)) {
+        setName({
+          ...name,
+          error: true,
+          textError:
+            name.text.trim().length === 0
+              ? "The Name is required."
+              : name.text.length > 255
+              ? "The Name cannot exceed 255 characters."
+              : "The Name cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setName({ ...name, error: false, textError: "" });
+      }
 
-    if (info.email.trim().length === 0 || !info.email.trim().match(mailFormat)) {
-      setErrors({ ...errors, emailError: true });
-      return;
-    }
+      // First Name validation
+      if (firstName.text.trim().length === 0 || firstName.text.length > 255 || /https?:\/\/[^\s]+/.test(firstName.text)) {
+        setFirstName({
+          ...firstName,
+          error: true,
+          textError:
+            firstName.text.trim().length === 0
+              ? "The First Name is required."
+              : firstName.text.length > 255
+              ? "The First Name cannot exceed 255 characters."
+              : "The First Name cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setFirstName({ ...firstName, error: false, textError: "" });
+      }
+
+      // Last Name validation
+      if (lastName.text.trim().length === 0 || lastName.text.length > 255 || /https?:\/\/[^\s]+/.test(lastName.text)) {
+        setLastName({
+          ...lastName,
+          error: true,
+          textError:
+            lastName.text.trim().length === 0
+              ? "The Last Name is required."
+              : lastName.text.length > 255
+              ? "The Last Name cannot exceed 255 characters."
+              : "The Last Name cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setLastName({ ...lastName, error: false, textError: "" });
+      }
+
+      // Email validation
+      const mailFormat = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (email.text.trim().length === 0 || !mailFormat.test(email.text)) {
+        setEmail({
+          ...email,
+          error: true,
+          textError:
+            email.text.trim().length === 0
+              ? "The Email is required."
+              : "The Email format is invalid.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setEmail({ ...email, error: false, textError: "" });
+      }
+
+      // Phone Number validation
+      if (
+        phoneNumber.text.trim().length === 0 ||
+        !/^\d+$/.test(phoneNumber.text) ||
+        phoneNumber.text.length < 10 ||
+        phoneNumber.text.length > 15
+      ) {
+        setPhoneNumber({
+          ...phoneNumber,
+          error: true,
+          textError:
+            phoneNumber.text.trim().length === 0
+              ? "The Phone Number is required."
+              : !/^\d+$/.test(phoneNumber.text)
+              ? "The Phone Number must contain only numbers."
+              : "The Phone Number must be between 10 and 15 digits.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setPhoneNumber({ ...phoneNumber, error: false, textError: "" });
+      }
+
+      // Street Address validation
+      if (
+        streetAddress.text.trim().length === 0 ||
+        streetAddress.text.length > 255 ||
+        /https?:\/\/[^\s]+/.test(streetAddress.text)
+      ) {
+        setStreetAddress({
+          ...streetAddress,
+          error: true,
+          textError:
+            streetAddress.text.trim().length === 0
+              ? "The Street Address is required."
+              : streetAddress.text.length > 255
+              ? "The Street Address cannot exceed 255 characters."
+              : "The Street Address cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setStreetAddress({ ...streetAddress, error: false, textError: "" });
+      }
+
+      // City validation
+      if (city.text.trim().length === 0 || city.text.length > 255 || /https?:\/\/[^\s]+/.test(city.text)) {
+        setCity({
+          ...city,
+          error: true,
+          textError:
+            city.text.trim().length === 0
+              ? "The City is required."
+              : city.text.length > 255
+              ? "The City cannot exceed 255 characters."
+              : "The City cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setCity({ ...city, error: false, textError: "" });
+      }
+
+      // Zip Code validation
+      if (zipCode.text.trim().length === 0 || zipCode.text.length > 255) {
+        setZipCode({
+          ...zipCode,
+          error: true,
+          textError:
+            zipCode.text.trim().length === 0
+              ? "The Zip Code is required."
+              : "The Zip Code cannot exceed 255 characters.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setZipCode({ ...zipCode, error: false, textError: "" });
+      }
+
+      // Country validation
+      if (country.text.trim().length === 0 || country.text.length > 255 || /https?:\/\/[^\s]+/.test(country.text)) {
+        setCountry({
+          ...country,
+          error: true,
+          textError:
+            country.text.trim().length === 0
+              ? "The Country is required."
+              : country.text.length > 255
+              ? "The Country cannot exceed 255 characters."
+              : "The Country cannot contain a URL.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setCountry({ ...country, error: false, textError: "" });
+      }
+
+      // Birthday validation
+      if (!birthday.text || new Date(birthday.text) > new Date()) {
+        setBirthday({
+          ...birthday,
+          error: true,
+          textError: !birthday.text
+            ? "The Birthday is required."
+            : "The Birthday cannot be in the future.",
+        });
+        setIsSubmitting(false);
+        return;
+      } else {
+        setBirthday({ ...birthday, error: false, textError: "" });
+      }
+
+    
+
 
     try {
       const data = {
-        firstName: info.firstName,
-        lastName: info.lastName,
-        emailAddress: info.email,
-        phoneNumber: info.phoneNumber,
-        birthday: info.birthday ? format(new Date(info.birthday), 'yyyy-MM-dd') : null,
-        gender: info.gender,
-        streetAddress: info.streetAddress,
-        zipCode: info.zipCode,
-        city: info.city,
-        country: info.country,
+        firstName: firstName.text,
+        lastName: lastName.text,
+        emailAddress: email.text,
+        phoneNumber: phoneNumber.text,
+        birthday: birthday.text ? format(new Date(birthday.text), 'yyyy-MM-dd') : null,
+        gender: gender.text,
+        streetAddress: streetAddress.text,
+        zipCode: zipCode.text,
+        city: city.text,
+        country: country.text,
       };
+      
 
-      await CrudService.updateUser(data, info.id);
+      await CrudService.updateUser(data, userId);
 
       setNotification({
         value: true,
@@ -139,10 +664,18 @@ function BasicInfo({ user }) {
               label="First Name"
               placeholder="First Name"
               name="firstName"
-              value={info.firstName}
-              onChange={changeHandler}
-              error={errors.nameError}
+              value={firstName.text}
+              onChange={changeFirstNameHandler}
+              error={firstName.error}
             />
+
+              {firstName.error && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  {firstName.textError}
+                </SoftTypography>
+              )}
+
+
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
@@ -150,10 +683,18 @@ function BasicInfo({ user }) {
               placeholder="Last Name"
               inputProps={{ type: "lastName" }}
               name="lastName"
-              value={info.lastName}
-              onChange={changeHandler}
-              error={errors.emailError}
+              value={lastName.text}
+              onChange={changeLastNameHandler}
+              error={lastName.error}
             />
+
+
+
+              {lastName.error && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  {lastName.textError}
+                </SoftTypography>
+              )}
           </Grid>
 
           <Grid item xs={12}>
@@ -171,13 +712,18 @@ function BasicInfo({ user }) {
                       { value: "male", label: "Male" },
                       { value: "female", label: "Female" },
                     ]}
-                    value={
-                      info.gender
-                        ? { value: info.gender, label: info.gender.charAt(0).toUpperCase() + info.gender.slice(1) }
-                        : { value: "", label: "Select Gender" } // Provide a default value when gender is null or undefined
-                    }                    
-                    onChange={(selectedOption) => setInfo({ ...info, gender: selectedOption.value })}
+                    value={{ value: gender.text, label: gender.text.charAt(0).toUpperCase() + gender.text.slice(1) }}
+                    onChange={(selectedOption) => setGender({ ...gender, text: selectedOption.value })}
+                    error={gender.error}
                   />
+
+
+                    {gender.error && (
+                      <SoftTypography variant="caption" color="error" fontWeight="light">
+                        {gender.textError}
+                      </SoftTypography>
+                    )}
+
                 </SoftBox>
               </Grid>
 
@@ -189,12 +735,21 @@ function BasicInfo({ user }) {
                     </SoftTypography>
                   </SoftBox>
                   <SoftDatePicker
-                    input={{
-                      placeholder: "Select a date",
-                      value: info.birthday ? format(new Date(info.birthday), 'MM/dd/yyyy') : '',
-                    }}
-                    onChange={(date) => setInfo({ ...info, birthday: date[0] })}
+                      input={{
+                        placeholder: "Select a date",
+                        value: birthday.text ? format(new Date(birthday.text), "MM/dd/yyyy") : "",
+                      }}
+                      onChange={(date) => setBirthday({ ...birthday, text: date[0] })}
+                      error={birthday.error}                  
+
                   />
+
+
+                      {birthday.error && (
+                        <SoftTypography variant="caption" color="error" fontWeight="light">
+                          {birthday.textError}
+                        </SoftTypography>
+                      )}
                 </SoftBox>
               </Grid>
             </Grid>
@@ -205,10 +760,19 @@ function BasicInfo({ user }) {
               placeholder="example@email.com"
               inputProps={{ type: "email" }}
               name="email"
-              value={info.email}
-              onChange={changeHandler}
-              error={errors.nameError}
+              value={email.text}
+              onChange={changeEmailHandler}
+              error={email.error}
             />
+
+
+              {email.error && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  {email.textError}
+                </SoftTypography>
+              )}
+
+
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
@@ -222,9 +786,19 @@ function BasicInfo({ user }) {
               label=" Address"
               placeholder="Address"
               name="streetAddress"
-              value={info.streetAddress}
-              onChange={changeHandler}
+              value={streetAddress.text}
+              onChange={changeStreetAddressHandler}
+              error={streetAddress.error}
             />
+
+
+              {streetAddress.error && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  {streetAddress.textError}
+                </SoftTypography>
+              )}
+
+
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
@@ -232,9 +806,19 @@ function BasicInfo({ user }) {
               placeholder="06 35 63 16 20"
               inputProps={{ type: "tel" }}
               name="phoneNumber"
-              value={info.phoneNumber}
-              onChange={changeHandler}
+              value={phoneNumber.text}
+              onChange={changePhoneHandler}
+              error={phoneNumber.error}
             />
+
+
+
+                {phoneNumber.error && (
+                  <SoftTypography variant="caption" color="error" fontWeight="light">
+                    {phoneNumber.textError}
+                  </SoftTypography>
+                )}
+
           </Grid>
 
           <Grid item xs={12} sm={5}>
@@ -242,18 +826,38 @@ function BasicInfo({ user }) {
               label="City"
               placeholder="New York"
               name="city"
-              value={info.city}
-              onChange={changeHandler}
+              value={city.text}
+              onChange={changeCityHandler}
+              error={city.error}
             />
+
+
+                {city.error && (
+                  <SoftTypography variant="caption" color="error" fontWeight="light">
+                    {city.textError}
+                  </SoftTypography>
+                )}
+
+
           </Grid>
           <Grid item xs={12} md={2}>
             <FormField
               label="Zip Code"
               placeholder="12345"
               name="zipCode"
-              value={info.zipCode}
-              onChange={changeHandler}
+              value={zipCode.text}
+              onChange={changeZipCodeHandler}
+              error={zipCode.error}
             />
+
+
+              {zipCode.error && (
+                <SoftTypography variant="caption" color="error" fontWeight="light">
+                  {zipCode.textError}
+                </SoftTypography>
+              )}
+
+
           </Grid>
           <Grid item xs={12} sm={5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
@@ -268,9 +872,19 @@ function BasicInfo({ user }) {
                 { value: "MR", label: "Morocco" },
                 // Add other countries as needed
               ]}
-              value={{ value: info.country, label: info.country }}
-              onChange={(selectedOption) => setInfo({ ...info, country: selectedOption.value })}
+              value={{ value: country.text, label: country.text }}
+              onChange={(selectedOption) => setCountry({ ...country, text: selectedOption.value })}
+              error={country.error}
             />
+
+
+                {country.error && (
+                  <SoftTypography variant="caption" color="error" fontWeight="light">
+                    {country.textError}
+                  </SoftTypography>
+                )}
+
+
           </Grid>
         </Grid>
         <Grid item xs={12} mt={8}>

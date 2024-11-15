@@ -47,7 +47,7 @@ function Security() {
     (async () => {
       const response = await CrudService.getSecuritys();
 
-      console.log(' fetched:', response.data);
+      
 
 
       setData(response.data);

@@ -45,8 +45,8 @@ function Login() {
   const authContext = useContext(AuthContext);
   const [rememberMe, setRememberMe] = useState(false);
   const [inputs, setInputs] = useState({
-    email: "admin@jsonapi.com",
-    password: "secret",
+    email: "",
+    password: "",
   });
   const [errors, setErrors] = useState({
     emailError: false,
@@ -64,17 +64,28 @@ function Login() {
     });
   };
 
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+
   const submitHandler = async (e) => {
     e.preventDefault();
+
+    setIsSubmitting(true);
+
 
     const mailFormat =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (inputs.email.trim().length === 0 || !inputs.email.trim().match(mailFormat)) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, emailError: true });
       return;
     }
 
-    if (inputs.password.trim().length < 6) {
+    if (inputs.password.trim().length < 6 || inputs.password.length > 255) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, passwordError: true });
       return;
     }
@@ -112,6 +123,10 @@ function Login() {
         textError: "",
       });
     };
+
+
+    setIsSubmitting(false);
+
   };
 
 
@@ -196,8 +211,15 @@ function Login() {
 
 
               <SoftBox mt={4} mb={1}>
-                <SoftButton  sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit">
-                  sign in
+                <SoftButton  sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
+                
+                disabled={isSubmitting}
+
+
+                >
+                  
+
+                  {isSubmitting ? "Sign in..." : "Sign in"}
                 </SoftButton>
               </SoftBox>
 

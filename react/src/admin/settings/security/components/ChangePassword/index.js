@@ -22,32 +22,69 @@ function ChangePassword() {
   const { t } = useTranslation();
 
 
+  
 
-  // User state to store the fetched user profile data
-  const [user, setUser] = useState({
-    id: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
+
+  const [userId, setUserId] = useState(null);
+
+  const [oldPassword, setOldPassword] = useState({
+    text: "",
+    error: false,
+    textError: "",
   });
 
-  const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
-  const [errors, setErrors] = useState({
-    oldPasswordError: false,
-    newPasswordError: false,
-    confirmNewPasswordError: false,
+  const [newPassword, setNewPassword] = useState({
+    text: "",
+    error: false,
+    textError: "",
   });
 
-  // Fetch user profile on component mount
+  const [confirmNewPassword, setConfirmNewPassword] = useState({
+    text: "",
+    error: false,
+    textError: "",
+  });
+
+
+  
+
   useEffect(() => {
     (async () => {
-      const response = await AuthService.getProfile();
-      setUser((prevUser) => ({
-        ...prevUser,
-        id: response.data.id,
-      }));
+      try {
+        const response = await AuthService.getProfile();
+
+        // Set the user ID and reset password states
+        setUserId(response.data.id);
+
+        setOldPassword((prev) => ({
+          ...prev,
+          text: "",
+          error: false,
+          textError: "",
+        }));
+
+        setNewPassword((prev) => ({
+          ...prev,
+          text: "",
+          error: false,
+          textError: "",
+        }));
+
+        setConfirmNewPassword((prev) => ({
+          ...prev,
+          text: "",
+          error: false,
+          textError: "",
+        }));
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
     })();
   }, []);
+
+
+  const [notification, setNotification] = useState({ value: false, color: "info", message: "" });
+
 
   // Reset notification after 5 seconds
   useEffect(() => {
@@ -59,12 +96,55 @@ function ChangePassword() {
     }
   }, [notification]);
 
-  const changeHandler = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
+
+
+  const changeOldPasswordHandler = (e) => {
+    const newValue = e.target.value;
+    setOldPassword({
+      ...oldPassword,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255,
+      textError:
+        newValue.trim().length < 1
+          ? "The Old Password is required."
+          : newValue.length > 255
+          ? "The Old Password cannot exceed 255 characters."
+          : "",
     });
   };
+  
+  const changeNewPasswordHandler = (e) => {
+    const newValue = e.target.value;
+    setNewPassword({
+      ...newPassword,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255,
+      textError:
+        newValue.trim().length < 1
+          ? "The New Password is required."
+          : newValue.length > 255
+          ? "The New Password cannot exceed 255 characters."
+          : "",
+    });
+  };
+  
+  const changeConfirmNewPasswordHandler = (e) => {
+    const newValue = e.target.value;
+    setConfirmNewPassword({
+      ...confirmNewPassword,
+      text: newValue,
+      error: newValue.trim().length < 1 || newValue.length > 255,
+      textError:
+        newValue.trim().length < 1
+          ? "The Confirm New Password is required."
+          : newValue.length > 255
+          ? "The Confirm New Password cannot exceed 255 characters."
+          : "",
+    });
+  };
+  
+
+
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -73,53 +153,89 @@ function ChangePassword() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Validate input fields
-    if (!user.oldPassword || !user.newPassword || !user.confirmNewPassword) {
-      setErrors({
-        oldPasswordError: !user.oldPassword,
-        newPasswordError: !user.newPassword,
-        confirmNewPasswordError: !user.confirmNewPassword,
+        // Validation
+    if (oldPassword.text.trim().length < 1 || oldPassword.text.length > 255) {
+      setOldPassword({
+        ...oldPassword,
+        error: true,
+        textError:
+          oldPassword.text.trim().length < 1
+            ? "The Old Password is required."
+            : "The Old Password cannot exceed 255 characters.",
       });
+      setIsSubmitting(false);
       return;
     }
-  
-    // Check if new password matches confirm password
-    if (user.newPassword !== user.confirmNewPassword) {
-      setErrors({ ...errors, confirmNewPasswordError: true });
-      setNotification({ value: true, color: "error", message: "Passwords do not match" });
+
+    if (newPassword.text.trim().length < 1 || newPassword.text.length > 255) {
+      setNewPassword({
+        ...newPassword,
+        error: true,
+        textError:
+          newPassword.text.trim().length < 1
+            ? "The New Password is required."
+            : "The New Password cannot exceed 255 characters.",
+      });
+      setIsSubmitting(false);
       return;
     }
-  
+
+    if (confirmNewPassword.text.trim().length < 1 || confirmNewPassword.text.length > 255) {
+      setConfirmNewPassword({
+        ...confirmNewPassword,
+        error: true,
+        textError:
+          confirmNewPassword.text.trim().length < 1
+            ? "The Confirm New Password is required."
+            : "The Confirm New Password cannot exceed 255 characters.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Check if the new password matches confirm new password
+    if (newPassword.text !== confirmNewPassword.text) {
+      setConfirmNewPassword({
+        ...confirmNewPassword,
+        error: true,
+        textError: "The New Password and Confirm New Password must match.",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
+
     try {
-      // Include confirmNewPassword in the request body
+      // Prepare the request body using the updated state values
       const passwordData = {
-        oldPassword: user.oldPassword,
-        newPassword: user.newPassword,
-        confirmNewPassword: user.confirmNewPassword,
+        oldPassword: oldPassword.text,
+        newPassword: newPassword.text,
+        confirmNewPassword: confirmNewPassword.text,
       };
-  
+    
       // Use the updateUser method with the user's id
-      await CrudService.updateUser(passwordData, user.id);
-  
+      await CrudService.updateUser(passwordData, userId);
+    
       setNotification({
         value: true,
         color: "success",
-        message: "Password updated successfully",
+        message: "Password updated successfully.",
       });
-      setUser({
-        ...user,
-        oldPassword: '',
-        newPassword: '',
-        confirmNewPassword: '',
-      });
+    
+      // Reset fields on success
+      setOldPassword({ text: "", error: false, textError: "" });
+      setNewPassword({ text: "", error: false, textError: "" });
+      setConfirmNewPassword({ text: "", error: false, textError: "" });
     } catch (error) {
       console.error("Failed to change password:", error);
+      
       setNotification({
         value: true,
         color: "error",
         message: "Failed to update password. Please try again.",
       });
     }
+    
 
     setIsSubmitting(false);
 
@@ -130,6 +246,9 @@ function ChangePassword() {
   return (
     <Card id="change-password">
       
+      
+
+
       <SoftBox component="form" p={2} onSubmit={submitHandler}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -138,10 +257,15 @@ function ChangePassword() {
               placeholder={t("Current Password")}
               inputProps={{ type: "password" }}
               name="oldPassword"
-              value={user.oldPassword}
-              onChange={changeHandler}
-              error={errors.oldPasswordError}
+              value={oldPassword.text}
+              onChange={changeOldPasswordHandler}
+              error={oldPassword.error}
             />
+            {oldPassword.error && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                {oldPassword.textError}
+              </SoftTypography>
+            )}
           </Grid>
           <Grid item xs={12}>
             <FormField
@@ -149,10 +273,15 @@ function ChangePassword() {
               placeholder={t("New Password")}
               inputProps={{ type: "password" }}
               name="newPassword"
-              value={user.newPassword}
-              onChange={changeHandler}
-              error={errors.newPasswordError}
+              value={newPassword.text}
+              onChange={changeNewPasswordHandler}
+              error={newPassword.error}
             />
+            {newPassword.error && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                {newPassword.textError}
+              </SoftTypography>
+            )}
           </Grid>
           <Grid item xs={12}>
             <FormField
@@ -160,19 +289,26 @@ function ChangePassword() {
               placeholder={t("Confirm New Password")}
               inputProps={{ type: "password" }}
               name="confirmNewPassword"
-              value={user.confirmNewPassword}
-              onChange={changeHandler}
-              error={errors.confirmNewPasswordError}
+              value={confirmNewPassword.text}
+              onChange={changeConfirmNewPasswordHandler}
+              error={confirmNewPassword.error}
             />
+            {confirmNewPassword.error && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                {confirmNewPassword.textError}
+              </SoftTypography>
+            )}
           </Grid>
         </Grid>
         <SoftBox mt={2}>
-          <SoftButton sx={{ py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
-          disabled={isSubmitting}
-          
+          <SoftButton
+            sx={{ py: 1.8 }}
+            variant="gradient"
+            color="info"
+            fullWidth
+            type="submit"
+            disabled={isSubmitting}
           >
-            
-
             {isSubmitting ? "Saving..." : "Update Password"}
           </SoftButton>
         </SoftBox>
@@ -184,6 +320,10 @@ function ChangePassword() {
           </SoftAlert>
         )}
       </SoftBox>
+
+
+
+
     </Card>
   );
 
