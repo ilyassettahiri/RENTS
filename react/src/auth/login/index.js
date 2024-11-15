@@ -104,8 +104,12 @@ function Login() {
       authContext.login(response.access_token, response.refresh_token);
     } catch (res) {
       if (res.hasOwnProperty("message")) {
+        setIsSubmitting(false);
+
         setErrors({ ...errors, credentialsErros: true, textError: res.message });
       } else {
+        setIsSubmitting(false);
+
         setErrors({ ...errors, credentialsErros: true, textError: res.errors[0].detail });
       }
     }
@@ -122,10 +126,12 @@ function Login() {
         credentialsErros: false,
         textError: "",
       });
+
+      setIsSubmitting(false);
+
     };
 
 
-    setIsSubmitting(false);
 
   };
 

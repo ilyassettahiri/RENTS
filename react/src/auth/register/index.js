@@ -126,6 +126,8 @@ function Register() {
       const response = await AuthService.register(myData);
       authContext.login(response.access_token);
     } catch (err) {
+      setIsSubmitting(false);
+
       setErrors({ ...errors, emailTaken: true });
       console.error(err);
       return null;
