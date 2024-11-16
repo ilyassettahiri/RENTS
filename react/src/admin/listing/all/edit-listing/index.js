@@ -1359,6 +1359,9 @@ function EditListing() {
     textError: "",
   });
 
+  const urlPattern = /(https?:\/\/[^\s]+)/;
+
+
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
   const handlePricingChange = (e) => {

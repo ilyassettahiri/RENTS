@@ -409,7 +409,7 @@ function BasicInfo({ user }) {
 
       const changePhoneHandler = (e) => {
         const newValue = e.target.value;
-        setPhone({
+        setPhoneNumber({
           ...phone,
           text: newValue,
           error: newValue.trim().length < 1 || !/^\d+$/.test(newValue) || newValue.length < 10 || newValue.length > 15,
@@ -810,7 +810,7 @@ function BasicInfo({ user }) {
               inputProps={{ type: "tel" }}
               name="phoneNumber"
               value={phoneNumber.text}
-              onChange={changePhoneHandler}
+              onChange={changePhoneNumberHandler}
               error={phoneNumber.error}
             />
 

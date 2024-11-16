@@ -144,6 +144,8 @@ const DetailDiscount = () => {
         try {
           const res = await CrudService.getDiscount(id);
           const discount = res.data.attributes;
+
+
     
           setSelectedStatus(discount.status);
           setInitialStatus(discount.status);
@@ -467,7 +469,7 @@ if (purchaseRequirement.value === "purchaseamount") {
           requirements: purchaseRequirement.value,
           collections_id: appliesTo.value === "collection" ? selectedCollections.value.map(option => option.value) : [],
           listings_id: appliesTo.value === "product" ? selectedListings.value.map(option => option.value) : [],
-          purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount : null,
+          purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount.value : null,
         },
       },
     };
@@ -653,6 +655,9 @@ if (purchaseRequirement.value === "purchaseamount") {
                                       </SoftTypography>
                                     </SoftBox>
                                     <SoftSelect
+
+                                      value={{ value: appliesTo.value, label: appliesTo.value  }}
+
                                       options={[
                                         { value: "collection", label: "Specific Collection" },
                                         { value: "product", label: "Specific Product" },
@@ -694,7 +699,7 @@ if (purchaseRequirement.value === "purchaseamount") {
 
                                       onChange={changeSelectedCollectionsHandler}
 
-                                      
+                                      value={selectedCollections.value}
 
                                       error={selectedCollections.error}
 
@@ -725,7 +730,7 @@ if (purchaseRequirement.value === "purchaseamount") {
                                     <SoftSelect
                                       options={listingOptions}
                                       isMulti
-
+                                      value={selectedListings.value}
                                       onChange={changeSelectedListingsHandler}
 
                                       error={selectedListings.error}
@@ -761,6 +766,9 @@ if (purchaseRequirement.value === "purchaseamount") {
                               </SoftTypography>
                             </SoftBox>
                             <SoftSelect
+
+                              value={{ value: purchaseRequirement.value, label: purchaseRequirement.value  }}
+
                               options={[
                                 { value: "nominimum", label: "No minimum requirements" },
                                 { value: "purchaseamount", label: "Minimum purchase amount" },

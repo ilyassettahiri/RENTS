@@ -200,7 +200,7 @@ const CreateDiscount = () => {
 
   const changePurchaseAmountHandler = (e) => {
     const newValue = e.target.value;
-  
+
     setPurchaseAmount({
       value: newValue,
       error: newValue.trim().length < 1 || isNaN(newValue) || newValue.length > 255,
@@ -375,10 +375,14 @@ const CreateDiscount = () => {
           requirements: purchaseRequirement.value,
           collections_id: appliesTo.value === "collection" ? selectedCollections.value.map(option => option.value) : [],
           listings_id: appliesTo.value === "product" ? selectedListings.value.map(option => option.value) : [],
-          purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount : null,
+          purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount.value : null,
         },
       },
     };
+
+    console.log("Discount Payload:", discountPayload); // Log the discountPayload for debugging
+
+
 
     try {
       await CrudService.createDiscount(discountPayload);

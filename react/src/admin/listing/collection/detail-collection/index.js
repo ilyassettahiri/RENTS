@@ -103,6 +103,7 @@ const DetailCollection = () => {
       if (collectionData) {
         const collectionAttributes = collectionData.data.attributes;
         
+       
         setCollectionID(collectionData.data.id);
 
         setOldpicture(collectionAttributes.picture);
@@ -398,9 +399,7 @@ const DetailCollection = () => {
     } catch (err) {
       setIsSubmitting(false);
 
-      if (err.hasOwnProperty("errors")) {
-        setError({ ...name, error: true, textError: err.errors[0].detail });
-      }
+      
       console.error(err);
     }
 
@@ -616,10 +615,10 @@ const DetailCollection = () => {
                           width="100%"
                         />
                       ) : (
-                        picture && (
+                        oldpicture && (
                           <SoftBox
                             component="img"
-                            src={`${process.env.REACT_APP_IMAGE_COLLECTION}${picture}`}
+                            src={`${process.env.REACT_APP_IMAGE_COLLECTION}${oldpicture}`}
                             alt="Product Image"
                             borderRadius="lg"
                             shadow="lg"
