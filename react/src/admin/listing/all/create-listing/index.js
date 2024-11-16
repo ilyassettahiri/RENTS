@@ -1331,7 +1331,7 @@ function CreateListing() {
       [name]: {
         ...prevAddress[name],
         value: value,
-        error: value.trim().length === 0 || value.length > 255 || urlPattern.test(newText),
+        error: value.trim().length === 0 || value.length > 255 || urlPattern.test(value),
         textError:
           value.trim().length === 0
           ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.`
