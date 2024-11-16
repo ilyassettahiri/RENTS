@@ -153,69 +153,45 @@ const CreateCollection = () => {
     const imgPattern = /<img\b[^>]*>/i;
 
 
-    if (name.text.trim().length < 1) {
-      setIsSubmitting(false);
-      setName({ ...name, error: true, textError: "The Store Name is Required" });
-      return;
-    } else if (name.text.length > 255) {
-      setIsSubmitting(false);
-      setName({
-        ...name,
-        error: true,
-        textError: "The Name cannot exceed 255 characters",
-      });
-      return;
-    } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
+    if (
+      name.text.trim().length < 1 ||
+      name.text.length > 255 ||
+      urlPattern.test(name.text)
+    ) {
       setIsSubmitting(false);
       setName({
         ...name,
         error: true,
-        textError: "The Store Name cannot contain a URL",
+        textError:
+          name.text.trim().length < 1
+            ? "The Store Name is Required."
+            : name.text.length > 255
+            ? "The Name cannot exceed 255 characters."
+            : "The Store Name cannot contain a URL.",
       });
       return;
-    } else {
-      setName({ ...name, error: false, textError: "" });
     }
+    
 
-  
-
-
-
-  
-    // Check if description is empty, contains URLs, or contains image tags
-    if (descNoTags.length < 1) {
-
+    if (
+      descNoTags.length < 1 ||
+      urlPattern.test(description.value) ||
+      imgPattern.test(description.value)
+    ) {
       setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
-        textError: "The Description must contain text content.",
+        textError:
+          descNoTags.length < 1
+            ? "The Description must contain text content."
+            : urlPattern.test(description.value)
+            ? "The Description cannot contain URLs."
+            : "The Description cannot contain images.",
       }));
       return;
     }
     
-    if (urlPattern.test(description.value)) {
-
-      setIsSubmitting(false);
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain URLs.",
-      }));
-      return;
-    }
-  
-    if (imgPattern.test(description.value)) {
-
-      setIsSubmitting(false);
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain images.",
-      }));
-      return;
-    }
-  
 
     if (!picture) {
 

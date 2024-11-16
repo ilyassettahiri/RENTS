@@ -2321,69 +2321,45 @@ function EditListing() {
     const urlPattern = /(https?:\/\/[^\s]+)/g;
     const imgPattern = /<img\b[^>]*>/i;
 
-
-    if (title.text.trim().length < 1) {
+    if (
+      title.text.trim().length < 1 ||
+      title.text.length > 255 ||
+      urlPattern.test(title.text)
+    ) {
       setIsSubmitting(false);
       setTitle({
         ...title,
         error: true,
-        textError: "The Title name is required",
+        textError:
+          title.text.trim().length < 1
+            ? "The Title name is required."
+            : title.text.length > 255
+            ? "The Title cannot exceed 255 characters."
+            : "The Title cannot contain a URL.",
       });
-    } else if (title.text.length > 255) {
-      setIsSubmitting(false);
-      setTitle({
-        ...title,
-        error: true,
-        textError: "The Title cannot exceed 255 characters",
-      });
-    } else if (urlPattern.test(title.text)) {
-      setIsSubmitting(false);
-      setTitle({
-        ...title,
-        error: true,
-        textError: "The Title cannot contain a URL",
-      });
-    } else {
-      setTitle({
-        ...title,
-        error: false,
-        textError: "",
-      });
+      return;
     }
-  
-    if (descNoTags.length < 1) {
-      setIsSubmitting(false);
     
+
+
+
+    if (
+      descNoTags.length < 1 ||
+      urlPattern.test(description.value) ||
+      imgPattern.test(description.value)
+    ) {
+      setIsSubmitting(false);
       setDescription((prevDescription) => ({
         ...prevDescription,
         error: true,
-        textError: "The Description must contain text content.",
+        textError:
+          descNoTags.length < 1
+            ? "The Description must contain text content."
+            : urlPattern.test(description.value)
+            ? "The Description cannot contain URLs."
+            : "The Description cannot contain images.",
       }));
       return;
-    } else if (urlPattern.test(description.value)) {
-      setIsSubmitting(false);
-    
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain URLs.",
-      }));
-      return;
-    } else if (imgPattern.test(description.value)) {
-      setIsSubmitting(false);
-    
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain images.",
-      }));
-      return;
-    } else {
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: false,
-        textError: "",
-      }));
     }
     
 
@@ -2399,128 +2375,80 @@ function EditListing() {
 
 
 
-    if (address.address.value.trim().length < 1) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        address: {
-          ...prevAddress.address,
-          error: true,
-          textError: "Address is required.",
-        },
-      }));
-    } else if (address.address.value.length > 255) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        address: {
-          ...prevAddress.address,
-          error: true,
-          textError: "Address cannot exceed 255 characters.",
-        },
-      }));
-    } else if (urlPattern.test(address.address.value)) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        address: {
-          ...prevAddress.address,
-          error: true,
-          textError: "Address cannot contain a URL.",
-        },
-      }));
-    } else {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        address: {
-          ...prevAddress.address,
-          error: false,
-          textError: "",
-        },
-      }));
-    }
     
-    if (address.city.value.trim().length < 1) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        city: {
-          ...prevAddress.city,
-          error: true,
-          textError: "City is required.",
-        },
-      }));
-    } else if (address.city.value.length > 255) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        city: {
-          ...prevAddress.city,
-          error: true,
-          textError: "City cannot exceed 255 characters.",
-        },
-      }));
-    } else if (urlPattern.test(address.city.value)) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        city: {
-          ...prevAddress.city,
-          error: true,
-          textError: "City cannot contain a URL.",
-        },
-      }));
-    } else {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        city: {
-          ...prevAddress.city,
-          error: false,
-          textError: "",
-        },
-      }));
-    }
-    
-    if (address.zip.value.trim().length < 1) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        zip: {
-          ...prevAddress.zip,
-          error: true,
-          textError: "ZIP code is required.",
-        },
-      }));
-    } else if (address.zip.value.length > 255) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        zip: {
-          ...prevAddress.zip,
-          error: true,
-          textError: "ZIP code cannot exceed 255 characters.",
-        },
-      }));
-    } else if (urlPattern.test(address.zip.value)) {
-      setIsSubmitting(false);
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        zip: {
-          ...prevAddress.zip,
-          error: true,
-          textError: "ZIP code cannot contain a URL.",
-        },
-      }));
-    } else {
-      setAddress((prevAddress) => ({
-        ...prevAddress,
-        zip: {
-          ...prevAddress.zip,
-          error: false,
-          textError: "",
-        },
-      }));
-    }
+
+      // Check for Address
+      if (
+        address.address.value.trim().length < 1 ||
+        address.address.value.length > 255 ||
+        urlPattern.test(address.address.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          address: {
+            ...prevAddress.address,
+            error: true,
+            textError:
+              address.address.value.trim().length < 1
+                ? "Address is required."
+                : address.address.value.length > 255
+                ? "Address cannot exceed 255 characters."
+                : "Address cannot contain URLs.",
+          },
+        }));
+        return;
+      }
+
+      // Check for City
+      if (
+        address.city.value.trim().length < 1 ||
+        address.city.value.length > 255 ||
+        urlPattern.test(address.city.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          city: {
+            ...prevAddress.city,
+            error: true,
+            textError:
+              address.city.value.trim().length < 1
+                ? "City is required."
+                : address.city.value.length > 255
+                ? "City cannot exceed 255 characters."
+                : "City cannot contain URLs.",
+          },
+        }));
+        return;
+      }
+
+      // Check for ZIP code
+      if (
+        address.zip.value.trim().length < 1 ||
+        address.zip.value.length > 255 ||
+        urlPattern.test(address.zip.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          zip: {
+            ...prevAddress.zip,
+            error: true,
+            textError:
+              address.zip.value.trim().length < 1
+                ? "ZIP code is required."
+                : address.zip.value.length > 255
+                ? "ZIP code cannot exceed 255 characters."
+                : "ZIP code cannot contain URLs.",
+          },
+        }));
+        return;
+      }
+
+
+
+
     
     if (pricing.price.value.trim().length < 1 || isNaN(pricing.price.value) || Number(pricing.price.value) <= 0) {
       setIsSubmitting(false);

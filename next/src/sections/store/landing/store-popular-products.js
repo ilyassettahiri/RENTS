@@ -31,6 +31,10 @@ const TABS = [
   'Temara',
   'Safi',
   'Mohammedia',
+  'Ouarzazate',
+  'Errachidia',
+
+  'laayoune',
 
 ];
 

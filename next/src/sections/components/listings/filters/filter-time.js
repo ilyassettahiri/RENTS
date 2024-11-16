@@ -13,12 +13,22 @@ import Iconify from 'src/components/iconify';
 export default function FilterTime({
   departureDay,
   onChangeDepartureDay,
-  minDate,
+  minDate = new Date(),
   maxDate,
   disabledDateRanges = [],
   sx,
 }) {
+
+  const today = new Date(); // Current date
+  today.setHours(0, 0, 0, 0); // Normalize time to midnight
+
+
   const shouldDisableDate = (date) => {
+
+    if (date < today) {
+      return true;
+    }
+
     if (!disabledDateRanges || disabledDateRanges.length === 0) {
       return false;
     }

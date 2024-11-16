@@ -234,109 +234,92 @@ function CreateStore() {
     
 
 
-    
 
-
-    if (name.text.trim().length < 1) {
-      setIsSubmitting(false);
-      setName({ ...name, error: true, textError: "The Store Name is Required" });
-      return;
-    } else if (name.text.length > 255) {
+    if (
+      name.text.trim().length < 1 ||
+      name.text.length > 255 ||
+      urlPattern.test(name.text)
+    ) {
       setIsSubmitting(false);
       setName({
         ...name,
         error: true,
-        textError: "The Name cannot exceed 255 characters",
+        textError:
+          name.text.trim().length < 1
+            ? "The Store Name is Required."
+            : name.text.length > 255
+            ? "The Name cannot exceed 255 characters."
+            : "The Store Name cannot contain a URL.",
       });
       return;
-    } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
-      setIsSubmitting(false);
-      setName({
-        ...name,
-        error: true,
-        textError: "The Store Name cannot contain a URL",
-      });
-      return;
-    } else {
-      setName({ ...name, error: false, textError: "" });
     }
-
-  
-
-
-    if (phone.text.trim().length < 1) {
-
-      setIsSubmitting(false);
-
-      setPhone({ ...phone, error: true, textError: "The Phone is required" });
-      return;
-    } else if (!/^\d+$/.test(phone.text)) {
-
-      setIsSubmitting(false);
-
-      setPhone({ ...phone, error: true, textError: "The Phone must contain only numbers" });
-      return;
-    } else if (phone.text.length < 10 || phone.text.length > 15) { 
-
-      setIsSubmitting(false);
-
-      setPhone({ ...phone, error: true, textError: "The Phone must be between 10 and 15 digits" });
-      return;
-    } else {
-      setPhone({ ...phone, error: false, textError: "" });
-    }
-  
-
-    // Email validation
-    if (email.text.trim().length < 1) {
-      setIsSubmitting(false);
-      setEmail({ ...email, error: true, textError: "The Email is required" });
-      return;
-    } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text)) {
-      setIsSubmitting(false);
-      setEmail({ ...email, error: true, textError: "The Email format is invalid" });
-      return;
-    } else if (urlPattern.test(email.text)) { // Extra check to ensure no URL-like text is entered
-      setIsSubmitting(false);
-      setEmail({ ...email, error: true, textError: "The Email cannot contain URLs" });
-      return;
-    } else {
-      setEmail({ ...email, error: false, textError: "" });
-    }
-
 
     
-  
-    // Check if description is empty, contains URLs, or contains image tags
-    if (descNoTags.length < 1) {
+
+    if (
+      phone.text.trim().length < 1 ||
+      !/^\d+$/.test(phone.text) ||
+      phone.text.length < 10 ||
+      phone.text.length > 15
+    ) {
       setIsSubmitting(false);
-      setDescription((prevDescription) => ({
-        ...prevDescription,
+      setPhone({
+        ...phone,
         error: true,
-        textError: "The Description must contain text content.",
-      }));
-    } else if (urlPattern.test(description.value)) {
-      setIsSubmitting(false);
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain URLs.",
-      }));
-    } else if (imgPattern.test(description.value)) {
-      setIsSubmitting(false);
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: true,
-        textError: "The Description cannot contain images.",
-      }));
-    } else {
-      // If all checks pass, reset error state if needed and proceed with submission
-      setDescription((prevDescription) => ({
-        ...prevDescription,
-        error: false,
-        textError: "",
-      }));
+        textError:
+          phone.text.trim().length < 1
+            ? "The Phone is required."
+            : !/^\d+$/.test(phone.text)
+            ? "The Phone must contain only numbers."
+            : "The Phone must be between 10 and 15 digits.",
+      });
+      return;
     }
+
+    
+
+
+    if (
+      email.text.trim().length < 1 ||
+      !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text) ||
+      urlPattern.test(email.text)
+    ) {
+      setIsSubmitting(false);
+      setEmail({
+        ...email,
+        error: true,
+        textError:
+          email.text.trim().length < 1
+            ? "The Email is required."
+            : !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text)
+            ? "The Email format is invalid."
+            : "The Email cannot contain URLs.",
+      });
+      return;
+    }
+    
+    
+
+
+    if (
+      descNoTags.length < 1 ||
+      urlPattern.test(description.value) ||
+      imgPattern.test(description.value)
+    ) {
+      setIsSubmitting(false);
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError:
+          descNoTags.length < 1
+            ? "The Description must contain text content."
+            : urlPattern.test(description.value)
+            ? "The Description cannot contain URLs."
+            : "The Description cannot contain images.",
+      }));
+      return;
+    }
+    
   
 
 

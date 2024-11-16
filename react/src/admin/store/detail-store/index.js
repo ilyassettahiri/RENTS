@@ -308,180 +308,164 @@ function DetailStore() {
  
      
  
- 
-     if (name.text.trim().length < 1) {
-       setIsSubmitting(false);
-       setName({ ...name, error: true, textError: "The Store Name is Required" });
-       return;
-     } else if (name.text.length > 255) {
-       setIsSubmitting(false);
-       setName({
-         ...name,
-         error: true,
-         textError: "The Name cannot exceed 255 characters",
-       });
-       return;
-     } else if (urlPattern.test(name.text)) { // Checks if name contains a URL
-       setIsSubmitting(false);
-       setName({
-         ...name,
-         error: true,
-         textError: "The Store Name cannot contain a URL",
-       });
-       return;
-     } else {
-       setName({ ...name, error: false, textError: "" });
-     }
- 
-   
- 
- 
-     if (phone.text.trim().length < 1) {
- 
-       setIsSubmitting(false);
- 
-       setPhone({ ...phone, error: true, textError: "The Phone is required" });
-       return;
-     } else if (!/^\d+$/.test(phone.text)) {
- 
-       setIsSubmitting(false);
- 
-       setPhone({ ...phone, error: true, textError: "The Phone must contain only numbers" });
-       return;
-     } else if (phone.text.length < 10 || phone.text.length > 15) { 
- 
-       setIsSubmitting(false);
- 
-       setPhone({ ...phone, error: true, textError: "The Phone must be between 10 and 15 digits" });
-       return;
-     } else {
-       setPhone({ ...phone, error: false, textError: "" });
-     }
-   
- 
-     // Email validation
-     if (email.text.trim().length < 1) {
-       setIsSubmitting(false);
-       setEmail({ ...email, error: true, textError: "The Email is required" });
-       return;
-     } else if (!/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text)) {
-       setIsSubmitting(false);
-       setEmail({ ...email, error: true, textError: "The Email format is invalid" });
-       return;
-     } else if (urlPattern.test(email.text)) { // Extra check to ensure no URL-like text is entered
-       setIsSubmitting(false);
-       setEmail({ ...email, error: true, textError: "The Email cannot contain URLs" });
-       return;
-     } else {
-       setEmail({ ...email, error: false, textError: "" });
-     }
- 
- 
-     
-   
-     // Check if description is empty, contains URLs, or contains image tags
-     if (descNoTags.length < 1) {
-       setIsSubmitting(false);
-       setDescription((prevDescription) => ({
-         ...prevDescription,
-         error: true,
-         textError: "The Description must contain text content.",
-       }));
-     } else if (urlPattern.test(description.value)) {
-       setIsSubmitting(false);
-       setDescription((prevDescription) => ({
-         ...prevDescription,
-         error: true,
-         textError: "The Description cannot contain URLs.",
-       }));
-     } else if (imgPattern.test(description.value)) {
-       setIsSubmitting(false);
-       setDescription((prevDescription) => ({
-         ...prevDescription,
-         error: true,
-         textError: "The Description cannot contain images.",
-       }));
-     } else {
-       // If all checks pass, reset error state if needed and proceed with submission
-       setDescription((prevDescription) => ({
-         ...prevDescription,
-         error: false,
-         textError: "",
-       }));
-     }
-   
- 
- 
- 
-       // Check for Address
-       if (
-         address.address.value.trim().length < 1 ||
-         address.address.value.length > 255 ||
-         urlPattern.test(address.address.value)
-       ) {
-         setIsSubmitting(false);
-         setAddress((prevAddress) => ({
-           ...prevAddress,
-           address: {
-             ...prevAddress.address,
-             error: true,
-             textError:
-               address.address.value.trim().length < 1
-                 ? "Address is required."
-                 : address.address.value.length > 255
-                 ? "Address cannot exceed 255 characters."
-                 : "Address cannot contain URLs.",
-           },
-         }));
-         return;
-       }
- 
-       // Check for City
-       if (
-         address.city.value.trim().length < 1 ||
-         address.city.value.length > 255 ||
-         urlPattern.test(address.city.value)
-       ) {
-         setIsSubmitting(false);
-         setAddress((prevAddress) => ({
-           ...prevAddress,
-           city: {
-             ...prevAddress.city,
-             error: true,
-             textError:
-               address.city.value.trim().length < 1
-                 ? "City is required."
-                 : address.city.value.length > 255
-                 ? "City cannot exceed 255 characters."
-                 : "City cannot contain URLs.",
-           },
-         }));
-         return;
-       }
- 
-       // Check for ZIP code
-       if (
-         address.zip.value.trim().length < 1 ||
-         address.zip.value.length > 255 ||
-         urlPattern.test(address.zip.value)
-       ) {
-         setIsSubmitting(false);
-         setAddress((prevAddress) => ({
-           ...prevAddress,
-           zip: {
-             ...prevAddress.zip,
-             error: true,
-             textError:
-               address.zip.value.trim().length < 1
-                 ? "ZIP code is required."
-                 : address.zip.value.length > 255
-                 ? "ZIP code cannot exceed 255 characters."
-                 : "ZIP code cannot contain URLs.",
-           },
-         }));
-         return;
-       }
- 
+
+     if (
+      name.text.trim().length < 1 ||
+      name.text.length > 255 ||
+      urlPattern.test(name.text)
+    ) {
+      setIsSubmitting(false);
+      setName({
+        ...name,
+        error: true,
+        textError:
+          name.text.trim().length < 1
+            ? "The Store Name is Required."
+            : name.text.length > 255
+            ? "The Name cannot exceed 255 characters."
+            : "The Store Name cannot contain a URL.",
+      });
+      return;
+    }
+
+    
+
+    if (
+      phone.text.trim().length < 1 ||
+      !/^\d+$/.test(phone.text) ||
+      phone.text.length < 10 ||
+      phone.text.length > 15
+    ) {
+      setIsSubmitting(false);
+      setPhone({
+        ...phone,
+        error: true,
+        textError:
+          phone.text.trim().length < 1
+            ? "The Phone is required."
+            : !/^\d+$/.test(phone.text)
+            ? "The Phone must contain only numbers."
+            : "The Phone must be between 10 and 15 digits.",
+      });
+      return;
+    }
+
+    
+
+
+    if (
+      email.text.trim().length < 1 ||
+      !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text) ||
+      urlPattern.test(email.text)
+    ) {
+      setIsSubmitting(false);
+      setEmail({
+        ...email,
+        error: true,
+        textError:
+          email.text.trim().length < 1
+            ? "The Email is required."
+            : !/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email.text)
+            ? "The Email format is invalid."
+            : "The Email cannot contain URLs.",
+      });
+      return;
+    }
+    
+    
+
+
+    if (
+      descNoTags.length < 1 ||
+      urlPattern.test(description.value) ||
+      imgPattern.test(description.value)
+    ) {
+      setIsSubmitting(false);
+      setDescription((prevDescription) => ({
+        ...prevDescription,
+        error: true,
+        textError:
+          descNoTags.length < 1
+            ? "The Description must contain text content."
+            : urlPattern.test(description.value)
+            ? "The Description cannot contain URLs."
+            : "The Description cannot contain images.",
+      }));
+      return;
+    }
+    
+  
+
+
+
+      // Check for Address
+      if (
+        address.address.value.trim().length < 1 ||
+        address.address.value.length > 255 ||
+        urlPattern.test(address.address.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          address: {
+            ...prevAddress.address,
+            error: true,
+            textError:
+              address.address.value.trim().length < 1
+                ? "Address is required."
+                : address.address.value.length > 255
+                ? "Address cannot exceed 255 characters."
+                : "Address cannot contain URLs.",
+          },
+        }));
+        return;
+      }
+
+      // Check for City
+      if (
+        address.city.value.trim().length < 1 ||
+        address.city.value.length > 255 ||
+        urlPattern.test(address.city.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          city: {
+            ...prevAddress.city,
+            error: true,
+            textError:
+              address.city.value.trim().length < 1
+                ? "City is required."
+                : address.city.value.length > 255
+                ? "City cannot exceed 255 characters."
+                : "City cannot contain URLs.",
+          },
+        }));
+        return;
+      }
+
+      // Check for ZIP code
+      if (
+        address.zip.value.trim().length < 1 ||
+        address.zip.value.length > 255 ||
+        urlPattern.test(address.zip.value)
+      ) {
+        setIsSubmitting(false);
+        setAddress((prevAddress) => ({
+          ...prevAddress,
+          zip: {
+            ...prevAddress.zip,
+            error: true,
+            textError:
+              address.zip.value.trim().length < 1
+                ? "ZIP code is required."
+                : address.zip.value.length > 255
+                ? "ZIP code cannot exceed 255 characters."
+                : "ZIP code cannot contain URLs.",
+          },
+        }));
+        return;
+      }
 
      
  
