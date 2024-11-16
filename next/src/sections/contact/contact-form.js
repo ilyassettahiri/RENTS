@@ -19,12 +19,27 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 export default function ContactForm() {
   const mdUp = useResponsive('up', 'md');
 
+  const urlPattern = /(https?:\/\/[^\s]+)/; // Regular expression to check for URLs
+
   const ElearningContactSchema = Yup.object().shape({
-    fullName: Yup.string().required('Full name is required'),
-    email: Yup.string().required('Email is required').email('That is not an email'),
-    subject: Yup.string().required('Subject is required'),
-    message: Yup.string().required('Message is required'),
+    fullName: Yup.string()
+      .required('Full name is required')
+      .max(255, 'Full name cannot exceed 255 characters')
+      .test('no-url', 'Full name cannot contain a URL', (value) => !urlPattern.test(value)),
+    email: Yup.string()
+      .required('Email is required')
+      .email('That is not a valid email')
+      .max(255, 'Email cannot exceed 255 characters'),
+    subject: Yup.string()
+      .required('Subject is required')
+      .max(255, 'Subject cannot exceed 255 characters')
+      .test('no-url', 'Subject cannot contain a URL', (value) => !urlPattern.test(value)),
+    message: Yup.string()
+      .required('Message is required')
+      .max(255, 'Message cannot exceed 255 characters')
+      .test('no-url', 'Message cannot contain a URL', (value) => !urlPattern.test(value)),
   });
+
 
   const defaultValues = {
     fullName: '',

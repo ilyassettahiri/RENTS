@@ -33,12 +33,27 @@ export default function ReviewNewForm({ onClose, category, url, ...other }) {
     email: '',
   };
 
+  const urlPattern = /(https?:\/\/[^\s]+)/; // Regular expression to check for URLs
+
   const NewReviewSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required'),
-    rating: Yup.number().min(1, 'Rating must be greater than or equal to 1'),
-    review: Yup.string().required('Review is required'),
-    email: Yup.string().required('Email is required').email('That is not an email'),
+    name: Yup.string()
+      .required('Name is required')
+      .max(255, 'Name cannot exceed 255 characters')
+      .test('no-url', 'Name cannot contain a URL', (value) => !urlPattern.test(value)),
+    rating: Yup.number()
+      .required('Rating is required')
+      .min(1, 'Rating must be greater than or equal to 1')
+      .max(5, 'Rating must be less than or equal to 5'), // Assuming rating is out of 5
+    review: Yup.string()
+      .required('Review is required')
+      .max(255, 'Review cannot exceed 255 characters')
+      .test('no-url', 'Review cannot contain a URL', (value) => !urlPattern.test(value)),
+    email: Yup.string()
+      .required('Email is required')
+      .email('That is not a valid email')
+      .max(255, 'Email cannot exceed 255 characters'),
   });
+
 
   const methods = useForm({
     resolver: yupResolver(NewReviewSchema),

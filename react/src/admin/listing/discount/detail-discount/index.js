@@ -90,17 +90,18 @@ const DetailDiscount = () => {
 
 
   const [selectedCollections, setSelectedCollections] = useState({
-    value: "",
+    value: [], 
     error: false,
     textError: "",
   });
 
 
   const [selectedListings, setSelectedListings] = useState({
-    value: "",
+    value: [], 
     error: false,
     textError: "",
   });
+
 
 
 
@@ -195,37 +196,44 @@ const DetailDiscount = () => {
 
 
 
-  const changeSelectedCollectionsHandler = (selectedOptions) => {
-    if (selectedOptions.length === 0) {
-      setSelectedCollections({
-        value: [],
-        error: true,
-        textError: "A Collection must be selected",
-      });
-    } else {
-      setSelectedCollections({
-        value: selectedOptions,
-        error: false,
-        textError: "",
-      });
-    }
-  };
+    const changeSelectedCollectionsHandler = (selectedOptions) => {
+
+    
+
+      if (selectedOptions.length === 0) {
+        setSelectedCollections({
+          value: [],
+          error: true,
+          textError: "A Collection must be selected",
+        });
+      } else {
+        setSelectedCollections({
+          value: selectedOptions.map(option => option.value),
+          error: false,
+          textError: "",
+        });
+      }
+    };
+    
+    const changeSelectedListingsHandler = (selectedOptions) => {
   
-  const changeSelectedListingsHandler = (selectedOptions) => {
-    if (selectedOptions.length === 0) {
-      setSelectedListings({
-        value: [],
-        error: true,
-        textError: "A Listing must be selected",
-      });
-    } else {
-      setSelectedListings({
-        value: selectedOptions,
-        error: false,
-        textError: "",
-      });
-    }
-  };
+      
+  
+      if (selectedOptions.length === 0) {
+        setSelectedListings({
+          value: [],
+          error: true,
+          textError: "A Listing must be selected",
+        });
+      } else {
+        setSelectedListings({
+          value: selectedOptions.map(option => option.value),
+          error: false,
+          textError: "",
+        });
+      }
+    };
+    
   
 
   
@@ -320,142 +328,142 @@ const DetailDiscount = () => {
 
     
 
-    if (appliesTo.value.trim().length < 1) {
+        if (appliesTo.value.trim().length < 1) {
 
-      setIsSubmitting(false);
-
-
-      setAppliesTo((prevCategory) => ({
-          ...prevCategory,
-          error: true,
-          textError: "Applies to must be selected",
-        }));
-        return;
-}
-
-if (purchaseRequirement.value.trim().length < 1) {
-
-      setIsSubmitting(false);
-
-      setPurchaseRequirement((prevCategory) => ({
-          ...prevCategory,
-          error: true,
-          textError: "Minimum purchase requirements must be selected",
-        }));
-        return;
-}
+          setIsSubmitting(false);
 
 
-// Validate code
-if (code.text.trim().length < 1) {
-  setIsSubmitting(false);
-  setCode({
-    ...code,
-    error: true,
-    textError: "The Code is required.",
-  });
-  return;
-} else if (code.text.length > 255) {
-  setIsSubmitting(false);
-  setCode({
-    ...code,
-    error: true,
-    textError: "The Code cannot exceed 255 characters.",
-  });
-  return;
-} else if (/https?:\/\/[^\s]+/.test(code.text)) {
-  setIsSubmitting(false);
-  setCode({
-    ...code,
-    error: true,
-    textError: "The Code cannot contain a URL.",
-  });
-  return;
-} else {
-  setCode({ ...code, error: false, textError: "" });
-}
+          setAppliesTo((prevCategory) => ({
+              ...prevCategory,
+              error: true,
+              textError: "Applies to must be selected",
+            }));
+            return;
+        }
 
-// Validate discountValue
-const isValidPercentage = /^[1-9][0-9]?$|^100$/.test(discountValue.text);
-if (discountValue.text.trim().length < 1) {
-  setIsSubmitting(false);
-  setDiscountValue({
-    ...discountValue,
-    error: true,
-    textError: "The Discount Value is required.",
-  });
-  return;
-} else if (!isValidPercentage) {
-  setIsSubmitting(false);
-  setDiscountValue({
-    ...discountValue,
-    error: true,
-    textError: "The Discount Value must be a percentage between 1 and 99.",
-  });
-  return;
-} else {
-  setDiscountValue({ ...discountValue, error: false, textError: "" });
-}
+        if (purchaseRequirement.value.trim().length < 1) {
+
+              setIsSubmitting(false);
+
+              setPurchaseRequirement((prevCategory) => ({
+                  ...prevCategory,
+                  error: true,
+                  textError: "Minimum purchase requirements must be selected",
+                }));
+                return;
+        }
 
 
+        // Validate code
+        if (code.text.trim().length < 1) {
+          setIsSubmitting(false);
+          setCode({
+            ...code,
+            error: true,
+            textError: "The Code is required.",
+          });
+          return;
+        } else if (code.text.length > 255) {
+          setIsSubmitting(false);
+          setCode({
+            ...code,
+            error: true,
+            textError: "The Code cannot exceed 255 characters.",
+          });
+          return;
+        } else if (/https?:\/\/[^\s]+/.test(code.text)) {
+          setIsSubmitting(false);
+          setCode({
+            ...code,
+            error: true,
+            textError: "The Code cannot contain a URL.",
+          });
+          return;
+        } else {
+          setCode({ ...code, error: false, textError: "" });
+        }
 
-if (appliesTo.value === "collection") {
-    if (selectedCollections.value.length < 1) {
-      setIsSubmitting(false);
-      setSelectedCollections((prevCategory) => ({
-        ...prevCategory,
-        error: true,
-        textError: "A Collection must be selected",
-      }));
-      return;
-    }
-
-} else {
-
-      if (selectedListings.value.length < 1) {
-        setIsSubmitting(false);
-        setSelectedListings((prevCategory) => ({
-          ...prevCategory,
-          error: true,
-          textError: "A Listing must be selected",
-        }));
-        return;
-      }
-
-}
+        // Validate discountValue
+        const isValidPercentage = /^[1-9][0-9]?$|^100$/.test(discountValue.text);
+        if (discountValue.text.trim().length < 1) {
+          setIsSubmitting(false);
+          setDiscountValue({
+            ...discountValue,
+            error: true,
+            textError: "The Discount Value is required.",
+          });
+          return;
+        } else if (!isValidPercentage) {
+          setIsSubmitting(false);
+          setDiscountValue({
+            ...discountValue,
+            error: true,
+            textError: "The Discount Value must be a percentage between 1 and 99.",
+          });
+          return;
+        } else {
+          setDiscountValue({ ...discountValue, error: false, textError: "" });
+        }
 
 
-if (purchaseRequirement.value === "purchaseamount") {
-          // Validate purchaseAmount
-      if (purchaseAmount.value.trim().length < 1) {
-        setIsSubmitting(false);
-        setPurchaseAmount({
-          ...purchaseAmount,
-          error: true,
-          textError: "The Purchase Amount is required.",
-        });
-        return;
-      } else if (isNaN(purchaseAmount.value)) {
-        setIsSubmitting(false);
-        setPurchaseAmount({
-          ...purchaseAmount,
-          error: true,
-          textError: "The Purchase Amount must be a number.",
-        });
-        return;
-      } else if (purchaseAmount.value.length > 255) {
-        setIsSubmitting(false);
-        setPurchaseAmount({
-          ...purchaseAmount,
-          error: true,
-          textError: "The Purchase Amount cannot exceed 255 characters.",
-        });
-        return;
-      } else {
-        setPurchaseAmount({ ...purchaseAmount, error: false, textError: "" });
-      }
 
-}
+        if (appliesTo.value === "collection") {
+            if (selectedCollections.value.length < 1) {
+              setIsSubmitting(false);
+              setSelectedCollections((prevCategory) => ({
+                ...prevCategory,
+                error: true,
+                textError: "A Collection must be selected",
+              }));
+              return;
+            }
+
+        } else {
+
+              if (selectedListings.value.length < 1) {
+                setIsSubmitting(false);
+                setSelectedListings((prevCategory) => ({
+                  ...prevCategory,
+                  error: true,
+                  textError: "A Listing must be selected",
+                }));
+                return;
+              }
+
+        }
+
+
+        if (purchaseRequirement.value === "purchaseamount") {
+                  // Validate purchaseAmount
+              if (purchaseAmount.value.trim().length < 1) {
+                setIsSubmitting(false);
+                setPurchaseAmount({
+                  ...purchaseAmount,
+                  error: true,
+                  textError: "The Purchase Amount is required.",
+                });
+                return;
+              } else if (isNaN(purchaseAmount.value)) {
+                setIsSubmitting(false);
+                setPurchaseAmount({
+                  ...purchaseAmount,
+                  error: true,
+                  textError: "The Purchase Amount must be a number.",
+                });
+                return;
+              } else if (purchaseAmount.value.length > 255) {
+                setIsSubmitting(false);
+                setPurchaseAmount({
+                  ...purchaseAmount,
+                  error: true,
+                  textError: "The Purchase Amount cannot exceed 255 characters.",
+                });
+                return;
+              } else {
+                setPurchaseAmount({ ...purchaseAmount, error: false, textError: "" });
+              }
+
+        }
 
 
 
@@ -467,8 +475,13 @@ if (purchaseRequirement.value === "purchaseamount") {
           discountvalue: discountValue.text,
           applies_to: appliesTo.value,
           requirements: purchaseRequirement.value,
-          collections_id: appliesTo.value === "collection" ? selectedCollections.value.map(option => option.value) : [],
-          listings_id: appliesTo.value === "product" ? selectedListings.value.map(option => option.value) : [],
+
+
+
+          collections_id: appliesTo.value === "collection" ? selectedCollections.value : [],
+          listings_id: appliesTo.value === "product" ? selectedListings.value : [],
+    
+
           purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount.value : null,
         },
       },

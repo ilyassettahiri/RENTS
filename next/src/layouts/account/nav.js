@@ -41,7 +41,7 @@ export default function Nav({ open, onClose }) {
   const navigations = [
     { title: 'PersonalInfo', path: paths.eCommerce.personal, icon: <Iconify icon="carbon:user" /> },
     { title: 'Wishlist', path: paths.eCommerce.wishlist, icon: <Iconify icon="carbon:favorite" /> },
-    { title: 'Messages', path: paths.eCommerce.vouchers, icon: <Iconify icon="carbon:chat" /> },
+    { title: 'Messages', path: paths.eCommerce.chat, icon: <Iconify icon="carbon:chat" /> },
     { title: 'Reservations', path: paths.eCommerce.orders, icon: <Iconify icon="carbon:document" /> },
     { title: 'Payment', path: paths.eCommerce.payment, icon: <Iconify icon="carbon:purchase" /> },
   ];

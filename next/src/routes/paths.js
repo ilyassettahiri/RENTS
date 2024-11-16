@@ -47,7 +47,7 @@ export const paths = (lang = 'en') => ({
     stores: `/${lang}/store`,
     personal: `/${lang}/dashboard/personal`,
     wishlist: `/${lang}/dashboard/wishlist`,
-    vouchers: `/${lang}/dashboard/vouchers`,
+
     chat: `/${lang}/dashboard/chat`,
     orders: `/${lang}/dashboard/orders`,
     payment: `/${lang}/dashboard/payment`,

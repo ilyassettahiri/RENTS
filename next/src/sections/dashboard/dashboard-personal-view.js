@@ -79,24 +79,57 @@ export default function DashboardPersonalView() {
 
   const passwordShow = useBoolean();
 
+  const urlPattern = /(https?:\/\/[^\s]+)/;
+
   const personalInfoSchema = Yup.object().shape({
-    firstName: Yup.string().required('First name is required'),
-    lastName: Yup.string().required('Last name is required'),
-    emailAddress: Yup.string().required('Email address is required'),
-    phoneNumber: Yup.string().required('Phone number is required'),
-    birthday: Yup.mixed().nullable().required('Birthday is required'),
-    gender: Yup.string().required('Gender is required'),
-    streetAddress: Yup.string().required('Street address is required'),
-    city: Yup.string().required('City is required'),
-    zipCode: Yup.string().required('Zip code is required'),
+    firstName: Yup.string()
+      .required('First name is required')
+      .max(255, 'First name cannot exceed 255 characters')
+      .test('no-url', 'First name cannot contain a URL', (value) => !urlPattern.test(value)),
+    lastName: Yup.string()
+      .required('Last name is required')
+      .max(255, 'Last name cannot exceed 255 characters')
+      .test('no-url', 'Last name cannot contain a URL', (value) => !urlPattern.test(value)),
+    emailAddress: Yup.string()
+      .required('Email address is required')
+      .email('Invalid email address')
+      .max(255, 'Email address cannot exceed 255 characters'),
+    phoneNumber: Yup.string()
+      .required('Phone number is required')
+      .matches(/^\d+$/, 'Phone number must contain only numbers')
+      .min(10, 'Phone number must be at least 10 digits')
+      .max(15, 'Phone number cannot exceed 15 digits'),
+    birthday: Yup.mixed()
+      .nullable()
+      .required('Birthday is required'),
+    gender: Yup.string()
+      .required('Gender is required')
+      .max(255, 'Gender cannot exceed 255 characters'),
+    streetAddress: Yup.string()
+      .required('Street address is required')
+      .max(255, 'Street address cannot exceed 255 characters')
+      .test('no-url', 'Street address cannot contain a URL', (value) => !urlPattern.test(value)),
+    city: Yup.string()
+      .required('City is required')
+      .max(255, 'City cannot exceed 255 characters')
+      .test('no-url', 'City cannot contain a URL', (value) => !urlPattern.test(value)),
+    zipCode: Yup.string()
+      .required('Zip code is required')
+      .max(255, 'Zip code cannot exceed 255 characters')
+      .test('no-url', 'Zip code cannot contain a URL', (value) => !urlPattern.test(value)),
   });
 
   const passwordSchema = Yup.object().shape({
-    oldPassword: Yup.string().required('Old password is required'),
-    newPassword: Yup.string().required('New password is required'),
+    oldPassword: Yup.string()
+      .required('Old password is required')
+      .max(255, 'Old password cannot exceed 255 characters'),
+    newPassword: Yup.string()
+      .required('New password is required')
+      .max(255, 'New password cannot exceed 255 characters'),
     confirmNewPassword: Yup.string()
       .oneOf([Yup.ref('newPassword'), null], 'Passwords must match')
-      .required('Confirm new password is required'),
+      .required('Confirm new password is required')
+      .max(255, 'Confirm new password cannot exceed 255 characters'),
   });
 
   const personalInfoMethods = useForm({

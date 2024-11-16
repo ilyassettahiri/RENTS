@@ -62,14 +62,14 @@ const CreateDiscount = () => {
 
 
   const [selectedCollections, setSelectedCollections] = useState({
-    value: "",
+    value: [], 
     error: false,
     textError: "",
   });
 
 
   const [selectedListings, setSelectedListings] = useState({
-    value: "",
+    value: [], 
     error: false,
     textError: "",
   });
@@ -106,6 +106,9 @@ const CreateDiscount = () => {
 
 
   const changeSelectedCollectionsHandler = (selectedOptions) => {
+
+    
+
     if (selectedOptions.length === 0) {
       setSelectedCollections({
         value: [],
@@ -114,7 +117,7 @@ const CreateDiscount = () => {
       });
     } else {
       setSelectedCollections({
-        value: selectedOptions,
+        value: selectedOptions.map(option => option.value),
         error: false,
         textError: "",
       });
@@ -122,6 +125,9 @@ const CreateDiscount = () => {
   };
   
   const changeSelectedListingsHandler = (selectedOptions) => {
+
+    
+
     if (selectedOptions.length === 0) {
       setSelectedListings({
         value: [],
@@ -130,7 +136,7 @@ const CreateDiscount = () => {
       });
     } else {
       setSelectedListings({
-        value: selectedOptions,
+        value: selectedOptions.map(option => option.value),
         error: false,
         textError: "",
       });
@@ -373,14 +379,17 @@ const CreateDiscount = () => {
           discountvalue: discountValue.text,
           applies_to: appliesTo.value,
           requirements: purchaseRequirement.value,
-          collections_id: appliesTo.value === "collection" ? selectedCollections.value.map(option => option.value) : [],
-          listings_id: appliesTo.value === "product" ? selectedListings.value.map(option => option.value) : [],
+
+
+          collections_id: appliesTo.value === "collection" ? selectedCollections.value : [],
+          listings_id: appliesTo.value === "product" ? selectedListings.value : [],
+    
+
           purchaseamount: purchaseRequirement.value === "purchaseamount" ? purchaseAmount.value : null,
         },
       },
     };
 
-    console.log("Discount Payload:", discountPayload); // Log the discountPayload for debugging
 
 
 

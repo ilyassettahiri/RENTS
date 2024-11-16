@@ -923,12 +923,10 @@ class CrudService {
 
 
 
-
-  getTermcondition = async (id) => {
-    const termconditionsEndpoint = `termconditions/edit-termcondition/${id}`;
+  getTermconditions = async () => {
+    const termconditionsEndpoint = "termconditions";
     return HttpService.get(termconditionsEndpoint);
   };
-
 
 
 

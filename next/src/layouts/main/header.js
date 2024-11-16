@@ -65,9 +65,9 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      window.location.href = paths.eCommerce.vouchers;
+      window.location.href = paths.eCommerce.chat;
     });
-  }, [requireAuth, paths.eCommerce.vouchers]);
+  }, [requireAuth, paths.eCommerce.chat]);
 
 
 
