@@ -515,6 +515,7 @@ function EditListing() {
 
 
 
+
   const clickOpenHandler = (category, url, jobtype, city) => {
     const formatJobType = (jobtype) => {
       if (!jobtype) return ""; // Return an empty string if jobtype is null or undefined
@@ -532,22 +533,17 @@ function EditListing() {
       ? formatJobType(jobtype)
       : `${category}-for-rent`;
   
-    // Define the base paths for different categories
-    const paths = {
-      services: `/career/${city}`,
-      jobs: `/job/${city}`,
-      default: `/travel/tour/en/${city}/${category}`
-    };
-  
+   
     // Build the full URL based on category
     const baseUrl = category === 'services'
-      ? `${paths.services}/${type}/${url}`
+      ? `en/${city}/${type}/${url}`
       : category === 'jobs'
-      ? `${paths.jobs}/${type}/${url}`
-      : `${paths.default}/${type}/${url}`; // Default URL for other categories
+      ? `en/${city}/${type}/${url}`
+      : `en/${city}/${category}/${type}/${url}`; // Default URL for other categories
     
-    window.open(baseUrl, '_blank');  // Open the URL in a new tab
+      window.open(`https://rents.ma/${baseUrl}`, '_blank'); 
   };
+  
   
 
 
