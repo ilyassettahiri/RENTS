@@ -25,13 +25,7 @@ export default function PrivacyView({ termData }) {
 
   console.log('Term Data:', termData);
 
-  // Memoize the data transformation
-  const formattedData = useMemo(() => {
-    if (!termData) return null;
-
-    // Extract policy page data from the response
-    return termData.data.policypage;
-  }, [termData]);
+  const privacyContent = termData.data.policypage.attributes.privacy;
 
 
   return (
@@ -44,11 +38,9 @@ export default function PrivacyView({ termData }) {
           paddingRight: { lg: '100px' },
         }}
       >
-        {!termData ? (
-          <MarkdownSkeleton /> // Placeholder while loading
-        ) : (
-          formattedData && <Markdown content={formattedData.attributes.privacy}  />
-        )}
+
+          <Markdown content={privacyContent}  />
+
       </Container>
 
       <ContactInfo />

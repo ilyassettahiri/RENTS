@@ -1,8 +1,6 @@
 'use client';
 
 
-import PropTypes from 'prop-types';
-
 import { useMemo } from "react";
 
 import Divider from '@mui/material/Divider';
@@ -11,12 +9,18 @@ import CrudService from "src/services/cruds-service";
 import ContactInfo from 'src/sections/contact/contact-info';
 import ContactForm from 'src/sections/contact/contact-form';
 
-export default function ContactView({ contactData }) {
-  // Fetch contacts data using React Query
-  console.log('Contact Data:', contactData);
+export default function ContactView() {
+  // // Fetch contacts data using React Query
+  // const { data: contactData, isLoading, error: contactError } = useQuery({
+  //   queryKey: ['contacts'],
+  //   queryFn: CrudService.getContacts,
+  //   onError: (error) => {
+  //     console.error('Failed to fetch contacts:', error);
+  //   },
+  // });
 
-  // Use memoization to process the data
-  const contactInfo = useMemo(() => contactData || {}, [contactData]);
+
+  // const contactInfo = useMemo(() => contactData?.data || {}, [contactData]);
 
 
   return (
@@ -27,9 +31,3 @@ export default function ContactView({ contactData }) {
     </>
   );
 }
-
-
-
-ContactView.propTypes = {
-  contactData: PropTypes.object, // Expect an object or null
-};
