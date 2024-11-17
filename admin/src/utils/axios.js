@@ -58,7 +58,7 @@ export const endpoints = {
   },
 
   product: {
-    list: 'listings',
+    list: 'cancelleds',
     details: '/api/product/details',
     search: '/api/product/search',
   },

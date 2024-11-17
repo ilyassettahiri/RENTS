@@ -373,19 +373,19 @@ const routes = [
       },
 
 
-      {
-        name: "Create Team",
-        key: "create-team",
-        route: "/team/create-team",
-        component: <CreateTeam />,
-      },
+      // {
+      //   name: "Create Team",
+      //   key: "create-team",
+      //   route: "/team/create-team",
+      //   component: <CreateTeam />,
+      // },
       
-      {
-        name: "Detail Team",
-        key: "detail-team",
-        route: "/team/detail-team/:id",
-        component: <DetailTeam />,
-      },
+      // {
+      //   name: "Detail Team",
+      //   key: "detail-team",
+      //   route: "/team/detail-team/:id",
+      //   component: <DetailTeam />,
+      // },
       
 
       {
@@ -590,12 +590,12 @@ const routes = [
         route: "/settings/account",
         component: <Account />,
       },
-      {
-        name: "Team",
-        key: "team",
-        route: "/settings/team",
-        component: <ListTeam />,
-      },
+      // {
+      //   name: "Team",
+      //   key: "team",
+      //   route: "/settings/team",
+      //   component: <ListTeam />,
+      // },
       {
         name: "Security",
         key: "security",
