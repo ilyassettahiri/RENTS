@@ -252,8 +252,8 @@ export function ProductListView() {
             columns={columns}
             loading={productsLoading}
             getRowHeight={() => 'auto'}
-            pageSizeOptions={[5, 10, 25]}
-            initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
+            pageSizeOptions={[100, 200, 500]}
+            initialState={{ pagination: { paginationModel: { pageSize: 100 } } }}
             onRowSelectionModelChange={(newSelectionModel) => setSelectedRowIds(newSelectionModel)}
             columnVisibilityModel={columnVisibilityModel}
             onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}

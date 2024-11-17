@@ -14,10 +14,11 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
+use Carbon\Carbon;
 
 
-use App\Models\Listing;
-use App\Models\Collection;
+use App\Models\Reservation;
+
 
 
 use LaravelJsonApi\Contracts\Store\Store;
@@ -34,31 +35,50 @@ class DashboardFrontController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
+
+
+
+
+        $reservations = Reservation::all();
+
+
 
 
         return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
+
+
+                'data' => $reservations->map(function ($reservation) {
+
                 return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
+                    'type' => 'reservations',
+                    'id' => $reservation->id,
                     'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
+
+                        'name' => $reservation->name,
+
+                        'reservationstart' => Carbon::parse($reservation->reservationstart)->toIso8601String(),
+                        'reservationsend' => Carbon::parse($reservation->reservationsend)->toIso8601String(),
+
+
+
+
+
+
+                        'title' => $reservation->listings_title,
+                        'price' => $reservation->listings_price,
+                        'status' => $reservation->status,
+
+                        'id' => $reservation->id,
+                        'created_at' => $reservation->created_at,
+
                     ],
-                    'relationships' => [
-                        'user' => [
-                            'data' => [
-                                'type' => 'users',
-                                'id' => $user->id,
-                            ],
-                        ],
-                    ],
+
                 ];
             }),
         ]);
+
+
+
     }
 
 

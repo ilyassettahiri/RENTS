@@ -57,6 +57,14 @@ export const endpoints = {
     search: '/api/post/search',
   },
 
+
+  order: {
+    list: 'dashboardfronts',
+    details: '/api/post/details',
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+
   product: {
     list: 'cancelleds',
     details: '/api/product/details',

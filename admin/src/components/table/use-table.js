@@ -9,7 +9,7 @@ export function useTable(props) {
 
   const [orderBy, setOrderBy] = useState(props?.defaultOrderBy || 'name');
 
-  const [rowsPerPage, setRowsPerPage] = useState(props?.defaultRowsPerPage || 5);
+  const [rowsPerPage, setRowsPerPage] = useState(props?.defaultRowsPerPage || 100);
 
   const [order, setOrder] = useState(props?.defaultOrder || 'asc');
 

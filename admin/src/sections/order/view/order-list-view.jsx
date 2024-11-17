@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';
+import { useGetOrders } from 'src/actions/order';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useSetState } from 'src/hooks/use-set-state';
@@ -73,6 +74,7 @@ export function OrderListView() {
   const router = useRouter();
 
   const confirm = useBoolean();
+  const { products, productsLoading } = useGetOrders();
 
   const [tableData, setTableData] = useState(_orders);
 
