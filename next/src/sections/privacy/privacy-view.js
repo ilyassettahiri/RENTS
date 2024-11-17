@@ -1,5 +1,8 @@
 'use client';
 
+
+import PropTypes from 'prop-types';
+
 import { useMemo } from "react";
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
@@ -18,23 +21,18 @@ import ContactInfo from 'src/sections/contact/contact-info';
 
 // ----------------------------------------------------------------------
 
-export default function PrivacyView() {
-  // Fetch term data using react-query
-  const { data: termData, isLoading, error: privacyError } = useQuery({
-    queryKey: ['termconditions'],
-    queryFn: () => CrudService.getTermconditions(),
-    onError: (error) => {
-      console.error('Failed to fetch terms and conditions:', error);
-    },
-  });
+export default function PrivacyView({ termData }) {
 
-  // Memorize the data transformation
+  console.log('Term Data:', termData);
+
+  // Memoize the data transformation
   const formattedData = useMemo(() => {
     if (!termData) return null;
 
     // Extract policy page data from the response
     return termData.data.policypage;
   }, [termData]);
+
 
   return (
     <>
@@ -46,7 +44,7 @@ export default function PrivacyView() {
           paddingRight: { lg: '100px' },
         }}
       >
-        {isLoading ? (
+        {!termData ? (
           <MarkdownSkeleton /> // Placeholder while loading
         ) : (
           formattedData && <Markdown content={formattedData.attributes.privacy}  />
@@ -57,3 +55,9 @@ export default function PrivacyView() {
     </>
   );
 }
+
+
+
+PrivacyView.propTypes = {
+  termData: PropTypes.object, // Expect an object or null
+};

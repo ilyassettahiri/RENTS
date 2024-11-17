@@ -9,10 +9,7 @@ import Typography from '@mui/material/Typography';
 
 import FeaturedPosts from 'src/sections/blog/travel/featured-posts';
 
-import Team from '../components/listings/team/team';
 import About from './about';
-import OurClients from '../components/listings/our-clients';
-import Testimonial from '../components/listings/testimonial/testimonial';
 import AboutOurMission from './about-our-mission';
 
 // ----------------------------------------------------------------------
@@ -29,7 +26,6 @@ export default function AboutView() {
 
   // Memoize extracted data
   const recentArticles = useMemo(() => aboutData?.data?.recentarticles || [], [aboutData]);
-  const ourclients = useMemo(() => aboutData?.data?.ourclients || [], [aboutData]);
   const about = useMemo(() => aboutData?.data?.about || {}, [aboutData]);
 
   // Function to extract the first three paragraphs from the content
@@ -72,7 +68,7 @@ export default function AboutView() {
             </Container>
       <FeaturedPosts posts={recentArticles} Loading={isLoading} />
 
-      {/* <OurClients brands={ourclients} /> */}
+
 
     </>
   );
