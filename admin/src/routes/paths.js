@@ -85,6 +85,33 @@ export const paths = {
         edit: `${ROOTS.DASHBOARD}/product/${MOCK_ID}/edit`,
       },
     },
+
+
+    review: {
+      root: `${ROOTS.DASHBOARD}/review`,
+      new: `${ROOTS.DASHBOARD}/review/new`,
+      details: (id) => `${ROOTS.DASHBOARD}/review/${id}`,
+      edit: (id) => `${ROOTS.DASHBOARD}/review/${id}/edit`,
+      demo: {
+        details: `${ROOTS.DASHBOARD}/review/${MOCK_ID}`,
+        edit: `${ROOTS.DASHBOARD}/review/${MOCK_ID}/edit`,
+      },
+    },
+
+
+
+    customer: {
+      root: `${ROOTS.DASHBOARD}/customer`,
+      new: `${ROOTS.DASHBOARD}/customer/new`,
+      details: (id) => `${ROOTS.DASHBOARD}/customer/${id}`,
+      edit: (id) => `${ROOTS.DASHBOARD}/customer/${id}/edit`,
+      demo: {
+        details: `${ROOTS.DASHBOARD}/customer/${MOCK_ID}`,
+        edit: `${ROOTS.DASHBOARD}/customer/${MOCK_ID}/edit`,
+      },
+    },
+
+
     invoice: {
       root: `${ROOTS.DASHBOARD}/invoice`,
       new: `${ROOTS.DASHBOARD}/invoice/new`,

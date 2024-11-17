@@ -34,25 +34,33 @@ class PricingController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
+        $listings = Listing::all();
 
-
+        // Ensure JSON:API compliance
         return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
+            'data' => $listings->map(function ($listing) {
                 return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
+                    'type' => 'listings',
+                    'id' => $listing->id,
                     'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
+                        'category' => $listing->category,
+                        'url' => $listing->url,
+                        'title' => $listing->title,
+                        'city' => $listing->city,
+                        'price' => $listing->price,
+                        'status' => $listing->status,
+                        'picture' => $listing->picture,
+                        'id' => $listing->id,
+
+                        'user_id' => $listing->user_id,
+                        'created_at' => $listing->created_at,
+                        'updated_at' => $listing->updated_at,
                     ],
                     'relationships' => [
                         'user' => [
                             'data' => [
                                 'type' => 'users',
-                                'id' => $user->id,
+                                'id' => $listing->user_id,
                             ],
                         ],
                     ],
@@ -60,6 +68,7 @@ class PricingController extends JsonApiController
             }),
         ]);
     }
+
 
 
 

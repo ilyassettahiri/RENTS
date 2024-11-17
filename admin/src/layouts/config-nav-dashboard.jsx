@@ -83,8 +83,10 @@ export const navData = [
           { title: 'Edit', path: paths.dashboard.product.demo.edit },
         ],
       },
+
+
       {
-        title: 'Order',
+        title: 'Reservation',
         path: paths.dashboard.order.root,
         icon: ICONS.order,
         children: [
@@ -92,6 +94,41 @@ export const navData = [
           { title: 'Details', path: paths.dashboard.order.demo.details },
         ],
       },
+
+
+
+      {
+        title: 'Customer',
+        path: paths.dashboard.customer.root,
+        icon: ICONS.product,
+        children: [
+          { title: 'List', path: paths.dashboard.customer.root },
+          { title: 'Details', path: paths.dashboard.customer.demo.details },
+          { title: 'Create', path: paths.dashboard.customer.new },
+          { title: 'Edit', path: paths.dashboard.customer.demo.edit },
+        ],
+      },
+
+
+
+      {
+        title: 'Review',
+        path: paths.dashboard.review.root,
+        icon: ICONS.product,
+        children: [
+          { title: 'List', path: paths.dashboard.review.root },
+          { title: 'Details', path: paths.dashboard.review.demo.details },
+          { title: 'Create', path: paths.dashboard.review.new },
+          { title: 'Edit', path: paths.dashboard.review.demo.edit },
+        ],
+      },
+
+
+
+
+
+
+
       {
         title: 'Invoice',
         path: paths.dashboard.invoice.root,
@@ -114,6 +151,7 @@ export const navData = [
           { title: 'Edit', path: paths.dashboard.post.demo.edit },
         ],
       },
+
 
 
 

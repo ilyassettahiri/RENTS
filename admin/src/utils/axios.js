@@ -58,6 +58,30 @@ export const endpoints = {
   },
 
 
+  review: {
+    list: 'pricings',
+    details: '/api/post/details',
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+
+
+  invoice: {
+    list: 'upcomingfronts',
+    details: '/api/post/details',
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+
+
+  customer: {
+    list: 'currentlyhostingfronts',
+    details: '/api/post/details',
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+
+
   order: {
     list: 'dashboardfronts',
     details: '/api/post/details',
