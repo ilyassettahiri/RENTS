@@ -18,11 +18,12 @@ import { Iconify } from 'src/components/iconify';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
 import { CartIcon } from 'src/sections/product/components/cart-icon';
-import { useCheckoutContext } from '../../checkout/context';
 import { ProductDetailsReview } from 'src/sections/product/product-details-review';
 import { ProductDetailsSummary } from 'src/sections/product/product-details-summary';
 import { ProductDetailsCarousel } from 'src/sections/product/product-details-carousel';
 import { ProductDetailsDescription } from 'src/sections/product/product-details-description';
+import { useCheckoutContext } from '../../checkout/context';
+
 
 // ----------------------------------------------------------------------
 

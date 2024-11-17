@@ -28,8 +28,8 @@ import { ProductSort } from 'src/sections/product/product-sort';
 import { ProductSearch } from 'src/sections/product/product-search';
 import { CartIcon } from 'src/sections/product/components/cart-icon';
 import { ProductFilters } from 'src/sections/product/product-filters';
-import { useCheckoutContext } from '../../checkout/context';
 import { ProductFiltersResult } from 'src/sections/product/product-filters-result';
+import { useCheckoutContext } from '../../checkout/context';
 
 // ----------------------------------------------------------------------
 
