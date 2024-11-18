@@ -1,5 +1,8 @@
 'use client';
 
+
+import PropTypes from 'prop-types';
+
 import { useMemo } from "react";
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
@@ -14,42 +17,34 @@ import AboutOurMission from './about-our-mission';
 
 // ----------------------------------------------------------------------
 
-export default function AboutView() {
-  // Use React Query to fetch data
-  const { data: aboutData, isLoading, error: aboutError } = useQuery({
-    queryKey: ['about'],
-    queryFn: CrudService.getAbouts,
-    onError: (error) => {
-      console.error('Failed to fetch data:', error);
-    },
-  });
+export default function AboutView({ aboutData }) {
 
-  // Memoize extracted data
-  const recentArticles = useMemo(() => aboutData?.data?.recentarticles || [], [aboutData]);
-  const about = useMemo(() => aboutData?.data?.about || {}, [aboutData]);
 
-  // Function to extract the first three paragraphs from the content
-  const getFirstThreeParagraphs = (content) => {
-    const paragraphs = content.match(/<p>.*?<\/p>/g);
-    if (paragraphs && paragraphs.length > 3) {
+
+  const recentArticles = aboutData?.data?.recentarticles || [];
+  const about = aboutData?.data?.about || {};
+
+
+
+    const getFirstThreeParagraphs = (content) => {
+      const paragraphs = content.match(/<p>.*?<\/p>/g);
+      if (paragraphs && paragraphs.length > 3) {
+        return {
+          firstThree: paragraphs.slice(0, 1).join(''),
+          secondThree: paragraphs.slice(1, 2).join(''),
+          third: paragraphs.slice(2, 3).join(''),
+          last: paragraphs.slice(3, 4).join(''),
+        };
+      }
       return {
-        firstThree: paragraphs.slice(0, 1).join(''),
-        secondThree: paragraphs.slice(1, 2).join(''),
-        third: paragraphs.slice(2, 3).join(''),
-        last: paragraphs.slice(3, 4).join(''),
+        firstThree: content,
+        secondThree: '',
+        third: '',
+        last: '',
       };
-    }
-    return {
-      firstThree: content,
-      secondThree: '',
-      third: '',
-      last: '',
     };
-  };
 
-  // Extract the first three paragraphs from the about content
-  const aboutContent = useMemo(() => getFirstThreeParagraphs(about.attributes?.content || ''), [about]);
-
+    const aboutContent = useMemo(() => getFirstThreeParagraphs(about.attributes?.content || ''), [about]);
 
 
   return (
@@ -73,3 +68,9 @@ export default function AboutView() {
     </>
   );
 }
+
+
+
+AboutView.propTypes = {
+  aboutData: PropTypes.object, // Expect an object or null
+};

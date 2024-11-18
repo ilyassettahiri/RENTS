@@ -27,51 +27,30 @@ import PostSidebar from './common/post-sidebar';
 import PostHero from './travel/post-hero';
 import PostSocialsShare from './common/post-socials-share';
 
-export default function ArticleView({ params }) {
+export default function ArticleView({ params, articleData }) {
+
+
   const { url } = params;
 
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
-  // Fetch article data using useQuery
-  const { data: articleData, isLoading, error: articleError } = useQuery({
-    queryKey: ['article', url],
-    queryFn: () => CrudService.getArticle(url),
-    onError: (error) => {
-      console.error('Failed to fetch article:', error);
-    },
-  });
-
-  // Memorize and format the fetched data
-  const formattedData = useMemo(() => {
-    if (!articleData) return null;
-
-    const article = articleData.data.article;
-    const recentArticles = articleData.data.recentarticles;
-    const blogCategories = articleData.data.blogcategories;
 
 
 
 
-
-    return { article, recentArticles, blogCategories };
-  }, [articleData]);
-
+  const { article, recentarticles: recentArticles, blogcategories: blogCategories } = articleData.data;
 
 
 
   return (
     <>
-      {isLoading ? (
-        <PostHeroSkeleton />
-      ) : (
-        <PostHero post={formattedData?.article} />
-      )}
 
-      {/* Main Content */}
-      {isLoading ? (
-        <GeneralArticleSkeleton />
-      ) : (
+     <PostHero post={article} />
+
+
+
+
         <>
           <Container>
             <CustomBreadcrumbs
@@ -79,7 +58,7 @@ export default function ArticleView({ params }) {
               links={[
                 { name: 'Home', href: '/' },
                 { name: 'Blog', href: paths.travel.posts },
-                { name: formattedData.article.attributes.title },
+                { name: article.attributes.title },
               ]}
             />
           </Container>
@@ -89,25 +68,25 @@ export default function ArticleView({ params }) {
           <Container>
             <Grid container spacing={{ md: 8 }}>
               <Grid xs={12} md={8}>
-                <Markdown content={formattedData.article.attributes.content}  />
-                <PostTags tags={formattedData.article.attributes.tag} />
+                <Markdown content={article.attributes.content}  />
+                <PostTags tags={article.attributes.tag} />
                 <PostSocialsShare />
                 <Divider sx={{ mt: 8 }} />
-                <PostAuthor author={formattedData.article.attributes.author} />
+                <PostAuthor author={article.attributes.author}/>
               </Grid>
 
               <Grid xs={12} md={4}>
                 <PostSidebar
-                  popularTags={formattedData.article.attributes.tag}
+                  popularTags={article.attributes.tag}
                   author={{
-                    name: formattedData.article.attributes.author.name,
-                    avatarUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${formattedData.article.attributes.author.picture}`,
+                    name: article.attributes.author.name,
+                    avatarUrl: `${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${article.attributes.author.picture}`,
                   }}
-                  categories={formattedData.blogCategories.map((category) => ({
+                  categories={blogCategories.map((category) => ({
                     label: category.attributes.name.trim(),
                     path: `/category/${category.attributes.name.trim().toLowerCase()}`,
                   }))}
-                  recentPosts={{ list: formattedData.recentArticles }}
+                  recentPosts={{ list: recentArticles }}
                 />
               </Grid>
             </Grid>
@@ -126,12 +105,12 @@ export default function ArticleView({ params }) {
 
             </Container>
 
-            <FeaturedPosts posts={formattedData.recentArticles} Loading={isLoading} />
+            <FeaturedPosts posts={recentArticles}  />
 
 
 
         </>
-      )}
+
     </>
   );
 
@@ -141,4 +120,5 @@ ArticleView.propTypes = {
   params: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
+  articleData: PropTypes.object, // Expect article data or null
 };
