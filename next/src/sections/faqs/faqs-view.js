@@ -29,18 +29,12 @@ export default function FaqsView({ faqData }) {
   const [topic, setTopic] = useState('');
   const mobileOpen = useBoolean();
 
-  // Handle missing data
-  if (!faqData) {
-    return (
-      <>
-        <SupportHeroSkeleton />
-        <FaqGeneraleSkeleton />
-      </>
-    );
-  }
-
   // Memorize the data transformation
   const { faqSubjects, faqs, topics } = useMemo(() => {
+    if (!faqData) {
+      return { faqSubjects: [], faqs: [], topics: [] };
+    }
+
     const faqSubjectsData = faqData?.faqsubjects || [];
     const faqsData = faqData?.faqs || [];
 
@@ -79,46 +73,55 @@ export default function FaqsView({ faqData }) {
 
   return (
     <>
-      {/* Hero Section */}
-      <SupportHero />
+      {!faqData ? (
+        <>
+          <SupportHeroSkeleton />
+          <FaqGeneraleSkeleton />
+        </>
+      ) : (
+        <>
+          {/* Hero Section */}
+          <SupportHero />
 
-      {/* Main Content */}
-      <>
-        <Stack
-          alignItems="flex-end"
-          sx={{
-            py: 1.5,
-            px: 2.5,
-            display: { md: 'none' },
-            borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-          }}
-        >
-          <IconButton onClick={mobileOpen.onTrue}>
-            <Iconify icon="carbon:menu" />
-          </IconButton>
-        </Stack>
+          {/* Main Content */}
+          <>
+            <Stack
+              alignItems="flex-end"
+              sx={{
+                py: 1.5,
+                px: 2.5,
+                display: { md: 'none' },
+                borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+              }}
+            >
+              <IconButton onClick={mobileOpen.onTrue}>
+                <Iconify icon="carbon:menu" />
+              </IconButton>
+            </Stack>
 
-        <Container>
-          <Typography variant="h3" sx={{ py: { xs: 3, md: 10 } }}>
-            Frequently Asked Questions
-          </Typography>
+            <Container>
+              <Typography variant="h3" sx={{ py: { xs: 3, md: 10 } }}>
+                Frequently Asked Questions
+              </Typography>
 
-          <Stack direction="row" sx={{ pb: { xs: 10, md: 15 } }}>
-            <SupportNav
-              data={topics}
-              topic={topic}
-              open={mobileOpen.value}
-              onChangeTopic={handleChangeTopic}
-              onClose={mobileOpen.onFalse}
-            />
+              <Stack direction="row" sx={{ pb: { xs: 10, md: 15 } }}>
+                <SupportNav
+                  data={topics}
+                  topic={topic}
+                  open={mobileOpen.value}
+                  onChangeTopic={handleChangeTopic}
+                  onClose={mobileOpen.onFalse}
+                />
 
-            {topics.map(
-              (item) =>
-                item.title === topic && <div key={item.title}>{item.content}</div>
-            )}
-          </Stack>
-        </Container>
-      </>
+                {topics.map(
+                  (item) =>
+                    item.title === topic && <div key={item.title}>{item.content}</div>
+                )}
+              </Stack>
+            </Container>
+          </>
+        </>
+      )}
     </>
   );
 }
@@ -126,3 +129,4 @@ export default function FaqsView({ faqData }) {
 FaqsView.propTypes = {
   faqData: PropTypes.object, // Expect FAQ data or null
 };
+
