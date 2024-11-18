@@ -1,5 +1,8 @@
 'use client';
 
+
+import PropTypes from 'prop-types';
+
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useQuery } from '@tanstack/react-query';
 import CrudService from "src/services/cruds-service";
@@ -22,25 +25,24 @@ import SupportContent from './faqs-content';
 
 // ----------------------------------------------------------------------
 
-export default function FaqsView() {
+export default function FaqsView({ faqData }) {
   const [topic, setTopic] = useState('');
   const mobileOpen = useBoolean();
 
-  // Fetch FAQs data using react-query
-  const { data: faqData, isLoading, error: faqsError } = useQuery({
-    queryKey: ['faqs'],
-    queryFn: () => CrudService.getFaqs(),
-    onError: (error) => {
-      console.error('Failed to fetch FAQs:', error);
-    },
-  });
+  // Handle missing data
+  if (!faqData) {
+    return (
+      <>
+        <SupportHeroSkeleton />
+        <FaqGeneraleSkeleton />
+      </>
+    );
+  }
 
   // Memorize the data transformation
   const { faqSubjects, faqs, topics } = useMemo(() => {
-    if (!faqData) return { faqSubjects: [], faqs: [], topics: [] };
-
-    const faqSubjectsData = faqData.faqsubjects;
-    const faqsData = faqData.faqs;
+    const faqSubjectsData = faqData?.faqsubjects || [];
+    const faqsData = faqData?.faqs || [];
 
     // Create topics array from fetched data
     const topicsData = faqSubjectsData.map((subject) => ({
@@ -59,7 +61,7 @@ export default function FaqsView() {
   }, [faqData]);
 
   // Set default topic after data is fetched
-  useMemo(() => {
+  useEffect(() => {
     if (topics.length > 0) {
       setTopic(topics[0]?.title); // Set the first topic as default
     }
@@ -73,56 +75,54 @@ export default function FaqsView() {
     if (mobileOpen.value) {
       mobileOpen.onFalse();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [topic]);
+  }, [topic, mobileOpen]);
 
   return (
     <>
       {/* Hero Section */}
-      {isLoading ? (
-        <SupportHeroSkeleton />
-      ) : (
-        <SupportHero />
-      )}
+      <SupportHero />
 
       {/* Main Content */}
-      {isLoading ? (
-        <FaqGeneraleSkeleton />
-      ) : (
-        <>
-          <Stack
-            alignItems="flex-end"
-            sx={{
-              py: 1.5,
-              px: 2.5,
-              display: { md: 'none' },
-              borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
-            }}
-          >
-            <IconButton onClick={mobileOpen.onTrue}>
-              <Iconify icon="carbon:menu" />
-            </IconButton>
+      <>
+        <Stack
+          alignItems="flex-end"
+          sx={{
+            py: 1.5,
+            px: 2.5,
+            display: { md: 'none' },
+            borderBottom: (theme) => `solid 1px ${theme.palette.divider}`,
+          }}
+        >
+          <IconButton onClick={mobileOpen.onTrue}>
+            <Iconify icon="carbon:menu" />
+          </IconButton>
+        </Stack>
+
+        <Container>
+          <Typography variant="h3" sx={{ py: { xs: 3, md: 10 } }}>
+            Frequently Asked Questions
+          </Typography>
+
+          <Stack direction="row" sx={{ pb: { xs: 10, md: 15 } }}>
+            <SupportNav
+              data={topics}
+              topic={topic}
+              open={mobileOpen.value}
+              onChangeTopic={handleChangeTopic}
+              onClose={mobileOpen.onFalse}
+            />
+
+            {topics.map(
+              (item) =>
+                item.title === topic && <div key={item.title}>{item.content}</div>
+            )}
           </Stack>
-
-          <Container>
-            <Typography variant="h3" sx={{ py: { xs: 3, md: 10 } }}>
-              Frequently Asked Questions
-            </Typography>
-
-            <Stack direction="row" sx={{ pb: { xs: 10, md: 15 } }}>
-              <SupportNav
-                data={topics}
-                topic={topic}
-                open={mobileOpen.value}
-                onChangeTopic={handleChangeTopic}
-                onClose={mobileOpen.onFalse}
-              />
-
-              {topics.map((item) => item.title === topic && <div key={item.title}>{item.content}</div>)}
-            </Stack>
-          </Container>
-        </>
-      )}
+        </Container>
+      </>
     </>
   );
 }
+
+FaqsView.propTypes = {
+  faqData: PropTypes.object, // Expect FAQ data or null
+};

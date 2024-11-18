@@ -1,3 +1,6 @@
+import axios from 'axios';
+
+
 import ServicePageView from 'src/sections/service-page/service-page-view';
 import PropTypes from 'prop-types';
 
@@ -14,14 +17,40 @@ export async function generateMetadata({ params }) {
 }
 
 
-const ServicePage = ({ params }) => <ServicePageView params={params} />;
+
+
+
+
+
+export default async function ServicePage({ params }) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const serviceEndpoint = `${API_URL}/services/${params.url}`;
+
+  try {
+    // Fetch job data server-side
+    const response = await axios.get(serviceEndpoint, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+
+    const serviceData = response.data;
+
+
+    return <ServicePageView params={params} serviceData={serviceData} />;
+  } catch (error) {
+    console.error('Error fetching service data:', error);
+
+
+    return <ServicePageView params={params} serviceData={null} />;
+  }
+}
 
 ServicePage.propTypes = {
   params: PropTypes.shape({
-    // Add the necessary params validation
-    category: PropTypes.string.isRequired,
+    city: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-export default ServicePage;

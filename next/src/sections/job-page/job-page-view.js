@@ -1,5 +1,7 @@
 'use client';
 
+
+
 import { useState, useEffect, useCallback, useMemo  } from 'react';
 import CrudService from 'src/services/cruds-service';
 import PropTypes from 'prop-types';
@@ -31,52 +33,36 @@ import ServicesDetailsHero from '../components/services/details/jobs-details-her
 
 // ----------------------------------------------------------------------
 
-export default function JobPageView({ params }) {
+export default function JobPageView({ params, jobData }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
 
-  const [favorites, setFavorites] = useState([]);
+
+  const [favorites, setFavorites] = useState(jobData?.favorites || []);
 
 
   const { url } = params;
 
 
 
-  const { data: serviceData, isLoading: isServiceLoading, error: serviceError } = useQuery({
-    queryKey: ['service', url],
-    queryFn: () => CrudService.getJob(url),
-    onError: (error) => {
-      console.error('Failed to fetch service:', error);
-    },
-  });
 
-  useEffect(() => {
-    if (serviceData?.favorites) {
-      setFavorites(serviceData.favorites);
-    }
-  }, [serviceData]);
 
-  const memoizedServiceData = useMemo(() => {
-    const specifications = serviceData?.data?.attributes?.specifications || [];
-    const recentListings = serviceData?.data?.attributes?.recentlistings || [];
-    const sellerlistings = serviceData?.data?.attributes?.sellerlistings || [];
+  const memoizedJobData = useMemo(() => {
+    const specifications = jobData?.data?.attributes?.specifications || [];
+    const recentListings = jobData?.data?.attributes?.recentlistings || [];
+    const sellerlistings = jobData?.data?.attributes?.sellerlistings || [];
 
-    const serviceEmpty = !isServiceLoading && !recentListings.length;
+    const serviceEmpty = !recentListings.length;
 
     return {
       specifications,
       recentListings,
       sellerlistings,
-
-      favorites: serviceData?.favorites || [],
-      serviceLoading: isServiceLoading,
-      serviceError,
+      favorites: jobData?.favorites || [],
       serviceEmpty,
     };
-  }, [serviceData, isServiceLoading, serviceError]);
-
-
+  }, [jobData]);
 
   const handleFavoriteToggle = useCallback((id, isFavorite) => {
     setFavorites(prevFavorites =>
@@ -92,11 +78,21 @@ export default function JobPageView({ params }) {
 
 
     <>
-          {isServiceLoading ? (
+
+
+          {!jobData ? (
             <ServicesDetailsHeroSkeleton />
           ) : (
-            <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+
+
+            <ServicesDetailsHero
+              job={jobData.data}
+              favorites={favorites}
+              onFavoriteToggle={handleFavoriteToggle}
+            />
+
           )}
+
 
         <Container
           maxWidth={false}
@@ -118,10 +114,10 @@ export default function JobPageView({ params }) {
 
                 {mdUp && (
                   <Grid xs={12} md={5} lg={4}>
-                    {isServiceLoading ? (
+                    {!jobData ? (
                       <ListingFormSkeleton />
                     ) : (
-                      <ListingForm tour={serviceData.data} />
+                      <ListingForm tour={jobData.data} />
                     )}
                   </Grid>
                 )}
@@ -131,12 +127,12 @@ export default function JobPageView({ params }) {
               <Grid xs={12} md={7} lg={8}>
 
 
-                {isServiceLoading ? (
+                {!jobData ? (
                   <ListingHeaderSkeleton />
                 ) : (
                   <ListingSummary
-                  specifications={memoizedServiceData.specifications}
-                  description={serviceData?.data?.attributes?.description}
+                  specifications={memoizedJobData.specifications}
+                  description={jobData?.data?.attributes?.description}
                   category="jobs"
                   />
                 )}
@@ -152,7 +148,7 @@ export default function JobPageView({ params }) {
             <Stack spacing={3} sx={{ my: 6 }}>
 
 
-              {serviceData && <Map offices={serviceData.data} sx={{ borderRadius: 2 }} />}
+              {jobData && <Map offices={jobData.data} sx={{ borderRadius: 2 }} />}
             </Stack>
 
 
@@ -160,10 +156,10 @@ export default function JobPageView({ params }) {
 
             {!mdUp && (
               <Box sx={{ my: 5 }}>
-                {isServiceLoading ? (
+                {!jobData ? (
                   <ListingFormSkeleton />
                 ) : (
-                  <ListingForm tour={serviceData.data} />
+                  <ListingForm tour={jobData.data} />
                 )}
               </Box>
             )}
@@ -172,23 +168,23 @@ export default function JobPageView({ params }) {
 
             <Divider sx={{ my: 10 }} />
 
-            {serviceData && (
+            {jobData && (
               <Review
-                category="services"
+                category="jobs"
                 url={url}
-                reviews={serviceData.data.attributes.reviewslistings}
-                seller={serviceData.data.attributes.seller}
+                reviews={jobData.data.attributes.reviewslistings}
+                seller={jobData.data.attributes.seller}
               />
             )}
 
             <Divider sx={{ my: 10 }} />
 
 
-            {serviceData && <ListingsCarouselService tours={memoizedServiceData.sellerlistings} title={t('Other listings from this store')} />}
+            {jobData && <ListingsCarouselService tours={memoizedJobData.sellerlistings} title={t('Other listings from this store')} />}
 
 
 
-            {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}
+            {jobData && <ListingsCarouselService tours={memoizedJobData.recentListings} title={t('Recommendedforyou')} />}
 
 
         </Container>
@@ -202,4 +198,5 @@ JobPageView.propTypes = {
   params: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
+  jobData: PropTypes.object, // Expect job data or null
 };

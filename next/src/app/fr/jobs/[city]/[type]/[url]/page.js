@@ -1,3 +1,6 @@
+
+import axios from 'axios';
+
 import JobPageView from 'src/sections/job-page/job-page-view';
 import PropTypes from 'prop-types';
 
@@ -13,16 +16,39 @@ export async function generateMetadata({ params }) {
 }
 
 
-const JobPage = ({ params }) => <JobPageView params={params} />;
+
+
+
+
+export default async function JobPage({ params }) {
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const jobEndpoint = `${API_URL}/jobs/${params.url}`;
+
+  try {
+    // Fetch job data server-side
+    const response = await axios.get(jobEndpoint, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+
+    const jobData = response.data;
+
+    // Pass fetched data to JobPageView
+    return <JobPageView params={params} jobData={jobData} />;
+  } catch (error) {
+    console.error('Error fetching job data:', error);
+
+    // Pass null to JobPageView in case of an error
+    return <JobPageView params={params} jobData={null} />;
+  }
+}
 
 JobPage.propTypes = {
   params: PropTypes.shape({
-
     city: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
-
-
+    url: PropTypes.string.isRequired,
   }).isRequired,
 };
-
-export default JobPage;

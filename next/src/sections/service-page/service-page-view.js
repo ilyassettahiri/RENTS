@@ -31,50 +31,38 @@ import ServicesDetailsHero from '../components/services/details/services-details
 
 // ----------------------------------------------------------------------
 
-export default function ServicePageView({ params }) {
+export default function ServicePageView({ params, serviceData }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(serviceData?.favorites || []);
 
 
   const { url } = params;
 
 
 
-  const { data: serviceData, isLoading: isServiceLoading, error: serviceError } = useQuery({
-    queryKey: ['service', url],
-    queryFn: () => CrudService.getService(url),
-    onError: (error) => {
-      console.error('Failed to fetch service:', error);
-    },
-  });
 
-  useEffect(() => {
-    if (serviceData?.favorites) {
-      setFavorites(serviceData.favorites);
-    }
-  }, [serviceData]);
 
-  const memoizedServiceData = useMemo(() => {
+
+
+
+  const memoizedserviceData = useMemo(() => {
     const specifications = serviceData?.data?.attributes?.specifications || [];
     const recentListings = serviceData?.data?.attributes?.recentlistings || [];
     const sellerlistings = serviceData?.data?.attributes?.sellerlistings || [];
 
-    const serviceEmpty = !isServiceLoading && !recentListings.length;
+    const serviceEmpty = !recentListings.length;
 
     return {
       specifications,
       recentListings,
       sellerlistings,
-
       favorites: serviceData?.favorites || [],
-      serviceLoading: isServiceLoading,
-      serviceError,
       serviceEmpty,
     };
-  }, [serviceData, isServiceLoading, serviceError]);
+  }, [serviceData]);
 
 
 
@@ -92,10 +80,13 @@ export default function ServicePageView({ params }) {
 
 
     <>
-          {isServiceLoading ? (
+          {!serviceData ? (
             <ServicesDetailsHeroSkeleton />
           ) : (
+
             <ServicesDetailsHero job={serviceData.data} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+
+
           )}
 
         <Container
@@ -119,7 +110,7 @@ export default function ServicePageView({ params }) {
 
                 {mdUp && (
                   <Grid xs={12} md={5} lg={4}>
-                    {isServiceLoading ? (
+                    {!serviceData ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={serviceData.data} />
@@ -132,11 +123,11 @@ export default function ServicePageView({ params }) {
               <Grid xs={12} md={7} lg={8}>
 
 
-                {isServiceLoading ? (
+                {!serviceData ? (
                   <ListingHeaderSkeleton />
                 ) : (
                   <ListingSummary
-                  specifications={memoizedServiceData.specifications}
+                  specifications={memoizedserviceData.specifications}
                   description={serviceData?.data?.attributes?.description}
                   category="services"
                   />
@@ -161,7 +152,7 @@ export default function ServicePageView({ params }) {
 
             {!mdUp && (
               <Box sx={{ my: 5 }}>
-                {isServiceLoading ? (
+                {!serviceData ? (
                   <ListingFormSkeleton />
                 ) : (
                   <ListingForm tour={serviceData.data} />
@@ -186,11 +177,11 @@ export default function ServicePageView({ params }) {
             <Divider sx={{ my: 10 }} />
 
 
-            {serviceData && <ListingsCarouselService tours={memoizedServiceData.sellerlistings} title={t('Other listings from this store')} />}
+            {serviceData && <ListingsCarouselService tours={memoizedserviceData.sellerlistings} title={t('Other listings from this store')} />}
 
 
 
-            {serviceData && <ListingsCarouselService tours={memoizedServiceData.recentListings} title={t('Recommendedforyou')} />}
+            {serviceData && <ListingsCarouselService tours={memoizedserviceData.recentListings} title={t('Recommendedforyou')} />}
 
 
         </Container>
@@ -204,4 +195,5 @@ ServicePageView.propTypes = {
   params: PropTypes.shape({
     url: PropTypes.string.isRequired,
   }).isRequired,
+  serviceData: PropTypes.object, // Expect job data or null
 };
