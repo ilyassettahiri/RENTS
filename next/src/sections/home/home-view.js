@@ -275,7 +275,7 @@ export default function HomeView({ homeData }) {
       >
 
 
-        <Stack sx={{ py: 4, borderRadius: '20px',  }}/>
+        <Stack sx={{ py: 4,   }}/>
 
 
 

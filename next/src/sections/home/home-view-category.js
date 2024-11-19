@@ -382,10 +382,10 @@ export default function HomeViewCategory({ params }) {
           zIndex: 1,
           borderRadius: '20px',
 
-          mt: { xs: -5, md: -7 },
+          mt: { xs: 3, md: -4 },
 
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '80px' },
+          paddingRight: { lg: '80px' },
           backgroundColor: 'white',
         }}
       >

@@ -69,7 +69,7 @@ export default function HomeHero({ tours, categoryy }) {
   };
 
   return (
-    <Box sx={{ minHeight: { md: '60vh' }, position: 'relative' }}>
+    <Box sx={{ minHeight: { md: '58vh' }, position: 'relative' }}>
       {!!tours.length && (
         <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
          <CarouselItem categoryy={categoryy} /> {/* Display only one image */}
@@ -193,7 +193,7 @@ function CarouselItem({ categoryy }) {
           src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoriescover/${categoryy}.jpg`}
           sx={{
             width: 1,
-            height: { xs: 1, md: '60vh' },
+            height: { xs: 1, md: '58vh' },
           }}
         />
       </Box>
