@@ -237,7 +237,7 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
             <Stack spacing={1} direction="row" alignItems="center">
               <Avatar
                 variant="rounded"
-                alt={NamedNodeMap}
+                alt={title}
                 src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile_image}`}
                 sx={{ width: 45, height: 45 }}
               />

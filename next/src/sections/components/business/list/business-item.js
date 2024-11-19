@@ -279,7 +279,7 @@ export default function BusinessItem({ business, vertical, favorites = [], onFav
                   <Stack spacing={1} direction="row" alignItems="center">
                     <Avatar
                       variant="rounded"
-                      alt={NamedNodeMap}
+                      alt={title}
                       src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${profile}`}
                       sx={{ width: 40, height: 40 }}
                     />

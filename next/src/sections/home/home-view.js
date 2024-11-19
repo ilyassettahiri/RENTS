@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback, useContext, useMemo } from "react";
+import PropTypes from 'prop-types';
 
 import { useTranslation } from 'react-i18next';
 
@@ -107,7 +108,7 @@ const keywordCategoryMap = {
 };
 
 
-export default function HomeView() {
+export default function HomeView({ homeData }) {
 
 
 
@@ -121,7 +122,7 @@ export default function HomeView() {
 
 
 
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(homeData?.favorites || []);
 
 
 
@@ -130,14 +131,7 @@ export default function HomeView() {
 
 
 
-
-    const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
-      queryKey: ['home'],
-      queryFn: CrudService.getHome,
-      onError: (error) => {
-        console.error('Failed to fetch Home:', error);
-      },
-    });
+  const isLoading = !homeData ;
 
 
 
@@ -145,55 +139,33 @@ export default function HomeView() {
 
 
 
-  useEffect(() => {
-    if (homeData?.favorites) {
-      setFavorites(homeData.favorites);
 
-    }
+
+
+
+
+  const memoizedHomeData = useMemo(() => {
+    if (!homeData) return {};
+
+    const attributes = homeData.data || [];
+    const recentarticles = homeData?.recentarticles || [];
+    const favorites = homeData?.favorites || [];
+
+    return {
+      billiards: attributes.filter((item) => item.type === 'billiards'),
+      velos: attributes.filter((item) => item.type === 'velos'),
+      apartments: attributes.filter((item) => item.type === 'apartments'),
+      recentarticles,
+      favorites,
+    };
   }, [homeData]);
 
-
-
-  const InitialListings = useMemo(
-    () =>
-      homeData?.data.map(item => ({
-        type: item.type,
-        id: item.id,
-        attributes: {
-          ...item.attributes,
-        },
-      })) || homeData?.data.filter(item => item.type === 'apartments') || [],
-    [homeData]
-  );
-
-
-
-  const isLoading = isHomeLoading ;
-
-
-
-    const memoizedHomeData = useMemo(() => {
-      const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
-      const velos = homeData?.data.filter(item => item.type === 'velos') || [];
-      const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
-
-
-      const listingsEmpty = !isLoading && !InitialListings.length;
-
-      return {
-
-        billiards,
-        velos,
-        apartments,
-
-        favorites: homeData?.favorites || [],
-        homeLoading: isLoading,
-        homeError,
-        listingsEmpty,
-      };
-    }, [homeData, isLoading, homeError, InitialListings]);
-
-
+  const {
+    billiards = [],
+    velos = [],
+    apartments = [],
+    recentarticles = [],
+  } = memoizedHomeData;
 
 
 
@@ -321,26 +293,26 @@ export default function HomeView() {
 
 
 
-        <ListingList tours={memoizedHomeData.apartments} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={apartments} favorites={favorites} loading={isLoading}  onFavoriteToggle={handleFavoriteToggle} />
 
 
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newCarsListings')}/>}
+           <ListingsCarousel tours={billiards} title={t('newBilliardListings')} />
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title={t('newBicycleListings')} />}
+        <ListingsCarousel tours={velos} title={t('newBicycleListings')} />
 
         </Stack>
 
 
 
         <Stack sx={{ my: 5 }} >
-          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
+        <ListingsCarousel tours={apartments} title={t('newApartmentListings')} />
 
         </Stack>
 
@@ -348,7 +320,10 @@ export default function HomeView() {
       </Container>
 
 
+      <Stack sx={{ mt: 10 }} >
+      <BlogHomeLatestPosts posts={recentarticles.slice(0, 4)} />
 
+      </Stack>
 
     </>
   );
@@ -356,7 +331,13 @@ export default function HomeView() {
 
 
 
-
+HomeView.propTypes = {
+  homeData: PropTypes.shape({
+    data: PropTypes.array,
+    recentarticles: PropTypes.array,
+    favorites: PropTypes.array,
+  }),
+};
 
 
 

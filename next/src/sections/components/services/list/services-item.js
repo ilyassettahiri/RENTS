@@ -260,7 +260,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
                     <Stack spacing={1} direction="row" alignItems="center">
                       <Avatar
                         variant="rounded"
-                        alt={NamedNodeMap}
+                        alt={title}
                         src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${seller.profile_image}`}
                         sx={{ width: 35, height: 35 }}
                       />
