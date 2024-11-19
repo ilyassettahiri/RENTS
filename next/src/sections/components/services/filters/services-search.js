@@ -122,7 +122,7 @@ export default function ServiceSearch({ onSearch, colorr, categories, keywordCat
 
   return (
     <>
-      <Box  sx={{ py: 3, px: 5,  mt: { xs: -15}, mb: { xs: 5}, display: { xs: 'block', md: 'none' }, }}>
+      <Box  sx={{ py: 3, px: 5,  mt: { xs: -17}, display: { xs: 'block', md: 'none' }, }}>
         <Button sx={{ py: 1.5, }} fullWidth color="primary" variant="contained" startIcon={<Iconify icon="carbon:search" width={20} />} onClick={mobileOpen.onTrue}>
           Search
         </Button>

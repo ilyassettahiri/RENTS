@@ -148,15 +148,14 @@ export default function HomeView({ homeData }) {
     if (!homeData) return {};
 
     const attributes = homeData.data || [];
-    const recentarticles = homeData?.recentarticles || [];
-    const favorites = homeData?.favorites || [];
+
 
     return {
       billiards: attributes.filter((item) => item.type === 'billiards'),
       velos: attributes.filter((item) => item.type === 'velos'),
       apartments: attributes.filter((item) => item.type === 'apartments'),
-      recentarticles,
-      favorites,
+
+
     };
   }, [homeData]);
 
@@ -164,7 +163,7 @@ export default function HomeView({ homeData }) {
     billiards = [],
     velos = [],
     apartments = [],
-    recentarticles = [],
+
   } = memoizedHomeData;
 
 
@@ -228,8 +227,8 @@ export default function HomeView({ homeData }) {
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-            paddingLeft: { lg: '100px' },
-            paddingRight: { lg: '100px' },
+            paddingLeft: { lg: '80px' },
+            paddingRight: { lg: '80px' },
 
             position: { md: 'absolute' },
           }}
@@ -267,7 +266,7 @@ export default function HomeView({ homeData }) {
           zIndex: 1,
           borderRadius: '20px',
 
-          mt: { xs: -5, md: -7 },
+          mt: { xs: 3, md: -4 },
 
           paddingLeft: { lg: '80px' },
           paddingRight: { lg: '80px' },
@@ -276,7 +275,7 @@ export default function HomeView({ homeData }) {
       >
 
 
-        <Stack sx={{ py: 4,  }}/>
+        <Stack sx={{ py: 4, borderRadius: '20px',  }}/>
 
 
 
@@ -320,10 +319,7 @@ export default function HomeView({ homeData }) {
       </Container>
 
 
-      <Stack sx={{ mt: 10 }} >
-      <BlogHomeLatestPosts posts={recentarticles.slice(0, 4)} />
 
-      </Stack>
 
     </>
   );
@@ -334,7 +330,7 @@ export default function HomeView({ homeData }) {
 HomeView.propTypes = {
   homeData: PropTypes.shape({
     data: PropTypes.array,
-    recentarticles: PropTypes.array,
+
     favorites: PropTypes.array,
   }),
 };

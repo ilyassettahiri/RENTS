@@ -163,7 +163,7 @@ export default function ListingView({ params, listingData }) {
                   <ListingSummary
                     specifications={memoizedListingData.specifications}
                     description={memoizedListingData.description}
-                    category={memoizedListingData.category}
+                    category={category}
                   />
 
 

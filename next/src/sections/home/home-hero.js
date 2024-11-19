@@ -69,7 +69,7 @@ export default function HomeHero({ tours, categoryy }) {
   };
 
   return (
-    <Box sx={{ minHeight: { md: '55vh' }, position: 'relative' }}>
+    <Box sx={{ minHeight: { md: '60vh' }, position: 'relative' }}>
       {!!tours.length && (
         <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
          <CarouselItem categoryy={categoryy} /> {/* Display only one image */}
@@ -88,8 +88,8 @@ export default function HomeHero({ tours, categoryy }) {
               width: '100%',
               position: 'absolute',
 
-              paddingLeft: { lg: '100px' },
-              paddingRight: { lg: '100px' },
+              paddingLeft: { lg: '80px' },
+              paddingRight: { lg: '80px' },
               mt: { xs: -4, md: -8 } ,
             }}
           >
@@ -173,7 +173,7 @@ function CarouselItem({ categoryy }) {
         alignItems="center"
         sx={{
           zIndex: 9,
-          py: { xs: 20, md: 0 },
+          py: { xs: 25, md: 0 },
           position: { md: 'absolute' },
         }}
       />
@@ -193,7 +193,7 @@ function CarouselItem({ categoryy }) {
           src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoriescover/${categoryy}.jpg`}
           sx={{
             width: 1,
-            height: { xs: 1, md: '55vh' },
+            height: { xs: 1, md: '60vh' },
           }}
         />
       </Box>
