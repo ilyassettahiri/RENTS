@@ -1,3 +1,6 @@
+"use client";
+
+
 import PropTypes from 'prop-types';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';

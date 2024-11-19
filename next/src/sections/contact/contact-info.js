@@ -86,9 +86,7 @@ export default function ContactInfo() {
                   <IconButton color="primary">
                     <Iconify icon="mdi:instagram" />
                   </IconButton>
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:tiktok" />
-                  </IconButton>
+
                   <IconButton color="primary">
                     <Iconify icon="mdi:twitter" />
                   </IconButton>

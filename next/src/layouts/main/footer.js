@@ -1,3 +1,6 @@
+"use client";
+
+
 import PropTypes from 'prop-types';
 import { useContext, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -83,7 +86,7 @@ export default function Footer() {
         }}
       >
         <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>
-          <Grid xs={12} md={4}>
+          <Grid xs={12} md={3}>
             <Stack spacing={{ xs: 5, md: 5 }} alignItems={{ xs: 'center', md: 'flex-start' }}>
 
 
@@ -150,7 +153,7 @@ export default function Footer() {
 
 
               <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Typography variant="h6">{t('social')}</Typography>
+
                 <Stack direction="row" alignItems="center">
                   <IconButton color="primary">
                     <Iconify icon="mdi:facebook" />
@@ -158,9 +161,7 @@ export default function Footer() {
                   <IconButton color="primary">
                     <Iconify icon="mdi:instagram" />
                   </IconButton>
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:tiktok" />
-                  </IconButton>
+
                   <IconButton color="primary">
                     <Iconify icon="mdi:twitter" />
                   </IconButton>
@@ -170,16 +171,13 @@ export default function Footer() {
                 </Stack>
               </Stack>
 
-              <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
-                <Typography variant="h6">{t('apps')}</Typography>
-                <AppStoreButton />
-              </Stack>
+
             </Stack>
           </Grid>
 
-          <Grid xs={12} md={6}>
+          <Grid xs={12} md={9}>
             {mdUp ? (
-              <Masonry columns={3} spacing={2} defaultColumns={3} defaultSpacing={2}>
+              <Masonry columns={6} spacing={2} defaultColumns={6} defaultSpacing={2}>
                 {renderLists.map((list) => (
                   <ListDesktop key={list.subheader} list={list} />
                 ))}

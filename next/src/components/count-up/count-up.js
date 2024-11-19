@@ -1,3 +1,6 @@
+'use client';
+
+
 import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import ReactCountUp from 'react-countup';

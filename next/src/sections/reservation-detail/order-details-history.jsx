@@ -1,3 +1,6 @@
+'use client';
+
+
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 

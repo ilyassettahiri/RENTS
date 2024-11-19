@@ -1,3 +1,6 @@
+'use client';
+
+
 import { forwardRef, useContext } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import { useTranslation } from 'react-i18next';

@@ -1,3 +1,6 @@
+'use client';
+
+
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { useForm, Controller } from 'react-hook-form';

@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types'; // Import PropTypes
 import { useCallback } from 'react';
 import Stack from '@mui/material/Stack';

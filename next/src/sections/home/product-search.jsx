@@ -1,3 +1,7 @@
+'use client';
+
+
+
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
 import PropTypes from 'prop-types';

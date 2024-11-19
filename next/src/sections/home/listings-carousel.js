@@ -1,3 +1,6 @@
+'use client';
+
+
 import { useState, useCallback, useEffect, useMemo } from 'react';
 
 import PropTypes from 'prop-types';

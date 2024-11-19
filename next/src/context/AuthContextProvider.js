@@ -1,3 +1,6 @@
+'use client';
+
+
 import { createContext, useEffect, useState, useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
 import Cookies from 'js-cookie';

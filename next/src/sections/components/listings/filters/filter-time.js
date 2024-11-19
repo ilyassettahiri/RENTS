@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types';
 import InputAdornment from '@mui/material/InputAdornment';
 import { inputBaseClasses } from '@mui/material/InputBase';

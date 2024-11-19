@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect, useMemo  } from 'react';
 import { format } from 'date-fns';

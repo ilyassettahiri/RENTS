@@ -42,7 +42,7 @@ import ListingImage from './listing-image';
 import ListingForm from './listing-form';
 
 
-export default function ListingView({ params, listingData }) {
+export default function ListingView({ params }) {
   const router = useRouter();
   const { category, url } = params;
 
@@ -51,32 +51,53 @@ export default function ListingView({ params, listingData }) {
 
   const mdUp = useResponsive('up', 'md');
 
-  const [favorites, setFavorites] = useState(listingData.favorites || []);
-
+  const [favorites, setFavorites] = useState([]);
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
 
 
+  const { data: listingData, isLoading: isListingLoading, error: listingError } = useQuery({
+    queryKey: ['listing', category, url],
+    queryFn: () => CrudService.getListingsFront(category, url),
+    onError: (error) => {
+      console.error('Failed to fetch listing:', error);
+    },
+  });
 
 
+  useEffect(() => {
+    if (listingData) {
+      console.log('Listing Data:', listingData);
+    }
+  }, [listingData]);
 
+  useEffect(() => {
+    if (listingData?.favorites) {
+      setFavorites(listingData.favorites);
+    }
+  }, [listingData]);
 
 
 
   const memoizedListingData = useMemo(() => {
-    const attributes = listingData.data?.attributes || {};
-    return {
-      images: attributes.images || [],
-      specifications: attributes.specifications || [],
-      recentListings: attributes.recentlistings || [],
-      sellerListings: attributes.sellerlistings || [],
-      reviewsListings: attributes.reviewslistings || [],
-      description: attributes.description || '',
-      seller: attributes.seller || {},
+    const listings = listingData?.data?.attributes?.recentListingsElJadida || [];
+    const specifications = listingData?.data?.attributes?.specifications || [];
+    const listingEmpty = !isListingLoading && !listings.length;
 
+    return {
+      listings,
+      specifications,
+      favorites: listingData?.favorites || [],
+      listingLoading: isListingLoading,
+      listingError,
+      listingFetching: false, // Assuming there's no need for fetching state
+      listingEmpty,
     };
-  }, [listingData]);
+  }, [listingData, isListingLoading, listingError]);
+
+
+
 
 
 
@@ -99,10 +120,10 @@ export default function ListingView({ params, listingData }) {
 
 
 
-          {!listingData ? (
+          {isListingLoading ? (
             <ListingImageSkeleton />
           ) : (
-              <ListingImage images={memoizedListingData.images || []}  params={params}/>
+              <ListingImage images={listingData?.data?.attributes?.images || []}  params={params}/>
           )}
         <Container
           maxWidth={false}
@@ -122,10 +143,10 @@ export default function ListingView({ params, listingData }) {
                 <Grid xs={12} md={5} lg={4}>
 
 
-                    {!listingData ? (
+                    {isListingLoading ? (
                       <ListingFormSkeleton />
                     ) : (
-                      <ListingForm tour={listingData.data} />
+                      <ListingForm tour={listingData?.data} />
                     )}
                 </Grid>
 
@@ -137,13 +158,13 @@ export default function ListingView({ params, listingData }) {
 
 
 
-                {!listingData ? (
+                {isListingLoading ? (
                   <ListingHeaderSkeleton />
                 ) : (
 
                   <ListingHeader
-                  tour={listingData.data}
-                  seller={memoizedListingData.seller}
+                  tour={listingData?.data}
+                  seller={listingData?.data?.attributes?.seller}
                   favorites={favorites}
                   onFavoriteToggle={handleFavoriteToggle}
                 />
@@ -156,14 +177,14 @@ export default function ListingView({ params, listingData }) {
 
 
 
-                {!listingData ? (
+                {isListingLoading ? (
                   <MarkdownSkeleton />
                 ) : (
 
                   <ListingSummary
                     specifications={memoizedListingData.specifications}
-                    description={memoizedListingData.description}
-                    category={memoizedListingData.category}
+                    description={listingData?.data?.attributes?.description}
+                    category={listingData?.data?.attributes?.category}
                   />
 
 
@@ -180,7 +201,7 @@ export default function ListingView({ params, listingData }) {
           <Stack spacing={3} sx={{ my: 6 }}>
 
 
-            {listingData && ( <Map offices={listingData.data} sx={{ borderRadius: 2 }} />)}
+            {listingData && ( <Map offices={listingData?.data} sx={{ borderRadius: 2 }} />)}
           </Stack>
 
 
@@ -192,10 +213,10 @@ export default function ListingView({ params, listingData }) {
 
 
 
-                    {!listingData ? (
+                    {isListingLoading ? (
                       <ListingFormSkeleton />
                     ) : (
-                      <ListingForm tour={listingData.data} />
+                      <ListingForm tour={listingData?.data} />
                     )}
                 </Box>
 
@@ -208,8 +229,8 @@ export default function ListingView({ params, listingData }) {
                   <Review
                     category={category}
                     url={url}
-                    reviews={memoizedListingData.reviewsListings}
-                    seller={memoizedListingData.seller}
+                    reviews={listingData?.data?.attributes?.reviewslistings}
+                    seller={listingData?.data?.attributes?.seller}
                   />
                 )}
 
@@ -221,34 +242,33 @@ export default function ListingView({ params, listingData }) {
 
                 {listingData && (
 
-                <ListingsCarousel tours={memoizedListingData.sellerListings} title={t('Other listings from this store')} />
+                <ListingsCarousel tours={listingData?.data?.attributes?.sellerlistings} title={t('Other listings from this store')} />
 
                 )}
 
 
                 {listingData && (
 
-                  <ListingsCarousel tours={memoizedListingData.recentListings} title={t('Recommendedforyou')} />
+                  <ListingsCarousel tours={listingData?.data?.attributes?.recentlistings} title={t('Recommendedforyou')} />
 
                 )}
 
 
 
-
-
+                {listingData && (
                   <StorePopularProducts
-                    recentListingsCasablanca={listingData.data.attributes.recentlistingscasablanca}
-                    recentListingsMarrakech={listingData.data.attributes.recentlistingsmarrakech}
-                    recentListingsTanger={listingData.data.attributes.recentlistingstanger}
-                    recentListingsRabat={listingData.data.attributes.recentlistingsrabat}
-                    recentListingsFes={listingData.data.attributes.recentlistingsfes}
-                    recentListingsAgadir={listingData.data.attributes.recentlistingsagadir}
-                    recentListingsMeknes={listingData.data.attributes.recentlistingsmeknes}
-                    recentListingsOujda={listingData.data.attributes.recentlistingsojuda}
-                    recentListingsKenitra={listingData.data.attributes.recentlistingskenitra}
-                    recentListingsTetouan={listingData.data.attributes.recentlistingstetouan}
+                    recentListingsCasablanca={listingData?.data?.attributes?.recentlistingscasablanca}
+                    recentListingsMarrakech={listingData?.data?.attributes?.recentlistingsmarrakech}
+                    recentListingsTanger={listingData?.data?.attributes?.recentlistingstanger}
+                    recentListingsRabat={listingData?.data?.attributes?.recentlistingsrabat}
+                    recentListingsFes={listingData?.data?.attributes?.recentlistingsfes}
+                    recentListingsAgadir={listingData?.data?.attributes?.recentlistingsagadir}
+                    recentListingsMeknes={listingData?.data?.attributes?.recentlistingsmeknes}
+                    recentListingsOujda={listingData?.data?.attributes?.recentlistingsojuda}
+                    recentListingsKenitra={listingData?.data?.attributes?.recentlistingskenitra}
+                    recentListingsTetouan={listingData?.data?.attributes?.recentlistingstetouan}
                   />
-
+                )}
         </Container>
 
 
@@ -261,6 +281,4 @@ ListingView.propTypes = {
     category: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
   }).isRequired,
-  listingData: PropTypes.object,
-
 };

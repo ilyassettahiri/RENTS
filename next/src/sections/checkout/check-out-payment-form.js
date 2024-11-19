@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types';
 import { Controller, useFormContext } from 'react-hook-form';
 

@@ -1,4 +1,5 @@
 
+'use client';
 
 
 import PropTypes from 'prop-types';

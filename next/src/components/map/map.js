@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';

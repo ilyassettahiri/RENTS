@@ -1,3 +1,6 @@
+'use client';
+
+
 import { memo } from 'react';
 import PropTypes from 'prop-types';
 

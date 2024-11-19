@@ -1,3 +1,6 @@
+'use client';
+
+
 import { useContext, useState, useMemo } from "react";
 
 

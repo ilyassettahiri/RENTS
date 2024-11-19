@@ -1,3 +1,6 @@
+'use client';
+
+
 import { useState, useCallback } from 'react';
 import CrudService from 'src/services/cruds-service';
 

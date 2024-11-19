@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 export async function generateMetadata({ params }) {
   const { url } = params;
 
-  // Set the title dynamically based on the `url` param
+
   return {
-    title: `${url}`, // Customize the title as needed
+    title: `${url}`,
   };
 }
 

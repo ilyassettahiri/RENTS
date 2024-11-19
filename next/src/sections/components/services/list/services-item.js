@@ -1,3 +1,7 @@
+'use client';
+
+
+
 import PropTypes from 'prop-types';
 import { useState, useCallback, useEffect, useMemo } from 'react';
 import Card from '@mui/material/Card';

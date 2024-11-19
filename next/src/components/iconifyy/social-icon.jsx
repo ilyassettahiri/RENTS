@@ -1,3 +1,6 @@
+'use client';
+
+
 import { forwardRef } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes for type checking
 

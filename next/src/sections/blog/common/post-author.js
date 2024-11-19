@@ -36,9 +36,7 @@ export default function PostAuthor({ author }) {
                   <IconButton color="primary">
                     <Iconify icon="mdi:instagram" />
                   </IconButton>
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:tiktok" />
-                  </IconButton>
+
                   <IconButton color="primary">
                     <Iconify icon="mdi:twitter" />
                   </IconButton>

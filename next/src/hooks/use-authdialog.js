@@ -1,3 +1,6 @@
+'use client';
+
+
 import { useContext, useState, useCallback } from 'react';
 import { AuthContext } from 'src/context/AuthContextProvider';
 import LoginDialog from 'src/sections/auth/login-dialog';

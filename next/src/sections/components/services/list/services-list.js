@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Box from '@mui/material/Box';

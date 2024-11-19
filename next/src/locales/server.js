@@ -1,3 +1,6 @@
+"use client";
+
+
 import { cache } from 'react';
 import { createInstance } from 'i18next';
 import { cookies as getCookies } from 'next/headers';

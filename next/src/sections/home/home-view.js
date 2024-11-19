@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback, useContext, useMemo } from "react";
-import PropTypes from 'prop-types';
 
 import { useTranslation } from 'react-i18next';
 
@@ -108,7 +107,7 @@ const keywordCategoryMap = {
 };
 
 
-export default function HomeView({ homeData }) {
+export default function HomeView() {
 
 
 
@@ -122,7 +121,7 @@ export default function HomeView({ homeData }) {
 
 
 
-  const [favorites, setFavorites] = useState(homeData?.favorites || []);
+  const [favorites, setFavorites] = useState([]);
 
 
 
@@ -131,7 +130,14 @@ export default function HomeView({ homeData }) {
 
 
 
-  const isLoading = !homeData ;
+
+    const { data: homeData, isLoading: isHomeLoading, error: homeError } = useQuery({
+      queryKey: ['home'],
+      queryFn: CrudService.getHome,
+      onError: (error) => {
+        console.error('Failed to fetch Home:', error);
+      },
+    });
 
 
 
@@ -139,33 +145,55 @@ export default function HomeView({ homeData }) {
 
 
 
+  useEffect(() => {
+    if (homeData?.favorites) {
+      setFavorites(homeData.favorites);
 
-
-
-
-
-  const memoizedHomeData = useMemo(() => {
-    if (!homeData) return {};
-
-    const attributes = homeData.data || [];
-    const recentarticles = homeData?.recentarticles || [];
-    const favorites = homeData?.favorites || [];
-
-    return {
-      billiards: attributes.filter((item) => item.type === 'billiards'),
-      velos: attributes.filter((item) => item.type === 'velos'),
-      apartments: attributes.filter((item) => item.type === 'apartments'),
-      recentarticles,
-      favorites,
-    };
+    }
   }, [homeData]);
 
-  const {
-    billiards = [],
-    velos = [],
-    apartments = [],
-    recentarticles = [],
-  } = memoizedHomeData;
+
+
+  const InitialListings = useMemo(
+    () =>
+      homeData?.data.map(item => ({
+        type: item.type,
+        id: item.id,
+        attributes: {
+          ...item.attributes,
+        },
+      })) || homeData?.data.filter(item => item.type === 'apartments') || [],
+    [homeData]
+  );
+
+
+
+  const isLoading = isHomeLoading ;
+
+
+
+    const memoizedHomeData = useMemo(() => {
+      const billiards = homeData?.data.filter(item => item.type === 'billiards') || [];
+      const velos = homeData?.data.filter(item => item.type === 'velos') || [];
+      const apartments = homeData?.data.filter(item => item.type === 'apartments') || [];
+
+
+      const listingsEmpty = !isLoading && !InitialListings.length;
+
+      return {
+
+        billiards,
+        velos,
+        apartments,
+
+        favorites: homeData?.favorites || [],
+        homeLoading: isLoading,
+        homeError,
+        listingsEmpty,
+      };
+    }, [homeData, isLoading, homeError, InitialListings]);
+
+
 
 
 
@@ -293,26 +321,26 @@ export default function HomeView({ homeData }) {
 
 
 
-        <ListingList tours={apartments} favorites={favorites} loading={isLoading}  onFavoriteToggle={handleFavoriteToggle} />
+        <ListingList tours={memoizedHomeData.apartments} loading={isLoading} favorites={favorites} onFavoriteToggle={handleFavoriteToggle} />
 
 
 
 
         <Stack sx={{ my: 5 }} >
-           <ListingsCarousel tours={billiards} title={t('newBilliardListings')} />
+          {memoizedHomeData.billiards && <ListingsCarousel tours={memoizedHomeData.billiards} title={t('newCarsListings')}/>}
 
         </Stack>
 
 
         <Stack sx={{ my: 5 }} >
-        <ListingsCarousel tours={velos} title={t('newBicycleListings')} />
+        {memoizedHomeData.velos && <ListingsCarousel tours={memoizedHomeData.velos} title={t('newBicycleListings')} />}
 
         </Stack>
 
 
 
         <Stack sx={{ my: 5 }} >
-        <ListingsCarousel tours={apartments} title={t('newApartmentListings')} />
+          {memoizedHomeData.apartments && <ListingsCarousel tours={memoizedHomeData.apartments} title={t('newApartmentListings')} />}
 
         </Stack>
 
@@ -320,10 +348,7 @@ export default function HomeView({ homeData }) {
       </Container>
 
 
-      <Stack sx={{ mt: 10 }} >
-      <BlogHomeLatestPosts posts={recentarticles.slice(0, 4)} />
 
-      </Stack>
 
     </>
   );
@@ -331,13 +356,6 @@ export default function HomeView({ homeData }) {
 
 
 
-HomeView.propTypes = {
-  homeData: PropTypes.shape({
-    data: PropTypes.array,
-    recentarticles: PropTypes.array,
-    favorites: PropTypes.array,
-  }),
-};
 
 
 

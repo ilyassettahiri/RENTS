@@ -1,3 +1,6 @@
+'use client';
+
+
 import PropTypes from 'prop-types'; // Import PropTypes
 import { useState, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
