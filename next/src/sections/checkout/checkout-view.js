@@ -156,8 +156,8 @@ export default function CheckoutView({ params }) {
         overflow: 'hidden',
         pt: 5,
         pb: { xs: 8, md: 15 },
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
 

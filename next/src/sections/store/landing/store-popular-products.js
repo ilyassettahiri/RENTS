@@ -85,7 +85,7 @@ export default function StorePopularProducts({
   return (
     <Box
       sx={{
-        py: { xs: 5, md: 8 },
+        pb: { xs: 10, md: 8 },
       }}
     >
       <Typography

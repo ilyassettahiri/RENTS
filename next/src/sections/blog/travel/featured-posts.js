@@ -14,8 +14,8 @@ export default function FeaturedPosts({ posts, Loading }) {
       sx={{
         pt: { xs: 0, md: 5 },
         pb: 10,
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
       <Box

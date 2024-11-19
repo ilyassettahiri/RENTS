@@ -237,8 +237,8 @@ export default function StoreView({ params }) {
       <Container
         maxWidth={false}
         sx={{
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
         }}
       >
         <Stack

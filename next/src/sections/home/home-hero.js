@@ -88,8 +88,8 @@ export default function HomeHero({ tours, categoryy }) {
               width: '100%',
               position: 'absolute',
 
-              paddingLeft: { lg: '80px' },
-              paddingRight: { lg: '80px' },
+              paddingLeft: { lg: '50px' },
+              paddingRight: { lg: '50px' },
               mt: { xs: -4, md: -8 } ,
             }}
           >

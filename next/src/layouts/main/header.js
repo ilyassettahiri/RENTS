@@ -238,8 +238,8 @@ export default function Header({ headerOnDark, onOpenNav}) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            paddingLeft: { lg: '100px' },
-            paddingRight: { lg: '100px' },
+            paddingLeft: { lg: '50px' },
+            paddingRight: { lg: '50px' },
           }}
         >
           {renderContent}

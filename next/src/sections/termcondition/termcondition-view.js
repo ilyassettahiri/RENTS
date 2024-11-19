@@ -32,8 +32,8 @@ export default function TermconditionView({ termData }) {
         maxWidth={false}
         sx={{
           mt: { xs: 4, md: 10 },
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
         }}
       >
 

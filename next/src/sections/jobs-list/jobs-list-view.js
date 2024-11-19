@@ -1247,8 +1247,8 @@ export default function JobsListView() {
       sx={{
         mt: { xs: 15, md: 0 },
 
-        paddingLeft: { lg: '80px' },
-        paddingRight: { lg: '80px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
 

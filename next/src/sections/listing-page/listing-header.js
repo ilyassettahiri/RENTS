@@ -29,6 +29,8 @@ import { useRouter } from 'src/routes/hooks';
 
 import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
+import TextMaxLine from 'src/components/text-max-line';
+
 import Popover from '@mui/material/Popover';
 import Checkbox from '@mui/material/Checkbox';
 import MenuItem from '@mui/material/MenuItem';
@@ -181,7 +183,15 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
-          <Iconify icon="carbon:location" sx={{ mr: 0.4 }} /> {capitalizeFirstLetter(city)}
+          <Iconify icon="carbon:location" sx={{ mr: 0.4 }} />
+
+
+
+                          <TextMaxLine variant="body2" line={1}>
+                            {capitalizeFirstLetter(city)}
+                          </TextMaxLine>
+
+
         </Stack>
 
         <Stack direction="row" alignItems="center" sx={{ typography: 'body2' }}>
@@ -254,12 +264,16 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
                       variant="subtitle2"
                       color="inherit"
                     >
-                      {capitalizeFirstLetter(name)}
+                          <TextMaxLine variant="subtitle2" line={1}>
+                            {capitalizeFirstLetter(name)}
+                          </TextMaxLine>
                     </Link>
                   ) : (
                       <Link variant="subtitle2" color="inherit" >
+                          <TextMaxLine variant="subtitle2" line={1}>
+                            {capitalizeFirstLetter(name)}
+                          </TextMaxLine>
 
-                        {capitalizeFirstLetter(name)}
                       </Link>
                   )}
 
@@ -282,7 +296,11 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
 
                                 <Box sx={{ typography: 'body2' }}>
 
-                                  {t('ViewStore')}
+
+
+                                  <TextMaxLine variant="body2" line={1}>
+                                      {t('ViewStore')}
+                                  </TextMaxLine>
                                 </Box>
 
                               </Link>

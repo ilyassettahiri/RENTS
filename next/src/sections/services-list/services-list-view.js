@@ -1247,8 +1247,8 @@ export default function ServicesListView() {
       sx={{
         mt: { xs: 25, md: 10 },
 
-        paddingLeft: { lg: '80px' },
-        paddingRight: { lg: '80px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
 

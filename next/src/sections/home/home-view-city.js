@@ -347,8 +347,8 @@ export default function HomeViewCity({ params }) {
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-            paddingLeft: { lg: '80px' },
-            paddingRight: { lg: '80px' },
+            paddingLeft: { lg: '50px' },
+            paddingRight: { lg: '50px' },
 
             position: { md: 'absolute' },
           }}
@@ -388,8 +388,8 @@ export default function HomeViewCity({ params }) {
 
           mt: { xs: 3, md: -4 },
 
-          paddingLeft: { lg: '80px' },
-          paddingRight: { lg: '80px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
           backgroundColor: 'white',
         }}
       >

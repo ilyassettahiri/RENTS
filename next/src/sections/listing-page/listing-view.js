@@ -108,8 +108,8 @@ export default function ListingView({ params, listingData }) {
           maxWidth={false}
           sx={{
             overflow: 'hidden',
-            paddingLeft: { lg: '80px' },
-            paddingRight: { lg: '80px' },
+            paddingLeft: { lg: '50px' },
+            paddingRight: { lg: '50px' },
           }}
         >
 
@@ -188,8 +188,10 @@ export default function ListingView({ params, listingData }) {
 
             {!mdUp && (
 
+
                 <Box sx={{ my: 5 }}>
 
+                  <Divider sx={{ my: 10 }} />
 
 
                     {!listingData ? (
@@ -216,7 +218,7 @@ export default function ListingView({ params, listingData }) {
 
 
 
-          <Divider sx={{ my: 10 }} />
+                <Divider sx={{ my: 10 }} />
 
 
                 {listingData && (
@@ -233,6 +235,7 @@ export default function ListingView({ params, listingData }) {
                 )}
 
 
+                  <Divider sx={{ my: 10 }} />
 
 
 

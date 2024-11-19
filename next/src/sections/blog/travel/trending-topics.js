@@ -36,8 +36,8 @@ export default function TrendingTopics({ blogcategories }) {
         maxWidth={false}
         sx={{
           py: { xs: 8, md: 10 },
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
         }}
       >
         <Stack

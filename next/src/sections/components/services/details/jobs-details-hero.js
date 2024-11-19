@@ -44,7 +44,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }
       }}
       sx={{
         alignItems: 'flex-start',
-
+        mt: { md: 3 },
       }}
     >
       <CarouselBasic3 data={images} jobUrl={job.attributes.url}/>

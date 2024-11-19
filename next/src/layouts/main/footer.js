@@ -76,8 +76,8 @@ export default function Footer() {
         sx={{
           overflow: 'hidden',
           py: { xs: 4, md: 4 },
-          paddingLeft: { lg: '100px' },
-          paddingRight: { lg: '100px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
           bgcolor: 'black',
           color: 'white',
           borderTopLeftRadius: '20px',
@@ -193,8 +193,8 @@ export default function Footer() {
       <Divider />
 
       <Container maxWidth={false} sx={{
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
         bgcolor: 'black',
         color: 'white',
         }}>

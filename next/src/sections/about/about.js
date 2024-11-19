@@ -75,8 +75,8 @@ export default function About({ about }) {
       sx={{
         pt: 5,
         pb: { xs: 5, md: 10 },
-        paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+        paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
       <Typography

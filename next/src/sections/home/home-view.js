@@ -227,8 +227,8 @@ export default function HomeView({ homeData }) {
             right: { md: 0 },
             bottom: { md: 0 },
             mx: { md: 'auto' },
-            paddingLeft: { lg: '80px' },
-            paddingRight: { lg: '80px' },
+            paddingLeft: { lg: '50px' },
+            paddingRight: { lg: '50px' },
 
             position: { md: 'absolute' },
           }}
@@ -268,8 +268,8 @@ export default function HomeView({ homeData }) {
 
           mt: { xs: 3, md: -4 },
 
-          paddingLeft: { lg: '80px' },
-          paddingRight: { lg: '80px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
           backgroundColor: 'white',
         }}
       >

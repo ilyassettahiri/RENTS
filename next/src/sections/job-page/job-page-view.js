@@ -98,8 +98,8 @@ export default function JobPageView({ params, jobData }) {
           maxWidth={false}
           sx={{
             overflow: 'hidden',
-            paddingLeft: { lg: '80px' },
-            paddingRight: { lg: '80px' },
+            paddingLeft: { lg: '50px' },
+            paddingRight: { lg: '50px' },
             mb: 10,
 
           }}

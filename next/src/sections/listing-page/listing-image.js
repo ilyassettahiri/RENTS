@@ -100,8 +100,8 @@ export default function ListingImage({ images, params }) {
         maxWidth={false}
         sx={{
           overflow: 'hidden',
-          paddingLeft: { lg: '80px' },
-          paddingRight: { lg: '80px' },
+          paddingLeft: { lg: '50px' },
+          paddingRight: { lg: '50px' },
           mt: 10,
 
         }}

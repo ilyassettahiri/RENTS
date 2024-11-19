@@ -30,8 +30,8 @@ export default function ContactInfo() {
       sx={{
         pt: { xs: 5, md: 5 },
         pb: { xs: 10, md: 15 },
-                paddingLeft: { lg: '100px' },
-        paddingRight: { lg: '100px' },
+                paddingLeft: { lg: '50px' },
+        paddingRight: { lg: '50px' },
       }}
     >
       <Grid container spacing={3} justifyContent={{ md: 'space-between' }}>

@@ -20,6 +20,7 @@ import { useRouter } from 'src/routes/hooks';
 
 import useAuthDialog from 'src/hooks/use-authdialog';
 import CrudService from 'src/services/cruds-service';
+import TextMaxLine from 'src/components/text-max-line';
 
 import Grid from "@mui/material/Grid";
 import Avatar from '@mui/material/Avatar';
@@ -237,14 +238,25 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                             >
                                 <Link variant="h5" color="inherit" >
 
-                                {capitalizeFirstLetter(name)}
+
+
+                                    <TextMaxLine variant="h5" line={1}>
+
+                                      {capitalizeFirstLetter(name)}
+                                    </TextMaxLine>
+
+
                                 </Link>
                                 <Iconify icon="carbon:star-filled" sx={{ ml:1, color: 'warning.main' }} />
                                 <Box sx={{ typography: 'h6' }}>
                                   {Number.isInteger(average_rating) ? `${average_rating}.0` : average_rating}
                                 </Box>
                                 <Link variant="body2" sx={{ color: 'text.secondary' }}>
-                                  ({fShortenNumber(total_reviews)} {t('Reviews')})
+
+                                    <TextMaxLine variant="body2" line={1}>
+                                      ({fShortenNumber(total_reviews)} {t('Reviews')})
+                                    </TextMaxLine>
+
                                 </Link>
 
                             </Stack>
@@ -269,7 +281,13 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
                                 <Box sx={{ typography: 'body2' }}>
 
 
-                                  {capitalizeFirstLetter(city)}
+
+
+                                    <TextMaxLine variant="body2" line={1}>
+
+                                      {capitalizeFirstLetter(city)}
+                                    </TextMaxLine>
+
                                 </Box>
 
 
