@@ -1,4 +1,5 @@
 import MaintenanceView from 'src/sections/status/maintenance-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

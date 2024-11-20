@@ -1,4 +1,5 @@
 import ForgotPasswordView from 'src/sections/auth/forgot-password-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

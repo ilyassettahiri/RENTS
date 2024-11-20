@@ -1,4 +1,5 @@
 import View500 from 'src/sections/error/500-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

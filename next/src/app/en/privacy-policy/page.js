@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import PrivacyView from 'src/sections/privacy/privacy-view';

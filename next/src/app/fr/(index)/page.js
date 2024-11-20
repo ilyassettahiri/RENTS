@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Script from 'next/script';
 
 import HomeView from 'src/sections/home/home-view';
 

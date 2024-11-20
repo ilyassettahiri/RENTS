@@ -1,4 +1,5 @@
 import VerifyView from 'src/sections/auth/verify-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

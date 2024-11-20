@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import FaqsView from 'src/sections/faqs/faqs-view';

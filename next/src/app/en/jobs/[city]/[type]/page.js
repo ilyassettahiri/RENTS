@@ -1,5 +1,6 @@
 import JobsListViewType from 'src/sections/jobs-list/jobs-list-view-type';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

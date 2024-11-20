@@ -1,4 +1,7 @@
 import HomeViewType from 'src/sections/home/home-view-city';
+
+import Script from 'next/script';
+
 import PropTypes from 'prop-types';
 
 

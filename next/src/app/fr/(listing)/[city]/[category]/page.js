@@ -1,5 +1,6 @@
 import HomeViewCategory from 'src/sections/home/home-view-category';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 
 export async function generateMetadata({ params }) {

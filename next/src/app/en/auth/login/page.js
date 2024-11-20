@@ -1,4 +1,5 @@
 import LoginView from 'src/sections/auth/login-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

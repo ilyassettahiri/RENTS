@@ -1,5 +1,6 @@
 import ServicesListViewCity from 'src/sections/services-list/services-list-view-city';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

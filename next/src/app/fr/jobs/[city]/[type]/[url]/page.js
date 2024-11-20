@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import JobPageView from 'src/sections/job-page/job-page-view';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 
 export async function generateMetadata({ params }) {

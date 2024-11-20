@@ -1,5 +1,6 @@
 import HomeViewCity from 'src/sections/home/home-view-city';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 
 export async function generateMetadata({ params }) {

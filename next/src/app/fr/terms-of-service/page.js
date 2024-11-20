@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import TermconditionView from 'src/sections/termcondition/termcondition-view';

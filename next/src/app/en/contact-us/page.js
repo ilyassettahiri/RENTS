@@ -1,4 +1,5 @@
 import ContactView from 'src/sections/contact/contact-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

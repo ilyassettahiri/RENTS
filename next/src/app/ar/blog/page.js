@@ -1,4 +1,5 @@
 import BlogView from 'src/sections/blog/blog-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

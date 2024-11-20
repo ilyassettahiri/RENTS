@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import ListingView from 'src/sections/listing-page/listing-view';

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import ServicePageView from 'src/sections/service-page/service-page-view';

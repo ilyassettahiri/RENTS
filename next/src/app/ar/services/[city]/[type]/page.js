@@ -1,5 +1,6 @@
 import ServicesListViewType from 'src/sections/services-list/services-list-view-type';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

@@ -1,5 +1,6 @@
 
 import axios from 'axios';
+import Script from 'next/script';
 
 
 import ArticleView from 'src/sections/blog/article-view';

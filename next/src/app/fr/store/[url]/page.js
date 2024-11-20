@@ -1,5 +1,6 @@
 import StoreView from 'src/sections/store/store-view';
 import PropTypes from 'prop-types';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

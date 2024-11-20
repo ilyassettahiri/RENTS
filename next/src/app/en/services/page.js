@@ -1,4 +1,5 @@
 import ServicesView from 'src/sections/services-list/services-list-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

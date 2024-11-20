@@ -1,4 +1,5 @@
 import ComingSoonView from 'src/sections/status/coming-soon-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 

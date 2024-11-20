@@ -1,4 +1,5 @@
 import JobsView from 'src/sections/jobs-list/jobs-list-view';
+import Script from 'next/script';
 
 // ----------------------------------------------------------------------
 
