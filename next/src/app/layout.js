@@ -10,6 +10,8 @@ import ClientLayout from './client-layout';
 import ClientAnalytics from './client-analytics';
 
 export const metadata = {
+
+  metadataBase: new URL('https://rents.ma'),
   title: 'RENTS.ma: Discover Morocco’s Leading Marketplace for Rentals - Cars, Bikes, Properties & More',
   description: 'Explore RENTS.ma, Morocco’s top rental marketplace offering a wide range of rental options including cars, bikes, properties, and equipment. Find trusted rentals with flexible terms across Morocco’s popular cities like Marrakech, Casablanca, and beyond.',
   keywords: 'Rentals in Morocco, Car rentals, Property rentals, Marrakech rentals, Casablanca rentals, Bike rentals',
