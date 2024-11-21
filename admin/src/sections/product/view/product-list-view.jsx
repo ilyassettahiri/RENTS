@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback } from 'react';
 
 import Card from '@mui/material/Card';
+import Box from '@mui/material/Box';
+
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import {
@@ -237,12 +239,17 @@ export function ProductListView() {
           sx={{ mb: { xs: 3, md: 5 } }}
         />
 
-        <Card
-          sx={{
-            flexGrow: { md: 1 },
-            display: { md: 'flex' },
-            height: { xs: 800, md: 2 },
-            flexDirection: { md: 'column' },
+        <Box
+           sx={{
+            flexGrow: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            boxShadow: 3, // Card-like shadow
+
+            borderColor: 'divider', // Uses theme divider color
+            borderRadius: 2, // Rounded corners for a card effect
+            backgroundColor: 'background.paper', // Matches card background
+            overflow: 'hidden', // Ensures content doesn't overflow
           }}
         >
           <DataGrid
@@ -269,7 +276,7 @@ export function ProductListView() {
             }}
             sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex' } }}
           />
-        </Card>
+        </Box>
       </DashboardContent>
 
       <ConfirmDialog

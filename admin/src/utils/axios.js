@@ -60,7 +60,7 @@ export const endpoints = {
 
   review: {
     list: 'pricings',
-    details: '/api/post/details',
+    details: 'pricings',
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -68,7 +68,7 @@ export const endpoints = {
 
   invoice: {
     list: 'upcomingfronts',
-    details: '/api/post/details',
+    details: 'pricings',
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -76,7 +76,7 @@ export const endpoints = {
 
   customer: {
     list: 'currentlyhostingfronts',
-    details: '/api/post/details',
+    details: 'currentlyhostingfronts',
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -84,14 +84,14 @@ export const endpoints = {
 
   order: {
     list: 'dashboardfronts',
-    details: '/api/post/details',
+    details: 'dashboardfronts',
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
 
   product: {
     list: 'cancelleds',
-    details: '/api/product/details',
+    details: 'cancelleds',
     search: '/api/product/search',
   },
 
