@@ -54,6 +54,8 @@ class UserController extends JsonApiController
                     'last_name' => $user->last_name,
                     'profile_image' => $user->profile_image,
                     'address' => $user->address,
+                    'id' => $user->id,
+
                     'city' => $user->city,
                     'birthday' => $user->birthday,
                     'gender' => $user->gender,
@@ -147,7 +149,7 @@ class UserController extends JsonApiController
                     'profile_image' => $user->profile_image,
                     'address' => $user->address,
                     'city' => $user->city,
-
+                    'id' => $user->id,
                     'birthday' => $user->birthday,
                     'gender' => $user->gender,
 
