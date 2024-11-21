@@ -43,7 +43,7 @@ export function useGetUser(userId) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const user = data?.data?.map(user => user.attributes) || [];
+    const user = data?.data?.attributes || [];
 
     console.log('User Data:', user);
 

@@ -13,7 +13,7 @@ const swrOptions = {
 
 // ----------------------------------------------------------------------
 
-export function useGetInvoics() {
+export function useGetInvoices() {
   const url = endpoints.invoice.list;
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
@@ -44,17 +44,17 @@ export function useGetInvoice(invoiceId) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const invoices = data?.data?.map(invoice => invoice.attributes) || [];
+    const invoice = data?.data?.attributes || [];
 
     // Log the invoices data
-    console.log('invoices Data:', invoices);
+    console.log('invoices Data:', invoice);
 
     return {
-      invoices,
-      invoicesLoading: isLoading,
-      invoicesError: error,
-      invoicesValidating: isValidating,
-      invoicesEmpty: !isLoading && !invoices.length,
+      invoice,
+      invoiceLoading: isLoading,
+      invoiceError: error,
+      invoiceValidating: isValidating,
+      invoiceEmpty: !isLoading && !invoice.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 

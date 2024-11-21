@@ -44,17 +44,17 @@ export function useGetCustomer(customerId) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const customer = data?.data?.map(customer => customer.attributes) || [];
+    const customer = data?.data?.attributes || [];
 
     // Log the customers data
-    console.log('customers Data:', customers);
+    console.log('customers Data:', customer);
 
     return {
-      customers,
-      customersLoading: isLoading,
-      customersError: error,
-      customersValidating: isValidating,
-      customersEmpty: !isLoading && !customers.length,
+      customer,
+      customerLoading: isLoading,
+      customerError: error,
+      customerValidating: isValidating,
+      customerEmpty: !isLoading && !customer.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 

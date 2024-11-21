@@ -44,17 +44,17 @@ export function useGetReview(reviewId) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const reviews = data?.data?.map(review => review.attributes) || [];
+    const review = data?.data?.attributes || [];
 
     // Log the reviews data
     console.log('reviews Data:', reviews);
 
     return {
-      reviews,
-      reviewsLoading: isLoading,
-      reviewsError: error,
-      reviewsValidating: isValidating,
-      reviewsEmpty: !isLoading && !reviews.length,
+      review,
+      reviewLoading: isLoading,
+      reviewError: error,
+      reviewValidating: isValidating,
+      reviewEmpty: !isLoading && !review.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 

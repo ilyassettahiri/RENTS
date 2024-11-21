@@ -43,17 +43,17 @@ export function useGetOrder(orderId) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const orders = data?.data?.map(order => order.attributes) || [];
+    const order = data?.data?.attributes || [];
 
     // Log the orders data
-    console.log('orders Data:', orders);
+    console.log('orders Data:', order);
 
     return {
-      orders,
-      ordersLoading: isLoading,
-      ordersError: error,
-      ordersValidating: isValidating,
-      ordersEmpty: !isLoading && !orders.length,
+      order,
+      orderLoading: isLoading,
+      orderError: error,
+      orderValidating: isValidating,
+      ordersEmpty: !isLoading && !order.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 

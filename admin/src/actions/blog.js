@@ -44,7 +44,7 @@ export function useGetPost(title) {
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const post = data?.data?.map(article => article.attributes) || [];
+    const post = data?.data?.attributes || [];
 
 
     console.log('article Data:', post);

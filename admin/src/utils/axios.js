@@ -44,161 +44,99 @@ export const endpoints = {
 
   post: {
     list: 'blogs',
-
-
-
-    details: 'blogs/${id}',
-    delete: 'blogs/${id}',
-
-    editstatus: 'blogs/status/${id}',
-
+    details: (id) => `blogs/${id}`,
+    delete: (id) => `blogs/${id}`,
+    editstatus: (id) => `blogs/status/${id}`,
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
 
   user: {
     list: 'users',
-    details: 'users/${id}',
-    delete: 'users/${id}',
-
-    editstatus: 'users/status/${id}',
-
-
+    details: (id) => `users/${id}`,
+    delete: (id) => `users/${id}`,
+    editstatus: (id) => `users/status/${id}`,
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
-
 
   review: {
     list: 'pricings',
-
-
-    details: 'pricings/${id}',
-    delete: 'pricings/${id}',
-
-    editstatus: 'pricings/status/${id}',
-
-
+    details: (id) => `pricings/${id}`,
+    delete: (id) => `pricings/${id}`,
+    editstatus: (id) => `pricings/status/${id}`,
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
-
 
   invoice: {
     list: 'upcomingfronts',
-
-
-    details: 'upcomingfronts/${id}',
-    delete: 'upcomingfronts/${id}',
-
-    editstatus: 'upcomingfronts/status/${id}',
-
+    details: (id) => `upcomingfronts/${id}`,
+    delete: (id) => `upcomingfronts/${id}`,
+    editstatus: (id) => `upcomingfronts/status/${id}`,
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
-
 
   customer: {
     list: 'currentlyhostingfronts',
-
-
-    details: 'currentlyhostingfronts/${id}',
-    delete: 'currentlyhostingfronts/${id}',
-
-    editstatus: 'currentlyhostingfronts/status/${id}',
-
-
+    details: (id) => `currentlyhostingfronts/${id}`,
+    delete: (id) => `currentlyhostingfronts/${id}`,
+    editstatus: (id) => `currentlyhostingfronts/status/${id}`,
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
 
-
   order: {
     list: 'dashboardfronts',
-
     latest: '/api/post/latest',
-
-    details: 'dashboardfronts/${id}',
-    delete: 'dashboardfronts/${id}',
-
-    editstatus: 'dashboardfronts/status/${id}',
-
-
+    details: (id) => `dashboardfronts/${id}`,
+    delete: (id) => `dashboardfronts/${id}`,
+    editstatus: (id) => `dashboardfronts/status/${id}`,
     search: '/api/post/search',
   },
 
   product: {
     list: 'cancelleds',
-
-
-    details: 'cancelleds/${id}',
-    delete: 'cancelleds/${id}',
-
-    editstatus: 'cancelleds/status/${id}',
-
-
+    details: (id) => `cancelleds/${id}`,
+    delete: (id) => `cancelleds/${id}`,
+    editstatus: (id) => `cancelleds/status/${id}`,
     search: '/api/product/search',
   },
 
   blogcategory: {
     list: 'blogs/category',
-
-    details: 'blogs/category/${id}',
-    delete: 'blogs/category/${id}',
-
-
-
+    details: (id) => `blogs/category/${id}`,
+    delete: (id) => `blogs/category/${id}`,
   },
+
   blogtag: {
     list: 'blogs/tag',
-
-    details: 'blogs/tag/${id}',
-    delete: 'blogs/tag/${id}',
-
-
-
+    details: (id) => `blogs/tag/${id}`,
+    delete: (id) => `blogs/tag/${id}`,
   },
 
   author: {
     list: 'blogs/author',
-
-    details: 'blogs/author/${id}',
-    delete: 'blogs/author/${id}',
-
-
-
+    details: (id) => `blogs/author/${id}`,
+    delete: (id) => `blogs/author/${id}`,
   },
-
 
   policypage: {
     list: 'blogs/policypage',
-
-    details: 'blogs/policypage/${id}',
-    delete: 'blogs/policypage/${id}',
-
-
-
+    details: (id) => `blogs/policypage/${id}`,
+    delete: (id) => `blogs/policypage/${id}`,
   },
 
   generaleinfo: {
     list: 'blogs/generaleinfo',
-
-    details: 'blogs/generaleinfo/${id}',
-    delete: 'blogs/generaleinfo/${id}',
-
-
+    details: (id) => `blogs/generaleinfo/${id}`,
+    delete: (id) => `blogs/generaleinfo/${id}`,
   },
 
   about: {
     list: 'blogs/about',
-
-    details: 'blogs/about/${id}',
-    delete: 'blogs/about/${id}',
-
-
-
+    details: (id) => `blogs/about/${id}`,
+    delete: (id) => `blogs/about/${id}`,
   },
-
-
-
 };
