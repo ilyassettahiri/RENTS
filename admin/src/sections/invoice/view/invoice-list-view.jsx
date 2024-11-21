@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import TableBody from '@mui/material/TableBody';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
+import { useGetInvoices } from 'src/actions/invoice';
 
 import { paths } from 'src/routes/paths';
 import { useRouter } from 'src/routes/hooks';

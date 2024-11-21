@@ -9,6 +9,7 @@ import { paths } from 'src/routes/paths';
 
 import { ORDER_STATUS_OPTIONS } from 'src/_mock';
 import { DashboardContent } from 'src/layouts/dashboard';
+import { useGetOrder } from 'src/actions/order';
 
 import { OrderDetailsInfo } from '../order-details-info';
 import { OrderDetailsItems } from '../order-details-item';

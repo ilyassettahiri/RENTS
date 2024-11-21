@@ -14,22 +14,22 @@ const swrOptions = {
 // ----------------------------------------------------------------------
 
 export function useGetReviews() {
-  const url = endpoints.product.list;
+  const url = endpoints.review.list;
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const products = data?.data?.map(product => product.attributes) || [];
+    const reviews = data?.data?.map(review => review.attributes) || [];
 
-    // Log the products data
-    console.log('Products Data:', products);
+    // Log the reviews data
+    console.log('reviews Data:', reviews);
 
     return {
-      products,
-      productsLoading: isLoading,
-      productsError: error,
-      productsValidating: isValidating,
-      productsEmpty: !isLoading && !products.length,
+      reviews,
+      reviewsLoading: isLoading,
+      reviewsError: error,
+      reviewsValidating: isValidating,
+      reviewsEmpty: !isLoading && !reviews.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 
@@ -38,20 +38,25 @@ export function useGetReviews() {
 
 // ----------------------------------------------------------------------
 
-export function useGetReview(productId) {
-  const url = productId ? [endpoints.product.details, { params: { productId } }] : '';
+export function useGetReview(reviewId) {
+  const url = reviewId ? [endpoints.review.details, { params: { reviewId } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
-  const memoizedValue = useMemo(
-    () => ({
-      product: data?.product,
-      productLoading: isLoading,
-      productError: error,
-      productValidating: isValidating,
-    }),
-    [data?.product, error, isLoading, isValidating]
-  );
+  const memoizedValue = useMemo(() => {
+    const reviews = data?.data?.map(review => review.attributes) || [];
+
+    // Log the reviews data
+    console.log('reviews Data:', reviews);
+
+    return {
+      reviews,
+      reviewsLoading: isLoading,
+      reviewsError: error,
+      reviewsValidating: isValidating,
+      reviewsEmpty: !isLoading && !reviews.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }
@@ -59,7 +64,7 @@ export function useGetReview(productId) {
 // ----------------------------------------------------------------------
 
 export function useSearchReviews(query) {
-  const url = query ? [endpoints.product.search, { params: { query } }] : '';
+  const url = query ? [endpoints.review.search, { params: { query } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, {
     ...swrOptions,

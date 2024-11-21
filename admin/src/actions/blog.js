@@ -43,15 +43,20 @@ export function useGetPost(title) {
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
-  const memoizedValue = useMemo(
-    () => ({
-      post: data?.post,
+  const memoizedValue = useMemo(() => {
+    const post = data?.data?.map(article => article.attributes) || [];
+
+
+    console.log('article Data:', post);
+
+    return {
+      post,
       postLoading: isLoading,
       postError: error,
       postValidating: isValidating,
-    }),
-    [data?.post, error, isLoading, isValidating]
-  );
+      postEmpty: !isLoading && !post.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }

@@ -66,16 +66,20 @@ export function useSearchProducts(query) {
     keepPreviousData: true,
   });
 
-  const memoizedValue = useMemo(
-    () => ({
-      searchResults: data?.results || [],
-      searchLoading: isLoading,
-      searchError: error,
-      searchValidating: isValidating,
-      searchEmpty: !isLoading && !data?.results.length,
-    }),
-    [data?.results, error, isLoading, isValidating]
-  );
+  const memoizedValue = useMemo(() => {
+    const products = data?.data?.map(product => product.attributes) || [];
+
+    // Log the products data
+    console.log('Products Data:', products);
+
+    return {
+      products,
+      productsLoading: isLoading,
+      productsError: error,
+      productsValidating: isValidating,
+      productsEmpty: !isLoading && !products.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }

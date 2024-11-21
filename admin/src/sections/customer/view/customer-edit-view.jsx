@@ -7,6 +7,7 @@ import { DashboardContent } from 'src/layouts/dashboard';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
 import { ProductNewEditForm } from 'src/sections/product/product-new-edit-form';
+import { useGetCustomer } from 'src/actions/customer';
 
 // ----------------------------------------------------------------------
 

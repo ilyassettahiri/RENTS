@@ -14,22 +14,22 @@ const swrOptions = {
 // ----------------------------------------------------------------------
 
 export function useGetInvoics() {
-  const url = endpoints.product.list;
+  const url = endpoints.invoice.list;
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const products = data?.data?.map(product => product.attributes) || [];
+    const invoices = data?.data?.map(invoice => invoice.attributes) || [];
 
-    // Log the products data
-    console.log('Products Data:', products);
+    // Log the invoices data
+    console.log('invoices Data:', invoices);
 
     return {
-      products,
-      productsLoading: isLoading,
-      productsError: error,
-      productsValidating: isValidating,
-      productsEmpty: !isLoading && !products.length,
+      invoices,
+      invoicesLoading: isLoading,
+      invoicesError: error,
+      invoicesValidating: isValidating,
+      invoicesEmpty: !isLoading && !invoices.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 
@@ -38,20 +38,25 @@ export function useGetInvoics() {
 
 // ----------------------------------------------------------------------
 
-export function useGetInvoic(productId) {
-  const url = productId ? [endpoints.product.details, { params: { productId } }] : '';
+export function useGetInvoice(invoiceId) {
+  const url = invoiceId ? [endpoints.invoice.details, { params: { invoiceId } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
-  const memoizedValue = useMemo(
-    () => ({
-      product: data?.product,
-      productLoading: isLoading,
-      productError: error,
-      productValidating: isValidating,
-    }),
-    [data?.product, error, isLoading, isValidating]
-  );
+  const memoizedValue = useMemo(() => {
+    const invoices = data?.data?.map(invoice => invoice.attributes) || [];
+
+    // Log the invoices data
+    console.log('invoices Data:', invoices);
+
+    return {
+      invoices,
+      invoicesLoading: isLoading,
+      invoicesError: error,
+      invoicesValidating: isValidating,
+      invoicesEmpty: !isLoading && !invoices.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }
@@ -59,7 +64,7 @@ export function useGetInvoic(productId) {
 // ----------------------------------------------------------------------
 
 export function useSearchInvoics(query) {
-  const url = query ? [endpoints.product.search, { params: { query } }] : '';
+  const url = query ? [endpoints.invoice.search, { params: { query } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, {
     ...swrOptions,

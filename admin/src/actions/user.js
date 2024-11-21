@@ -21,8 +21,8 @@ export function useGetUsers() {
   const memoizedValue = useMemo(() => {
     const users = data?.data?.map(user => user.attributes) || [];
 
-    // Log the users data
     console.log('Users Data:', users);
+
 
     return {
       users,
@@ -30,6 +30,30 @@ export function useGetUsers() {
       usersError: error,
       usersValidating: isValidating,
       usersEmpty: !isLoading && !users.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
+
+  return memoizedValue;
+}
+
+
+export function useGetUser(userId) {
+  const url = userId ? [endpoints.user.details, { params: { userId } }] : '';
+
+  const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
+
+  const memoizedValue = useMemo(() => {
+    const user = data?.data?.map(user => user.attributes) || [];
+
+    console.log('User Data:', user);
+
+
+    return {
+      user,
+      userLoading: isLoading,
+      userError: error,
+      userValidating: isValidating,
+      userEmpty: !isLoading && !user.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 

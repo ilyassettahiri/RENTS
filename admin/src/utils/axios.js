@@ -44,15 +44,26 @@ export const endpoints = {
 
   post: {
     list: 'blogs',
-    data: 'blogsdata',
-    details: '/api/post/details',
+
+
+
+    details: 'blogs/${id}',
+    delete: 'blogs/${id}',
+
+    editstatus: 'blogs/status/${id}',
+
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
 
   user: {
     list: 'users',
-    details: '/api/post/details',
+    details: 'users/${id}',
+    delete: 'users/${id}',
+
+    editstatus: 'users/status/${id}',
+
+
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -60,7 +71,14 @@ export const endpoints = {
 
   review: {
     list: 'pricings',
-    details: 'pricings',
+
+
+    details: 'pricings/${id}',
+    delete: 'pricings/${id}',
+
+    editstatus: 'pricings/status/${id}',
+
+
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -68,7 +86,13 @@ export const endpoints = {
 
   invoice: {
     list: 'upcomingfronts',
-    details: 'pricings',
+
+
+    details: 'upcomingfronts/${id}',
+    delete: 'upcomingfronts/${id}',
+
+    editstatus: 'upcomingfronts/status/${id}',
+
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -76,7 +100,14 @@ export const endpoints = {
 
   customer: {
     list: 'currentlyhostingfronts',
-    details: 'currentlyhostingfronts',
+
+
+    details: 'currentlyhostingfronts/${id}',
+    delete: 'currentlyhostingfronts/${id}',
+
+    editstatus: 'currentlyhostingfronts/status/${id}',
+
+
     latest: '/api/post/latest',
     search: '/api/post/search',
   },
@@ -84,39 +115,88 @@ export const endpoints = {
 
   order: {
     list: 'dashboardfronts',
-    details: 'dashboardfronts',
+
     latest: '/api/post/latest',
+
+    details: 'dashboardfronts/${id}',
+    delete: 'dashboardfronts/${id}',
+
+    editstatus: 'dashboardfronts/status/${id}',
+
+
     search: '/api/post/search',
   },
 
   product: {
     list: 'cancelleds',
-    details: 'cancelleds',
+
+
+    details: 'cancelleds/${id}',
+    delete: 'cancelleds/${id}',
+
+    editstatus: 'cancelleds/status/${id}',
+
+
     search: '/api/product/search',
   },
 
   blogcategory: {
     list: 'blogs/category',
+
+    details: 'blogs/category/${id}',
+    delete: 'blogs/category/${id}',
+
+
+
   },
   blogtag: {
     list: 'blogs/tag',
+
+    details: 'blogs/tag/${id}',
+    delete: 'blogs/tag/${id}',
+
+
+
   },
 
   author: {
     list: 'blogs/author',
+
+    details: 'blogs/author/${id}',
+    delete: 'blogs/author/${id}',
+
+
+
   },
 
 
   policypage: {
     list: 'blogs/policypage',
+
+    details: 'blogs/policypage/${id}',
+    delete: 'blogs/policypage/${id}',
+
+
+
   },
 
   generaleinfo: {
     list: 'blogs/generaleinfo',
+
+    details: 'blogs/generaleinfo/${id}',
+    delete: 'blogs/generaleinfo/${id}',
+
+
   },
 
   about: {
     list: 'blogs/about',
+
+    details: 'blogs/about/${id}',
+    delete: 'blogs/about/${id}',
+
+
+
   },
 
 

@@ -14,22 +14,22 @@ const swrOptions = {
 // ----------------------------------------------------------------------
 
 export function useGetCustomers() {
-  const url = endpoints.product.list;
+  const url = endpoints.customer.list;
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
   const memoizedValue = useMemo(() => {
-    const products = data?.data?.map(product => product.attributes) || [];
+    const customers = data?.data?.map(customer => customer.attributes) || [];
 
-    // Log the products data
-    console.log('Products Data:', products);
+
+    console.log('customers Data:', customers);
 
     return {
-      products,
-      productsLoading: isLoading,
-      productsError: error,
-      productsValidating: isValidating,
-      productsEmpty: !isLoading && !products.length,
+      customers,
+      customersLoading: isLoading,
+      customersError: error,
+      customersValidating: isValidating,
+      customersEmpty: !isLoading && !customers.length,
     };
   }, [data?.data, error, isLoading, isValidating]);
 
@@ -38,20 +38,25 @@ export function useGetCustomers() {
 
 // ----------------------------------------------------------------------
 
-export function useGetCustomer(productId) {
-  const url = productId ? [endpoints.product.details, { params: { productId } }] : '';
+export function useGetCustomer(customerId) {
+  const url = customerId ? [endpoints.customer.details, { params: { customerId } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, swrOptions);
 
-  const memoizedValue = useMemo(
-    () => ({
-      product: data?.product,
-      productLoading: isLoading,
-      productError: error,
-      productValidating: isValidating,
-    }),
-    [data?.product, error, isLoading, isValidating]
-  );
+  const memoizedValue = useMemo(() => {
+    const customer = data?.data?.map(customer => customer.attributes) || [];
+
+    // Log the customers data
+    console.log('customers Data:', customers);
+
+    return {
+      customers,
+      customersLoading: isLoading,
+      customersError: error,
+      customersValidating: isValidating,
+      customersEmpty: !isLoading && !customers.length,
+    };
+  }, [data?.data, error, isLoading, isValidating]);
 
   return memoizedValue;
 }
@@ -59,7 +64,7 @@ export function useGetCustomer(productId) {
 // ----------------------------------------------------------------------
 
 export function useSearchCustomers(query) {
-  const url = query ? [endpoints.product.search, { params: { query } }] : '';
+  const url = query ? [endpoints.customer.search, { params: { query } }] : '';
 
   const { data, isLoading, error, isValidating } = useSWR(url, fetcher, {
     ...swrOptions,

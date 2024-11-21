@@ -24,6 +24,7 @@ import { RouterLink } from 'src/routes/components';
 
 import { useBoolean } from 'src/hooks/use-boolean';
 import { useSetState } from 'src/hooks/use-set-state';
+import { useGetCustomers } from 'src/actions/customer';
 
 import { PRODUCT_STOCK_OPTIONS } from 'src/_mock';
 import { useGetProducts } from 'src/actions/product';
