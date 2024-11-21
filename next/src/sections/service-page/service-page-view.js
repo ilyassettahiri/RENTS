@@ -108,15 +108,21 @@ export default function ServicePageView({ params, serviceData }) {
 
 
 
-                {mdUp && (
-                  <Grid xs={12} md={5} lg={4}>
+
+                  <Grid xs={12} md={5} lg={4}
+
+                  sx={{
+                    display: { xs: 'none', md: 'block' }, // Hide on extra-small screens, show on medium screens and up
+                  }}
+
+                  >
                     {!serviceData ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={serviceData.data} />
                     )}
                   </Grid>
-                )}
+
 
               </Grid>
 
@@ -150,15 +156,15 @@ export default function ServicePageView({ params, serviceData }) {
 
 
 
-            {!mdUp && (
-              <Box sx={{ my: 5 }}>
+
+              <Box sx={{ my: 5, display: { xs: 'block', md: 'none' }, }}>
                 {!serviceData ? (
                   <ListingFormSkeleton />
                 ) : (
                   <ListingForm tour={serviceData.data} />
                 )}
               </Box>
-            )}
+
 
 
 

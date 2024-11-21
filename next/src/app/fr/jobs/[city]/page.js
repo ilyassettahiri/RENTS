@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `Emplois à ${city} - Trouvez des Opportunités sur RENTS.ma`,
-    description: `Explorez les dernières opportunités d’emploi à ${city} sur RENTS.ma. Découvrez des postes dans divers secteurs et connectez-vous avec les meilleurs employeurs à ${city}. Commencez votre recherche d’emploi dès aujourd’hui !`,
+    description: `Explorez les dernières opportunités d’emploi à ${city} sur RENTS.ma. Découvrez des postes dans divers secteurs et connectez-vous avec les meilleurs employeurs à ${city}. Commencez votre recherche d’emploi dès aujourd’hui!`,
     keywords: `Emplois à ${city}, Opportunités d’emploi à ${city}, Carrières à ${city}, Offres d’emploi ${city}`,
     openGraph: {
       type: 'website',

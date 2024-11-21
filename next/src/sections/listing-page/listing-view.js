@@ -31,6 +31,7 @@ import MarkdownSkeleton from 'src/components/markdown/markdown-skeleton';
 import ListingHeaderSkeleton from 'src/sections/listing-page/listing-header-skeleton';
 
 import ListingImageSkeleton from 'src/sections/listing-page/listing-image-skeleton';
+
 import ListingFormSkeleton from 'src/sections/listing-page/listing-form-skeleton';
 
 import ListingHeader from './listing-header';
@@ -38,6 +39,7 @@ import ListingHeader from './listing-header';
 
 
 import ListingImage from './listing-image';
+
 
 import ListingForm from './listing-form';
 
@@ -49,14 +51,22 @@ export default function ListingView({ params, listingData }) {
   const { t } = useTranslation();
 
 
-  const mdUp = useResponsive('up', 'md');
 
   const [favorites, setFavorites] = useState(listingData.favorites || []);
 
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
+  // Simulate loading for 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1);
+
+    return () => clearTimeout(timer); // Cleanup timeout
+  }, []);
 
 
 
@@ -99,11 +109,13 @@ export default function ListingView({ params, listingData }) {
 
 
 
-          {!listingData ? (
+          {isLoading ? (
             <ListingImageSkeleton />
           ) : (
               <ListingImage images={memoizedListingData.images || []}  params={params}/>
           )}
+
+
         <Container
           maxWidth={false}
           sx={{
@@ -117,19 +129,21 @@ export default function ListingView({ params, listingData }) {
 
 
 
-              {mdUp && (
+                    <Grid
+                      xs={12}
+                      md={5}
+                      lg={4}
+                      sx={{
+                        display: { xs: 'none', md: 'block' }, // Hide on extra-small screens, show on medium screens and up
+                      }}
+                    >
+                      {isLoading ? (
+                        <ListingFormSkeleton />
+                      ) : (
+                        <ListingForm tour={listingData.data} />
+                      )}
+                    </Grid>
 
-                <Grid xs={12} md={5} lg={4}>
-
-
-                    {!listingData ? (
-                      <ListingFormSkeleton />
-                    ) : (
-                      <ListingForm tour={listingData.data} />
-                    )}
-                </Grid>
-
-              )}
 
 
             <Grid xs={12} md={7} lg={8}>
@@ -137,7 +151,7 @@ export default function ListingView({ params, listingData }) {
 
 
 
-                {!listingData ? (
+                {isLoading ? (
                   <ListingHeaderSkeleton />
                 ) : (
 
@@ -156,7 +170,7 @@ export default function ListingView({ params, listingData }) {
 
 
 
-                {!listingData ? (
+                {isLoading ? (
                   <MarkdownSkeleton />
                 ) : (
 
@@ -186,22 +200,22 @@ export default function ListingView({ params, listingData }) {
 
 
 
-            {!mdUp && (
 
 
-                <Box sx={{ my: 5 }}>
+
+                <Box sx={{ my: 5, display: { xs: 'block', md: 'none' }, }}>
 
                   <Divider sx={{ my: 10 }} />
 
 
-                    {!listingData ? (
+                    {isLoading ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={listingData.data} />
                     )}
                 </Box>
 
-            )}
+
 
 
           <Divider sx={{ my: 10 }} />

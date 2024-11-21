@@ -112,15 +112,20 @@ export default function JobPageView({ params, jobData }) {
 
 
 
-                {mdUp && (
-                  <Grid xs={12} md={5} lg={4}>
+
+                  <Grid xs={12} md={5} lg={4}
+
+                  sx={{
+                    display: { xs: 'none', md: 'block' }, // Hide on extra-small screens, show on medium screens and up
+                  }}
+                  >
                     {!jobData ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={jobData.data} />
                     )}
                   </Grid>
-                )}
+
 
               </Grid>
 
@@ -154,15 +159,15 @@ export default function JobPageView({ params, jobData }) {
 
 
 
-            {!mdUp && (
-              <Box sx={{ my: 5 }}>
+
+              <Box sx={{ my: 5, display: { xs: 'block', md: 'none' }, }}>
                 {!jobData ? (
                   <ListingFormSkeleton />
                 ) : (
                   <ListingForm tour={jobData.data} />
                 )}
               </Box>
-            )}
+
 
 
 
