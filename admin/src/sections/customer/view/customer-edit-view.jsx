@@ -11,24 +11,16 @@ import { useGetCustomer } from 'src/actions/customer';
 
 // ----------------------------------------------------------------------
 
-export function ProductEditView({ customer }) {
+export function CustomerEditView({ customer }) {
 
   console.log('customer data:', customer);
 
 
   return (
     <DashboardContent>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'Product', href: paths.dashboard.product.root },
-          { name: product?.name },
-        ]}
-        sx={{ mb: { xs: 3, md: 5 } }}
-      />
 
-      <ProductNewEditForm currentProduct={product} />
+
+
     </DashboardContent>
   );
 }

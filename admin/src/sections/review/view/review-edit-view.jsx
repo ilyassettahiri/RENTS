@@ -11,7 +11,7 @@ import { ProductNewEditForm } from 'src/sections/product/product-new-edit-form';
 
 // ----------------------------------------------------------------------
 
-export function ProductEditView({ review }) {
+export function ReviewEditView({ review }) {
 
   console.log('review data:', review);
 
@@ -22,13 +22,13 @@ export function ProductEditView({ review }) {
         heading="Edit"
         links={[
           { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'Product', href: paths.dashboard.product.root },
-          { name: product?.name },
+          { name: 'Review', href: paths.dashboard.review.root },
+          { name: review?.name },
         ]}
         sx={{ mb: { xs: 3, md: 5 } }}
       />
 
-      <ProductNewEditForm currentProduct={product} />
+      <ProductNewEditForm currentProduct={review} />
     </DashboardContent>
   );
 }
