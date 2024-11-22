@@ -16,7 +16,7 @@ use App\Enums\ItemStatus;
 
 
 
-use App\Models\Listing;
+use App\Models\Onlinestore;
 use App\Models\Collection;
 
 
@@ -32,27 +32,44 @@ class CompletedFrontController extends JsonApiController
 {
 
 
+
     public function index(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
-
+        $stores = Onlinestore::all();
 
         return response()->json([
-            'data' => $collections->map(function ($collection) use ($user) {
+            'data' => $stores->map(function ($store) {
                 return [
-                    'type' => 'collections',
-                    'id' => $collection->id,
+                    'type' => 'stores',
+                    'id' => $store->id,
                     'attributes' => [
-                        'name' => $collection->name,
-                        'picture' => $collection->picture,
-                        'created_at' => $collection->created_at,
+                        'name' => $store->name,
+                        'email' => $store->email,
+                        'status' => $store->status,
+                        'admin_status' => $store->admin_status,
+                        'url' => $store->url,
+                        'id' => $store->id,
+                        'phone' => $store->phone,
+                        'zip' => $store->zip,
+                        'country' => $store->country,
+                        'address' => $store->address,
+                        'city' => $store->city,
+                        'verified' => $store->verified,
+                        'type' => $store->type,
+                        'typea' => $store->typea,
+                        'description' => $store->description,
+                        'profile_picture' => $store->profile_picture,
+                        'picture' => $store->picture,
+                        'featured' => $store->featured,
+                        'user_id' => $store->user_id,
+                        'created_at' => $store->created_at,
+                        'updated_at' => $store->updated_at,
                     ],
                     'relationships' => [
                         'user' => [
                             'data' => [
                                 'type' => 'users',
-                                'id' => $user->id,
+                                'id' => $store->user_id,
                             ],
                         ],
                     ],
@@ -60,6 +77,70 @@ class CompletedFrontController extends JsonApiController
             }),
         ]);
     }
+
+
+
+
+    public function show(JsonApiRoute $route, Store $store)
+    {
+
+
+         $storeId = $route->resourceId();
+
+
+
+        // Find the user by ID
+        $store = Onlinestore::find($storeId);
+
+
+        if (!$store) {
+            return response()->json(['error' => 'store not found'], 404);
+        }
+
+
+
+
+
+
+
+        return response()->json([
+            'data' => [
+                'id' => $store->id,
+                'type' => 'store',
+                'attributes' => [
+                        'name' => $store->name,
+                        'email' => $store->email,
+                        'status' => $store->status,
+                        'admin_status' => $store->admin_status,
+                        'url' => $store->url,
+                        'id' => $store->id,
+                        'phone' => $store->phone,
+                        'zip' => $store->zip,
+                        'country' => $store->country,
+                        'address' => $store->address,
+                        'city' => $store->city,
+                        'verified' => $store->verified,
+                        'type' => $store->type,
+                        'typea' => $store->typea,
+                        'description' => $store->description,
+                        'profile_picture' => $store->profile_picture,
+                        'picture' => $store->picture,
+                        'featured' => $store->featured,
+                        'user_id' => $store->user_id,
+                        'created_at' => $store->created_at,
+                        'updated_at' => $store->updated_at,
+                    ],
+
+            ],
+
+        ]);
+
+
+
+
+
+    }
+
 
 
 
@@ -184,32 +265,6 @@ class CompletedFrontController extends JsonApiController
         ], 200); // 200 OK status code
     }
 
-    public function show(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
-
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
-        ]);
-    }
 
 
 

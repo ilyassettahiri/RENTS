@@ -69,6 +69,17 @@ export const endpoints = {
     search: '/api/post/search',
   },
 
+
+  store: {
+    list: 'completedfronts',
+    details: (id) => `completedfronts/${id}`,
+    delete: (id) => `completedfronts/${id}`,
+    editstatus: (id) => `completedfronts/status/${id}`,
+    latest: '/api/post/latest',
+    search: '/api/post/search',
+  },
+
+
   invoice: {
     list: 'upcomingfronts',
     details: (id) => `upcomingfronts/${id}`,

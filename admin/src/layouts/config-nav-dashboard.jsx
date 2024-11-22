@@ -123,6 +123,17 @@ export const navData = [
       },
 
 
+      {
+        title: 'Store',
+        path: paths.dashboard.store.root,
+        icon: ICONS.product,
+        children: [
+          { title: 'List', path: paths.dashboard.store.root },
+          { title: 'Details', path: paths.dashboard.store.demo.details },
+          { title: 'Create', path: paths.dashboard.store.new },
+          { title: 'Edit', path: paths.dashboard.store.demo.edit },
+        ],
+      },
 
 
 

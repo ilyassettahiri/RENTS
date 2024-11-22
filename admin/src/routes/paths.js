@@ -112,6 +112,19 @@ export const paths = {
     },
 
 
+
+    store: {
+      root: `${ROOTS.DASHBOARD}/store`,
+      new: `${ROOTS.DASHBOARD}/store/new`,
+      details: (id) => `${ROOTS.DASHBOARD}/store/${id}`,
+      edit: (id) => `${ROOTS.DASHBOARD}/store/${id}/edit`,
+      demo: {
+        details: `${ROOTS.DASHBOARD}/store/${MOCK_ID}`,
+        edit: `${ROOTS.DASHBOARD}/store/${MOCK_ID}/edit`,
+      },
+    },
+
+
     invoice: {
       root: `${ROOTS.DASHBOARD}/invoice`,
       new: `${ROOTS.DASHBOARD}/invoice/new`,

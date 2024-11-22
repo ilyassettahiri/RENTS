@@ -1,0 +1,23 @@
+'use client';
+
+import { paths } from 'src/routes/paths';
+
+import { DashboardContent } from 'src/layouts/dashboard';
+
+import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
+import { useGetReview } from 'src/actions/review';
+
+import { ProductNewEditForm } from 'src/sections/product/product-new-edit-form';
+
+// ----------------------------------------------------------------------
+
+export function StoreEditView({ store }) {
+
+  console.log('store data:', store);
+
+
+  return (
+    <DashboardContent/>
+
+  );
+}

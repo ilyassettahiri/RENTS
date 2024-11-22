@@ -80,6 +80,66 @@ class CurrentlyHostingFrontController extends JsonApiController
 
 
 
+    public function show(JsonApiRoute $route, Store $store)
+    {
+
+
+         $customerId = $route->resourceId();
+
+
+
+        // Find the user by ID
+        $customer = Customer::find($customerId);
+
+
+        if (!$customer) {
+            return response()->json(['error' => 'customer not found'], 404);
+        }
+
+
+
+
+
+
+
+        return response()->json([
+            'data' => [
+                'id' => $customer->id,
+                'type' => 'customer',
+                'attributes' => [
+                        'name' => $customer->name,
+                        'email' => $customer->email,
+                        'status' => $customer->status,
+                        'admin_status' => $customer->admin_status,
+                        'category' => $customer->category,
+                        'listings_thumb' => $customer->listings_thumb,
+                        'listings_title' => $customer->listings_title,
+                        'listings_price' => $customer->listings_price,
+                        'url' => $customer->url,
+                        'id' => $customer->id,
+
+                        'phone' => $customer->phone,
+                        'zip' => $customer->zip,
+                        'country' => $customer->country,
+                        'address' => $customer->address,
+                        'city' => $customer->city,
+                        'user_id' => $customer->user_id,
+
+                        'created_at' => $customer->created_at,
+                        'updated_at' => $customer->updated_at,
+                    ],
+
+            ],
+
+        ]);
+
+
+
+
+
+    }
+
+
     public function store(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -201,32 +261,7 @@ class CurrentlyHostingFrontController extends JsonApiController
         ], 200); // 200 OK status code
     }
 
-    public function show(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
 
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
-        ]);
-    }
 
 
 

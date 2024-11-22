@@ -202,29 +202,44 @@ class PricingController extends JsonApiController
 
     public function show(JsonApiRoute $route, Store $store)
     {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
+
+        $reviewId = $route->resourceId();
+
+
+
+        // Find the user by ID
+        $review = Review::find($reviewId);
+
 
         return response()->json([
             'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
+                'id' => $review->id,
+                'type' => 'review',
                 'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
+                    'name' => $review->name,
+                    'email' => $review->email,
+                    'description' => $review->description,
+                    'like' => $review->like,
+                    'rating' => $review->rating,
+                    'category' => $review->category,
+                    'listings_thumb' => $review->listings_thumb,
+                    'listings_title' => $review->listings_title,
+
+                    'url' => $review->url,
+                    'id' => $review->id,
+
+                    'status' => $review->status,
+                    'admin_status' => $review->admin_status,
+                    'user_id' => $review->user_id,
+                    'onlinestore_id' => $review->onlinestore_id,
+                    'created_at' => $review->created_at,
+                    'updated_at' => $review->updated_at,
                 ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
+
+            ],
+
         ]);
+
     }
 
 

@@ -84,6 +84,70 @@ class DashboardFrontController extends JsonApiController
 
 
 
+    public function show(JsonApiRoute $route, Store $store)
+    {
+
+
+         $reservationId = $route->resourceId();
+
+
+
+        $reservation = reservation::find($reservationId);
+
+
+        if (!$reservation) {
+            return response()->json(['error' => 'reservation not found'], 404);
+        }
+
+
+
+
+
+
+
+        return response()->json([
+            'data' => [
+                'id' => $user->id,
+                'type' => 'users',
+                'attributes' => [
+                    'name' => $reservation->name,
+                    'email' => $reservation->email,
+                    'status' => $reservation->status,
+                    'admin_status' => $reservation->admin_status,
+                    'reservationstart' => $reservation->reservationstart ? Carbon::parse($reservation->reservationstart)->toIso8601String() : null,
+                    'reservationsend' => $reservation->reservationsend ? Carbon::parse($reservation->reservationsend)->toIso8601String() : null,
+                    'checkout_id' => $reservation->checkout_id,
+                    'category' => $reservation->category,
+                    'listings_thumb' => $reservation->listings_thumb,
+                    'listings_title' => $reservation->listings_title,
+                    'listings_price' => $reservation->listings_price,
+                    'url' => $reservation->url,
+                    'phone' => $reservation->phone,
+                    'zip' => $reservation->zip,
+                    'country' => $reservation->country,
+                    'address' => $reservation->address,
+                    'city' => $reservation->city,
+                    'total_paid' => $reservation->total_paid,
+                    'total_vat' => $reservation->total_vat,
+                    'adults' => $reservation->adults,
+                    'children' => $reservation->children,
+                    'user_id' => $reservation->user_id,
+                    'onlinestore_id' => $reservation->onlinestore_id,
+                    'created_at' => $reservation->created_at,
+                    'updated_at' => $reservation->updated_at,
+                ],
+
+            ],
+
+        ]);
+
+
+
+
+
+    }
+
+
 
     public function store(JsonApiRoute $route, Store $store)
     {
@@ -206,7 +270,7 @@ class DashboardFrontController extends JsonApiController
         ], 200); // 200 OK status code
     }
 
-    public function show(JsonApiRoute $route, Store $store)
+    public function sshow(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
         $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
