@@ -67,8 +67,8 @@ export function CustomerDetailsView({ customer }) {
   }, []);
 
   return (
-    <DashboardContent>
+    <DashboardContent/>
 
-    </DashboardContent>
+
   );
 }

@@ -17,18 +17,7 @@ export function ReviewEditView({ review }) {
 
 
   return (
-    <DashboardContent>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'Review', href: paths.dashboard.review.root },
-          { name: review?.name },
-        ]}
-        sx={{ mb: { xs: 3, md: 5 } }}
-      />
+    <DashboardContent/>
 
-      <ProductNewEditForm currentProduct={review} />
-    </DashboardContent>
   );
 }

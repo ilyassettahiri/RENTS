@@ -67,8 +67,8 @@ export function ReviewDetailsView({ review }) {
   }, []);
 
   return (
-    <DashboardContent>
+    <DashboardContent/>
 
-    </DashboardContent>
+
   );
 }

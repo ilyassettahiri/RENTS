@@ -17,10 +17,9 @@ export function CustomerEditView({ customer }) {
 
 
   return (
-    <DashboardContent>
+    <DashboardContent/>
 
 
 
-    </DashboardContent>
   );
 }
