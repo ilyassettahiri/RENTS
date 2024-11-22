@@ -27,7 +27,7 @@ import { useSetState } from 'src/hooks/use-set-state';
 import { useGetCustomers } from 'src/actions/customer';
 
 import { PRODUCT_STOCK_OPTIONS } from 'src/_mock';
-import { useGetProducts } from 'src/actions/product';
+
 import { DashboardContent } from 'src/layouts/dashboard';
 
 import { toast } from 'src/components/snackbar';
@@ -59,12 +59,12 @@ const HIDE_COLUMNS_TOGGLABLE = ['category', 'actions'];
 
 // ----------------------------------------------------------------------
 
-export function ProductListView() {
+export function CustomerListView() {
   const confirmRows = useBoolean();
 
   const router = useRouter();
 
-  const { products, productsLoading } = useGetProducts();
+  const { customers, customersLoading } = useGetCustomers();
 
   const filters = useSetState({ publish: [], stock: [] });
 
@@ -77,10 +77,10 @@ export function ProductListView() {
   const [columnVisibilityModel, setColumnVisibilityModel] = useState(HIDE_COLUMNS);
 
   useEffect(() => {
-    if (products.length) {
-      setTableData(products);
+    if (customers.length) {
+      setTableData(customers);
     }
-  }, [products]);
+  }, [customers]);
 
   const canReset = filters.state.publish.length > 0 || filters.state.stock.length > 0;
 
@@ -107,14 +107,14 @@ export function ProductListView() {
 
   const handleEditRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.product.edit(id));
+      router.push(paths.dashboard.customer.edit(id));
     },
     [router]
   );
 
   const handleViewRow = useCallback(
     (id) => {
-      router.push(paths.dashboard.product.details(id));
+      router.push(paths.dashboard.customer.details(id));
     },
     [router]
   );
@@ -258,7 +258,7 @@ export function ProductListView() {
             disableRowSelectionOnClick
             rows={dataFiltered}
             columns={columns}
-            loading={productsLoading}
+            loading={customersLoading}
             getRowHeight={() => 'auto'}
             pageSizeOptions={[100, 200, 500]}
             initialState={{ pagination: { paginationModel: { pageSize: 100 } } }}

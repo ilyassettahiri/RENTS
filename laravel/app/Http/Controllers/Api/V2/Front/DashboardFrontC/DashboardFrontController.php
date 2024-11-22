@@ -35,51 +35,53 @@ class DashboardFrontController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-
-
-
-
         $reservations = Reservation::all();
 
-
-
-
         return response()->json([
-
-
-                'data' => $reservations->map(function ($reservation) {
-
+            'data' => $reservations->map(function ($reservation) {
                 return [
                     'type' => 'reservations',
                     'id' => $reservation->id,
                     'attributes' => [
-
                         'name' => $reservation->name,
-
-                        'reservationstart' => Carbon::parse($reservation->reservationstart)->toIso8601String(),
-                        'reservationsend' => Carbon::parse($reservation->reservationsend)->toIso8601String(),
-
-
-
-
-
-
-                        'title' => $reservation->listings_title,
-                        'price' => $reservation->listings_price,
+                        'email' => $reservation->email,
                         'status' => $reservation->status,
-
-                        'id' => $reservation->id,
+                        'admin_status' => $reservation->admin_status,
+                        'reservationstart' => $reservation->reservationstart ? Carbon::parse($reservation->reservationstart)->toIso8601String() : null,
+                        'reservationsend' => $reservation->reservationsend ? Carbon::parse($reservation->reservationsend)->toIso8601String() : null,
+                        'checkout_id' => $reservation->checkout_id,
+                        'category' => $reservation->category,
+                        'listings_thumb' => $reservation->listings_thumb,
+                        'listings_title' => $reservation->listings_title,
+                        'listings_price' => $reservation->listings_price,
+                        'url' => $reservation->url,
+                        'phone' => $reservation->phone,
+                        'zip' => $reservation->zip,
+                        'country' => $reservation->country,
+                        'address' => $reservation->address,
+                        'city' => $reservation->city,
+                        'total_paid' => $reservation->total_paid,
+                        'total_vat' => $reservation->total_vat,
+                        'adults' => $reservation->adults,
+                        'children' => $reservation->children,
+                        'user_id' => $reservation->user_id,
+                        'onlinestore_id' => $reservation->onlinestore_id,
                         'created_at' => $reservation->created_at,
-
+                        'updated_at' => $reservation->updated_at,
                     ],
-
+                    'relationships' => [
+                        'user' => [
+                            'data' => [
+                                'type' => 'users',
+                                'id' => $reservation->user_id,
+                            ],
+                        ],
+                    ],
                 ];
             }),
         ]);
-
-
-
     }
+
 
 
 

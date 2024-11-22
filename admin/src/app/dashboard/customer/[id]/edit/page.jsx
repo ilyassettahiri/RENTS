@@ -2,24 +2,27 @@ import axios, { endpoints } from 'src/utils/axios';
 
 import { CONFIG } from 'src/config-global';
 
-import { ProductEditView } from 'src/sections/customer/view';
+import { CustomerEditView } from 'src/sections/customer/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Product edit | Dashboard - ${CONFIG.site.name}` };
+export const metadata = { title: `Customer edit | Dashboard - ${CONFIG.site.name}` };
 
 export default async function Page({ params }) {
   const { id } = params;
 
-  const { product } = await getProduct(id);
+  const  customer  = await getCustomer(id);
 
-  return <ProductEditView product={product} />;
+  return <CustomerEditView customer={customer} />;
 }
 
 // ----------------------------------------------------------------------
 
-async function getProduct(id) {
-  const URL = id ? `${endpoints.product.details}?productId=${id}` : '';
+async function getCustomer(id) {
+
+  if (!id) throw new Error('User ID is required to fetch user details');
+
+  const URL = endpoints.customer.details(id);
 
   const res = await axios.get(URL);
 
@@ -40,9 +43,9 @@ export { dynamic };
  */
 export async function generateStaticParams() {
   if (CONFIG.isStaticExport) {
-    const res = await axios.get(endpoints.product.list);
+    const res = await axios.get(endpoints.customer.list);
 
-    return res.data.products.map((product) => ({ id: product.id }));
+    return res.data.customers.map((customer) => ({ id: customer.id }));
   }
   return [];
 }

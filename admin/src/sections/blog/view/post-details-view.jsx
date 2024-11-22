@@ -30,6 +30,11 @@ import { PostDetailsToolbar } from '../post-details-toolbar';
 // ----------------------------------------------------------------------
 
 export function PostDetailsView({ post }) {
+
+
+  console.log('post data:', post);
+
+
   const [publish, setPublish] = useState('');
 
   const handleChangePublish = useCallback((newValue) => {

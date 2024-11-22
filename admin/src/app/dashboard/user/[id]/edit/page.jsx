@@ -1,5 +1,6 @@
+import axios, { endpoints } from 'src/utils/axios';
+
 import { CONFIG } from 'src/config-global';
-import { _userList } from 'src/_mock/_user';
 
 import { UserEditView } from 'src/sections/user/view';
 
@@ -7,15 +8,31 @@ import { UserEditView } from 'src/sections/user/view';
 
 export const metadata = { title: `User edit | Dashboard - ${CONFIG.site.name}` };
 
-export default function Page({ params }) {
+export default async function Page({ params }) {
   const { id } = params;
 
-  const currentUser = _userList.find((user) => user.id === id);
 
-  return <UserEditView user={currentUser} />;
+  const  user  = await getUser(id);
+
+
+  return <UserEditView user={user} />;
 }
 
 // ----------------------------------------------------------------------
+
+
+
+async function getUser(id) {
+
+  if (!id) throw new Error('User ID is required to fetch user details');
+
+  const URL = endpoints.user.details(id);
+
+  const res = await axios.get(URL);
+
+
+  return res.data;
+}
 
 /**
  * [1] Default
@@ -31,7 +48,10 @@ export { dynamic };
  */
 export async function generateStaticParams() {
   if (CONFIG.isStaticExport) {
-    return _userList.map((user) => ({ id: user.id }));
+    const res = await axios.get(endpoints.user.list);
+
+    return res.data.users.map((user) => ({ id: user.id }));
   }
   return [];
 }
+

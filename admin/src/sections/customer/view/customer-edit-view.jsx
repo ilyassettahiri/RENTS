@@ -11,7 +11,11 @@ import { useGetCustomer } from 'src/actions/customer';
 
 // ----------------------------------------------------------------------
 
-export function ProductEditView({ product }) {
+export function ProductEditView({ customer }) {
+
+  console.log('customer data:', customer);
+
+
   return (
     <DashboardContent>
       <CustomBreadcrumbs

@@ -47,7 +47,7 @@ export function useGetReview(reviewId) {
     const review = data?.data?.attributes || [];
 
     // Log the reviews data
-    console.log('reviews Data:', reviews);
+    console.log('reviews Data:', review);
 
     return {
       review,

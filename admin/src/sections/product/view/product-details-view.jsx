@@ -48,6 +48,10 @@ const SUMMARY = [
 // ----------------------------------------------------------------------
 
 export function ProductDetailsView({ product }) {
+
+  console.log('product data:', product);
+
+
   const tabs = useTabs('description');
 
   const [publish, setPublish] = useState('');

@@ -19,6 +19,9 @@ import { OrderDetailsHistory } from '../order-details-history';
 // ----------------------------------------------------------------------
 
 export function OrderDetailsView({ order }) {
+
+  console.log('order data:', order);
+
   const [status, setStatus] = useState(order?.status);
 
   const handleChangeStatus = useCallback((newValue) => {

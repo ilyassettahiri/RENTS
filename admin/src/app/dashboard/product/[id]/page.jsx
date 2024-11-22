@@ -11,7 +11,7 @@ export const metadata = { title: `Product details | Dashboard - ${CONFIG.site.na
 export default async function Page({ params }) {
   const { id } = params;
 
-  const { product } = await getProduct(id);
+  const  product  = await getProduct(id);
 
   return <ProductDetailsView product={product} />;
 }
@@ -19,8 +19,9 @@ export default async function Page({ params }) {
 // ----------------------------------------------------------------------
 
 async function getProduct(id) {
-  const URL = id ? `${endpoints.product.details}?productId=${id}` : '';
+  if (!id) throw new Error('User ID is required to fetch user details');
 
+  const URL = endpoints.product.details(id);
   const res = await axios.get(URL);
 
   return res.data;

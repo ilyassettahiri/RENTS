@@ -16,7 +16,7 @@ use App\Enums\ItemStatus;
 
 
 
-use App\Models\Listing;
+use App\Models\Review;
 use App\Models\Collection;
 
 
@@ -34,33 +34,39 @@ class PricingController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-        $listings = Listing::all();
+        $reviews = Review::all();
 
         // Ensure JSON:API compliance
         return response()->json([
-            'data' => $listings->map(function ($listing) {
+            'data' => $reviews->map(function ($review) {
                 return [
-                    'type' => 'listings',
-                    'id' => $listing->id,
+                    'type' => 'reviews',
+                    'id' => $review->id,
                     'attributes' => [
-                        'category' => $listing->category,
-                        'url' => $listing->url,
-                        'title' => $listing->title,
-                        'city' => $listing->city,
-                        'price' => $listing->price,
-                        'status' => $listing->status,
-                        'picture' => $listing->picture,
-                        'id' => $listing->id,
+                        'name' => $review->name,
+                        'email' => $review->email,
+                        'description' => $review->description,
+                        'like' => $review->like,
+                        'rating' => $review->rating,
+                        'category' => $review->category,
+                        'listings_thumb' => $review->listings_thumb,
+                        'listings_title' => $review->listings_title,
 
-                        'user_id' => $listing->user_id,
-                        'created_at' => $listing->created_at,
-                        'updated_at' => $listing->updated_at,
+                        'url' => $review->url,
+                        'id' => $review->id,
+
+                        'status' => $review->status,
+                        'admin_status' => $review->admin_status,
+                        'user_id' => $review->user_id,
+                        'onlinestore_id' => $review->onlinestore_id,
+                        'created_at' => $review->created_at,
+                        'updated_at' => $review->updated_at,
                     ],
                     'relationships' => [
                         'user' => [
                             'data' => [
                                 'type' => 'users',
-                                'id' => $listing->user_id,
+                                'id' => $review->user_id,
                             ],
                         ],
                     ],
@@ -68,6 +74,7 @@ class PricingController extends JsonApiController
             }),
         ]);
     }
+
 
 
 

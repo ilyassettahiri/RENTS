@@ -12,6 +12,11 @@ import { ProductNewEditForm } from '../product-new-edit-form';
 // ----------------------------------------------------------------------
 
 export function ProductEditView({ product }) {
+
+
+  console.log('product data:', product);
+
+
   return (
     <DashboardContent>
       <CustomBreadcrumbs

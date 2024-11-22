@@ -11,7 +11,11 @@ import { ProductNewEditForm } from 'src/sections/product/product-new-edit-form';
 
 // ----------------------------------------------------------------------
 
-export function ProductEditView({ product }) {
+export function ProductEditView({ review }) {
+
+  console.log('review data:', review);
+
+
   return (
     <DashboardContent>
       <CustomBreadcrumbs

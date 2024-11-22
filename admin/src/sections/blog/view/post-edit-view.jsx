@@ -12,6 +12,9 @@ import { PostNewEditForm } from '../post-new-edit-form';
 // ----------------------------------------------------------------------
 
 export function PostEditView({ post }) {
+
+  console.log('post data:', post);
+
   return (
     <DashboardContent>
       <CustomBreadcrumbs

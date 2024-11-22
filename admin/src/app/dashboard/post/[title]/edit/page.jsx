@@ -12,7 +12,7 @@ export const metadata = { title: `Post edit | Dashboard - ${CONFIG.site.name}` }
 export default async function Page({ params }) {
   const { title } = params;
 
-  const { post } = await getPost(title);
+  const  post  = await getPost(title);
 
   return <PostEditView post={post} />;
 }
@@ -20,8 +20,9 @@ export default async function Page({ params }) {
 // ----------------------------------------------------------------------
 
 async function getPost(title) {
-  const URL = title ? `${endpoints.post.details}?title=${title}` : '';
+  if (!title) throw new Error('post title is required to fetch user details');
 
+  const URL = endpoints.post.details(title);
   const res = await axios.get(URL);
 
   return res.data;

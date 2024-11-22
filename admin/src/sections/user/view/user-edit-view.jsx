@@ -36,10 +36,11 @@ const TABS = [
 
 // ----------------------------------------------------------------------
 
-export function UserEditView({ id }) {
+export function UserEditView({ user }) {
   const tabs = useTabs('general');
 
-  const { user, userLoading } = useGetUser(id);
+  console.log('User data:', user);
+
 
   return (
     <DashboardContent>

@@ -1,11 +1,11 @@
 import { CONFIG } from 'src/config-global';
 
-import { ProductListView } from 'src/sections/review/view';
+import { ReviewListView } from 'src/sections/review/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Product list | Dashboard - ${CONFIG.site.name}` };
+export const metadata = { title: `review list | Dashboard - ${CONFIG.site.name}` };
 
 export default function Page() {
-  return <ProductListView />;
+  return <ReviewListView />;
 }

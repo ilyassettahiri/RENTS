@@ -1,3 +1,5 @@
+import axios, { endpoints } from 'src/utils/axios';
+
 import { _orders } from 'src/_mock/_order';
 import { CONFIG } from 'src/config-global';
 
@@ -7,15 +9,29 @@ import { OrderDetailsView } from 'src/sections/order/view';
 
 export const metadata = { title: `Order details | Dashboard - ${CONFIG.site.name}` };
 
-export default function Page({ params }) {
+export default async function Page({ params }) {
   const { id } = params;
 
-  const currentOrder = _orders.find((order) => order.id === id);
+  const  order  = await getOrder(id);
 
-  return <OrderDetailsView order={currentOrder} />;
+
+  return <OrderDetailsView order={order} />;
 }
 
 // ----------------------------------------------------------------------
+
+
+async function getOrder(id) {
+
+  if (!id) throw new Error('Order ID is required to fetch user details');
+
+  const URL = endpoints.order.details(id);
+
+  const res = await axios.get(URL);
+
+
+  return res.data;
+}
 
 /**
  * [1] Default
@@ -31,7 +47,10 @@ export { dynamic };
  */
 export async function generateStaticParams() {
   if (CONFIG.isStaticExport) {
-    return _orders.map((order) => ({ id: order.id }));
+    const res = await axios.get(endpoints.user.list);
+
+    return res.data.users.map((user) => ({ id: user.id }));
   }
   return [];
 }
+

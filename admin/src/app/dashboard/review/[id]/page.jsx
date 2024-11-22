@@ -2,25 +2,26 @@ import axios, { endpoints } from 'src/utils/axios';
 
 import { CONFIG } from 'src/config-global';
 
-import { ProductDetailsView } from 'src/sections/review/view';
+import { ReviewDetailsView } from 'src/sections/review/view';
 
 // ----------------------------------------------------------------------
 
-export const metadata = { title: `Product details | Dashboard - ${CONFIG.site.name}` };
+export const metadata = { title: `Review details | Dashboard - ${CONFIG.site.name}` };
 
 export default async function Page({ params }) {
   const { id } = params;
 
-  const { product } = await getProduct(id);
+  const  review  = await getReview(id);
 
-  return <ProductDetailsView product={product} />;
+  return <ReviewDetailsView review={review} />;
 }
 
 // ----------------------------------------------------------------------
 
-async function getProduct(id) {
-  const URL = id ? `${endpoints.product.details}?productId=${id}` : '';
+async function getReview(id) {
+  if (!id) throw new Error('User ID is required to fetch user details');
 
+  const URL = endpoints.review.details(id);
   const res = await axios.get(URL);
 
   return res.data;
@@ -40,9 +41,9 @@ export { dynamic };
  */
 export async function generateStaticParams() {
   if (CONFIG.isStaticExport) {
-    const res = await axios.get(endpoints.product.list);
+    const res = await axios.get(endpoints.review.list);
 
-    return res.data.products.map((product) => ({ id: product.id }));
+    return res.data.reviews.map((review) => ({ id: review.id }));
   }
   return [];
 }

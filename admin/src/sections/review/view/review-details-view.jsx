@@ -47,7 +47,11 @@ const SUMMARY = [
 
 // ----------------------------------------------------------------------
 
-export function ProductDetailsView({ product }) {
+export function ProductDetailsView({ review }) {
+
+  console.log('review data:', review);
+
+
   const tabs = useTabs('description');
 
   const [publish, setPublish] = useState('');

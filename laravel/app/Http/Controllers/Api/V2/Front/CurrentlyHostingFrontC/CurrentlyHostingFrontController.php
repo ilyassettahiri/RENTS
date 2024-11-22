@@ -16,7 +16,7 @@ use App\Enums\ItemStatus;
 
 
 
-use App\Models\Listing;
+use App\Models\Customer;
 use App\Models\Collection;
 
 
@@ -34,33 +34,41 @@ class CurrentlyHostingFrontController extends JsonApiController
 
     public function index(JsonApiRoute $route, Store $store)
     {
-        $listings = Listing::all();
+        $customers = Customer::all();
 
         // Ensure JSON:API compliance
         return response()->json([
-            'data' => $listings->map(function ($listing) {
+            'data' => $customers->map(function ($customer) {
                 return [
-                    'type' => 'listings',
-                    'id' => $listing->id,
+                    'type' => 'customers',
+                    'id' => $customer->id,
                     'attributes' => [
-                        'category' => $listing->category,
-                        'url' => $listing->url,
-                        'title' => $listing->title,
-                        'city' => $listing->city,
-                        'price' => $listing->price,
-                        'status' => $listing->status,
-                        'picture' => $listing->picture,
-                        'id' => $listing->id,
+                        'name' => $customer->name,
+                        'email' => $customer->email,
+                        'status' => $customer->status,
+                        'admin_status' => $customer->admin_status,
+                        'category' => $customer->category,
+                        'listings_thumb' => $customer->listings_thumb,
+                        'listings_title' => $customer->listings_title,
+                        'listings_price' => $customer->listings_price,
+                        'url' => $customer->url,
+                        'id' => $customer->id,
 
-                        'user_id' => $listing->user_id,
-                        'created_at' => $listing->created_at,
-                        'updated_at' => $listing->updated_at,
+                        'phone' => $customer->phone,
+                        'zip' => $customer->zip,
+                        'country' => $customer->country,
+                        'address' => $customer->address,
+                        'city' => $customer->city,
+                        'user_id' => $customer->user_id,
+
+                        'created_at' => $customer->created_at,
+                        'updated_at' => $customer->updated_at,
                     ],
                     'relationships' => [
                         'user' => [
                             'data' => [
                                 'type' => 'users',
-                                'id' => $listing->user_id,
+                                'id' => $customer->user_id,
                             ],
                         ],
                     ],
