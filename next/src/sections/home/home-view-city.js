@@ -20,6 +20,7 @@ import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
 import Stack from '@mui/material/Stack';
 
+import ServiceSearchSkeleton from 'src/sections/components/services/filters/services-search-skeleton';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
@@ -37,6 +38,7 @@ import { ProductSort } from 'src/sections/home/product-sort';
 import { ProductFilters } from 'src/sections/home/product-filters';
 
 import { ProductFiltersResult } from 'src/sections/home/product-filters-result';
+import HomeHeroSkeleton from './home-hero-skeleton';
 
 import HomeHero from './home-hero';
 
@@ -330,7 +332,12 @@ export default function HomeViewCity({ params }) {
 
 
 
-        <HomeHero tours={tours} categoryy="apartments"/>
+          {isLoading ? (
+            <HomeHeroSkeleton />
+          ) : (
+            <HomeHero tours={tours} categoryy="apartments"/>
+
+          )}
 
 
 
@@ -357,20 +364,29 @@ export default function HomeViewCity({ params }) {
 
 
 
-            <ServiceSearch
-            colorr="white"
-            onCategoryClick={handleCategoryClick}
-            onSearch={handleSearch}
-            categories={categories}
-            keywordCategoryMap={keywordCategoryMap}
-            sx={{
-              color: { md: 'common.white' },
-              bgcolor: (theme) => ({
-                xs: 'background.neutral',
-                md: alpha(theme.palette.common.white, 0.08),
-              }),
-              }}
-            />
+                {isLoading ? (
+                  <ServiceSearchSkeleton />
+                ) : (
+
+
+                  <ServiceSearch
+                    colorr="white"
+                    onCategoryClick={handleCategoryClick}
+                    onSearch={handleSearch}
+                    categories={categories}
+                    keywordCategoryMap={keywordCategoryMap}
+                    sx={{
+                      color: { md: 'common.white' },
+                      bgcolor: (theme) => ({
+                        xs: 'background.neutral',
+                        md: alpha(theme.palette.common.white, 0.08),
+                      }),
+                      }}
+                  />
+
+                )}
+
+
 
 
 

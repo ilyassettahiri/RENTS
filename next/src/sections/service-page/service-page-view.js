@@ -43,7 +43,12 @@ export default function ServicePageView({ params, serviceData }) {
 
 
 
+  const [isLoading, setIsLoading] = useState(true); // Loading state
 
+  useEffect(() => {
+    // Directly set loading to false on component mount
+    setIsLoading(false);
+  }, []);
 
 
 
@@ -80,7 +85,7 @@ export default function ServicePageView({ params, serviceData }) {
 
 
     <>
-          {!serviceData ? (
+          {isLoading? (
             <ServicesDetailsHeroSkeleton />
           ) : (
 
@@ -116,7 +121,7 @@ export default function ServicePageView({ params, serviceData }) {
                   }}
 
                   >
-                    {!serviceData ? (
+                    {isLoading ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={serviceData.data} />
@@ -129,7 +134,7 @@ export default function ServicePageView({ params, serviceData }) {
               <Grid xs={12} md={7} lg={8}>
 
 
-                {!serviceData ? (
+                {isLoading ? (
                   <ListingHeaderSkeleton />
                 ) : (
                   <ListingSummary
@@ -158,7 +163,7 @@ export default function ServicePageView({ params, serviceData }) {
 
 
               <Box sx={{ my: 5, display: { xs: 'block', md: 'none' }, }}>
-                {!serviceData ? (
+                {isLoading ? (
                   <ListingFormSkeleton />
                 ) : (
                   <ListingForm tour={serviceData.data} />

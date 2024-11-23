@@ -46,6 +46,13 @@ export default function JobPageView({ params, jobData }) {
 
 
 
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  useEffect(() => {
+    // Directly set loading to false on component mount
+    setIsLoading(false);
+  }, []);
+
 
 
   const memoizedJobData = useMemo(() => {
@@ -80,8 +87,8 @@ export default function JobPageView({ params, jobData }) {
     <>
 
 
-          {!jobData ? (
-            <ServicesDetailsHeroSkeleton />
+          {isLoading ? (
+            <ServicesDetailsHeroSkeleton aa = {3}/>
           ) : (
 
 
@@ -119,7 +126,7 @@ export default function JobPageView({ params, jobData }) {
                     display: { xs: 'none', md: 'block' }, // Hide on extra-small screens, show on medium screens and up
                   }}
                   >
-                    {!jobData ? (
+                    {isLoading ? (
                       <ListingFormSkeleton />
                     ) : (
                       <ListingForm tour={jobData.data} />
@@ -132,7 +139,7 @@ export default function JobPageView({ params, jobData }) {
               <Grid xs={12} md={7} lg={8}>
 
 
-                {!jobData ? (
+                {isLoading ? (
                   <ListingHeaderSkeleton />
                 ) : (
                   <ListingSummary
@@ -161,7 +168,7 @@ export default function JobPageView({ params, jobData }) {
 
 
               <Box sx={{ my: 5, display: { xs: 'block', md: 'none' }, }}>
-                {!jobData ? (
+                {isLoading ? (
                   <ListingFormSkeleton />
                 ) : (
                   <ListingForm tour={jobData.data} />

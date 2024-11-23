@@ -135,13 +135,9 @@ export default function HomeView({ homeData }) {
 
   const [isLoading, setIsLoading] = useState(true); // Loading state
 
-  // Simulate loading for 3 seconds
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1);
-
-    return () => clearTimeout(timer); // Cleanup timeout
+    // Directly set loading to false on component mount
+    setIsLoading(false);
   }, []);
 
 

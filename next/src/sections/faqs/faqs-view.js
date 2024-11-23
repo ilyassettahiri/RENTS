@@ -29,9 +29,17 @@ export default function FaqsView({ faqData }) {
   const [topic, setTopic] = useState('');
   const mobileOpen = useBoolean();
 
+
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  useEffect(() => {
+    // Directly set loading to false on component mount
+    setIsLoading(false);
+  }, []);
+
   // Memorize the data transformation
   const { faqSubjects, faqs, topics } = useMemo(() => {
-    if (!faqData) {
+    if (isLoading) {
       return { faqSubjects: [], faqs: [], topics: [] };
     }
 
@@ -73,7 +81,7 @@ export default function FaqsView({ faqData }) {
 
   return (
     <>
-      {!faqData ? (
+      {isLoading ? (
         <>
           <SupportHeroSkeleton />
           <FaqGeneraleSkeleton />

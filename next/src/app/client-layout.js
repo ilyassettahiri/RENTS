@@ -73,7 +73,7 @@ export default function ClientLayout({ children, lang: initialLang  }) {
                   <MotionLazy>
 
 
-                    <ProgressBar />
+                    {/* <ProgressBar /> */}
                     <SettingsDrawer />
                     {children}
                   </MotionLazy>
