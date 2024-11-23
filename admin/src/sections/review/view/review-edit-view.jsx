@@ -28,7 +28,7 @@ export function ReviewEditView({ review }) {
       <h1>review Details</h1>
       {Object.entries(userAttributes).map(([key, value]) => (
         <p key={key}>
-          <strong>{key}:</strong> {value ? value : 'N/A'}
+          <strong>{key}:</strong> {value || 'N/A'}
         </p>
       ))}
 

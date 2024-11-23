@@ -32,7 +32,7 @@ export function OrderDetailsView({ order }) {
       <h1>order Details</h1>
       {Object.entries(userAttributes).map(([key, value]) => (
         <p key={key}>
-          <strong>{key}:</strong> {value ? value : 'N/A'}
+          <strong>{key}:</strong> {value || 'N/A'}
         </p>
       ))}
 
