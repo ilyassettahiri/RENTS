@@ -16,6 +16,7 @@ import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
 import Stack from '@mui/material/Stack';
 
+import ServiceSearchSkeleton from 'src/sections/components/services/filters/services-search-skeleton';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
@@ -23,6 +24,7 @@ import ServiceSearch from 'src/sections/components/services/filters/services-sea
 import ListingsCarousel from 'src/sections/home/listings-carousel';
 
 
+import HomeHeroSkeleton from './home-hero-skeleton';
 
 import HomeHero from './home-hero';
 
@@ -131,7 +133,18 @@ export default function HomeView({ homeData }) {
 
 
 
-  const isLoading = !homeData ;
+  const [isLoading, setIsLoading] = useState(true); // Loading state
+
+  // Simulate loading for 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1);
+
+    return () => clearTimeout(timer); // Cleanup timeout
+  }, []);
+
+
 
 
 
@@ -210,8 +223,15 @@ export default function HomeView({ homeData }) {
 
 
 
+
+
+
+          {isLoading ? (
+            <HomeHeroSkeleton />
+          ) : (
             <HomeHero tours={tours} categoryy="apartments"/>
 
+          )}
 
 
 
@@ -237,20 +257,32 @@ export default function HomeView({ homeData }) {
 
 
 
-            <ServiceSearch
-            colorr="white"
-            onCategoryClick={handleCategoryClick}
-            onSearch={handleSearch}
-            categories={categories}
-            keywordCategoryMap={keywordCategoryMap}
-            sx={{
-              color: { md: 'common.white' },
-              bgcolor: (theme) => ({
-                xs: 'background.neutral',
-                md: alpha(theme.palette.common.white, 0.08),
-              }),
-              }}
-            />
+                {isLoading ? (
+                  <ServiceSearchSkeleton />
+                ) : (
+
+
+                  <ServiceSearch
+                    colorr="white"
+                    onCategoryClick={handleCategoryClick}
+                    onSearch={handleSearch}
+                    categories={categories}
+                    keywordCategoryMap={keywordCategoryMap}
+                    sx={{
+                      color: { md: 'common.white' },
+                      bgcolor: (theme) => ({
+                        xs: 'background.neutral',
+                        md: alpha(theme.palette.common.white, 0.08),
+                      }),
+                      }}
+                  />
+
+                )}
+
+
+
+
+
 
 
 
@@ -327,13 +359,6 @@ export default function HomeView({ homeData }) {
 
 
 
-HomeView.propTypes = {
-  homeData: PropTypes.shape({
-    data: PropTypes.array,
-
-    favorites: PropTypes.array,
-  }),
-};
 
 
 
