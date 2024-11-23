@@ -21,6 +21,7 @@ export function useGetOrders() {
   const memoizedValue = useMemo(() => {
     const orders = data?.data?.map(order => order.attributes) || [];
 
+    console.log('Reservation Data:', orders);
 
 
     return {

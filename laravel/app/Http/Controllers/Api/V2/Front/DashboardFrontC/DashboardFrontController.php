@@ -54,6 +54,8 @@ class DashboardFrontController extends JsonApiController
                         'listings_thumb' => $reservation->listings_thumb,
                         'listings_title' => $reservation->listings_title,
                         'listings_price' => $reservation->listings_price,
+                        'id' => $reservation->id,
+
                         'url' => $reservation->url,
                         'phone' => $reservation->phone,
                         'zip' => $reservation->zip,
@@ -92,7 +94,7 @@ class DashboardFrontController extends JsonApiController
 
 
 
-        $reservation = reservation::find($reservationId);
+        $reservation = Reservation::find($reservationId);
 
 
         if (!$reservation) {
@@ -107,8 +109,8 @@ class DashboardFrontController extends JsonApiController
 
         return response()->json([
             'data' => [
-                'id' => $user->id,
-                'type' => 'users',
+                'id' => $reservation->id,
+                'type' => 'reservation',
                 'attributes' => [
                     'name' => $reservation->name,
                     'email' => $reservation->email,
@@ -127,6 +129,8 @@ class DashboardFrontController extends JsonApiController
                     'country' => $reservation->country,
                     'address' => $reservation->address,
                     'city' => $reservation->city,
+                    'id' => $reservation->id,
+
                     'total_paid' => $reservation->total_paid,
                     'total_vat' => $reservation->total_vat,
                     'adults' => $reservation->adults,

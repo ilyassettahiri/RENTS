@@ -13,11 +13,27 @@ import { ProductNewEditForm } from 'src/sections/product/product-new-edit-form';
 
 export function StoreEditView({ store }) {
 
+
+
+
   console.log('store data:', store);
 
+  const userAttributes = store?.data?.attributes || {};
 
   return (
-    <DashboardContent/>
+    <DashboardContent>
 
+
+      <h1>store Details</h1>
+      {Object.entries(userAttributes).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value ? value : 'N/A'}
+        </p>
+      ))}
+
+    </DashboardContent>
   );
+
+
+
 }

@@ -20,50 +20,22 @@ import { OrderDetailsHistory } from '../order-details-history';
 
 export function OrderDetailsView({ order }) {
 
+
   console.log('order data:', order);
 
-  const [status, setStatus] = useState(order?.status);
-
-  const handleChangeStatus = useCallback((newValue) => {
-    setStatus(newValue);
-  }, []);
+  const userAttributes = order?.data?.attributes || {};
 
   return (
     <DashboardContent>
-      <OrderDetailsToolbar
-        backLink={paths.dashboard.order.root}
-        orderNumber={order?.orderNumber}
-        createdAt={order?.createdAt}
-        status={status}
-        onChangeStatus={handleChangeStatus}
-        statusOptions={ORDER_STATUS_OPTIONS}
-      />
 
-      <Grid container spacing={3}>
-        <Grid xs={12} md={8}>
-          <Stack spacing={3} direction={{ xs: 'column-reverse', md: 'column' }}>
-            <OrderDetailsItems
-              items={order?.items}
-              taxes={order?.taxes}
-              shipping={order?.shipping}
-              discount={order?.discount}
-              subtotal={order?.subtotal}
-              totalAmount={order?.totalAmount}
-            />
 
-            <OrderDetailsHistory history={order?.history} />
-          </Stack>
-        </Grid>
+      <h1>order Details</h1>
+      {Object.entries(userAttributes).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value ? value : 'N/A'}
+        </p>
+      ))}
 
-        <Grid xs={12} md={4}>
-          <OrderDetailsInfo
-            customer={order?.customer}
-            delivery={order?.delivery}
-            payment={order?.payment}
-            shippingAddress={order?.shippingAddress}
-          />
-        </Grid>
-      </Grid>
     </DashboardContent>
   );
 }

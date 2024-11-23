@@ -27,6 +27,8 @@ import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
 export function OrderTableRow({ row, selected, onViewRow, onSelectRow, onDeleteRow }) {
   const confirm = useBoolean();
+  const { id,email, name, listings_thumb, listings_title, status, created_at } = row;
+
 
   const collapse = useBoolean();
 
@@ -44,13 +46,13 @@ export function OrderTableRow({ row, selected, onViewRow, onSelectRow, onDeleteR
 
       <TableCell>
         <Link color="inherit" onClick={onViewRow} underline="always" sx={{ cursor: 'pointer' }}>
-          {row.orderNumber}
+          {id}
         </Link>
       </TableCell>
 
       <TableCell>
         <Stack spacing={2} direction="row" alignItems="center">
-          <Avatar alt={row.customer.name} src={row.customer.avatarUrl} />
+          <Avatar alt={name} src={listings_thumb} />
 
           <Stack
             sx={{
@@ -59,30 +61,17 @@ export function OrderTableRow({ row, selected, onViewRow, onSelectRow, onDeleteR
               alignItems: 'flex-start',
             }}
           >
-            <Box component="span">{row.customer.name}</Box>
+            <Box component="span">{name}</Box>
             <Box component="span" sx={{ color: 'text.disabled' }}>
-              {row.customer.email}
+              {email}
             </Box>
           </Stack>
         </Stack>
       </TableCell>
 
-      <TableCell>
-        <ListItemText
-          primary={fDate(row.createdAt)}
-          secondary={fTime(row.createdAt)}
-          primaryTypographyProps={{ typography: 'body2', noWrap: true }}
-          secondaryTypographyProps={{
-            mt: 0.5,
-            component: 'span',
-            typography: 'caption',
-          }}
-        />
-      </TableCell>
+      <TableCell>{listings_title}</TableCell>
 
-      <TableCell align="center"> {row.totalQuantity} </TableCell>
 
-      <TableCell> {fCurrency(row.subtotal)} </TableCell>
 
       <TableCell>
         <Label
@@ -94,9 +83,25 @@ export function OrderTableRow({ row, selected, onViewRow, onSelectRow, onDeleteR
             'default'
           }
         >
-          {row.status}
+          {status}
         </Label>
       </TableCell>
+
+
+      <TableCell>
+        <ListItemText
+          primary={fDate(created_at)}
+          secondary={fTime(created_at)}
+          primaryTypographyProps={{ typography: 'body2', noWrap: true }}
+          secondaryTypographyProps={{
+            mt: 0.5,
+            component: 'span',
+            typography: 'caption',
+          }}
+        />
+      </TableCell>
+
+
 
       <TableCell align="right" sx={{ px: 1, whiteSpace: 'nowrap' }}>
         <IconButton
@@ -114,61 +119,12 @@ export function OrderTableRow({ row, selected, onViewRow, onSelectRow, onDeleteR
     </TableRow>
   );
 
-  const renderSecondary = (
-    <TableRow>
-      <TableCell sx={{ p: 0, border: 'none' }} colSpan={8}>
-        <Collapse
-          in={collapse.value}
-          timeout="auto"
-          unmountOnExit
-          sx={{ bgcolor: 'background.neutral' }}
-        >
-          <Paper sx={{ m: 1.5 }}>
-            {row.items.map((item) => (
-              <Stack
-                key={item.id}
-                direction="row"
-                alignItems="center"
-                sx={{
-                  p: (theme) => theme.spacing(1.5, 2, 1.5, 1.5),
-                  '&:not(:last-of-type)': {
-                    borderBottom: (theme) => `solid 2px ${theme.vars.palette.background.neutral}`,
-                  },
-                }}
-              >
-                <Avatar
-                  src={item.coverUrl}
-                  variant="rounded"
-                  sx={{ width: 48, height: 48, mr: 2 }}
-                />
-
-                <ListItemText
-                  primary={item.name}
-                  secondary={item.sku}
-                  primaryTypographyProps={{ typography: 'body2' }}
-                  secondaryTypographyProps={{
-                    component: 'span',
-                    color: 'text.disabled',
-                    mt: 0.5,
-                  }}
-                />
-
-                <div>x{item.quantity} </div>
-
-                <Box sx={{ width: 110, textAlign: 'right' }}>{fCurrency(item.price)}</Box>
-              </Stack>
-            ))}
-          </Paper>
-        </Collapse>
-      </TableCell>
-    </TableRow>
-  );
 
   return (
     <>
       {renderPrimary}
 
-      {renderSecondary}
+
 
       <CustomPopover
         open={popover.open}

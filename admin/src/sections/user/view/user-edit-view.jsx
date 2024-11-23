@@ -37,45 +37,19 @@ const TABS = [
 // ----------------------------------------------------------------------
 
 export function UserEditView({ user }) {
-  const tabs = useTabs('general');
 
   console.log('User data:', user);
 
+  const userAttributes = user?.data?.attributes || {};
 
   return (
     <DashboardContent>
-      <CustomBreadcrumbs
-        heading="Account"
-        links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'User', href: paths.dashboard.user.root },
-          { name: 'Account' },
-        ]}
-        sx={{ mb: { xs: 3, md: 5 } }}
-      />
-
-      <Tabs value={tabs.value} onChange={tabs.onChange} sx={{ mb: { xs: 3, md: 5 } }}>
-        {TABS.map((tab) => (
-          <Tab key={tab.value} label={tab.label} icon={tab.icon} value={tab.value} />
-        ))}
-      </Tabs>
-
-      {tabs.value === 'general' && <AccountGeneral />}
-
-      {tabs.value === 'billing' && (
-        <AccountBilling
-          plans={_userPlans}
-          cards={_userPayment}
-          invoices={_userInvoices}
-          addressBook={_userAddressBook}
-        />
-      )}
-
-      {tabs.value === 'notifications' && <AccountNotifications />}
-
-      {tabs.value === 'social' && <AccountSocialLinks socialLinks={_userAbout.socialLinks} />}
-
-      {tabs.value === 'security' && <AccountChangePassword />}
+      <h1>User Details</h1>
+      {Object.entries(userAttributes).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value ? value : 'N/A'}
+        </p>
+      ))}
     </DashboardContent>
   );
 }

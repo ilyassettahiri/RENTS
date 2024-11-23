@@ -16,20 +16,19 @@ export function ProductEditView({ product }) {
 
   console.log('product data:', product);
 
+  const userAttributes = product?.data?.attributes || {};
 
   return (
     <DashboardContent>
-      <CustomBreadcrumbs
-        heading="Edit"
-        links={[
-          { name: 'Dashboard', href: paths.dashboard.root },
-          { name: 'Product', href: paths.dashboard.product.root },
-          { name: product?.name },
-        ]}
-        sx={{ mb: { xs: 3, md: 5 } }}
-      />
 
-      <ProductNewEditForm currentProduct={product} />
+
+      <h1>product Details</h1>
+      {Object.entries(userAttributes).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value ? value : 'N/A'}
+        </p>
+      ))}
+
     </DashboardContent>
   );
 }

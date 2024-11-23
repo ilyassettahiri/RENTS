@@ -49,96 +49,25 @@ const SUMMARY = [
 
 export function ProductDetailsView({ product }) {
 
+
+
   console.log('product data:', product);
 
-
-  const tabs = useTabs('description');
-
-  const [publish, setPublish] = useState('');
-
-  useEffect(() => {
-    if (product) {
-      setPublish(product?.publish);
-    }
-  }, [product]);
-
-  const handleChangePublish = useCallback((newValue) => {
-    setPublish(newValue);
-  }, []);
+  const userAttributes = product?.data?.attributes || {};
 
   return (
     <DashboardContent>
-      <ProductDetailsToolbar
-        backLink={paths.dashboard.product.root}
-        editLink={paths.dashboard.product.edit(`${product?.id}`)}
-        liveLink={paths.product.details(`${product?.id}`)}
-        publish={publish}
-        onChangePublish={handleChangePublish}
-        publishOptions={PRODUCT_PUBLISH_OPTIONS}
-      />
 
-      <Grid container spacing={{ xs: 3, md: 5, lg: 8 }}>
-        <Grid xs={12} md={6} lg={7}>
-          <ProductDetailsCarousel images={product?.images ?? []} />
-        </Grid>
 
-        <Grid xs={12} md={6} lg={5}>
-          {product && <ProductDetailsSummary disableActions product={product} />}
-        </Grid>
-      </Grid>
+      <h1>product Details</h1>
+      {Object.entries(userAttributes).map(([key, value]) => (
+        <p key={key}>
+          <strong>{key}:</strong> {value ? value : 'N/A'}
+        </p>
+      ))}
 
-      <Box
-        gap={5}
-        display="grid"
-        gridTemplateColumns={{ xs: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)' }}
-        sx={{ my: 10 }}
-      >
-        {SUMMARY.map((item) => (
-          <Box key={item.title} sx={{ textAlign: 'center', px: 5 }}>
-            <Iconify icon={item.icon} width={32} sx={{ color: 'primary.main' }} />
-
-            <Typography variant="subtitle1" sx={{ mb: 1, mt: 2 }}>
-              {item.title}
-            </Typography>
-
-            <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              {item.description}
-            </Typography>
-          </Box>
-        ))}
-      </Box>
-
-      <Card>
-        <Tabs
-          value={tabs.value}
-          onChange={tabs.onChange}
-          sx={{
-            px: 3,
-            boxShadow: (theme) =>
-              `inset 0 -2px 0 0 ${varAlpha(theme.vars.palette.grey['500Channel'], 0.08)}`,
-          }}
-        >
-          {[
-            { value: 'description', label: 'Description' },
-            { value: 'reviews', label: `Reviews (${product?.reviews.length})` },
-          ].map((tab) => (
-            <Tab key={tab.value} value={tab.value} label={tab.label} />
-          ))}
-        </Tabs>
-
-        {tabs.value === 'description' && (
-          <ProductDetailsDescription description={product?.description ?? ''} />
-        )}
-
-        {tabs.value === 'reviews' && (
-          <ProductDetailsReview
-            ratings={product?.ratings ?? []}
-            reviews={product?.reviews ?? []}
-            totalRatings={product?.totalRatings ?? 0}
-            totalReviews={product?.totalReviews ?? 0}
-          />
-        )}
-      </Card>
     </DashboardContent>
   );
+
+
 }

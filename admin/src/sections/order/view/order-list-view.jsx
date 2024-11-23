@@ -52,31 +52,37 @@ import { OrderTableFiltersResult } from '../order-table-filters-result';
 const STATUS_OPTIONS = [{ value: 'all', label: 'All' }, ...ORDER_STATUS_OPTIONS];
 
 const TABLE_HEAD = [
-  { id: 'orderNumber', label: 'Order', width: 88 },
-  { id: 'name', label: 'Customer' },
-  { id: 'createdAt', label: 'Date', width: 140 },
-  {
-    id: 'totalQuantity',
-    label: 'Items',
-    width: 120,
-    align: 'center',
-  },
-  { id: 'totalAmount', label: 'Price', width: 140 },
+  { id: 'id', label: 'ID', width: 80 },
+  { id: 'customer', label: 'Customer', width: 240 },
+
+  { id: 'listings_title', label: 'Title', width: 200 },
+
+
   { id: 'status', label: 'Status', width: 110 },
+
+  { id: 'createdAt', label: 'Created At', width: 180 },
+
   { id: '', width: 88 },
 ];
 
 // ----------------------------------------------------------------------
 
 export function OrderListView() {
-  const table = useTable({ defaultOrderBy: 'orderNumber' });
+  const table = useTable({ defaultOrderBy: 'reservationID' });
 
   const router = useRouter();
 
   const confirm = useBoolean();
-  const { products, productsLoading } = useGetOrders();
+  const { orders, ordersLoading } = useGetOrders();
 
-  const [tableData, setTableData] = useState(_orders);
+  const [tableData, setTableData] = useState([]);
+
+
+  useEffect(() => {
+    if (orders.length) {
+      setTableData(orders);
+    }
+  }, [orders]);
 
   const filters = useSetState({
     name: '',

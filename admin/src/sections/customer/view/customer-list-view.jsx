@@ -135,17 +135,20 @@ export function CustomerListView() {
   );
 
   const columns = [
-    { field: 'category', headerName: 'Category', filterable: false },
+    {
+      field: 'email',
+      headerName: 'Email',
+      flex: 1,
+      minWidth: 150,
+    },
+
     {
       field: 'name',
-      headerName: 'Product',
+      headerName: 'Name',
       flex: 1,
-      minWidth: 360,
-      hideable: false,
-      renderCell: (params) => (
-        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.id)} />
-      ),
+      minWidth: 150,
     },
+
     {
       field: 'createdAt',
       headerName: 'Create at',
@@ -153,29 +156,18 @@ export function CustomerListView() {
       renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
     {
-      field: 'inventoryType',
-      headerName: 'Stock',
-      width: 160,
-      type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
-      renderCell: (params) => <RenderCellStock params={params} />,
+      field: 'phone',
+      headerName: 'Phone',
+      flex: 1,
+      minWidth: 150,
     },
     {
-      field: 'price',
-      headerName: 'Price',
-      width: 140,
-      editable: true,
-      renderCell: (params) => <RenderCellPrice params={params} />,
+      field: 'city',
+      headerName: 'City',
+      flex: 1,
+      minWidth: 150,
     },
-    {
-      field: 'publish',
-      headerName: 'Publish',
-      width: 110,
-      type: 'singleSelect',
-      editable: true,
-      valueOptions: PUBLISH_OPTIONS,
-      renderCell: (params) => <RenderCellPublish params={params} />,
-    },
+
     {
       type: 'actions',
       field: 'actions',

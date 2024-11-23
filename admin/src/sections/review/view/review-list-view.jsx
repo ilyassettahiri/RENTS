@@ -134,47 +134,51 @@ export function ReviewListView() {
   );
 
   const columns = [
-    { field: 'category', headerName: 'Category', filterable: false },
+    {
+      field: 'email',
+      headerName: 'Email',
+      flex: 1,
+      minWidth: 150,
+    },
+
     {
       field: 'name',
-      headerName: 'Product',
+      headerName: 'Name',
       flex: 1,
-      minWidth: 360,
-      hideable: false,
-      renderCell: (params) => (
-        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.id)} />
-      ),
+      minWidth: 150,
     },
+
+    {
+      field: 'listings_title',
+      headerName: 'Title',
+      flex: 1,
+      minWidth: 150,
+    },
+
+
+    {
+      field: 'description',
+      headerName: 'Description',
+      flex: 1,
+      minWidth: 150,
+    },
+
+
+    {
+      field: 'rating',
+      headerName: 'Rating',
+      flex: 1,
+      minWidth: 150,
+    },
+
+
     {
       field: 'createdAt',
       headerName: 'Create at',
       width: 160,
       renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
-    {
-      field: 'inventoryType',
-      headerName: 'Stock',
-      width: 160,
-      type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
-      renderCell: (params) => <RenderCellStock params={params} />,
-    },
-    {
-      field: 'price',
-      headerName: 'Price',
-      width: 140,
-      editable: true,
-      renderCell: (params) => <RenderCellPrice params={params} />,
-    },
-    {
-      field: 'publish',
-      headerName: 'Publish',
-      width: 110,
-      type: 'singleSelect',
-      editable: true,
-      valueOptions: PUBLISH_OPTIONS,
-      renderCell: (params) => <RenderCellPublish params={params} />,
-    },
+
     {
       type: 'actions',
       field: 'actions',

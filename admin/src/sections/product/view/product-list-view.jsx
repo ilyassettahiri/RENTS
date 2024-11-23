@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box';
+import { Label } from 'src/components/label';
 
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -152,29 +153,34 @@ export function ProductListView() {
       renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
     {
-      field: 'inventoryType',
-      headerName: 'Stock',
-      width: 160,
-      type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
-      renderCell: (params) => <RenderCellStock params={params} />,
+      field: 'user_id',
+      headerName: 'User ID',
+      width: 100,
     },
     {
-      field: 'price',
-      headerName: 'Price',
-      width: 140,
-      editable: true,
-      renderCell: (params) => <RenderCellPrice params={params} />,
+      field: 'url',
+      headerName: 'URL',
+      width: 200,
+
     },
-    {
-      field: 'publish',
-      headerName: 'Publish',
-      width: 110,
-      type: 'singleSelect',
-      editable: true,
-      valueOptions: PUBLISH_OPTIONS,
-      renderCell: (params) => <RenderCellPublish params={params} />,
-    },
+      {
+    field: 'status',
+    headerName: 'Status',
+    width: 140,
+    renderCell: (params) => (
+      <Label
+        variant="soft"
+        color={
+          (params.value === 'published' && 'success') ||
+          (params.value === 'draft' && 'warning') ||
+          (params.value === 'pending' && 'error') ||
+          'default'
+        }
+      >
+        {params.value}
+      </Label>
+    ),
+  },
     {
       type: 'actions',
       field: 'actions',

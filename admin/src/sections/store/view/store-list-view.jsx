@@ -152,20 +152,35 @@ export function StoreListView() {
       renderCell: (params) => <RenderCellCreatedAt params={params} />,
     },
     {
-      field: 'inventoryType',
-      headerName: 'Stock',
+      field: 'description',
+      headerName: 'Description',
       width: 160,
-      type: 'singleSelect',
-      valueOptions: PRODUCT_STOCK_OPTIONS,
-      renderCell: (params) => <RenderCellStock params={params} />,
+      editable: true,
     },
     {
-      field: 'price',
-      headerName: 'Price',
+      field: 'email',
+      headerName: 'Email',
       width: 140,
       editable: true,
-      renderCell: (params) => <RenderCellPrice params={params} />,
     },
+
+
+    {
+      field: 'city',
+      headerName: 'City',
+      width: 140,
+      editable: true,
+    },
+
+
+    {
+      field: 'phone',
+      headerName: 'Phone',
+      width: 140,
+      editable: true,
+    },
+
+
     {
       field: 'publish',
       headerName: 'Publish',

@@ -229,6 +229,60 @@ class CancelledController extends JsonApiController
 
 
 
+
+
+    public function show(JsonApiRoute $route, Store $store)
+    {
+
+
+         $listingId = $route->resourceId();
+
+
+
+        $listing = Listing::find($listingId);
+
+
+        if (!$listing) {
+            return response()->json(['error' => 'listing not found'], 404);
+        }
+
+
+
+
+
+
+
+        return response()->json([
+            'data' => [
+                'id' => $listing->id,
+                'type' => 'listing',
+                'attributes' => [
+                        'category' => $listing->category,
+                        'url' => $listing->url,
+                        'title' => $listing->title,
+                        'city' => $listing->city,
+                        'price' => $listing->price,
+                        'status' => $listing->status,
+                        'picture' => $listing->picture,
+                        'id' => $listing->id,
+
+                        'user_id' => $listing->user_id,
+                        'created_at' => $listing->created_at,
+                        'updated_at' => $listing->updated_at,
+                    ],
+
+            ],
+
+        ]);
+
+
+
+
+
+    }
+
+
+
     public function store(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
@@ -350,32 +404,7 @@ class CancelledController extends JsonApiController
         ], 200); // 200 OK status code
     }
 
-    public function show(JsonApiRoute $route, Store $store)
-    {
-        $user = Auth::user();
-        $collection = Collection::where('user_id', $user->id)->findOrFail($route->resourceId());
 
-        return response()->json([
-            'data' => [
-                'type' => 'collections',
-                'id' => $collection->id,
-                'attributes' => [
-                    'name' => $collection->name,
-                    'picture' => $collection->picture,
-                    'description' => $collection->description,
-                    'created_at' => $collection->created_at,
-                ],
-                'relationships' => [
-                    'user' => [
-                        'data' => [
-                            'type' => 'users',
-                            'id' => $user->id,
-                        ],
-                    ],
-                ],
-            ]
-        ]);
-    }
 
 
 
