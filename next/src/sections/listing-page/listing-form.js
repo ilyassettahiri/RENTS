@@ -16,6 +16,8 @@ import PropTypes from 'prop-types';
 
 import { paths as getPaths } from 'src/routes/paths';
 import { fCurrency } from 'src/utils/format-number';
+import ProductPrice from 'src/sections/store/common/product-price';
+
 import FilterTime from 'src/sections/components/listings/filters/filter-time';
 import FilterGuests from 'src/sections/components/listings/filters/filter-guests';
 
@@ -28,7 +30,7 @@ export default function ListingForm({ tour }) {
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
   const { attributes } = tour;
-  const { price, category, url, startdate, enddate, reservations } = attributes;
+  const { price,per, category, url, startdate, enddate, reservations } = attributes;
 
   const [guests, setGuests] = useState({
     adults: 0,
@@ -79,16 +81,18 @@ export default function ListingForm({ tour }) {
   return (
     <Card>
       <Stack spacing={3} sx={{ px: 1.5, py: 2 }}>
-            <Stack
-              spacing={1}
-              direction="row"
-              alignItems="center"
-              justifyContent="space-between" // Aligns text on the left and price on the right
-              sx={{ typography: 'h4' }}
-            >
-              <Typography variant="body1">Complete the form to reserve</Typography>
-              {fCurrency(price)}
-            </Stack>
+
+
+
+              <ProductPrice
+
+                price={price}
+
+                per={per}
+                sx={{ typography: 'h4' }}
+
+              />
+
 
 
         <Stack spacing={1.5}>
@@ -177,7 +181,14 @@ export default function ListingForm({ tour }) {
           }}
         >
 
-          {t('Reserve')}
+          {t('Reserve')} ( <ProductPrice
+
+                price={price}
+
+                per={per}
+                sx={{ typography: 'body2' }}
+
+                /> )
         </Button>
       </Stack>
     </Card>
@@ -190,6 +201,8 @@ ListingForm.propTypes = {
       price: PropTypes.number.isRequired,
       category: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
+      per: PropTypes.string.isRequired,
+
       startdate: PropTypes.string.isRequired,
       enddate: PropTypes.string.isRequired,
       reservations: PropTypes.arrayOf(

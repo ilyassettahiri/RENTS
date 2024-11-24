@@ -32,7 +32,7 @@ import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carous
 import LoginDialog from 'src/sections/auth/login-dialog';
 
 import TextMaxLine from 'src/components/text-max-line';
-import ProductPrice from '../../common/product-price';
+import ProductPrice from 'src/sections/store/common/product-price';
 import ProductRating from '../../common/product-rating';
 
 
@@ -156,7 +156,14 @@ export default function StoreViewListItem({ product, favorites = [], onFavoriteT
             <Stack spacing={0.5}>
 
 
-              <ProductPrice price={product.attributes.price} sx={{ typography: 'body2' }} />
+              <ProductPrice
+
+              price={product.attributes.price}
+
+              per={product.attributes.per}
+              sx={{ typography: 'body2' }}
+
+              />
 
 
               <Link component={RouterLink}
@@ -214,6 +221,8 @@ StoreViewListItem.propTypes = {
       totalReviews: PropTypes.number,
       created_at: PropTypes.string,
       price: PropTypes.number,
+      per: PropTypes.string,
+
       images: PropTypes.array.isRequired,
       id: PropTypes.number,
       city: PropTypes.string,

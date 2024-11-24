@@ -70,7 +70,7 @@ export default function StoreItemBestSellers({ product, ...other }) {
           <ProductRating ratingNumber={product.averageRating} label={`${product.totalReviews} reviews`} />
 
 
-          <ProductPrice price={product.price} priceSale={product.priceSale} />
+          <ProductPrice price={product.price} per={product.per} priceSale={product.priceSale} />
         </Stack>
       </Stack>
     </Link>
@@ -89,6 +89,7 @@ StoreItemBestSellers.propTypes = {
     totalReviews: PropTypes.number,
     category: PropTypes.string,
     city: PropTypes.string,
+    per: PropTypes.string,
 
     url: PropTypes.string,
   }).isRequired,

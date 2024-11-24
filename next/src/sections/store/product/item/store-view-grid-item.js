@@ -31,7 +31,7 @@ import useAuthDialog from 'src/hooks/use-authdialog';
 import LoginDialog from 'src/sections/auth/login-dialog';
 
 import TextMaxLine from 'src/components/text-max-line';
-import ProductPrice from '../../common/product-price';
+import ProductPrice from 'src/sections/store/common/product-price';
 import ProductRating from '../../common/product-rating';
 
 
@@ -122,7 +122,14 @@ export default function StoreViewGridItem({ product, sx, favorites = [], onFavor
             }}
 
             >
-              <ProductPrice price={product.attributes.price} sx={{ typography: 'body2' }} />
+              <ProductPrice
+
+                price={product.attributes.price}
+
+                per={product.attributes.per}
+                sx={{ typography: 'body2' }}
+
+              />
 
 
             </Label>
@@ -200,6 +207,8 @@ StoreViewGridItem.propTypes = {
       images: PropTypes.array.isRequired,
       id: PropTypes.number,
       city: PropTypes.string,
+      per: PropTypes.string,
+
       jobtype: PropTypes.string.isRequired,
 
       type: PropTypes.string,

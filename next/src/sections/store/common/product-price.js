@@ -10,10 +10,10 @@ import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function ProductPrice({ price, priceSale = 0, sx, ...other }) {
+export default function ProductPrice({ price,per, priceSale = 0, sx, ...other }) {
   return (
     <Stack direction="row" sx={{ typography: 'subtitle2', ...sx }} {...other}>
-      {fCurrency(price)}
+      {`${fCurrency(price)} / ${per || 'Day'}`}
 
       <Box
         component="span"
@@ -32,6 +32,8 @@ export default function ProductPrice({ price, priceSale = 0, sx, ...other }) {
 
 ProductPrice.propTypes = {
   price: PropTypes.number,
+  per: PropTypes.string.isRequired,
+
   priceSale: PropTypes.number,
   sx: PropTypes.object,
 };

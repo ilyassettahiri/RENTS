@@ -32,6 +32,8 @@ import { fDate,capitalizeFirstLetter } from 'src/utils/format-time';
 import { fCurrency } from 'src/utils/format-number';
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+import ProductPrice from 'src/sections/store/common/product-price';
+
 import TextMaxLine from 'src/components/text-max-line';
 import Grid from '@mui/material/Unstable_Grid2';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
@@ -62,7 +64,7 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
 
   const { attributes } = job;
 
-  const { title, city,phone,jobtype, averageRating, price,seller, created_at, category, url, id, images } = attributes;
+  const { title, city,phone,jobtype, averageRating,per, price,seller, created_at, category, url, id, images } = attributes;
 
   const router = useRouter();
 
@@ -178,7 +180,20 @@ export default function ServiceItem({ job, favorites = [], onFavoriteToggle }) {
             >
 
 
-              <Stack/>
+              <ProductPrice
+
+              price={price}
+
+              per={per}
+              sx={{
+                px: 1,
+                borderRadius: 0.75,
+                typography: 'subtitle2',
+                bgcolor: 'text.primary',
+                color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
+              }}
+
+              />
 
               <Checkbox
                 color="error"
@@ -494,6 +509,7 @@ ServiceItem.propTypes = {
       city: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
       jobtype: PropTypes.string.isRequired,
+      per: PropTypes.string.isRequired,
 
       category: PropTypes.string.isRequired,
       averageRating: PropTypes.number.isRequired,

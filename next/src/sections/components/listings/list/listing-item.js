@@ -31,6 +31,8 @@ import { RouterLink } from 'src/routes/components';
 import { fCurrency } from 'src/utils/format-number';
 import Image from 'src/components/image';
 import Iconify from 'src/components/iconify';
+import ProductPrice from 'src/sections/store/common/product-price';
+
 import TextMaxLine from 'src/components/text-max-line';
 import CrudService from 'src/services/cruds-service';
 import Carousel, { useCarousel, CarouselArrowIndex } from 'src/components/carousel';
@@ -53,7 +55,7 @@ const StyledButton = styled((props) => (
 
 export default function ListingsItem({ tour, favorites = [], onFavoriteToggle }) {
   const { attributes } = tour;
-  const { title, city,phone, price,seller,averageRating, created_at, category, url, id, images } = attributes;
+  const { title, city,phone,per, price,seller,averageRating, created_at, category, url, id, images } = attributes;
 
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
@@ -139,19 +141,23 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                 position: 'absolute',
               }}
             >
-              <Stack
-                spacing={0.5}
-                direction="row"
-                sx={{
-                  px: 1,
-                  borderRadius: 0.75,
-                  typography: 'subtitle2',
-                  bgcolor: 'text.primary',
-                  color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
-                }}
-              >
-                {fCurrency(price)}
-              </Stack>
+
+                  <ProductPrice
+
+                  price={price}
+
+                  per={per}
+                  sx={{
+                    px: 1,
+                    borderRadius: 0.75,
+                    typography: 'subtitle2',
+                    bgcolor: 'text.primary',
+                    color: (theme) => (theme.palette.mode === 'light' ? 'common.white' : 'grey.800'),
+                  }}
+
+                  />
+
+
 
               <Checkbox
                 color="error"
@@ -425,6 +431,7 @@ ListingsItem.propTypes = {
       price: PropTypes.number.isRequired,
       phone: PropTypes.string.isRequired,
       averageRating: PropTypes.number.isRequired,
+      per: PropTypes.string.isRequired,
 
       created_at: PropTypes.string.isRequired,
       category: PropTypes.string.isRequired,
