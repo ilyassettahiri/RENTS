@@ -2,6 +2,15 @@
  * Locales code
  * https://gist.github.com/raushankrjha/d1c7e35cf87e69aa8b4208a8171a8416
  */
+import { formatNumberLocale } from 'src/locales';
+const DEFAULT_LOCALE = { code: 'en-US', currency: 'USD' };
+
+
+function processInput(inputValue) {
+  if (inputValue == null || Number.isNaN(inputValue)) return null;
+  return Number(inputValue);
+}
+
 
 function getLocaleCode() {
   return {
@@ -12,16 +21,16 @@ function getLocaleCode() {
 
 // ----------------------------------------------------------------------
 
-export function fNumber(inputValue) {
-  const { code } = getLocaleCode();
+export function fNumber(inputValue, options) {
+  const locale = formatNumberLocale() || DEFAULT_LOCALE;
 
-  if (!inputValue) return '';
+  const number = processInput(inputValue);
+  if (number === null) return '';
 
-  const number = Number(inputValue);
-
-  const fm = new Intl.NumberFormat(code, {
+  const fm = new Intl.NumberFormat(locale.code, {
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
+    ...options,
   }).format(number);
 
   return fm;
@@ -29,53 +38,52 @@ export function fNumber(inputValue) {
 
 // ----------------------------------------------------------------------
 
-export function fCurrency(inputValue) {
-  const { code, currency } = getLocaleCode();
+export function fCurrency(inputValue, options) {
+  const locale = formatNumberLocale() || DEFAULT_LOCALE;
 
-  if (!inputValue) return '';
+  const number = processInput(inputValue);
+  if (number === null) return '';
 
-  const number = Number(inputValue);
-
-  const fm = new Intl.NumberFormat(code, {
+  const fm = new Intl.NumberFormat(locale.code, {
     style: 'currency',
-    currency,
+    currency: locale.currency,
     minimumFractionDigits: 0,
     maximumFractionDigits: 2,
+    ...options,
   }).format(number);
 
   return fm;
 }
-
 // ----------------------------------------------------------------------
 
-export function fPercent(inputValue) {
-  const { code } = getLocaleCode();
+export function fPercent(inputValue, options) {
+  const locale = formatNumberLocale() || DEFAULT_LOCALE;
 
-  if (!inputValue) return '';
+  const number = processInput(inputValue);
+  if (number === null) return '';
 
-  const number = Number(inputValue) / 100;
-
-  const fm = new Intl.NumberFormat(code, {
+  const fm = new Intl.NumberFormat(locale.code, {
     style: 'percent',
     minimumFractionDigits: 0,
     maximumFractionDigits: 1,
-  }).format(number);
+    ...options,
+  }).format(number / 100);
 
   return fm;
 }
 
 // ----------------------------------------------------------------------
 
-export function fShortenNumber(inputValue) {
-  const { code } = getLocaleCode();
+export function fShortenNumber(inputValue, options) {
+  const locale = formatNumberLocale() || DEFAULT_LOCALE;
 
-  if (!inputValue) return '';
+  const number = processInput(inputValue);
+  if (number === null) return '';
 
-  const number = Number(inputValue);
-
-  const fm = new Intl.NumberFormat(code, {
+  const fm = new Intl.NumberFormat(locale.code, {
     notation: 'compact',
     maximumFractionDigits: 2,
+    ...options,
   }).format(number);
 
   return fm.replace(/[A-Z]/g, (match) => match.toLowerCase());

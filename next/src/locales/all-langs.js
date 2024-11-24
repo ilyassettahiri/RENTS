@@ -49,7 +49,7 @@ export const allLangs = [
     label: 'Arabic',
     countryCode: 'SA',
     adapterLocale: 'ar-sa',
-    numberFormat: { code: 'ar', currency: 'AED' },
+    numberFormat: { code: 'ar-MA', currency: 'MAD' },
     systemValue: {
       components: { ...arSACore.components, ...arSDDataGrid.components },
     },
