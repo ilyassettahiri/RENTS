@@ -362,6 +362,8 @@ class ServicePageController extends JsonApiController
 
                     'address' => $service->address,
                     'city' => $service->city,
+                    'per' => $service->typea,
+                    'currency' => $service->currency,
 
                     'phone' => $service->phone,
 
@@ -498,6 +500,9 @@ class ServicePageController extends JsonApiController
                                 'created_at' => $listing->created_at,
                                 'city' => $listing->city,
 
+                                'per' => $listing->typea,
+                                'currency' => $listing->currency,
+
                                 'id' => $listing->id,
 
                                 'phone' => $listing->phone,
@@ -544,6 +549,11 @@ class ServicePageController extends JsonApiController
                             'title' => $recentlisting->title,
                             'price' => $recentlisting->price,
                             'city' => $recentlisting->city,
+
+                            'per' => $recentlisting->typea,
+                            'currency' => $recentlisting->currency,
+
+
                             'id' => $recentlisting->id,
                             'category' => 'services',
                             'url' => $recentlisting->url,

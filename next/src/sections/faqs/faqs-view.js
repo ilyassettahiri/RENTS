@@ -37,7 +37,6 @@ export default function FaqsView({ faqData }) {
     setIsLoading(false);
   }, []);
 
-  // Memorize the data transformation
   const { faqSubjects, faqs, topics } = useMemo(() => {
     if (isLoading) {
       return { faqSubjects: [], faqs: [], topics: [] };
@@ -60,7 +59,8 @@ export default function FaqsView({ faqData }) {
     }));
 
     return { faqSubjects: faqSubjectsData, faqs: faqsData, topics: topicsData };
-  }, [faqData]);
+  }, [faqData, isLoading]);
+
 
   // Set default topic after data is fetched
   useEffect(() => {

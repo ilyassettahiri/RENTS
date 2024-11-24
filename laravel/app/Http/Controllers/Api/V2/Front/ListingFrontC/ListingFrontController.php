@@ -849,6 +849,9 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
+
+
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -972,6 +975,9 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
+
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -1026,7 +1032,12 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
 
                                             'title' => $recentlisting->title,
+
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
+
+
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'billiard',
@@ -1076,6 +1087,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1104,6 +1117,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1127,6 +1142,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1153,6 +1170,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1176,6 +1195,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1199,6 +1220,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1223,6 +1246,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1246,6 +1271,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1274,6 +1301,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1296,6 +1325,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'billiard',
@@ -1387,6 +1418,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -1507,6 +1539,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -1576,6 +1610,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'boxing',
@@ -1610,6 +1646,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -1635,6 +1673,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1658,6 +1698,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1684,6 +1726,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1707,6 +1751,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1730,6 +1776,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1753,6 +1801,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1776,6 +1826,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1804,6 +1856,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1826,6 +1880,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boxing',
@@ -1923,6 +1979,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -2042,6 +2099,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -2110,6 +2169,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'diving',
@@ -2143,6 +2204,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -2168,6 +2231,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2191,6 +2256,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2217,6 +2284,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2240,6 +2309,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2263,6 +2334,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2286,6 +2359,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2309,6 +2384,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2338,6 +2415,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2361,6 +2440,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'diving',
@@ -2459,6 +2540,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -2578,6 +2660,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -2644,6 +2728,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'football',
@@ -2679,6 +2765,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -2704,6 +2792,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2727,6 +2817,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2753,6 +2845,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2776,6 +2870,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2799,6 +2895,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2822,6 +2920,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2845,6 +2945,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2873,6 +2975,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2895,6 +2999,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'football',
@@ -2988,6 +3094,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -3107,6 +3214,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -3173,6 +3282,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'golf',
@@ -3207,6 +3318,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -3232,6 +3345,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3255,6 +3370,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3281,6 +3398,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3304,6 +3423,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3327,6 +3448,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3350,6 +3473,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3373,6 +3498,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3401,6 +3528,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3423,6 +3552,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'golf',
@@ -3521,6 +3652,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -3646,6 +3778,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -3712,6 +3846,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'hunting',
@@ -3746,6 +3882,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -3770,6 +3908,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3793,6 +3933,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3819,6 +3961,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3842,6 +3986,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3864,6 +4010,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3887,6 +4035,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3910,6 +4060,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3938,6 +4090,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -3960,6 +4114,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'hunting',
@@ -4057,6 +4213,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -4183,6 +4340,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -4250,6 +4409,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'gym',
@@ -4287,6 +4448,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -4311,6 +4474,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4334,6 +4499,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4360,6 +4527,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4383,6 +4552,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4406,6 +4577,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4428,6 +4601,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4450,6 +4625,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4477,6 +4654,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4498,6 +4677,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gym',
@@ -4597,6 +4778,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -4720,6 +4902,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -4787,6 +4971,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'surf',
@@ -4823,6 +5009,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -4847,6 +5035,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4870,6 +5060,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4896,6 +5088,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4919,6 +5113,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4942,6 +5138,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4964,6 +5162,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -4986,6 +5186,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -5013,6 +5215,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -5034,6 +5238,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'surf',
@@ -5129,6 +5335,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -5248,6 +5455,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -5316,6 +5525,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'tennis',
@@ -5353,6 +5564,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -5377,6 +5590,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5400,6 +5615,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5427,6 +5644,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5450,6 +5669,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5473,6 +5694,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5496,6 +5719,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5519,6 +5744,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5547,6 +5774,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5569,6 +5798,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tennis',
@@ -5663,6 +5894,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -5786,6 +6018,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -5855,6 +6089,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'audio',
@@ -5890,6 +6126,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -5914,6 +6152,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -5937,6 +6177,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -5963,6 +6205,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -5986,6 +6230,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6009,6 +6255,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6032,6 +6280,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6055,6 +6305,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6083,6 +6335,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6105,6 +6359,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'audio',
@@ -6201,6 +6457,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -6326,6 +6583,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -6394,6 +6653,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'cameras',
@@ -6430,6 +6691,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -6454,6 +6717,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6477,6 +6742,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6503,6 +6770,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6526,6 +6795,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6549,6 +6820,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6572,6 +6845,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6595,6 +6870,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6623,6 +6900,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6646,6 +6925,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cameras',
@@ -6740,6 +7021,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -6863,6 +7145,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -6932,6 +7216,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'chargers',
@@ -6967,6 +7253,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -6991,6 +7279,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7014,6 +7304,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7040,6 +7332,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7063,6 +7357,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7086,6 +7382,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7109,6 +7407,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7132,6 +7432,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7160,6 +7462,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7182,6 +7486,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'chargers',
@@ -7278,6 +7584,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -7402,6 +7709,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -7471,6 +7780,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'drones',
@@ -7506,6 +7817,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -7530,6 +7843,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7553,6 +7868,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7579,6 +7896,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7602,6 +7921,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7625,6 +7946,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7648,6 +7971,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7671,6 +7996,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7700,6 +8027,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7722,6 +8051,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'drones',
@@ -7821,6 +8152,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -7945,6 +8277,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -8010,6 +8344,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'gaming',
@@ -8045,6 +8381,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -8069,6 +8407,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8092,6 +8432,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8118,6 +8460,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8141,6 +8485,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8164,6 +8510,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8187,6 +8535,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8210,6 +8560,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8238,6 +8590,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8260,6 +8614,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'gaming',
@@ -8356,6 +8712,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -8483,6 +8840,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -8551,6 +8910,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'laptops',
@@ -8587,6 +8948,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8611,6 +8974,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8634,6 +8999,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8660,6 +9027,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8683,6 +9052,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8706,6 +9077,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8729,6 +9102,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8752,6 +9127,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8779,6 +9156,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8800,6 +9179,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'laptops',
@@ -8898,6 +9279,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -9019,6 +9401,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -9085,6 +9469,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'lighting',
@@ -9120,6 +9506,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -9144,6 +9532,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9167,6 +9557,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9194,6 +9586,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9217,6 +9611,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9240,6 +9636,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9263,6 +9661,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9286,6 +9686,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9314,6 +9716,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9336,6 +9740,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lighting',
@@ -9429,6 +9835,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -9552,6 +9959,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -9620,6 +10029,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'printers',
@@ -9656,6 +10067,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9680,6 +10093,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9703,6 +10118,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9729,6 +10146,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9752,6 +10171,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9775,6 +10196,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9798,6 +10221,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9821,6 +10246,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9849,6 +10276,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9871,6 +10300,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'printers',
@@ -9961,6 +10392,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -10085,6 +10517,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -10153,6 +10587,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'routers',
@@ -10189,6 +10625,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10213,6 +10651,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10236,6 +10676,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10262,6 +10704,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10285,6 +10729,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10307,6 +10753,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10329,6 +10777,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10352,6 +10802,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10381,6 +10833,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10403,6 +10857,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'routers',
@@ -10494,6 +10950,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -10618,6 +11075,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -10685,6 +11144,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'tablets',
@@ -10722,6 +11183,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10746,6 +11209,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10769,6 +11234,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10795,6 +11262,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10818,6 +11287,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10842,6 +11313,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10865,6 +11338,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10888,6 +11363,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10916,6 +11393,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -10938,6 +11417,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tablets',
@@ -11029,6 +11510,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -11156,6 +11638,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -11226,6 +11710,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'eclairage',
@@ -11262,6 +11748,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -11286,6 +11774,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11309,6 +11799,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11335,6 +11827,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11358,6 +11852,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11381,6 +11877,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11403,6 +11901,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11426,6 +11926,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11454,6 +11956,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11476,6 +11980,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'eclairage',
@@ -11568,6 +12074,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -11689,6 +12196,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -11759,6 +12268,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'mobilier',
@@ -11795,6 +12306,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -11819,6 +12332,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11842,6 +12357,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11868,6 +12385,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11891,6 +12410,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11913,6 +12434,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11935,6 +12458,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11957,6 +12482,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -11984,6 +12511,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -12006,6 +12535,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mobilier',
@@ -12096,6 +12627,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -12219,6 +12751,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -12288,6 +12822,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'photography',
@@ -12324,6 +12860,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12348,6 +12886,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12371,6 +12911,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12397,6 +12939,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12420,6 +12964,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12442,6 +12988,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12464,6 +13012,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12487,6 +13037,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12515,6 +13067,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12537,6 +13091,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'photography',
@@ -12626,6 +13182,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -12757,6 +13314,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -12825,6 +13384,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'sound-systems',
@@ -12861,6 +13422,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -12885,6 +13448,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -12908,6 +13473,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -12934,6 +13501,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -12957,6 +13526,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -12980,6 +13551,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -13003,6 +13576,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -13026,6 +13601,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -13054,6 +13631,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -13076,6 +13655,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'sound-systems',
@@ -13170,6 +13751,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -13289,6 +13871,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -13359,6 +13943,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'tents',
@@ -13395,6 +13981,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13419,6 +14007,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13442,6 +14032,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13468,6 +14060,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13491,6 +14085,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13514,6 +14110,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13537,6 +14135,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13560,6 +14160,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13588,6 +14190,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13609,6 +14213,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'tents',
@@ -13699,6 +14305,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -13820,6 +14427,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -13888,6 +14497,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'clothes',
@@ -13924,6 +14535,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -13948,6 +14561,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -13971,6 +14586,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -13997,6 +14614,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14020,6 +14639,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14043,6 +14664,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14066,6 +14689,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14089,6 +14714,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14117,6 +14744,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14139,6 +14768,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'clothes',
@@ -14230,6 +14861,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -14352,6 +14984,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -14421,6 +15055,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'jewelry',
@@ -14457,6 +15093,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14481,6 +15119,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14504,6 +15144,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14530,6 +15172,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14553,6 +15197,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14575,6 +15221,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14597,6 +15245,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14620,6 +15270,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14647,6 +15299,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14669,6 +15323,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'jewelry',
@@ -14760,6 +15416,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -14883,6 +15540,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -14949,6 +15608,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'apartments',
@@ -14985,6 +15646,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15009,6 +15672,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15032,6 +15697,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15058,6 +15725,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15081,6 +15750,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15103,6 +15774,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15125,6 +15798,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15147,6 +15822,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15174,6 +15851,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15196,6 +15875,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'apartments',
@@ -15287,6 +15968,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -15419,6 +16101,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -15487,6 +16171,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'offices',
@@ -15523,6 +16209,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15547,6 +16235,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15570,6 +16260,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15596,6 +16288,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15619,6 +16313,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15641,6 +16337,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15664,6 +16362,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15687,6 +16387,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15715,6 +16417,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15737,6 +16441,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'offices',
@@ -15826,6 +16532,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -15955,6 +16662,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -16024,6 +16733,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'shops',
@@ -16060,6 +16771,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16084,6 +16797,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16107,6 +16822,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16133,6 +16850,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16156,6 +16875,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16178,6 +16899,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16200,6 +16923,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16222,6 +16947,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16249,6 +16976,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16270,6 +16999,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'shops',
@@ -16358,6 +17089,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -16482,6 +17214,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -16549,6 +17283,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'houses',
@@ -16585,6 +17321,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16609,6 +17347,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16632,6 +17372,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16658,6 +17400,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16681,6 +17425,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16703,6 +17449,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16725,6 +17473,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16747,6 +17497,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16774,6 +17526,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16795,6 +17549,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'houses',
@@ -16886,6 +17642,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -17043,6 +17800,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -17111,6 +17870,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'riads',
@@ -17147,6 +17908,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17171,6 +17934,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17194,6 +17959,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17220,6 +17987,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17243,6 +18012,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17265,6 +18036,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17287,6 +18060,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17309,6 +18084,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17336,6 +18113,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17357,6 +18136,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'riads',
@@ -17447,6 +18228,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -17578,6 +18360,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -17646,6 +18430,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'lands',
@@ -17682,6 +18468,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17706,6 +18494,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17729,6 +18519,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17755,6 +18547,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17778,6 +18572,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17801,6 +18597,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17823,6 +18621,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17845,6 +18645,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17872,6 +18674,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17893,6 +18697,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'lands',
@@ -17985,6 +18791,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -18110,6 +18917,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -18178,6 +18987,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'villas',
@@ -18214,6 +19025,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18238,6 +19051,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18261,6 +19076,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18287,6 +19104,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18310,6 +19129,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18332,6 +19153,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18354,6 +19177,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18376,6 +19201,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18403,6 +19230,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18424,6 +19253,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'villas',
@@ -18514,6 +19345,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -18637,6 +19469,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -18704,6 +19538,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'activities',
@@ -18740,6 +19576,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18764,6 +19602,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18787,6 +19627,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18813,6 +19655,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18837,6 +19681,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18859,6 +19705,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18881,6 +19729,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18903,6 +19753,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18930,6 +19782,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -18951,6 +19805,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'activities',
@@ -19044,6 +19900,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -19165,6 +20022,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -19233,6 +20092,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'books',
@@ -19269,6 +20130,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19293,6 +20156,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19316,6 +20181,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19342,6 +20209,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19366,6 +20235,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19388,6 +20259,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19410,6 +20283,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19432,6 +20307,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19459,6 +20336,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19480,6 +20359,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'books',
@@ -19570,6 +20451,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -19688,6 +20570,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -19756,6 +20640,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'musical',
@@ -19792,6 +20678,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19816,6 +20704,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19839,6 +20729,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19865,6 +20757,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19888,6 +20782,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19910,6 +20806,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19932,6 +20830,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19954,6 +20854,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -19981,6 +20883,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -20002,6 +20906,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'musical',
@@ -20088,6 +20994,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -20211,6 +21118,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -20279,6 +21188,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'furniture',
@@ -20315,6 +21226,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20339,6 +21252,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20362,6 +21277,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20388,6 +21305,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20411,6 +21330,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20433,6 +21354,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20455,6 +21378,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20477,6 +21402,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20504,6 +21431,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20525,6 +21454,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'furniture',
@@ -20616,6 +21547,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -20741,6 +21673,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -20808,6 +21742,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'home-appliances',
@@ -20843,6 +21779,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20867,6 +21805,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20890,6 +21830,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20916,6 +21858,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20939,6 +21883,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20961,6 +21907,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -20983,6 +21931,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -21005,6 +21955,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -21032,6 +21984,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -21053,6 +22007,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'home-appliances',
@@ -21143,6 +22099,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -21273,6 +22230,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -21342,6 +22301,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'electrical-tools',
@@ -21378,6 +22339,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21402,6 +22365,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21425,6 +22390,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21451,6 +22418,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21474,6 +22443,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21496,6 +22467,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21519,6 +22492,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21541,6 +22516,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21568,6 +22545,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21589,6 +22568,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'electrical-tools',
@@ -21681,6 +22662,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -21808,6 +22790,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -21875,6 +22859,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'ladders',
@@ -21910,6 +22896,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -21934,6 +22922,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -21957,6 +22947,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -21983,6 +22975,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22006,6 +23000,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22028,6 +23024,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22050,6 +23048,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22072,6 +23072,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22099,6 +23101,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22120,6 +23124,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'ladders',
@@ -22210,6 +23216,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -22335,6 +23342,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -22402,6 +23411,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'mechanical-tools',
@@ -22437,6 +23448,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -22461,6 +23474,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22484,6 +23499,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22510,6 +23527,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22533,6 +23552,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22555,6 +23576,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22577,6 +23600,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22599,6 +23624,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22626,6 +23653,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22647,6 +23676,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'mechanical-tools',
@@ -22737,6 +23768,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -22865,6 +23897,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -22933,6 +23967,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'power-tools',
@@ -22969,6 +24005,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -22993,6 +24031,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23016,6 +24056,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23042,6 +24084,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23065,6 +24109,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23087,6 +24133,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23109,6 +24157,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23131,6 +24181,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23158,6 +24210,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23179,6 +24233,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'power-tools',
@@ -23271,6 +24327,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -23399,6 +24456,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -23467,6 +24526,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'pressure-washers',
@@ -23503,6 +24564,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'averageRating' => $averageRating,
@@ -23527,6 +24590,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23550,6 +24615,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23576,6 +24643,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23599,6 +24668,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23621,6 +24692,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23643,6 +24716,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23665,6 +24740,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23692,6 +24769,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23713,6 +24792,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'pressure-washers',
@@ -23805,6 +24886,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -23930,6 +25012,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -23997,6 +25081,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'boats',
@@ -24033,6 +25119,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24057,6 +25145,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24080,6 +25170,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24106,6 +25198,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24129,6 +25223,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24151,6 +25247,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24173,6 +25271,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24195,6 +25295,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24222,6 +25324,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24243,6 +25347,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'boats',
@@ -24333,6 +25439,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -24457,6 +25564,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -24524,6 +25633,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'trucks',
@@ -24560,6 +25671,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24584,6 +25697,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24607,6 +25722,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24633,6 +25750,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24656,6 +25775,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24678,6 +25799,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24700,6 +25823,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24722,6 +25847,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24749,6 +25876,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24770,6 +25899,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'trucks',
@@ -24860,6 +25991,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -24980,6 +26112,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -25049,6 +26183,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'caravans',
@@ -25084,6 +26220,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25108,6 +26246,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25131,6 +26271,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25157,6 +26299,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25180,6 +26324,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25202,6 +26348,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25224,6 +26372,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25246,6 +26396,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25273,6 +26425,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25294,6 +26448,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'caravans',
@@ -25383,6 +26539,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -25506,6 +26663,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -25575,6 +26734,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'cars',
@@ -25611,6 +26772,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25635,6 +26798,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25658,6 +26823,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25684,6 +26851,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25707,6 +26876,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25729,6 +26900,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25751,6 +26924,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25773,6 +26948,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25800,6 +26977,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25821,6 +27000,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'cars',
@@ -25913,6 +27094,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -26037,6 +27219,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -26104,6 +27288,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'engins',
@@ -26140,6 +27326,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26164,6 +27352,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26187,6 +27377,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26213,6 +27405,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26236,6 +27430,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26258,6 +27454,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26280,6 +27478,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26302,6 +27502,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26329,6 +27531,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26350,6 +27554,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'engins',
@@ -26441,6 +27647,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -26564,6 +27771,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -26632,6 +27841,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'motorcycles',
@@ -26668,6 +27879,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26692,6 +27905,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26715,6 +27930,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26742,6 +27959,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26765,6 +27984,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26787,6 +28008,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26809,6 +28032,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26831,6 +28056,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26858,6 +28085,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26879,6 +28108,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'motorcycles',
@@ -26970,6 +28201,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -27084,6 +28316,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -27153,6 +28387,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'scooters',
@@ -27188,6 +28424,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27212,6 +28450,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27235,6 +28475,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27261,6 +28503,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27284,6 +28528,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27305,6 +28551,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27327,6 +28575,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27349,6 +28599,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27376,6 +28628,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27397,6 +28651,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'scooters',
@@ -27488,6 +28744,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -27605,6 +28862,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -27674,6 +28933,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'airport-taxis',
@@ -27709,6 +28970,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27733,6 +28996,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27756,6 +29021,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27783,6 +29050,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27806,6 +29075,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27827,6 +29098,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27849,6 +29122,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27871,6 +29146,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27898,6 +29175,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -27919,6 +29198,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'airport-taxis',
@@ -28011,6 +29292,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -28130,6 +29412,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -28197,6 +29481,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'transportation',
@@ -28231,6 +29517,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28255,6 +29543,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28278,6 +29568,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28304,6 +29596,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28327,6 +29621,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28349,6 +29645,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28371,6 +29669,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28393,6 +29693,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28420,6 +29722,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28441,6 +29745,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'transportation',
@@ -28531,6 +29837,7 @@ class ListingFrontController extends JsonApiController
 
 
                                     'country' => $listingcategory->country,
+                                    'per' => $listingcategory->typea,
                                     'zip' => $listingcategory->zip,
                                     'category' => $category,
                                     'url' => $url,
@@ -28651,6 +29958,8 @@ class ListingFrontController extends JsonApiController
                                                 'category' => $listing->category,
                                                 'title' => $listing->title,
                                                 'price' => $listing->price,
+                                                'per' => $listing->typea,
+                                                'currency' => $listing->currency,
                                                 'url' => $listing->url,
 
                                                 'created_at' => $listing->created_at,
@@ -28719,6 +30028,8 @@ class ListingFrontController extends JsonApiController
 
                                             'title' => $recentlisting->title,
                                             'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                             'city' => $recentlisting->city,
                                             'id' => $recentlisting->id,
                                             'category' => 'bicycles',
@@ -28753,6 +30064,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28777,6 +30090,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28800,6 +30115,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28826,6 +30143,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28849,6 +30168,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28871,6 +30192,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28893,6 +30216,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28916,6 +30241,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28943,6 +30270,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',
@@ -28964,6 +30293,8 @@ class ListingFrontController extends JsonApiController
                                             'attributes' => [
                                                 'title' => $recentlisting->title,
                                                 'price' => $recentlisting->price,
+                                            'per' => $recentlisting->typea,
+                                            'currency' => $recentlisting->currency,
                                                 'city' => $recentlisting->city,
                                                 'id' => $recentlisting->id,
                                                 'category' => 'bicycles',

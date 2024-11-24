@@ -163,6 +163,8 @@ class HomeController extends JsonApiController
                 'attributes' => [
                     'title' => $apartment->title,
                     'price' => $apartment->price,
+                    'currency' => $apartment->currency,
+                    'per' => $apartment->typea,
                     'city' => $apartment->city,
                     'id' => $apartment->id,
 
@@ -218,6 +220,8 @@ class HomeController extends JsonApiController
                 'attributes' => [
                     'title' => $billiard->title,
                     'price' => $billiard->price,
+                    'currency' => $billiard->currency,
+                    'per' => $billiard->typea,
                     'city' => $billiard->city,
                     'id' => $billiard->id,
 
@@ -274,6 +278,8 @@ class HomeController extends JsonApiController
                 'attributes' => [
                     'title' => $velo->title,
                     'price' => $velo->price,
+                    'currency' => $velo->currency,
+                    'per' => $velo->typea,
                     'city' => $velo->city,
                     'id' => $velo->id,
                     'phone' => $velo->phone,

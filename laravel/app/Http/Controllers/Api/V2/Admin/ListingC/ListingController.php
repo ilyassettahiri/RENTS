@@ -308,7 +308,7 @@ class ListingController extends JsonApiController
 
             $category = $request->input('data.attributes.category');
 
-            /*$manager = new ImageManager(new Driver());
+            $manager = new ImageManager(new Driver());
 
             if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
@@ -394,7 +394,7 @@ class ListingController extends JsonApiController
                         Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                     }
                 }
-            }*/
+            }
 
 
 
@@ -463,7 +463,7 @@ class ListingController extends JsonApiController
             }*/
 
 
-            if ($request->hasFile('data.attributes.images')) {
+            /*if ($request->hasFile('data.attributes.images')) {
                 $files = $request->file('data.attributes.images');
 
                 foreach ($files as $index => $file) {
@@ -478,7 +478,7 @@ class ListingController extends JsonApiController
                         $thumb = $relativePath;
                     }
                 }
-            }
+            }*/
 
 
 
@@ -497,6 +497,7 @@ class ListingController extends JsonApiController
 
         $currency = $request->input('data.attributes.currency');
 
+        $per = $request->input('data.attributes.per');
 
         $startdate = $request->input('data.attributes.startdate');
         $enddate = $request->input('data.attributes.enddate');
@@ -516,6 +517,9 @@ class ListingController extends JsonApiController
         $listing->title = $title;
         $listing->price = $price;
         $listing->currency = $currency;
+
+        $listing->typea = $per;
+
 
         $listing->phone = $phone;
 
@@ -575,6 +579,9 @@ class ListingController extends JsonApiController
                 $billiard->title = $title;
                 $billiard->price = $price;
                 $billiard->currency = $currency;
+
+                $billiard->typea = $per;
+
                 $billiard->phone = $phone;
 
                 $billiard->address = $address;
@@ -641,6 +648,8 @@ class ListingController extends JsonApiController
                                 $boxing->price = $price;
                                 $boxing->currency = $currency;
 
+                                $boxing->typea = $per;
+
                                 $boxing->phone = $phone;
 
                                 $boxing->address = $address;
@@ -705,6 +714,8 @@ class ListingController extends JsonApiController
                                 $diving->title = $title;
                                 $diving->price = $price;
                                 $diving->currency = $currency;
+
+                                $diving->typea = $per;
 
                                 $diving->phone = $phone;
 
@@ -773,6 +784,8 @@ class ListingController extends JsonApiController
                                 $football->price = $price;
                                 $football->currency = $currency;
 
+                                $football->typea = $per;
+
                                 $football->phone = $phone;
 
                                 $football->address = $address;
@@ -837,6 +850,8 @@ class ListingController extends JsonApiController
                                 $golf->title = $title;
                                 $golf->price = $price;
                                 $golf->currency = $currency;
+
+                                $golf->typea = $per;
 
                                 $golf->phone = $phone;
 
@@ -905,6 +920,7 @@ class ListingController extends JsonApiController
                                 $hunting->title = $title;
                                 $hunting->price = $price;
                                 $hunting->currency = $currency;
+                                $hunting->typea = $per;
 
                                 $hunting->phone = $phone;
 
@@ -976,6 +992,8 @@ class ListingController extends JsonApiController
                                 $musculation->title = $title;
                                 $musculation->price = $price;
                                 $musculation->currency = $currency;
+
+                                $musculation->typea = $per;
 
                                 $musculation->phone = $phone;
 
@@ -1051,6 +1069,7 @@ class ListingController extends JsonApiController
                                 $surf->title = $title;
                                 $surf->price = $price;
                                 $surf->currency = $currency;
+                                $surf->typea = $per;
 
                                 $surf->phone = $phone;
 
@@ -1121,6 +1140,8 @@ class ListingController extends JsonApiController
                                 $tennis->title = $title;
                                 $tennis->price = $price;
                                 $tennis->currency = $currency;
+
+                                $tennis->typea = $per;
                                 $tennis->phone = $phone;
 
                                 $tennis->address = $address;
@@ -1185,6 +1206,8 @@ class ListingController extends JsonApiController
                                 $audio->title = $title;
                                 $audio->price = $price;
                                 $audio->currency = $currency;
+
+                                $audio->typea = $per;
 
                                 $audio->phone = $phone;
 
@@ -1262,6 +1285,8 @@ class ListingController extends JsonApiController
                                 $camera->price = $price;
                                 $camera->currency = $currency;
 
+                                $camera->typea = $per;
+
                                 $camera->phone = $phone;
 
                                 $camera->address = $address;
@@ -1332,6 +1357,8 @@ class ListingController extends JsonApiController
                                 $charger->title = $title;
                                 $charger->price = $price;
                                 $charger->currency = $currency;
+
+                                $charger->typea = $per;
 
                                 $charger->phone = $phone;
 
@@ -1404,6 +1431,8 @@ class ListingController extends JsonApiController
                                 $drone->title = $title;
                                 $drone->price = $price;
                                 $drone->currency = $currency;
+
+                                $drone->typea = $per;
 
                                 $drone->phone = $phone;
 
@@ -1482,6 +1511,8 @@ class ListingController extends JsonApiController
                                 $gaming->price = $price;
                                 $gaming->currency = $currency;
 
+                                $gaming->typea = $per;
+
                                 $gaming->phone = $phone;
 
                                 $gaming->address = $address;
@@ -1551,6 +1582,8 @@ class ListingController extends JsonApiController
                                 $laptop->title = $title;
                                 $laptop->price = $price;
                                 $laptop->currency = $currency;
+
+                                $laptop->typea = $per;
 
                                 $laptop->phone = $phone;
 
@@ -1628,6 +1661,8 @@ class ListingController extends JsonApiController
                                 $lighting->title = $title;
                                 $lighting->price = $price;
                                 $lighting->currency = $currency;
+
+                                $lighting->typea = $per;
                                 $lighting->phone = $phone;
 
                                 $lighting->address = $address;
@@ -1698,6 +1733,9 @@ class ListingController extends JsonApiController
                                 $printer->price = $price;
                                 $printer->currency = $currency;
 
+
+                                $printer->typea = $per;
+
                                 $printer->phone = $phone;
 
                                 $printer->address = $address;
@@ -1767,6 +1805,8 @@ class ListingController extends JsonApiController
                                 $router->title = $title;
                                 $router->price = $price;
                                 $router->currency = $currency;
+
+                                $router->typea = $per;
 
                                 $router->phone = $phone;
 
@@ -1842,6 +1882,8 @@ class ListingController extends JsonApiController
                                 $tablette->price = $price;
                                 $tablette->currency = $currency;
 
+                                $tablette->typea = $per;
+
                                 $tablette->phone = $phone;
 
                                 $tablette->address = $address;
@@ -1913,6 +1955,8 @@ class ListingController extends JsonApiController
                                 $eclairage->title = $title;
                                 $eclairage->price = $price;
                                 $eclairage->currency = $currency;
+
+                                $eclairage->typea = $per;
 
                                 $eclairage->phone = $phone;
 
@@ -1993,6 +2037,8 @@ class ListingController extends JsonApiController
                                 $mobilier->price = $price;
                                 $mobilier->currency = $currency;
 
+                                $mobilier->typea = $per;
+
 
                                 $mobilier->phone = $phone;
 
@@ -2063,6 +2109,8 @@ class ListingController extends JsonApiController
                                 $photographie->title = $title;
                                 $photographie->price = $price;
                                 $photographie->currency = $currency;
+
+                                $photographie->typea = $per;
 
 
                                 $photographie->phone = $phone;
@@ -2135,6 +2183,8 @@ class ListingController extends JsonApiController
                                 $sonorisation->title = $title;
                                 $sonorisation->price = $price;
                                 $sonorisation->currency = $currency;
+
+                                $sonorisation->typea = $per;
 
                                 $sonorisation->phone = $phone;
 
@@ -2218,6 +2268,8 @@ class ListingController extends JsonApiController
                                 $tente->price = $price;
                                 $tente->currency = $currency;
 
+                                $tente->typea = $per;
+
                                 $tente->phone = $phone;
 
                                 $tente->address = $address;
@@ -2286,6 +2338,8 @@ class ListingController extends JsonApiController
                                 $clothes->title = $title;
                                 $clothes->price = $price;
                                 $clothes->currency = $currency;
+
+                                $clothes->typea = $per;
 
                                 $clothes->phone = $phone;
 
@@ -2359,6 +2413,8 @@ class ListingController extends JsonApiController
                                 $jewelry->price = $price;
                                 $jewelry->currency = $currency;
 
+                                $jewelry->typea = $per;
+
                                 $jewelry->phone = $phone;
 
                                 $jewelry->address = $address;
@@ -2430,6 +2486,8 @@ class ListingController extends JsonApiController
                                 $apartment->title = $title;
                                 $apartment->price = $price;
                                 $apartment->currency = $currency;
+
+                                $apartment->typea = $per;
 
                                 $apartment->phone = $phone;
 
@@ -2505,7 +2563,7 @@ class ListingController extends JsonApiController
                                 $bureaux->title = $title;
                                 $bureaux->price = $price;
                                 $bureaux->currency = $currency;
-
+                                $bureaux->typea = $per;
                                 $bureaux->phone = $phone;
 
                                 $bureaux->address = $address;
@@ -2582,7 +2640,7 @@ class ListingController extends JsonApiController
                                 $magasin->title = $title;
                                 $magasin->price = $price;
                                 $magasin->currency = $currency;
-
+                                $magasin->typea = $per;
                                 $magasin->phone = $phone;
 
                                 $magasin->address = $address;
@@ -2659,7 +2717,7 @@ class ListingController extends JsonApiController
                                 $maison->title = $title;
                                 $maison->price = $price;
                                 $maison->currency = $currency;
-
+                                $maison->typea = $per;
                                 $maison->phone = $phone;
 
                                 $maison->address = $address;
@@ -2731,7 +2789,7 @@ class ListingController extends JsonApiController
                                 $riad->title = $title;
                                 $riad->price = $price;
                                 $riad->currency = $currency;
-
+                                $riad->typea = $per;
                                 $riad->phone = $phone;
 
                                 $riad->address = $address;
@@ -2826,7 +2884,7 @@ class ListingController extends JsonApiController
                                 $terrain->title = $title;
                                 $terrain->price = $price;
                                 $terrain->currency = $currency;
-
+                                $terrain->typea = $per;
                                 $terrain->phone = $phone;
 
                                 $terrain->address = $address;
@@ -2905,7 +2963,7 @@ class ListingController extends JsonApiController
                                 $villa->title = $title;
                                 $villa->price = $price;
                                 $villa->currency = $currency;
-
+                                $villa->typea = $per;
                                 $villa->phone = $phone;
 
                                 $villa->address = $address;
@@ -2976,7 +3034,7 @@ class ListingController extends JsonApiController
                                 $activity->title = $title;
                                 $activity->price = $price;
                                 $activity->currency = $currency;
-
+                                $activity->typea = $per;
                                 $activity->phone = $phone;
 
                                 $activity->address = $address;
@@ -3053,7 +3111,7 @@ class ListingController extends JsonApiController
                                 $livre->title = $title;
                                 $livre->price = $price;
                                 $livre->currency = $currency;
-
+                                $livre->typea = $per;
                                 $livre->phone = $phone;
 
                                 $livre->address = $address;
@@ -3122,7 +3180,7 @@ class ListingController extends JsonApiController
                                 $musical->title = $title;
                                 $musical->price = $price;
                                 $musical->currency = $currency;
-
+                                $musical->typea = $per;
                                 $musical->phone = $phone;
 
                                 $musical->address = $address;
@@ -3193,7 +3251,7 @@ class ListingController extends JsonApiController
                                 $furniture->title = $title;
                                 $furniture->price = $price;
                                 $furniture->currency = $currency;
-
+                                $furniture->typea = $per;
                                 $furniture->phone = $phone;
 
                                 $furniture->address = $address;
@@ -3267,7 +3325,7 @@ class ListingController extends JsonApiController
                                 $houseappliance->title = $title;
                                 $houseappliance->price = $price;
                                 $houseappliance->currency = $currency;
-
+                                $houseappliance->typea = $per;
                                 $houseappliance->phone = $phone;
 
                                 $houseappliance->address = $address;
@@ -3341,7 +3399,7 @@ class ListingController extends JsonApiController
                                 $electricaltool->title = $title;
                                 $electricaltool->price = $price;
                                 $electricaltool->currency = $currency;
-
+                                $electricaltool->typea = $per;
                                 $electricaltool->phone = $phone;
 
                                 $electricaltool->address = $address;
@@ -3425,7 +3483,7 @@ class ListingController extends JsonApiController
                                 $ladder->title = $title;
                                 $ladder->price = $price;
                                 $ladder->currency = $currency;
-
+                                $ladder->typea = $per;
                                 $ladder->phone = $phone;
 
 
@@ -3502,7 +3560,7 @@ class ListingController extends JsonApiController
                                 $mechanicaltool->title = $title;
                                 $mechanicaltool->price = $price;
                                 $mechanicaltool->currency = $currency;
-
+                                $mechanicaltool->typea = $per;
                                 $mechanicaltool->phone = $phone;
 
 
@@ -3577,7 +3635,7 @@ class ListingController extends JsonApiController
                                 $powertool->title = $title;
                                 $powertool->price = $price;
                                 $powertool->currency = $currency;
-
+                                $powertool->typea = $per;
                                 $powertool->phone = $phone;
 
                                 $powertool->address = $address;
@@ -3656,7 +3714,7 @@ class ListingController extends JsonApiController
                                 $pressurewasher->title = $title;
                                 $pressurewasher->price = $price;
                                 $pressurewasher->currency = $currency;
-
+                                $pressurewasher->typea = $per;
                                 $pressurewasher->phone = $phone;
 
                                 $pressurewasher->address = $address;
@@ -3734,7 +3792,7 @@ class ListingController extends JsonApiController
                                 $service->title = $title;
                                 $service->price = $price;
                                 $service->currency = $currency;
-
+                                $service->typea = $per;
                                 $service->phone = $phone;
 
                                 $service->address = $address;
@@ -3802,7 +3860,7 @@ class ListingController extends JsonApiController
                                     $service->title = $title;
                                     $service->price = $price;
                                     $service->currency = $currency;
-
+                                    $service->typea = $per;
                                     $service->phone = $phone;
 
                                     $service->address = $address;
@@ -3875,7 +3933,7 @@ class ListingController extends JsonApiController
                                 $boat->title = $title;
                                 $boat->price = $price;
                                 $boat->currency = $currency;
-
+                                $boat->typea = $per;
                                 $boat->phone = $phone;
 
                                 $boat->address = $address;
@@ -3948,7 +4006,7 @@ class ListingController extends JsonApiController
                                 $camion->title = $title;
                                 $camion->price = $price;
                                 $camion->currency = $currency;
-
+                                $camion->typea = $per;
                                 $camion->phone = $phone;
 
                                 $camion->address = $address;
@@ -4016,7 +4074,7 @@ class ListingController extends JsonApiController
                                 $caravan->title = $title;
                                 $caravan->price = $price;
                                 $caravan->currency = $currency;
-
+                                $caravan->typea = $per;
                                 $caravan->phone = $phone;
 
                                 $caravan->address = $address;
@@ -4086,7 +4144,7 @@ class ListingController extends JsonApiController
                                 $car->title = $title;
                                 $car->price = $price;
                                 $car->currency = $currency;
-
+                                $car->typea = $per;
                                 $car->phone = $phone;
 
                                 $car->address = $address;
@@ -4156,7 +4214,7 @@ class ListingController extends JsonApiController
                                 $engin->title = $title;
                                 $engin->price = $price;
                                 $engin->currency = $currency;
-
+                                $engin->typea = $per;
                                 $engin->phone = $phone;
 
                                 $engin->address = $address;
@@ -4227,7 +4285,7 @@ class ListingController extends JsonApiController
                                 $moto->title = $title;
                                 $moto->price = $price;
                                 $moto->currency = $currency;
-
+                                $moto->typea = $per;
                                 $moto->phone = $phone;
 
                                 $moto->address = $address;
@@ -4300,7 +4358,7 @@ class ListingController extends JsonApiController
                                 $scooter->title = $title;
                                 $scooter->price = $price;
                                 $scooter->currency = $currency;
-
+                                $scooter->typea = $per;
                                 $scooter->phone = $phone;
 
                                 $scooter->address = $address;
@@ -4368,7 +4426,7 @@ class ListingController extends JsonApiController
                                 $taxiaeroport->title = $title;
                                 $taxiaeroport->price = $price;
                                 $taxiaeroport->currency = $currency;
-
+                                $taxiaeroport->typea = $per;
                                 $taxiaeroport->phone = $phone;
 
                                 $taxiaeroport->address = $address;
@@ -4436,7 +4494,7 @@ class ListingController extends JsonApiController
                                 $transportation->price = $price;
                                 $transportation->currency = $currency;
                                 $transportation->phone = $phone;
-
+                                $transportation->typea = $per;
                                 $transportation->address = $address;
                                 $transportation->city = $city;
                                 $transportation->country = $country;
@@ -4503,7 +4561,7 @@ class ListingController extends JsonApiController
                                 $velo->title = $title;
                                 $velo->price = $price;
                                 $velo->currency = $currency;
-
+                                $velo->typea = $per;
                                 $velo->phone = $phone;
 
                                 $velo->address = $address;
@@ -4633,6 +4691,7 @@ class ListingController extends JsonApiController
         $phone = preg_replace('/\D/', '', $request->input('attributes.phone'));
         $currency = $request->input('attributes.currency');
 
+        $per = $request->input('attributes.per');
 
 
 
@@ -4725,6 +4784,7 @@ class ListingController extends JsonApiController
             $listing->title = $title;
             $listing->price = $price;
             $listing->currency = $currency;
+            $listing->typea = $per;
             $listing->phone = $phone;
 
             $listing->city = $city;
@@ -4782,6 +4842,8 @@ class ListingController extends JsonApiController
                 $billiard->title = $title;
                 $billiard->price = $price;
                 $billiard->currency = $currency;
+
+                $billiard->typea = $per;
                 $billiard->phone = $phone;
 
                 $billiard->address = $address;
@@ -4849,7 +4911,7 @@ class ListingController extends JsonApiController
                                 $boxing->title = $title;
                                 $boxing->price = $price;
                                 $boxing->currency = $currency;
-
+                                $boxing->typea = $per;
                                 $boxing->phone = $phone;
 
                                 $boxing->address = $address;
@@ -4918,7 +4980,7 @@ class ListingController extends JsonApiController
                                 $diving->title = $title;
                                 $diving->price = $price;
                                 $diving->currency = $currency;
-
+                                $diving->typea = $per;
                                 $diving->phone = $phone;
 
                                 $diving->address = $address;
@@ -4989,7 +5051,7 @@ class ListingController extends JsonApiController
                                 $football->title = $title;
                                 $football->price = $price;
                                 $football->currency = $currency;
-
+                                $football->typea = $per;
                                 $football->phone = $phone;
 
                                 $football->address = $address;
@@ -5058,7 +5120,7 @@ class ListingController extends JsonApiController
                                 $golf->title = $title;
                                 $golf->price = $price;
                                 $golf->currency = $currency;
-
+                                $golf->typea = $per;
                                 $golf->phone = $phone;
 
                                 $golf->address = $address;
@@ -5130,7 +5192,7 @@ class ListingController extends JsonApiController
                                 $hunting->title = $title;
                                 $hunting->price = $price;
                                 $hunting->currency = $currency;
-
+                                $hunting->typea = $per;
                                 $hunting->phone = $phone;
 
                                 $hunting->address = $address;
@@ -5204,7 +5266,7 @@ class ListingController extends JsonApiController
                                 $musculation->title = $title;
                                 $musculation->price = $price;
                                 $musculation->currency = $currency;
-
+                                $musculation->typea = $per;
                                 $musculation->phone = $phone;
 
                                 $musculation->address = $address;
@@ -5283,7 +5345,7 @@ class ListingController extends JsonApiController
                                 $surf->title = $title;
                                 $surf->price = $price;
                                 $surf->currency = $currency;
-
+                                $surf->typea = $per;
                                 $surf->phone = $phone;
 
                                 $surf->address = $address;
@@ -5357,7 +5419,7 @@ class ListingController extends JsonApiController
                                 $tennis->title = $title;
                                 $tennis->price = $price;
                                 $tennis->currency = $currency;
-
+                                $tennis->typea = $per;
                                 $tennis->phone = $phone;
 
                                 $tennis->address = $address;
@@ -5426,7 +5488,7 @@ class ListingController extends JsonApiController
                                 $audio->title = $title;
                                 $audio->price = $price;
                                 $audio->currency = $currency;
-
+                                $audio->typea = $per;
                                 $audio->phone = $phone;
 
                                 $audio->address = $address;
@@ -5506,7 +5568,7 @@ class ListingController extends JsonApiController
                                 $camera->title = $title;
                                 $camera->price = $price;
                                 $camera->currency = $currency;
-
+                                $camera->typea = $per;
                                 $camera->phone = $phone;
 
                                 $camera->address = $address;
@@ -5581,7 +5643,7 @@ class ListingController extends JsonApiController
                                 $charger->title = $title;
                                 $charger->price = $price;
                                 $charger->currency = $currency;
-
+                                $charger->typea = $per;
                                 $charger->phone = $phone;
 
                                 $charger->address = $address;
@@ -5657,7 +5719,7 @@ class ListingController extends JsonApiController
                                 $drone->title = $title;
                                 $drone->price = $price;
                                 $drone->currency = $currency;
-
+                                $drone->typea = $per;
                                 $drone->phone = $phone;
 
                                 $drone->address = $address;
@@ -5738,7 +5800,7 @@ class ListingController extends JsonApiController
                                 $gaming->title = $title;
                                 $gaming->price = $price;
                                 $gaming->currency = $currency;
-
+                                $gaming->typea = $per;
                                 $gaming->phone = $phone;
 
                                 $gaming->address = $address;
@@ -5812,7 +5874,7 @@ class ListingController extends JsonApiController
                                 $laptop->title = $title;
                                 $laptop->price = $price;
                                 $laptop->currency = $currency;
-
+                                $laptop->typea = $per;
                                 $laptop->phone = $phone;
 
                                 $laptop->address = $address;
@@ -5892,7 +5954,7 @@ class ListingController extends JsonApiController
                                 $lighting->title = $title;
                                 $lighting->price = $price;
                                 $lighting->currency = $currency;
-
+                                $lighting->typea = $per;
                                 $lighting->phone = $phone;
 
                                 $lighting->address = $address;
@@ -5966,7 +6028,7 @@ class ListingController extends JsonApiController
                                 $printer->title = $title;
                                 $printer->price = $price;
                                 $printer->currency = $currency;
-
+                                $printer->typea = $per;
                                 $printer->phone = $phone;
 
                                 $printer->address = $address;
@@ -6042,7 +6104,7 @@ class ListingController extends JsonApiController
                                 $router->price = $price;
                                 $router->currency = $currency;
                                 $router->phone = $phone;
-
+                                $router->typea = $per;
                                 $router->address = $address;
                                 $router->city = $city;
                                 $router->country = $country;
@@ -6117,7 +6179,7 @@ class ListingController extends JsonApiController
                                 $tablette->title = $title;
                                 $tablette->price = $price;
                                 $tablette->currency = $currency;
-
+                                $tablette->typea = $per;
                                 $tablette->phone = $phone;
 
                                 $tablette->address = $address;
@@ -6193,7 +6255,7 @@ class ListingController extends JsonApiController
                                 $eclairage->title = $title;
                                 $eclairage->price = $price;
                                 $eclairage->currency = $currency;
-
+                                $eclairage->typea = $per;
                                 $eclairage->phone = $phone;
 
                                 $eclairage->address = $address;
@@ -6275,7 +6337,7 @@ class ListingController extends JsonApiController
                                 $mobilier->title = $title;
                                 $mobilier->price = $price;
                                 $mobilier->currency = $currency;
-
+                                $mobilier->typea = $per;
                                 $mobilier->phone = $phone;
 
                                 $mobilier->address = $address;
@@ -6348,7 +6410,7 @@ class ListingController extends JsonApiController
                                 $photographie->title = $title;
                                 $photographie->price = $price;
                                 $photographie->currency = $currency;
-
+                                $photographie->typea = $per;
                                 $photographie->phone = $phone;
 
                                 $photographie->address = $address;
@@ -6423,7 +6485,7 @@ class ListingController extends JsonApiController
                                 $sonorisation->title = $title;
                                 $sonorisation->price = $price;
                                 $sonorisation->currency = $currency;
-
+                                $sonorisation->typea = $per;
                                 $sonorisation->phone = $phone;
 
                                 $sonorisation->address = $address;
@@ -6508,7 +6570,7 @@ class ListingController extends JsonApiController
                                 $tente->title = $title;
                                 $tente->price = $price;
                                 $tente->currency = $currency;
-
+                                $tente->typea = $per;
                                 $tente->phone = $phone;
 
                                 $tente->address = $address;
@@ -6578,7 +6640,7 @@ class ListingController extends JsonApiController
                                 $clothes->title = $title;
                                 $clothes->price = $price;
                                 $clothes->currency = $currency;
-
+                                $clothes->typea = $per;
                                 $clothes->phone = $phone;
 
                                 $clothes->address = $address;
@@ -6652,7 +6714,7 @@ class ListingController extends JsonApiController
                                 $jewelry->title = $title;
                                 $jewelry->price = $price;
                                 $jewelry->currency = $currency;
-
+                                $jewelry->typea = $per;
                                 $jewelry->phone = $phone;
 
                                 $jewelry->address = $address;
@@ -6726,7 +6788,7 @@ class ListingController extends JsonApiController
                                 $apartment->title = $title;
                                 $apartment->price = $price;
                                 $apartment->currency = $currency;
-
+                                $apartment->typea = $per;
                                 $apartment->phone = $phone;
 
                                 $apartment->address = $address;
@@ -6802,7 +6864,7 @@ class ListingController extends JsonApiController
                                 $bureaux->title = $title;
                                 $bureaux->price = $price;
                                 $bureaux->currency = $currency;
-
+                                $bureaux->typea = $per;
                                 $bureaux->phone = $phone;
 
                                 $bureaux->address = $address;
@@ -6882,7 +6944,7 @@ class ListingController extends JsonApiController
                                 $magasin->title = $title;
                                 $magasin->price = $price;
                                 $magasin->currency = $currency;
-
+                                $magasin->typea = $per;
                                 $magasin->phone = $phone;
 
                                 $magasin->address = $address;
@@ -6961,7 +7023,7 @@ class ListingController extends JsonApiController
                                 $maison->title = $title;
                                 $maison->price = $price;
                                 $maison->currency = $currency;
-
+                                $maison->typea = $per;
                                 $maison->phone = $phone;
 
                                 $maison->address = $address;
@@ -7034,7 +7096,7 @@ class ListingController extends JsonApiController
                                 $riad->title = $title;
                                 $riad->price = $price;
                                 $riad->currency = $currency;
-
+                                $riad->typea = $per;
                                 $riad->phone = $phone;
 
                                 $riad->address = $address;
@@ -7131,7 +7193,7 @@ class ListingController extends JsonApiController
                                 $terrain->title = $title;
                                 $terrain->price = $price;
                                 $terrain->currency = $currency;
-
+                                $terrain->typea = $per;
                                 $terrain->phone = $phone;
 
                                 $terrain->address = $address;
@@ -7212,7 +7274,7 @@ class ListingController extends JsonApiController
                                 $villa->title = $title;
                                 $villa->price = $price;
                                 $villa->currency = $currency;
-
+                                $villa->typea = $per;
                                 $villa->phone = $phone;
 
                                 $villa->address = $address;
@@ -7287,7 +7349,7 @@ class ListingController extends JsonApiController
                                 $activity->price = $price;
                                 $activity->currency = $currency;
                                 $activity->phone = $phone;
-
+                                $activity->typea = $per;
                                 $activity->address = $address;
                                 $activity->city = $city;
                                 $activity->country = $country;
@@ -7360,7 +7422,7 @@ class ListingController extends JsonApiController
                                 $livre->title = $title;
                                 $livre->price = $price;
                                 $livre->currency = $currency;
-
+                                $livre->typea = $per;
                                 $livre->phone = $phone;
 
                                 $livre->address = $address;
@@ -7431,7 +7493,7 @@ class ListingController extends JsonApiController
                                 $musical->title = $title;
                                 $musical->price = $price;
                                 $musical->currency = $currency;
-
+                                $musical->typea = $per;
                                 $musical->phone = $phone;
 
                                 $musical->address = $address;
@@ -7504,7 +7566,7 @@ class ListingController extends JsonApiController
                                 $furniture->title = $title;
                                 $furniture->price = $price;
                                 $furniture->currency = $currency;
-
+                                $furniture->typea = $per;
                                 $furniture->phone = $phone;
 
                                 $furniture->address = $address;
@@ -7579,7 +7641,7 @@ class ListingController extends JsonApiController
                                 $houseappliance->title = $title;
                                 $houseappliance->price = $price;
                                 $houseappliance->currency = $currency;
-
+                                $houseappliance->typea = $per;
                                 $houseappliance->phone = $phone;
 
                                 $houseappliance->address = $address;
@@ -7655,7 +7717,7 @@ class ListingController extends JsonApiController
                                 $electricaltool->title = $title;
                                 $electricaltool->price = $price;
                                 $electricaltool->currency = $currency;
-
+                                $electricaltool->typea = $per;
                                 $electricaltool->phone = $phone;
 
                                 $electricaltool->address = $address;
@@ -7742,7 +7804,7 @@ class ListingController extends JsonApiController
                                 $ladder->title = $title;
                                 $ladder->price = $price;
                                 $ladder->currency = $currency;
-
+                                $ladder->typea = $per;
                                 $ladder->phone = $phone;
 
                                 $ladder->address = $address;
@@ -7820,7 +7882,7 @@ class ListingController extends JsonApiController
                                 $mechanicaltool->title = $title;
                                 $mechanicaltool->price = $price;
                                 $mechanicaltool->currency = $currency;
-
+                                $mechanicaltool->typea = $per;
                                 $mechanicaltool->phone = $phone;
 
                                 $mechanicaltool->address = $address;
@@ -7897,7 +7959,7 @@ class ListingController extends JsonApiController
                                 $powertool->title = $title;
                                 $powertool->price = $price;
                                 $powertool->currency = $currency;
-
+                                $powertool->typea = $per;
                                 $powertool->phone = $phone;
 
                                 $powertool->address = $address;
@@ -7977,7 +8039,7 @@ class ListingController extends JsonApiController
                                 $pressurewasher->title = $title;
                                 $pressurewasher->price = $price;
                                 $pressurewasher->currency = $currency;
-
+                                $pressurewasher->typea = $per;
                                 $pressurewasher->phone = $phone;
 
                                 $pressurewasher->address = $address;
@@ -8058,7 +8120,7 @@ class ListingController extends JsonApiController
                                 $service->title = $title;
                                 $service->price = $price;
                                 $service->currency = $currency;
-
+                                $service->typea = $per;
                                 $service->phone = $phone;
 
                                 $service->address = $address;
@@ -8127,7 +8189,7 @@ class ListingController extends JsonApiController
                                 $service->title = $title;
                                 $service->price = $price;
                                 $service->currency = $currency;
-
+                                $service->typea = $per;
                                 $service->phone = $phone;
 
                                 $service->address = $address;
@@ -8208,7 +8270,7 @@ class ListingController extends JsonApiController
                                 $boat->title = $title;
                                 $boat->price = $price;
                                 $boat->currency = $currency;
-
+                                $boat->typea = $per;
                                 $boat->phone = $phone;
 
                                 $boat->address = $address;
@@ -8283,7 +8345,7 @@ class ListingController extends JsonApiController
                                 $camion->title = $title;
                                 $camion->price = $price;
                                 $camion->currency = $currency;
-
+                                $camion->typea = $per;
                                 $camion->phone = $phone;
 
                                 $camion->address = $address;
@@ -8353,7 +8415,7 @@ class ListingController extends JsonApiController
                                 $caravan->title = $title;
                                 $caravan->price = $price;
                                 $caravan->currency = $currency;
-
+                                $caravan->typea = $per;
                                 $caravan->phone = $phone;
 
                                 $caravan->address = $address;
@@ -8425,7 +8487,7 @@ class ListingController extends JsonApiController
                                 $car->title = $title;
                                 $car->price = $price;
                                 $car->currency = $currency;
-
+                                $car->typea = $per;
                                 $car->phone = $phone;
 
                                 $car->address = $address;
@@ -8496,7 +8558,7 @@ class ListingController extends JsonApiController
                                 $engin->title = $title;
                                 $engin->price = $price;
                                 $engin->currency = $currency;
-
+                                $engin->typea = $per;
                                 $engin->phone = $phone;
 
                                 $engin->address = $address;
@@ -8570,7 +8632,7 @@ class ListingController extends JsonApiController
                                 $moto->title = $title;
                                 $moto->price = $price;
                                 $moto->currency = $currency;
-
+                                $moto->typea = $per;
                                 $moto->phone = $phone;
 
                                 $moto->address = $address;
@@ -8644,7 +8706,7 @@ class ListingController extends JsonApiController
                                 $scooter->title = $title;
                                 $scooter->price = $price;
                                 $scooter->currency = $currency;
-
+                                $scooter->typea = $per;
                                 $scooter->phone = $phone;
 
                                 $scooter->address = $address;
@@ -8714,7 +8776,7 @@ class ListingController extends JsonApiController
                                 $taxiaeroport->title = $title;
                                 $taxiaeroport->price = $price;
                                 $taxiaeroport->currency = $currency;
-
+                                $taxiaeroport->typea = $per;
                                 $taxiaeroport->phone = $phone;
 
                                 $taxiaeroport->address = $address;
@@ -8783,7 +8845,7 @@ class ListingController extends JsonApiController
                                 $transportation->title = $title;
                                 $transportation->price = $price;
                                 $transportation->currency = $currency;
-
+                                $transportation->typea = $per;
                                 $transportation->phone = $phone;
 
                                 $transportation->address = $address;
@@ -8856,7 +8918,7 @@ class ListingController extends JsonApiController
                                 $velo->price = $price;
                                 $velo->currency = $currency;
                                 $velo->phone = $phone;
-
+                                $velo->typea = $per;
                                 $velo->address = $address;
                                 $velo->city = $city;
                                 $velo->country = $country;

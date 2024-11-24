@@ -8,7 +8,7 @@ export default styled(Drawer)(({ theme, ownerState }) => {
   const { palette, boxShadows, transitions, breakpoints, functions } = theme;
   const { transparentSidenav, miniSidenav } = ownerState;
 
-  const sidebarWidth = 250;
+  const sidebarWidth = 280;
   const { white, transparent } = palette;
   const { xxl } = boxShadows;
   const { pxToRem } = functions;

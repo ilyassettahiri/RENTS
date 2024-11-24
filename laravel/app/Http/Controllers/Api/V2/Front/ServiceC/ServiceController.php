@@ -88,6 +88,8 @@ class ServiceController extends JsonApiController
                 'attributes' => [
                     'title' => $service->title,
                     'price' => $service->price,
+                    'currency' => $service->currency,
+                    'per' => $service->typea,
                     'city' => $service->city,
                     'phone' => $service->phone,
 

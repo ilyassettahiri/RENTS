@@ -33,7 +33,7 @@ function itemContent(theme, ownerState) {
     justifyContent: "space-between",
     width: "100%",
     padding: `${pxToRem(7.2)} ${pxToRem(16)}`,
-    margin: `0 ${pxToRem(16)} 0 ${pxToRem(21.6)}`,
+    margin: `${pxToRem(5)} ${pxToRem(16)} 0 ${pxToRem(21.6)}`,
     userSelect: "none",
     position: "relative",
 

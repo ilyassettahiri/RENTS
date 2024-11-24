@@ -243,6 +243,7 @@ class DetailListingController extends Controller
                                                         'address' => $this->listingcategory->address,
                                                         'city' => $this->listingcategory->city,
                                                         'country' => $this->listingcategory->country,
+
                                                         'created_at' => $this->listingcategory->created_at,
                                                         'status' => $this->listingcategory->status,
                                                         'url' => $this->listingcategory->url,

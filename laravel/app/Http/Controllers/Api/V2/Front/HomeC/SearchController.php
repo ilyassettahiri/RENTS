@@ -508,6 +508,8 @@ class SearchController extends JsonApiController
                         'attributes' => [
                             'title' => $listing->title,
                             'price' => $listing->price,
+                            'currency' => $listing->currency,
+                            'per' => $listing->typea,
                             'city' => $listing->city,
                             'id' => $listing->id,
 
@@ -596,6 +598,8 @@ class SearchController extends JsonApiController
                         'attributes' => [
                             'title' => $listing->title,
                             'price' => $listing->price,
+                            'currency' => $listing->currency,
+                            'per' => $listing->typea,
                             'city' => $listing->city,
                             'id' => $listing->id,
 
@@ -798,6 +802,8 @@ class SearchController extends JsonApiController
                             'attributes' => [
                                 'title' => $listing->title,
                                 'price' => $listing->price,
+                                'currency' => $listing->currency,
+                                'per' => $listing->typea,
                                 'city' => $listing->city,
                                 'id' => $listing->id,
 
@@ -1114,6 +1120,8 @@ class SearchController extends JsonApiController
                         'attributes' => [
                             'title' => $listing->title,
                             'price' => $listing->price,
+                            'currency' => $listing->currency,
+                            'per' => $listing->typea,
                             'city' => $listing->city,
                             'id' => $listing->id,
 

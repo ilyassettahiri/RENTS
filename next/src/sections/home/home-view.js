@@ -360,3 +360,11 @@ export default function HomeView({ homeData }) {
 
 
 
+
+HomeView.propTypes = {
+  homeData: PropTypes.shape({
+    data: PropTypes.array,
+
+    favorites: PropTypes.array,
+  }),
+};

@@ -259,6 +259,8 @@ class SearchServiceController extends JsonApiController
                     'attributes' => [
                         'title' => $service->title,
                         'price' => $service->price,
+                        'currency' => $service->currency,
+                        'per' => $service->typea,
                         'city' => $service->city,
                         'id' => $service->id,
 
@@ -352,6 +354,8 @@ class SearchServiceController extends JsonApiController
                     'attributes' => [
                         'title' => $service->title,
                         'price' => $service->price,
+                        'currency' => $service->currency,
+                        'per' => $service->typea,
                         'city' => $service->city,
                         'id' => $service->id,
 

@@ -11,12 +11,46 @@ import SoftSelect from "components/SoftSelect";
 // NewProduct page components
 import FormField from "admin/components/FormField";
 
-function Pricing({ pricing, onPricingChange, onSelectChange }) {
+function Pricing({ pricing, onPricingChange }) {
   return (
     <SoftBox>
       <SoftBox>
+
+
+
+
+
+
+
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={3}>
+
+
+
+
+          {/* Phone Number Field */}
+          <Grid item xs={12} sm={12}>
+            <FormField
+              type="text"
+              label="Phone Number"
+              placeholder="0611111111"
+              name="phone"
+              value={pricing.phone.value}
+              onChange={onPricingChange}
+              error={pricing.phone.error}
+            />
+
+            {pricing.phone.error && (
+              <SoftTypography variant="caption" color="error" fontWeight="light">
+                {pricing.phone.textError || "Phone number is required"}
+              </SoftTypography>
+            )}
+          </Grid>
+
+
+
+
+          {/* Price Field */}
+          <Grid item xs={12} sm={4}>
             <FormField
               type="text"
               label="Price"
@@ -34,6 +68,28 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
             )}
           </Grid>
 
+          {/* Per Field */}
+          <Grid item xs={12} sm={4}>
+            <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
+              <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
+                Per
+                <span style={{ color: "red" }}> *</span>
+              </SoftTypography>
+            </SoftBox>
+            <SoftSelect
+              value={{ value: pricing.per.value, label: pricing.per.value }}
+              options={[
+                { value: "Day", label: "Day" },
+                { value: "Hour", label: "Hour" },
+                { value: "Week", label: "Week" },
+                { value: "Month", label: "Month" },
+                { value: "Year", label: "Year" },
+              ]}
+              onChange={(option) => onPricingChange(null, "per", option.value)}
+            />
+          </Grid>
+
+          {/* Currency Field */}
           <Grid item xs={12} sm={4}>
             <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
               <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
@@ -48,31 +104,20 @@ function Pricing({ pricing, onPricingChange, onSelectChange }) {
                 { value: "EUR", label: "EUR" },
                 { value: "USD", label: "USD" },
               ]}
-              onChange={(option) => onSelectChange("currency", option.value)}
+              onChange={(option) => onPricingChange(null, "currency", option.value)}
             />
           </Grid>
 
-          <Grid item xs={12} sm={5}>
-            <FormField
-              type="text"
-              label="Phone Number"
-              placeholder="0611111111"
-              name="phone"
-              value={pricing.phone.value}
-              onChange={onPricingChange}
-              error={pricing.phone.error}
-            />
-
-            {pricing.phone.error && (
-              <SoftTypography variant="caption" color="error" fontWeight="light">
-                {pricing.phone.textError || "Phone number is required"}
-              </SoftTypography>
-            )}
-          </Grid>
+          
         </Grid>
+
+
+
+
       </SoftBox>
     </SoftBox>
   );
 }
+
 
 export default Pricing;

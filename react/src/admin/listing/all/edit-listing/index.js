@@ -1329,6 +1329,8 @@ function EditListing() {
   const [pricing, setPricing] = useState({
     price: { value: "", error: false, textError: "" },
     currency: { value: "DH", error: false, textError: "" },
+    per: { value: "Day", error: false, textError: "" },
+
     phone: { value: "", error: false, textError: "" },
   });
   
@@ -1364,9 +1366,16 @@ function EditListing() {
 
   const [dateRange, setDateRange] = useState([dayjs(), dayjs().add(1, 'year')]);
 
-  const handlePricingChange = (e) => {
-    const { name, value } = e.target;
+  
 
+
+  const handlePricingChange = (e, nameOverride, valueOverride) => {
+    // Determine name and value based on event or provided overrides (for select inputs)
+    const name = nameOverride || e.target.name;
+    const value = valueOverride || e.target.value;
+  
+    
+  
     setPricing((prevPricing) => ({
       ...prevPricing,
       [name]: {
@@ -1387,22 +1396,6 @@ function EditListing() {
       },
     }));
   };
-  
-
-  const handleSelectChange = (name, value) => {
-    setPricing((prevPricing) => ({
-      ...prevPricing,
-      [name]: {
-        ...prevPricing[name],
-        value: value,
-        error: value.trim().length === 0,
-        textError: value.trim().length === 0 ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.` : "",
-      },
-    }));
-  
-    
-  };
-  
 
 
 
@@ -1556,6 +1549,8 @@ function EditListing() {
           category,
           price,
           currency  ,
+          per  ,
+
           phone  ,
           
           images = [],
@@ -1589,7 +1584,9 @@ function EditListing() {
         
         setPricing({
           price: { value: price, error: false, textError: "" },
+          per: { value: per, error: false, textError: "" },
           currency: { value: currency, error: false, textError: "" },
+
           phone: { value: phone, error: false, textError: "" },
         });
         
@@ -2556,6 +2553,8 @@ function EditListing() {
               country: address.country.value,
               zip: address.zip.value,
               price: pricing.price.value,
+              per: pricing.per.value,
+
               currency: pricing.currency.value,
               phone: pricing.phone.value,
 
@@ -3089,9 +3088,7 @@ function EditListing() {
                         </Card>
                         <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
                           <SoftBox p={2}>
-                            <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} 
-                                            
-                            
+                            <Pricing pricing={pricing} onPricingChange={handlePricingChange} 
                             />
                           </SoftBox>
                         </Card>

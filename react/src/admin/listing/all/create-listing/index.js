@@ -1195,6 +1195,8 @@ function CreateListing() {
   const [pricing, setPricing] = useState({
     price: { value: "", error: false, textError: "" },
     currency: { value: "DH", error: false, textError: "" },
+    per: { value: "Day", error: false, textError: "" },
+
     phone: { value: "", error: false, textError: "" },
   });
   
@@ -1229,9 +1231,13 @@ function CreateListing() {
 
 
 
-  const handlePricingChange = (e) => {
-    const { name, value } = e.target;
-
+  const handlePricingChange = (e, nameOverride, valueOverride) => {
+    // Determine name and value based on event or provided overrides (for select inputs)
+    const name = nameOverride || e.target.name;
+    const value = valueOverride || e.target.value;
+  
+    
+  
     setPricing((prevPricing) => ({
       ...prevPricing,
       [name]: {
@@ -1252,22 +1258,8 @@ function CreateListing() {
       },
     }));
   };
-
   
-
-  const handleSelectChange = (name, value) => {
-    setPricing((prevPricing) => ({
-      ...prevPricing,
-      [name]: {
-        ...prevPricing[name],
-        value: value,
-        error: value.trim().length === 0,
-        textError: value.trim().length === 0 ? `${name.charAt(0).toUpperCase() + name.slice(1)} is required.` : "",
-      },
-    }));
   
-    
-  };
   
 
 
@@ -2016,6 +2008,8 @@ function CreateListing() {
    
     formData.append('data[attributes][price]', pricing.price.value);
     formData.append('data[attributes][currency]', pricing.currency.value);
+    formData.append('data[attributes][per]', pricing.per.value);
+
     formData.append('data[attributes][phone]', pricing.phone.value);
     
 
@@ -2632,7 +2626,7 @@ function CreateListing() {
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
 
-                <Pricing pricing={pricing} onPricingChange={handlePricingChange}  onSelectChange={handleSelectChange} />
+                <Pricing pricing={pricing} onPricingChange={handlePricingChange}  />
                 
               </SoftBox>
             </Card>

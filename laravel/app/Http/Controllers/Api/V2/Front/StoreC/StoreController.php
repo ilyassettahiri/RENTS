@@ -867,6 +867,8 @@ class StoreController extends JsonApiController
                                     'category' => $listing->category,
                                     'title' => $listing->title,
                                     'price' => $listing->price,
+                                    'currency' => $listing->currency,
+                                    'per' => $listing->typea,
                                     'url' => $listing->url,
 
                                     'city' => $listing->city,
