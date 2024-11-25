@@ -35,6 +35,26 @@ export default function ServiceSearchSkeleton() {
 
 
       </Box>
+
+
+      <Box
+        sx={{
+          py: 7,
+          px: 2,
+          mt: { xs: -17 },
+          display: { xs: 'block', md: 'none' }, // Visible only on mobile
+        }}
+      >
+        <Skeleton
+          variant="rectangular"
+          sx={{
+            width: '100%',
+            height: 54, // Matches a typical button height
+            borderRadius: 1, // Rounded edges for the button look
+          }}
+        />
+      </Box>
+
     </>
   );
 }

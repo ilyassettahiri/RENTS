@@ -23,6 +23,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
 import { ProductSort } from 'src/sections/home/product-sort';
+import ProductFiltersSkeleton from 'src/sections/business-list/product-filters-skeleton';
 
 import  ProductFilters  from 'src/sections/store/product/filters/product-filters';
 
@@ -1351,6 +1352,11 @@ export default function BusinessListView() {
 
       <Stack direction={{ xs: 'column', md: 'row' }}>
 
+
+
+          {isLoading ? (
+              <ProductFiltersSkeleton />
+          ) : (
             <ProductFilters
               filters={filters}
               canReset={canReset}
@@ -1362,6 +1368,10 @@ export default function BusinessListView() {
                 categories: ['all', ...PRODUCT_CATEGORY_OPTIONS],
               }}
             />
+
+          )}
+
+
         <Box
           sx={{
             flexGrow: 1,
