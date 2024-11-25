@@ -10,7 +10,7 @@ export default function HomeHeroSkeleton() {
     <Card>
       <Box
         sx={{
-          minHeight: {xs: '53vh', md: '58vh' },
+          minHeight: {xs: '52vh', md: '58vh' },
           position: 'relative',
         }}
       >
@@ -18,7 +18,7 @@ export default function HomeHeroSkeleton() {
           variant="rectangular"
           width="100%"
           sx={{
-            height: { xs: '53vh', md: '58vh' },
+            height: { xs: '52vh', md: '58vh' },
             borderRadius: 1,
           }}
         />

@@ -372,6 +372,7 @@ export default function HomeViewType({ params }) {
                     keywordCategoryMap={keywordCategoryMap}
                     sx={{
                       color: { md: 'common.white' },
+                      my: { xs: -1, md: 0 },
                       bgcolor: (theme) => ({
 
                         md: alpha(theme.palette.common.white, 0.08),
