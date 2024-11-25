@@ -26,7 +26,7 @@ export default function StoreHeroSkeleton() {
         sx={{
 
           overflow: 'hidden',
-          height: '500px',
+          height: '550px',
           display: { xs: 'flex', sm: 'flex' },
           alignItems: 'center',
           justifyContent: 'center',

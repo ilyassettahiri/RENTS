@@ -23,7 +23,7 @@ export default function ListingImageSkeleton() {
           md: 'repeat(2, 1fr)', // Two columns on medium screens and up
         },
         mb: { xs: 5, md: 5 },
-        px: {  md: 10 },
+        px: {  md: 5 },
 
         mt: {  md: 12 },
       }}
@@ -31,7 +31,7 @@ export default function ListingImageSkeleton() {
       {/* Main Image Skeleton */}
       <Skeleton
         variant="rectangular"
-        sx={{ width: '100%', height: { xs: 400, md: 400 }, borderRadius: 2 }}
+        sx={{ width: '100%', height: { xs: 640, md: 400 }, borderRadius: 2 }}
       />
 
       {/* Additional Thumbnails Skeleton for Desktop */}

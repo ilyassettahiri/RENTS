@@ -189,7 +189,8 @@ function CarouselItem({ categoryy }) {
       >
         {renderOverlay}
         <Image
-          alt="hero"
+          alt={`Hero image for ${categoryy} category`}
+
           src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoriescover/${categoryy}.jpg`}
           sx={{
             width: 1,
@@ -235,7 +236,10 @@ function ThumbnailItem({ tour, selected, onClick }) {
         }),
       }}
     >
-      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoryiconcover/${tour.categories.value}.svg`} sx={{ width: 45, height: 45 }} />
+      <Avatar src={`${process.env.NEXT_PUBLIC_STATIC_IMAGE_BASE_URL}/categoryiconcover/${tour.categories.value}.svg`}
+      sx={{ width: 45, height: 45 }}
+      alt={`${tour.categories.label} icon`}
+      />
 
 
         <Stack spacing={0.5}   >

@@ -303,7 +303,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                   />
 
                   <Stack spacing={0}>
-                      <Link variant="subtitle2" color="inherit" >
+
 
 
 
@@ -313,7 +313,7 @@ export default function ListingsItem({ tour, favorites = [], onFavoriteToggle })
                         {capitalizeFirstLetter(seller.name)}
                       </TextMaxLine>
 
-                      </Link>
+
 
                     <Stack
                       direction="row"

@@ -11,7 +11,7 @@ import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/compone
 
 // ----------------------------------------------------------------------
 
-export default function ServicesDetailsHeroSkeleton( { aa = 13 }) {
+export default function ServicesDetailsHeroSkeleton( { aa = 13, bb = 640 }) {
   const theme = useTheme();
 
   return (
@@ -29,7 +29,7 @@ export default function ServicesDetailsHeroSkeleton( { aa = 13 }) {
         mt: { md: aa },
       }}
     >
-      <CarouselSkeleton />
+      <CarouselSkeleton  bb={bb} />
 
       <Container>
         <Skeleton variant="rectangular" width="100%" height={50} sx={{ mb: 2 }} />
@@ -44,11 +44,12 @@ export default function ServicesDetailsHeroSkeleton( { aa = 13 }) {
 
 
 ServicesDetailsHeroSkeleton.propTypes = {
-  aa: PropTypes.number, // aa should be a number
+  aa: PropTypes.number,
+  bb: PropTypes.number,
 };
 
 // Skeleton for the carousel component
-function CarouselSkeleton() {
+function CarouselSkeleton({bb }) {
   const theme = useTheme();
 
   const carousel = useCarousel({
@@ -75,7 +76,7 @@ function CarouselSkeleton() {
             <Skeleton
               key={index}
               variant="rectangular"
-              sx={{ width: '100%', height: 500, borderRadius: 2 }}
+              sx={{ width: '100%', height: bb, borderRadius: 2 }}
             />
           ))}
         </Carousel>
@@ -83,3 +84,8 @@ function CarouselSkeleton() {
     </Card>
   );
 }
+
+CarouselSkeleton.propTypes = {
+
+  bb: PropTypes.number,
+};

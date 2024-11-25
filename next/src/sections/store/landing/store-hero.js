@@ -129,7 +129,6 @@ export default function StoreHero({ StoreData,  favorites = [], onFavoriteToggle
       try {
         const response = await CrudService.createFavoriteStore( url, id);
 
-        console.log('Response Favorite:', response.favorite);
 
         setFavorite(response.favorite);
         onFavoriteToggle(id, response.favorite);
