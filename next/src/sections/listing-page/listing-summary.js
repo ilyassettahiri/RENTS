@@ -64,10 +64,13 @@ function renderSpecificationsByCategory(category, specifications) {
 
   const imageBaseUrl = process.env.NEXT_PUBLIC_IMAGE_BASE_URL;
 
+  const validSpecifications = Object.entries(specifications).filter(
+    ([, value]) => value !== null && value !== undefined && value !== ''
+  );
 
   switch (category) {
     case 'billiard':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/billiards/${key}.svg`}
@@ -77,7 +80,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'activities':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/activities/${key}.svg`}
@@ -87,7 +90,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'apartments':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/apartments/${key}.svg`}
@@ -97,7 +100,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'audio':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/audios/${key}.svg`}
@@ -107,7 +110,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'boats':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/boats/${key}.svg`}
@@ -117,7 +120,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'boxing':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/boxings/${key}.svg`}
@@ -127,7 +130,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'offices':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/bureauxs/${key}.svg`}
@@ -137,7 +140,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'cameras':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/cameras/${key}.svg`}
@@ -147,7 +150,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'trucks':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/camions/${key}.svg`}
@@ -157,7 +160,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'caravans':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/caravans/${key}.svg`}
@@ -167,7 +170,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'cars':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/cars/${key}.svg`}
@@ -177,7 +180,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'chargers':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/chargers/${key}.svg`}
@@ -187,7 +190,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'clothes':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/clothes/${key}.svg`}
@@ -197,7 +200,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'diving':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/divings/${key}.svg`}
@@ -207,7 +210,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'drones':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/drones/${key}.svg`}
@@ -217,7 +220,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'eclairage':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/eclairages/${key}.svg`}
@@ -227,7 +230,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'electrical-tools':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/electricaltools/${key}.svg`}
@@ -237,7 +240,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'engins':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/engins/${key}.svg`}
@@ -247,7 +250,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'football':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/footballs/${key}.svg`}
@@ -257,7 +260,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'furniture':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/furnitures/${key}.svg`}
@@ -267,7 +270,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'gaming':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/gamings/${key}.svg`}
@@ -277,7 +280,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'golf':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/golfs/${key}.svg`}
@@ -287,7 +290,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'home-appliances':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/houseappliances/${key}.svg`}
@@ -297,7 +300,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'hunting':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/huntings/${key}.svg`}
@@ -307,7 +310,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'jewelry':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/jewelrys/${key}.svg`}
@@ -317,7 +320,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'ladders':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/ladders/${key}.svg`}
@@ -327,7 +330,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'laptops':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/laptops/${key}.svg`}
@@ -337,7 +340,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'lighting':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/lightings/${key}.svg`}
@@ -347,7 +350,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'books':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/livres/${key}.svg`}
@@ -357,7 +360,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'shops':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/magasins/${key}.svg`}
@@ -367,7 +370,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'houses':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/maisons/${key}.svg`}
@@ -377,7 +380,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'mechanical-tools':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/mechanicaltools/${key}.svg`}
@@ -387,7 +390,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'mobilier':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/mobiliers/${key}.svg`}
@@ -397,7 +400,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'motorcycles':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/motos/${key}.svg`}
@@ -407,7 +410,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'gym':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/musculations/${key}.svg`}
@@ -417,7 +420,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'musical':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/musicals/${key}.svg`}
@@ -427,7 +430,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'photography':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/photographies/${key}.svg`}
@@ -437,7 +440,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'power-tools':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/powertools/${key}.svg`}
@@ -447,7 +450,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'pressure-washers':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/pressurewashers/${key}.svg`}
@@ -457,7 +460,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'printers':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/printers/${key}.svg`}
@@ -467,7 +470,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'riads':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/riads/${key}.svg`}
@@ -477,7 +480,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'routers':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/routers/${key}.svg`}
@@ -487,7 +490,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'scooters':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/scooters/${key}.svg`}
@@ -497,7 +500,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'services':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/services/${key}.svg`}
@@ -508,7 +511,7 @@ function renderSpecificationsByCategory(category, specifications) {
 
 
     case 'jobs':
-        return Object.entries(specifications).map(([key, value]) => (
+        return validSpecifications.map(([key, value]) => (
           <OverviewItem
             key={key}
             icon={`${imageBaseUrl}/categoryicons/jobs/${key}.svg`}
@@ -518,7 +521,7 @@ function renderSpecificationsByCategory(category, specifications) {
         ));
 
     case 'sound-systems':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/sonorisations/${key}.svg`}
@@ -528,7 +531,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'surf':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/surfs/${key}.svg`}
@@ -538,7 +541,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'tablets':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tablettes/${key}.svg`}
@@ -548,7 +551,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'airport-taxis':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/taxiaeroports/${key}.svg`}
@@ -558,7 +561,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'tennis':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tennis/${key}.svg`}
@@ -568,7 +571,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'tents':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tentes/${key}.svg`}
@@ -578,7 +581,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'lands':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/terrains/${key}.svg`}
@@ -588,7 +591,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'transportation':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/transportations/${key}.svg`}
@@ -598,7 +601,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'bicycles':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/velos/${key}.svg`}
@@ -608,7 +611,7 @@ function renderSpecificationsByCategory(category, specifications) {
       ));
 
     case 'villas':
-      return Object.entries(specifications).map(([key, value]) => (
+      return validSpecifications.map(([key, value]) => (
         <OverviewItem
           key={key}
           icon={`${imageBaseUrl}/categoryicons/villas/${key}.svg`}

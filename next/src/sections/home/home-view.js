@@ -16,7 +16,6 @@ import Container from '@mui/material/Container';
 import CrudService from "src/services/cruds-service";
 import Stack from '@mui/material/Stack';
 
-import ServiceSearchSkeleton from 'src/sections/components/services/filters/services-search-skeleton';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 
@@ -253,9 +252,6 @@ export default function HomeView({ homeData }) {
 
 
 
-                {isLoading ? (
-                  <ServiceSearchSkeleton />
-                ) : (
 
 
                   <ServiceSearch
@@ -273,7 +269,7 @@ export default function HomeView({ homeData }) {
                       }}
                   />
 
-                )}
+
 
 
 

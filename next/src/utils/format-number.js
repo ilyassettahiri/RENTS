@@ -2,7 +2,12 @@
  * Locales code
  * https://gist.github.com/raushankrjha/d1c7e35cf87e69aa8b4208a8171a8416
  */
+
+
+
 import { formatNumberLocale } from 'src/locales';
+
+
 const DEFAULT_LOCALE = { code: 'en-US', currency: 'USD' };
 
 
