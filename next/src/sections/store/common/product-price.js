@@ -5,15 +5,49 @@ import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { useTranslation } from 'react-i18next';
 
 import { fCurrency } from 'src/utils/format-number';
 
 // ----------------------------------------------------------------------
 
-export default function ProductPrice({ price,per, priceSale = 0, sx, ...other }) {
+
+
+const conversionRates = {
+  MAD: 1,
+  USD: 0.1,
+  EUR: 0.1,
+};
+
+const languageCurrencyMap = {
+  en: 'USD',
+  fr: 'EUR',
+  ar: 'MAD',
+};
+
+
+
+
+export default function ProductPrice({ price,per, priceSale = 0, fromCurrency = 'MAD', sx, ...other }) {
+
+  const { i18n } = useTranslation();
+
+
+  const toCurrency = languageCurrencyMap[i18n.language] || 'MAD';
+
+
+
+  const convertCurrency = (amount, from, to) => {
+    if (from === to) return amount; // No conversion needed
+    return amount * (conversionRates[to] / conversionRates[from]);
+  };
+
+  const convertedPrice = convertCurrency(price, fromCurrency, toCurrency);
+
+
   return (
     <Stack direction="row" sx={{ typography: 'subtitle2', ...sx }} {...other}>
-      {`${fCurrency(price)} / ${per || 'Day'}`}
+      {`${fCurrency(convertedPrice)} / ${per || 'Day'}`}
 
       <Box
         component="span"
@@ -33,6 +67,8 @@ export default function ProductPrice({ price,per, priceSale = 0, sx, ...other })
 ProductPrice.propTypes = {
   price: PropTypes.number,
   per: PropTypes.string.isRequired,
+
+  fromCurrency: PropTypes.string.isRequired,
 
   priceSale: PropTypes.number,
   sx: PropTypes.object,

@@ -220,19 +220,6 @@ function CreateStore() {
     const urlPattern = /(https?:\/\/[^\s]+)/g;
     const imgPattern = /<img\b[^>]*>/i;
 
-    if (selectedCategory.value.trim().length < 1) {
-
-      setIsSubmitting(false);
-
-      setSelectedCategory((prevCategory) => ({
-        ...prevCategory,
-        error: true,
-        textError: "A category must be selected",
-      }));
-      return;
-    }
-    
-
 
 
     if (
@@ -253,6 +240,23 @@ function CreateStore() {
       });
       return;
     }
+
+
+
+    if (selectedCategory.value.trim().length < 1) {
+
+      setIsSubmitting(false);
+
+      setSelectedCategory((prevCategory) => ({
+        ...prevCategory,
+        error: true,
+        textError: "A category must be selected",
+      }));
+      return;
+    }
+    
+
+
 
     
 
@@ -423,8 +427,26 @@ function CreateStore() {
     } catch (err) {
       setIsSubmitting(false);
 
-      console.error(err);
-      // Handle error
+      const errcode = err.errors?.[0]?.status;
+      const ErrorMessage = err.errors?.[0]?.detail ;
+
+     
+
+      if (errcode === "409") {
+        
+          
+
+        setName({
+          ...name,
+          error: true,
+          textError: ErrorMessage,
+        });
+      } else {
+        console.error(err);
+        // Handle other errors
+      }
+
+
     }
 
     setIsSubmitting(false);

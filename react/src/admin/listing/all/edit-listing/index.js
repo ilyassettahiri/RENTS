@@ -1328,7 +1328,7 @@ function EditListing() {
 
   const [pricing, setPricing] = useState({
     price: { value: "", error: false, textError: "" },
-    currency: { value: "DH", error: false, textError: "" },
+    currency: { value: "MAD", error: false, textError: "" },
     per: { value: "Day", error: false, textError: "" },
 
     phone: { value: "", error: false, textError: "" },

@@ -13,6 +13,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 import { useDebounce } from 'src/hooks/use-debounce';
 
 import { useQuery } from '@tanstack/react-query';
+import ServiceSearchSkeleton from 'src/sections/components/services/filters/services-search-skeleton';
 
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import Iconify from 'src/components/iconify';
@@ -1270,24 +1271,37 @@ export default function BusinessListView() {
       sx={{
         mt: { xs: 15, md: 0 },
 
+
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
       }}
     >
-      <ServiceSearch
-        colorr="black"
-        categories={categories}
-        keywordCategoryMap={keywordCategoryMap}
 
-        onSearch={handleSearch}
-        sx={{
-          color: { md: 'common.white' },
-          bgcolor: (theme) => ({
-            xs: 'background.neutral',
-            md: theme.palette.common.white, // Adjusted as `alpha` was not defined
-          }),
-        }}
-      />
+
+
+                    {isLoading ? (
+                      <ServiceSearchSkeleton />
+                    ) : (
+                      <ServiceSearch
+                      colorr="black"
+                      categories={categories}
+                      keywordCategoryMap={keywordCategoryMap}
+
+                      onSearch={handleSearch}
+                      sx={{
+                        color: { md: 'common.white' },
+                        my: { xs: 4, md: 0 },
+                        bgcolor: (theme) => ({
+
+                          md: theme.palette.common.white, // Adjusted as `alpha` was not defined
+                        }),
+                      }}
+                    />
+                    )}
+
+
+
+
 
       <Stack
         direction="row"
@@ -1496,3 +1510,5 @@ function applyFilter({ inputData, filters, sortBy }) {
 
   return inputData;
 }
+
+

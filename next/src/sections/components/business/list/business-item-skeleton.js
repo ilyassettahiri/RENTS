@@ -4,27 +4,23 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Skeleton from '@mui/material/Skeleton';
 
-import { useResponsive } from 'src/hooks/use-responsive';
-
 // ----------------------------------------------------------------------
 
-export default function BusinessItemSkeleton({ vertical, ...other }) {
-  const smUp = useResponsive('up', 'sm');
-
-  const verticalStyle = vertical || !smUp;
-
+export default function BusinessItemSkeleton() {
   return (
-    <Card {...other}>
-      <Stack direction={verticalStyle ? 'column' : 'row'}>
+    <Card >
+      <Stack
+        direction={{
+          xs: 'column', // Display column on small screens
+          md: 'row', // Dynamically set based on `vertical` on larger screens
+        }}
+      >
         <Skeleton
           variant="rectangular"
           sx={{
-            width: 240,
+            width: { xs: 1, sm: 240 }, // Full width on mobile, fixed width on larger screens
             height: 346,
             flexShrink: 0,
-            ...(verticalStyle && {
-              width: 1,
-            }),
           }}
         />
 
@@ -69,6 +65,4 @@ export default function BusinessItemSkeleton({ vertical, ...other }) {
   );
 }
 
-BusinessItemSkeleton.propTypes = {
-  vertical: PropTypes.string,
-};
+

@@ -26,7 +26,7 @@ const defaultValues = {
   searchLocation: '',
 };
 
-export default function ServiceSearch({ onSearch, colorr, categories, keywordCategoryMap }) {
+export default function ServiceSearch({ onSearch, colorr, categories, keywordCategoryMap,  sx }) {
   const mdUp = useResponsive('up', 'md');
   const mobileOpen = useBoolean();
   const [searchs, setSearchs] = useState(defaultValues);
@@ -122,8 +122,8 @@ export default function ServiceSearch({ onSearch, colorr, categories, keywordCat
 
   return (
     <>
-      <Box  sx={{ py: 3, px: 5,  mt: { xs: -17}, display: { xs: 'block', md: 'none' }, }}>
-        <Button sx={{ py: 1.5, }} fullWidth color="primary" variant="contained" startIcon={<Iconify icon="carbon:search" width={20} />} onClick={mobileOpen.onTrue}>
+      <Box  sx={{ py: 3, px: 5,  mt: { xs: -17}, display: { xs: 'block', md: 'none' }}}>
+        <Button sx={{ py: 1.5,...sx}} fullWidth color="primary" variant="contained" startIcon={<Iconify icon="carbon:search" width={20} />} onClick={mobileOpen.onTrue}>
           Search
         </Button>
 
@@ -150,6 +150,9 @@ ServiceSearch.propTypes = {
       label: PropTypes.string.isRequired,
     })
   ).isRequired,
+
+  sx: PropTypes.object,
+
 
   keywordCategoryMap: PropTypes.object.isRequired,
 

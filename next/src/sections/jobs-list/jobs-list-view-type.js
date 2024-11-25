@@ -17,6 +17,9 @@ import Typography from '@mui/material/Typography';
 import { useRouter, usePathname, useSearchParams} from 'src/routes/hooks';
 
 import CrudService from 'src/services/cruds-service';
+
+import ServiceSearchSkeleton from 'src/sections/components/services/filters/services-search-skeleton';
+
 import ServiceSearch from 'src/sections/components/services/filters/services-search';
 import Stack from '@mui/material/Stack';
 
@@ -1286,20 +1289,28 @@ export default function JobsListViewType({ params }) {
 
               </Typography>
 
-      <ServiceSearch
-        colorr="black"
-        onSearch={handleSearch}
-        categories={categories}
-        keywordCategoryMap={keywordCategoryMap}
 
-        sx={{
-          color: { md: 'common.white' },
-          bgcolor: (theme) => ({
-            xs: 'background.neutral',
-            md: theme.palette.common.white,
-          }),
-        }}
-      />
+
+
+                    {isLoading ? (
+                      <ServiceSearchSkeleton />
+                    ) : (
+                      <ServiceSearch
+                      colorr="black"
+                      categories={categories}
+                      keywordCategoryMap={keywordCategoryMap}
+
+                      onSearch={handleSearch}
+                      sx={{
+                        color: { md: 'common.white' },
+                        my: { xs: 4, md: 0 },
+                        bgcolor: (theme) => ({
+
+                          md: theme.palette.common.white, // Adjusted as `alpha` was not defined
+                        }),
+                      }}
+                    />
+                    )}
 
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>

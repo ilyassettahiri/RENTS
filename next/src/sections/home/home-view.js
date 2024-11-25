@@ -263,7 +263,7 @@ export default function HomeView({ homeData }) {
                     sx={{
                       color: { md: 'common.white' },
                       bgcolor: (theme) => ({
-                        xs: 'background.neutral',
+
                         md: alpha(theme.palette.common.white, 0.08),
                       }),
                       }}

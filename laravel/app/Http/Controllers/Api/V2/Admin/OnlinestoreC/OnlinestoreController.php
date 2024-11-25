@@ -124,7 +124,7 @@ class OnlinestoreController extends JsonApiController
 
 
 
-        /*$manager = new ImageManager(new Driver());
+         $manager = new ImageManager(new Driver());
 
         if ($request->hasFile('data.attributes.picture')) {
             $file = $request->file('data.attributes.picture');
@@ -225,13 +225,13 @@ class OnlinestoreController extends JsonApiController
                     Log::error('Image upload and processing failed.', ['error' => $e->getMessage()]);
                 }
 
-        }*/
+        }
 
 
 
 
         // Handle image uploads
-        if ($request->hasFile('data.attributes.picture')) {
+       /*if ($request->hasFile('data.attributes.picture')) {
             $picturefile = $request->file('data.attributes.picture');
             $picturePath = Storage::disk('public')->put('images', $picturefile, 'public');
             $picturerelativePath = '/' . str_replace('storage/', '', $picturePath); // Ensure the path is relative
@@ -241,7 +241,7 @@ class OnlinestoreController extends JsonApiController
             $profil_picturefile = $request->file('data.attributes.profil_picture');
             $profil_picturePath = Storage::disk('public')->put('images', $profil_picturefile, 'public');
             $profil_picturerelativePath = '/' . str_replace('storage/', '', $profil_picturePath); // Ensure the path is relative
-        }
+        }*/
 
 
 
@@ -263,6 +263,20 @@ class OnlinestoreController extends JsonApiController
         $country = $request->input('data.attributes.country');
         $zip = $request->input('data.attributes.zip');
         $url = $this->generateUrl($name);
+
+        $existingStore = Onlinestore::where('url', $url)->first();
+        if ($existingStore) {
+            return response()->json([
+                'errors' => [
+                    [
+                        'status' => '409',
+                        'title' => 'Conflict',
+                        'detail' => 'Name already exists. Please choose a different name.',
+                    ],
+                ],
+            ], 409); // 409 Conflict status code
+        }
+
 
 
         // Create a new Onlinestore instance
@@ -369,6 +383,25 @@ class OnlinestoreController extends JsonApiController
         $country = $request->input('attributes.country');
         $zip = $request->input('attributes.zip');
         $url = $this->generateUrl($name);
+
+
+        if ($url !== $onlinestore->url) {
+
+            $existingStore = Onlinestore::where('url', $url)->first();
+            if ($existingStore) {
+                return response()->json([
+                    'errors' => [
+                        [
+                            'status' => '409',
+                            'title' => 'Conflict',
+                            'detail' => 'Name already exists. Please choose a different name.',
+                        ],
+                    ],
+                ], 409); // 409 Conflict status code
+            }
+        }
+
+
         $picturerelativePath = $request->input('attributes.picture');
         $profil_picturerelativePath = $request->input('attributes.profil_picture');
 

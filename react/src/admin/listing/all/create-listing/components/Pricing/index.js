@@ -100,7 +100,7 @@ function Pricing({ pricing, onPricingChange }) {
             <SoftSelect
               value={{ value: pricing.currency.value, label: pricing.currency.value }}
               options={[
-                { value: "DH", label: "DH" },
+                { value: "MAD", label: "MAD" },
                 { value: "EUR", label: "EUR" },
                 { value: "USD", label: "USD" },
               ]}
