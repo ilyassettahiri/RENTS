@@ -21,13 +21,10 @@ function Sidenav() {
   const { t } = useTranslation();
 
   const sidenavItems = [
-    { icon: <SpaceShip />, label: "profile", href: "profile" },
-    { icon: <Document />, label: "basic info", href: "basic-info" },
-    
-    
-    
-    { icon: <CustomerSupport />, label: "sessions", href: "sessions" },
-    { icon: <CreditCard />, label: "delete account", href: "delete-account" },
+    { icon: <SpaceShip />, label: t("Profile"), href: "profile" },
+    { icon: <Document />, label: t("Basic Info"), href: "basic-info" },
+    { icon: <CustomerSupport />, label: t("Sessions"), href: "sessions" },
+    { icon: <CreditCard />, label: t("Delete Account"), href: "delete-account" },
   ];
 
   const renderSidenavItems = sidenavItems.map(({ icon, label, href }, key) => {

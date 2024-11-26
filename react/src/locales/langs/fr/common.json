@@ -75,6 +75,65 @@
   "Saving...": "Enregistrement...",
 
   "Email": "Address Email",
+  "Save Changes": "Enregistrer les modifications",
+
+  "Profile": "Profil",
+  
+  "Sessions": "Sessions",
+  "Delete Account": "Supprimer le compte",
+  "Update Password": "Mettre à jour le mot de passe",
+
+
+  "Once you delete your account, there is no going back. Please be certain.": "Une fois que vous supprimez votre compte, il n'y a pas de retour en arrière. Veuillez en être certain.",
+  "Confirm": "Confirmer",
+  "I want to delete my account.": "Je veux supprimer mon compte.",
+  "Deactivate": "Désactiver",
+
+  "Two-factor authentication": "Authentification à deux facteurs",
+  "Enable": "Activer",
+  "Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.": "L'authentification à deux facteurs ajoute une couche de sécurité supplémentaire à votre compte en demandant plus qu'un simple mot de passe pour vous connecter.",
+  "Questions about security?": "Questions sur la sécurité ?",
+  "Have a question, concern, or comment about security? Please contact us.": "Vous avez une question, une préoccupation ou un commentaire concernant la sécurité ? Veuillez nous contacter.",
+  "Contact us": "Contactez-nous",
+
+  "Current Password": "Mot de passe actuel",
+  "New Password": "Nouveau mot de passe",
+  "Confirm New Password": "Confirmez le nouveau mot de passe",
+  "Password requirements": "Exigences relatives au mot de passe",
+  "Please follow this guide for a strong password:": "Veuillez suivre ce guide pour un mot de passe fort :",
+  "One special characters": "Un caractère spécial",
+  "Min 6 characters": "Minimum 6 caractères",
+  "One number (2 are recommended)": "Un chiffre (2 sont recommandés)",
+  "Change it often": "Changez-le fréquemment",
+
+  "This is a list of devices that have logged into your account. Remove those that you do not recognize.": "Voici une liste des appareils qui se sont connectés à votre compte. Supprimez ceux que vous ne reconnaissez pas.",
+  "Bucharest 68.133.163.201": "Bucarest 68.133.163.201",
+  "Your current session": "Votre session actuelle",
+  "Active": "Actif",
+  "EU": "UE",
+  "See more": "Voir plus",
+
+  "Basic Info": "Informations de base",
+  "First Name": "Prénom",
+  "Enter your first name": "Entrez votre prénom",
+  "First name is required": "Le prénom est requis",
+  "Last Name": "Nom de famille",
+  "Enter your last name": "Entrez votre nom de famille",
+  "Last name is required": "Le nom de famille est requis",
+  "I'm": "Je suis",
+  "Select Gender": "Sélectionnez le genre",
+  "Male": "Homme",
+  "Female": "Femme",
+  "Gender is required": "Le genre est requis",
+  "Select a date": "Sélectionnez une date",
+  "Birthday is required": "La date de naissance est requise",
+  "Valid email is required": "Un email valide est requis",
+  "Confirmation Email": "Email de confirmation",
+  "Enter your address": "Entrez votre adresse",
+  "Address is required": "L'adresse est requise",
+  "Phone number is required": "Le numéro de téléphone est requis",
+  "Enter your city": "Entrez votre ville",
+  "City is required": "La ville est requise",
 
   
 

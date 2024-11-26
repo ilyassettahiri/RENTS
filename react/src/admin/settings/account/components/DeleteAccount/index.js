@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import Card from "@mui/material/Card";
 import Switch from "@mui/material/Switch";
@@ -30,10 +15,10 @@ function DeleteAccount() {
     <Card id="delete-account">
       <SoftBox p={3} lineHeight={1}>
         <SoftBox mb={1}>
-          <SoftTypography variant="h5">Delete Account</SoftTypography>
+          <SoftTypography variant="h5">{t("Delete Account")}</SoftTypography>
         </SoftBox>
         <SoftTypography variant="button" color="text" fontWeight="regular">
-          Once you delete your account, there is no going back. Please be certain.
+          {t("Once you delete your account, there is no going back. Please be certain.")}
         </SoftTypography>
       </SoftBox>
       <SoftBox
@@ -48,20 +33,20 @@ function DeleteAccount() {
           <Switch />
           <SoftBox ml={2} lineHeight={0}>
             <SoftTypography display="block" variant="button" fontWeight="medium">
-              Confirm
+              {t("Confirm")}
             </SoftTypography>
             <SoftTypography variant="caption" color="text">
-              I want to delete my account.
+              {t("I want to delete my account.")}
             </SoftTypography>
           </SoftBox>
         </SoftBox>
         <SoftBox display="flex" flexDirection={{ xs: "column", sm: "row" }}>
           <SoftButton variant="outlined" color="secondary">
-            deactivate
+            {t("Deactivate")}
           </SoftButton>
           <SoftBox ml={{ xs: 0, sm: 1 }} mt={{ xs: 1, sm: 0 }}>
             <SoftButton variant="gradient" color="error" sx={{ height: "100%" }}>
-              delete account
+              {t("Delete Account")}
             </SoftButton>
           </SoftBox>
         </SoftBox>

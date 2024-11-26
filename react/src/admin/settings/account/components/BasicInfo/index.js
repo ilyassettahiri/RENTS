@@ -16,6 +16,7 @@ import CrudService from "services/cruds-service";
 
 function BasicInfo({ user }) {
 
+  const { t } = useTranslation();
 
 
 
@@ -664,8 +665,8 @@ function BasicInfo({ user }) {
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="First Name"
-              placeholder="First Name"
+              label={t("First Name")}
+              placeholder={t("Enter your first name")}
               name="firstName"
               value={firstName.text}
               onChange={changeFirstNameHandler}
@@ -682,8 +683,8 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Last Name"
-              placeholder="Last Name"
+              label={t("Last Name")}
+              placeholder={t("Enter your last name")}
               inputProps={{ type: "lastName" }}
               name="lastName"
               value={lastName.text}
@@ -706,14 +707,14 @@ function BasicInfo({ user }) {
                 <SoftBox display="flex" flexDirection="column" justifyContent="flex-end" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                      I&apos;m
+                    {t("I'm")}
                     </SoftTypography>
                   </SoftBox>
                   <SoftSelect
-                    placeholder="Male"
+                    placeholder={t("Select Gender")}
                     options={[
-                      { value: "male", label: "Male" },
-                      { value: "female", label: "Female" },
+                      { value: "male", label: t("Male") },
+                      { value: "female", label: t("Female") },
                     ]}
                     value={{ value: gender.text, label: gender.text.charAt(0).toUpperCase() + gender.text.slice(1) }}
                     onChange={(selectedOption) => setGender({ ...gender, text: selectedOption.value })}
@@ -734,7 +735,7 @@ function BasicInfo({ user }) {
                 <SoftBox display="flex" flexDirection="column" justifyContent="flex-end" height="100%">
                   <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                     <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                      Birthday
+                    {t("Birthday")}
                     </SoftTypography>
                   </SoftBox>
                   <SoftDatePicker
@@ -759,7 +760,7 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Email"
+              label={t("Email")}
               placeholder="example@email.com"
               inputProps={{ type: "email" }}
               name="email"
@@ -779,15 +780,16 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Confirmation Email"
+              label={t("Confirmation Email")}
               placeholder="example@email.com"
               inputProps={{ type: "email" }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label=" Address"
-              placeholder="Address"
+              label={t("Address")}
+              placeholder={t("Enter your address")}
+    
               name="streetAddress"
               value={streetAddress.text}
               onChange={changeStreetAddressHandler}
@@ -805,7 +807,7 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormField
-              label="Phone"
+              label={t("Phone")}
               placeholder="06 35 63 16 20"
               inputProps={{ type: "tel" }}
               name="phoneNumber"
@@ -826,7 +828,7 @@ function BasicInfo({ user }) {
 
           <Grid item xs={12} sm={5}>
             <FormField
-              label="City"
+              label={t("City")}
               placeholder="New York"
               name="city"
               value={city.text}
@@ -845,7 +847,7 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} md={2}>
             <FormField
-              label="Zip Code"
+              label={t("Zip")}
               placeholder="12345"
               name="zipCode"
               value={zipCode.text}
@@ -864,7 +866,7 @@ function BasicInfo({ user }) {
           </Grid>
           <Grid item xs={12} sm={5}>
             <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-              Country <span style={{ color: "red",}}> * </span>
+            {t("Country")} <span style={{ color: "red",}}> * </span>
             </SoftTypography>
             <SoftSelect
               label="Country"
@@ -898,7 +900,7 @@ function BasicInfo({ user }) {
               disabled={isSubmitting}
               >
                 
-                {isSubmitting ? "Saving..." : "Save changes"}
+                {isSubmitting ? t("Saving...") : t("Save Changes")}
               </SoftButton>
             </SoftBox>
           </Grid>

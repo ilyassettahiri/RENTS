@@ -233,6 +233,77 @@
               "Ages": "Ages 2 - 12",
               "Review": "Review",
               "Name": "Name",
+             "Profile": "Profile",
+  
+  "Sessions": "Sessions",
+  "Delete Account": "Delete Account",
+
+  "Once you delete your account, there is no going back. Please be certain.": "Once you delete your account, there is no going back. Please be certain.",
+  "Confirm": "Confirm",
+  "I want to delete my account.": "I want to delete my account.",
+  "Deactivate": "Deactivate",
+
+  "Update Password": "Update Password",
+
+  "This is a list of devices that have logged into your account. Remove those that you do not recognize.": "This is a list of devices that have logged into your account. Remove those that you do not recognize.",
+  "Bucharest 68.133.163.201": "Bucharest 68.133.163.201",
+  "Your current session": "Your current session",
+  "Active": "Active",
+  "EU": "EU",
+  "See more": "See more",
+
+ "Two-factor authentication": "Two-factor authentication",
+  "Enable": "Enable",
+  "Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.": "Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.",
+  "Questions about security?": "Questions about security?",
+  "Have a question, concern, or comment about security? Please contact us.": "Have a question, concern, or comment about security? Please contact us.",
+  "Contact us": "Contact us",
+
+  "Current Password": "Current Password",
+  "New Password": "New Password",
+  "Confirm New Password": "Confirm New Password",
+  "Password requirements": "Password requirements",
+  "Please follow this guide for a strong password:": "Please follow this guide for a strong password:",
+  "One special characters": "One special character",
+  "Min 6 characters": "Min 6 characters",
+  "One number (2 are recommended)": "One number (2 are recommended)",
+  "Change it often": "Change it often",
+
+              "Basic Info": "Basic Info",
+            "First Name": "First Name",
+            "Enter your first name": "Enter your first name",
+            "First name is required": "First name is required",
+            "Last Name": "Last Name",
+            "Enter your last name": "Enter your last name",
+            "Last name is required": "Last name is required",
+            "I'm": "I'm",
+            "Select Gender": "Select Gender",
+            "Male": "Male",
+            "Female": "Female",
+            "Gender is required": "Gender is required",
+            
+            "Select a date": "Select a date",
+            "Birthday is required": "Birthday is required",
+            
+            "Valid email is required": "Valid email is required",
+            "Confirmation Email": "Confirmation Email",
+            
+            "Enter your address": "Enter your address",
+            "Address is required": "Address is required",
+            
+            "Phone number is required": "Phone number is required",
+
+            "Enter your city": "Enter your city",
+            "City is required": "City is required",
+  
+  
+  
+  
+  "Select your country": "Select your country",
+  
+  
+  
+  "Save Changes": "Save Changes",
 
               "PersonalInfo": "Personal Info",
               "Wishlist": "Wishlist",

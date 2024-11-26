@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Soft UI Dashboard PRO React - v4.0.2
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/soft-ui-dashboard-pro-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -42,11 +29,11 @@ function Sessions() {
     <Card id="sessions">
       <SoftBox p={3} lineHeight={1}>
         <SoftBox mb={1}>
-          <SoftTypography variant="h5">Sessions</SoftTypography>
+          <SoftTypography variant="h5">{t("Sessions")}</SoftTypography>
         </SoftBox>
         <SoftTypography variant="button" color="text" fontWeight="regular">
-          This is a list of devices that have logged into your account. Remove those that you do not
-          recognize.
+        {t("This is a list of devices that have logged into your account. Remove those that you do not recognize.")}
+
         </SoftTypography>
       </SoftBox>
       <SoftBox pb={3} px={3} sx={{ overflow: "auto" }}>
@@ -65,7 +52,7 @@ function Sessions() {
                 Bucharest 68.133.163.201
               </SoftTypography>
               <SoftTypography variant="caption" color="text">
-                Your current session
+              {t("Your current session")}
               </SoftTypography>
             </SoftBox>
           </SoftBox>
@@ -90,7 +77,7 @@ function Sessions() {
               fontWeight="regular"
               sx={actionButtonStyles}
             >
-              See more&nbsp;
+              {t("See more")}&nbsp;
               <Icon sx={{ fontWeight: "bold", verticalAlign: "middle" }}>arrow_forward</Icon>
             </SoftTypography>
           </SoftBox>
@@ -126,7 +113,7 @@ function Sessions() {
               fontWeight="regular"
               sx={actionButtonStyles}
             >
-              See more&nbsp;
+              {t("See more")}&nbsp;
               <Icon sx={{ fontWeight: "bold", verticalAlign: "middle" }}>arrow_forward</Icon>
             </SoftTypography>
           </SoftBox>
@@ -162,7 +149,7 @@ function Sessions() {
               fontWeight="regular"
               sx={actionButtonStyles}
             >
-              See more&nbsp;
+              {t("See more")}&nbsp;
               <Icon sx={{ fontWeight: "bold", verticalAlign: "middle" }}>arrow_forward</Icon>
             </SoftTypography>
           </SoftBox>

@@ -26,7 +26,7 @@ import SoftTypography from "components/SoftTypography";
 export const paths = {
   nav: {
     account: '/settings/account',
-    team: '/settings/team',
+    listing: '/listing/all',
     security: '/settings/security',
 
   },
@@ -34,7 +34,7 @@ export const paths = {
 
 const navigations = [
   { title: 'Account', path: paths.nav.account, icon: <Iconify icon="carbon:user" /> },
-  { title: 'Team', path: paths.nav.team, icon: <Iconify icon="carbon:favorite" /> },
+  { title: 'Listings', path: paths.nav.listing, icon: <Iconify icon="carbon:favorite" /> },
   { title: 'Security', path: paths.nav.security, icon: <Iconify icon="carbon:chat" /> },
 ];
 

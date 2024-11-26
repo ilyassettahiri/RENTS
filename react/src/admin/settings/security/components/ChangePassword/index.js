@@ -257,7 +257,7 @@ function ChangePassword() {
           <Grid item xs={12}>
             <FormField
               label={t("Current Password")}
-              placeholder={t("Current Password")}
+              placeholder="***********"
               inputProps={{ type: "password" }}
               name="oldPassword"
               value={oldPassword.text}
@@ -273,7 +273,7 @@ function ChangePassword() {
           <Grid item xs={12}>
             <FormField
               label={t("New Password")}
-              placeholder={t("New Password")}
+              placeholder="***********"
               inputProps={{ type: "password" }}
               name="newPassword"
               value={newPassword.text}
@@ -289,7 +289,7 @@ function ChangePassword() {
           <Grid item xs={12}>
             <FormField
               label={t("Confirm New Password")}
-              placeholder={t("Confirm New Password")}
+              placeholder="***********"
               inputProps={{ type: "password" }}
               name="confirmNewPassword"
               value={confirmNewPassword.text}
@@ -312,7 +312,8 @@ function ChangePassword() {
             type="submit"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Saving..." : "Update Password"}
+            {isSubmitting ? t("Saving...") : t("Update Password")}
+
           </SoftButton>
         </SoftBox>
         {notification.value && (
