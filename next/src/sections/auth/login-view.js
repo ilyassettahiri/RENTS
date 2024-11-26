@@ -87,7 +87,7 @@ export default function LoginView() {
 
     try {
       const response = await AuthService.login(myData);
-      console.log('Access Token:', response.access_token); // Log the access token
+
       authContext.login(response.access_token, response.refresh_token);
       window.location.href = "/"; // Redirect to home page after successful login
     } catch (res) {

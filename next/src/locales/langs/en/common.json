@@ -88,7 +88,10 @@
 
               "Categories": "Categories",
 
-
+              "Hour": "Hour",
+                "Week": "Week",
+                "Month": "Month",
+                "Year": "Year",
 
               "importantLinks": "Important Links",
               "contactUs": "Contact Us",

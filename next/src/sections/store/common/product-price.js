@@ -31,6 +31,7 @@ const languageCurrencyMap = {
 export default function ProductPrice({ price,per, priceSale = 0, fromCurrency = 'MAD', sx, ...other }) {
 
   const { i18n } = useTranslation();
+  const { t } = useTranslation();
 
 
   const toCurrency = languageCurrencyMap[i18n.language] || 'MAD';
@@ -47,7 +48,7 @@ export default function ProductPrice({ price,per, priceSale = 0, fromCurrency = 
 
   return (
     <Stack direction="row" sx={{ typography: 'subtitle2', ...sx }} {...other}>
-      {`${fCurrency(convertedPrice)} / ${per || 'Day'}`}
+      {`${fCurrency(convertedPrice)} / ${t(per || 'Day')}`}
 
       <Box
         component="span"
