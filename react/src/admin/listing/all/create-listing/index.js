@@ -2351,7 +2351,7 @@ function CreateListing() {
                       <SoftBox mb={3}>
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                            Category 
+                          {t("Category")} 
                               <span style={{ color: "red",}}> * </span>
 
                              
@@ -2359,65 +2359,66 @@ function CreateListing() {
                         </SoftBox>
                         <SoftSelect
 
-                          placeholder="Select Category"
+                          placeholder={t("Select Category")}
                           options={[
                             
-                            { value: "boats", label: "Boats", icon: BoatsIcon },
-                            { value: "trucks", label: "Trucks", icon: CamionsIcon },
-                            { value: "caravans", label: "Caravans", icon: CaravansIcon },
-                            { value: "cars", label: "Cars", icon: CarsIcon },
-                            { value: "engins", label: "Engins", icon: EnginsIcon },
-                            { value: "motorcycles", label: "Motorcycles", icon: MotosIcon },
-                            { value: "scooters", label: "Scooters", icon: ScootersIcon },
-                            { value: "airport-taxis", label: "Airport Taxis", icon: TaxiaeroportsIcon },
-                            { value: "transportation", label: "Transportation", icon: TransportationsIcon },
-                            { value: "bicycles", label: "Bicycles", icon: VelosIcon },
-                            { value: "apartments", label: "Apartments", icon: ApartmentsIcon },
-                            { value: "offices", label: "Offices", icon: BureauxsIcon },
-                            { value: "shops", label: "Shops", icon: MagasinsIcon },
-                            { value: "houses", label: "Houses", icon: MaisonsIcon },
-                            { value: "riads", label: "Riads", icon: RiadsIcon },
-                            { value: "lands", label: "Lands", icon: TerrainsIcon },
-                            { value: "villas", label: "Villas", icon: VillasIcon },
-                            { value: "services", label: "Services", icon: ServicesIcon },
-                            { value: "jobs", label: "Jobs", icon: JobsIcon },
 
-                            { value: "audio", label: "Audio", icon: AudiosIcon },
-                            { value: "cameras", label: "Cameras", icon: CamerasIcon },
-                            { value: "chargers", label: "Chargers", icon: ChargersIcon },
-                            { value: "drones", label: "Drones", icon: DronesIcon },
-                            { value: "gaming", label: "Gaming", icon: GamingsIcon },
-                            { value: "laptops", label: "Laptops", icon: LaptopsIcon },
-                            { value: "lighting", label: "Lighting", icon: LightingsIcon },
-                            { value: "printers", label: "Printers", icon: PrintersIcon },
-                            { value: "routers", label: "Routers", icon: RoutersIcon },
-                            { value: "tablets", label: "Tablets", icon: TablettesIcon },
-                            { value: "electrical-tools", label: "Electrical Tools", icon: ElectricaltoolsIcon },
-                            { value: "ladders", label: "Ladders", icon: LaddersIcon },
-                            { value: "mechanical-tools", label: "Mechanical Tools", icon: MechanicaltoolsIcon },
-                            { value: "power-tools", label: "Power Tools", icon: PowertoolsIcon },
-                            { value: "pressure-washers", label: "Pressure Washers", icon: PressurewashersIcon },
-                            { value: "billiard", label: "Billiard", icon: BilliardsIcon },
-                            { value: "boxing", label: "Boxing", icon: BoxingsIcon },
-                            { value: "diving", label: "Diving", icon: DivingsIcon },
-                            { value: "football", label: "Football", icon: FootballsIcon },
-                            { value: "golf", label: "Golf", icon: GolfsIcon },
-                            { value: "hunting", label: "Hunting", icon: HuntingsIcon },
-                            { value: "gym", label: "Gym", icon: MusculationsIcon },
-                            { value: "surf", label: "Surf", icon: SurfsIcon },
-                            { value: "tennis", label: "Tennis", icon: TennisIcon },
-                            { value: "clothes", label: "Clothes", icon: ClothesIcon },
-                            { value: "jewelry", label: "Jewelry", icon: JewelrysIcon },
-                            { value: "activities", label: "Activities", icon: ActivitiesIcon },
-                            { value: "books", label: "Books", icon: LivresIcon },
-                            { value: "musical", label: "Musical", icon: MusicalsIcon },
-                            { value: "furniture", label: "Furniture", icon: FurnituresIcon },
-                            { value: "home-appliances", label: "Home Appliances", icon: HouseappliancesIcon },
-                            { value: "eclairage", label: "Eclairage", icon: EclairagesIcon },
-                            { value: "mobilier", label: "Mobilier", icon: MobiliersIcon },
-                            { value: "photography", label: "Photography", icon: PhotographiesIcon },
-                            { value: "sound-systems", label: "Sound Systems", icon: SonorisationsIcon },
-                            { value: "tents", label: "Tents", icon: TentesIcon }
+                            { value: "boats", label: t("Boats"), icon: BoatsIcon },
+                            { value: "trucks", label: t("Trucks"), icon: CamionsIcon },
+                            { value: "caravans", label: t("Caravans"), icon: CaravansIcon },
+                            { value: "cars", label: t("Cars"), icon: CarsIcon },
+                            { value: "engins", label: t("Engins"), icon: EnginsIcon },
+                            { value: "motorcycles", label: t("Motorcycles"), icon: MotosIcon },
+                            { value: "scooters", label: t("Scooters"), icon: ScootersIcon },
+                            { value: "airport-taxis", label: t("Airport Taxis"), icon: TaxiaeroportsIcon },
+                            { value: "transportation", label: t("Transportation"), icon: TransportationsIcon },
+                            { value: "bicycles", label: t("Bicycles"), icon: VelosIcon },
+                            { value: "apartments", label: t("Apartments"), icon: ApartmentsIcon },
+                            { value: "offices", label: t("Offices"), icon: BureauxsIcon },
+                            { value: "shops", label: t("Shops"), icon: MagasinsIcon },
+                            { value: "houses", label: t("Houses"), icon: MaisonsIcon },
+                            { value: "riads", label: t("Riads"), icon: RiadsIcon },
+                            { value: "lands", label: t("Lands"), icon: TerrainsIcon },
+                            { value: "villas", label: t("Villas"), icon: VillasIcon },
+                            { value: "services", label: t("Services"), icon: ServicesIcon },
+                            { value: "jobs", label: t("Jobs"), icon: JobsIcon },
+                            { value: "audio", label: t("Audio"), icon: AudiosIcon },
+                            { value: "cameras", label: t("Cameras"), icon: CamerasIcon },
+                            { value: "chargers", label: t("Chargers"), icon: ChargersIcon },
+                            { value: "drones", label: t("Drones"), icon: DronesIcon },
+                            { value: "gaming", label: t("Gaming"), icon: GamingsIcon },
+                            { value: "laptops", label: t("Laptops"), icon: LaptopsIcon },
+                            { value: "lighting", label: t("Lighting"), icon: LightingsIcon },
+                            { value: "printers", label: t("Printers"), icon: PrintersIcon },
+                            { value: "routers", label: t("Routers"), icon: RoutersIcon },
+                            { value: "tablets", label: t("Tablets"), icon: TablettesIcon },
+                            { value: "electrical-tools", label: t("Electrical Tools"), icon: ElectricaltoolsIcon },
+                            { value: "ladders", label: t("Ladders"), icon: LaddersIcon },
+                            { value: "mechanical-tools", label: t("Mechanical Tools"), icon: MechanicaltoolsIcon },
+                            { value: "power-tools", label: t("Power Tools"), icon: PowertoolsIcon },
+                            { value: "pressure-washers", label: t("Pressure Washers"), icon: PressurewashersIcon },
+                            { value: "billiard", label: t("Billiard"), icon: BilliardsIcon },
+                            { value: "boxing", label: t("Boxing"), icon: BoxingsIcon },
+                            { value: "diving", label: t("Diving"), icon: DivingsIcon },
+                            { value: "football", label: t("Football"), icon: FootballsIcon },
+                            { value: "golf", label: t("Golf"), icon: GolfsIcon },
+                            { value: "hunting", label: t("Hunting"), icon: HuntingsIcon },
+                            { value: "gym", label: t("Gym"), icon: MusculationsIcon },
+                            { value: "surf", label: t("Surf"), icon: SurfsIcon },
+                            { value: "tennis", label: t("Tennis"), icon: TennisIcon },
+                            { value: "clothes", label: t("Clothes"), icon: ClothesIcon },
+                            { value: "jewelry", label: t("Jewelry"), icon: JewelrysIcon },
+                            { value: "activities", label: t("Activities"), icon: ActivitiesIcon },
+                            { value: "books", label: t("Books"), icon: LivresIcon },
+                            { value: "musical", label: t("Musical"), icon: MusicalsIcon },
+                            { value: "furniture", label: t("Furniture"), icon: FurnituresIcon },
+                            { value: "home-appliances", label: t("Home Appliances"), icon: HouseappliancesIcon },
+                            { value: "eclairage", label: t("Eclairage"), icon: EclairagesIcon },
+                            { value: "mobilier", label: t("Mobilier"), icon: MobiliersIcon },
+                            { value: "photography", label: t("Photography"), icon: PhotographiesIcon },
+                            { value: "sound-systems", label: t("Sound Systems"), icon: SonorisationsIcon },
+                            { value: "tents", label: t("Tents"), icon: TentesIcon }
+
                           ]}
 
 
@@ -2442,7 +2443,7 @@ function CreateListing() {
                         <FormField
                           type="text"
                           placeholder="apartment for rent..."
-                          label="Title"
+                          label={t("Title")}
                           name="title"
                           value={title.text}
                           onChange={changeTitleHandler}
@@ -2461,7 +2462,7 @@ function CreateListing() {
                   <SoftBox mt={2}>
                     <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                       <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                        Description
+                      {t("Description")}
 
                         <span style={{ color: "red",}}> * </span>
 
@@ -2487,7 +2488,7 @@ function CreateListing() {
                     
                         <SoftBox mb={1} ml={0.5} lineHeight={0} display="inline-block">
                           <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                              Availability
+                          {t("Availability")}
 
                               <span style={{ color: "red",}}> * </span>
 
@@ -2592,7 +2593,7 @@ function CreateListing() {
                 <SoftBox >
 
                   <SoftTypography component="label" variant="caption" fontWeight="bold" textTransform="capitalize">
-                    Images 
+                  {t("Images")} 
                     <span style={{ color: "red" }}> * </span>
                        (JPG, JPEG, PNG, GIF, WEBP, TIFF. Max size: 6MB)
                       
@@ -2638,7 +2639,7 @@ function CreateListing() {
 
             
             >
-                  {isSubmitting ? "Saving..." : "Save"} 
+                  {isSubmitting ? t("Saving...") : t("Save")}
 
             </SoftButton>
           </SoftBox>

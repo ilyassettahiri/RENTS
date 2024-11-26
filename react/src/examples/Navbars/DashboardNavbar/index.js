@@ -276,7 +276,8 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
                                   <SoftButton    variant="gradient" type="submit" onClick={clickAddHandler} color="info">
 
                                   
-                                      Create Listing
+                                      
+                                      {t("Create Listing")}
 
                                   </SoftButton>
                     </SoftBox>

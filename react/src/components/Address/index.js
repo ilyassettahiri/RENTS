@@ -5,7 +5,14 @@ import SoftBox from "components/SoftBox";
 import FormField from "admin/components/FormField";
 import SoftTypography from "components/SoftTypography";
 
+import { useTranslation } from "react-i18next";
+
+
 function Address({ address, onAddressChange }) {
+
+  const { t } = useTranslation();
+
+
   return (
     <SoftBox>
       <SoftBox mt={2}>
@@ -13,7 +20,7 @@ function Address({ address, onAddressChange }) {
           <Grid item xs={12}>
             <FormField
               type="text"
-              label="Address"
+              label={t("Address")}
               name="address"
               value={address.address.value}
               onChange={onAddressChange}
@@ -31,7 +38,7 @@ function Address({ address, onAddressChange }) {
           <Grid item xs={12} md={5}>
             <FormField
               type="text"
-              label="City"
+              label={t("City")}
               name="city"
               value={address.city.value}
               onChange={onAddressChange}
@@ -49,7 +56,7 @@ function Address({ address, onAddressChange }) {
           <Grid item xs={12} md={5}>
             <FormField
               type="text"
-              label="Country"
+              label={t("Country")}
               name="country"
               value={address.country.value}
               onChange={onAddressChange}
@@ -67,7 +74,7 @@ function Address({ address, onAddressChange }) {
           <Grid item xs={12} md={2}>
             <FormField
               type="text"
-              label="Zip"
+              label={t("Zip")}
               name="zip"
               value={address.zip.value}
               onChange={onAddressChange}

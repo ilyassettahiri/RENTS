@@ -1,417 +1,621 @@
 {
-  "demo": {
-    "lang": "Arabic",
-    "description": "نقطة البداية لمشروعك التالي مستندة إلى MUI. التخصيص السهل يساعدك على بناء التطبيقات بشكل أسرع وأفضل."
-  },
 
 
 
-  "clientUsage": "استخدام العميل",
-  "createListing": "أضف اعلانك",
+        "Apartments": "شقق",
+
+        "Offices": "مكاتب",
+        "Activities": "أنشطة",
+        "Engins": "آلات",
+        "Lands": "أراضي",
+        "Transportation": "وسائل النقل",
+        "Bicycles": "دراجات",
+        "Villas": "فلل",
+        "Audio": "الصوتيات",
+        "Boats": "قوارب",
+        "Boxing": "ملاكمة",
+        "Cameras": "كاميرات",
+        "Trucks": "شاحنات",
+        "Caravans": "كرافانات",
+        "Chargers": "شواحن",
+        "Clothes": "ملابس",
+        "Diving": "الغوص",
+        "Drones": "طائرات بدون طيار",
+        "Eclairage": "إضاءة",
+        "Electrical Tools": "أدوات كهربائية",
+
+        "Gaming": "ألعاب الفيديو",
+        "Golf": "غولف",
+        "Home Appliances": "الأجهزة المنزلية",
+        "Hunting": "الصيد",
+        "Jewelry": "مجوهرات",
+        "Ladders": "سلالم",
+
+        "Books": "كتب",
+
+        "Houses": "منازل",
+        "Mechanical Tools": "أدوات ميكانيكية",
+        "Mobilier": "أثاث",
+        "Motorcycles": "دراجات نارية",
+
+        "Musical": "آلات موسيقية",
+        "Photography": "التصوير",
+        "Power Tools": "أدوات كهربائية",
+        "Pressure Washers": "غسالات الضغط",
+        "Printers": "طابعات",
+        "Riads": "رياض",
+        "Routers": "أجهزة التوجيه",
+        "Scooters": "سكوترات",
+        "Sound Systems": "أنظمة صوتية",
+        "Surf": "ركوب الأمواج",
+
+        "Airport Taxis": "سيارات أجرة المطار",
+        "Tennis": "تنس",
+        "Tents": "خيام",
+        "Billiard": "البلياردو",
+
+
+        "Hour": "ساعة",
+        "Week": "أسبوع",
+        "Month": "شهر",
+        "Year": "سنة",
 
 
 
-      "Apartments": "الشقق",
-      "Billiards": "البلياردو",
-      "Activities": "الأنشطة",
-      "Audios": "الصوتيات",
-      "Boats": "القوارب",
-      "Boxings": "الملاكمة",
-      "Bureauxs": "المكاتب",
-      "Cameras": "الكاميرات",
-      "Camions": "الشاحنات",
-      "Caravans": "القوافل",
-      "Cars": "السيارات",
-      "Chargers": "الشواحن",
-      "Clothes": "الملابس",
-      "Divings": "الغوص",
-      "Drones": "الطائرات بدون طيار",
-      "Eclairages": "الإضاءة",
-      "Electricaltools": "أدوات كهربائية",
-      "Engins": "الآلات",
-      "Footballs": "كرة القدم",
-      "Furnitures": "الأثاث",
-      "Gamings": "ألعاب الفيديو",
-      "Golfs": "الغولف",
-      "Houseappliances": "أجهزة منزلية",
-      "Huntings": "الصيد",
-      "Jewelrys": "المجوهرات",
-      "Ladders": "السلالم",
-      "Laptops": "أجهزة اللابتوب",
-      "Lightings": "إضاءة",
-      "Livres": "الكتب",
-      "Magasins": "المتاجر",
-      "Maisons": "المنازل",
-      "Mechanicaltools": "أدوات ميكانيكية",
-      "Mobiliers": "أثاث",
-      "Motos": "الدراجات النارية",
-      "Musculations": "كمال الأجسام",
-      "Musicals": "الموسيقى",
-      "Photographies": "التصوير",
-      "Powertools": "أدوات الطاقة",
-      "Pressurewashers": "ماكينات غسيل بالضغط",
-      "Printers": "الطابعات",
-      "Riads": "الرياض",
-      "Routers": "أجهزة التوجيه",
-      "Scooters": "السكوتر",
-      "Services": "الخدمات",
-      "Sonorisations": "أنظمة الصوت",
-      "Surfs": "ركوب الأمواج",
-      "Tablettes": "أجهزة التابلت",
-      "Taxiaeroports": "سيارات أجرة المطار",
-      "Tennis": "التنس",
-      "Tentes": "الخيام",
-      "Terrains": "الأراضي",
-      "Transportations": "النقل",
-      "Velos": "الدراجات",
-      "Villas": "الفلل",
+        "Dashboard": "لوحة القيادة",
+        "Home": "الرئيسية",
+        "Reservations": "الحجوزات",
+        "Upcoming": "القادمة",
+        "Checking out": "تسجيل المغادرة",
+        "Currently hosting": "يستضيف حاليا",
+        "All Reservations": "كل الحجوزات",
+        "Listings": "القوائم",
+        "All": "الكل",
+        "Completed": "مكتملة",
+        "Draft": "مسودة",
+        "Boosted": "معززة",
+        "Collections": "المجموعات",
+        "Discounts": "الخصومات",
+        "Create Listing": "إنشاء قائمة",
+        "Edit Listing": "تحرير القائمة",
+        "Detail Listing": "تفاصيل القائمة",
+        "Edit Boosted": "تحرير المعزز",
+        "Detail Boosted": "تفاصيل المعزز",
+        "Edit Completed": "تحرير المكتملة",
+        "Create Collection": "إنشاء مجموعة",
+        "Detail Collection": "تفاصيل المجموعة",
+        "Create Discount": "إنشاء خصم",
+        "Detail Discount": "تفاصيل الخصم",
+        "Create Reservation": "إنشاء حجز",
+        "Detail Reservation": "تفاصيل الحجز",
+        "Detail Checking Out": "تفاصيل تسجيل المغادرة",
+        "Detail Currently Hosting": "تفاصيل الاستضافة الحالية",
+        "Detail Upcoming": "تفاصيل القادمة",
+        "Detail Review": "تفاصيل المراجعة",
+        "Create Customer": "إنشاء عميل",
+        "Detail Customer": "تفاصيل العميل",
+        "Customers": "العملاء",
+        "Reviews": "المراجعات",
+        "Analytics": "التحليلات",
+        "Finances": "التمويل",
+        "Overview": "نظرة عامة",
+        "Invoices": "الفواتير",
+        "Store": "المتجر",
+        "Create Store": "إنشاء متجر",
+        "Detail Store": "تفاصيل المتجر",
+        "Settings": "الإعدادات",
+        "Account": "الحساب",
+        "Today Reservations": "حجوزات اليوم",
+  "Today Visitors": "زوار اليوم",
+  "Today Revenue": "إيرادات اليوم",
+  "This Month Revenue": "إيرادات هذا الشهر",
+
+
+  "Store Name": "اسم المتجر",
+  "Enter store name": "أدخل اسم المتجر",
+  "Select Category": "اختر الفئة",
+  "Saving...": "جارٍ الحفظ...",
+  "Save": "حفظ",
+  "Email": "البريد الإلكتروني",
 
 
 
+  "Team": "فريق",
+  "Compte": "الحساب",
+  "Top 5 Listings": "أفضل 5 قوائم",
+  "Address": "العنوان",
+  "Eg. Center Ville": "مثل. وسط المدينة",
+  "City": "المدينة",
+  "Eg. Marrakech": "مثل. مراكش",
+  "Country": "الدولة",
+  "Morocco": "المغرب",
+  "Zip": "الرمز البريدي",
+  "Phone Number": "رقم الهاتف",
+  "Phone": "رقم الهاتف",
+
+  "Price": "السعر",
+  "Per": "لكل",
+  "Day": "يوم",
+  "Currency": "العملة",
+  "Availability": "التوافر",
+  "Category": "الفئة",
+  "Title": "العنوان",
+  "Description": "الوصف",
 
           "Vehicule": "مركبات",
 
           "Immobilier": "عقارات",
 
           "Electronic": "إلكترونيات",
+  
 
-          "MaterielProfessionnel": "معدات مهنية",
-
-          "EquipementpourEvenements": "معدات للأحداث",
-
-          "LoisirsetDivertissements": "ترفيه وألعاب",
-
-          "MaisonetetJardin": "المنزل والحديقة",
-          "BienetreSport": "الرفاهية والرياضة",
-
-              "Habillement": "الملابس",
-
-
-          "Home": "الرئيسية",
-
-          "Business": "الأعمال",
-          "Categories": "الفئات",
-
-          "importantLinks": "روابط مهمة",
-          "contactUs": "اتصل بنا",
-          "helpCenter": "مركز المساعدة",
-          "blog": "مدونة",
-          "privacyPolicy": "سياسة الخصوصية",
-          "termsOfService": "شروط الخدمة",
-          "about": "حول",
-          "social": "مواقع التواصل",
-          "apps": "تطبيقات",
-          "downloadOnThe": "تنزيل على",
-          "appleStore": "متجر آبل",
-          "downloadFrom": "تنزيل من",
-          "googlePlay": "متجر جوجل بلاي",
-          "allRightsReserved": "جميع الحقوق محفوظة",
-
-          "signUpForNewsletter": "اشترك في النشرة الإخبارية",
-          "receiveDiscount": "احصل على خصم 50% على المشروع الأول",
-          "enterYourEmail": "أدخل بريدك الإلكتروني",
-          "signUp": "اشترك",
-
-          "ourClients": "عملاؤنا",
-          "filters": "فلتر",
-          "viewAll": "عرض الكل",
-          "newApartmentListings": "إعلانات الشقق الجديدة",
-          "newBicycleListings": "إعلانات الدراجات الجديدة",
-          "newBilliardsListings": "إعلانات البلياردو الجديدة",
-          "latestPosts": "أحدث المنشورات",
-
-          "searchPlaceholder": "ما الذي تبحث عنه...",
-          "categoryPlaceholder": "الفئة",
-          "cityPlaceholder": "المدينة",
-
-          
-          "Location": "الموقع",
-          
-          "WriteaReview": "اكتب مراجعة",
-          "Recommendedforyou": "موصى به لك",
-          "PopularCities": "المدن الشهيرة",
-          "Specifications": "المواصفات",
-          "StartDate": "تاريخ البدء",
-          "EndDate": "تاريخ الانتهاء",
-          "Guest": "ضيف",
-          "Call": "اتصال",
-          "Chat": "دردشة",
-          "Whatsapp": "واتساب",
-          "Reserve": "احجز",
-          "TotalDays": "إجمالي الأيام",
-          "Total": "المجموع",
-          "Day": "يوم",
-          "ViewStore": "عرض المتجر",
-          "Joined": "انضم",
-          "Sharevia": "مشاركة عبر",
-          "reference": "لا تنس ذكر مرجع العقار عند الاتصال.",
-          "Helpful": "مفيد",
-          "Reply": "رد",
-          "Submit": "إرسال",
-
-          "Yourrating": "تقييمك:",
-          "Cancel": "إلغاء",
-          "PostReview": "نشر المراجعة",
-          "Membersince": "عضو منذ",
-
-          "Adults": "البالغون",
-          "Children": "الأطفال",
-          "Agesabove": "الأعمار 13 سنة أو أكثر",
-          "Ages": "الأعمار من 2 إلى 12 سنة",
-          "Review": "مراجعة",
-          
-          "Emailaddress": " البريد الإلكتروني",
-
-          "PersonalInfo": "المعلومات الشخصية",
-          "Wishlist": "مفضلتي",
-          "Messages": "الرسائل",
-          "Reservations": "الحجوزات",
-          "Payment": "الدفع",
-
-          "Edit": "تعديل",
-          "Save": "حفظ",
-          "LightMode": "الوضع الفاتح",
-          "DarkMode": "الوضع الداكن",
-          "Logout": "تسجيل الخروج",
-
-          "Personal": "شخصي",
-          "FirstName": "الاسم الأول",
-          "LastName": "اسم العائلة",
-          "EmailAddress": "عنوان البريد الإلكتروني",
-          "PhoneNumber": "رقم الهاتف",
-          "Birthday": "تاريخ الميلاد",
-          "Gender": "الجنس",
-          "StreetAddress": "عنوان الشارع",
-          "ZipCode": "الرمز البريدي",
-          
-          "Choosecountry": "اختر بلدًا",
-          "SaveChanges": "حفظ التغييرات",
-          "ChangePassword": "تغيير كلمة المرور",
-          "OldPassword": "كلمة المرور القديمة",
-          "NewPassword": "كلمة المرور الجديدة",
-          "ConfirmPassword": "تأكيد كلمة المرور الجديدة",
-          "Allcategories": "جميع الفئات",
-          "ChatWith": "الدردشة مع",
-          "Typemessage": "اكتب رسالة",
-          "Searchcontacts": "...البحث عن جهات الاتصال",
-
-          "PaymentMethod": "طريقة الدفع",
-          
-          "CardHolder": "حامل البطاقة",
-          "ExpiryDate": "تاريخ الانتهاء",
-          "Visa": "فيزا",
-          "Mastercard": "ماستركارد",
-          "Primary": "رئيسي",
-          "AddCard": "أضف بطاقة جديدة",
-          "All": "الكل",
-          
-          "ToProcess": "للمعالجة",
-          "Cancelled": "ملغى",
-          "ID": "المعرف",
-          
-          "Createdat": "تاريخ الإنشاء",
-          "Setprimary": "تعيين كوسيلة الدفع الرئيسية",
-          "Delete": "حذف",
-
-
-
-
-          "Rooms": "غرف",
-          "Living Rooms": "غرف المعيشة",
-          "Bathrooms": "حمامات",
-          "Bedrooms": "غرف النوم",
-          "Security System": "نظام أمني",
-          "Equipped Kitchen": "مطبخ مجهز",
-          "Service": "خدمة",
-          "Facilities": "مرافق",
 
           "More Details": "المزيد من التفاصيل",
+
+
           
-
-
-
-          "Dashboard": "لوحة القيادة",
-          "Today's Money": "أموال اليوم",
-          "New Clients": "عملاء جدد",
-          "Today's Users": "مستخدمو اليوم",
-          
-          "Type here...": "اكتب هنا...",
-          "Reservation": "الحجز",
-          "Upcoming": "القادمة",
-          "NEW RESERVATION": "حجز جديد",
-          "MORE ACTION": "المزيد من الإجراءات",
-          "contains": "يحتوي على",
-          "equals": "يساوي",
-          "starts With": "يبدأ بـ",
-          "ends With": "ينتهي بـ",
-          "APPLY": "تطبيق",
-          "Status: Paid": "الحالة: مدفوع",
-          "Status: Refunded": "الحالة: تم استرداد المبلغ",
-          "Status: Canceled": "الحالة: ملغى",
-          "Remove Fillter": "إزالة الفلتر",
-          "per page": "لكل صفحة",
-          "Showing 1 - 30 of 0": "عرض 1 - 30 من 0",
-          "Checking Out": "إتمام الدفع",
-          "Currently Hosting": "يستضيف حاليًا",
-          "ALL": "الكل",
-          "SAVE": "حفظ",
-          "Enter your tracking number here...": "أدخل رقم التتبع الخاص بك هنا...",
-          "Track order": "تتبع الطلب",
-          "Order received": "تم استلام الطلب",
-          "Generate order id": "إنشاء معرف الطلب",
-          "Order transmitted to courier": "تم نقل الطلب إلى شركة التوصيل",
-          "Order delivered": "تم تسليم الطلب",
-          "Search...": "بحث...",
-          "Select column": "اختر العمود",
-          
-          "STATUS": "الحالة",
-          "CUSTOMER": "العميل",
-          "REVENUE": "الإيرادات",
-          "PRODUCT": "المنتج",
-
+            "Boats Type": "أنواع القوارب",
+            
+            "Number of Cabins": "عدد الكبائن",
+            "Berths in Cabin": "أماكن النوم في الكبائن",
+            "Daily Cruising Time": "مدة الإبحار اليومية",
+            
         
-            "Listing Information": "معلومات القائمة",
-            "Listing": "القائمة",
-            "Create Listing": "إنشاء قائمة",
-            "Category": "الفئة",
+        
+            "Navigation": "الملاحة",
+
+            "Kitchen Equipment": "معدات المطبخ",
+            "Toilet": "مرحاض",
+            "Furniture": "أثاث",
+            "Accessories": "ملحقات",
+
+            "Transmission": "ناقل الحركة",
+            "Fuel Type": "نوع الوقود",
+            "Number of Doors": "عدد الأبواب",
+          
+
+
+          
+            "Mechanical Condition": "الحالة الميكانيكية",
+            "Seats": "المقاعد",
+            "Transmission Type": "نوع ناقل الحركة",
+            "Cab Type": "نوع الكابينة",
+            "Cab Condition": "حالة الكابينة",
+            "Coupler Type": "نوع الوصل",
+            "Hydraulics Type": "نوع الهيدروليك",
+
+            "Insurance": "التأمين",
+          
+            "Speed": "السرعة",
+            "Toolkit": "عدة الأدوات",
+            "Intercom": "الهاتف الداخلي",
+
            
-            "apartament for rent...": "شقة للإيجار...",
-            "Description": "الوصف",
-            "Select Category": "اختر الفئة",
-            "Availability": "التوفر",
-            "Start": "البداية",
-            "End": "النهاية",
-            "Listing Details": "تفاصيل القائمة",
-            "Listing Images": "صور القائمة",
-            "Drag and drop some files here, or click to select files": "اسحب وأسقط بعض الملفات هنا، أو انقر لتحديد الملفات",
-            "Listing Address": "عنوان القائمة",
-            "Address": "العنوان",
-            "Eg. Soft": "مثال: سوفت",
-            "City": "المدينة",
-            "Eg. Tokyo": "مثال: طوكيو",
-            "Country": "البلد",
-            "Eg. Argentina": "مثال: الأرجنتين",
-            "Zip": "الرمز البريدي",
-            "Eg.123456": "مثال: 123456",
-            "Pricing": "التسعير",
-            "Price": "السعر",
-            "Currency": "العملة",
-            "Phone Number": "رقم الهاتف",
-            "USD": "دولار أمريكي",
-            "EUR": "يورو",
-            "DH": "درهم",
-            "Completed": "مكتمل",
-            "Draft": "مسودة",
-            "Boosted": "معزز",
-            "Collection": "مجموعة",
-            "Discount": "خصم",
-            "customer": "العميل",
+            "Gearbox": "علبة التروس",
+
+            "Bike Type": "نوع الدراجة",
+            "Seatpost": "عمود المقعد",
             
-            "Reviews": "المراجعات",
-            "REQUEST REVIEW": "طلب مراجعة",
-            "Analytics": "تحليلات",
-            "ADD LISTING": "إضافة قائمة",
-            "Yesterday": "أمس",
-            "Last 7 days": "آخر 7 أيام",
-            "Last 30 days": "آخر 30 يومًا",
-            "users": "المستخدمون",
-            "new users": "مستخدمون جدد",
-            "sessions": "الجلسات",
-            "Pages/Session": "الصفحات/الجلسة",
-            "Referrals": "الإحالات",
-            "Traffic channels": "قنوات المرور",
-            "Organic search": "البحث العضوي",
-            "Referral": "إحالة",
-            "Social media": "وسائل التواصل الاجتماعي",
-            "Finance": "التمويل",
-            "Overview": "نظرة عامة",
-            "Sales": "المبيعات",
-            "Customers": "العملاء",
-            "Avg. Revenue": "متوسط الإيرادات",
-            "Channels": "القنوات",
-            "Revenue": "الإيرادات",
-            "Sales by age": "المبيعات حسب العمر",
-            "Sales by Country": "المبيعات حسب الدولة",
-            "Top Selling Products": "المنتجات الأكثر مبيعًا",
-            "Payment Settings": "إعدادات الدفع",
-            "Salary": "الراتب",
-            "Belong Interactive": "تتبع تفاعلي",
-            "Paypal": "باي بال",
-            "Freelance Payment": "دفع مستقل",
-            "Invoices": "الفواتير",
-            "VIEW ALL": "عرض الكل",
-            "Payment Method": "طريقة الدفع",
-            "ADD NEW CARD": "إضافة بطاقة جديدة",
-            "Billing Information": "معلومات الفوترة",
-            "NEW CUSTOMER": "عميل جديد",
-            "Store": "متجر",
-            "Create Store": "إنشاء متجر",
-            "Store Information": "معلومات المتجر",
-            "Title": "العنوان",
-            "Store Name": "اسم المتجر",
-            "Plan": "الخطة",
-            "Settings": "الإعدادات",
-            "Account": "الحساب",
-            "Team Security": "أمان الفريق",
-            "IMAGE": "صورة",
-            "NAME": "الاسم",
-            "EMAIL": "البريد الإلكتروني",
-            "ROLE": "الدور",
-            "CREATED AT": "تم إنشاؤه في",
-            "Name": "الاسم",
-            "Email": "البريد الإلكتروني",
-            "Role": "الدور",
-            "Profile Image": "صورة الملف الشخصي",
-            "BACK": "العودة",
-            "Industry": "الصناعة",
-            "Rating": "التقييم",
-            "Members": "الأعضاء",
-            "Action": "الإجراء",
-            "Another action": "إجراء آخر",
-            "Something else here": "شيء آخر هنا",
+            "Fork": "الشوكة",
+            "Gear": "التروس",
+
+
+            "Kitchen": "المطبخ",
+
+           
             "Security": "الأمان",
-            "Security settings": "إعدادات الأمان",
-            "Notify me via email when logging in": "إخطار عبر البريد الإلكتروني عند تسجيل الدخول",
-            "Send SMS confirmation for all online payments": "إرسال تأكيد عبر الرسائل النصية لجميع المدفوعات عبر الإنترنت",
-            "Check which devices accessed your account": "تحقق من الأجهزة التي وصلت إلى حسابك",
-            "Find My Device": "العثور على جهازي",
-            "Make sure your device can be found if it gets lost": "تأكد من أنه يمكن العثور على جهازك إذا فقد",
-            "Lock your device with a PIN, pattern, or password": "قفل جهازك باستخدام رقم تعريف شخصي أو نمط أو كلمة مرور",
-            "Manage what apps have access to app-usage data on your device": "إدارة التطبيقات التي يمكنها الوصول إلى بيانات استخدام التطبيقات على جهازك",
-            "Two factor authentication": "المصادقة الثنائية",
-            "Two-factor authentication adds an additional layer of security to your account by requiring more than just a password to log in.": "تضيف المصادقة الثنائية طبقة إضافية من الأمان إلى حسابك عن طريق طلب أكثر من مجرد كلمة مرور لتسجيل الدخول.",
-            "CANCEL": "إلغاء",
-            "SAVE CHANGES": "حفظ التغييرات",
-            "Change Password": "تغيير كلمة المرور",
-            "We will send you an email with the verification code.": "سنرسل لك بريدًا إلكترونيًا يحتوي على رمز التحقق.",
-            "Current password": "كلمة المرور الحالية",
-            "New Password": "كلمة المرور الجديدة",
-            "Confirm New Password": "تأكيد كلمة المرور الجديدة",
-            "UPDATE PASSWORD": "تحديث كلمة المرور",
-            "This information will describe more about the customer.": "ستصف هذه المعلومات المزيد عن العميل.",
-            "Create Customer": "إنشاء عميل",
-            "Add New customer": "إضافة عميل جديد"
-
-
-
-
-
-
-          
-
-
-
-
-
-
-
-
-
-          
+            "Soil Type": "نوع التربة",
+            "Parking": "موقف السيارات",
+           
+            "Conference Room": "قاعة المؤتمرات",
+            "Building Size": "حجم المبنى",
+            
+            "Bail Type": "نوع الكفالة",
+            "Security Deposit": "عربون الأمان",
+            "Office Taxes": "ضرائب المكتب",
             
 
+
+           
+            "Surface Area": "المساحة",
+           
+            "Office Number": "رقم المكتب",
+            "Individual Offices": "المكاتب الفردية",
+            "Number of Floors": "عدد الطوابق",
+            "Garage": "الكراج",
+            "Approved Uses": "الاستخدامات المعتمدة",
+            "Total Facility Size": "الحجم الكلي للمرفق",
+            "Operating Days": "أيام التشغيل",
+            "Lighting": "الإضاءة",
+            "Transports": "وسائل النقل",
             
+
+
+
+
+
+            "Security System": "نظام الأمان",
+            "Rooms": "الغرف",
+            "Living Rooms": "غرف المعيشة",
+            "Bedrooms": "غرف النوم",
+            "Bathrooms": "الحمامات",
+            "View": "الإطلالة",
+            "Facilities": "المرافق",
+            "Amenities": "الخدمات",
+            "Services": "الخدمات",
+
+
+            "Property Type": "نوع العقار",
+            "Property Subtype": "نوع العقار الفرعي",
+            "Total Lot Size": "حجم القطعة الكلي",
+            "Land Valuation": "تقييم الأرض",
+            "Total Rating": "التقييم الكلي",
+            "Road Access": "الوصول إلى الطريق",
+            "Slope Description": "وصف المنحدر",
+            "Property Usage": "استخدام العقار",
+            "Annual Taxes": "الضرائب السنوية",
+            "Deeded Acres": "الأراضي المسجلة",
+            "Leased Acres": "الأراضي المؤجرة",
+            "Elevation": "الارتفاع",
+            "Vegetation": "النباتات",
+            "Nearby Usage": "الاستخدامات المجاورة",
+            "Topography": "الطبوغرافيا",
+            "Zoning": "التقسيمات",
+
+
+            "Languages": "اللغات",
+            "Experience": "الخبرة",
+            "Response Time": "وقت الاستجابة",
+            "Package": "الباقة",
+            "Revisions": "التعديلات",
+            "Level": "المستوى",
+            "Orders Queue": "قائمة الانتظار للطلبات",
+            "Jobs Completed": "الوظائف المنجزة",
+            "Repeat Hire Rate": "معدل التوظيف المتكرر",
+            "Education": "التعليم",
+            "On Time": "في الوقت المحدد",
+            "Delivery Time": "وقت التسليم",
+
+
+            "Audio Type": "نوع الصوت",
+            "Sound Quality": "جودة الصوت",
+            
+            "Max Wireless Range": "أقصى مدى لاسلكي",
           
+            "Charging Time": "وقت الشحن",
+           
+
+            "Photo Size": "حجم الصورة",
+            "Sensor Size": "حجم المستشعر",
+            "Image Stabilization": "تثبيت الصورة",
+            "Shutter Speed": "سرعة الغالق",
+            "Exposure Control": "تحكم التعريض",
+            
+            "Lens": "العدسة",
+
+
+          
+            "Number Of Ports": "عدد المنافذ",
+            "Length": "الطول",
+            "Input Voltage": "جهد الإدخال",
+            "Wattage": "الطاقة الكهربائية",
+          
+            "Connector Type": "نوع الموصل",
+           
+
+
+            "Flight Time": "وقت الطيران",
+           
+           
+            "Video Resolution": "دقة الفيديو",
+           
+            "Battery Capacity": "سعة البطارية",
+            "Memory": "الذاكرة",
+            "Image Resolution": "دقة الصورة",
+            "Included Components": "المكونات المرفقة",
+            "Remote Control": "جهاز التحكم عن بعد",
+            "Max Distance": "أقصى مسافة",
+
+
+           
+            "Ports": "المنافذ",
+            "Online Services": "الخدمات عبر الإنترنت",
+            
+            "Games": "الألعاب",
+           
+
+
+            "Graphics Card": "بطاقة الرسوميات",
+           
+            "Number Ports": "عدد المنافذ",
+            
+            "Device Storage": "تخزين الجهاز",
+            "Resolution": "الدقة",
+           
+            "Screen Size": "حجم الشاشة",
+            "CPU": "وحدة المعالجة المركزية",
+           
+
+
+
+          
+            "Included Accessories": "الملحقات المرفقة",
+           
+            "Color Temperature": "درجة حرارة اللون",
+            "Compatibility": "التوافق",
+
+
+            "Print Speed": "سرعة الطباعة",
+            "Print Resolution": "دقة الطباعة",
+            
+            "Paper Size": "حجم الورق",
+            "Compatible Ink/Toner": "الحبر/ال toner المتوافق",
+           
+            "Input Sheets": "أوراق الإدخال",
+            "Print Media": "وسائط الطباعة",
+
+            "Gbps Speed": "سرعة جيجابت في الثانية",
+            "Wireless": "لاسلكي",
+            "Frequency": "التردد",
+           
+            "Antennas": "الهوائيات",
+            
+            "Compatible": "متوافق",
+            "Signal Coverage": "تغطية الإشارة",
+
+            "Operating System": "نظام التشغيل",
+              "RAM": "الذاكرة العشوائية",
+              "Storage": "التخزين",
+              "Display Size": "حجم الشاشة",
+              "Display Resolution": "دقة العرض",
+              "Connectivity": "الاتصال",
+
+
+              
+              "Display": "الشاشة",
+              "Temperature": "درجة الحرارة",
+              "Voltage Sensing Ranges": "نطاقات استشعار الجهد",
+              "Detector": "الكاشف",
+              "Operating Altitude": "ارتفاع التشغيل",
+              "Binding Angle": "زاوية التثبيت",
+            
+
+
+              "Height": "الارتفاع",
+              "Number of Steps": "عدد الخطوات",
+              "Load Capacity": "سعة التحميل",
+              "Wheel Size": "حجم العجلة",
+
+
+       
+              "Blade Diameter": "قطر الشفرة",
+             
+              "Cutting Width": "عرض القطع",
+              "Carburetor Type": "نوع المكربن",
+
+
+
+             
+                "Battery Life": "عمر البطارية",
+                
+                "Noise Level": "مستوى الضوضاء",
+                "Grit Number": "رقم الحبيبات",
+                "Rotational Speed": "سرعة الدوران",
+                "Blade Material": "مادة الشفرة",
+                "Surface": "السطح",
+               
+                "Amperage": "التيار الكهربائي",
+
+
+                "Tool Type": "نوع الأداة",
+                
+                "Power Output": "خرج الطاقة",
+                "Engine Power": "قوة المحرك",
+                "Hose Length": "طول الخرطوم",
+                "Cord Length": "طول السلك",
+               
+                "Maximum Flow Rate": "أقصى معدل تدفق",
+                "Specification Met": "مطابقة المواصفات",
+                "Inlet Connection Type": "نوع وصلة المدخل",
+                "Outlet Connection Size": "حجم وصلة المخرج",
+                "Max. Working Temperature": "أقصى درجة حرارة عمل",
+                "Connection Type": "نوع الاتصال",
+
+
+                "Table Details": "تفاصيل الطاولة",
+               
+                "Balls Design": "تصميم الكرات",
+                "Bridge & Stick": "الجسر والعصا",
+                "Chalk": "الطباشير",
+                "Other Information": "معلومات أخرى",
+
+                "Ring Dimensions": "أبعاد الحلبة",
+                "Padding": "التبطين",
+                "Boxing Clothing": "ملابس الملاكمة",
+                
+
+                
+
+
+
+                "Bow & Arrow": "القوس والسهم",
+                "Crossbow": "القوس المستعرض",
+                "Decoy": "الطعم",
+                "Game Call": "صافرة الصيد",
+                "Binoculars": "المنظار",
+                
+                "Arms": "الذراعين",
+                "Back": "الظهر",
+                "Shoulders": "الكتفين",
+                "Glutes": "عضلات الأرداف",
+                "Legs": "الساقين",
+                "Chest": "الصدر",
+                "Abs": "البطن",
+                "Cardio": "تمارين الكارديو",
+                "Musculation Other": "تمارين العضلات الأخرى",
+
+
+
+                "Surf Category": "فئة التزلج على الأمواج",
+                "Board Types": "أنواع الألواح",
+                "Board Size": "حجم اللوح",
+                "Wetsuits": "بدلات الغطس",
+                "Surf Other": "تزلج على الأمواج - أخرى",
+
+
+                "Tennis Terrain": "أرضية التنس",
+               
+                "Clothing": "الملابس",
+
+
+
+                "Number of Pieces": "عدد القطع",
+                
+                "Strap Type": "نوع الحزام",
+                "Number of Pockets": "عدد الجيوب",
+                "Heel Height": "ارتفاع الكعب",
+               
+                
+                
+              
+                "Occasion": "المناسبة",
+                "Chain Type": "نوع السلسلة",
+                "Gem Type": "نوع الجوهرة",
+               
+                "Closure Type": "نوع الإغلاق",
+                
+                "Equipment": "المعدات",
+                "Age Requirement": "متطلبات العمر",
+                
+                "Cancellation": "الإلغاء",
+                "Safety Equipment": "معدات السلامة",
+                "Monitor": "المراقب",
+
+               
+                "Genre": "النوع",
+               
+                "Language": "اللغة",
+                "Format": "الصيغة",
+                "Duration": "المدة",
+
+
+                "Music Type": "نوع الموسيقى",
+                
+
+
+                "Type": "النوع",
+                
+                "Shape": "الشكل",
+                "Cushion Thickness": "سمك الوسادة",
+                "Capacity": "السعة",
+                "Fill Material": "مادة الحشو",
+                "Condition": "الحالة",
+                "Color": "اللون",
+
+
+                "Access Location": "موقع الوصول",
+                "Finish Type": "نوع اللمسة النهائية",
+                "Cycle Options": "خيارات الدورة",
+                "Inlet Water": "ماء المدخل",
+                "Installation Method": "طريقة التثبيت",
+                "Components": "المكونات",
+                "Control Type": "نوع التحكم",
+                "Certification": "الشهادة",
+
+
+                
+                "Voltage": "الجهد",
+                "Chandeliers": "الثريات",
+                "Lamps": "المصابيح",
+                "Light": "الضوء",
+                "Projectors": "العاكسات",
+                "LED": "LED",
+                "Power": "الطاقة",
+                "Light Source Type": "نوع مصدر الضوء",
+                "Light Color": "لون الضوء",
+                "Lighting Method": "طريقة الإضاءة",
+                "Controller": "التحكم",
+                "Other": "أخرى",
+
+
+
+              
+                "Theme": "الطابع",
+                "Plant Decorations": "زينة النباتات",
+                "Light Decorations": "زينة الإضاءة",
+                "Festive Decorations": "الزينة الاحتفالية",
+                
+
+
+
+                "Brand Name": "اسم العلامة التجارية",
+               
+                "Camera": "الكاميرا",
+                "Sensor": "الحساس",
+                "Wide Angle": "زاوية واسعة",
+                "LCD": "شاشة LCD",
+                
+
+
+                "Brand": "العلامة التجارية",
+                "Size": "الحجم",
+                "Connectivity Technology": "تكنولوجيا الاتصال",
+                "Fastener Type": "نوع الإغلاق",
+                "Power Source": "مصدر الطاقة",
+                "Output Power": "قدرة الإخراج",
+                "Number of Channels": "عدد القنوات",
+                "Device Compatibility": "توافق الجهاز",
+                "Power in Watts": "الطاقة بالواط",
+                "Power Type": "نوع الطاقة",
+                "Battery": "البطارية",
+                "Weight": "الوزن",
+                "Microphone": "الميكروفون",
+                "Mixage Table": "طاولة الميكساج",
+                "Amplifier": "المضخم",
+                "Cables and Connectors": "الأسلاك والوصلات",
+                "Speaker": "السماعة",
+
+
+
+                "Material": "المادة",
+                "Style": "الأسلوب",
+                "Fabric": "القماش",
+                "Other Equipment": "معدات أخرى"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
           
 
 
