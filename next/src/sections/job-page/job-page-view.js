@@ -113,7 +113,7 @@ export default function JobPageView({ params, jobData }) {
         >
 
 
-            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, }, }}>
+            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 0, md: 5 }, }}>
               <Grid xs={12} md={5} lg={4}>
 
 

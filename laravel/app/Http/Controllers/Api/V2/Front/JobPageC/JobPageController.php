@@ -372,6 +372,7 @@ class JobPageController extends JsonApiController
 
                     'per' => $service->typea,
                     'currency' => $service->currency,
+                    'price' => $service->price,
 
                     'phone' => $service->phone,
 

@@ -53,6 +53,7 @@ export default function ServicePageView({ params, serviceData }) {
 
 
 
+
   const memoizedserviceData = useMemo(() => {
     const specifications = serviceData?.data?.attributes?.specifications || [];
     const recentListings = serviceData?.data?.attributes?.recentlistings || [];
@@ -107,7 +108,7 @@ export default function ServicePageView({ params, serviceData }) {
         >
 
 
-            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 1, },  }}>
+            <Grid container columnSpacing={8} rowSpacing={5} direction="row-reverse" sx={{ mt: { xs: 0, md: 5 },  }}>
               <Grid xs={12} md={5} lg={4}>
 
 

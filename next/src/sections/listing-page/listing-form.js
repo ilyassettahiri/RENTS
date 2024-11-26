@@ -32,6 +32,9 @@ export default function ListingForm({ tour }) {
   const { attributes } = tour;
   const { price,per, category, url, startdate, enddate, reservations } = attributes;
 
+
+
+
   const [guests, setGuests] = useState({
     adults: 0,
     children: 0,

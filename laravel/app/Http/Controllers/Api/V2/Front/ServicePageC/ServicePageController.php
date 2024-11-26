@@ -366,6 +366,8 @@ class ServicePageController extends JsonApiController
                     'currency' => $service->currency,
 
                     'phone' => $service->phone,
+                    'price' => $service->price,
+
 
                     'picture' => $service->picture,
 
