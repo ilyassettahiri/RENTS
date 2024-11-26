@@ -11,7 +11,7 @@ import Carousel, { useCarousel, CarouselDots, CarouselArrows } from 'src/compone
 
 // ----------------------------------------------------------------------
 
-export default function ServicesDetailsHeroSkeleton( { aa = 13, bb = 640 }) {
+export default function ServicesDetailsHeroSkeleton( { aa = 13, bb = 600 }) {
   const theme = useTheme();
 
   return (

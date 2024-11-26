@@ -326,7 +326,7 @@ export default function HomeView({ homeData }) {
 
 
         <Stack sx={{ my: 5 }} >
-           <ListingsCarousel tours={billiards} title={t('newBilliardListings')} />
+           <ListingsCarousel tours={billiards} title={t('newCarsListings')} />
 
         </Stack>
 

@@ -269,12 +269,12 @@ export default function ListingHeader({ tour, seller, favorites = [], onFavorite
                           </TextMaxLine>
                     </Link>
                   ) : (
-                      <Link variant="subtitle2" color="inherit" >
+
                           <TextMaxLine variant="subtitle2" line={1}>
                             {capitalizeFirstLetter(name)}
                           </TextMaxLine>
 
-                      </Link>
+
                   )}
 
 

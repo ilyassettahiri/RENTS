@@ -88,7 +88,7 @@ export default function JobPageView({ params, jobData }) {
 
 
           {isLoading ? (
-            <ServicesDetailsHeroSkeleton aa = {3} bb = {480}/>
+            <ServicesDetailsHeroSkeleton aa = {3} bb = {450}/>
           ) : (
 
 
