@@ -119,9 +119,9 @@ export default styled(Badge)(({ theme, ownerState }) => {
     "& .MuiBadge-badge": {
       height: "auto",
       padding: paddings[size] || paddings.xs,
-      fontSize: fontSizeValue,
-      fontWeight: fontWeightBold,
-      textTransform: "uppercase",
+      fontSize: 14,
+      fontWeight: 500,
+      
       lineHeight: 1,
       textAlign: "center",
       whiteSpace: "nowrap",

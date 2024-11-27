@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import LinearProgress from '@mui/material/LinearProgress';
+import  Image  from 'components/image';
 
 import { fCurrency } from 'utils/format-number';
 import { fTime, fDate } from 'utils/format-time';
@@ -66,15 +67,18 @@ export function RenderCellStock({ params }) {
 // ----------------------------------------------------------------------
 
 export function RenderCellProduct({ params, onViewRow }) {
+
+  const imageUrl = `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${params.row.picture}`;
+
   return (
     <Stack direction="row" alignItems="center" sx={{ py: 2, width: 1 }}>
-      <Avatar
+      <Image
+        src={imageUrl}
         alt={params.row.title}
-
-        src={`${process.env.REACT_APP_IMAGE_LISTING_SMALLL}${params.row.picture}`}
-        variant="rounded"
-        sx={{ width: 64, height: 64, mr: 2 }}
+        ratio="1/1"
+        sx={{ width: 64, height: 64, mr: 2, borderRadius: '10px' }}
       />
+      
 
       <ListItemText
         disableTypography

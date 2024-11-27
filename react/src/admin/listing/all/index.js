@@ -17,6 +17,7 @@ import { Card, Box, Button, Tooltip, IconButton, Stack } from "@mui/material";
 import { Label } from 'components/label';
 
 import SoftAlert from "components/SoftAlert";
+import SoftBadge from "components/SoftBadge";
 
 
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -218,20 +219,34 @@ function ListListing() {
       field: 'status',
       headerName: 'Status',
       width: 140,
-      renderCell: (params) => (
-        <Label
-          variant="soft"
-          color={
-            (params.value === 'published' && 'success') ||
-            (params.value === 'draft' && 'warning') ||
-            (params.value === 'pending' && 'error') ||
-            'default'
-          }
-        >
-          {params.value}
-        </Label>
-      ),
+      renderCell: (params) => {
+        let color = 'default';
+        let badgeContent = 'unknown';
+    
+        // Dynamically set color and badgeContent based on status value
+        if (params.value === 'published') {
+          color = 'success';
+          badgeContent = 'Published';
+        } else if (params.value === 'draft') {
+          color = 'warning';
+          badgeContent = 'Draft';
+        } else if (params.value === 'pending') {
+          color = 'success';
+          badgeContent = 'Pending';
+        }
+    
+        return (
+          <SoftBadge
+            variant="contained"
+            color={color}
+            badgeContent={badgeContent}
+            container
+            size="xs"
+          />
+        );
+      },
     },
+    
 
 
     {
@@ -384,36 +399,44 @@ function ListListing() {
       <ListActionHeader title="createListing" clickAddHandler={clickAddHandler} />
 
 
+          
+            <Card sx={{ height: "100%" }}>
 
-        <SoftBox my={3}>
+              <DataGrid
+                checkboxSelection
+                disableRowSelectionOnClick
+                rows={dataFiltered}
+                columns={columns}
+                loading={isLoading}
+                getRowHeight={() => 'auto'}
+                pageSizeOptions={[100, 200, 500]}
+                initialState={{ pagination: { paginationModel: { pageSize: 100 } } }}
+                onRowSelectionModelChange={(newSelectionModel) => setSelectedRowIds(newSelectionModel)}
+                columnVisibilityModel={columnVisibilityModel}
+                onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
+                slots={{
+                  toolbar: CustomToolbarCallback,
+                  noRowsOverlay: () => <EmptyContent />,
+                  noResultsOverlay: () => <EmptyContent title="No results found" />,
+                }}
+                slotProps={{
+                  panel: { anchorEl: filterButtonEl },
+                  toolbar: { setFilterButtonEl },
+                  columnsManagement: { getTogglableColumns },
+                }}
+                sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex' },
+                
+                border: 'none',
+                
+                fontSize: '14px',
 
-          <DataGrid
-            checkboxSelection
-            disableRowSelectionOnClick
-            rows={dataFiltered}
-            columns={columns}
-            loading={isLoading}
-            getRowHeight={() => 'auto'}
-            pageSizeOptions={[100, 200, 500]}
-            initialState={{ pagination: { paginationModel: { pageSize: 100 } } }}
-            onRowSelectionModelChange={(newSelectionModel) => setSelectedRowIds(newSelectionModel)}
-            columnVisibilityModel={columnVisibilityModel}
-            onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
-            slots={{
-              toolbar: CustomToolbarCallback,
-              noRowsOverlay: () => <EmptyContent />,
-              noResultsOverlay: () => <EmptyContent title="No results found" />,
-            }}
-            slotProps={{
-              panel: { anchorEl: filterButtonEl },
-              toolbar: { setFilterButtonEl },
-              columnsManagement: { getTogglableColumns },
-            }}
-            sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex' } }}
-          />
-        </SoftBox>
+              
+              
+                }}
+              />
+            </Card>
 
-        
+          
       </SoftBox>
     </DashboardLayout>
   );
@@ -433,47 +456,40 @@ function CustomToolbar({
   onOpenConfirmDeleteRows,
 }) {
   return (
-    <>
-      <GridToolbarContainer>
-        <ProductTableToolbar
-          filters={filters}
-          options={{ stocks: PRODUCT_STOCK_OPTIONS, publishs: PUBLISH_OPTIONS }}
-        />
+    <SoftBox py={2} px={2}>
 
-        <GridToolbarQuickFilter />
 
-        <Stack
-          spacing={1}
-          flexGrow={1}
-          direction="row"
-          alignItems="center"
-          justifyContent="flex-end"
-        >
-          {!!selectedRowIds.length && (
-            <Button
-              size="small"
-              color="error"
-              startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
-              onClick={onOpenConfirmDeleteRows}
-            >
-              Delete ({selectedRowIds.length})
-            </Button>
-          )}
+          <GridToolbarContainer>
+            
 
-          <GridToolbarColumnsButton />
-          <GridToolbarFilterButton ref={setFilterButtonEl} />
-          <GridToolbarExport />
-        </Stack>
-      </GridToolbarContainer>
+                <GridToolbarQuickFilter />
 
-      {canReset && (
-        <ProductTableFiltersResult
-          filters={filters}
-          totalResults={filteredResults}
-          sx={{ p: 2.5, pt: 0 }}
-        />
-      )}
-    </>
+                <Stack
+                  spacing={1}
+                  flexGrow={1}
+                  direction="row"
+                  alignItems="center"
+                  justifyContent="flex-end"
+                >
+                  {!!selectedRowIds.length && (
+                    <Button
+                      size="small"
+                      color="error"
+                      startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
+                      onClick={onOpenConfirmDeleteRows}
+                    >
+                      Delete ({selectedRowIds.length})
+                    </Button>
+                  )}
+
+                  <GridToolbarColumnsButton />
+                  <GridToolbarFilterButton ref={setFilterButtonEl} />
+                  <GridToolbarExport />
+                </Stack>
+          </GridToolbarContainer>
+
+      
+    </SoftBox>
   );
 }
 
