@@ -6,7 +6,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateRangePicker } from '@mui/x-date-pickers-pro';
 import InputAdornment from '@mui/material/InputAdornment';
 import { inputBaseClasses } from '@mui/material/InputBase';
-import Iconify from 'components/iconify';
+
+import { Iconify } from 'components/iconify';
 import dayjs from 'dayjs';
 
 // ----------------------------------------------------------------------

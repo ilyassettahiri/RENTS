@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import SoftTypography from "components/SoftTypography";
 
 
-import  Iconify  from 'components/iconify';
+import { Iconify } from 'components/iconify';
 
 export const Incrementer = forwardRef(
   ({ name, quantity, onIncrease, onDecrease, disabledDecrease, sx, ...other }, ref) => (

@@ -15,7 +15,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";  // Import us
 import Typography from '@mui/material/Typography';
 import useMediaQuery from '@mui/material/useMediaQuery';  // Replacement for useResponsive
 import { useTranslation } from 'react-i18next';
-import Iconify from 'components/iconify';
+import { Iconify } from 'components/iconify';
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from 'context';
 import CrudService from 'services/cruds-service';

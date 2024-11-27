@@ -8,7 +8,7 @@ import { useLocation, NavLink } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import IconButton from '@mui/material/IconButton';
 
-import Iconify from 'components/iconify';
+import { Iconify } from 'components/iconify';
 import Badge from '@mui/material/Badge';
 
 // prop-types is a library for typechecking of props.

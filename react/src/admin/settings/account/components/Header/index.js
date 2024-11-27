@@ -10,7 +10,7 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
-import Iconify from 'components/iconify';
+import { Iconify } from 'components/iconify';
 
 // Material Dashboard 2 PRO React components
 import SoftBox from "components/SoftBox";
