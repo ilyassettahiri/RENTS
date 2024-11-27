@@ -78,6 +78,7 @@ export function ProductListView() {
 
   useEffect(() => {
     if (products.length) {
+      console.log('Fetched products:', products);
       setTableData(products);
     }
   }, [products]);

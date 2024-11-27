@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
@@ -12,30 +12,36 @@ import { format } from 'date-fns';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
 
-// @mui material components
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
 
-import Icon from "@mui/material/Icon";
+import { Card, Box, Button, Tooltip, IconButton, Stack } from "@mui/material";
+import { Label } from 'components/label';
+
 import SoftAlert from "components/SoftAlert";
-import { Tooltip, IconButton } from "@mui/material";
+
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import ViewIcon from "@mui/icons-material/Visibility";
 
+import { useBoolean } from 'hooks/use-boolean';
+import { useSetState } from 'hooks/use-set-state';
 
 import ListActionHeader from "admin/components/ListActionHeader";
 
 import SoftBox from "components/SoftBox";
 
 import SoftTypography from "components/SoftTypography";
-import ProductCell from "admin/components/ProductCell";
+
+import { toast } from 'components/snackbar';
+import { Iconify } from 'components/iconify';
+import { EmptyContent } from 'components/empty-content';
+import { ConfirmDialog } from 'components/custom-dialog';
+
 
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
-import DataTable from "examples/Tables/DataTable";
+
 import TableSkeleton from "examples/Tables/DataTable/TableSkeleton";
 
 import {
@@ -63,42 +69,51 @@ import {
 
 
 
+const PRODUCT_STOCK_OPTIONS = [
+  { value: 'in stock', label: 'In stock' },
+  { value: 'low stock', label: 'Low stock' },
+  { value: 'out of stock', label: 'Out of stock' },
+];
 
-import HTMLReactParser from "html-react-parser";
+const PUBLISH_OPTIONS = [
+  { value: 'published', label: 'Published' },
+  { value: 'draft', label: 'Draft' },
+];
 
-import IdCell from "admin/components/IdCell";
-import DefaultCell from "admin/components/DefaultCell";
-import StatusCell from "admin/components/StatusCell";
-import CustomerCell from "admin/components/CustomerCell";
+const HIDE_COLUMNS = { category: false };
+
+const HIDE_COLUMNS_TOGGLABLE = ['category', 'actions'];
 
 
-
-
-
-// Data
 
 function ListListing() {
   const { t } = useTranslation();
 
-
-
-
-
-
-
-
-
-
-
-
   let { state } = useLocation();
-  const ability = useAbility(AbilityContext);
+  
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+
+
+  const confirmRows = useBoolean();
+
+
+  const filters = useSetState({ publish: [], stock: [] });
+
+  const [tableData, setTableData] = useState([]);
+
+  const [selectedRowIds, setSelectedRowIds] = useState([]);
+
+  const [filterButtonEl, setFilterButtonEl] = useState(null);
+
+  const [columnVisibilityModel, setColumnVisibilityModel] = useState(HIDE_COLUMNS);
+
+ 
   const [notification, setNotification] = useState({
     value: false,
     text: "",
   });
+
+
 
 
     // Use React Query to fetch data
@@ -109,24 +124,184 @@ function ListListing() {
         console.error('Failed to fetch listings:', error);
       },
     });
-  
-    // Memoize the table data
-    const tableData = useMemo(() => {
-      if (!listingsData) return [];
-  
-      return listingsData.data.map((row) => ({
-        product: { image: `${process.env.REACT_APP_IMAGE_LISTING_SMALL}${row.attributes.picture}`, name: row.attributes.title, checked: false, id: row.id },
-        price: row.attributes.price,
-        status: row.attributes.status,
-        created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'),
-        id: row.id,
-        category: row.attributes.category,
-        url: row.attributes.url,
-        city: row.attributes.city,
-        jobtype: row.attributes.jobtype,
 
-      }));
+
+
+
+    useEffect(() => {
+      if (listingsData?.data?.length) {
+    
+        const transformedData = listingsData.data.map((row) => ({
+          id: row.id,
+          title: row.attributes.title,
+          price: row.attributes.price,
+          status: row.attributes.status,
+          createdAt: row.attributes.created_at,
+          category: row.attributes.category,
+          city: row.attributes.city,
+          url: row.attributes.url,
+          jobtype: row.attributes.jobtype,
+          picture: row.attributes.picture,
+        }));
+    
+    
+        setTableData(transformedData);
+      }
     }, [listingsData]);
+    
+  
+   
+
+
+
+
+  const canReset = filters.state.publish.length > 0 || filters.state.stock.length > 0;
+
+  const dataFiltered = applyFilter({ inputData: tableData, filters: filters.state });
+
+  const handleDeleteRow = useCallback(
+    (id) => {
+      const deleteRow = tableData.filter((row) => row.id !== id);
+
+      toast.success('Delete success!');
+
+      setTableData(deleteRow);
+    },
+    [tableData]
+  );
+
+  const handleDeleteRows = useCallback(() => {
+    const deleteRows = tableData.filter((row) => !selectedRowIds.includes(row.id));
+
+    toast.success('Delete success!');
+
+    setTableData(deleteRows);
+  }, [selectedRowIds, tableData]);
+
+  const handleEditRow = useCallback((id) => navigate(`/listing/edit-listing/${id}`), [navigate]);
+
+
+  const handleViewRow = useCallback((id) => navigate(`/listing/detail-listing/${id}`), [navigate]);
+
+
+  const CustomToolbarCallback = useCallback(
+    () => (
+      <CustomToolbar
+        filters={filters}
+        canReset={canReset}
+        selectedRowIds={selectedRowIds}
+        setFilterButtonEl={setFilterButtonEl}
+        filteredResults={dataFiltered.length}
+        onOpenConfirmDeleteRows={confirmRows.onTrue}
+      />
+    ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [filters.state, selectedRowIds]
+  );
+
+  const columns = [
+    { field: 'category', headerName: 'Category', filterable: false },
+    {
+      field: 'name',
+      headerName: 'Listing',
+      flex: 1,
+      minWidth: 300,
+      hideable: false,
+      renderCell: (params) => (
+        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.id)} />
+      ),
+    },
+    
+   
+   
+    {
+      field: 'status',
+      headerName: 'Status',
+      width: 140,
+      renderCell: (params) => (
+        <Label
+          variant="soft"
+          color={
+            (params.value === 'published' && 'success') ||
+            (params.value === 'draft' && 'warning') ||
+            (params.value === 'pending' && 'error') ||
+            'default'
+          }
+        >
+          {params.value}
+        </Label>
+      ),
+    },
+
+
+    {
+      field: 'price',
+      headerName: 'Price',
+      width: 140,
+      editable: true,
+      renderCell: (params) => <RenderCellPrice params={params} />,
+    },
+
+
+    {
+      field: 'createdAt',
+      headerName: 'Create at',
+      width: 160,
+      renderCell: (params) => <RenderCellCreatedAt params={params} />,
+    },
+    
+
+    {
+      type: 'actions',
+      field: 'actions',
+      headerName: 'Actions',
+      align: 'right',
+      headerAlign: 'right',
+      width: 80,
+      sortable: false,
+      filterable: false,
+      disableColumnMenu: true,
+      getActions: (params) => [
+        <GridActionsCellItem
+          key={`${params.row.id}-view`} 
+
+          showInMenu
+          icon={<Iconify icon="solar:eye-bold" />}
+          label="View"
+          onClick={() => handleViewRow(params.row.id)}
+        />,
+        <GridActionsCellItem
+
+          key={`${params.row.id}-edit`} 
+
+          showInMenu
+          icon={<Iconify icon="solar:pen-bold" />}
+          label="Edit"
+          onClick={() => handleEditRow(params.row.id)}
+        />,
+        <GridActionsCellItem
+
+          key={`${params.row.id}-delete`} 
+
+          showInMenu
+          icon={<Iconify icon="solar:trash-bin-trash-bold" />}
+          label="Delete"
+          onClick={() => {
+            handleDeleteRow(params.row.id);
+          }}
+          sx={{ color: 'error.main' }}
+        />,
+      ],
+    },
+  ];
+
+  const getTogglableColumns = () =>
+    columns
+      .filter((column) => !HIDE_COLUMNS_TOGGLABLE.includes(column.field))
+      .map((column) => column.field);
+
+
+
 
 
 
@@ -151,13 +326,7 @@ function ListListing() {
     }
   }, [notification]);
 
-  const clickEditHandler = (id) => {
-    navigate(`/listing/edit-listing/${id}`);
-  };
-
-  const clickViewHandler = (id) => {
-    navigate(`/listing/detail-listing/${id}`);
-  };
+ 
 
 
 
@@ -192,109 +361,11 @@ function ListListing() {
   
   
 
-  const handleRowClick = (row) => {
-    clickViewHandler(row.original.id);
-  };
-
+  
  
 
-  const getRows = (info) => {
-    return info.map((row) => ({
-      product: { image: row.attributes.picture, name: row.attributes.title, checked: false, id: row.id  },
-      price: row.attributes.price,
-      status: row.attributes.status,
-      created_at: format(new Date(row.attributes.created_at), 'd MMM, h:mm a'), // Format the date here
-      id: row.id,
-      category: row.attributes.category,
-      url: row.attributes.url,
-      city: row.attributes.city,
-
-      jobtype: row.attributes.jobtype,
-
-    }));
-  };
-
-  const dataTableData = {
-    columns: [
-      {
-        Header: "product",
-        accessor: "product",
-        width: "40%",
-        Cell: ({ cell: { value } }) => (
-          <ProductCell image={value.image} name={value.name} checked={value.checked} 
-          id={value.id} 
-          linkPath={`/listing/detail-listing/${value.id}`}
-
-          />
-        ),
-      },
-      
-
-      {
-        Header: "Status",
-        accessor: "status",
-        Cell: ({ row }) => {
-          const value = row.original.status;
-          let status;
-          if (value === "pending") {
-            status = <StatusCell icon="done" color="success" status="Active" />;
-          } else if (value === "active") {
-            status = <StatusCell icon="done" color="success" status="Active" />;
-          } else {
-            status = <StatusCell icon="close" color="error" status="Canceled" />;
-          }
-          return (
-            <div onClick={() => clickViewHandler(row.original.id)} style={{ cursor: "pointer" }}>
-              {status}
-            </div>
-          );
-        },
-      },
-      { Header: "price", accessor: "price", Cell: ({ row, value }) => (
-        <div onClick={() => clickViewHandler(row.original.id)} style={{ cursor: "pointer" }}>
-          {value}
-        </div>
-      )},
-      { Header: "created at", accessor: "created_at", Cell: ({ row, value }) => (
-        <div onClick={() => clickViewHandler(row.original.id)} style={{ cursor: "pointer" }}>
-          {value}
-        </div>
-      )},
-      {
-        Header: "actions",
-        disableSortBy: true,
-        accessor: "",
-        Cell: (info) => (
-          <SoftBox display="flex" alignItems="left">
-
-              <SoftTypography variant="body1" color="secondary" sx={{ cursor: "pointer", lineHeight: 0 }}>
-                <Tooltip title="Preview product" placement="top">
-                  
-
-                  <IconButton onClick={() => clickOpenHandler(info.cell.row.original.category, info.cell.row.original.url, info.cell.row.original.jobtype, info.cell.row.original.city)}>
-                    <ViewIcon color="secondary"/>
-                  </IconButton>
-                </Tooltip>
-              </SoftTypography>
-
-           
-            
-              <Tooltip title="Edit listing" color="secondary" placement="top">
-                <IconButton onClick={() => clickEditHandler(info.cell.row.original.id)}>
-                  <EditIcon />
-                </IconButton>
-              </Tooltip>
-            
-          </SoftBox>
-        ),
-      },
-    ],
+  
     
-
-    rows: tableData,
-    onRowClick : {handleRowClick},  // Add this line
-  };
-
   const clickAddHandler = () => {
     navigate("/listing/create-listing");
   };
@@ -313,26 +384,34 @@ function ListListing() {
       <ListActionHeader title="createListing" clickAddHandler={clickAddHandler} />
 
 
-        
 
-        <Card>
+        <SoftBox my={3}>
 
-          {isLoading ? (
-            <TableSkeleton rows={5} columns={5} />  
-          ) : (
-              <DataTable
-                table={dataTableData}
-                entriesPerPage={{
-                  defaultValue: 30,
-                  entries: [30, 50, 100, 200],
-                }}
-                canSearch
-              />
-          )}
-
-
-        </Card>
-
+          <DataGrid
+            checkboxSelection
+            disableRowSelectionOnClick
+            rows={dataFiltered}
+            columns={columns}
+            loading={isLoading}
+            getRowHeight={() => 'auto'}
+            pageSizeOptions={[100, 200, 500]}
+            initialState={{ pagination: { paginationModel: { pageSize: 100 } } }}
+            onRowSelectionModelChange={(newSelectionModel) => setSelectedRowIds(newSelectionModel)}
+            columnVisibilityModel={columnVisibilityModel}
+            onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
+            slots={{
+              toolbar: CustomToolbarCallback,
+              noRowsOverlay: () => <EmptyContent />,
+              noResultsOverlay: () => <EmptyContent title="No results found" />,
+            }}
+            slotProps={{
+              panel: { anchorEl: filterButtonEl },
+              toolbar: { setFilterButtonEl },
+              columnsManagement: { getTogglableColumns },
+            }}
+            sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex' } }}
+          />
+        </SoftBox>
 
         
       </SoftBox>
@@ -341,3 +420,73 @@ function ListListing() {
 }
 
 export default ListListing;
+
+
+
+
+function CustomToolbar({
+  filters,
+  canReset,
+  selectedRowIds,
+  filteredResults,
+  setFilterButtonEl,
+  onOpenConfirmDeleteRows,
+}) {
+  return (
+    <>
+      <GridToolbarContainer>
+        <ProductTableToolbar
+          filters={filters}
+          options={{ stocks: PRODUCT_STOCK_OPTIONS, publishs: PUBLISH_OPTIONS }}
+        />
+
+        <GridToolbarQuickFilter />
+
+        <Stack
+          spacing={1}
+          flexGrow={1}
+          direction="row"
+          alignItems="center"
+          justifyContent="flex-end"
+        >
+          {!!selectedRowIds.length && (
+            <Button
+              size="small"
+              color="error"
+              startIcon={<Iconify icon="solar:trash-bin-trash-bold" />}
+              onClick={onOpenConfirmDeleteRows}
+            >
+              Delete ({selectedRowIds.length})
+            </Button>
+          )}
+
+          <GridToolbarColumnsButton />
+          <GridToolbarFilterButton ref={setFilterButtonEl} />
+          <GridToolbarExport />
+        </Stack>
+      </GridToolbarContainer>
+
+      {canReset && (
+        <ProductTableFiltersResult
+          filters={filters}
+          totalResults={filteredResults}
+          sx={{ p: 2.5, pt: 0 }}
+        />
+      )}
+    </>
+  );
+}
+
+function applyFilter({ inputData, filters }) {
+  const { stock, publish } = filters;
+
+  if (stock.length) {
+    inputData = inputData.filter((product) => stock.includes(product.inventoryType));
+  }
+
+  if (publish.length) {
+    inputData = inputData.filter((product) => publish.includes(product.publish));
+  }
+
+  return inputData;
+}

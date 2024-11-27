@@ -6,8 +6,8 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { CONFIG } from 'src/config-global';
-import { varAlpha } from 'src/theme/styles';
+
+import { varAlpha } from 'theme/styles';
 
 // ----------------------------------------------------------------------
 
@@ -41,7 +41,7 @@ export function EmptyContent({
       <Box
         component="img"
         alt="empty content"
-        src={imgUrl ?? `${CONFIG.site.basePath}/assets/icons/empty/ic-content.svg`}
+        
         sx={{ width: 1, maxWidth: 160, ...slotProps?.img }}
       />
 

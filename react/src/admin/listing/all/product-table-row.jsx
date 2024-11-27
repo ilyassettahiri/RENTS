@@ -35,7 +35,7 @@ export function RenderCellPublish({ params }) {
 export function RenderCellCreatedAt({ params }) {
   return (
     <Stack spacing={0.5}>
-      <Box component="span">{fDate(params.row.created_at)}</Box>
+      <Box component="span">{fDate(params.row.createdAt)}</Box>
       <Box component="span" sx={{ typography: 'caption', color: 'text.secondary' }}>
         {fTime(params.row.createdAt)}
       </Box>
@@ -71,7 +71,7 @@ export function RenderCellProduct({ params, onViewRow }) {
       <Avatar
         alt={params.row.title}
 
-        src={`${process.env.NEXT_PUBLIC_IMAGE_BASE_URL}${params.row.picture}`}
+        src={`${process.env.REACT_APP_IMAGE_LISTING_SMALLL}${params.row.picture}`}
         variant="rounded"
         sx={{ width: 64, height: 64, mr: 2 }}
       />
