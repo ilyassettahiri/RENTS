@@ -9,6 +9,8 @@ import Avatar from '@mui/material/Avatar';
 import ListItemText from '@mui/material/ListItemText';
 import LinearProgress from '@mui/material/LinearProgress';
 import  Image  from 'components/image';
+import SoftTypography from "components/SoftTypography";
+import { NavLink } from "react-router-dom";
 
 import { fCurrency } from 'utils/format-number';
 import { fTime, fDate } from 'utils/format-time';
@@ -37,6 +39,7 @@ export function RenderCellCreatedAt({ params }) {
   return (
     <Stack spacing={0.5}>
       <Box component="span">{fDate(params.row.createdAt)}</Box>
+      
       <Box component="span" sx={{ typography: 'caption', color: 'text.secondary' }}>
         {fTime(params.row.createdAt)}
       </Box>
@@ -83,20 +86,17 @@ export function RenderCellProduct({ params, onViewRow }) {
       <ListItemText
         disableTypography
         primary={
-          <Link
-            noWrap
-            color="inherit"
-            variant="subtitle2"
-            onClick={onViewRow}
-            sx={{ cursor: 'pointer' }}
-          >
+          
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
             {params.row.title}
-          </Link>
+          </SoftTypography>
         }
         secondary={
-          <Box component="div" sx={{ typography: 'body2', color: 'text.disabled' }}>
-            {params.row.category}
-          </Box>
+          
+
+          <SoftTypography variant="caption"  >
+          {params.row.category}
+          </SoftTypography>
         }
         sx={{ display: 'flex', flexDirection: 'column' }}
       />

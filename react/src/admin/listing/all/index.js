@@ -131,9 +131,9 @@ function ListListing() {
 
     useEffect(() => {
       if (listingsData?.data?.length) {
-    
-        const transformedData = listingsData.data.map((row) => ({
-          id: row.id,
+        const transformedData = listingsData.data.map((row, index) => ({
+          id: index + 1, // Assign consecutive IDs starting from 1
+          listingId: row.id, // Keep the original listing ID
           title: row.attributes.title,
           price: row.attributes.price,
           status: row.attributes.status,
@@ -145,10 +145,10 @@ function ListListing() {
           picture: row.attributes.picture,
         }));
     
-    
         setTableData(transformedData);
       }
     }, [listingsData]);
+    
     
   
    
@@ -209,7 +209,7 @@ function ListListing() {
       minWidth: 300,
       hideable: false,
       renderCell: (params) => (
-        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.id)} />
+        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.listingId)} />
       ),
     },
     
@@ -416,6 +416,7 @@ function ListListing() {
                 onColumnVisibilityModelChange={(newModel) => setColumnVisibilityModel(newModel)}
                 slots={{
                   toolbar: CustomToolbarCallback,
+                  
                   noRowsOverlay: () => <EmptyContent />,
                   noResultsOverlay: () => <EmptyContent title="No results found" />,
                 }}
@@ -424,13 +425,15 @@ function ListListing() {
                   toolbar: { setFilterButtonEl },
                   columnsManagement: { getTogglableColumns },
                 }}
-                sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex' },
+                sx={{ [`& .${gridClasses.cell}`]: { alignItems: 'center', display: 'inline-flex',  },
                 
                 border: 'none',
                 
                 fontSize: '14px',
 
-              
+                '& .MuiButtonBase-root.MuiButton-root': {
+                    color: 'black', // Set button color to black
+                  },
               
                 }}
               />
