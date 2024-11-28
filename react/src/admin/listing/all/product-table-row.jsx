@@ -105,6 +105,42 @@ export function RenderCellProduct({ params, onViewRow }) {
 }
 
 
+export function RenderCellCustomer({ params, onViewRow }) {
+
+  const imageUrl = `${process.env.REACT_APP_IMAGE_PATH}/team-1.jpg`;
+
+  return (
+    <Stack direction="row" alignItems="center" sx={{ py: 2, width: 1 }}>
+      <Image
+        src={imageUrl}
+        alt={params.row.name}
+        ratio="1/1"
+        sx={{ width: 45, height: 45, mr: 2, borderRadius: '100px' }}
+      />
+      
+
+      <ListItemText
+        disableTypography
+        primary={
+          
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
+            {params.row.name}
+          </SoftTypography>
+        }
+        secondary={
+          
+
+          <SoftTypography variant="caption"  >
+          {params.row.email}
+          </SoftTypography>
+        }
+        sx={{ display: 'flex', flexDirection: 'column' }}
+      />
+    </Stack>
+  );
+}
+
+
 export function RenderCellCollection({ params, onViewRow }) {
 
   const imageUrl = `${process.env.REACT_APP_IMAGE_COLLECTION}${params.row.picture}`;
