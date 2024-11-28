@@ -580,7 +580,7 @@ function CreateStore() {
     <DashboardLayout>
       <SoftBox mt={1} mb={8} component="form" method="POST" onSubmit={submitHandler}>
         <Grid container justifyContent="center">
-          <Grid item xs={12} lg={10}>
+          <Grid item xs={12} lg={12}>
             <Header 
               profileImage={profileImage} 
               backgroundImage={backgroundImage}
@@ -788,7 +788,7 @@ function CreateStore() {
 
         <Grid container justifyContent="center">
 
-            <Grid item xs={12} lg={10}>
+            <Grid item xs={12} lg={12}>
                 <SoftBox display="flex" justifyContent="center" mb={5}>
 
                   <SoftButton sx={{ py: 1.5 }} variant="gradient" color="info" size="small" type="submit"

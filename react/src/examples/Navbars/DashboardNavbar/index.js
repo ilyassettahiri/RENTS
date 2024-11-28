@@ -92,22 +92,9 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const { textDirection } = textDirectionState;
 
   
-  const hiddenPaths = [
-    "/listing/create-listing",
-    "/listing/all",
-    "/listing/completed",
-    "/listing/draft",
-    "/listing/boosted",
-    "/listing/collection",
-    "/listing/discount",
-    "/listing/edit-listing/:id",
-    "/listing/detail-listing/:id",
-    "/listing/edit-boosted/:id",
-    "/listing/detail-boosted/:id",
-    "/listing/edit-completed/:id",
-  ];
+  const isDashboard = location.pathname === "/dashboard";
 
-  const shouldHideButton = hiddenPaths.some((path) => location.pathname.startsWith(path));
+  const shouldShowButton = isDashboard; // Show button only on /dashboard
 
 
   useEffect(() => {
@@ -269,7 +256,7 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
             <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1} >
               
                 
-                {!shouldHideButton && (
+                {shouldShowButton && (
 
 
                     <SoftBox mr={2}>

@@ -420,7 +420,7 @@ const CreateDiscount = () => {
     <DashboardLayout>
       <SoftBox mt={5} mb={10} component="form" method="POST" onSubmit={submitHandler}>
         <Grid container justifyContent="center">
-          <Grid item xs={12} lg={10}>
+          <Grid item xs={12} lg={12}>
             <Card sx={{ overflow: "visible", mt: 2, mb: 5 }}>
               <SoftBox p={3}>
                 
