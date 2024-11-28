@@ -46,7 +46,9 @@ class CollectionController extends JsonApiController
     public function index(JsonApiRoute $route, Store $store)
     {
         $user = Auth::user();
-        $collections = Collection::where('user_id', $user->id)->get();
+        $collections = Collection::where('user_id', $user->id)
+        ->withCount('listing') // Count related listings
+        ->get();
 
 
         return response()->json([
@@ -58,7 +60,7 @@ class CollectionController extends JsonApiController
                         'name' => $collection->name,
                         'picture' => $collection->picture,
                         'description' => $collection->description,
-
+                        'items' => $collection->listing_count,
                         'created_at' => $collection->created_at,
                     ],
                     'relationships' => [
@@ -105,7 +107,7 @@ class CollectionController extends JsonApiController
 
 
 
-        /*$manager = new ImageManager(new Driver());
+        $manager = new ImageManager(new Driver());
 
         $file = $request->file('data.attributes.picture');
         $imagelarge = $manager->read($file->getRealPath());
@@ -139,11 +141,11 @@ class CollectionController extends JsonApiController
 
 
 
-        $picturerelativePath = $fileNamelarge;*/
+        $picturerelativePath = $fileNamelarge;
 
 
 
-                if ($request->hasFile('data.attributes.picture')) {
+                /*if ($request->hasFile('data.attributes.picture')) {
                     $picturefile = $request->file('data.attributes.picture');
                     $filePath = Storage::disk('public')->put('storage/images', $picturefile, 'public');
 
@@ -151,7 +153,7 @@ class CollectionController extends JsonApiController
                     $picturerelativePath = '/' . $relativePath;
 
 
-                }
+                }*/
 
 
         $name = $request->input('data.attributes.name');

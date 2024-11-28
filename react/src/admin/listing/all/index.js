@@ -283,7 +283,7 @@ function ListListing() {
           showInMenu
           icon={<Iconify icon="solar:eye-bold" />}
           label="View"
-          onClick={() => handleViewRow(params.row.id)}
+          onClick={() => handleViewRow(params.row.listingId)}
         />,
         <GridActionsCellItem
 
@@ -292,7 +292,7 @@ function ListListing() {
           showInMenu
           icon={<Iconify icon="solar:pen-bold" />}
           label="Edit"
-          onClick={() => handleEditRow(params.row.id)}
+          onClick={() => handleEditRow(params.row.listingId)}
         />,
         <GridActionsCellItem
 
@@ -302,7 +302,7 @@ function ListListing() {
           icon={<Iconify icon="solar:trash-bin-trash-bold" />}
           label="Delete"
           onClick={() => {
-            handleDeleteRow(params.row.id);
+            handleDeleteRow(params.row.listingId);
           }}
           sx={{ color: 'error.main' }}
         />,

@@ -103,3 +103,39 @@ export function RenderCellProduct({ params, onViewRow }) {
     </Stack>
   );
 }
+
+
+export function RenderCellCollection({ params, onViewRow }) {
+
+  const imageUrl = `${process.env.REACT_APP_IMAGE_COLLECTION}${params.row.picture}`;
+
+  return (
+    <Stack direction="row" alignItems="center" sx={{ py: 2, width: 1 }}>
+      <Image
+        src={imageUrl}
+        alt={params.row.title}
+        ratio="1/1"
+        sx={{ width: 64, height: 64, mr: 2, borderRadius: '10px' }}
+      />
+      
+
+      <ListItemText
+        disableTypography
+        primary={
+          
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
+            {params.row.title}
+          </SoftTypography>
+        }
+        secondary={
+          
+
+          <SoftTypography variant="caption"  >
+          {params.row.category}
+          </SoftTypography>
+        }
+        sx={{ display: 'flex', flexDirection: 'column' }}
+      />
+    </Stack>
+  );
+}
