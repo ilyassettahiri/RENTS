@@ -7,12 +7,15 @@ import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import Icon from "@mui/material/Icon";
 
+import ProductPriceSample from "admin/listing/all/product-price-sample";
+
+
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
 import { useTranslation } from 'react-i18next';
 import SoftTypography from "components/SoftTypography";
 
-function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction }) {
+function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction, isPrice }) {
   return (
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
@@ -54,7 +57,16 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                   fontWeight="bold"
                   color={bgColor === "white" ? "dark" : "white"}
                 >
-                  {count}{" "}
+
+
+                  {isPrice ? (
+                    <ProductPriceSample price={count} />
+                  ) : (
+                    count
+                  )}
+                  
+                  
+                  {" "}
                   <SoftTypography variant="button" color={percentage.color} fontWeight="bold">
                     {percentage.text}
                   </SoftTypography>
@@ -101,6 +113,8 @@ MiniStatisticsCard.defaultProps = {
     text: "",
   },
   direction: "right",
+
+  isPrice: false,
 };
 
 // Typechecking props for the MiniStatisticsCard
@@ -138,6 +152,9 @@ MiniStatisticsCard.propTypes = {
     component: PropTypes.node.isRequired,
   }).isRequired,
   direction: PropTypes.oneOf(["right", "left"]),
+
+  isPrice: PropTypes.bool, // Boolean prop to specify if count is a price
+
 };
 
 export default MiniStatisticsCard;

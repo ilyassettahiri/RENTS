@@ -21,6 +21,9 @@ import SoftTypography from "components/SoftTypography";
 // Soft UI Dashboard PRO React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 
+
+
+
 import MiniStatisticsCard from "examples/Cards/StatisticsCards/MiniStatisticsCard";
 import SalesTable from "examples/Tables/SalesTable";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
@@ -192,6 +195,7 @@ function Dashboard() {
                     count={dashboardData.data.attributes.totalRevenueToday}
                     percentage={{ color: "success", text: "0%" }}
                     icon={{ color: "info", component: "paid" }}
+                    isPrice={true}
                   />
 
                 </SoftBox>
@@ -200,6 +204,7 @@ function Dashboard() {
                     title={{ text: t("This Month Revenue"), fontWeight: "bold" }}
                     count={dashboardData.data.attributes.totalRevenueThisMonth}
                     percentage={{ color: "success", text: "0%" }}
+                    isPrice={true}
                     icon={{
                       color: "info",
                       component: "shopping_cart",

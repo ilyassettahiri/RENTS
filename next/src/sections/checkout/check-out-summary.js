@@ -16,6 +16,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { inputBaseClasses } from '@mui/material/InputBase';
 import InputAdornment, { inputAdornmentClasses } from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
+import ProductPriceSample from 'src/sections/store/common/product-price-sample';
 
 import TextField from '@mui/material/TextField';
 
@@ -48,6 +49,10 @@ export default function TravelCheckOutSummary({
   const [discountValue, setDiscountValue] = useState(0); // State to store the discount percentage
   const [error, setError] = useState(null); // State to store any errors
 
+  const [subtotal, setSubtotal] = useState(price || 0); // State for subtotal
+  const [discountedPrice, setDiscountedPrice] = useState(subtotal); // State for discounted price
+
+
   const applyDiscount = async () => {
 
 
@@ -69,8 +74,12 @@ export default function TravelCheckOutSummary({
     }
   };
 
-  const discountedPrice = price - (price * discountValue) / 100; // Calculate the discounted price
-
+  useEffect(() => {
+    const days = departureDay.length || 1; // Ensure at least 1 day
+    const calculatedSubtotal = price * days;
+    setSubtotal(calculatedSubtotal);
+    setDiscountedPrice(calculatedSubtotal - (calculatedSubtotal * discountValue) / 100);
+  }, [departureDay, discountValue, price]);
 
 
   if (!tour) {
@@ -179,9 +188,14 @@ export default function TravelCheckOutSummary({
           >
             Sub total
           </Typography>
-          <Typography component="span" variant="subtitle2">
-            {fCurrency(price)}
-          </Typography>
+          <ProductPriceSample
+
+                    price={subtotal}
+
+
+                    sx={{ typography: 'subtitle1' }}
+
+          />
         </Box>
 
           <Box display="flex">
@@ -200,13 +214,10 @@ export default function TravelCheckOutSummary({
               Total
             </Typography>
             <Box sx={{ textAlign: 'right' }}>
-              <Typography
-                component="span"
-                variant="subtitle1"
-                sx={{ display: 'block', color: 'error.main' }}
-              >
-                {fCurrency(discountedPrice)} {/* Show the discounted price */}
-              </Typography>
+                <ProductPriceSample
+                  price={discountedPrice} // Total: Subtotal - (Subtotal × discount%)
+                  sx={{ typography: 'subtitle1', color: 'error.main' }}
+                />
             </Box>
           </Box>
 

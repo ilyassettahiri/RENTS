@@ -11,6 +11,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import  Image  from 'components/image';
 import SoftTypography from "components/SoftTypography";
 import { NavLink } from "react-router-dom";
+import ProductPriceSample from "admin/listing/all/product-price-sample";
 
 import { fCurrency } from 'utils/format-number';
 import { fTime, fDate } from 'utils/format-time';
@@ -20,7 +21,7 @@ import { Label } from 'components/label';
 // ----------------------------------------------------------------------
 
 export function RenderCellPrice({ params }) {
-  return fCurrency(params.row.price);
+  return <ProductPriceSample price={params.row.price} />;
 }
 
 // ----------------------------------------------------------------------

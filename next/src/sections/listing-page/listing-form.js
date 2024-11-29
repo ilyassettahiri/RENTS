@@ -17,6 +17,8 @@ import PropTypes from 'prop-types';
 import { paths as getPaths } from 'src/routes/paths';
 import { fCurrency } from 'src/utils/format-number';
 import ProductPrice from 'src/sections/store/common/product-price';
+import ProductPriceSample from 'src/sections/store/common/product-price-sample';
+
 
 import FilterTime from 'src/sections/components/listings/filters/filter-time';
 import FilterGuests from 'src/sections/components/listings/filters/filter-guests';
@@ -167,11 +169,11 @@ export default function ListingForm({ tour }) {
 
 
 
-                  <ProductPrice
+                  <ProductPriceSample
 
                     price={totalPrice}
 
-                    per={per}
+
                     sx={{ typography: 'subtitle1' }}
 
                   />
