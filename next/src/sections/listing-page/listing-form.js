@@ -163,7 +163,19 @@ export default function ListingForm({ tour }) {
                   variant="subtitle1"
                   sx={{ display: 'block', color: 'error.main' }}
                 >
-                  {fCurrency(totalPrice)}
+
+
+
+
+                  <ProductPrice
+
+                    price={totalPrice}
+
+                    per={per}
+                    sx={{ typography: 'subtitle1' }}
+
+                  />
+
                 </Typography>
                 <Typography variant="caption" sx={{ fontStyle: 'italic' }}>
                   (VAT included if applicable)

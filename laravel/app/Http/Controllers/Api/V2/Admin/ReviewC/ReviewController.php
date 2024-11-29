@@ -45,12 +45,13 @@ class ReviewController extends JsonApiController
 
                         'name' => $review->name,
                         'rating' => $review->rating,
-
+                        'email' => $review->email,
                         'title' => $review->listings_title,
 
                         'title' => $review->listings_title,
                         'picture' => $review->listings_thumb,
 
+                        'status' => $review->status ?? 'Active',
 
 
 

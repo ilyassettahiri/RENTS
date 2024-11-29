@@ -141,6 +141,7 @@ function ListCustomer() {
           status: row.attributes.status,
           createdAt: row.attributes.created_at,
           name: row.attributes.name,
+          phone: row.attributes.phone,
 
           email: row.attributes.email,
 
@@ -228,7 +229,12 @@ function ListCustomer() {
  
 
 
-    
+    {
+      field: 'phone',
+      headerName: 'Phone',
+      width: 150,
+
+    },
     
    
    
@@ -246,16 +252,7 @@ function ListCustomer() {
     
 
 
-    {
-      field: 'title',
-      headerName: 'Listing',
-      flex: 1,
-      minWidth: 300,
-      hideable: false,
-      renderCell: (params) => (
-        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.listingId)} />
-      ),
-    },
+    
 
     
     {

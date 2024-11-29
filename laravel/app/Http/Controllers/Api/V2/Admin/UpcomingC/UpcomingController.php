@@ -47,6 +47,12 @@ class UpcomingController extends JsonApiController
 
                         'name' => $reservation->name,
 
+
+                        'email' => $reservation->email,
+                        'picture' => $reservation->listings_thumb,
+
+                        'phone' => $reservation->phone,
+
                         'title' => $reservation->listings_title,
                         'price' => $reservation->listings_price,
                         'status' => $reservation->status,

@@ -109,7 +109,7 @@ export function RenderCellProduct({ params, onViewRow }) {
 
 export function RenderCellCustomer({ params, onViewRow }) {
 
-  const imageUrl = `${process.env.REACT_APP_IMAGE_PATH}/team-1.jpg`;
+  const imageUrl = `${process.env.REACT_APP_IMAGE_BASE_URL}/admin.jpg`;
 
   return (
     <Stack direction="row" alignItems="center" sx={{ py: 2, width: 1 }}>

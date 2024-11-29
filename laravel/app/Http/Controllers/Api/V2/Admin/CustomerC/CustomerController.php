@@ -46,6 +46,9 @@ class CustomerController extends JsonApiController
                         'email' => $customer->email,
                         'title' => $customer->listings_title,
                         'price' => $customer->listings_price,
+                        'phone' => $customer->phone,
+                        'status' => $customer->status ?? 'Active',
+                        'picture' => $customer->listings_thumb,
 
                         'id' => $customer->id,
                         'created_at' => $customer->created_at,
