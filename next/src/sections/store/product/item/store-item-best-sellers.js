@@ -33,7 +33,7 @@ export default function StoreItemBestSellers({ product, ...other }) {
   return (
     <Link
       component={RouterLink}
-      href={`${paths.travel.tour}/${product.city}/${product.category}/${type}/${product.url} `}
+      href={`${paths.travel.tour}/${product.city}/${product.category}/${type}/${product.url}`}
       color="inherit"
       underline="none"
     >

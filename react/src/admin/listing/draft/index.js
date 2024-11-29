@@ -208,7 +208,11 @@ function ListDraft() {
       minWidth: 300,
       hideable: false,
       renderCell: (params) => (
-        <RenderCellProduct params={params} onViewRow={() => handleViewRow(params.row.listingId)} />
+        <RenderCellProduct params={params} 
+        onViewRow={() => navigate(`/listing/detail-listing/${params.row.listingId}`)} 
+
+        
+        />
       ),
     },
     
@@ -282,7 +286,17 @@ function ListDraft() {
           showInMenu
           icon={<Iconify icon="solar:eye-bold" />}
           label="View"
-          onClick={() => handleViewRow(params.row.listingId)}
+          
+
+          onClick={() =>
+            clickOpenHandler(
+              params.row.category,  // Pass category
+              params.row.url,       // Pass URL
+              params.row.jobtype,   // Pass jobtype
+              params.row.city        // Pass city
+            )
+          }
+
         />,
         <GridActionsCellItem
 

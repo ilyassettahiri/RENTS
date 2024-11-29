@@ -87,7 +87,9 @@ export function RenderCellProduct({ params, onViewRow }) {
         disableTypography
         primary={
           
-          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" 
+          sx={{ cursor: 'pointer' }}
+          >
             {params.row.title}
           </SoftTypography>
         }
@@ -123,7 +125,7 @@ export function RenderCellCustomer({ params, onViewRow }) {
         disableTypography
         primary={
           
-          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" sx={{ cursor: 'pointer' }} >
             {params.row.name}
           </SoftTypography>
         }
@@ -159,7 +161,7 @@ export function RenderCellCollection({ params, onViewRow }) {
         disableTypography
         primary={
           
-          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" component={NavLink}  to={onViewRow}>
+          <SoftTypography onClick={onViewRow} variant="button" fontWeight="medium" sx={{ cursor: 'pointer' }}>
             {params.row.title}
           </SoftTypography>
         }

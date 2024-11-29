@@ -153,23 +153,30 @@ export default function Footer() {
 
 
               <Stack spacing={2} alignItems={{ xs: 'center', md: 'flex-start' }}>
-
-                <Stack direction="row" alignItems="center">
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:facebook" />
-                  </IconButton>
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:instagram" />
-                  </IconButton>
-
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:twitter" />
-                  </IconButton>
-                  <IconButton color="primary">
-                    <Iconify icon="mdi:linkedin" />
-                  </IconButton>
+                  <Stack direction="row" alignItems="center">
+                    <a href="https://www.facebook.com/profile.php?id=61556972157814" target="_blank" rel="noopener noreferrer">
+                      <IconButton color="primary">
+                        <Iconify icon="mdi:facebook" />
+                      </IconButton>
+                    </a>
+                    <a href="https://www.instagram.com/rents.ma1/" target="_blank" rel="noopener noreferrer">
+                      <IconButton color="primary">
+                        <Iconify icon="mdi:instagram" />
+                      </IconButton>
+                    </a>
+                    <a href="https://x.com/nftsutility" target="_blank" rel="noopener noreferrer">
+                      <IconButton color="primary">
+                        <Iconify icon="mdi:twitter" />
+                      </IconButton>
+                    </a>
+                    <a href="https://www.linkedin.com/company/105228094/" target="_blank" rel="noopener noreferrer">
+                      <IconButton color="primary">
+                        <Iconify icon="mdi:linkedin" />
+                      </IconButton>
+                    </a>
+                  </Stack>
                 </Stack>
-              </Stack>
+
 
 
             </Stack>
