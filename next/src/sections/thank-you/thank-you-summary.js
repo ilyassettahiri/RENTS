@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 
 import { fDate } from 'src/utils/format-time';
 import { fCurrency } from 'src/utils/format-number';
+import ProductPriceSample from 'src/sections/store/common/product-price-sample';
 
 import Iconify from 'src/components/iconify';
 import ThankYouInfo from './thank-you-info';
@@ -52,7 +53,7 @@ export default function ThankYouSummary({ tour }) {
 
       <LineItem icon="carbon:calendar" label="Booking days" value={`${totalDays} days`} />
 
-      <LineItem icon="carbon:receipt" label="Total" value={fCurrency(totalPrice)} />
+      <LineItem icon="carbon:receipt" label="Total" value={totalPrice} isPrice={true}/>
 
       <LineItem icon="carbon:purchase" label="Payment method" value="Paypal" />
     </Stack>
@@ -72,7 +73,7 @@ ThankYouSummary.propTypes = {
 };
 // ----------------------------------------------------------------------
 
-function LineItem({ icon, label, value }) {
+function LineItem({ icon, label, value, isPrice }) {
   return (
     <Stack
       direction="row"
@@ -84,14 +85,30 @@ function LineItem({ icon, label, value }) {
         variant="subtitle2"
         sx={{ color: 'text.primary', flexGrow: 1, textAlign: 'right' }}
       >
-        {value}
+
+
+                  {isPrice ? (
+                    <ProductPriceSample price={value} />
+                  ) : (
+                    value
+                  )}
+
+
       </Typography>
     </Stack>
   );
 }
 
+
+LineItem.defaultProps = {
+  isPrice: false,
+
+};
+
 LineItem.propTypes = {
   icon: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   label: PropTypes.string,
   value: PropTypes.string,
+  isPrice: PropTypes.bool,
+
 };

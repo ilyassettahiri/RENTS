@@ -17,6 +17,8 @@ import { inputBaseClasses } from '@mui/material/InputBase';
 import InputAdornment, { inputAdornmentClasses } from '@mui/material/InputAdornment';
 import Button from '@mui/material/Button';
 import ProductPriceSample from 'src/sections/store/common/product-price-sample';
+import ProductPrice from 'src/sections/store/common/product-price';
+import { capitalizeFirstLetter } from 'src/utils/format-time';
 
 import TextField from '@mui/material/TextField';
 
@@ -32,18 +34,18 @@ import FilterTime from 'src/sections/components/listings/filters/filter-time';
 
 // ----------------------------------------------------------------------
 
-export default function TravelCheckOutSummary({
+export default function CheckOutSummary({
   tour,
   departureDay,
   isSubmitting,
-  onChangeDepartureDay,
 
+  setDepartureDay,
 }) {
   const smUp = useResponsive('up', 'sm');
 
 
   const { attributes } = tour || {};
-  const { title, price, picture, url } = attributes || {};
+  const { title, price, picture, url, per } = attributes || {};
 
   const [discountCode, setDiscountCode] = useState(''); // State for the discount code input
   const [discountValue, setDiscountValue] = useState(0); // State to store the discount percentage
@@ -75,8 +77,16 @@ export default function TravelCheckOutSummary({
   };
 
   useEffect(() => {
-    const days = departureDay.length || 1; // Ensure at least 1 day
+    // Calculate number of days between departureDay[0] and departureDay[1]
+    const days =
+      departureDay[0] && departureDay[1]
+        ? Math.ceil((departureDay[1] - departureDay[0]) / (1000 * 60 * 60 * 24)) || 1
+        : 1; // Default to 1 day if dates are not fully selected or invalid
+
+    // Calculate subtotal based on days
     const calculatedSubtotal = price * days;
+
+    // Update state for subtotal and discounted price
     setSubtotal(calculatedSubtotal);
     setDiscountedPrice(calculatedSubtotal - (calculatedSubtotal * discountValue) / 100);
   }, [departureDay, discountValue, price]);
@@ -90,6 +100,9 @@ export default function TravelCheckOutSummary({
     return <div>Loading...</div>; // Add a loading state if attributes is not yet available
   }
 
+  const handleChangeDepartureDay = useCallback((newValue) => {
+    setDepartureDay(newValue); // Update the state with the new date range
+  }, []);
 
 
 
@@ -112,24 +125,97 @@ export default function TravelCheckOutSummary({
 
 
 
-        <Stack spacing={2} direction="row" alignItems="center">
-          <Avatar
-            variant="rounded"
-            alt={title}
-            src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${picture}`}
-            sx={{ width: 80, height: 80 }}
-          />
-
-          <Stack spacing={0.5}>
-            <Typography noWrap variant="h5" sx={{ maxWidth: 240 }}>
-              {title}
-
-            </Typography>
 
 
-          </Stack>
+
+
+
+
+        <Stack spacing={4} direction={{ xs: 'row', md: 'row' }} >
+
+
+
+
+            <Box
+              sx={{
+                flexGrow:  1,
+                gap: 1,
+                display: 'grid',
+                gridTemplateColumns: {
+                  xs: 'repeat(1, 1fr)',
+                  sm: 'repeat(1, 1fr)',
+                  md: 'repeat(1, 1fr)',
+                  lg: 'repeat(1, 1fr)',
+                },
+              }}
+            >
+
+
+
+              <Stack spacing={1} direction="row" alignItems="center">
+                <Avatar
+                  variant="rounded"
+                  alt={title}
+                  src={`${process.env.NEXT_PUBLIC_IMAGE_LISTING_SMALL}${picture}`}
+                  sx={{ width: 80, height: 80 }}
+                />
+
+                <Stack spacing={0}>
+
+
+
+
+
+                    <TextMaxLine variant="subtitle2" line={1}>
+
+                      {capitalizeFirstLetter(title)}
+                    </TextMaxLine>
+
+
+
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    sx={{ typography: 'body2', color: 'text.secondary' }}
+                  >
+
+
+
+                        <Box sx={{ typography: 'caption' }}>
+
+                          <ProductPrice
+
+                            price={price}
+
+                            per={per}
+                            sx={{ typography: 'caption' }}
+
+                          />
+
+                        </Box>
+
+
+
+                  </Stack>
+                </Stack>
+
+              </Stack>
+
+            </Box>
+
+
+
+
+
+
+
+
+
 
         </Stack>
+
+
+
 
       </Box>
       <Divider sx={{ borderStyle: 'dashed', mt: 2.5 }} />
@@ -152,7 +238,7 @@ export default function TravelCheckOutSummary({
 
               <FilterTime
                 departureDay={departureDay}
-                onChangeDepartureDay={onChangeDepartureDay}
+                onChangeDepartureDay={handleChangeDepartureDay}
                 sx={{
                   [`& .${inputBaseClasses.input}`]: {
                     typography: 'subtitle1',
@@ -270,16 +356,18 @@ export default function TravelCheckOutSummary({
   );
 }
 
-TravelCheckOutSummary.propTypes = {
+CheckOutSummary.propTypes = {
   isSubmitting: PropTypes.bool,
-  onChangeDepartureDay: PropTypes.func,
 
+  setDepartureDay: PropTypes.func.isRequired,
   departureDay: PropTypes.arrayOf(PropTypes.instanceOf(Date)),
   tour: PropTypes.shape({
     attributes: PropTypes.shape({
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       picture: PropTypes.string.isRequired,
+      per: PropTypes.string.isRequired,
+
       category: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
     }).isRequired,

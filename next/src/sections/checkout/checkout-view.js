@@ -191,10 +191,11 @@ export default function CheckoutView({ params }) {
               ) : (
                 <CheckOutSummary
                   tour={memoizedReservationData}
-
+                  setDepartureDay={setDepartureDay}
                   departureDay={departureDay}
                   isSubmitting={isSubmitting}
-                  onChangeDepartureDay={handleChangeDepartureDay}
+
+
                 />
               )}
           </Grid>
