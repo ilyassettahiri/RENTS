@@ -62,7 +62,6 @@ class HomeController extends JsonApiController
 
         $authuser = Auth::user();
 
-        Log::info('Authenticated User:', ['user' => $authuser]);
 
 
         if ($authuser) {

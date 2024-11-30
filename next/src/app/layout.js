@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Script from 'next/script';
 import { cookies } from 'next/headers';
 import { SettingsProvider } from 'src/components/settings';
+import { AuthContextProvider } from 'src/context/AuthContextProvider';
 
 import ClientLayout from './client-layout';
 
@@ -70,6 +71,8 @@ export default function RootLayout({ children }) {
 
   const allCookies = Array.from(cookies());
 
+  const authToken = cookies().get("authToken")?.value;
+  const initialAuthState = !!authToken; // Convert to boolean
 
   const langCookie = allCookies.find(cookie => cookie[0] === 'i18next');
 
@@ -124,15 +127,20 @@ export default function RootLayout({ children }) {
 
         <ClientAnalytics />
 
-        <SettingsProvider
-          defaultSettings={{
-            themeMode: 'light',
-            themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
-            themeColorPresets: 'default',
-          }}
-        >
-          <ClientLayout lang={lang}>{children}</ClientLayout>
-        </SettingsProvider>
+        <AuthContextProvider initialAuthState={initialAuthState}>
+
+              <SettingsProvider
+                defaultSettings={{
+                  themeMode: 'light',
+                  themeDirection: lang === 'ar' ? 'rtl' : 'ltr',
+                  themeColorPresets: 'default',
+                }}
+              >
+                <ClientLayout lang={lang}>{children}</ClientLayout>
+              </SettingsProvider>
+
+
+        </AuthContextProvider>
       </body>
     </html>
   );

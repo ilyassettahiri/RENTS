@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Script from 'next/script';
+import { cookies } from 'next/headers';
 
 import JobPageView from 'src/sections/job-page/job-page-view';
 import PropTypes from 'prop-types';
@@ -50,12 +51,16 @@ export default async function JobPage({ params }) {
   const jobEndpoint = `${API_URL}/jobs/${params.url}`;
   const { city, type, url } = params;
 
+  const authToken = cookies().get('authToken')?.value;
+
+
   try {
     // Fetch job data server-side
     const response = await axios.get(jobEndpoint, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        ...(authToken && { Authorization: `Bearer ${authToken}` }),
       },
     });
 

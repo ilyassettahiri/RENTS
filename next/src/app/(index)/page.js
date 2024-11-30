@@ -1,6 +1,7 @@
 
 import axios from 'axios';
 import Script from 'next/script';
+import { cookies } from 'next/headers';
 
 import HomeView from 'src/sections/home/home-view';
 
@@ -61,12 +62,15 @@ export default async function HomePage() {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const homeEndpoint = `${API_URL}/home`;
 
+  const authToken = cookies().get('authToken')?.value;
+
   try {
     // Fetch data server-side with Axios
     const response = await axios.get(homeEndpoint, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        ...(authToken && { Authorization: `Bearer ${authToken}` }),
       },
     });
 

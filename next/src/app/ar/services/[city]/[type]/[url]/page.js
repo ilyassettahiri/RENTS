@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Script from 'next/script';
+import { cookies } from 'next/headers';
 
 import ServicePageView from 'src/sections/service-page/service-page-view';
 import PropTypes from 'prop-types';
@@ -49,6 +50,7 @@ export default async function ServicePage({ params }) {
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
   const serviceEndpoint = `${API_URL}/services/${params.url}`;
   const { city, type, url } = params;
+  const authToken = cookies().get('authToken')?.value;
 
   try {
     // Fetch service data server-side
@@ -56,6 +58,7 @@ export default async function ServicePage({ params }) {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        ...(authToken && { Authorization: `Bearer ${authToken}` }),
       },
     });
 

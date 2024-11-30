@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Script from 'next/script';
+import { cookies } from 'next/headers';
 
 import ListingView from 'src/sections/listing-page/listing-view';
 import PropTypes from 'prop-types';
@@ -48,12 +49,16 @@ export default async function ListingPage({ params }) {
   const listingEndpoint = `${API_URL}/listings/${params.category}/${params.url}`;
   const { city, category, type, url } = params;
 
+  const authToken = cookies().get('authToken')?.value;
+
+
   try {
     // Fetch job data server-side
     const response = await axios.get(listingEndpoint, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',
+        ...(authToken && { Authorization: `Bearer ${authToken}` }),
       },
     });
 

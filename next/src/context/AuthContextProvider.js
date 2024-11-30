@@ -22,18 +22,18 @@ export const AuthContext = createContext({
   handleCategoryClick: () => {},
 });
 
-const AuthContextProvider = ({ children }) => {
+const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const router = useRouter();
 
-  const token = Cookies.get("authToken");
-
   useEffect(() => {
+    const token = Cookies.get("authToken");
     if (token) {
       setIsAuthenticated(true);
     }
-  }, [token]);
+  }, []);
+
 
   const login = useCallback((accessToken) => {
     Cookies.set("authToken", accessToken, { expires: 1, sameSite: 'Strict', secure: true });
@@ -112,6 +112,7 @@ const AuthContextProvider = ({ children }) => {
 
 AuthContextProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  initialAuthState: PropTypes.bool,
 };
 
 export { AuthContextProvider };
