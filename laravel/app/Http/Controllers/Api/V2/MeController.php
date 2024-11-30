@@ -39,7 +39,6 @@ class MeController extends Controller
         $responseBody = json_decode($response->getContent(), true);
         $responseStatus = $response->getStatusCode();
 
-        Log::info('Response from v2.users.show:', ['body' => $responseBody, 'status' => $responseStatus]);
 
 
 

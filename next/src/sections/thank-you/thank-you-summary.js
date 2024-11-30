@@ -53,7 +53,7 @@ export default function ThankYouSummary({ tour }) {
 
       <LineItem icon="carbon:calendar" label="Booking days" value={`${totalDays} days`} />
 
-      <LineItem icon="carbon:receipt" label="Total" value={totalPrice} isPrice={true}/>
+      <LineItem icon="carbon:receipt" label="Total" value={totalPrice} isPrice/>
 
       <LineItem icon="carbon:purchase" label="Payment method" value="Paypal" />
     </Stack>

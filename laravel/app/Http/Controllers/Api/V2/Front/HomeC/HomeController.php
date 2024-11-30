@@ -59,15 +59,16 @@ class HomeController extends JsonApiController
 
 
 
-        // Fetch 5 recent articles with their authors and tags
-        $recentarticles = Article::orderBy('created_at', 'desc')->take(5)->with('author', 'blogtags')->get();
-
-
 
         $authuser = Auth::user();
 
+        Log::info('Authenticated User:', ['user' => $authuser]);
+
+
         if ($authuser) {
             $favorites = Favorite::where('user_id', $authuser->id)->get();
+
+            Log::info('User Favorites:', ['favorites' => $favorites]);
 
             // Create an associative array of category names and their respective IDs
             $categories = [
@@ -325,31 +326,7 @@ class HomeController extends JsonApiController
 
 
 
-            // Format recent articles data
-            $recentarticlesData = $recentarticles->map(function ($recentarticle) {
-                return [
-                    'type' => 'articles',
-                    'id' => $recentarticle->id,
-                    'attributes' => [
 
-                        'title' => $recentarticle->title,
-                        'actor' => $recentarticle->actor,
-                        'category' => $recentarticle->category,
-                        'tag' => $recentarticle->blogtags->pluck('name'), // Assuming you have a name attribute in the Tag model
-                        'thumb' => $recentarticle->thumb,
-                        'content' => $recentarticle->content,
-                        'created_at' => $recentarticle->created_at,
-                        'updated_at' => $recentarticle->updated_at,
-                        'blogcategory_id' => $recentarticle->blogcategory_id,
-                        'url' => $recentarticle->url,
-                        'author' => [
-                            'name' => $recentarticle->author->name,
-                            'bio' => $recentarticle->author->bio,
-                            'picture' => $recentarticle->author->picture, // Assuming you have a profile_picture attribute in the Author model
-                        ],
-                    ],
-                ];
-            });
 
 
 
@@ -360,7 +337,7 @@ class HomeController extends JsonApiController
         // Ensure JSON:API compliance
         $responseData = [
             'data' => $mergedData,
-            'recentarticles' => $recentarticlesData,
+
 
         ];
 

@@ -23,6 +23,7 @@ const categories = [
   'Allcategories',
   'Business',
   'Services',
+  'Jobs',
   'Billiard',
   'Activities',
   'Apartments',
@@ -153,25 +154,42 @@ export default function DashboardWishlistView() {
       return acc;
     }, {});
 
-    // Exclude services from "All categories"
-    counts['all categories'] = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services').length;
+
+    counts['all categories'] = favoritelistingsData.filter(listing =>
+      listing.attributes.category.toLowerCase() !== 'services' &&
+      listing.attributes.category.toLowerCase() !== 'jobs'
+    ).length;
 
     // Add business counts
     counts.business = favoriteStoresData.data.length;
 
+    counts.jobs = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() === 'jobs').length;
+
     // Filter listings by selected tab
     let filteredListingsByTab = [];
     if (tab === 'All categories') {
-      filteredListingsByTab = favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() !== 'services');
+      filteredListingsByTab = favoritelistingsData.filter(listing =>
+        listing.attributes.category.toLowerCase() !== 'services' &&
+        listing.attributes.category.toLowerCase() !== 'jobs'
+      );
+    } else if (tab === 'Jobs') {
+      filteredListingsByTab = favoritelistingsData.filter(listing =>
+        listing.attributes.category.toLowerCase() === 'jobs'
+      );
     } else if (tab !== 'Business') {
-      filteredListingsByTab = favoritelistingsData.filter(listing => listing.attributes.category === tab.toLowerCase());
+      filteredListingsByTab = favoritelistingsData.filter(listing =>
+        listing.attributes.category.toLowerCase() === tab.toLowerCase()
+      );
     }
+
 
     return {
       favoritelistings: favoritelistingsData,
       categoryCounts: counts,
       filteredlistings: filteredListingsByTab,
       business: favoriteStoresData.data,
+      jobs: favoritelistingsData.filter(listing => listing.attributes.category.toLowerCase() === 'jobs'),
+
     };
   }, [favoriteListingsData, favoriteStoresData, tab]);
 
@@ -183,52 +201,55 @@ export default function DashboardWishlistView() {
   }, []);
 
   return (
+
+
     <>
-      <Typography variant="h5" sx={{ mb: 3 }}>
+    <Typography variant="h5" sx={{ mb: 3 }}>
       {t('Wishlist')}
-      </Typography>
+    </Typography>
 
-      <Tabs
-        value={tab}
-        scrollButtons="auto"
-        variant="scrollable"
-        allowScrollButtonsMobile
-        onChange={handleChangeTab}
-        sx={{ mb: 3 }}
-      >
-        {categories.map((category) => (
-          <Tab
-            key={category}
-            value={category}
-            label={`${t(category)} (${categoryCounts[category.toLowerCase()] || 0})`}
+    <Tabs
+      value={tab}
+      scrollButtons="auto"
+      variant="scrollable"
+      allowScrollButtonsMobile
+      onChange={handleChangeTab}
+      sx={{ mb: 3 }}
+    >
+      {categories.map((category) => (
+        <Tab
+          key={category}
+          value={category}
+          label={`${t(category)} (${categoryCounts[category.toLowerCase()] || 0})`}
+        />
+      ))}
+    </Tabs>
+
+    {(() => {
+      if (tab === 'Services') {
+        return (
+          <ServiceList
+            jobs={filteredlistings}
+            loading={isFavoritesLoading}
+            favorites={favorites}
+            onFavoriteToggle={handleFavoriteToggle}
+            columns={3}
           />
-        ))}
-      </Tabs>
+        );
+      }
 
-      {(() => {
-        if (tab === 'Services') {
-          return (
-            <ServiceList
-              jobs={filteredlistings}
-              loading={isFavoritesLoading}
-              favorites={favorites}
-              onFavoriteToggle={handleFavoriteToggle}
-              columns={3}
-            />
-          );
-        }
+      if (tab === 'Business') {
+        return (
+          <BusinessList
+            businesses={business}
+            loading={isStoresLoading}
+            favorites={favoritestore}
+            onFavoriteToggle={handleFavoriteToggle}
+          />
+        );
+      }
 
-        if (tab === 'Business') {
-          return (
-            <BusinessList
-              businesses={business}
-              loading={isStoresLoading}
-              favorites={favoritestore}
-              onFavoriteToggle={handleFavoriteToggle}
-            />
-          );
-        }
-
+      if (tab === 'Jobs') {
         return (
           <ListingList
             tours={filteredlistings}
@@ -238,8 +259,20 @@ export default function DashboardWishlistView() {
             columns={3}
           />
         );
-      })()}
-    </>
+      }
+
+      return (
+        <ListingList
+          tours={filteredlistings}
+          loading={isFavoritesLoading}
+          favorites={favorites}
+          onFavoriteToggle={handleFavoriteToggle}
+          columns={3}
+        />
+      );
+    })()}
+  </>
+
   );
 
 }

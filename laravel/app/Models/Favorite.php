@@ -22,7 +22,7 @@ class Favorite extends Model
 
     'eclairage_id','mobilier_id','photographie_id','sonorisation_id','tente_id',
 
-    'clothes_id','jewelry_id',
+    'clothes_id','jewelry_id','job_id',
 
     'apartment_id','bureaux_id','magasin_id','maison_id','riad_id','terrain_id','villa_id',
 
@@ -80,6 +80,12 @@ class Favorite extends Model
 
 
             return $this->belongsTo(Golfs::class);
+        }
+
+        public function jobs(): BelongsTo {
+
+
+            return $this->belongsTo(Job::class);
         }
 
 

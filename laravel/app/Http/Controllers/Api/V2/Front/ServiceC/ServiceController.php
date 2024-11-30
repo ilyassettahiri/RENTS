@@ -51,6 +51,8 @@ class ServiceController extends JsonApiController
 
 
         $authuser = Auth::user();
+
+
         $favoriteIds = [];
 
 

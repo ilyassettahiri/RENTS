@@ -74,6 +74,7 @@ use App\Models\Tente  ;
 
 use App\Models\Clothes  ;
 use App\Models\Jewelry  ;
+use App\Models\Job  ;
 
 
 use App\Models\Apartment  ;
@@ -172,6 +173,7 @@ use App\Models\Powertoolsimg;
 use App\Models\Pressurewashersimg;
 
 use App\Models\Servicesimg;
+use App\Models\Jobsimg;
 
 use App\Models\Boatsimg;
 use App\Models\Camionsimg;
@@ -530,6 +532,17 @@ class FavoriteController extends JsonApiController
                                         'alttext' => $image->alttext,
                                     ];
                                 });
+
+
+                            case 'jobs':
+                                return Jobsimg::where('job_id', $favorite->job_id)->get()->map(function ($image) {
+                                        return [
+                                            'picturesmall' => $image->picturesmall,
+                                            'alttext' => $image->alttext,
+                                        ];
+                                });
+
+
                             case 'boats':
                                 return Boatsimg::where('boat_id', $favorite->boat_id)->get()->map(function ($image) {
                                     return [
@@ -2549,6 +2562,46 @@ class FavoriteController extends JsonApiController
                         break;
 
 
+
+
+
+                    case 'jobs':
+
+
+
+
+
+
+
+                        $listingcategory = Job::find($id);
+
+
+
+                        $favorite = Favorite::create([
+                            'user_id' => $authuser->id,
+                            'seller_id' => $listingcategory->user_id,
+                            'price' => $listingcategory->price,
+                            'title' => $listingcategory->title,
+
+                            'city' => $listingcategory->city,
+                            'listing_old' => $listingcategory->created_at,
+
+
+                            'url' => $url,
+                            'job_id' => $id,
+                            'picture' => $listingcategory->picture,
+                            'category' => $category,
+                            'status' => 'active',
+
+                        ]);
+
+
+
+
+
+
+
+                        break;
 
 
 

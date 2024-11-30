@@ -54,42 +54,42 @@ export default function CheckOutSummary({
   const [subtotal, setSubtotal] = useState(price || 0); // State for subtotal
   const [discountedPrice, setDiscountedPrice] = useState(subtotal); // State for discounted price
 
+  const handleChangeDepartureDay = useCallback(
+    (newValue) => {
+      setDepartureDay(newValue);
+    },
+    [setDepartureDay]
+  );
 
-  const applyDiscount = async () => {
+
+  useEffect(() => {
+    if (!departureDay[0] || !departureDay[1]) {
+      return; // Skip calculation if dates are not selected
+    }
+
+    const days =
+      Math.ceil((departureDay[1] - departureDay[0]) / (1000 * 60 * 60 * 24)) || 1;
+
+    const calculatedSubtotal = price * days;
+    setSubtotal(calculatedSubtotal);
+    setDiscountedPrice(calculatedSubtotal - (calculatedSubtotal * discountValue) / 100);
+  }, [departureDay, discountValue, price]);
 
 
+  const applyDiscount = useCallback(async () => {
     const formData = new FormData();
     formData.append('discount_code', discountCode);
     formData.append('url', url);
 
-
-
-
     try {
-
       const response = await CrudService.checkDiscountFront(formData);
-      setDiscountValue(response.discount_value); // Update the discount value
-      setError(null); // Clear any previous errors
+      setDiscountValue(response.discount_value || 0);
+      setError(null);
     } catch (err) {
-      setError(err.response?.data?.error || 'An error occurred'); // Set error message if discount is invalid
-      setDiscountValue(0); // Reset the discount value in case of an error
+      setDiscountValue(0);
+      setError(err.response?.data?.error || 'An error occurred');
     }
-  };
-
-  useEffect(() => {
-    // Calculate number of days between departureDay[0] and departureDay[1]
-    const days =
-      departureDay[0] && departureDay[1]
-        ? Math.ceil((departureDay[1] - departureDay[0]) / (1000 * 60 * 60 * 24)) || 1
-        : 1; // Default to 1 day if dates are not fully selected or invalid
-
-    // Calculate subtotal based on days
-    const calculatedSubtotal = price * days;
-
-    // Update state for subtotal and discounted price
-    setSubtotal(calculatedSubtotal);
-    setDiscountedPrice(calculatedSubtotal - (calculatedSubtotal * discountValue) / 100);
-  }, [departureDay, discountValue, price]);
+  }, [discountCode, url]);
 
 
   if (!tour) {
@@ -100,9 +100,10 @@ export default function CheckOutSummary({
     return <div>Loading...</div>; // Add a loading state if attributes is not yet available
   }
 
-  const handleChangeDepartureDay = useCallback((newValue) => {
-    setDepartureDay(newValue); // Update the state with the new date range
-  }, []);
+
+
+
+
 
 
 

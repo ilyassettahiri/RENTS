@@ -156,6 +156,7 @@ export default function HomeView({ homeData }) {
     if (!homeData) return {};
 
     const attributes = homeData.data || [];
+    console.log('homeData:', homeData); // Log the result
 
 
     return {
