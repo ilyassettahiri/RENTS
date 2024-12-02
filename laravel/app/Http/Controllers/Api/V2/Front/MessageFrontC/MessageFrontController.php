@@ -16,6 +16,8 @@ use App\Enums\ItemStatus;
 
 use App\Events\MessageSent;
 
+use App\Events\NotificationSent;
+
 
 use App\Models\Conversation;
 use App\Models\Message;
@@ -412,6 +414,14 @@ class MessageFrontController extends JsonApiController
         $message->save();
 
         broadcast(new MessageSent($message))->toOthers();
+
+        broadcast(new NotificationSent($userId, [
+            'title' => 'New Message',
+            'body' => $message->body,
+            'sender' => $authUser->name,
+            'conversation_id' => $conversationId,
+        ]));
+
 
 
         // Optionally, you can broadcast an event here for real-time updates

@@ -1,11 +1,16 @@
 "use client";
 
 
-import { useCallback, useMemo} from 'react';
+import {useState, useEffect, useCallback, useMemo, useContext} from 'react';
 import { useTranslation } from 'react-i18next';
 
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+
+import echo from 'src/utils/echo'; // Import Laravel Echo
+
+import { AuthContext } from 'src/context/AuthContextProvider';
+
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -47,6 +52,8 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
+
+
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
 
@@ -54,6 +61,10 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
+
+  const { getCurrentUser } = useContext(AuthContext);
+
+  const [unreadCount, setUnreadCount] = useState(0);
 
   const handleFavoriteClick = useCallback(() => {
     requireAuth(() => {
@@ -63,14 +74,53 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
 
 
+
+  useEffect(() => {
+    const setupNotifications = async () => {
+      try {
+        const userId = await getCurrentUser(); // Fetch the logged-in user's ID
+        if (!userId) {
+
+          return () => {}; // Return a no-op cleanup function
+        }
+
+        const channel = echo.private(`notifications.${userId}`);
+
+        // Listen for .notification.sent
+        channel.listen('.notification.sent', (event) => {
+
+          setUnreadCount((prev) => prev + 1); // Increment unread notifications
+        });
+
+        channel.error((err) => {
+          console.error("Channel error:", err);
+        });
+
+        return () => {
+          channel.stopListening('.notification.sent');
+
+        };
+      } catch (error) {
+        console.error("Error setting up notifications:", error);
+      }
+    };
+
+    const unsubscribe = setupNotifications();
+
+    // Cleanup on component unmount or when `getCurrentUser` changes
+    return () => {
+      if (typeof unsubscribe === "function") {
+        unsubscribe();
+      }
+    };
+  }, [getCurrentUser]);
+
   const handleChatClick = useCallback(() => {
     requireAuth(() => {
-      window.location.href = paths.eCommerce.chat;
+      setUnreadCount(0); // Clear notifications on chat open
+      window.location.href = paths.eCommerce.chat; // Navigate to chat
     });
   }, [requireAuth, paths.eCommerce.chat]);
-
-
-
 
   const renderContent = (
     <>
@@ -172,15 +222,8 @@ export default function Header({ headerOnDark, onOpenNav}) {
           <LanguagePopover data-slot="localization" data={allLangs} />
 
 
-            <Badge badgeContent={1} color="error" >
-              <IconButton
-
-                onClick={handleChatClick}
-
-                size="small"
-                color="inherit"
-                sx={{ p: 0 }}
-              >
+            <Badge badgeContent={unreadCount} color="error">
+              <IconButton onClick={handleChatClick} size="small" color="inherit">
                 <Iconify icon="carbon:chat" width={24} />
               </IconButton>
             </Badge>

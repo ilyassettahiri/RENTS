@@ -82,7 +82,12 @@ export default function DashboardChatPage() {
 
 
     useEffect(() => {
-      if (!selectedConversationId) return;
+
+      if (!selectedConversationId) {
+        return () => {
+          // No-op cleanup function when there's no conversation selected
+        };
+      }
 
 
       const channel = echo.private(`chat.${selectedConversationId}`);

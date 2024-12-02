@@ -19,10 +19,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
-    \Log::info('Authorizing user for chat channel', [
-        'user_id' => $user->id,
-        'conversation_id' => $conversationId,
-    ]);
+
 
     $conversationExists = Conversation::where('id', $conversationId)
         ->where(function ($query) use ($user) {
@@ -30,11 +27,15 @@ Broadcast::channel('chat.{conversationId}', function ($user, $conversationId) {
                   ->orWhere('receiver_id', $user->id);
         })->exists();
 
-    \Log::info('Conversation Exists:', ['exists' => $conversationExists]);
+
 
     return $conversationExists;
 });
 
 
+
+Broadcast::channel('notifications.{userId}', function ($user, $userId) {
+    return (int) $user->id === (int) $userId;
+});
 
 

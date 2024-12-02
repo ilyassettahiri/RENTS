@@ -37,7 +37,7 @@ class MessageSent implements ShouldBroadcast
     public function broadcastOn()
     {
 
-        \Log::info('Broadcasting on channel: chat.' . $this->message->conversation_id);
+
 
         return new PrivateChannel('chat.' . $this->message->conversation_id);
     }
@@ -50,14 +50,14 @@ class MessageSent implements ShouldBroadcast
     public function broadcastAs()
     {
 
-        \Log::info('Broadcasting event: message.sent');
+
         return 'message.sent';
     }
 
 
     public function sendMessage(Request $request)
     {
-        \Log::info('sendMessage request:', $request->all());
+
 
         $message = Message::create([
             'body' => $request->input('body'),
@@ -66,11 +66,11 @@ class MessageSent implements ShouldBroadcast
             'conversation_id' => $request->input('conversation_id'),
         ]);
 
-        \Log::info('Message created:', $message->toArray());
+
 
         broadcast(new MessageSent($message))->toOthers();
 
-        \Log::info('Message broadcasted:', $message->toArray());
+
 
         return response()->json(['message' => $message], 201);
     }
