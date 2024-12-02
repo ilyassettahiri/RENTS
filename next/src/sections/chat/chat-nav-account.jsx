@@ -25,7 +25,6 @@ import { usePopover, CustomPopover } from 'src/components/custom-popover';
 
 export function ChatNavAccount({ sender }) {
 
-  console.log('ChatNavAccount - sender:', sender);
 
   const popover = usePopover();
 

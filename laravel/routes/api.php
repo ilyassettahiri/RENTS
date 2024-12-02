@@ -17,6 +17,7 @@ use App\Http\Controllers\UploadController;
 
 
 
+use Illuminate\Support\Facades\Broadcast;
 
 
 
@@ -498,3 +499,12 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
 
 });
+
+
+
+Broadcast::routes([
+    'middleware' => ['auth:api'], // Use the appropriate authentication middleware
+    'prefix' => 'api/v2',         // Ensure the prefix matches your API structure
+]);
+
+Route::post('/broadcasting/auth', [BroadcastController::class, 'authenticate'])->middleware('auth:api');

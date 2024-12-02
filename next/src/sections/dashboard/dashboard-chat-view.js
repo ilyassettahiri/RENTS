@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
+import echo from 'src/utils/echo'; // Import Laravel Echo
 
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
@@ -66,6 +67,8 @@ export default function DashboardChatPage() {
       },
     });
 
+
+
     // Fetch selected conversation by conversation ID
     const { data: currentConversation, isLoading: isConversationDetailLoading, error: conversationDetailError } = useQuery({
       queryKey: ['conversationDetail', selectedConversationId],
@@ -75,6 +78,34 @@ export default function DashboardChatPage() {
         console.error('Failed to fetch conversation detail:', error);
       },
     });
+
+
+
+    useEffect(() => {
+      if (!selectedConversationId) return;
+
+
+      const channel = echo.private(`chat.${selectedConversationId}`);
+
+      channel.listen('.message.sent', (event) => {
+
+        // Update the messages dynamically
+        queryClient.setQueryData(['conversationDetail', selectedConversationId], (prev) => ({
+          ...prev,
+          messages: [...(prev?.messages || []), event.message],
+        }));
+      });
+
+      channel.error((err) => {
+        console.error('Channel error:', err);
+      });
+
+      return () => {
+        channel.stopListening('.message.sent');
+      };
+    }, [selectedConversationId, queryClient]);
+
+
 
     // Update recipients and sender after fetching conversations
     useEffect(() => {
@@ -87,15 +118,20 @@ export default function DashboardChatPage() {
       }
     }, [conversationList]);
 
-    // Update participants after fetching user conversation
+
+
     useEffect(() => {
-      if (userConversation?.id) {
-        setParticipants(userConversation.attributes.receiver);
-        router.push(`${paths.eCommerce.chat}?id=${userConversation.id}`);
+      if (userConversation?.data?.id) {
+        // Correctly access the receiver and redirect
+        setParticipants(userConversation.data.attributes.receiver);
+        router.push(`${paths.eCommerce.chat}?id=${userConversation.data.id}`);
       } else if (userConversation) {
+        // Handle the case when there is no conversation but user data exists
         setParticipants([userConversation.data.attributes]);
       }
     }, [userConversation, router, paths.eCommerce.chat]);
+
+
 
     // Update participants and sender after fetching selected conversation
     useEffect(() => {

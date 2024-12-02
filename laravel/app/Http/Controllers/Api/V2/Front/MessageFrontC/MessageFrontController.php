@@ -14,6 +14,7 @@ use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Support\Facades\Storage;
 use App\Enums\ItemStatus;
 
+use App\Events\MessageSent;
 
 
 use App\Models\Conversation;
@@ -45,7 +46,7 @@ class MessageFrontController extends JsonApiController
     {
         $authuser = Auth::user();
 
-        Log::info('Conversation list:', ['user_id' => $authuser->id]);
+
 
         // Eager load messages with each conversation
         $conversations = Conversation::where('sender_id', $authuser->id)
@@ -370,7 +371,7 @@ class MessageFrontController extends JsonApiController
         $authUser = Auth::user();
         $conversationId = $request->query('id'); // Extract conversation ID from the query string
 
-        Log::info('sendMessage list:', ['user_id' => $authUser->id]);
+
 
         // Validate the request data
         $validatedData = $request->validate([
@@ -409,6 +410,9 @@ class MessageFrontController extends JsonApiController
 
         // Save the message
         $message->save();
+
+        broadcast(new MessageSent($message))->toOthers();
+
 
         // Optionally, you can broadcast an event here for real-time updates
 
