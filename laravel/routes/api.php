@@ -20,6 +20,7 @@ use App\Http\Controllers\UploadController;
 use Illuminate\Support\Facades\Broadcast;
 
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 // Admin
@@ -508,3 +509,20 @@ Broadcast::routes([
 ]);
 
 Route::post('/broadcasting/auth', [BroadcastController::class, 'authenticate'])->middleware('auth:api');
+
+
+
+
+// Verify email route
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return response()->json(['message' => 'Email verified successfully!']);
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Resend email verification link
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return response()->json(['message' => 'Verification link sent!']);
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

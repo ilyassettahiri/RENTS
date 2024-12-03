@@ -115,7 +115,7 @@ use App\Models\Job  ;
 
 
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasRoles, Notifiable;
 

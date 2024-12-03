@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+use Illuminate\Auth\Notifications\VerifyEmail;
 
 use App\Models\Category;
 use App\Models\Discount;
@@ -330,6 +331,15 @@ class AuthServiceProvider extends ServiceProvider
         // if (!$this->app->routesAreCached()) {
         //     Passport::routes();
         // }
+
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new \Illuminate\Notifications\Messages\MailMessage)
+                ->subject('Verify Your Email Address')
+                ->line('Please click the button below to verify your email address.')
+                ->action('Verify Email', $url)
+                ->line('If you did not create this account, no further action is required.');
+        });
+
 
         Passport::tokensExpireIn(now()->addDay());
     }
