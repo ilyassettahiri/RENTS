@@ -59,15 +59,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
 
   }, []);
 
-  /*const getCurrentUser = useCallback(async () => {
-    try {
-      const res = await AuthService.getProfile();
-      return res.data.id;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  }, []);*/
+
 
   const getRole = useCallback(async () => {
     if (!userId) return null;

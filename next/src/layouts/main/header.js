@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 
-import initializeEcho from 'src/utils/echo'; // Import Laravel Echo
+import { initializeEcho } from 'src/utils/echo';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 
@@ -75,18 +75,16 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
 
 
-
   useEffect(() => {
     if (!isAuthenticated || !userId) {
       console.log('User is not authenticated. Notifications will not be set up.');
-      return;
+      return undefined; // Explicitly return undefined for consistency
     }
-
 
     const echo = initializeEcho(); // Initialize Echo if authToken exists
     if (!echo) {
       console.log('Echo not initialized due to missing auth token.');
-      return;
+      return undefined; // Explicitly return undefined for consistency
     }
 
     const channel = echo.private(`notifications.${userId}`);
@@ -106,6 +104,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
       console.log(`Stopped listening for notifications on: notifications.${userId}`);
     };
   }, [userId, isAuthenticated]);
+
 
   const handleChatClick = useCallback(() => {
     requireAuth(() => {

@@ -3,7 +3,8 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import initializeEcho from 'src/utils/echo'; // Import Laravel Echo
+
+import { initializeEcho } from 'src/utils/echo';
 
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
@@ -82,23 +83,19 @@ export default function DashboardChatPage() {
 
 
     useEffect(() => {
-
       if (!selectedConversationId) {
-        return () => {
-          // No-op cleanup function when there's no conversation selected
-        };
+        return undefined; // Explicitly return undefined when no conversation is selected
       }
 
       const echo = initializeEcho(); // Initialize Echo if authToken exists
       if (!echo) {
         console.log('Echo not initialized due to missing auth token.');
-        return;
+        return undefined; // Explicitly return undefined when Echo is not initialized
       }
 
       const channel = echo.private(`chat.${selectedConversationId}`);
 
       channel.listen('.message.sent', (event) => {
-
         // Update the messages dynamically
         queryClient.setQueryData(['conversationDetail', selectedConversationId], (prev) => ({
           ...prev,
@@ -112,6 +109,7 @@ export default function DashboardChatPage() {
 
       return () => {
         channel.stopListening('.message.sent');
+        console.log(`Stopped listening on chat.${selectedConversationId}`);
       };
     }, [selectedConversationId, queryClient]);
 

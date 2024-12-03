@@ -35,4 +35,4 @@ export const initializeEcho = () => {
   return echoInstance;
 };
 
-export default initializeEcho;
+
