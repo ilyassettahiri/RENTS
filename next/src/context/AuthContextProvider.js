@@ -13,10 +13,11 @@ import CrudService from "src/services/cruds-service";
 // The authentication context
 export const AuthContext = createContext({
   isAuthenticated: false,
+  userId: null,
   login: () => {},
   register: () => {},
   logout: () => {},
-  getCurrentUser: () => {},
+
   getRole: () => {},
   selectedCategory: null,
   handleCategoryClick: () => {},
@@ -25,13 +26,24 @@ export const AuthContext = createContext({
 const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [userId, setUserId] = useState(null); // Store userId here
+
   const router = useRouter();
 
   useEffect(() => {
-    const token = Cookies.get("authToken");
-    if (token) {
-      setIsAuthenticated(true);
-    }
+    const initializeAuth = async () => {
+      const token = Cookies.get('authToken');
+      if (token) {
+        setIsAuthenticated(true);
+        try {
+          const res = await AuthService.getProfile();
+          setUserId(res.data.id); // Set userId during initialization
+        } catch (err) {
+          console.error('Error fetching user profile:', err);
+        }
+      }
+    };
+    initializeAuth();
   }, []);
 
 
@@ -43,9 +55,11 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const logout = useCallback(() => {
     Cookies.remove("authToken");
     setIsAuthenticated(false);
+    setUserId(null); // Clear userId on logout
+
   }, []);
 
-  const getCurrentUser = useCallback(async () => {
+  /*const getCurrentUser = useCallback(async () => {
     try {
       const res = await AuthService.getProfile();
       return res.data.id;
@@ -53,12 +67,12 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
       console.error(err);
       return null;
     }
-  }, []);
+  }, []);*/
 
   const getRole = useCallback(async () => {
-    const id = await getCurrentUser();
+    if (!userId) return null;
     try {
-      const res = await CrudService.getUser(id);
+      const res = await CrudService.getUser(userId);
       const roleId = res.data.relationships.roles.data[0].id;
       if (roleId === "1") {
         return "admin";
@@ -74,7 +88,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
       console.error(err);
       return null;
     }
-  }, [getCurrentUser]);
+  }, [userId]);
 
 
   const handleCategoryClick = useCallback(async (category) => {
@@ -95,13 +109,15 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const contextValue = useMemo(() => ({
     isAuthenticated,
     setIsAuthenticated,
+    userId,
+
     login,
     logout,
     getRole,
-    getCurrentUser,
+
     selectedCategory,
     handleCategoryClick,
-  }), [isAuthenticated, login, logout, getRole, getCurrentUser, selectedCategory, handleCategoryClick]);
+  }), [isAuthenticated, userId, login, logout, getRole, selectedCategory, handleCategoryClick]);
 
   return (
     <AuthContext.Provider value={contextValue}>

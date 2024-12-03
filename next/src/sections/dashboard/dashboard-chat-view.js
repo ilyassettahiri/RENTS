@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
-import echo from 'src/utils/echo'; // Import Laravel Echo
+import initializeEcho from 'src/utils/echo'; // Import Laravel Echo
 
 import CrudService from "src/services/cruds-service";
 import Box from '@mui/material/Box';
@@ -89,6 +89,11 @@ export default function DashboardChatPage() {
         };
       }
 
+      const echo = initializeEcho(); // Initialize Echo if authToken exists
+      if (!echo) {
+        console.log('Echo not initialized due to missing auth token.');
+        return;
+      }
 
       const channel = echo.private(`chat.${selectedConversationId}`);
 
