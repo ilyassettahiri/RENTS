@@ -107,9 +107,7 @@ export default function RegisterView() {
     try {
       const response = await AuthService.register(myData);
       authContext.login(response.access_token);
-      alert('Registration successful. Please check your email for verification.');
-
-      window.location.href = "/"; // Redirect to home page after successful login
+      window.location.href = "/verification"; // Redirect to home page after successful login
     } catch (err) {
       setErrors((prev) => ({ ...prev, emailTaken: true }));
       console.error(err);
