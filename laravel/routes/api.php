@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\V2\Auth\ResetPasswordController;
 use App\Http\Controllers\UploadController;
 
 
+use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Broadcast;
 
@@ -78,6 +79,7 @@ use App\Http\Controllers\Api\V2\Admin\UpcomingC\DetailUpcomingController;
 use App\Http\Controllers\Api\V2\Admin\UpcomingC\UpcomingController;
 
 
+use App\Http\Requests\CustomEmailVerificationRequest;
 
 
 // Front
@@ -513,16 +515,20 @@ Route::post('/broadcasting/auth', [BroadcastController::class, 'authenticate'])-
 
 
 
-// Verify email route
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
+Route::prefix('v2')->group(function () {
+    // Verify email route
+    Route::get('/email/verify/{id}/{hash}', function (CustomEmailVerificationRequest $request) {
+        $request->fulfill();
 
-    return response()->json(['message' => 'Email verified successfully!']);
-})->middleware(['auth', 'signed'])->name('verification.verify');
+        return redirect('https://rents.ma/')->with('status', 'Your email has been verified!');
 
-// Resend email verification link
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
+    })->middleware(['signed'])->name('verification.verify');
 
-    return response()->json(['message' => 'Verification link sent!']);
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+    // Resend email verification link
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+
+        return response()->json(['message' => 'Verification link sent!']);
+    })->middleware(['auth:api','throttle:6,1'])->name('verification.send');
+});

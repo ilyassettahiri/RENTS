@@ -25,7 +25,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name'          => $request->name,
             'email'         => $request->email,
-            'password'      => bcrypt($request->password), // Always hash the password
+            'password'      => $request->password,
             'profile_image' => '/logo/admin.jpg',
         ]);
 
@@ -35,12 +35,7 @@ class RegisterController extends Controller
         event(new Registered($user));
 
         // Optionally, you can log the user in automatically after registration
-        return response()->json([
-            'message' => 'Registration successful! Please verify your email.',
-            'data' => [
-                'user' => $user,
-            ],
-        ], 201);
+        return (new LoginController)(new LoginRequest($request->only(['email', 'password'])));
 
 
     }

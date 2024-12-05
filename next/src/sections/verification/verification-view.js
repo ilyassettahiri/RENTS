@@ -3,6 +3,8 @@
 
 import { useContext, useState, useMemo } from "react";
 
+import AuthService from 'src/services/auth-service';
+
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -17,7 +19,7 @@ export default function VerificationView() {
 
     try {
       await AuthService.resendVerification();
-      alert('Verification email sent. Please check your inbox.');
+
       setCanResend(false);
       setTimeout(() => setCanResend(true), 60000); // 1-minute cooldown
     } catch (error) {

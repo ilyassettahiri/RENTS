@@ -6,10 +6,12 @@ import { useTranslation } from 'react-i18next';
 
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
+import { useRouter } from 'src/routes/hooks';
 
 import { initializeEcho } from 'src/utils/echo';
 
 import { AuthContext } from 'src/context/AuthContextProvider';
+import Alert from "@mui/material/Alert";
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -52,6 +54,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
+  const router = useRouter();
 
 
   const { i18n } = useTranslation();
@@ -62,7 +65,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
 
   const { requireAuth, loginDialogOpen, handleLoginDialogClose } = useAuthDialog();
 
-  const { userId, isAuthenticated } = useContext(AuthContext);
+  const {emailVerified, userId, isAuthenticated } = useContext(AuthContext);
 
 
   const [unreadCount, setUnreadCount] = useState(0);
@@ -278,6 +281,23 @@ export default function Header({ headerOnDark, onOpenNav}) {
             paddingRight: { lg: '50px' },
           }}
         >
+          {!emailVerified && isAuthenticated && (
+            <Alert
+              severity="warning"
+              sx={{ position: "fixed", top: 0, width: "100%", zIndex: 2000 }}
+              action={
+                <Button
+                  color="inherit"
+                  size="small"
+                  onClick={() => router.push('/verification')}
+                >
+                  {t("Verify Now")}
+                </Button>
+              }
+            >
+              {t("Your email is not verified. Please check your inbox.")}
+            </Alert>
+          )}
           {renderContent}
         </Container>
       </Toolbar>

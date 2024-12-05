@@ -55,6 +55,7 @@ class UserController extends JsonApiController
                     'profile_image' => $user->profile_image,
                     'address' => $user->address,
                     'id' => $user->id,
+                    'email_verified_at' => $user->email_verified_at,
 
                     'city' => $user->city,
                     'birthday' => $user->birthday,

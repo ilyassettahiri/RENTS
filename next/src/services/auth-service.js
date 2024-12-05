@@ -38,6 +38,12 @@ class AuthService {
     const updateProfile = "me";
     return HttpService.patch(updateProfile, newInfo);
   };
+
+  resendVerification = async () => {
+    const resendVerificationEndpoint = "email/verification-notification";
+    return HttpService.post(resendVerificationEndpoint);
+  };
+
 }
 
 export default new AuthService();

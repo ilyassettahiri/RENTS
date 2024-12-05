@@ -14,6 +14,7 @@ import CrudService from "src/services/cruds-service";
 export const AuthContext = createContext({
   isAuthenticated: false,
   userId: null,
+  emailVerified: null,
   login: () => {},
   register: () => {},
   logout: () => {},
@@ -27,6 +28,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [userId, setUserId] = useState(null); // Store userId here
+  const [emailVerified, setEmailVerified] = useState(false);
 
   const router = useRouter();
 
@@ -38,6 +40,8 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
         try {
           const res = await AuthService.getProfile();
           setUserId(res.data.id); // Set userId during initialization
+          setEmailVerified(!!res.data.attributes.email_verified_at); // Set email verification status
+
         } catch (err) {
           console.error('Error fetching user profile:', err);
         }
@@ -102,6 +106,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
     isAuthenticated,
     setIsAuthenticated,
     userId,
+    emailVerified, // Add this
 
     login,
     logout,
@@ -109,7 +114,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
 
     selectedCategory,
     handleCategoryClick,
-  }), [isAuthenticated, userId, login, logout, getRole, selectedCategory, handleCategoryClick]);
+  }), [isAuthenticated, userId, emailVerified, login, logout, getRole, selectedCategory, handleCategoryClick]);
 
   return (
     <AuthContext.Provider value={contextValue}>
