@@ -1,9 +1,11 @@
 'use client';
 
 
-import { useContext, useState, useMemo } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import AuthService from 'src/services/auth-service';
+import { AuthContext } from "src/context/AuthContextProvider"; // Use your AuthContext
+import { useRouter } from "src/routes/hooks"; // Import useRouter for navigation
 
 import { useTranslation } from 'react-i18next';
 import Typography from '@mui/material/Typography';
@@ -13,6 +15,17 @@ import Container from '@mui/material/Container';
 export default function VerificationView() {
   const { t } = useTranslation();
   const [canResend, setCanResend] = useState(true);
+  const { emailVerified } = useContext(AuthContext); // Get email verification status from AuthContext
+  const router = useRouter(); // For navigation
+
+
+  useEffect(() => {
+    if (emailVerified) {
+      router.push('/'); // Redirect to home page or desired route
+    }
+  }, [emailVerified, router]);
+
+
 
   const handleResendVerification = async () => {
     if (!canResend) return;

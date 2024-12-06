@@ -4,6 +4,7 @@ import { useContext, useState, useMemo } from "react";
 
 import { AuthContext } from 'src/context/AuthContextProvider';
 import AuthService from 'src/services/auth-service';
+import { useRouter } from 'src/routes/hooks';
 
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
@@ -31,6 +32,9 @@ import FormProvider, { RHFTextField } from 'src/components/hook-form';
 export default function RegisterView() {
   const authContext = useContext(AuthContext);
   const passwordShow = useBoolean();
+
+  const router = useRouter();
+
   const { i18n } = useTranslation();
   const paths = useMemo(() => getPaths(i18n.language), [i18n.language]);
   const [errors, setErrors] = useState({
@@ -107,7 +111,7 @@ export default function RegisterView() {
     try {
       const response = await AuthService.register(myData);
       authContext.login(response.access_token);
-      window.location.href = "/verification"; // Redirect to home page after successful login
+      router.push(paths.verification);
     } catch (err) {
       setErrors((prev) => ({ ...prev, emailTaken: true }));
       console.error(err);

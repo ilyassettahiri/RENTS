@@ -287,9 +287,10 @@ export default function Header({ headerOnDark, onOpenNav}) {
               sx={{ position: "fixed", top: 0, width: "100%", zIndex: 2000 }}
               action={
                 <Button
-                  color="inherit"
-                  size="small"
-                  onClick={() => router.push('/verification')}
+                component={RouterLink} href={paths.verification}
+                color="primary" variant="contained"
+
+
                 >
                   {t("Verify Now")}
                 </Button>

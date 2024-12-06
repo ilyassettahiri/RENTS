@@ -27,6 +27,7 @@ export const paths = (lang = 'en') => ({
     root: `/${lang}/services`,
     jobs: `/${lang}/services`,
     job: `/${lang}/service`,
+
   },
 
   job: {
@@ -54,6 +55,7 @@ export const paths = (lang = 'en') => ({
     reservation: `/${lang}/dashboard/reservation-detail`,
   },
 
+  verification: `/${lang}/verification`,
   // Common
   maintenance: `/${lang}/maintenance`,
   comingsoon: `/${lang}/coming-soon`,
