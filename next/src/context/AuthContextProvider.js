@@ -14,7 +14,7 @@ import CrudService from "src/services/cruds-service";
 export const AuthContext = createContext({
   isAuthenticated: false,
   userId: null,
-  emailVerified: null,
+  emailVerified: true,
   login: () => {},
   register: () => {},
   logout: () => {},
@@ -28,7 +28,7 @@ const AuthContextProvider = ({ children, initialAuthState = false  }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [userId, setUserId] = useState(null); // Store userId here
-  const [emailVerified, setEmailVerified] = useState(false);
+  const [emailVerified, setEmailVerified] = useState(true);
 
   const router = useRouter();
 

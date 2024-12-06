@@ -51,16 +51,16 @@ export default function VerificationView() {
     }}
 
     >
-      <Typography variant="h4" paragraph>
+      <Typography variant="h2" paragraph >
         {t('Verify Your Email')}
       </Typography>
-      <Typography variant="body1" paragraph>
+      <Typography variant="body1" paragraph sx={{mt: 3}}>
         {t('A verification link has been sent to your email. Please check your inbox and click on the link to verify your account.')}
       </Typography>
 
 
-      <Button
-        variant="contained"
+      <Button sx={{mt: 3,px: 3, py: 1.5}}
+        color="primary" variant="contained"
         onClick={handleResendVerification}
         disabled={!canResend}
       >
