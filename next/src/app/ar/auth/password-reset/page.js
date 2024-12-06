@@ -1,4 +1,4 @@
-import VerifyView from 'src/sections/auth/verify-view';
+import PasswordResetView from 'src/sections/auth/password-reset-view';
 import Script from 'next/script';
 
 // ----------------------------------------------------------------------
@@ -40,7 +40,7 @@ export async function generateMetadata() {
   };
 }
 
-export default function VerifyPage() {
+export default function PasswordResetPage() {
   return (
     <>
       {/* البيانات المنظمة الخاصة بالصفحة */}
@@ -69,7 +69,7 @@ export default function VerifyPage() {
         }}
       />
       {/* عرض محتوى التحقق */}
-      <VerifyView />
+      <PasswordResetView />
     </>
   );
 }

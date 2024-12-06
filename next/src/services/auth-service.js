@@ -20,9 +20,13 @@ class AuthService {
   };
 
   forgotPassword = async (payload) => {
-    const forgotPassword = "password-forgot";
-    return HttpService.post(forgotPassword, payload);
+    const forgotPasswordEndpoint = "/password-forgot";
+    return HttpService.post(forgotPasswordEndpoint, {
+      ...payload,
+      redirect_url: "https://rents.ma/en/auth/password-reset",
+    });
   };
+
 
   resetPassword = async (credentials) => {
     const resetPassword = "password-reset";

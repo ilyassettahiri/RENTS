@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContext, useMemo } from 'react';
+import AuthService from 'src/services/auth-service';
 
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
@@ -45,8 +46,11 @@ export default function ForgotPasswordView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
+
+      await AuthService.forgotPassword({ email: data.email });
+
       reset();
-      console.log('DATA', data);
+
     } catch (error) {
       console.error(error);
     }
