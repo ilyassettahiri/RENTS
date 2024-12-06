@@ -177,7 +177,7 @@ export default function LoginDialog({ open, onClose,  }) {
 
         <LoadingButton
           fullWidth
-          color="inherit"
+          color="primary"
           size="large"
           type="submit"
           variant="contained"

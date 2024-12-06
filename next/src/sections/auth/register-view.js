@@ -195,7 +195,7 @@ export default function RegisterView() {
 
         <LoadingButton
           fullWidth
-          color="inherit"
+          color="primary"
           size="large"
           type="submit"
           variant="contained"

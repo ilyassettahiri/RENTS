@@ -75,7 +75,7 @@ export default function ForgotPasswordView() {
         <LoadingButton
           fullWidth
           size="large"
-          color="inherit"
+          color="primary"
           type="submit"
           variant="contained"
           loading={isSubmitting}

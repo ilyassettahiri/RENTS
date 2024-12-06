@@ -17,6 +17,7 @@ use App\Http\Controllers\UploadController;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 use Illuminate\Support\Facades\Broadcast;
 
@@ -531,4 +532,52 @@ Route::prefix('v2')->group(function () {
 
         return response()->json(['message' => 'Verification link sent!']);
     })->middleware(['auth:api','throttle:6,1'])->name('verification.send');
+
+
+
+
+
+
+      // Request password reset link
+    Route::post('/password/forgot', function (Request $request) {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['message' => __($status)], 200)
+            : response()->json(['message' => __($status)], 400);
+    })->name('password.forgot');
+
+    // Reset password
+    Route::post('/password/reset', function (Request $request) {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password),
+                ])->save();
+
+                $user->tokens()->delete(); // Optionally invalidate all tokens
+
+                event(new \Illuminate\Auth\Events\PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? response()->json(['message' => __($status)], 200)
+            : response()->json(['message' => __($status)], 400);
+    })->name('password.reset');
+
+
+
 });
+
+
+

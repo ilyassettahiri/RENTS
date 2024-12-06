@@ -169,7 +169,7 @@ export default function LoginView() {
 
         <LoadingButton
           fullWidth
-          color="inherit"
+          color="primary"
           size="large"
           type="submit"
           variant="contained"
