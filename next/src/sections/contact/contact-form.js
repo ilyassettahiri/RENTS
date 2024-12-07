@@ -4,6 +4,8 @@
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useQuery } from '@tanstack/react-query';
+import CrudService from "src/services/cruds-service";
 
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
@@ -64,13 +66,30 @@ export default function ContactForm() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      // Construct the payload in JSON:API format
+      const payload = {
+        data: {
+          type: 'contacts',
+          attributes: {
+            fullName: data.fullName,
+            email: data.email,
+            subject: data.subject,
+            message: data.message,
+          },
+        },
+      };
+
+      // Send the form data to the API
+      await CrudService.createContact(payload);
+
+      // Reset the form and show a success message
       reset();
-      console.log('DATA', data);
+
     } catch (error) {
-      console.error(error);
+      console.error('Error sending message:', error);
     }
   });
+
 
   return (
     <Box

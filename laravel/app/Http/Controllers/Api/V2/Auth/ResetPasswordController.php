@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api\V2\Auth;
 
 use App\Http\Requests\Api\V2\Auth\ResetPasswordRequest;
 use App\Http\Controllers\Controller;
+use App\Mail\PasswordResetSuccess;
+use Illuminate\Support\Facades\Mail;
+
 use LaravelJsonApi\Laravel\Http\Controllers\Actions;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use Illuminate\Auth\Events\PasswordReset;
@@ -33,6 +36,10 @@ class ResetPasswordController extends JsonApiController
                 $request->only('email', 'password', 'password_confirmation', 'token'),
                 function ($user, $password) {
                     $this->resetPassword($user, $password);
+
+                    // Send success email
+                    Mail::to($user->email)->send(new PasswordResetSuccess($user));
+
                 }
             );
                 // If the password was successfully reset, we will redirect the user back to
@@ -42,7 +49,7 @@ class ResetPasswordController extends JsonApiController
                     case Password::PASSWORD_RESET:
                         return response()->json([], 204);
                     case Password::INVALID_USER:
-                        return 
+                        return
                             Error::fromArray([
                                 'title' => 'Bad Request',
                                 'detail' => trans($response),
@@ -69,7 +76,7 @@ class ResetPasswordController extends JsonApiController
                                             'rule' => 'token'
                                         ],
                                     ]
-                            
+
                             ]);
                 }
             } catch (Throwable $e) {

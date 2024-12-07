@@ -1,5 +1,12 @@
+
+
+import PropTypes from 'prop-types';
+
+
 import PasswordResetView from 'src/sections/auth/password-reset-view';
 import Script from 'next/script';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -62,3 +69,6 @@ export default function PasswordResetPage({ searchParams }) {
     </>
   );
 }
+PasswordResetPage.propTypes = {
+  searchParams: PropTypes.object.isRequired,
+};
