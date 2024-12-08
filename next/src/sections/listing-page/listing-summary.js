@@ -643,7 +643,7 @@ function OverviewItem({ icon, label, text = '-' }) {
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {t(label)}
         </Typography>
-        <Typography>{t(text)} </Typography>
+        <Typography>{t(text.replace(/_/g, ' '))}</Typography>
       </Stack>
     </Stack>
   );
