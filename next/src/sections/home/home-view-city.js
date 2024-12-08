@@ -331,12 +331,10 @@ export default function HomeViewCity({ params }) {
 
 
 
-          {isLoading ? (
-            <HomeHeroSkeleton />
-          ) : (
+
             <HomeHero tours={tours} categoryy="apartments"/>
 
-          )}
+
 
 
 

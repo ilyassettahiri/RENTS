@@ -327,12 +327,10 @@ export default function HomeViewCategory({ params }) {
 
 
 
-          {isLoading ? (
-            <HomeHeroSkeleton />
-          ) : (
+
             <HomeHero tours={tours} categoryy={category}/>
 
-          )}
+
 
 
 

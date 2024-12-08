@@ -332,12 +332,10 @@ export default function HomeViewType({ params }) {
 
 
 
-          {isLoading ? (
-            <HomeHeroSkeleton />
-          ) : (
+
             <HomeHero tours={tours} categoryy={category}/>
 
-          )}
+
 
 
 
