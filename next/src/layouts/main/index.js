@@ -23,7 +23,7 @@ import Footer from './footer';
 
 const queryClient = new QueryClient();
 
-export default function MainLayout({ children, headerOnDark = false, disabledSpacing = false, sx, ...other }) {
+export default function MainLayout({ children, headerOnDark = false, disabledSpacing = false, headerColor = 'white', sx, ...other }) {
   const navOpen = useBoolean();
   const { isAuthenticated } = useContext(AuthContext);
 
@@ -52,7 +52,7 @@ export default function MainLayout({ children, headerOnDark = false, disabledSpa
           }}
           {...other}
         >
-          <Header headerOnDark={headerOnDark} onOpenNav={handleOpenNav} />
+          <Header headerOnDark={headerOnDark} onOpenNav={handleOpenNav} headerColor={headerColor}/>
 
           {isAuthenticated && <Nav open={navOpen.value} onClose={navOpen.onFalse} />}
 
@@ -82,4 +82,5 @@ MainLayout.propTypes = {
   disabledSpacing: PropTypes.bool,
   headerOnDark: PropTypes.bool,
   sx: PropTypes.object,
+  headerColor: PropTypes.oneOf(['white', 'black']),
 };

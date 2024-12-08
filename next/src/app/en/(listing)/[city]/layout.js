@@ -7,7 +7,7 @@ import MainLayout from 'src/layouts/main';
 // ----------------------------------------------------------------------
 
 export default function Layout({ children }) {
-  return <MainLayout headerOnDark>{children}</MainLayout>;
+  return <MainLayout headerOnDark headerColor="black">{children}</MainLayout>;
 }
 
 Layout.propTypes = {

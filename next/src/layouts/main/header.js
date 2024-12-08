@@ -48,7 +48,7 @@ import HeaderShadow from './header-shadow';
 
 
 
-export default function Header({ headerOnDark, onOpenNav}) {
+export default function Header({ headerOnDark, onOpenNav, headerColor = 'white'}) {
   const theme = useTheme();
   const offset = useOffSetTop();
   const mdUp = useResponsive('up', 'md');
@@ -259,7 +259,7 @@ export default function Header({ headerOnDark, onOpenNav}) {
             duration: theme.transitions.duration.shorter,
           }),
           ...(headerOnDark && {
-            color: 'common.black',
+            color: headerColor === 'white' ? 'common.white' : 'text.primary', // Use headerColor dynamically
           }),
           ...(offset && {
             ...bgBlur({ color: theme.palette.background.default }),
@@ -310,4 +310,6 @@ export default function Header({ headerOnDark, onOpenNav}) {
 Header.propTypes = {
   headerOnDark: PropTypes.bool,
   onOpenNav: PropTypes.func, // Add this prop type
+  headerColor: PropTypes.oneOf(['white', 'black']), // Add new prop
+
 };

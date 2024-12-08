@@ -320,10 +320,10 @@ class SearchController extends JsonApiController
 
                 // Flatten the array to return an array of category names and their corresponding listing IDs
                 $favoriteCategories = [];
-                foreach ($categories as $category => $ids) {
+                foreach ($categories as $categoryy => $ids) {
                     foreach ($ids as $id) {
                         $favoriteCategories[] = [
-                            'category' => $category,
+                            'category' => $categoryy,
                             'id' => $id,
                         ];
                     }
@@ -728,10 +728,10 @@ class SearchController extends JsonApiController
 
                         // Flatten the array to return an array of category names and their corresponding listing IDs
                         $favoriteCategories = [];
-                        foreach ($categories as $category => $ids) {
+                        foreach ($categories as $categoryy => $ids) {
                             foreach ($ids as $id) {
                                 $favoriteCategories[] = [
-                                    'category' => $category,
+                                    'category' => $categoryy,
                                     'id' => $id,
                                 ];
                             }
@@ -934,10 +934,10 @@ class SearchController extends JsonApiController
 
                     // Flatten the array to return an array of category names and their corresponding listing IDs
                     $favoriteCategories = [];
-                    foreach ($categories as $category => $ids) {
+                    foreach ($categories as $categoryy => $ids) {
                         foreach ($ids as $id) {
                             $favoriteCategories[] = [
-                                'category' => $category,
+                                'category' => $categoryy,
                                 'id' => $id,
                             ];
                         }

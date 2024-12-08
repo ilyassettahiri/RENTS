@@ -16,12 +16,28 @@ import Image from 'src/components/image';
 import TextMaxLine from 'src/components/text-max-line';
 import Carousel, { useCarousel, CarouselArrows } from 'src/components/carousel';
 
+
+
+
+const reorderTours = (tours, categoryy) => {
+  const matchedTour = tours.find((tour) => tour.categories.value === categoryy);
+  const otherTours = tours.filter((tour) => tour.categories.value !== categoryy);
+  return [matchedTour, ...otherTours].filter(Boolean);
+};
+
+
+
+
 export default function HomeHero({ tours, categoryy }) {
   const mdUp = useResponsive('up', 'md');
   const { t } = useTranslation();
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const { handleCategoryClick } = useContext(AuthContext);
+
+
+  const reorderedTours = reorderTours(tours, categoryy);
+
 
   const carouselLarge = useCarousel({
     speed: 0,
@@ -72,7 +88,7 @@ export default function HomeHero({ tours, categoryy }) {
     <Box sx={{ minHeight: { md: '58vh' }, position: 'relative' }}>
       {!!tours.length && (
         <Carousel {...carouselLarge.carouselSettings} ref={carouselLarge.carouselRef}>
-         <CarouselItem categoryy={categoryy} /> {/* Display only one image */}
+         <CarouselItem categoryy={reorderedTours[selectedIndex]?.categories.value}  /> {/* Display only one image */}
         </Carousel>
       )}
 
@@ -107,9 +123,9 @@ export default function HomeHero({ tours, categoryy }) {
             >
 
 
-                  {!!tours.length && (
+                  {!!reorderedTours.length && (
                     <Carousel {...carouselThumb.carouselSettings} ref={carouselThumb.carouselRef}>
-                      {tours.map((tour, index) => (
+                      {reorderedTours.map((tour, index) => (
                         <ThumbnailItem
                           key={tour.id}
                           tour={tour}
@@ -173,7 +189,7 @@ function CarouselItem({ categoryy }) {
         alignItems="center"
         sx={{
           zIndex: 9,
-          py: { xs: 25, md: 0 },
+          py: { xs: 30, md: 0 },
           position: { md: 'absolute' },
         }}
       />
