@@ -1277,7 +1277,7 @@ export default function ServicesListViewCity({ params }) {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 25, md: 10 },
+        mt: { xs: 15, md: 17 },
 
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
@@ -1310,7 +1310,7 @@ export default function ServicesListViewCity({ params }) {
                       sx={{
                         color: { md: 'common.white' },
 
-                        my: { xs: 4, md: 0 },
+
 
                         bgcolor: (theme) => ({
 
@@ -1321,7 +1321,7 @@ export default function ServicesListViewCity({ params }) {
                     )}
 
 
-
+        <Stack  sx={{ my: 5, }}/>
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
           <Stack spacing={2.5} >

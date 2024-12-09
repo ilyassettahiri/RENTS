@@ -1248,7 +1248,7 @@ export default function ServicesListView() {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 25, md: 10 },
+        mt: { xs: 15, md: 17 },
 
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
@@ -1280,7 +1280,7 @@ export default function ServicesListView() {
                       sx={{
                         color: { md: 'common.white' },
 
-                        my: { xs: 4, md: 0 },
+
 
                         bgcolor: (theme) => ({
 
@@ -1293,7 +1293,7 @@ export default function ServicesListView() {
 
 
 
-        <Stack  sx={{ my: 1, }}/>
+        <Stack  sx={{ my: 5, }}/>
 
 
 

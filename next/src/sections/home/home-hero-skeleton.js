@@ -10,7 +10,7 @@ export default function HomeHeroSkeleton() {
     <Card>
       <Box
         sx={{
-          minHeight: '58vh', // Use real height size
+          minHeight: '62vh', // Use real height size
           position: 'relative',
         }}
       >

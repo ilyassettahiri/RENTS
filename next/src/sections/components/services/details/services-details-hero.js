@@ -15,6 +15,7 @@ import ListingHeader from "src/sections/listing-page/listing-header";
 import Carousel, { useCarousel, CarouselDots, CarouselArrows } from "src/components/carousel";
 import Lightbox, { useLightbox } from 'src/components/lightbox';
 import { useResponsive } from "src/hooks/use-responsive";
+import { maxHeight } from "@mui/system";
 
 
 
@@ -36,7 +37,7 @@ export default function ServicesDetailsHero({ job, favorites, onFavoriteToggle }
 
   return (
     <Box
-      gap={3}
+      gap={2}
       display="grid"
       gridTemplateColumns={{
         xs: 'repeat(1, 1fr)',
@@ -188,7 +189,7 @@ function CarouselBasic3({ data , jobUrl }) {
           position: 'relative',
           border: 'none',
           borderRadius: { xs: 0, md: 2 },
-          ml: { md: 10 },
+          ml: { md: 5 },
         }}
       >
         <CarouselArrows filled shape="rounded" onNext={carousel.onNext} onPrev={carousel.onPrev}>
@@ -198,10 +199,10 @@ function CarouselBasic3({ data , jobUrl }) {
                 <Image
                   alt={`${item.title} - Services for hire on RENTS.ma`}
                   src={item.coverUrl}
-                  ratio={isMdUp ? '4/3' : '3/4'}
+                  ratio={isMdUp ? '1/1' : '3/4'}
                   sx={{
                     width: '100%',
-                    height: '100%',
+                    maxHeight: 550,
                     objectFit: 'cover',
                   }}
                 />

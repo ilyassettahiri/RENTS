@@ -1248,7 +1248,7 @@ export default function JobsListView() {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 15, md: 0 },
+        mt: { xs: 10, md: 7 },
 
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
@@ -1279,7 +1279,7 @@ export default function JobsListView() {
                       sx={{
                         color: { md: 'common.white' },
 
-                        my: { xs: 4, md: 0 },
+
                         bgcolor: (theme) => ({
 
                           md: theme.palette.common.white, // Adjusted as `alpha` was not defined
@@ -1289,7 +1289,7 @@ export default function JobsListView() {
                     )}
 
 
-        <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}/>
+        <Stack  sx={{ my: 5, }}/>
 
 
 

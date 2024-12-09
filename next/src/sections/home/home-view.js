@@ -238,7 +238,9 @@ export default function HomeView({ homeData }) {
           maxWidth={false}
 
           sx={{
-            mb: { md: 10 },
+            mb: { xs: 12, md: 15 },
+            mt: { xs: -15, md: 0 },
+
             left: { md: 0 },
             right: { md: 0 },
             bottom: { md: 0 },
@@ -263,7 +265,7 @@ export default function HomeView({ homeData }) {
                     keywordCategoryMap={keywordCategoryMap}
                     sx={{
                       color: { md: 'common.white' },
-                      my: { xs: -1, md: 0 },
+
 
 
 
@@ -295,7 +297,7 @@ export default function HomeView({ homeData }) {
           zIndex: 1,
           borderRadius: '20px',
 
-          mt: { xs: 3, md: -4 },
+          mt: { xs: -6, md: -6 },
 
           paddingLeft: { lg: '50px' },
           paddingRight: { lg: '50px' },

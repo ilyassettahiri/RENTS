@@ -16,7 +16,7 @@ export default function ServicesDetailsHeroSkeleton( { aa = 13, bb = 600 }) {
 
   return (
     <Box
-      gap={3}
+      gap={2}
       display="grid"
       gridTemplateColumns={{
         xs: 'repeat(1, 1fr)',
@@ -24,7 +24,7 @@ export default function ServicesDetailsHeroSkeleton( { aa = 13, bb = 600 }) {
       }}
       sx={{
         alignItems: 'flex-start',
-        px: {  md: 10 },
+        px: {  md: 5 },
 
         mt: { md: aa },
       }}
@@ -76,7 +76,7 @@ function CarouselSkeleton({bb }) {
             <Skeleton
               key={index}
               variant="rectangular"
-              sx={{ width: '100%',  height: {xs:bb , md: 500 }, borderRadius: 2 }}
+              sx={{ width: '100%',  height: {xs:bb , md: 550 }, borderRadius: 2 }}
             />
           ))}
         </Carousel>

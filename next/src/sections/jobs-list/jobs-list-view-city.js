@@ -1278,7 +1278,7 @@ export default function JobsListViewCity({ params }) {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 15, md: 0 },
+        mt: { xs: 10, md: 7 },
 
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
@@ -1308,7 +1308,7 @@ export default function JobsListViewCity({ params }) {
                       onSearch={handleSearch}
                       sx={{
                         color: { md: 'common.white' },
-                        my: { xs: 4, md: 0 },
+
                         bgcolor: (theme) => ({
 
                           md: theme.palette.common.white, // Adjusted as `alpha` was not defined
@@ -1317,6 +1317,8 @@ export default function JobsListViewCity({ params }) {
                     />
                     )}
 
+
+        <Stack  sx={{ my: 5, }}/>
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
           <Stack spacing={2.5} >

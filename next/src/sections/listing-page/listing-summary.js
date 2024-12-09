@@ -75,7 +75,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/billiards/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -85,7 +85,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/activities/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -95,7 +95,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/apartments/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -105,7 +105,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/audios/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -115,7 +115,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/boats/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -125,7 +125,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/boxings/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -135,7 +135,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/bureauxs/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -145,7 +145,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/cameras/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -155,7 +155,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/camions/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -165,7 +165,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/caravans/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -175,7 +175,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/cars/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -185,7 +185,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/chargers/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -195,7 +195,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/clothes/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -205,7 +205,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/divings/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -215,7 +215,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/drones/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -225,7 +225,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/eclairages/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -235,7 +235,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/electricaltools/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -245,7 +245,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/engins/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -255,7 +255,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/footballs/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -265,7 +265,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/furnitures/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -275,7 +275,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/gamings/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -285,7 +285,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/golfs/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -295,7 +295,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/houseappliances/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -305,7 +305,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/huntings/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -315,7 +315,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/jewelrys/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -325,7 +325,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/ladders/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -335,7 +335,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/laptops/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -345,7 +345,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/lightings/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -355,7 +355,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/livres/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -365,7 +365,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/magasins/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -375,7 +375,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/maisons/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -385,7 +385,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/mechanicaltools/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -395,7 +395,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/mobiliers/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -405,7 +405,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/motos/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -415,7 +415,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/musculations/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -425,7 +425,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/musicals/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -435,7 +435,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/photographies/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -445,7 +445,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/powertools/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -455,7 +455,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/pressurewashers/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -465,7 +465,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/printers/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -475,7 +475,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/riads/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -485,7 +485,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/routers/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -495,7 +495,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/scooters/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -505,7 +505,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/services/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -516,7 +516,7 @@ function renderSpecificationsByCategory(category, specifications) {
             key={key}
             icon={`${imageBaseUrl}/categoryicons/jobs/${key}.svg`}
             label={formatLabel(key)}
-            text={value}
+            text={formatLabel(value)}
           />
         ));
 
@@ -526,7 +526,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/sonorisations/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -536,7 +536,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/surfs/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -546,7 +546,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tablettes/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -556,7 +556,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/taxiaeroports/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -566,7 +566,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tennis/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -576,7 +576,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/tentes/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -586,7 +586,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/terrains/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -596,7 +596,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/transportations/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -606,7 +606,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/velos/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -616,7 +616,7 @@ function renderSpecificationsByCategory(category, specifications) {
           key={key}
           icon={`${imageBaseUrl}/categoryicons/villas/${key}.svg`}
           label={formatLabel(key)}
-          text={value}
+          text={formatLabel(value)}
         />
       ));
 
@@ -643,7 +643,9 @@ function OverviewItem({ icon, label, text = '-' }) {
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
         {t(label)}
         </Typography>
-        <Typography>{t(text.replace(/_/g, ' '))}</Typography>
+        <Typography>
+          {t(text.split(',').join(', '))}
+        </Typography>
       </Stack>
     </Stack>
   );

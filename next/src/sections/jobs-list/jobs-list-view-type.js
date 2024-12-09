@@ -1273,7 +1273,7 @@ export default function JobsListViewType({ params }) {
     <Container
       maxWidth={false}
       sx={{
-        mt: { xs: 15, md: 0 },
+        mt: { xs: 10, md: 7 },
 
         paddingLeft: { lg: '50px' },
         paddingRight: { lg: '50px' },
@@ -1311,6 +1311,10 @@ export default function JobsListViewType({ params }) {
                       }}
                     />
                     )}
+
+
+
+        <Stack  sx={{ my: 5, }}/>
 
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
