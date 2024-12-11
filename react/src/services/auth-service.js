@@ -7,7 +7,7 @@ class AuthService {
   };
 
   register = async (credentials) => {
-    const registerEndpoint = "register";
+    const registerEndpoint = "registerseller";
     return await HttpService.post(registerEndpoint, credentials);
   };
 

@@ -192,7 +192,7 @@ export default function LoginDialog({ open, onClose,  }) {
 
 
   return (
-    <Dialog fullWidth maxWidth="sm" open={open} onClose={onClose}>
+    <Dialog fullWidth maxWidth="xs" open={open} onClose={onClose}>
       <DialogTitle sx={{ typography: 'h3', pb: 3 }}>Login</DialogTitle>
 
       <DialogContent sx={{ py: 0 }}>

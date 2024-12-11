@@ -10,7 +10,7 @@ import SoftInput from "components/SoftInput";
 function FormField({ label, ...rest }) {
   return (
     <>
-      <SoftBox p={2} ml={0.5} lineHeight={0} >
+      <SoftBox  lineHeight={0} >
         
       
         <SoftInput {...rest} />

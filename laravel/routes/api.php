@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\V2\Auth\LoginController;
 use App\Http\Controllers\Api\V2\Auth\LogoutController;
 use App\Http\Controllers\Api\V2\Auth\RegisterController;
+use App\Http\Controllers\Api\V2\Auth\RegisterSellerController;
+
 use App\Http\Controllers\Api\V2\MeController;
 use App\Http\Controllers\Api\V2\UserController;
 
@@ -158,6 +160,8 @@ use App\Http\Controllers\Api\V2\Front\PricingC\PricingController;
 Route::prefix('v2')->middleware('json.api')->group(function () {
     Route::post('/login', LoginController::class)->name('login');
     Route::post('/register', RegisterController::class);
+    Route::post('/registerseller', RegisterSellerController::class);
+
     Route::post('/logout', LogoutController::class)->middleware('auth:api');
     Route::post('/password-forgot', ForgotPasswordController::class);
     Route::post('/password-reset', ResetPasswordController::class)->name('password.reset');

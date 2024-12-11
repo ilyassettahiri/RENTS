@@ -26,10 +26,10 @@ function CoverLayout({ image, color, header, title, description, illustration, c
 
 
 
-        <Grid item xs={11} sm={8} md={6} lg={5} xl={4} sx={{ mx: "auto" }}>
+        <Grid item xs={11} sm={8} md={6} lg={6} xl={5} sx={{ mx: "auto" }}>
           
             
-            <SoftBox sx={{pt: {xs: 11, md:11 }}}>{children}</SoftBox>
+            <SoftBox sx={{py: {xs: 11, md:11 }}}>{children}</SoftBox>
           
         </Grid>
 

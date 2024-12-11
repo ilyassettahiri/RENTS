@@ -1,6 +1,8 @@
 'use client';
 
 
+import {useState, useMemo } from "react";
+
 import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -25,6 +27,7 @@ export default function ContactForm() {
   const mdUp = useResponsive('up', 'md');
 
   const urlPattern = /(https?:\/\/[^\s]+)/; // Regular expression to check for URLs
+  const [successMessage, setSuccessMessage] = useState(''); // State for success message
 
   const ElearningContactSchema = Yup.object().shape({
     fullName: Yup.string()
@@ -82,8 +85,13 @@ export default function ContactForm() {
       // Send the form data to the API
       await CrudService.createContact(payload);
 
-      // Reset the form and show a success message
+
       reset();
+
+      setSuccessMessage('Thank you for reaching out. Your message has been successfully sent. We will get back to you shortly.');
+
+      setTimeout(() => setSuccessMessage(''), 9000); // Clear the message after 5 seconds
+
 
     } catch (error) {
       console.error('Error sending message:', error);
@@ -112,10 +120,18 @@ export default function ContactForm() {
             >
               <Typography variant="h3">Drop Us A Line</Typography>
 
-              <Typography sx={{ color: 'text.secondary' }}>
-                We normally respond within 2 business days
-              </Typography>
+
             </Stack>
+
+
+            {successMessage && ( // Conditionally render success message
+              <Typography
+                variant="subtitle1"
+                sx={{ mb: 3, textAlign: 'center', color: 'success.main' }}
+              >
+                {successMessage}
+              </Typography>
+            )}
 
             <FormProvider methods={methods} onSubmit={onSubmit}>
               <Stack spacing={2.5} alignItems="flex-start">
