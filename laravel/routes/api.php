@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\V2\Auth\LoginController;
+use App\Http\Controllers\Api\V2\Auth\LoginSellerController;
+
 use App\Http\Controllers\Api\V2\Auth\LogoutController;
 use App\Http\Controllers\Api\V2\Auth\RegisterController;
 use App\Http\Controllers\Api\V2\Auth\RegisterSellerController;
@@ -159,6 +161,8 @@ use App\Http\Controllers\Api\V2\Front\PricingC\PricingController;
 
 Route::prefix('v2')->middleware('json.api')->group(function () {
     Route::post('/login', LoginController::class)->name('login');
+    Route::post('/loginseller', LoginSellerController::class)->name('loginseller');
+
     Route::post('/register', RegisterController::class);
     Route::post('/registerseller', RegisterSellerController::class);
 

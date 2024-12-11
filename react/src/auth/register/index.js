@@ -433,7 +433,7 @@ function Register() {
 
 
 
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={8}>
                     <FormField
                       
                       placeholder={t("Address")}
@@ -453,7 +453,7 @@ function Register() {
 
 
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} sm={4}>
                     <FormField
                       
                       placeholder="Phone Number"

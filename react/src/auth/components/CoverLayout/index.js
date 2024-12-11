@@ -17,7 +17,7 @@ import PageLayout from "examples/LayoutContainers/PageLayout";
 
 // Images
 
-function CoverLayout({ image, color, header, title, description, illustration, children }) {
+function CoverLayout({ image, color, header, title, description, illustration, width, children }) {
   return (
     <PageLayout background="white">
       
@@ -26,10 +26,10 @@ function CoverLayout({ image, color, header, title, description, illustration, c
 
 
 
-        <Grid item xs={11} sm={8} md={6} lg={6} xl={5} sx={{ mx: "auto" }}>
+        <Grid item xs={11} sm={10} md={8} lg={8} xl={width} sx={{ mx: "auto" }}>
           
             
-            <SoftBox sx={{py: {xs: 11, md:11 }}}>{children}</SoftBox>
+            <SoftBox sx={{py: {xs: 11, md:13 }}}>{children}</SoftBox>
           
         </Grid>
 
@@ -48,6 +48,8 @@ CoverLayout.defaultProps = {
   title: "",
   description: "",
   illustration: {},
+  width: 6, 
+
 };
 
 // Typechecking props for the IllustrationLayout
@@ -56,7 +58,7 @@ CoverLayout.propTypes = {
   header: PropTypes.node,
   title: PropTypes.string,
   image: PropTypes.string.isRequired,
-
+  width: PropTypes.number,
   description: PropTypes.string,
   children: PropTypes.node.isRequired,
   illustration: PropTypes.shape({

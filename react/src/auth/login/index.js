@@ -101,7 +101,16 @@ function Login() {
 
     try {
       const response = await AuthService.login(myData);
-      authContext.login(response.access_token, response.refresh_token);
+
+      
+
+      if (response.roles[0] === "seller") {
+        authContext.login(response.access_token, response.refresh_token);
+      } else {
+        window.location.href = "/auth/register";
+      }
+
+      
     } catch (res) {
       if (res.hasOwnProperty("message")) {
         setIsSubmitting(false);
@@ -143,6 +152,7 @@ function Login() {
   return (
     <CoverLayout
       image={curved9}
+      width={4}
     >
 
 
