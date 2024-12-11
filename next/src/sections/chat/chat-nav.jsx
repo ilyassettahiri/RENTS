@@ -117,19 +117,26 @@ export function ChatNav({
     <nav>
       <Box component="ul" sx={{ px: 0 }}>
         {conversations &&
-          conversations.map((conversation) => (
-            <ChatNavItem
-              key={conversation.id}
-              collapse={collapseDesktop}
-              conversation={conversation}
-              selected={conversation.id === selectedConversationId}
-              onCloseMobile={onCloseMobile}
-              onConversationClick={onConversationClick}
-            />
-          ))}
+          [...conversations] // Clone the array to avoid mutating the original data
+            .sort((a, b) => {
+              const lastMessageA = a.messages?.[a.messages.length - 1]?.created_at || a.updated_at;
+              const lastMessageB = b.messages?.[b.messages.length - 1]?.created_at || b.updated_at;
+              return new Date(lastMessageB) - new Date(lastMessageA);
+            })
+            .map((conversation) => (
+              <ChatNavItem
+                key={conversation.id}
+                collapse={collapseDesktop}
+                conversation={conversation}
+                selected={conversation.id === selectedConversationId}
+                onCloseMobile={onCloseMobile}
+                onConversationClick={onConversationClick}
+              />
+            ))}
       </Box>
     </nav>
   );
+
 
   const renderListResults = (
     <ChatNavSearchResults

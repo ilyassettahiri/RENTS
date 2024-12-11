@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
 export default function ServiceSearchSkeleton() {
   return (
     <>
-      <Box sx={{ py: 5, display: { xs: 'none', md: 'block' } }}>
+      <Box sx={{  display: { xs: 'none', md: 'block' } }}>
         <Grid container spacing={2.5} alignItems="center">
           {/* Keyword Search Skeleton */}
           <Grid item xs={12} md={5}>
@@ -39,9 +39,7 @@ export default function ServiceSearchSkeleton() {
 
       <Box
         sx={{
-          py: 7,
-          px: 2,
-          mt: { xs: -17 },
+
           display: { xs: 'block', md: 'none' }, // Visible only on mobile
         }}
       >

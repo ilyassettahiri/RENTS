@@ -56,31 +56,11 @@ class MessageFrontController extends JsonApiController
             ->with('messages')
             ->get();
 
-        // If no conversations found, still return the sender's information
-        if ($conversations->isEmpty()) {
-            return response()->json([
-                'data' => [
-                    'type' => 'conversations',
-                    'id' => null,
-                    'attributes' => [
-                        'messages' => [],
-                        'receiver' => null,
-                        'sender' => [
-                            'id' => $authuser->id,
-                            'role' => $authuser->role,
-                            'email' => $authuser->email,
-                            'address' => $authuser->address,
-                            'name' => $authuser->name,
-                            'lastActivity' => $authuser->updated_at->toIso8601String(),
-                            'avatarUrl' => $authuser->profile_image,
-                            'phoneNumber' => $authuser->phone_number,
-                            'status' => 'online', // Assuming you determine the user's status
-                            'created_at' => $authuser->created_at->toIso8601String(),
-                        ],
-                    ],
-                ],
-            ]);
-        }
+            if ($conversations->isEmpty()) {
+                return response()->json([
+                    'data' => null, // Return null when there are no conversations
+                ]);
+            }
 
         $conversationsData = $conversations->map(function ($conversation) use ($authuser) {
             // Check if the auth user is the sender or the receiver
@@ -88,12 +68,19 @@ class MessageFrontController extends JsonApiController
             $receiver = $isSender ? $conversation->getReceiver() : $conversation->getSender();  // Get the correct receiver
             $sender = $isSender ? $authuser : $conversation->getSender();  // Auth user might be the receiver, not just the sender
 
+            // Calculate unread messages count
+            $unreadCount = $conversation->messages
+            ->where('receiver_id', $authuser->id)  // Messages where the auth user is the receiver
+            ->whereNull('read_at')  // Messages that have not been read
+            ->count();
+
             return [
                 'type' => 'conversations',
                 'id' => $conversation->id,
                 'attributes' => [
                     'id' => $conversation->id,
                     'created_at' => $conversation->created_at,
+                    'unreadCount' => $unreadCount,
                     'messages' => $conversation->messages->map(function ($message) {
                         return [
                             'id' => $message->id,
@@ -326,6 +313,12 @@ class MessageFrontController extends JsonApiController
             return response()->json(['error' => 'Conversation not found or unauthorized.'], 404);
         }
 
+        Message::where('conversation_id', $conversation->id)
+        ->where('receiver_id', $authuser->id) // Ensure only the receiver's messages are updated
+        ->whereNull('read_at') // Only update messages that haven't been read yet
+        ->update(['read_at' => now()]); // Set the current timestamp for read_at
+
+
         // Get the receiver using the method defined in the Conversation model
         $receiver = $conversation->getReceiver();
 
@@ -420,7 +413,7 @@ class MessageFrontController extends JsonApiController
             'body' => $message->body,
             'sender' => $authUser->name,
             'conversation_id' => $conversationId,
-        ]));
+        ]))->toOthers();
 
 
 

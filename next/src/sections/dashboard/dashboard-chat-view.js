@@ -96,12 +96,41 @@ export default function DashboardChatPage() {
       const channel = echo.private(`chat.${selectedConversationId}`);
 
       channel.listen('.message.sent', (event) => {
+
+        const newMessage = event.message;
+
         // Update the messages dynamically
         queryClient.setQueryData(['conversationDetail', selectedConversationId], (prev) => ({
           ...prev,
           messages: [...(prev?.messages || []), event.message],
         }));
+
+
+
+        // Update the conversations list
+        queryClient.setQueryData(['conversations'], (prevConversations) =>
+          prevConversations.map((conversation) => {
+            if (conversation.id === newMessage.conversation_id) {
+              // Update unreadCount if the conversation is not selected
+              const unreadCount = conversation.id === selectedConversationId
+                ? conversation.unreadCount
+                : (conversation.unreadCount || 0) + 1;
+
+              return {
+                ...conversation,
+                messages: [...conversation.messages, newMessage],
+                unreadCount,
+              };
+            }
+            return conversation;
+          })
+        );
+
+
       });
+
+
+
 
       channel.error((err) => {
         console.error('Channel error:', err);

@@ -187,46 +187,80 @@ const renderEditOrSaveButton = isImageSelected ? (
 
   const renderContentFix  = isProfileLoading ?  (
 
-  <Stack
-    sx={{
-      flexShrink: 0,
-      borderRadius: 2,
-      width: 1,
-      ...(mdUp && {
-        width: 280,
-        border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.24)}`,
-      }),
-    }}
-  >
-    <Stack spacing={2} sx={{ p: 3, pb: 2 }} >
-      <Stack spacing={2} direction="row" alignItems="center">
-        <Skeleton variant="circular" width={64} height={64} />
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Skeleton variant="rectangular" width={100} height={40} />
-          <Skeleton variant="rectangular" width={100} height={40} />
+
+
+    <Stack
+      sx={{
+        flexShrink: 0,
+        borderRadius: 2,
+        width: 1,
+        border: (theme) => `solid 1px ${alpha(theme.palette.grey[500], 0.24)}`, // Border for all screen sizes
+        ...(mdUp && {
+          width: 280,
+        }),
+      }}
+    >
+      <Stack spacing={2} sx={{ p: 3, pb: 2 }}>
+        <Stack spacing={2} direction="row" alignItems="center">
+          <Skeleton
+            variant="circular"
+            width={64}
+            height={64}
+            sx={{ border: (theme) => `solid 1px ${theme.palette.divider}` }} // Add border to circular skeleton
+          />
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Skeleton
+              variant="rectangular"
+              width={100}
+              height={40}
+              sx={{ borderRadius: 1, border: (theme) => `solid 1px ${theme.palette.divider}` }} // Border for rectangular skeleton
+            />
+
+          </Stack>
+        </Stack>
+
+        <Stack spacing={0.5}>
+          <Skeleton
+            variant="text"
+            width={150}
+            sx={{ borderRadius: 1, border: (theme) => `solid 1px ${theme.palette.divider}` }} // Border for text skeleton
+          />
+          <Skeleton
+            variant="text"
+            width={200}
+            sx={{ borderRadius: 1, border: (theme) => `solid 1px ${theme.palette.divider}` }} // Border for text skeleton
+          />
         </Stack>
       </Stack>
 
-      <Stack spacing={0.5}>
-        <Skeleton variant="text" width={150} />
-        <Skeleton variant="text" width={200} />
+      <Divider sx={{ borderStyle: 'dashed' }} />
+
+      <Stack sx={{ my: 1, px: 2 }}>
+        {[1, 2, 3].map((index) => (
+          <Skeleton
+            key={index}
+            variant="rectangular"
+            height={44}
+            sx={{
+              my: 1,
+            }}
+          />
+        ))}
+      </Stack>
+
+      <Divider sx={{ borderStyle: 'dashed' }} />
+
+      <Stack sx={{ my: 1, px: 2 }}>
+        <Skeleton
+          variant="rectangular"
+          height={44}
+
+        />
       </Stack>
     </Stack>
 
-    <Divider sx={{ borderStyle: 'dashed' }} />
 
-    <Stack sx={{ my: 1, px: 2 }}>
-      {[1, 2, 3].map((index) => (
-        <Skeleton key={index} variant="rectangular" height={44} sx={{ my: 1, borderRadius: 1 }} />
-      ))}
-    </Stack>
 
-    <Divider sx={{ borderStyle: 'dashed' }} />
-
-    <Stack sx={{ my: 1, px: 2 }}>
-      <Skeleton variant="rectangular" height={44} sx={{ borderRadius: 1 }} />
-    </Stack>
-  </Stack>
   ) : (
 
 
@@ -333,9 +367,31 @@ const renderEditOrSaveButton = isImageSelected ? (
             },
           }}
         >
-          {/* <Nav open={menuOpen.value} onClose={menuOpen.onFalse} /> */}
 
-          {mdUp ? renderContentFix : <Box />}
+
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'block' }, // Hide on mobile, show on desktop
+              flexShrink: 0,
+              borderRadius: 2,
+              width: { xs: '100%', md: 280 }, // Full width on mobile, fixed width on desktop
+
+            }}
+          >
+            {renderContentFix}
+          </Box>
+
+          <Box
+            sx={{
+              display: { xs: 'block', md: 'none' }, // Show on mobile, hide on desktop
+              flexShrink: 0,
+              borderRadius: 2,
+              width: '100%',
+            }}
+          >
+            <Box /> {/* Placeholder content for mobile */}
+          </Box>
+
 
           <Box
             sx={{
