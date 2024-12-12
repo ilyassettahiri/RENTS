@@ -58,8 +58,33 @@ export default function StorePopularProducts({
   recentListingsTetouan,
 
 }) {
-  const [tab, setTab] = useState('Marrakech');
+
   const { t } = useTranslation();
+
+  const TABS = Object.entries({
+    Marrakech: recentListingsMarrakech,
+    Casablanca: recentListingsCasablanca,
+    Tanger: recentListingsTanger,
+    Rabat: recentListingsRabat,
+    Fes: recentListingsFes,
+    Agadir: recentListingsAgadir,
+    Meknes: recentListingsMeknes,
+    Oujda: recentListingsOujda,
+    Kenitra: recentListingsKenitra,
+    Tetouan: recentListingsTetouan,
+    Salé: [],
+    Temara: [],
+    Safi: [],
+    Mohammedia: [],
+    Ouarzazate: [],
+    Errachidia: [],
+    laayoune: [],
+  })
+    .sort(([, a], [, b]) => (b?.length || 0) - (a?.length || 0)) // Sort by number of listings
+    .map(([city]) => city); // Extract the city names
+
+
+    const [tab, setTab] = useState(TABS[0]);
 
   const handleChangeTab = useCallback((event, newValue) => {
     setTab(newValue);

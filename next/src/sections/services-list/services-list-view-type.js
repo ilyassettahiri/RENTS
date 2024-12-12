@@ -1315,7 +1315,7 @@ export default function ServicesListViewType({ params }) {
                     )}
 
 
-        <Stack  sx={{ my: { xs: 6, md: 5 }, }}/>
+        <Stack  sx={{ my: { xs: 7, md: 5 }, }}/>
 
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
