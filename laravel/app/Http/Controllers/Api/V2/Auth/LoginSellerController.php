@@ -58,6 +58,7 @@ class LoginSellerController extends JsonApiController
         $payload = json_decode(base64_decode(explode('.', $accessToken)[1]), true);
         $userId = $payload['sub'];
 
+
         // Retrieve the user and their roles
         $user = User::find($userId);
         $roles = $user->getRoleNames(); // Retrieves roles assigned to the user
@@ -65,6 +66,7 @@ class LoginSellerController extends JsonApiController
 
         // Add roles to the response
         $tokenData['roles'] = $roles;
+        $tokenData['id'] = $userId;
 
         // Return the response with roles included
         return response()->json($tokenData, Response::HTTP_OK);

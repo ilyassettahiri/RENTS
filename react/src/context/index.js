@@ -13,6 +13,8 @@ const SoftUI = createContext(null);
 export const AuthContext = createContext({
   isAuthenticated: false,
   login: () => {},
+  loginseller: () => {},
+
   register: () => {},
   logout: () => {},
   getCurrentUser: () => {},
@@ -44,6 +46,12 @@ const AuthContextProvider = ({ children }) => {
     Cookies.set("authToken", newToken, { expires: 1, sameSite: 'Strict', secure: true });
     setIsAuthenticated(true);
     navigate("/dashboard");
+  };
+
+  const loginseller = (newToken) => {
+    Cookies.set("authToken", newToken, { expires: 1, sameSite: 'Strict', secure: true });
+    setIsAuthenticated(true);
+    navigate("/auth/become-seller");
   };
 
   const logout = () => {
@@ -93,7 +101,7 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated, login, logout, getRole, getCurrentUser }}>
+    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated,loginseller, login, logout, getRole, getCurrentUser }}>
       {children}
     </AuthContext.Provider>
   );

@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -41,7 +42,10 @@ export {
 function Login() {
   const { t } = useTranslation();
 
-  
+  const [userId, setUserId] = useState(null);
+  const [accessToken, setAccessToken] = useState(null); 
+  const [refreshToken, setRefreshToken] = useState(null); 
+
   const authContext = useContext(AuthContext);
   const [rememberMe, setRememberMe] = useState(false);
   const [inputs, setInputs] = useState({
@@ -54,6 +58,10 @@ function Login() {
     credentialsErros: false,
     textError: "",
   });
+
+  const navigate = useNavigate();
+
+  const [role, setRole] = useState(null); // Track user role
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -104,10 +112,19 @@ function Login() {
 
       
 
+
+
+      setAccessToken(response.access_token);
+      setRefreshToken(response.refresh_token);
+
       if (response.roles[0] === "seller") {
         authContext.login(response.access_token, response.refresh_token);
       } else {
-        window.location.href = "/auth/register";
+        setIsSubmitting(false);
+        setUserId(response.id);
+        
+
+        setRole(response.roles[0]);
       }
 
       
@@ -225,19 +242,57 @@ function Login() {
                 </SoftTypography>
               )}
 
-
-              <SoftBox mt={4} mb={1}>
-                <SoftButton  sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
-                
-                disabled={isSubmitting}
-
-
-                >
+              {(role === "seller" || role === null) && (
+                <SoftBox mt={4} mb={1}>
+                  <SoftButton  sx={{  py: 1.8 }} variant="gradient" color="info" fullWidth type="submit"
                   
+                  disabled={isSubmitting}
 
-                  {isSubmitting ? "Sign in..." : "Sign in"}
-                </SoftButton>
-              </SoftBox>
+
+                  >
+                    
+
+                    {isSubmitting ? "Sign in..." : "Sign in"}
+                  </SoftButton>
+                </SoftBox>
+
+              )}
+
+              {role && role !== "seller" && (
+                <SoftBox mt={2}>
+                  <SoftTypography
+                    variant="body2"
+                    color="error"
+                    fontWeight="medium"
+                    textAlign="center"
+                    mb={2}
+                  >
+                    You aren’t currently a seller. To access seller features, please upgrade your account.
+                  </SoftTypography>
+                  <SoftButton
+                    sx={{ py: 1.8 }}
+                    variant="gradient"
+                    color="info"
+                    fullWidth
+
+                    onClick={() => {
+                      if (inputs.email) {
+                        localStorage.setItem("sellerEmail", inputs.email);
+                        localStorage.setItem("userID", userId);
+
+                        
+                        authContext.loginseller(accessToken,refreshToken);
+
+                      } else {
+                        alert("Please enter an email address.");
+                      }
+                    }}
+
+                  >
+                    Become a seller
+                  </SoftButton>
+                </SoftBox>
+              )}
 
              
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\V2\Auth\RegisterSellerController;
 
 use App\Http\Controllers\Api\V2\MeController;
 use App\Http\Controllers\Api\V2\UserController;
+use App\Http\Controllers\Api\V2\BecomeSellerController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -345,7 +346,9 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
 
     Route::patch('stores/{id}/status', [OnlinestoreController::class, 'updateStatus']);
 
+    // become seller
 
+    Route::patch('becomeseller/{id}', [BecomeSellerController::class, 'updateSeller']);
 
 
     // Admin

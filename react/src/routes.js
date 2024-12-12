@@ -4,6 +4,7 @@
 
  import Dashboard from "admin/dashboard";
 
+ import Loginseller from "auth/loginseller";
 
 
  // reservation
@@ -338,6 +339,12 @@ const routes = [
       
 
 
+      {
+        name: "Become Seller",
+        key: "become-seller",
+        route: "/auth/become-seller",
+        component: <Loginseller />,
+      },
 
 
       {

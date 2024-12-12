@@ -170,7 +170,10 @@ class CrudService {
   };
 
 
-  
+  becomeSeller = async (payload, id) => {
+    const endpoint = `becomeseller/${id}`;
+    return await HttpService.patch(endpoint, payload);
+  };
 
   // roles requests
   getRoles = async () => {
