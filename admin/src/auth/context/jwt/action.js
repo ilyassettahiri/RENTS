@@ -14,7 +14,7 @@ export const signInWithPassword = async ({ email, password }) => {
 
     const res = await axios.post(endpoints.auth.signIn, params);
 
-    console.log('Response Data:', res.data.access_token);
+
 
 
     const accessToken = res.data.access_token;
@@ -23,7 +23,19 @@ export const signInWithPassword = async ({ email, password }) => {
       throw new Error('Access token not found in response');
     }
 
-    setSession(accessToken);
+
+
+
+    if (res.data.roles[0] === "super-admin") {
+      // If role is seller, proceed as usual
+      setSession(accessToken);
+    } else {
+      // Redirect to external site if role is not seller
+      window.location.href = 'https://rents.ma/';
+    }
+
+
+
   } catch (error) {
     console.error('Error during sign in:', error);
     throw error;

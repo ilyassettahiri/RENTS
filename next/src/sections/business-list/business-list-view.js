@@ -1302,7 +1302,7 @@ export default function BusinessListView() {
 
 
 
-      <Stack  sx={{ my: 3, }}/>
+      <Stack  sx={{  my: { xs: 5, md: 3 }, }}/>
 
 
       <Stack

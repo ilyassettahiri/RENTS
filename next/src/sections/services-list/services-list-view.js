@@ -1293,7 +1293,7 @@ export default function ServicesListView() {
 
 
 
-        <Stack  sx={{ my: 5, }}/>
+        <Stack  sx={{ my: { xs: 6, md: 5 }, }}/>
 
 
 
