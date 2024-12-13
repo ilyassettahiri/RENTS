@@ -181,6 +181,9 @@ use App\Models\Transportationsimg;
 use App\Models\Velosimg;
 
 
+use App\Events\ReservationPlaced;
+
+
 
 
 
@@ -2867,7 +2870,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Billiard::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -2919,6 +2922,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -2955,7 +2959,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Boxing::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3005,6 +3009,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -3040,7 +3045,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Diving::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3089,6 +3094,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3127,7 +3133,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Football::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3177,6 +3183,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -3214,7 +3221,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Golf::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3263,6 +3270,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3302,7 +3310,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Hunting::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3350,6 +3358,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3389,7 +3398,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Musculation::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3438,6 +3447,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3477,7 +3487,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Surf::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3525,6 +3535,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3564,7 +3575,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Tennis::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3613,6 +3624,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3651,7 +3663,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Audio::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3699,6 +3711,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3738,7 +3751,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Camera::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3787,6 +3800,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3823,7 +3837,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Charger::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3871,6 +3885,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3910,7 +3925,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Drone::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -3959,6 +3974,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -3999,7 +4015,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Gaming::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4048,6 +4064,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4086,7 +4103,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Laptop::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4134,6 +4151,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4174,7 +4192,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Lighting::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4223,6 +4241,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4262,7 +4281,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Printer::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4311,6 +4330,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4348,7 +4368,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Router::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4397,6 +4417,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4436,7 +4457,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Tablette::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4484,6 +4505,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4524,7 +4546,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Eclairage::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4572,6 +4594,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4611,7 +4634,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Mobilier::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4660,6 +4683,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4698,7 +4722,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Photographie::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4746,6 +4770,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4784,7 +4809,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Sonorisation::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4833,6 +4858,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4872,7 +4898,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Tente::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -4920,6 +4946,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -4958,7 +4985,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Clothes::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5007,6 +5034,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5045,7 +5073,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Jewelry::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5094,6 +5122,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5131,7 +5160,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Apartment::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5180,6 +5209,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5218,7 +5248,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Bureaux::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5266,6 +5296,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5305,7 +5336,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Magasin::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5354,6 +5385,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5391,7 +5423,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Maison::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5439,6 +5471,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5476,7 +5509,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Riad::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5526,6 +5559,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -5561,7 +5595,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Terrain::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5611,6 +5645,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -5648,7 +5683,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Villa::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5696,6 +5731,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5734,7 +5770,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Activity::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5783,6 +5819,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5820,7 +5857,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Livre::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5870,6 +5907,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -5905,7 +5943,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Musical::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -5954,6 +5992,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -5991,7 +6030,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Furniture::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6040,6 +6079,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6077,7 +6117,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Houseappliance::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6126,6 +6166,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6163,7 +6204,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Electricaltool::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6212,6 +6253,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6250,7 +6292,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Ladder::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6299,6 +6341,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6335,7 +6378,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Mechanicaltool::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6384,6 +6427,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6420,7 +6464,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Powertool::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6469,6 +6513,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6505,7 +6550,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Pressurewasher::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6554,6 +6599,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6590,7 +6636,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Service::where('url', $url)->first();
 
 
-                        Reservation::create([
+                        $reservation = Reservation::create([
 
                             'checkout_id' =>$checkout_id,
                             'name' => $validatedData['name'],
@@ -6638,6 +6684,7 @@ class ReservationFrontController extends JsonApiController
 
                         ]);
 
+                        broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6675,7 +6722,7 @@ class ReservationFrontController extends JsonApiController
                             $this->listingcategory = Job::where('url', $url)->first();
 
 
-                            Reservation::create([
+                            $reservation = Reservation::create([
 
                                 'checkout_id' =>$checkout_id,
                                 'name' => $validatedData['name'],
@@ -6725,6 +6772,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                            broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                             return response()->json([
@@ -6763,7 +6811,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Boat::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6812,6 +6860,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6848,7 +6897,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Camion::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6897,6 +6946,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -6932,7 +6982,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Caravan::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -6981,6 +7031,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7016,7 +7067,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Car::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7065,6 +7116,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7101,7 +7153,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Engin::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7149,6 +7201,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7187,7 +7240,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Moto::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7236,6 +7289,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7272,7 +7326,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Scooter::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7321,6 +7375,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7358,7 +7413,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Taxiaeroport::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7406,6 +7461,7 @@ class ReservationFrontController extends JsonApiController
 
                 ]);
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 
@@ -7443,7 +7499,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Transportation::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7493,6 +7549,7 @@ class ReservationFrontController extends JsonApiController
 
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
                 return response()->json([
@@ -7530,7 +7587,7 @@ class ReservationFrontController extends JsonApiController
                         $this->listingcategory = Velo::where('url', $url)->first();
 
 
-                Reservation::create([
+                $reservation = Reservation::create([
 
                     'checkout_id' =>$checkout_id,
                     'name' => $validatedData['name'],
@@ -7579,6 +7636,7 @@ class ReservationFrontController extends JsonApiController
                 ]);
 
 
+                broadcast(new ReservationPlaced($reservation))->toOthers();
 
 
 

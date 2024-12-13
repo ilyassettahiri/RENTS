@@ -83,7 +83,7 @@ export default function App({ ability }) {
   
 
   const authContext = useContext(AuthContext);
-  const [userDetails, setUserDetails] = useState({ name: "",email:"", image: "" });
+  const [userDetails, setUserDetails] = useState({ name: "",email:"", image: "", emailVerified: true , userId: null, });
 
 
   const [listingAll, setListingAll] = useState(0);
@@ -151,6 +151,7 @@ export default function App({ ability }) {
         name: response.data.attributes.name,
         email: response.data.attributes.email,
         emailVerified: response.data.attributes.email_verified_at,
+        userId: response.data.attributes.id,
 
         image: response.data.attributes.profile_image,
       });

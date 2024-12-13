@@ -1321,7 +1321,7 @@ export default function ServicesListViewCity({ params }) {
                     )}
 
 
-        <Stack  sx={{ my: { xs: 8, md: 5 }, }}/>
+        <Stack  sx={{ my: { xs: 9, md: 5 }, }}/>
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
           <Stack spacing={2.5} >

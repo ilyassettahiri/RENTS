@@ -12,6 +12,8 @@ import SoftButton from "components/SoftButton";
 import Alert from "@mui/material/Alert";
 import Button from '@mui/material/Button';
 // @mui core components
+import Badge from "@mui/material/Badge";
+
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
@@ -19,6 +21,8 @@ import Menu from "@mui/material/Menu";
 import Icon from "@mui/material/Icon";
 import SoftAvatar from "components/SoftAvatar";
 import Nav from 'examples/Navbars/DashboardNavbar/nav';
+
+import { initializeEcho } from 'utils/echo';
 
 import  Image  from 'components/image';
 
@@ -81,6 +85,7 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const [openMenu, setOpenMenu] = useState(false);
 
   const [navOpen, setNavOpen] = useState(false); 
+  const [unreadCount, setUnreadCount] = useState(0); // State to track unread notifications count
 
   const [openLanguage, setOpenLanguage] = useState(false);
 
@@ -96,6 +101,42 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const isDashboard = location.pathname === "/dashboard";
 
   const shouldShowButton = isDashboard; // Show button only on /dashboard
+
+
+
+    useEffect(() => {
+        if (!userDetails || !userDetails.userId) {
+            
+            return; // Skip execution if userId is not yet available
+        }
+
+        const echo = initializeEcho(); // Initialize Echo if authToken exists
+        if (!echo) {
+            console.log('Echo not initialized due to missing auth token.');
+            return; // Exit if Echo initialization fails
+        }
+
+        
+
+        const channel = echo.private(`reservations.${userDetails.userId}`);
+
+        // Listen for .reservation.placed event
+        channel.listen('.reservation.placed', (event) => {
+            console.log('New reservation placed:', event);
+            setUnreadCount((prev) => prev + 1); // Increment unread notifications count
+        });
+
+        channel.error((err) => {
+            console.error('Channel error:', err);
+        });
+
+        // Cleanup on component unmount
+        return () => {
+            channel.stopListening('.reservation.placed');
+            console.log(`Stopped listening for reservations on: reservations.${userDetails.userId}`);
+        };
+    }, [userDetails]); // Re-run when userDetails changes
+
 
 
   useEffect(() => {
@@ -328,18 +369,35 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
 
 
                     {renderLanguage()}
-                    
-                    <IconButton
-                      size="large"
-                      color="inherit"
-                      sx={navbarIconButton}
-                      aria-controls="notification-menu"
-                      aria-haspopup="true"
-                      variant="contained"
-                      onClick={handleOpenMenu}
+
+
+                    <Badge
+                      badgeContent={unreadCount}
+                      color="error"
+                      overlap="circular"
+                      sx={{
+                        "& .MuiBadge-badge": {
+                          fontSize: "0.75rem",
+                          height: "20px",
+                          minWidth: "20px",
+                        },
+                      }}
                     >
-                      <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
-                    </IconButton>
+                    
+                        <IconButton
+                          size="large"
+                          color="inherit"
+                          sx={navbarIconButton}
+                          aria-controls="notification-menu"
+                          aria-haspopup="true"
+                          variant="contained"
+                          onClick={handleOpenMenu}
+                        >
+                          <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
+                        </IconButton>
+
+
+                    </Badge>
 
                     <IconButton
                       size="large"
@@ -395,6 +453,8 @@ DashboardNavbar.propTypes = {
   userDetails: PropTypes.shape({
     name: PropTypes.string,
     email: PropTypes.string,
+    userId: PropTypes.number,
+
     image: PropTypes.string,
     emailVerified: PropTypes.string,
 

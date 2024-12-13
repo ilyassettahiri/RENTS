@@ -39,3 +39,8 @@ Broadcast::channel('notifications.{userId}', function ($user, $userId) {
 });
 
 
+Broadcast::channel('reservations.{userId}', function ($user, $userId) {
+
+
+    return (int) $user->id === (int) $userId;
+});
