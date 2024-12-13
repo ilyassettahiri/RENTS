@@ -1289,7 +1289,7 @@ export default function JobsListView() {
                     )}
 
 
-        <Stack  sx={{ my: { xs: 7, md: 5 }, }}/>
+        <Stack  sx={{ my: { xs: 8, md: 5 }, }}/>
 
 
 

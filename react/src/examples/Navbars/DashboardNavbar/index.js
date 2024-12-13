@@ -9,7 +9,8 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
 import SoftButton from "components/SoftButton";
-
+import Alert from "@mui/material/Alert";
+import Button from '@mui/material/Button';
 // @mui core components
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -238,112 +239,144 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   );
 
   return (
-    <AppBar
-      position={absolute ? "absolute" : navbarType}
-      color="inherit"
-      sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
-    >
-      <Toolbar sx={(theme) => navbarContainer(theme)}>
 
 
-          <SoftBox/>
-          
-        {isMini ? null : (
-          <SoftBox sx={(theme) => navbarRow(theme, { isMini })} >
-            <SoftBox pr={1}/>
-              
+    <>
+
+
+          {/* Alert for unverified email */}
+          {userDetails.emailVerified === null && (
+            <Alert
+              severity="warning"
+              sx={{ position: "fixed", top: 0, width: "100%", zIndex: 2000 }}
+              action={
+                <SoftButton sx={{ py: 1.5 }}  variant="gradient" color="info" size="small" 
             
-            <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1} >
-              
+                onClick={() => window.location.href = "https://rents.ma/en/verification"}
+
+
+                  
+                >
+                        {t("Verify Now")}
+
+                  </SoftButton>
+              }
+            >
+              Your email is not verified. Please check your inbox.
+            </Alert>
+          
+          )}
+
+          <AppBar
+            position={absolute ? "absolute" : navbarType}
+            color="inherit"
+            sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
+          >
+            <Toolbar sx={(theme) => navbarContainer(theme)}>
+
+
+                <SoftBox/>
                 
-                {shouldShowButton && (
-
-
-                    <SoftBox mr={2}>
-                                  <SoftButton    variant="gradient" type="submit" onClick={clickAddHandler} color="info">
-
-                                  
-                                      
-                                      {t("Create Listing")}
-
-                                  </SoftButton>
-                    </SoftBox>
-
-                )}
-
-              
-              <IconButton
-                size="large"
-                color="inherit"
-                sx={navbarMobileMenu}
-                onClick={handleMiniSidenav}
-              >
-                <Icon className={light ? "text-white" : "text-dark"}>
-                  {miniSidenav ? "menu_open" : "menu"}
-                </Icon>
-              </IconButton>
-
-
-
-              <IconButton
-                size="large"
-                color="inherit"
-                sx={navbarIconButton}
-                aria-controls="language-menu"
-                aria-haspopup="true"
-                variant="contained"
-                onClick={handleOpenLanguage}
-              >
-                <Icon className={light ? "text-white" : "text-dark"}>language</Icon>
-              </IconButton>
-
-
-              {renderLanguage()}
-              
-              <IconButton
-                size="large"
-                color="inherit"
-                sx={navbarIconButton}
-                aria-controls="notification-menu"
-                aria-haspopup="true"
-                variant="contained"
-                onClick={handleOpenMenu}
-              >
-                <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
-              </IconButton>
-
-              <IconButton
-                size="large"
-                color="inherit"
-                sx={navbarIconButton}
-                onClick={handleNavOpen} 
-              >
-
-
-                <SoftBox  width="2.5rem" >
-
-                  <Image
-                      src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
+              {isMini ? null : (
+                <SoftBox sx={(theme) => navbarRow(theme, { isMini })} >
+                  <SoftBox pr={1}/>
                     
-                      ratio="1/1"
-                      width="100%"
-                      sx={{ borderRadius: '25px' }}
+                  
+                  <SoftBox color={light ? "white" : "inherit"} display="flex" gap={1} >
+                    
                       
-                  />
+                      {shouldShowButton && (
+
+
+                          <SoftBox mr={2}>
+                                        <SoftButton    variant="gradient" type="submit" onClick={clickAddHandler} color="info">
+
+                                        
+                                            
+                                            {t("Create Listing")}
+
+                                        </SoftButton>
+                          </SoftBox>
+
+                      )}
+
+                    
+                    <IconButton
+                      size="large"
+                      color="inherit"
+                      sx={navbarMobileMenu}
+                      onClick={handleMiniSidenav}
+                    >
+                      <Icon className={light ? "text-white" : "text-dark"}>
+                        {miniSidenav ? "menu_open" : "menu"}
+                      </Icon>
+                    </IconButton>
+
+
+
+                    <IconButton
+                      size="large"
+                      color="inherit"
+                      sx={navbarIconButton}
+                      aria-controls="language-menu"
+                      aria-haspopup="true"
+                      variant="contained"
+                      onClick={handleOpenLanguage}
+                    >
+                      <Icon className={light ? "text-white" : "text-dark"}>language</Icon>
+                    </IconButton>
+
+
+                    {renderLanguage()}
+                    
+                    <IconButton
+                      size="large"
+                      color="inherit"
+                      sx={navbarIconButton}
+                      aria-controls="notification-menu"
+                      aria-haspopup="true"
+                      variant="contained"
+                      onClick={handleOpenMenu}
+                    >
+                      <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
+                    </IconButton>
+
+                    <IconButton
+                      size="large"
+                      color="inherit"
+                      sx={navbarIconButton}
+                      onClick={handleNavOpen} 
+                    >
+
+
+                      <SoftBox  width="2.5rem" >
+
+                        <Image
+                            src={`${process.env.REACT_APP_IMAGE_BASE_URL}${userDetails.image}`}
+                          
+                            ratio="1/1"
+                            width="100%"
+                            sx={{ borderRadius: '25px' }}
+                            
+                        />
+                      </SoftBox>
+
+                    </IconButton>
+                    <Nav open={navOpen} onClose={handleCloseNav} userDetails={userDetails}/>
+
+
+                    {renderMenu()}
+                  </SoftBox>
                 </SoftBox>
+              )}
+            </Toolbar>
 
-              </IconButton>
-              <Nav open={navOpen} onClose={handleCloseNav} userDetails={userDetails}/>
+            
+          </AppBar>
 
 
-              {renderMenu()}
-            </SoftBox>
-          </SoftBox>
-        )}
-      </Toolbar>
+    </>
 
-      
-    </AppBar>
   );
 }
 
@@ -363,6 +396,8 @@ DashboardNavbar.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     image: PropTypes.string,
+    emailVerified: PropTypes.string,
+
   }).isRequired,
 };
 

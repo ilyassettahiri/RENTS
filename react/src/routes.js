@@ -66,6 +66,8 @@ import DetailBoosted from "admin/listing/boosted/detail-boosted";
 
 import ListCollection from "admin/listing/collection";
 import CreateCollection from "admin/listing/collection/create-collection";
+import Verification from "admin/verification";
+
 import DetailCollection from "admin/listing/collection/detail-collection";
 
 
@@ -345,6 +347,15 @@ const routes = [
         route: "/auth/become-seller",
         component: <Loginseller />,
       },
+
+
+      {
+        name: "Verification",
+        key: "verification",
+        route: "/verification",
+        component: <Verification />,
+      },
+
 
 
       {

@@ -1318,7 +1318,7 @@ export default function JobsListViewCity({ params }) {
                     )}
 
 
-        <Stack  sx={{ my: { xs: 7, md: 5 }, }}/>
+        <Stack  sx={{ my: { xs: 8, md: 5 }, }}/>
 
         <Stack direction="row" justifyContent="space-between" sx={{ my: 1, }}>
           <Stack spacing={2.5} >

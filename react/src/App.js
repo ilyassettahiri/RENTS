@@ -150,6 +150,7 @@ export default function App({ ability }) {
       setUserDetails({
         name: response.data.attributes.name,
         email: response.data.attributes.email,
+        emailVerified: response.data.attributes.email_verified_at,
 
         image: response.data.attributes.profile_image,
       });

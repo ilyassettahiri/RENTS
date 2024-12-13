@@ -18,30 +18,6 @@ import Typography from '@mui/material/Typography';
 
 import StoreItemBestSellers from '../product/item/store-item-best-sellers';
 
-// ----------------------------------------------------------------------
-
-const TABS = [
-  'Marrakech',
-  'Casablanca',
-
-  'Tanger',
-  'Rabat',
-  'Fes',
-  'Agadir',
-  'Meknes',
-  'Oujda',
-  'Kenitra',
-  'Tetouan',
-  'Salé',
-  'Temara',
-  'Safi',
-  'Mohammedia',
-  'Ouarzazate',
-  'Errachidia',
-
-  'laayoune',
-
-];
 
 // ----------------------------------------------------------------------
 
