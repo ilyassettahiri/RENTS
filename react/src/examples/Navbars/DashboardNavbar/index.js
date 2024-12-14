@@ -97,7 +97,8 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const { state: textDirectionState, dispatch: textDirectionDispatch } = useTextDirection();
   const { textDirection } = textDirectionState;
 
-  
+  const [notifications, setNotifications] = useState([]); // Store notifications
+
   const isDashboard = location.pathname === "/dashboard";
 
   const shouldShowButton = isDashboard; // Show button only on /dashboard
@@ -123,6 +124,17 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
         // Listen for .reservation.placed event
         channel.listen('.reservation.placed', (event) => {
             console.log('New reservation placed:', event);
+
+            setNotifications((prev) => [
+              ...prev,
+              {
+                id: event.reservation.id, // Unique ID for the notification
+                customerName: event.reservation.name,
+                thumb: event.reservation.listings_thumb,
+                createdAt: event.reservation.created_at,
+              },
+            ]);
+
             setUnreadCount((prev) => prev + 1); // Increment unread notifications count
         });
 
@@ -197,7 +209,11 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   const handleMiniSidenav = () => setMiniSidenav(dispatch, !miniSidenav);
 
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
-  const handleCloseMenu = () => setOpenMenu(false);
+  const handleCloseMenu = () => {
+    setOpenMenu(false);
+    setUnreadCount(0); // Reset unread count when menu is opened
+    navigate("/reservation/upcoming");
+  };
 
 
   const handleNavOpen = () => setNavOpen(true);  // Set navOpen to true to open the Nav
@@ -215,36 +231,33 @@ function DashboardNavbar({ absolute, light, isMini, userDetails }) {
   };
 
   // Render the notifications menu
+  
   const renderMenu = () => (
     <Menu
       anchorEl={openMenu}
       anchorReference={null}
-      anchorOrigin={{
-        vertical: "bottom",
-        horizontal: "left",
-      }}
+      anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       open={Boolean(openMenu)}
       onClose={handleCloseMenu}
     >
-      <NotificationItem
-        image="/logo/admin.jpg"
-        title={["New message", "from Laur"]}
-        date="13 minutes ago"
-        onClick={handleCloseMenu}
-      />
-      <NotificationItem
-        image="/logo/admin.jpg"
-        title={["New album", "by Travis Scott"]}
-        date="1 day"
-        onClick={handleCloseMenu}
-      />
-      <NotificationItem
-        
-        image="/logo/admin.jpg"
-        title={["", "Payment successfully completed"]}
-        date="2 days"
-        onClick={handleCloseMenu}
-      />
+      {notifications.length > 0 ? (
+        notifications.map((notification) => (
+          <NotificationItem
+            key={notification.id}
+            image={notification.thumb}
+            title={["Reservation from", notification.customerName]}
+            date={notification.createdAt}
+            onClick={handleCloseMenu}
+          />
+        ))
+      ) : (
+        <NotificationItem
+          image="/logo/admin.jpg"
+          title={["No new notifications"]}
+          date=""
+          onClick={handleCloseMenu}
+        />
+      )}
     </Menu>
   );
 

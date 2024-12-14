@@ -2,6 +2,7 @@ import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 import Cookies from 'js-cookie';
 
+Pusher.logToConsole = true;
 
 let echoInstance = null; // Singleton instance of Echo
 

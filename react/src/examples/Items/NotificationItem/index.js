@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 // @mui material components
 import MenuItem from "@mui/material/MenuItem";
 import Icon from "@mui/material/Icon";
+import { fToNow } from "utils/format-time";
 
 // Soft UI Dashboard PRO React components
 import SoftBox from "components/SoftBox";
@@ -32,12 +33,12 @@ const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref
       sx={(theme) => menuImage(theme, { color })}
     >
       <Image
-        src={`${process.env.REACT_APP_IMAGE_BASE_URL}${image}`}
+        src={`${process.env.REACT_APP_IMAGE_LISTING_LARGE}${image}`}
         alt={title[0]} // provide alt text for accessibility
         ratio="1/1" // example ratio, can be customized as needed
         width="100%"
         height="100%"
-        sx={{ borderRadius: "8px" }} // optional, to apply border-radius or any styles
+        sx={{ borderRadius: "4px" }} // optional, to apply border-radius or any styles
         
         disabledEffect={false} // enable image effect
       />
@@ -65,7 +66,7 @@ const NotificationItem = forwardRef(({ color, image, title, date, ...rest }, ref
             watch_later
           </Icon>
         </SoftTypography>
-        {date}
+        {fToNow(date)} 
       </SoftTypography>
     </SoftBox>
   </MenuItem>
